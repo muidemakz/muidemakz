@@ -1,0 +1,25 @@
+header {
+    align-items: center;
+    background-color: #0f131a;
+    display: flex;
+    flex-direction: row;
+}
+
+.section1 {
+    display: flex;
+    background-color: #184da8;
+    border: 1px solid #e2e8f0;
+
+}
+.section2 {
+    align-items: right;
+    max-width: 512px;
+    border: 0 solid;
+  border-radius: 9999px;
+
+}
+
+#logo {
+    max-width: 128px;
+}
+

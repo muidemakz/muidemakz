@@ -1,0 +1,22 @@
+@import "_header.css";
+@import "bloghomepage.css";
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#skills {
+
+    
+
+}
+.sec-container {
+display: flex;
+flex-direction: row;
+max-width: 1024px;
+justify-content: normal;
+align-items: center;
+background-color: aliceblue;
+justify-content: space-between;
+}
