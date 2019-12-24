@@ -1,22 +1,67 @@
 @import "_header.css";
 @import "bloghomepage.css";
+@import "footer.css";
+
 
 .navbar {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  margin-left: 550px;
+  
 }
 #skills {
-
-    
-
+  text-align: center;
 }
+
+#logo2 {
+    max-width: 128px;
+}
+
+.sec-box {
+  border: 1px solid #000000;
+  padding: 20px;
+  margin: 10px;
+  min-height: 150px;
+  width: 150px;
+}
+
+.sec-box-2 {
+    border: 1px solid #000000;
+    display: inline-flex;
+    width: 750px;
+}
+
+#blog {
+  text-align: center;
+  background-color: #47A8FF;
+}
+
+#contact {
+    text-align: center;
+}
+
 .sec-container {
-display: flex;
-flex-direction: row;
-max-width: 1024px;
-justify-content: normal;
-align-items: center;
-background-color: aliceblue;
-justify-content: space-between;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  width: 1000px;
+  /* background-color: aliceblue; */
+  justify-content: space-around;
+}
+
+.blog-caption {
+    text-align: left;
+}
+
+.pad-vertical {
+    padding-bottom: 50px;
+    padding-top: 10px;
+}
+
+.padding-left-15 {
+    padding-left: 62px;
+}
+
+.padding-right-15 {
+    padding-right: 62px;
 }
