@@ -26,7 +26,8 @@ header {
 
 .top-header {
     display: inline-flex;
-    border: 1px solid #ffffff;
+    padding: 30px;
+    /* border: 1px solid #ffffff; */
     /*justify-items: center; */
     flex-direction: row;
     align-items: center;
@@ -36,13 +37,13 @@ header {
   }
 
   .navigation {
-      margin: 55px;
+      margin: 20px;
   }
 
 
 
 #profile-picture {
-    max-width: 75%;
+    max-width: 70%;
 }
 
 #logo {

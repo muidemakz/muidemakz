@@ -7,14 +7,20 @@
   display: flex;
   flex-direction: row;
   margin-left: 550px;
-  
+  list-style-type: none;
 }
+
 #skills {
   text-align: center;
+  padding: 15px;
 }
 
 #logo2 {
     max-width: 128px;
+}
+
+#logo3 {
+  max-width: 256px;
 }
 
 .sec-box {
@@ -31,13 +37,23 @@
     width: 750px;
 }
 
+.sec-box-3 {
+  border: 1px solid #000000; 
+  padding: 5px;
+  margin: 10px;
+  width: 200px;
+
+}
+
 #blog {
   text-align: center;
   background-color: #47A8FF;
+  padding: 15px;
 }
 
 #contact {
     text-align: center;
+    padding: 15px;
 }
 
 .sec-container {
@@ -51,7 +67,19 @@
 
 .blog-caption {
     text-align: left;
+    margin: 20px;
 }
+
+h1 {
+  font-size: 55px;
+  margin-block-end: 15px;
+}
+
+h2 {
+  font-size: 40px;
+  margin-block-end: 15px;
+}
+
 
 .pad-vertical {
     padding-bottom: 50px;

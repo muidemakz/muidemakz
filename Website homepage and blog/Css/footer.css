@@ -1,4 +1,32 @@
 footer {
+  /*  background-color: #00FFE3;
+    display: inline-flex;
+    flex-direction: row; */
+    text-align: center;
     background-color: #00FFE3;
     display: flex;
+    justify-items: left;
+    height: 30px;
+}
+.footerbar {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    padding-left: 700px;
+}
+
+.buttom-footer {
+    display: inine-flex;
+    padding: 30px;
+    /* border: 1px solid #ffffff; */
+    /*justify-items: center; */
+    flex-direction: row;
+    align-items: center;
+    /* background-color: aliceblue; */
+    justify-content: space-around;
+  
+}
+
+.navigation2 {
+    margin: 20px;
 }
