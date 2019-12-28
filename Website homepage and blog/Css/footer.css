@@ -16,7 +16,7 @@ footer {
 }
 
 .buttom-footer {
-    display: inine-flex;
+    display: flex;
     padding: 30px;
     /* border: 1px solid #ffffff; */
     /*justify-items: center; */
