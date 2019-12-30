@@ -1,9 +1,9 @@
 .container3 {
-    display: grid;
-    grid-template-columns: 750px 1fr;
-    grid-gap: 150px;
+    display: flex;
+ /*   grid-template-columns: 750px 1fr;
+    grid-gap: 150px; */
     margin: 20px;
-}
+} 
 
 .box-about {
     margin: 20px;
@@ -16,7 +16,13 @@
 .box-post {
 margin: 20px;
 text-align: left;
+margin-left: 250px;
+margin-right: 100px;
 
+}
+
+.fig {
+    margin: 1px;
 }
 
 #image {

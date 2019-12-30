@@ -1,12 +1,12 @@
 .container {
-  display: grid;
+  display: flex;
    /*  grid-gap: 20px;
  grid-template-rows: repeat(auto-fit, minmax(20px, 10px, 10px, 1fr));
         grid-template-rows: 100px 100px 100px 100px 100px;
-    grid-gap: 50px; */
+    grid-gap: 50px; 
   grid-template-areas:
     "top top"
-    "bottomLeft buttomRight";
+    "bottomLeft buttomRight"; */
     margin: 20px;
 
   /* grid-template-columns: 500px 150px; */
@@ -49,12 +49,18 @@
     justify-content: space-evenly;*/
 }
 
-.container2 {
+.about-me {
 
   border: 3px solid green;
   margin: 20px;
   padding: 20px;
 
+}
+
+.container2 {
+width: 400px;
+  margin: 50px;
+  margin-right: 250px;
 }
 
 .box1 {
