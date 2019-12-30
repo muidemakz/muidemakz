@@ -1,22 +1,22 @@
 .container3 {
     display: grid;
-    grid-template-rows: 300px 300px;
-    grid-template-columns: 300px;
-    grid-gap: 25px;
-    grid-template-areas: 
-    "main main sd";
+    grid-template-columns: 750px 1fr;
+    grid-gap: 150px;
+    margin: 20px;
 }
 
 .box-about {
-   /* grid-area: sd;
-    width: 800px; */
-    display: inline-block;
-    width: 800px;
-    margin: 50px;
+    margin: 20px;
+}
+
+#two {
+    text-align: center;
 }
 
 .box-post {
-    grid-area: main;
+margin: 20px;
+text-align: left;
+
 }
 
 #image {
@@ -24,9 +24,17 @@
     height: 400px;
 }
 
+#image {
+    width: 800px;
+    height: 800px;
+}
+
 figure {
-    width: 30%;
+    width: 90%;
     text-align: center;
-    font-style: italic;
-    font-size: smaller;
+  }
+
+  .follow-link {
+    display: flex;
+    list-style-type: none;
   }

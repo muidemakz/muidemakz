@@ -3,6 +3,10 @@
 @import "footer.css";
 @import "blogpost.css";
 
+body {
+  display: grid;
+}
+
 
 .navbar {
   display: flex;
@@ -11,18 +15,30 @@
   list-style-type: none;
 }
 
+.banner {
+  display: grid;
+}
+
 #skills {
   text-align: center;
   padding: 15px;
 }
 
 #logo2 {
-    max-width: 128px;
     padding: 20px;
+    vertical-align: middle;
+    width: 200px;
+    height: 200px;
+    border-radius: 10%;
 }
 
 #logo3 {
   max-width: 206px;
+  padding: 20px;
+  vertical-align: middle;
+  width: 150px;
+  height: 150px;
+  border-radius: 10%;
 }
 
 .sec-box {
@@ -71,8 +87,6 @@
   width: 1000px;
   /* background-color: aliceblue; */
   justify-content: space-around;
-  
-
 }
 
 .blog-caption {
@@ -81,10 +95,10 @@
 }
 
 
-/* On mouse-over, add a deeper shadow */
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
+
 .sec-box-2:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
@@ -116,4 +130,13 @@ h2 {
 
 .padding-right-15 {
     padding-right: 62px;
+}
+
+@media (min-width:650px) {}
+
+
+@media (max-width:1100px) {
+  body {
+  grid-template-rows: 350px 450px 150px;
+  }
 }
