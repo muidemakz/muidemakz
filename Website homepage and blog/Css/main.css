@@ -200,7 +200,7 @@ h2 {
     padding-right: 62px;
 }
 
-@media (min-width:650px) {
+@media (min-width:650px) and (max-width:1099) {
 
 
 }
