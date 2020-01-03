@@ -38,11 +38,10 @@ a {
   width: 100%;
 }
 
-#logo2 {
+#blog-thumbnail-image {
     padding: 20px;
     vertical-align: middle;
-    width: 200px;
-    height: 200px;
+    width: 15%;
     border-radius: 10%;
 }
 
@@ -127,6 +126,7 @@ a {
 
 .contact-box {
 display: grid;
+margin: 3%;
 } 
 
 
@@ -134,13 +134,14 @@ display: grid;
 display: inline-flex;
 justify-content: space-evenly;
 grid-area: chd;
+margin: 4%;
 }
 
 
 .bottom-contact-box {
   display: grid; 
   grid-area: mn;
-  
+  margin: 7%;  
 
 }
 
