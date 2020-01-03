@@ -1,12 +1,8 @@
 footer {
-  /*  background-color: #00FFE3;
-    display: inline-flex;
-    flex-direction: row; */
     text-align: center;
     background-color: #00FFE3;
-    display: flex;
     justify-items: left;
-    height: 30px;
+    height: 30%;
 }
 .footerbar {
     display: flex;
@@ -17,12 +13,9 @@ footer {
 
 .buttom-footer {
     display: flex;
-    padding: 30px;
-    /* border: 1px solid #ffffff; */
-    /*justify-items: center; */
+    padding: 1%;
     flex-direction: row;
     align-items: center;
-    /* background-color: aliceblue; */
     justify-content: space-around;
   
 }
