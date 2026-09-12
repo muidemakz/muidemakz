@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cardtonic P2P Money Transfer &middot; Muidemakz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/case-study.css">
+</head>
+<body class="type-outfit">
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="split.html" class="logo">muidemakz</a>
+    <nav class="site-nav">
+      <a href="split.html" class="is-active">Work</a>
+      <a href="about.html">About</a>
+    </nav>
+    <a href="mailto:muidemakz@gmail.com" class="btn-outline">Contact</a>
+  </div>
+</header>
+
+<main class="case-main">
+
+  <section class="case-hero">
+    <div class="wrap">
+      <a href="split.html" class="case-back">&larr; All Work</a>
+      <div class="case-hero-top">
+        <p class="case-kicker">Client Project &mdash; Cardtonic</p>
+      </div>
+      <h1 class="case-title">Sending Money To People, Not Accounts</h1>
+      <p class="case-lede">
+        Cardtonic is a fintech product people rely on every day, and it was exploring Peer-to-Peer money
+        transfers &mdash; letting users send directly to other Cardtonic users. The open question: how do
+        you build enough confidence for that to work at scale (1,000,000+ users), when the money moves
+        instantly and can't be recalled?
+      </p>
+      <p class="case-lede">
+        I designed an end-to-end P2P transfer flow where verifying the recipient comes before entering the
+        amount &mdash; addressing three anxieties research kept surfacing: trust, simplicity, and speed.
+      </p>
+      <ul class="case-tags">
+        <li>Fintech, 2026</li>
+        <li>Senior Product Designer</li>
+        <li>Cardtonic</li>
+        <li>Mobile App &middot; Figma</li>
+      </ul>
+    </div>
+    <div class="case-hero-cover">
+      <div class="case-hero-media" aria-hidden="true" style="background-image:url('images/Cardtonic/00 · Cover.png'); background-size:cover; background-position:center;">
+        <span class="case-media-label">Cardtonic &middot; P2P Money Transfer</span>
+      </div>
+      <div class="case-visit-rail">
+        <a class="case-visit-badge" href="https://www.figma.com/design/kRW3O61oRWMQRskiWHXS5j/Cardtonic-P2P-Money-Transfer-%E2%80%94-Flow-Exploration--Copy-?node-id=0-1" target="_blank" rel="noopener">View<br>Figma File</a>
+      </div>
+    </div>
+  </section>
+
+  <nav class="case-quicknav" aria-label="Section navigation">
+    <div class="wrap">
+      <a href="#introduction">Introduction</a>
+      <a href="#discovery">Discovery</a>
+      <a href="#decision">Decision</a>
+      <a href="#solution">Solution</a>
+      <a href="#outcome">Outcome</a>
+      <a href="#conclusion">Conclusion</a>
+    </div>
+  </nav>
+
+  <!-- ============ INTRODUCTION ============ -->
+  <section class="case-section" id="introduction">
+    <div class="wrap">
+      <p class="case-label"><span class="case-label-accent">Introduction</span> &middot; Background</p>
+      <p class="case-copy">
+        Cardtonic builds financial products people rely on every day, and was exploring the introduction of
+        Peer-to-Peer money transfers &mdash; letting users send money directly to other Cardtonic users.
+        Users needed a way to do that with enough confidence and trust for transactions at scale
+        (1,000,000+).
+      </p>
+      <div class="case-quote-box">
+        <blockquote class="case-quote" style="font-size: clamp(18px, 2vw, 24px);">
+          &ldquo;How do users find the right recipient? How do we prevent sending to the wrong person? How do
+          we make it feel fast without cutting corners on security?&rdquo;
+        </blockquote>
+      </div>
+
+      <div class="case-quote-box case-quote-box--dark">
+        <p class="case-copy" style="margin: 0;"><strong>Design Task:</strong> design an end-to-end
+          peer-to-peer mobile money transfer experience. Research showed the solution needed to address three
+          core anxieties.</p>
+      </div>
+
+      <ol class="case-steps case-steps--flush case-steps--lg">
+        <li>
+          <span class="case-step-n">01</span>
+          <span class="case-step-title">Trust</span>
+          <span class="case-step-copy">Am I sending this to the right person?</span>
+        </li>
+        <li>
+          <span class="case-step-n">02</span>
+          <span class="case-step-title">Simplicity</span>
+          <span class="case-step-copy">Every reassurance is another screen, another decision.</span>
+        </li>
+        <li>
+          <span class="case-step-n">03</span>
+          <span class="case-step-title">Speed</span>
+          <span class="case-step-copy">The fiftieth send should take three taps, not nine.</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ DISCOVERY · CHALLENGE ============ -->
+  <section class="case-section" id="discovery">
+    <div class="wrap">
+      <p class="case-label"><span class="case-label-accent">Discovery</span> &middot; The Challenge</p>
+      <p class="case-copy">Three tensions every peer transfer has to resolve, and how I approached solving them.</p>
+
+      <div class="case-tension-list">
+        <div class="case-tension">
+          <div>
+            <p class="case-tension-label">Speed vs Security</p>
+            <p class="case-tension-copy">A million naira deserves friction. Two thousand does not. One flow has to carry both.</p>
+          </div>
+          <div class="case-tension-card">
+            <p class="case-tension-title">Verify The Person</p>
+            <p class="case-tension-card-copy">Identity is confirmed before an amount is entered &mdash; settlement is instant within the Cardtonic ledger, with no pending state.</p>
+          </div>
+        </div>
+        <div class="case-tension">
+          <div>
+            <p class="case-tension-label">Confidence vs Simplicity</p>
+            <p class="case-tension-copy">Every reassurance is another screen. Too many, and the reassurance itself reads as risk.</p>
+          </div>
+          <div class="case-tension-card">
+            <p class="case-tension-title">Confirm Instantly</p>
+            <p class="case-tension-card-copy">The recipient is confirmed before a number is typed; because both parties are on Cardtonic, verification is fast.</p>
+          </div>
+        </div>
+        <div class="case-tension">
+          <div>
+            <p class="case-tension-label">First-Time Trust vs Repeat Trust</p>
+            <p class="case-tension-copy">The first send needs explaining. The fiftieth needs to be three taps.</p>
+          </div>
+          <div class="case-tension-card">
+            <p class="case-tension-title">Error States &amp; Review</p>
+            <p class="case-tension-card-copy">One question per screen. Errors explain the ceiling and offer a way past it; review highlights the recipient so a typo is seen, not overlooked.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DISCOVERY · NON-NEGOTIABLES ============ -->
+  <section class="case-section">
+    <div class="wrap">
+      <p class="case-label"><span class="case-label-accent">Discovery</span> &middot; Non-Negotiables</p>
+      <p class="case-copy">Assumptions that affect security, safety, and where the design could fail &mdash; and what breaks if they turn out wrong.</p>
+
+      <div class="case-leadership-grid case-leadership-grid--3" style="margin-top: 24px;">
+        <div class="case-leadership">
+          <p class="case-leadership-label">Only Cardtonic Users Can Receive Funds</p>
+          <p class="case-leadership-copy"><strong>Why:</strong> keeps both legs in one ledger and avoids external KYC.</p>
+          <p class="case-leadership-copy" style="margin-top: 8px;"><strong>If wrong:</strong> external rails would reintroduce a pending state and change the architecture.</p>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">Tier Limits Are For Risk Management</p>
+          <p class="case-leadership-copy"><strong>Why:</strong> caps daily exposure per account.</p>
+          <p class="case-leadership-copy" style="margin-top: 8px;"><strong>If wrong:</strong> must be explained, not enforced silently &mdash; why the explainer sheet exists.</p>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">Settlement Is Instant</p>
+          <p class="case-leadership-copy"><strong>Why:</strong> uses the internal ledger, not a bank rail.</p>
+          <p class="case-leadership-copy" style="margin-top: 8px;"><strong>If wrong:</strong> success would need a pending state, changing the final screen.</p>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">Contacts Permission Can Be Granted</p>
+          <p class="case-leadership-copy"><strong>Why:</strong> speeds discovery for first-time sends.</p>
+          <p class="case-leadership-copy" style="margin-top: 8px;"><strong>If wrong:</strong> fallback is username and phone search only.</p>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">PIN Or Biometric Is Enough</p>
+          <p class="case-leadership-copy"><strong>Why:</strong> matches the current Cardtonic standard.</p>
+          <p class="case-leadership-copy" style="margin-top: 8px;"><strong>If wrong:</strong> a 1,000,000 transfer may need step-up authentication, which isn't designed here.</p>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">Repeat Sends Make Up Most Volume</p>
+          <p class="case-leadership-copy"><strong>Why:</strong> recent recipients lead the search.</p>
+          <p class="case-leadership-copy" style="margin-top: 8px;"><strong>If wrong:</strong> recent becomes wasted space above the fold.</p>
+        </div>
+      </div>
+
+      <div class="case-flag-box case-flag-box--dark">
+        <p class="case-flag-label">Recommendation</p>
+        <p class="case-flag-copy">Cardtonic must be safe, secure, and compliant with regulations as a fintech solution.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DISCOVERY · MARKET RESEARCH ============ -->
+  <section class="case-section">
+    <div class="wrap">
+      <p class="case-label"><span class="case-label-accent">Discovery</span> &middot; Market Research</p>
+      <p class="case-copy">How Kuda, GTBank, Access Bank, Pocket App, and PalmPay handle peer-to-peer transfers.</p>
+
+      <div class="case-figures" style="margin-top: 24px;">
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-head">
+            <p class="case-figure-head-title">Key Insight</p>
+            <p class="case-figure-head-copy">Most competitors optimise for speed through saved beneficiaries and contact sync. Few address recipient-verification anxiety, and limits are enforced silently rather than explained &mdash; exactly where this design differentiates.</p>
+          </div>
+          <div class="case-figure-inset case-figure-inset--pad">
+            <div class="case-phones case-phones--5">
+              <figure class="case-phone">
+                <img width="408" height="557" src="images/Cardtonic/Capture · Kuda.png" alt="Kuda P2P transfer flow with PIN review" loading="lazy">
+                <figcaption class="case-phone-label">Kuda &middot; P2P flow, review with PIN</figcaption>
+              </figure>
+              <figure class="case-phone">
+                <img width="408" height="557" src="images/Cardtonic/Capture · GTBank.png" alt="GTBank transfer flow" loading="lazy">
+                <figcaption class="case-phone-label">GTBank &middot; Transfer flow</figcaption>
+              </figure>
+              <figure class="case-phone">
+                <img width="408" height="557" src="images/Cardtonic/Capture · AccessBank.png" alt="Access Bank review and tier limits" loading="lazy">
+                <figcaption class="case-phone-label">Access Bank &middot; Review &amp; tier limits</figcaption>
+              </figure>
+              <figure class="case-phone">
+                <img width="408" height="557" src="images/Cardtonic/Capture · PalmPay.png" alt="Pocket App send money flow" loading="lazy">
+                <figcaption class="case-phone-label">Pocket App &middot; Send money</figcaption>
+              </figure>
+              <figure class="case-phone">
+                <img width="408" height="557" src="images/Cardtonic/Capture · PalmPay-1.png" alt="PalmPay recipient verification" loading="lazy">
+                <figcaption class="case-phone-label">PalmPay &middot; Recipient verification</figcaption>
+              </figure>
+            </div>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DISCOVERY · DESIGN SYSTEM ============ -->
+  <section class="case-section">
+    <div class="wrap">
+      <p class="case-label"><span class="case-label-accent">Discovery</span> &middot; Design System</p>
+      <p class="case-copy">All UI values use Figma variables or shared styles. 25+ components, built with Auto Layout, variants, and bound variables &mdash; shared across both flow options.</p>
+
+      <p class="case-label" style="margin-top: 40px;">Colour</p>
+      <div class="case-swatch-grid">
+        <div class="case-swatch"><div class="case-swatch-chip" style="background: #002444;"></div><p class="case-swatch-name">navy</p><p class="case-swatch-hex">#002444</p></div>
+        <div class="case-swatch"><div class="case-swatch-chip" style="background: #092443;"></div><p class="case-swatch-name">navy-light</p><p class="case-swatch-hex">#092443</p></div>
+        <div class="case-swatch"><div class="case-swatch-chip" style="background: #00CDDE;"></div><p class="case-swatch-name">cyan</p><p class="case-swatch-hex">#00CDDE</p></div>
+        <div class="case-swatch"><div class="case-swatch-chip" style="background: #BFF3F7;"></div><p class="case-swatch-name">cyan-light</p><p class="case-swatch-hex">#BFF3F7</p></div>
+        <div class="case-swatch"><div class="case-swatch-chip" style="background: #25CE7B;"></div><p class="case-swatch-name">green</p><p class="case-swatch-hex">#25CE7B</p></div>
+        <div class="case-swatch"><div class="case-swatch-chip" style="background: #177F4C;"></div><p class="case-swatch-name">green-text</p><p class="case-swatch-hex">#177F4C</p></div>
+        <div class="case-swatch"><div class="case-swatch-chip" style="background: #EF4D27;"></div><p class="case-swatch-name">red</p><p class="case-swatch-hex">#EF4D27</p></div>
+        <div class="case-swatch"><div class="case-swatch-chip" style="background: #FF8058;"></div><p class="case-swatch-name">orange</p><p class="case-swatch-hex">#FF8058</p></div>
+        <div class="case-swatch"><div class="case-swatch-chip" style="background: #7580EF;"></div><p class="case-swatch-name">purple</p><p class="case-swatch-hex">#7580EF</p></div>
+        <div class="case-swatch"><div class="case-swatch-chip" style="background: #C2E6ED;"></div><p class="case-swatch-name">grey-border</p><p class="case-swatch-hex">#C2E6ED</p></div>
+        <div class="case-swatch"><div class="case-swatch-chip" style="background: #F2F3F5;"></div><p class="case-swatch-name">grey-surface</p><p class="case-swatch-hex">#F2F3F5</p></div>
+        <div class="case-swatch"><div class="case-swatch-chip" style="background: #646B78;"></div><p class="case-swatch-name">grey-text</p><p class="case-swatch-hex">#646B78</p></div>
+      </div>
+
+      <p class="case-label" style="margin-top: 40px;">Typography &middot; Eina01</p>
+      <div class="case-type-list">
+        <div class="case-type-row"><span class="case-type-name">Display</span><span class="case-type-spec">Bold 32/38</span><span class="case-type-sample" style="font-size: 32px; line-height: 38px; font-weight: 700;">Send money</span></div>
+        <div class="case-type-row"><span class="case-type-name">H1</span><span class="case-type-spec">Bold 24/30</span><span class="case-type-sample" style="font-size: 24px; line-height: 30px; font-weight: 700;">Is this the right person?</span></div>
+        <div class="case-type-row"><span class="case-type-name">H2</span><span class="case-type-spec">SemiBold 20/26</span><span class="case-type-sample" style="font-size: 20px; line-height: 26px; font-weight: 600;">Check this before you send</span></div>
+        <div class="case-type-row"><span class="case-type-name">Body L</span><span class="case-type-spec">Regular 16/24</span><span class="case-type-sample" style="font-size: 16px; line-height: 24px; font-weight: 400;">Transfers between Cardtonic users</span></div>
+        <div class="case-type-row"><span class="case-type-name">Body</span><span class="case-type-spec">Regular 14/20</span><span class="case-type-sample" style="font-size: 14px; line-height: 20px; font-weight: 400;">Your money is safe. The transfer did not go.</span></div>
+        <div class="case-type-row"><span class="case-type-name">Label</span><span class="case-type-spec">SemiBold 12/16</span><span class="case-type-sample" style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em;">AVAILABLE BALANCE</span></div>
+        <div class="case-type-row"><span class="case-type-name">Amount L</span><span class="case-type-spec">Bold 40/48</span><span class="case-type-sample" style="font-size: 40px; line-height: 48px; font-weight: 700;">1,000,000</span></div>
+        <div class="case-type-row"><span class="case-type-name">Button</span><span class="case-type-spec">SemiBold 16/24</span><span class="case-type-sample" style="font-size: 16px; line-height: 24px; font-weight: 600;">Send 1,000,000</span></div>
+      </div>
+
+      <p class="case-label" style="margin-top: 40px;">Components</p>
+      <p class="case-outcome-value" style="margin: 0 0 6px;">25+</p>
+      <p class="case-copy">Built with Auto Layout, variants, and bound variables &mdash; shared across both options.</p>
+
+      <div class="case-leadership-grid case-leadership-grid--cards case-leadership-grid--4" style="margin-top: 24px;">
+        <div class="case-leadership">
+          <p class="case-leadership-label">Button</p>
+          <p class="case-leadership-copy">3 styles, 4 states each.</p>
+          <div class="case-card-shot case-card-shot--eq"><img width="600" height="328" src="images/Cardtonic/Component · Button — 4 styles × 4 states.png" alt="Button component, 3 styles across 4 states" loading="lazy"></div>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">Input Field</p>
+          <p class="case-leadership-copy">5 states, from empty to error.</p>
+          <div class="case-card-shot case-card-shot--eq"><img width="260" height="328" src="images/Cardtonic/Component · Input Field — 5 states.png" alt="Input field component, 5 states" loading="lazy"></div>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">Recipient Row</p>
+          <p class="case-leadership-copy">4 states, including invite.</p>
+          <div class="case-card-shot case-card-shot--eq"><img width="330" height="328" src="images/Cardtonic/Component · Recipient Row — 4 states.png" alt="Recipient row component, 4 states" loading="lazy"></div>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">Error Box</p>
+          <p class="case-leadership-copy">4 types, colour-coded by severity.</p>
+          <div class="case-card-shot case-card-shot--eq"><img width="330" height="328" src="images/Cardtonic/Component · Error Box — 4 types.png" alt="Error box component, 4 types" loading="lazy"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KEY DECISION ============ -->
+  <section class="case-section" id="decision">
+    <div class="wrap">
+      <p class="case-label"><span class="case-label-accent">Key Decision</span> &middot; Where Does P2P Live?</p>
+      <p class="case-copy">Same flow, two entry points &mdash; which one serves trust, simplicity, and speed best.</p>
+
+      <div class="case-figures" style="margin-top: 24px;">
+        <figure class="case-figure case-figure--grey">
+          <div class="case-split case-split--compact">
+            <div class="case-split-cell case-split-cell--dark">
+              <p class="case-split-label">Option A &middot; Service Tile</p>
+              <p class="case-split-copy">P2P lives as a Home tile, sharing the Buy Gift Card mental model. Navigation stays unchanged; history reuses Transactions, no new surface added.</p>
+              <p class="case-split-copy" style="margin-top: 10px;"><strong>Strengths:</strong> discoverable in a familiar place, consistent with existing architecture, fast entry for new users.</p>
+              <p class="case-split-copy" style="margin-top: 10px;"><strong>Trade-offs:</strong> no dedicated space for history, repeat users lose optimisation.</p>
+            </div>
+            <div class="case-split-cell">
+              <p class="case-split-label">Option B &middot; Dedicated Nav Tab</p>
+              <p class="case-split-copy">Home | Wallet | P2P | Transactions | Settings. P2P becomes a visible ecosystem with room for history, groups, requests, and invites.</p>
+              <p class="case-split-copy" style="margin-top: 10px;"><strong>Strengths:</strong> treated as a first-class feature, room for repeat-user optimisation, dedicated transaction history.</p>
+              <p class="case-split-copy" style="margin-top: 10px;"><strong>Trade-offs:</strong> nav bar gets busier (5 tabs), slightly higher interaction cost.</p>
+            </div>
+          </div>
+          <div class="case-figure-inset case-figure-inset--pad">
+            <div class="case-phones case-phones--2 case-phones--narrow">
+              <figure class="case-phone">
+                <img width="356" height="698" src="images/Cardtonic/image 7.png" alt="Option A, P2P as a Home service tile" loading="lazy">
+                <figcaption class="case-phone-label">Option A &middot; Service tile on Home</figcaption>
+              </figure>
+              <figure class="case-phone">
+                <img width="348" height="698" src="images/Cardtonic/image 6.png" alt="Option B, P2P as a dedicated nav tab" loading="lazy">
+                <figcaption class="case-phone-label">Option B &middot; Dedicated nav tab</figcaption>
+              </figure>
+            </div>
+          </div>
+        </figure>
+      </div>
+
+      <div class="case-decision" style="margin-top: 32px;">
+        <p class="case-decision-label">The Decision</p>
+        <p class="case-decision-copy"><strong>Option A is preferred</strong> &mdash; it requires fewer steps and focuses solely on sending money.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOLUTION ============ -->
+  <section class="case-section" id="solution">
+    <div class="wrap">
+      <p class="case-label"><span class="case-label-accent">Solution</span> &middot; Option A: P2P Service Tile</p>
+      <p class="case-copy">Fast entry from Home into recipient search, balancing trust, safety, and speed.</p>
+
+      <div class="case-figures" style="margin-top: 24px;">
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-head">
+            <p class="case-figure-head-title">The Flow &middot; Seven Steps</p>
+            <p class="case-figure-head-copy">Entry point is the Home tile instead of a hub &mdash; optimised for first-time and casual users, and for the fast path when the destination is already known.</p>
+          </div>
+          <div class="case-figure-inset case-figure-inset--pad">
+            <div class="case-phones case-phones--7">
+              <figure class="case-phone">
+                <img width="326" height="648" src="images/Cardtonic/Mockup-6.png" alt="Home dashboard with P2P service tile" loading="lazy">
+                <figcaption class="case-phone-label">01 &middot; Home &mdash; one tap in</figcaption>
+              </figure>
+              <figure class="case-phone">
+                <img width="326" height="648" src="images/Cardtonic/Mockup-7.png" alt="Recipient search by username, phone, or contacts" loading="lazy">
+                <figcaption class="case-phone-label">02 &middot; Search &mdash; recent recipients lead</figcaption>
+              </figure>
+              <figure class="case-phone">
+                <img width="448" height="912" src="images/Cardtonic/Mockup.png" alt="Recipient verification, is this the right person" loading="lazy">
+                <figcaption class="case-phone-label">03 &middot; Verify &mdash; before any amount</figcaption>
+              </figure>
+              <figure class="case-phone">
+                <img width="448" height="912" src="images/Cardtonic/Mockup-2.png" alt="Amount entry with balance in header" loading="lazy">
+                <figcaption class="case-phone-label">04 &middot; Amount &mdash; balance in the header</figcaption>
+              </figure>
+              <figure class="case-phone">
+                <img width="448" height="912" src="images/Cardtonic/Mockup-1.png" alt="Review screen before sending" loading="lazy">
+                <figcaption class="case-phone-label">05 &middot; Review &mdash; recipient, fee, note</figcaption>
+              </figure>
+              <figure class="case-phone">
+                <img width="448" height="912" src="images/Cardtonic/Mockup-4.png" alt="PIN authentication screen" loading="lazy">
+                <figcaption class="case-phone-label">06 &middot; PIN &mdash; unique transaction PIN</figcaption>
+              </figure>
+              <figure class="case-phone">
+                <img width="448" height="912" src="images/Cardtonic/Mockup-5.png" alt="Instant success confirmation" loading="lazy">
+                <figcaption class="case-phone-label">07 &middot; Done &mdash; instant, with a reference</figcaption>
+              </figure>
+            </div>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRUST MOMENTS ============ -->
+  <section class="case-section">
+    <div class="wrap">
+      <p class="case-label"><span class="case-label-accent">Solution</span> &middot; Trust Moments</p>
+      <p class="case-copy">The two screens that decide whether 1,000,000 is sent. This speaks directly to trust and speed.</p>
+
+      <div class="case-figures" style="margin-top: 24px;">
+        <figure class="case-figure case-figure--grey">
+          <div class="case-split case-split--compact">
+            <div class="case-split-cell case-split-cell--dark">
+              <p class="case-split-label">Verify</p>
+              <p class="case-split-copy">Avatar at 80 and full legal name as the largest element &mdash; the failure mode is a correct username on the wrong person. Masked phone and account age provide two independent recognition cues. No recipient tier is shown: limits are sender-side, so showing the receiver's tier would imply it affects the outcome.</p>
+            </div>
+            <div class="case-split-cell">
+              <p class="case-split-label">Final Sanity Check</p>
+              <p class="case-split-copy">The recipient sits in a highlighted container so a wrong name is seen, not read past. Balance-after-transfer answers the last question before confirming. Nothing on the screen is tappable except back, edit, and confirm.</p>
+            </div>
+          </div>
+          <div class="case-figure-inset case-figure-inset--pad">
+            <div class="case-phones case-phones--2 case-phones--narrow">
+              <figure class="case-phone">
+                <img width="448" height="912" src="images/Cardtonic/Mockup.png" alt="Verify the right person, avatar and full legal name" loading="lazy">
+                <figcaption class="case-phone-label">Verify the right person</figcaption>
+              </figure>
+              <figure class="case-phone">
+                <img width="328" height="654" src="images/Cardtonic/Mockup-27.png" alt="Final review with highlighted recipient and balance after transfer" loading="lazy">
+                <figcaption class="case-phone-label">Final sanity check</figcaption>
+              </figure>
+            </div>
+          </div>
+        </figure>
+      </div>
+      <p class="case-status">Key takeaway: helping users notice the transaction is irreversible, and having them confirm details before entering an amount and again after.</p>
+    </div>
+  </section>
+
+  <!-- ============ AMOUNT ENTRY ============ -->
+  <section class="case-section">
+    <div class="wrap">
+      <p class="case-label"><span class="case-label-accent">Solution</span> &middot; Amount Entry</p>
+      <p class="case-copy">Normal and over-limit states differ only by the error box. This speaks to simplicity and speed.</p>
+
+      <div class="case-figures" style="margin-top: 24px;">
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-inset case-figure-inset--pad">
+            <div class="case-phones case-phones--2 case-phones--narrow">
+              <figure class="case-phone">
+                <img width="448" height="912" src="images/Cardtonic/Mockup-2.png" alt="Amount entry within limit" loading="lazy">
+                <figcaption class="case-phone-label">Within limit &mdash; Review enabled</figcaption>
+              </figure>
+              <figure class="case-phone">
+                <img width="448" height="912" src="images/Cardtonic/Mockup-3.png" alt="Amount entry over the tier ceiling" loading="lazy">
+                <figcaption class="case-phone-label">Over the ceiling &mdash; upgrade path shown</figcaption>
+              </figure>
+            </div>
+          </div>
+        </figure>
+      </div>
+
+      <p class="case-copy" style="margin-top: 26px;">Balance lives in the header, matching Add Bank Account, so the amount field stays clean. Quick chips cover common amounts; the tier limit is visible with an info icon. Review enables as soon as the amount is valid. Over the ceiling, the amount stays editable and keeps its value &mdash; only Review is disabled, and the chevron opens the tier sheet so the limit can be reviewed, not just accepted.</p>
+      <p class="case-status">Key takeaway: a tier ceiling the user can review reads as a choice, not a block &mdash; that's why the error offers an upgrade path instead of a dead end.</p>
+    </div>
+  </section>
+
+  <!-- ============ SECURE & SUCCESS ============ -->
+  <section class="case-section">
+    <div class="wrap">
+      <p class="case-label"><span class="case-label-accent">Solution</span> &middot; Secure &amp; Success</p>
+      <p class="case-copy">Safe, secure, and instant confirmation. This speaks to trust and security.</p>
+
+      <div class="case-figures" style="margin-top: 24px;">
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-inset case-figure-inset--pad">
+            <div class="case-phones case-phones--2 case-phones--narrow">
+              <figure class="case-phone">
+                <img width="448" height="912" src="images/Cardtonic/Mockup-4.png" alt="PIN or biometric authentication" loading="lazy">
+                <figcaption class="case-phone-label">Secure &mdash; PIN or biometric</figcaption>
+              </figure>
+              <figure class="case-phone">
+                <img width="448" height="912" src="images/Cardtonic/Mockup-5.png" alt="Instant confirmation with reference number" loading="lazy">
+                <figcaption class="case-phone-label">Success &mdash; instant, no pending state</figcaption>
+              </figure>
+            </div>
+          </div>
+        </figure>
+      </div>
+
+      <p class="case-copy" style="margin-top: 26px;">Payment can only be initiated with the user's transaction PIN, with biometrics available once enabled in settings. There's no pending state &mdash; both parties are on Cardtonic, so there's nothing to settle. The reference number sits on screen, not buried in a receipt: it's what users quote for support. Send again is offered because repeat transfers are common.</p>
+      <p class="case-status">Key takeaway: a secure, decisive success screen is what builds trust with users.</p>
+    </div>
+  </section>
+
+  <!-- ============ EDGE CASES ============ -->
+  <section class="case-section">
+    <div class="wrap">
+      <p class="case-label"><span class="case-label-accent">Solution</span> &middot; Edge Cases &amp; Error Handling</p>
+      <p class="case-copy">Failure states were designed to build trust, not erode it.</p>
+
+      <div class="case-leadership-grid case-leadership-grid--cards" style="margin-top: 24px;">
+        <div class="case-leadership">
+          <p class="case-leadership-label">Low Balance &amp; Limit</p>
+          <p class="case-leadership-copy">An indicator of the user's limit and a CTA to help them upgrade to their max.</p>
+          <div class="case-card-shot"><img width="448" height="912" src="images/Cardtonic/Mockup-3.png" alt="Low balance and limit indicator with upgrade CTA" loading="lazy"></div>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">Unlock Tier</p>
+          <p class="case-leadership-copy">Lets the user know which tier they're on and which one is next.</p>
+          <div class="case-card-shot"><img width="348" height="698" src="images/Cardtonic/Mockup-19.png" alt="Unlock tier sheet showing tier progress" loading="lazy"></div>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">Account Restricted</p>
+          <p class="case-leadership-copy">Tells the user the recipient is on a watchlist or being restricted, without exposing why.</p>
+          <div class="case-card-shot"><img width="348" height="698" src="images/Cardtonic/Mockup-20.png" alt="Account restricted, cannot receive money" loading="lazy"></div>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">Invite Contact</p>
+          <p class="case-leadership-copy">Users can invite others to Cardtonic, with an incentive attached to encourage it.</p>
+          <div class="case-card-shot"><img width="348" height="698" src="images/Cardtonic/Mockup-21.png" alt="Invite contact to earn" loading="lazy"></div>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">No Search Results</p>
+          <p class="case-leadership-copy">Turns a dead end into network growth with an invite.</p>
+          <div class="case-card-shot"><img width="348" height="698" src="images/Cardtonic/Mockup-22.png" alt="No Cardtonic user found with that phone number" loading="lazy"></div>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">Contact Sync</p>
+          <p class="case-leadership-copy">Contacts are matched against Cardtonic accounts; nothing is uploaded, and the flow keeps working if permission is declined.</p>
+          <div class="case-card-shot"><img width="348" height="698" src="images/Cardtonic/Mockup-23.png" alt="Contact sync, matched versus unmatched contacts" loading="lazy"></div>
+        </div>
+      </div>
+
+      <div class="case-flag-box case-flag-box--dark">
+        <p class="case-flag-label">Error Principle</p>
+        <p class="case-flag-copy">Reassure first, explain second, direct third &mdash; and never leave the user wondering where their money is.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MICRO-INTERACTIONS ============ -->
+  <section class="case-section">
+    <div class="wrap">
+      <p class="case-label"><span class="case-label-accent">Solution</span> &middot; Micro-Interactions &amp; Feedback</p>
+      <p class="case-copy">76 wired connections. Motion clarifies state; it never decorates.</p>
+
+      <div class="case-leadership-grid case-leadership-grid--cards case-leadership-grid--4" style="margin-top: 24px;">
+        <div class="case-leadership">
+          <p class="case-leadership-label">Review Button</p>
+          <p class="case-leadership-copy">Enabled when the amount is valid; the label explains why when disabled.</p>
+          <div class="case-card-shot case-card-shot--eq"><img width="336" height="280" src="images/Cardtonic/Mockup-13.png" alt="Review button, disabled versus enabled state" loading="lazy"></div>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">PIN Entry</p>
+          <p class="case-leadership-copy">Dots fill on each keypress; errors shake the field and show remaining attempts.</p>
+          <div class="case-card-shot case-card-shot--eq"><img width="336" height="324" src="images/Cardtonic/Mockup-14.png" alt="PIN entry dots filling on keypress" loading="lazy"></div>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">Skeletons</p>
+          <p class="case-leadership-copy">Match the real row and card shape so content lands without shifting.</p>
+          <div class="case-card-shot case-card-shot--eq"><img width="336" height="412" src="images/Cardtonic/Mockup-16.png" alt="Skeleton loading state matching the real row shape" loading="lazy"></div>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">Toast</p>
+          <p class="case-leadership-copy">Reserved for reversible events; a 1,000,000 transfer gets a full screen, not a toast.</p>
+          <div class="case-card-shot case-card-shot--eq"><img width="336" height="232" src="images/Cardtonic/Mockup-17.png" alt="Toast variants for reversible events" loading="lazy"></div>
+        </div>
+      </div>
+
+      <p class="case-status">Key takeaway: user delight is always worth it &mdash; micro-interactions were introduced to give users delight, not to slow them down.</p>
+    </div>
+  </section>
+
+  <!-- ============ OUTCOME ============ -->
+  <section class="case-section" id="outcome">
+    <div class="wrap">
+      <p class="case-label"><span class="case-label-accent">Outcome</span> &middot; Usability Insight</p>
+      <p class="case-copy">Usability testing showed that separating Review from PIN authorisation was less risky than combining them.</p>
+
+      <div class="case-figures" style="margin-top: 24px;">
+        <figure class="case-figure case-figure--grey">
+          <div class="case-split case-split--compact">
+            <div class="case-split-cell case-split-cell--dark">
+              <p class="case-split-label">What Went Wrong</p>
+              <p class="case-split-copy">Users still had doubts when PIN was the final step. There was no review before authorising, so irreversibility anxiety lasted until the very end.</p>
+            </div>
+            <div class="case-split-cell">
+              <p class="case-split-label">What It Fixed</p>
+              <p class="case-split-copy">Review became a final sanity check before the point of no return &mdash; recipient, amount, fee, and remaining balance all visible. PIN turned into lightweight auth, not a decision moment.</p>
+            </div>
+          </div>
+          <div class="case-figure-inset case-figure-inset--pad">
+            <div class="case-phones case-phones--2 case-phones--narrow">
+              <figure class="case-phone">
+                <img width="328" height="654" src="images/Cardtonic/Mockup-25.png" alt="Before, review and PIN combined on one screen" loading="lazy">
+                <figcaption class="case-phone-label">Before &mdash; review and PIN, one screen</figcaption>
+              </figure>
+              <figure class="case-phone">
+                <img width="328" height="654" src="images/Cardtonic/Mockup-27.png" alt="After, review separated from PIN with full breakdown" loading="lazy">
+                <figcaption class="case-phone-label">After &mdash; review separated from PIN</figcaption>
+              </figure>
+            </div>
+          </div>
+        </figure>
+      </div>
+      <p class="case-status">Separating Review and PIN was not in the original design. Validation showed it was the single change most responsible for user confidence.</p>
+    </div>
+  </section>
+
+  <!-- ============ CONCLUSION ============ -->
+  <section class="case-section" id="conclusion">
+    <div class="wrap">
+      <p class="case-label"><span class="case-label-accent">Conclusion</span></p>
+      <p class="case-copy">
+        The P2P design trades a single transfer screen for a verification-first flow: confirm the
+        recipient, enter the amount, review, then authorise &mdash; one extra step, but zero ambiguity at
+        the point of no return, which matters for users sending up to 1,000,000.
+      </p>
+      <p class="case-copy">
+        Tier limits stay consistent across both entry points &mdash; soft errors with an upgrade path, not
+        hard blocks. The verification card and tier explainer exist for the same reason: users should
+        always see who's receiving the money, and always have a way to understand their limits.
+      </p>
+
+      <div class="case-stack-row" style="margin-top: 32px;">
+        <div class="case-stack">
+          <div class="case-stack-item">
+            <p class="case-stack-title">Wallet-Centric Hub</p>
+            <p class="case-stack-copy">Embed P2P sending within a unified balance, people, and history view so it feels like part of managing money, not a separate detour.</p>
+          </div>
+          <div class="case-stack-item">
+            <p class="case-stack-title">Verification First</p>
+            <p class="case-stack-copy">Identity is confirmed before the amount is entered, so the irreversible decision is made while the stakes are still abstract.</p>
+          </div>
+          <div class="case-stack-item">
+            <p class="case-stack-title">Limits As Progress</p>
+            <p class="case-stack-copy">When a user hits a limit, name the specific cap and surface the upgrade path in the same moment &mdash; turning the barrier into a conversion opportunity.</p>
+          </div>
+          <div class="case-stack-item">
+            <p class="case-stack-title">Repeat Users Rewarded</p>
+            <p class="case-stack-copy">Recent recipients lead search and history, so frequent senders complete a transfer in three taps instead of nine.</p>
+          </div>
+        </div>
+        <div class="case-stack-panel" aria-hidden="true"><img src="images/coreloops/Trade-offs Illustration.png" alt=""></div>
+      </div>
+
+      <div class="case-flag-box" style="margin-top: 32px;">
+        <p class="case-flag-label">What Would Prove This Wrong</p>
+        <p class="case-flag-copy">
+          The soft tier limits and optional note field are informed assumptions, not confirmed data &mdash;
+          both need validating against real usage before this ships. I'd measure time-to-transfer,
+          confidence at review, tier-limit recovery rate, and drop-off at the review screen.
+        </p>
+      </div>
+
+      <div class="case-visit-end">
+        <a class="case-visit-badge" href="https://www.figma.com/design/kRW3O61oRWMQRskiWHXS5j/Cardtonic-P2P-Money-Transfer-%E2%80%94-Flow-Exploration--Copy-?node-id=0-1" target="_blank" rel="noopener">View<br>Figma File</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OTHER PROJECTS ============ -->
+  <section class="case-section case-other">
+    <div class="wrap">
+      <p class="case-label">Other Projects</p>
+      <div class="case-other-grid">
+        <a class="case-other-card" href="raven-pay.html">
+          <span class="case-other-name">Raven Pay</span>
+          <span class="case-other-meta">UI &middot; UX &middot; 2024</span>
+        </a>
+        <a class="case-other-card" href="coreloops.html">
+          <span class="case-other-name">Coreloops</span>
+          <span class="case-other-meta">UI &middot; UX &middot; 2026</span>
+        </a>
+        <a class="case-other-card" href="omnione.html">
+          <span class="case-other-name">Omnione Design System</span>
+          <span class="case-other-meta">Design System &middot; 2024</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-top">
+    <p class="footer-label">Let's Connect</p>
+  </div>
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/makanju-excellent-211b0a44/" class="footer-link" target="_blank" rel="noopener">LinkedIn &rarr;</a>
+      <a href="https://dribbble.com/muidemakz" class="footer-link" target="_blank" rel="noopener">Dribbble &rarr;</a>
+      <a href="https://www.behance.net/oemakanju" class="footer-link" target="_blank" rel="noopener">Behance &rarr;</a>
+      <a href="https://www.instagram.com/oluwaexcellent" class="footer-link" target="_blank" rel="noopener">Instagram &rarr;</a>
+    </div>
+  </div>
+  <div class="footer-legal-row">
+    <p class="wrap footer-legal">Excellent Makanju, Senior Product Designer</p>
+  </div>
+</footer>
+
+</body>
+</html>

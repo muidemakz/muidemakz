@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Work &middot; Muidemakz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/work.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="split.html" class="logo">muidemakz</a>
+    <nav class="site-nav">
+      <a href="split.html" class="is-active">Work</a>
+      <a href="about.html">About</a>
+    </nav>
+    <a href="mailto:muidemakz@gmail.com" class="btn-outline">Contact</a>
+  </div>
+</header>
+
+<main class="work-main">
+  <div class="wrap">
+    <h1 class="work-title">My Work</h1>
+
+    <div class="work-toolbar">
+      <input
+        type="search"
+        id="workSearch"
+        class="work-search"
+        placeholder="Search projects…"
+        aria-label="Search projects"
+      >
+
+      <div class="view-toggle" role="group" aria-label="Toggle grid or list view">
+        <button type="button" class="view-btn is-active" id="viewGridBtn" aria-pressed="true">
+          <svg class="view-btn-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <rect x="1" y="1" width="6" height="6" rx="1" fill="currentColor"/>
+            <rect x="9" y="1" width="6" height="6" rx="1" fill="currentColor"/>
+            <rect x="1" y="9" width="6" height="6" rx="1" fill="currentColor"/>
+            <rect x="9" y="9" width="6" height="6" rx="1" fill="currentColor"/>
+          </svg>
+          <span class="view-btn-label">Grid</span>
+        </button>
+        <button type="button" class="view-btn" id="viewListBtn" aria-pressed="false">
+          <svg class="view-btn-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <rect x="1" y="2" width="14" height="2.4" rx="1" fill="currentColor"/>
+            <rect x="1" y="6.8" width="14" height="2.4" rx="1" fill="currentColor"/>
+            <rect x="1" y="11.6" width="14" height="2.4" rx="1" fill="currentColor"/>
+          </svg>
+          <span class="view-btn-label">List</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="filter-row">
+      <span class="filter-row-label">Category</span>
+      <div class="filter-chips" id="categoryChips"><!-- populated from js/work.js --></div>
+    </div>
+
+    <div class="filter-row">
+      <span class="filter-row-label">Year</span>
+      <div class="filter-chips" id="yearChips"><!-- populated from js/work.js --></div>
+      <button type="button" class="filter-clear-all" id="clearAllBtn">Clear all &times;</button>
+    </div>
+
+    <p class="work-result-line" id="workResultLine"></p>
+
+    <ul class="work-grid" id="workGrid">
+      <!-- populated from js/data.js -->
+    </ul>
+
+    <p class="work-empty" id="workEmpty" hidden>No projects match that search/filter.</p>
+
+    <nav class="work-pagination" id="workPagination" aria-label="Pagination">
+      <!-- populated from js/work.js -->
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-top">
+    <p class="footer-label">Let's Connect</p>
+  </div>
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/makanju-excellent-211b0a44/" class="footer-link" target="_blank" rel="noopener">LinkedIn &rarr;</a>
+      <a href="https://www.behance.net/oemakanju" class="footer-link" target="_blank" rel="noopener">Behance &rarr;</a>
+      <a href="https://www.instagram.com/oluwaexcellent" class="footer-link" target="_blank" rel="noopener">Instagram &rarr;</a>
+    </div>
+  </div>
+  <div class="footer-legal-row">
+    <p class="wrap footer-legal">Excellent Makanju, Senior Product Designer</p>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/work.js"></script>
+</body>
+</html>

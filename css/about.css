@@ -1,0 +1,588 @@
+/* =========================================================================
+   about.css — About page.
+
+   Rebuilt from a plain document layout into something with the same energy
+   as the rest of the site: full-bleed black and grey bands, oversized
+   display type, a running ticker, numbered sections, and a hover-reactive
+   experience ledger. Reuses the tokens declared in css/style.css :root.
+
+   Palette discipline matches the homepage — black and light grey do the
+   structural work, orange is reserved for accents and interaction. No
+   rounded corners, no soft shadows.
+   ========================================================================= */
+
+:root {
+  --grey: #ebe9e5;
+}
+
+/* ---------- shared bits ---------- */
+
+.about-main { background: var(--paper-hard); color: var(--ink-hard); }
+
+.band { border-bottom: 1px solid var(--ink-hard); }
+.band--ink { background: var(--ink-hard); color: var(--paper-hard); }
+.band--grey { background: var(--grey); }
+
+.band-inner { padding-top: 76px; padding-bottom: 76px; }
+
+.sec-label {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 0 0 26px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sec-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.3;
+}
+
+.sec-label .n { color: var(--accent); }
+
+/* =========================================================================
+   HERO
+   ========================================================================= */
+
+.ab-hero {
+  position: relative;
+  background: var(--ink-hard);
+  color: var(--paper-hard);
+  border-bottom: 1px solid var(--ink-hard);
+  overflow: hidden;
+}
+
+/* the same diagonal hatch used on the case-study cards */
+.ab-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.05) 0 12px,
+    transparent 12px 34px
+  );
+}
+
+.ab-hero-inner {
+  position: relative;
+  z-index: 1;
+  padding-top: 64px;
+  padding-bottom: 56px;
+}
+
+/* text left, portrait collage right */
+.ab-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 48px;
+  align-items: center;
+}
+
+.ab-hero-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ab-eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: var(--accent);
+  color: #fff;
+  padding: 7px 12px;
+  margin: 0 0 26px;
+}
+
+.ab-title {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(26px, 3.5vw, 48px);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  margin: 0 0 28px;
+  max-width: 20ch;
+}
+
+.ab-title em { font-style: normal; color: var(--accent); }
+
+.ab-hero-foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+  border-top: 1px solid rgba(242, 240, 235, 0.25);
+  padding-top: 26px;
+}
+
+/* Metadata, not controls. These were bordered boxes sitting next to the real
+   buttons, so they read as a second row of things you could click. They are
+   now a plain run of labels divided by an accent marker — no border, no
+   background, no hover. Nothing here is interactive and nothing looks it. */
+.about-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.about-tags li {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+.about-tags li::after {
+  content: "\25A0";
+  color: var(--accent);
+  font-size: 7px;
+  vertical-align: middle;
+  margin: 0 14px;
+  opacity: 1;
+}
+
+.about-tags li:last-child::after { content: ""; margin: 0; }
+
+/* Controls. Heavier border than any hairline on the page, more padding, and
+   a hard offset shadow on hover so they behave like something you press. */
+.ab-hero-cta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 15px 22px;
+  border: 2px solid var(--paper-hard);
+  background: transparent;
+  color: var(--paper-hard);
+  white-space: nowrap;
+  transition: background 0.14s ease, color 0.14s ease,
+              border-color 0.14s ease, transform 0.14s ease,
+              box-shadow 0.14s ease;
+}
+
+.ab-btn--solid { background: var(--paper-hard); color: var(--ink-hard); }
+
+.ab-btn:hover,
+.ab-btn:focus-visible {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  transform: translate(-3px, -3px);
+  box-shadow: 5px 5px 0 rgba(242, 240, 235, 0.4);
+}
+
+.ab-btn:active { transform: translate(0, 0); box-shadow: none; }
+
+/* =========================================================================
+   TICKER
+   ========================================================================= */
+
+.ticker {
+  background: var(--accent);
+  color: #fff;
+  border-bottom: 1px solid var(--ink-hard);
+  overflow: hidden;
+  padding: 11px 0;
+}
+
+.ticker-track {
+  display: flex;
+  gap: 0;
+  width: max-content;
+  animation: ticker 38s linear infinite;
+}
+
+.ticker-track span {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0 22px;
+  white-space: nowrap;
+}
+
+.ticker-track span::after { content: "\25A0"; margin-left: 22px; opacity: 0.55; }
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* =========================================================================
+   STATS
+   ========================================================================= */
+
+.ab-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid var(--ink-hard);
+}
+
+.ab-stat {
+  padding: 44px 30px;
+  border-right: 1px solid var(--ink-hard);
+}
+
+.ab-stat:last-child { border-right: 0; }
+
+.ab-stat:nth-child(2) { background: var(--grey); }
+.ab-stat:nth-child(3) { background: var(--ink-hard); color: var(--paper-hard); }
+
+.stat-value {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: clamp(38px, 5.4vw, 76px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  display: block;
+  margin-bottom: 14px;
+}
+
+.ab-stat:nth-child(1) .stat-value { color: var(--accent); }
+.ab-stat:nth-child(3) .stat-value { color: var(--accent); }
+
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.6;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  display: block;
+  max-width: 26ch;
+}
+
+/* =========================================================================
+   STORY — numbered blocks
+   ========================================================================= */
+
+.story-row {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 2fr);
+  gap: 40px;
+  padding: 54px 0;
+  border-bottom: 1px solid var(--hard-line);
+}
+
+.story-row:last-child { border-bottom: 0; }
+
+.story-n {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: clamp(44px, 6vw, 82px);
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--ink-hard);
+  display: block;
+  margin-bottom: 14px;
+}
+
+.story-head {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(17px, 1.9vw, 23px);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  margin: 0;
+  max-width: 16ch;
+}
+
+.story-copy {
+  font-family: var(--font-hard);
+  font-size: 17px;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 68ch;
+}
+
+.story-copy strong {
+  font-weight: 700;
+  box-shadow: inset 0 -3px 0 var(--accent);
+}
+
+/* =========================================================================
+   EXPERTISE — colour-blocked cards
+   ========================================================================= */
+
+/* always an even grid — 3x2, then 2x3, then 1x6. auto-fit was leaving an
+   orphan card on a half-empty row at in-between widths. */
+.exp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--ink-hard);
+  border-left: 1px solid var(--ink-hard);
+  margin-top: 4px;
+}
+
+@media (max-width: 1080px) {
+  .exp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .exp-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+.exp-card {
+  border-right: 1px solid var(--ink-hard);
+  border-bottom: 1px solid var(--ink-hard);
+  padding: 30px 26px;
+}
+
+.exp-card:nth-child(2n) { background: var(--grey); }
+.exp-card:nth-child(3n) { background: var(--ink-hard); color: var(--paper-hard); }
+
+.exp-card-n {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 12px;
+}
+
+.exp-card h3 {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 17px;
+  letter-spacing: -0.015em;
+  margin: 0 0 16px;
+  line-height: 1.1;
+}
+
+.exp-card ul { list-style: none; margin: 0; padding: 0; }
+
+.exp-card li {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  padding: 8px 0;
+  border-top: 1px solid currentColor;
+  opacity: 0.85;
+}
+
+.exp-card li:first-child { border-top: 0; padding-top: 0; }
+
+/* =========================================================================
+   TOOLS
+   ========================================================================= */
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 34px;
+}
+
+.tools-group h3 {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0 0 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--ink-hard);
+}
+
+.chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 7px; }
+
+/* also non-interactive: the hover fill here was a false affordance. Kept the
+   hairline box (it's a dense list, the box aids scanning) but removed the
+   hover so it never behaves like a control. */
+.chips li {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: 1px solid var(--hard-line);
+  padding: 7px 10px;
+}
+
+/* =========================================================================
+   EXPERIENCE LEDGER
+   ========================================================================= */
+
+.ledger {
+  border-top: 1px solid var(--ink-hard);
+  border-left: 1px solid var(--ink-hard);
+  border-right: 1px solid var(--ink-hard);
+  margin-top: 4px;
+}
+
+.ledger-row {
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1.3fr) minmax(0, 1.2fr) auto;
+  gap: 20px;
+  align-items: baseline;
+  padding: 20px 22px;
+  border-bottom: 1px solid var(--ink-hard);
+  transition: background 0.14s ease, color 0.14s ease;
+}
+
+.ledger-row:nth-child(2n) { background: var(--grey); }
+
+.ledger-row:hover { background: var(--accent); color: #fff; }
+
+.ledger-n {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+}
+
+.exp-company {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(16px, 1.8vw, 22px);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.exp-role {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.35;
+}
+
+.exp-dates {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0.75;
+}
+
+/* =========================================================================
+   EDUCATION + CERTIFICATIONS
+   ========================================================================= */
+
+.two-col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 44px;
+}
+
+.edu-item {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--hard-line);
+}
+
+.edu-item:first-of-type { border-top: 1px solid var(--ink-hard); }
+
+.edu-name {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: 16px;
+  margin: 0 0 5px;
+}
+
+.edu-meta {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.65;
+  margin: 0;
+}
+
+/* =========================================================================
+   CLOSING CTA
+   ========================================================================= */
+
+.ab-cta { background: var(--ink-hard); color: var(--paper-hard); }
+
+.ab-cta-inner {
+  padding-top: 76px;
+  padding-bottom: 76px;
+  text-align: center;
+}
+
+.ab-cta h2 {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(30px, 5.4vw, 64px);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  margin: 0 0 30px;
+}
+
+.ab-cta h2 em { font-style: normal; color: var(--accent); }
+
+.ab-cta-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+/* =========================================================================
+   RESPONSIVE
+   ========================================================================= */
+
+@media (max-width: 900px) {
+  .band-inner { padding-top: 54px; padding-bottom: 54px; }
+
+  /* two columns of ~250px each squeezed both the headline and the collage */
+  .ab-hero-grid { grid-template-columns: minmax(0, 1fr); gap: 34px; }
+  .ab-hero-media { max-width: 420px; }
+  .ab-stats { grid-template-columns: 1fr; }
+  .ab-stat { border-right: 0; border-bottom: 1px solid var(--ink-hard); padding: 32px 22px; }
+  .ab-stat:last-child { border-bottom: 0; }
+
+  .story-row { grid-template-columns: 1fr; gap: 16px; padding: 38px 0; }
+  .story-head { max-width: none; }
+
+  .ledger-row {
+    grid-template-columns: 40px 1fr;
+    row-gap: 6px;
+    padding: 16px 16px;
+  }
+  .exp-role, .exp-dates { grid-column: 2; }
+}
+
+@media (max-width: 560px) {
+  .ab-hero-inner { padding-top: 48px; padding-bottom: 44px; }
+  .ab-hero-foot { flex-direction: column; align-items: stretch; }
+  .ab-btn { text-align: center; }
+  .story-copy { font-size: 15.5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation: none; }
+  * { transition: none !important; }
+}

@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Excellent Makanju &middot; Senior Product Designer</title>
+<meta name="description" content="Senior Product Designer. 6+ years across payments, wallet, credit and B2B commerce. 150,000+ retailers, $124M+ annual NMV.">
+<meta property="og:title" content="Excellent Makanju, Senior Product Designer">
+<meta property="og:description" content="Payments, wallet and B2B commerce UX across African fintech. Selected case studies.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* =========================================================================
+   split.html, the share/home page.
+
+   Self-contained: it re-declares the brutalist tokens from css/style.css
+   rather than linking it, so this file stands on its own.
+
+   Two distinct layouts, not one responsive continuum:
+     >= 1150px (and hover-capable)  fixed viewport, zero page scroll. The
+                right side is a VERTICAL hover-accordion: all rows closed and
+                equal at rest, one opens on hover.
+     everything else  normal page scroll, one full-width cover card per
+                project, stacked with room to breathe.
+
+   Both layouts use the same wide cover banner per project: the open
+   accordion row is wide and short, which is the banner's native shape.
+   ========================================================================= */
+
+:root {
+  --ink-hard: #0d0d0d;
+  --paper-hard: #f2f0eb;
+  --hard-line: rgba(13, 13, 13, 0.16);
+  --accent: #ff3b00;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-hard: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  /* Three hues, used DIRECTLY, black, orange, electric blue. Tints are
+     reserved for small labels and tags; they never carry a primary action. */
+  --blue: #2f4bff;
+  --orange-tint: #ffdfd4;
+  --blue-tint: #dee2ff;
+  --orange-deep: #b82c00;
+  --blue-deep: #1a2a9c;
+
+  /* the case-study rails alternate black and grey; the three hues now live
+     only in the bio accents, the CTA hover, and the tag chips */
+  --grey: #ebe9e5;
+
+  --hatch-light: rgba(255, 255, 255, 0.14);
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; height: 100%; }
+
+body {
+  background: var(--paper-hard);
+  color: var(--ink-hard);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+img { display: block; max-width: 100%; }
+
+/* =========================================================================
+   ONE CTA STYLE, EVERYWHERE
+
+   Primary actions never take a project's colour as their fill, that made
+   the CTA mean something different on every card. It is always ink, and it
+   always resolves to orange on interaction.
+   ========================================================================= */
+
+.cta {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--ink-hard);
+  color: var(--paper-hard);
+  border: 1px solid var(--ink-hard);
+  padding: 11px 16px;
+  transition: background 0.14s ease, border-color 0.14s ease, color 0.14s ease;
+  white-space: nowrap;
+}
+
+.cta--ghost {
+  background: transparent;
+  color: var(--ink-hard);
+}
+
+.panel:hover .cta,
+.panel:focus-within .cta,
+.cta:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* =========================================================================
+   LEFT, identity panel
+   ========================================================================= */
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(380px, 34%) 1fr;
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* The identity panel runs on black with the diagonal hatch, the same
+   treatment as the About hero. Against the light stack on the right it gives
+   the page a hard split instead of one flat field of paper. */
+.bio {
+  position: relative;
+  background: var(--ink-hard);
+  color: var(--paper-hard);
+  border-right: 1px solid var(--ink-hard);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.bio::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.05) 0 12px,
+    transparent 12px 34px
+  );
+}
+
+.bio-inner {
+  position: relative;
+  z-index: 1;
+  padding: 30px 32px 0;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.bio-intro {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin: 0 0 10px;
+}
+
+/* the practice name, set small and lowercase above the big display name */
+.name-slab {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  padding: 7px 13px;
+  margin-bottom: 18px;
+}
+
+.bio-name {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(34px, 3.4vw, 54px);
+  line-height: 0.9;
+  letter-spacing: -0.035em;
+  margin: 0 0 16px;
+}
+
+.bio-name em { font-style: normal; color: var(--accent); }
+
+.bio-role {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  line-height: 1.7;
+  margin: 0 0 20px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(242, 240, 235, 0.25);
+}
+
+.bio-role .accent { color: var(--accent); }
+
+.bio-lede {
+  font-size: 14.5px;
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+/* an underscore rule rather than a fill, a tint block would go muddy on black */
+.bio-lede strong {
+  font-weight: 700;
+  box-shadow: inset 0 -3px 0 var(--accent);
+}
+
+.bio-sub {
+  font-size: 13.5px;
+  line-height: 1.6;
+  margin: 0 0 16px;
+  opacity: 0.72;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid rgba(242, 240, 235, 0.28);
+  margin-bottom: 22px;
+}
+
+.stat {
+  padding: 14px 11px;
+  border-right: 1px solid rgba(242, 240, 235, 0.28);
+}
+
+.stat:last-child { border-right: 0; }
+
+/* the middle cell inverts, so the row reads as a rhythm not a flat block */
+.stat:nth-child(2) { background: rgba(242, 240, 235, 0.07); }
+
+.stat-num {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: clamp(19px, 1.7vw, 25px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  display: block;
+  margin-bottom: 7px;
+}
+
+.stat:nth-child(1) .stat-num { color: var(--accent); }
+.stat:nth-child(2) .stat-num { color: var(--paper-hard); }
+.stat:nth-child(3) .stat-num { color: var(--accent); }
+
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  line-height: 1.45;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.62;
+  display: block;
+}
+
+.cap-label {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  margin: 0 0 11px;
+}
+
+/* metadata, not controls, same treatment as the About page and the case
+   study tags, so nothing non-interactive is wearing a box */
+.caps {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+}
+
+.caps li {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+.caps li::after {
+  content: "\25A0";
+  color: var(--accent);
+  font-size: 6px;
+  vertical-align: middle;
+  margin: 0 10px;
+  opacity: 1;
+}
+
+.caps li:last-child::after { content: ""; margin: 0; }
+
+.bio-more-btn {
+  display: none;
+  width: 100%;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--paper-hard);
+  border: 2px solid var(--paper-hard);
+  padding: 14px 16px;
+  margin-bottom: 24px;
+  cursor: pointer;
+  text-align: left;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.bio-more-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+.bio-more-btn .chev { transition: transform 0.2s ease; }
+.bio-more-btn[aria-expanded="true"] .chev { transform: rotate(180deg); }
+
+.bio-links {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1px solid rgba(242, 240, 235, 0.28);
+  flex: none;
+}
+
+.bio-link {
+  flex: 1 1 25%;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 9.5px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 13px 6px;
+  border-right: 1px solid rgba(242, 240, 235, 0.28);
+  transition: background 0.14s ease, color 0.14s ease;
+}
+
+.bio-link:hover,
+.bio-link:focus-visible { background: var(--accent); color: #fff; }
+
+.bio-link.is-wide {
+  flex: 1 1 100%;
+  border-right: 0;
+  text-align: left;
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  padding: 13px 15px;
+}
+
+/* the two secondary destinations, About and the CV, share one row above
+   the socials so they read as real actions, not as another social icon */
+.bio-link.is-half {
+  flex: 1 1 50%;
+  text-align: left;
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  padding: 13px 15px;
+  border-top: 1px solid rgba(242, 240, 235, 0.28);
+}
+
+.bio-link.is-half:last-of-type { border-right: 0; }
+
+.bio-link.is-primary { background: var(--paper-hard); color: var(--ink-hard); }
+.bio-link.is-primary:hover { background: var(--accent); color: #fff; }
+
+/* =========================================================================
+   RIGHT, the stack
+   ========================================================================= */
+
+.feed {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+}
+
+/* an accent band rather than a hairline label, it separates the two halves
+   and gives the light side of the page one hit of colour */
+.feed-head {
+  background: var(--accent);
+  color: #fff;
+  border-bottom: 1px solid var(--ink-hard);
+  padding: 13px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex: none;
+}
+
+.feed-label {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.feed-hint {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+/* Vertical accordion: rows stacked top to bottom, one open at a time. The
+   open row is wide and short, which is the shape the cover banners already
+   are, so one image serves both this layout and the stacked cards. */
+.stack {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.panel {
+  position: relative;
+  min-height: 56px;
+  border-bottom: 1px solid var(--ink-hard);
+  overflow: hidden;
+  background: var(--panel-c);
+  color: var(--panel-fg);
+  transition: flex-grow 0.5s cubic-bezier(0.22, 0.72, 0.16, 1),
+              flex-basis 0.5s cubic-bezier(0.22, 0.72, 0.16, 1);
+}
+
+.panel:last-child { border-bottom: 0; }
+
+.panel > a { display: block; height: 100%; position: relative; }
+
+/* =========================================================================
+   ACCORDION STATE, "all closed at rest"     [REVERT POINT]
+
+   Resting: all seven rows share the height equally, nothing open.
+   Hovering anywhere in the stack collapses every row to its rail height and
+   the hovered row takes the remaining space.
+
+   To go back to "one open by default", replace this block with:
+
+     .panel { flex: 0 0 56px; }
+     .panel.is-default { flex-grow: 1; }
+     .stack:hover .panel.is-default:not(:hover),
+     .stack:focus-within .panel.is-default:not(:focus-within):not(:hover)
+       { flex-grow: 0; }
+     .stack .panel:hover,
+     .stack .panel:focus-within { flex-grow: 1; }
+
+   ...and restore the two `.is-default` rules marked below on .rail and
+   .open-body. The `is-default` class is still on the first panel in the
+   markup, so nothing else needs touching.
+   ========================================================================= */
+
+/* rest: equal share of the column */
+.panel { flex: 1 1 0; }
+
+/* pointer (or keyboard focus) anywhere in the stack, everything closes */
+.stack:hover .panel,
+.stack:focus-within .panel { flex: 0 0 56px; }
+
+/* ...except the one actually under the pointer */
+.stack .panel:hover,
+.stack .panel:focus-within { flex: 1 1 0; }
+
+/* --- collapsed rail --- */
+
+/* The closed row. It fills whatever height the row currently has -- at rest
+   that is a tall equal band with the title centred; mid-collapse it is the
+   56px rail. Height is deliberately not fixed. */
+.rail {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 0 24px;
+  z-index: 3;
+  transition: opacity 0.28s ease;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(127, 127, 127, 0.09) 0 10px,
+    transparent 10px 28px
+  );
+}
+
+/* an accent tick on the leading edge of every closed row */
+.rail::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: var(--accent);
+}
+
+.rail-index {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  flex: none;
+  color: var(--accent);
+}
+
+.rail-title {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rail-plus {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 15px;
+  flex: none;
+  margin-left: auto;
+}
+
+/* [REVERT POINT] previously also matched .panel.is-default */
+.panel:hover .rail,
+.panel:focus-within .rail { opacity: 0; pointer-events: none; }
+
+/* --- open content --- */
+
+.open-body {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transition: opacity 0.3s ease 0.12s;
+  min-height: 260px;
+}
+
+/* [REVERT POINT] previously also matched .panel.is-default */
+.panel:hover .open-body,
+.panel:focus-within .open-body { opacity: 1; }
+
+.visual {
+  display: block;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--ink-hard);
+  min-height: 0;
+  background: var(--panel-c);
+}
+
+.visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* Wash over every card image: flat black at 60%, no pattern. Screenshots
+   from seven different products otherwise drag seven different colour
+   schemes onto the page; a single black wash keeps every card reading the
+   same. The hatch lives on the bio panel and the closed rails instead, over a screenshot it fought the UI underneath it. */
+.visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.6;
+  background-color: var(--ink-hard);
+}
+
+.info {
+  display: block;
+  flex: none;
+  background: var(--paper-hard);
+  color: var(--ink-hard);
+  padding: 16px 22px 18px;
+}
+
+.info-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 9px;
+}
+
+.info-dot {
+  width: 9px;
+  height: 9px;
+  background: var(--panel-c);
+  border: 1px solid var(--ink-hard);
+  flex: none;
+}
+
+.info-client {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.info-title {
+  display: block;
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: clamp(18px, 2vw, 26px);
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  margin: 0 0 13px;
+}
+
+.info-foot {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.info-tags { display: flex; gap: 7px; flex-wrap: wrap; }
+
+.info-tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+.info-tag::after { content: " /"; }
+.info-tag:last-child::after { content: ""; }
+
+.panel > a:focus-visible { outline: 3px solid var(--ink-hard); outline-offset: -3px; }
+
+/* =========================================================================
+   NARROW DESKTOP (1150–1439px), slimmer rails so the open panel breathes
+   ========================================================================= */
+
+@media (min-width: 1150px) and (max-width: 1439px) {
+  .panel { flex-basis: 50px; min-height: 50px; }
+  .rail { height: 50px; padding: 0 20px; }
+  .rail-title { font-size: 15px; }
+}
+
+/* =========================================================================
+   SHORT DESKTOP (>= 1150px wide, <= 860px tall), compress, never scroll
+   ========================================================================= */
+
+@media (min-width: 1150px) and (max-height: 860px) {
+  .bio-inner { padding: 20px 28px 0; }
+  .name-slab { margin-bottom: 12px; padding: 6px 11px; font-size: 10px; }
+  .bio-name { font-size: clamp(28px, 2.7vw, 40px); margin-bottom: 12px; }
+  .bio-role { margin-bottom: 14px; padding-bottom: 13px; line-height: 1.6; }
+  .bio-lede { font-size: 13.5px; margin-bottom: 14px; }
+  .bio-sub { display: none; }
+  .stats { margin-bottom: 16px; }
+  .stat { padding: 10px 9px; }
+  .stat-num { font-size: 20px; margin-bottom: 5px; }
+  .cap-label { margin-bottom: 9px; }
+  .caps { margin-bottom: 10px; gap: 5px; }
+  .caps li { padding: 5px 7px; font-size: 9px; }
+  .bio-link { padding: 11px 5px; }
+  .bio-link.is-wide { padding: 11px 15px; }
+}
+
+/* =========================================================================
+   STACKED LAYOUT  (< 1150px, or ANY touch device)
+
+   Not a squeezed version of the desktop view, a different composition.
+   Each project is one full-width cover card: the wide banner on top, the
+   label block beneath it, generous space between cards.
+
+   The (hover: none) arm means even a large tablet lands here. The accordion
+   depends on hover, and there is no hover on touch.
+   ========================================================================= */
+
+@media (max-width: 1149px), (hover: none) {
+  html, body { height: auto; }
+
+  .split { grid-template-columns: 1fr; height: auto; }
+
+  .bio { border-right: 0; border-bottom: 1px solid var(--ink-hard); }
+  .bio-inner { padding: 26px 20px 0; overflow-y: visible; }
+
+  .bio-more-btn { display: flex; }
+  .bio-more { display: none; }
+  .bio-more.is-open { display: block; }
+
+  .bio-link { flex: 1 1 50%; text-align: left; font-size: 10px; padding: 14px 16px; }
+  .bio-link.is-wide { flex: 1 1 100%; }
+
+  .feed-head { padding: 16px 20px; }
+  .feed-hint { display: none; }
+
+  /* the stack becomes a spaced column of cards, not flush-stacked bands */
+  .stack {
+    display: block;
+    flex: none;
+    padding: 20px 20px 40px;
+  }
+
+  .panel {
+    flex: none;
+    flex-grow: 0 !important;
+    min-width: 0;
+    border: 1px solid var(--ink-hard);
+    border-right: 1px solid var(--ink-hard);
+    background: var(--paper-hard);
+    color: var(--ink-hard);
+    margin-bottom: 26px;
+    transition: none;
+  }
+
+  .panel:last-child { margin-bottom: 0; }
+
+  .rail { display: none; }
+
+  /* the accordion's open/close rules are far more specific than anything
+     here; without !important a stray pointer blanks every card */
+  .open-body {
+    position: static;
+    opacity: 1 !important;
+    min-width: 0;
+    display: block;
+  }
+
+  /* the cover banner leads the card, at its own aspect ratio, no cropping */
+  .visual {
+    height: auto;
+    flex: none;
+    border-bottom: 1px solid var(--ink-hard);
+    background: var(--paper-hard);
+  }
+
+  .visual img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .info { padding: 20px 20px 22px; background: var(--paper-hard); }
+
+  .info-meta { margin-bottom: 11px; }
+
+  .info-title {
+    font-size: 22px;
+    line-height: 1.12;
+    margin-bottom: 16px;
+  }
+
+  .info-foot { gap: 12px; }
+
+  .info-tags { width: 100%; }
+}
+
+@media (max-width: 420px) {
+  .stats { grid-template-columns: 1fr; }
+  .stat { border-right: 0; border-bottom: 1px solid var(--ink-hard); }
+  .stat:last-child { border-bottom: 0; }
+  .bio-link { flex: 1 1 50%; padding: 13px 12px; font-size: 9.5px; }
+  .bio-link.is-wide { flex: 1 1 100%; }
+  .stack { padding: 16px 16px 32px; }
+  .panel { margin-bottom: 20px; }
+  .info { padding: 18px 16px 20px; }
+  .info-title { font-size: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="split">
+
+  <!-- ================= LEFT: identity ================= -->
+  <aside class="bio">
+    <div class="bio-inner">
+      <span class="name-slab">muidemakz</span>
+
+      <p class="bio-intro">My name is</p>
+
+      <h1 class="bio-name">Excellent<br><em>Makanju</em></h1>
+
+      <p class="bio-role">
+        Senior Product Designer <span class="accent">/</span> Payments &amp; B2B Commerce
+        <span class="accent">/</span> Lagos, NG
+      </p>
+
+      <p class="bio-lede">
+        I design the payment, wallet, credit and B2B commerce experiences that
+        <strong>150,000+ retailers</strong> use to run their businesses, currently leading
+        end-to-end design at OmniRetail across a multi-app ecosystem on a shared wallet layer.
+      </p>
+
+      <button type="button" class="bio-more-btn" id="bioMoreBtn" aria-expanded="false" aria-controls="bioMore">
+        <span id="bioMoreLabel">View More About Me</span>
+        <span class="chev" aria-hidden="true">&darr;</span>
+      </button>
+
+      <div class="bio-more" id="bioMore">
+        <p class="bio-sub">
+          I take flows from ambiguous problem to shipped product: research, systems, and the
+          error states nobody demos. I own foundation-level design system work other designers
+          build on top of, and I partner with engineering on the tokens that ship it. I also
+          manage and mentor designers.
+        </p>
+
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-num">150K+</span>
+            <span class="stat-label">Retailers on products I lead design for</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">$124M+</span>
+            <span class="stat-label">Annual NMV on platforms I've designed</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">6+</span>
+            <span class="stat-label">Years across fintech, edtech &amp; B2B</span>
+          </div>
+        </div>
+
+        <p class="cap-label">What I'm brought in for</p>
+        <ul class="caps">
+          <li>Payments &amp; Wallet UX</li>
+          <li>Design Systems</li>
+          <li>Complex B2B Workflows</li>
+          <li>Design Management</li>
+          <li>AI-Forward Building</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bio-links">
+      <a class="bio-link is-primary is-wide" href="mailto:muidemakz@gmail.com">Email Me &rarr;</a>
+      <a class="bio-link is-half" href="about.html">About Me &rarr;</a>
+      <a class="bio-link is-half" href="Excellent_Makanju_Resume_2026.pdf" download>Download CV &darr;</a>
+      <a class="bio-link" href="https://www.linkedin.com/in/makanju-excellent-211b0a44/" target="_blank" rel="noopener">LinkedIn &rarr;</a>
+      <a class="bio-link" href="https://dribbble.com/muidemakz" target="_blank" rel="noopener">Dribbble &rarr;</a>
+      <a class="bio-link" href="https://www.instagram.com/oluwaexcellent" target="_blank" rel="noopener">Instagram &rarr;</a>
+      <a class="bio-link" href="https://www.behance.net/oemakanju" target="_blank" rel="noopener">Behance &rarr;</a>
+    </div>
+  </aside>
+
+  <!-- ================= RIGHT: the stack ================= -->
+  <main class="feed">
+    <div class="feed-head">
+      <p class="feed-label">Selected Case Studies &middot; 08</p>
+      <span class="feed-hint">Hover a panel to open &rarr;</span>
+    </div>
+
+    <ul class="stack">
+
+      <li class="panel is-default" style="--panel-c: var(--ink-hard); --panel-fg: var(--paper-hard);">
+        <a href="coreloops.html">
+          <span class="rail" aria-hidden="true">
+            <span class="rail-index">01</span>
+            <span class="rail-title">Coreloops</span>
+            <span class="rail-plus">+</span>
+          </span>
+          <span class="open-body">
+            <span class="visual">
+              <img src="images/coreloops/coreloop-cover.png" alt="Coreloops documents filter, original versus redesigned" fetchpriority="high">
+            </span>
+            <span class="info">
+              <span class="info-meta">
+                <span class="info-dot"></span>
+                <span class="info-client">Coreloops &middot; Construction Fintech &middot; 2026</span>
+              </span>
+              <span class="info-title">Filters From A Drawer To Zero Clicks</span>
+              <span class="info-foot">
+                <span class="cta">View Case Study &rarr;</span>
+                <span class="info-tags">
+                  <span class="info-tag">Information Architecture</span>
+                  <span class="info-tag">B2B Web App</span>
+                </span>
+              </span>
+            </span>
+          </span>
+        </a>
+      </li>
+
+      <li class="panel" style="--panel-c: var(--grey); --panel-fg: var(--ink-hard);">
+        <a href="cardtonic.html">
+          <span class="rail" aria-hidden="true">
+            <span class="rail-index">02</span>
+            <span class="rail-title">Cardtonic</span>
+            <span class="rail-plus">+</span>
+          </span>
+          <span class="open-body">
+            <span class="visual">
+              <img src="images/Cardtonic/00 · Cover.png" alt="Cardtonic P2P money transfer cover" loading="lazy">
+            </span>
+            <span class="info">
+              <span class="info-meta">
+                <span class="info-dot"></span>
+                <span class="info-client">Cardtonic &middot; Fintech &middot; 2026</span>
+              </span>
+              <span class="info-title">Sending Money To People, Not Accounts</span>
+              <span class="info-foot">
+                <span class="cta">View Case Study &rarr;</span>
+                <span class="info-tags">
+                  <span class="info-tag">P2P Payments</span>
+                  <span class="info-tag">Mobile App</span>
+                </span>
+              </span>
+            </span>
+          </span>
+        </a>
+      </li>
+
+      <li class="panel" style="--panel-c: var(--ink-hard); --panel-fg: var(--paper-hard);">
+        <a href="omnione.html">
+          <span class="rail" aria-hidden="true">
+            <span class="rail-index">03</span>
+            <span class="rail-title">Omnione</span>
+            <span class="rail-plus">+</span>
+          </span>
+          <span class="open-body">
+            <span class="visual">
+              <img src="images/omnione/omnione-design-system-cover-banner.png" alt="Omnione Design System cover" loading="lazy">
+            </span>
+            <span class="info">
+              <span class="info-meta">
+                <span class="info-dot"></span>
+                <span class="info-client">OmniRetail &middot; Design System &middot; 2024&ndash;25</span>
+              </span>
+              <span class="info-title">One Design Language For Four Product Teams</span>
+              <span class="info-foot">
+                <span class="cta">View Case Study &rarr;</span>
+                <span class="info-tags">
+                  <span class="info-tag">Design Systems</span>
+                  <span class="info-tag">Tokens</span>
+                </span>
+              </span>
+            </span>
+          </span>
+        </a>
+      </li>
+
+      <li class="panel" style="--panel-c: var(--grey); --panel-fg: var(--ink-hard);">
+        <a href="teesaslms.html">
+          <span class="rail" aria-hidden="true">
+            <span class="rail-index">04</span>
+            <span class="rail-title">Teesas LMS</span>
+            <span class="rail-plus">+</span>
+          </span>
+          <span class="open-body">
+            <span class="visual">
+              <img src="images/teesas/banner.png" alt="Teesas LMS cover" loading="lazy">
+            </span>
+            <span class="info">
+              <span class="info-meta">
+                <span class="info-dot"></span>
+                <span class="info-client">Teesas Education &middot; EdTech &middot; 2023&ndash;24</span>
+              </span>
+              <span class="info-title">Three Rebuilds To Get One LMS Right</span>
+              <span class="info-foot">
+                <span class="cta">View Case Study &rarr;</span>
+                <span class="info-tags">
+                  <span class="info-tag">Multi-Persona UX</span>
+                  <span class="info-tag">Design Lead</span>
+                </span>
+              </span>
+            </span>
+          </span>
+        </a>
+      </li>
+
+      <li class="panel" style="--panel-c: var(--ink-hard); --panel-fg: var(--paper-hard);">
+        <a href="fundall.html">
+          <span class="rail" aria-hidden="true">
+            <span class="rail-index">05</span>
+            <span class="rail-title">Fundall</span>
+            <span class="rail-plus">+</span>
+          </span>
+          <span class="open-body">
+            <span class="visual">
+              <img src="images/fundall/cover.png" alt="Fundall Loans and Salary Advance cover" loading="lazy">
+            </span>
+            <span class="info">
+              <span class="info-meta">
+                <span class="info-dot"></span>
+                <span class="info-client">Fundall &middot; Fintech &middot; 2022</span>
+              </span>
+              <span class="info-title">Salary Advance: 6 Minutes To Under 2</span>
+              <span class="info-foot">
+                <span class="cta">View Case Study &rarr;</span>
+                <span class="info-tags">
+                  <span class="info-tag">Lending UX</span>
+                  <span class="info-tag">Live Product</span>
+                </span>
+              </span>
+            </span>
+          </span>
+        </a>
+      </li>
+
+      <li class="panel" style="--panel-c: var(--grey); --panel-fg: var(--ink-hard);">
+        <a href="empty-state.html">
+          <span class="rail" aria-hidden="true">
+            <span class="rail-index">06</span>
+            <span class="rail-title">Omnibiz</span>
+            <span class="rail-plus">+</span>
+          </span>
+          <span class="open-body">
+            <span class="visual">
+              <img src="images/omnibiz/banner-image.png" alt="Omnibiz empty and preorder states cover" loading="lazy">
+            </span>
+            <span class="info">
+              <span class="info-meta">
+                <span class="info-dot"></span>
+                <span class="info-client">OmniRetail &middot; Retail Tech &middot; 2024&ndash;25</span>
+              </span>
+              <span class="info-title">Making "Not Here Yet" Feel Like A Preorder</span>
+              <span class="info-foot">
+                <span class="cta">View Case Study &rarr;</span>
+                <span class="info-tags">
+                  <span class="info-tag">Empty States</span>
+                  <span class="info-tag">Demand Capture</span>
+                </span>
+              </span>
+            </span>
+          </span>
+        </a>
+      </li>
+
+      <li class="panel" style="--panel-c: var(--ink-hard); --panel-fg: var(--paper-hard);">
+        <a href="raven-pay.html">
+          <span class="rail" aria-hidden="true">
+            <span class="rail-index">07</span>
+            <span class="rail-title">Raven Pay</span>
+            <span class="rail-plus">+</span>
+          </span>
+          <span class="open-body">
+            <span class="visual">
+              <img src="images/ravenpay/banner-image.png" alt="Raven Pay redesign cover" loading="lazy">
+            </span>
+            <span class="info">
+              <span class="info-meta">
+                <span class="info-dot"></span>
+                <span class="info-client">Raven Pay &middot; Fintech &middot; 2024</span>
+              </span>
+              <span class="info-title">Making A Banking App Read As Serious, Not Cute</span>
+              <span class="info-foot">
+                <span class="cta">View Case Study &rarr;</span>
+                <span class="info-tags">
+                  <span class="info-tag">Trust &amp; Onboarding</span>
+                  <span class="info-tag">Mobile App</span>
+                </span>
+              </span>
+            </span>
+          </span>
+        </a>
+      </li>
+
+      <li class="panel" style="--panel-c: var(--grey); --panel-fg: var(--ink-hard);">
+        <a href="venx.html">
+          <span class="rail" aria-hidden="true">
+            <span class="rail-index">08</span>
+            <span class="rail-title">VENX</span>
+            <span class="rail-plus">+</span>
+          </span>
+          <span class="open-body">
+            <span class="visual">
+              <img src="images/venx/cover-banner-image.png" alt="VENX AI sales CRM cover" loading="lazy">
+            </span>
+            <span class="info">
+              <span class="info-meta">
+                <span class="info-dot"></span>
+                <span class="info-client">VENX &middot; Self-Initiated &middot; 2025</span>
+              </span>
+              <span class="info-title">A Full AI Sales CRM Concept In 24 Hours</span>
+              <span class="info-foot">
+                <span class="cta">View Case Study &rarr;</span>
+                <span class="info-tags">
+                  <span class="info-tag">AI Product Design</span>
+                  <span class="info-tag">Mobile CRM</span>
+                </span>
+              </span>
+            </span>
+          </span>
+        </a>
+      </li>
+
+    </ul>
+  </main>
+
+</div>
+
+<script>
+/* The bio's View More toggle. CSS hides .bio-more in the stacked layout only;
+   on the accordion it is always shown and this button is display:none. */
+(function () {
+  var btn = document.getElementById("bioMoreBtn");
+  var panel = document.getElementById("bioMore");
+  var label = document.getElementById("bioMoreLabel");
+
+  btn.addEventListener("click", function () {
+    var open = panel.classList.toggle("is-open");
+    btn.setAttribute("aria-expanded", String(open));
+    label.textContent = open ? "Show Less" : "View More About Me";
+  });
+})();
+</script>
+
+</body>
+</html>

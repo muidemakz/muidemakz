@@ -1,0 +1,548 @@
+/* ---------- header override ---------- */
+/* every other page pins .site-header with position:sticky (see style.css) —
+   this page's header sits behind the fullscreen flow-player overlay anyway
+   (z-index 100 vs. the header's 50), so it opts back out to plain flow. */
+
+.site-header {
+  position: relative;
+}
+
+/* ---------- fullscreen player shell ---------- */
+/* body scroll is locked from js/wrapped.js (document.body.style.overflow) —
+   this page is the fullscreen flow, there's nothing to scroll behind it. */
+
+.flow-player {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper-hard);
+  color: var(--ink-hard);
+}
+
+.flow-player-top {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px 10px;
+}
+
+.flow-close {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.flow-player-body {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.flow-player-bottom {
+  flex-shrink: 0;
+  border-top: 1px solid var(--ink-hard);
+  background: var(--paper-hard);
+  color: var(--ink-hard);
+}
+
+/* ---------- year strip (jump to any year) ---------- */
+
+.year-strip {
+  display: flex;
+  gap: 4px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.year-strip-seg {
+  flex: 1;
+  height: 8px;
+  padding: 0;
+  border: 1px solid var(--ink-hard);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.12s ease, border-color 0.12s ease;
+}
+
+.year-strip-seg.is-past { background: var(--ink-hard); }
+.year-strip-seg.is-current { background: var(--accent); border-color: var(--accent); }
+
+/* ---------- flow progress (this year's 6 screens) ---------- */
+
+.flow-progress {
+  flex: 1;
+  display: flex;
+  gap: 4px;
+}
+
+.flow-progress-seg {
+  flex: 1;
+  height: 3px;
+  padding: 0;
+  border: none;
+  background: var(--hard-line);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.flow-progress-seg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.flow-progress-seg.is-done::after { transform: scaleX(1); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .flow-progress-seg.is-active::after {
+    animation: flow-fill 10000ms linear forwards;
+  }
+
+  /* hover/press-and-hold pauses the fill in place (not a reset) — the JS
+     timer tracks the same remaining time so both stay in sync on resume. */
+  .flow-progress-seg.is-active.is-paused::after {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-progress-seg.is-active::after { transform: scaleX(1); }
+}
+
+@keyframes flow-fill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* ---------- screen 0: the original layout ----------
+   sized in vh (not vw/px) and split flex:0/flex:1 between the two halves so
+   the whole screen sits inside flow-player-body's fixed height with nothing
+   to scroll — it shrinks with the viewport instead of overflowing it. */
+
+#screenOriginal {
+  height: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+/* an ID selector otherwise outranks the browser's default [hidden] rule
+   (attribute selector), which would leave screen 0 visibly flexed even
+   while "hidden" — this restores hidden actually hiding it. */
+#screenOriginal[hidden] {
+  display: none;
+}
+
+.wrap-card {
+  flex: 0 0 auto;
+  padding-top: 2.6vh;
+  padding-bottom: 2vh;
+  border-bottom: 1px solid var(--ink-hard);
+  overflow: hidden;
+}
+
+.wrap-year {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: clamp(44px, 11vh, 220px);
+  line-height: 0.8;
+  letter-spacing: -0.03em;
+  margin: 0.6vh 0 0;
+}
+
+.wrap-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px 28px;
+  margin-top: 2vh;
+  padding-top: 1.6vh;
+  border-top: 3px solid var(--ink-hard);
+}
+
+.wrap-fact-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.65;
+  margin: 0 0 8px;
+}
+
+.wrap-fact-title {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: clamp(16px, 2.2vh, 26px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0 0 6px;
+}
+
+.wrap-fact-meta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.5;
+  opacity: 0.7;
+  margin: 0;
+}
+
+.wrap-stat {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: clamp(28px, 4.6vh, 60px);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.wrap-chip-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 0;
+  padding: 0;
+}
+
+.wrap-chip {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 11px;
+  border: 1px solid var(--ink-hard);
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.wrap-chip:hover { background: var(--accent); border-color: var(--accent); }
+
+.wrap-lesson {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: clamp(16px, 2.6vh, 32px);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  max-width: 40ch;
+  margin: 2vh 0 0;
+}
+
+/* ---------- playground-style project shelf ---------- */
+
+.playground-shelf {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  background: var(--ink-hard);
+  color: var(--paper-hard);
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.playground-shelf > .wrap {
+  /* the shared .wrap class centers itself with auto margins, which — nested
+     in this flex column — makes it size to its own content instead of
+     stretching to the container's width. Kill the auto margins so it fills
+     the available width and .shelf-grid's own overflow-x can do its job. */
+  min-width: 0;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+}
+
+.shelf-label {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.65;
+  margin: 0 0 1.4vh;
+}
+
+.shelf-grid {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 18px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.shelf-grid::-webkit-scrollbar { display: none; }
+
+.shelf-card {
+  --rot: 0deg;
+  flex: 1 0 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.6vh 18px;
+  border: 3px solid var(--paper-hard);
+  background: none;
+  color: inherit;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  transform: rotate(var(--rot));
+  transition: transform 0.15s ease;
+}
+
+.shelf-card:hover { transform: rotate(var(--rot)) translateY(-6px); }
+
+.shelf-card--a { box-shadow: 8px 8px 0 var(--accent); }
+.shelf-card--b { border-color: var(--accent); color: var(--accent); }
+.shelf-card--c { background: var(--paper-hard); color: var(--ink-hard); }
+.shelf-card--d { border-style: dashed; }
+
+.shelf-kind {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+
+.shelf-name {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(15px, 2.2vh, 24px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin: 0 0 8px;
+}
+
+.shelf-note {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.5;
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* ---------- screens 1-5: color-cycling breakdown screens ---------- */
+
+.flow-fact[hidden] { display: none; }
+
+.flow-fact {
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4vh 32px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* the paper/dark/accent cycle from the reference's Wrapped mode — text color
+   auto-contrasts per theme instead of a single hardcoded scheme. */
+.flow-fact[data-theme="paper"] { background: var(--paper-hard); color: var(--ink-hard); }
+.flow-fact[data-theme="dark"] { background: var(--ink-hard); color: var(--paper-hard); }
+.flow-fact[data-theme="accent"] { background: var(--accent); color: var(--ink-hard); }
+
+.flow-fact-kicker {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin: 0 0 22px;
+}
+
+.flow-fact-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: inherit;
+  cursor: inherit;
+}
+
+.flow-fact-link:hover { text-decoration: underline; }
+
+.flow-fact-value {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(44px, 16vh, 160px);
+  line-height: 0.85;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.flow-fact-title {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: clamp(20px, 4vh, 36px);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  max-width: 22ch;
+  margin: 1.6vh 0 0;
+}
+
+.flow-fact-body > .flow-fact-title:first-child { margin-top: 0; }
+
+.flow-fact-meta {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  opacity: 0.8;
+  margin: 1vh 0 0;
+}
+
+.flow-fact-quote {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: clamp(20px, 4.6vh, 40px);
+  line-height: 1.3;
+  max-width: 18ch;
+  margin: 0;
+}
+
+.flow-fact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 2.6vh;
+}
+
+.flow-fact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: inherit;
+  border: 1px solid currentColor;
+  padding: 14px 22px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.12s ease;
+}
+
+.flow-fact-btn:hover { opacity: 0.6; }
+
+/* the primary CTA needs guaranteed contrast against all three themes, so it
+   gets fixed (not currentColor) colors — flipped on the accent theme since
+   accent-on-accent would disappear. */
+.flow-fact-btn--primary {
+  background: var(--ink-hard);
+  border-color: var(--ink-hard);
+  color: var(--paper-hard);
+}
+
+.flow-fact[data-theme="accent"] .flow-fact-btn--primary {
+  background: var(--paper-hard);
+  border-color: var(--paper-hard);
+  color: var(--ink-hard);
+}
+
+/* ---------- prev / next / home ---------- */
+
+.wrap-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 14px;
+  padding-bottom: 16px;
+  border-top: 1px solid var(--ink-hard);
+}
+
+.wrap-nav-home {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 12px 18px;
+  border: 1px solid var(--ink-hard);
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.wrap-nav-home:hover { background: var(--accent); border-color: var(--accent); }
+
+.wrap-nav-steps {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.wrap-nav-btn {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 12px 18px;
+  border: 1px solid var(--ink-hard);
+  background: var(--paper-hard);
+  color: var(--ink-hard);
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.wrap-nav-btn:hover:not(:disabled) { background: var(--accent); border-color: var(--accent); }
+.wrap-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+@media (max-width: 768px) {
+  .shelf-grid { gap: 10px; }
+  .shelf-card { padding: 1.4vh 12px; flex-basis: 160px; }
+  .shelf-kind, .shelf-note { display: none; } /* keep each card to one line so 2-3 still fit one row */
+  .flow-fact { padding: 3vh 20px; }
+  .wrap-nav { justify-content: flex-start; }
+}
+
+@media (max-width: 480px) {
+  /* three stacked facts don't fit a phone's height budget — turn them into
+     a horizontal-scroll row instead, the same pattern the homepage's
+     filmstrip already uses. */
+  .wrap-year { font-size: clamp(40px, 9vh, 160px); }
+
+  .wrap-facts {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 20px;
+  }
+
+  .wrap-fact {
+    flex: 0 0 auto;
+    width: 68vw;
+    max-width: 260px;
+  }
+
+  .wrap-lesson { margin-top: 1.6vh; }
+}

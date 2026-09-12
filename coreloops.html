@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coreloops Documents Filter &middot; Muidemakz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/case-study.css">
+</head>
+<body class="type-outfit">
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="split.html" class="logo">muidemakz</a>
+    <nav class="site-nav">
+      <a href="split.html" class="is-active">Work</a>
+      <a href="about.html">About</a>
+    </nav>
+    <a href="mailto:muidemakz@gmail.com" class="btn-outline">Contact</a>
+  </div>
+</header>
+
+<main class="case-main">
+
+  <section class="case-hero">
+    <div class="wrap">
+      <a href="split.html" class="case-back">&larr; All Work</a>
+      <div class="case-hero-top">
+        <p class="case-kicker">Client Project &middot; Coreloops</p>
+        <a class="case-visit" href="https://www.figma.com/proto/wSzNuMP4qzW4GdchSugiPv/Coreloops-Filter-Results?page-id=1%3A3&node-id=22-10292&viewport=-3532%2C549%2C0.62&t=IrgRrAWG4njQChAA-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=22%3A10292" target="_blank" rel="noopener">View Figma Prototype <span aria-hidden="true">&rarr;</span></a>
+      </div>
+      <h1 class="case-title">Taking The Most-Used Filters From A Drawer To Zero Clicks</h1>
+      <p class="case-lede">
+        Coreloops' documents page filter panel treated all 13 filter options as equal, funneling every
+        user, whether they needed one filter or six, through the same right-side drawer:
+        configure in isolation, apply, then return to see results. But most users only needed 1&ndash;2
+        filters at a time; only a minority needed 5&ndash;6 simultaneously. I redesigned the filter
+        experience around that split.
+      </p>
+      <p class="case-lede">
+        Coreloops is a construction finance platform that helps project teams manage invoices, purchase
+        orders, and financial documents across multiple sites and suppliers. The documents page, letting
+        users find a specific record among potentially hundreds, is one of its most-used features.
+      </p>
+      <ul class="case-tags">
+        <li>Construction Fintech, 2026</li>
+        <li>Senior UX Design</li>
+        <li>Information Architecture</li>
+        <li>Web App (B2B)</li>
+      </ul>
+    </div>
+    <div class="case-hero-media" aria-hidden="true" style="background-image:url(images/coreloops/coreloop-cover.png); background-size:cover; background-position:top center;">
+      <span class="case-media-label">Coreloops &middot; Documents Filter Redesign</span>
+    </div>
+  </section>
+
+  <nav class="case-quicknav" aria-label="Section navigation">
+    <div class="wrap">
+      <a href="#problem">The Problem</a>
+      <a href="#users">Target Users</a>
+      <a href="#solution">My Solution</a>
+      <a href="#changes">Notable Changes</a>
+      <a href="#tradeoffs">Trade-offs</a>
+      <a href="#measure">What I'd Measure</a>
+    </div>
+  </nav>
+
+  <!-- ============ THE PROBLEM ============ -->
+  <section class="case-section" id="problem">
+    <div class="wrap">
+      <p class="case-label">The Problem</p>
+      <p class="case-copy case-copy--lg">
+        The right-side drawer pattern forces a context switch on every filter attempt, open,
+        configure in isolation, apply, then return to see results. That's reasonable for complex
+        query-building, but creates friction for users who just want to narrow by a single dimension, or
+        who frequently switch between combinations.
+      </p>
+      <div class="case-figures" style="margin-top: 24px;">
+        <figure class="case-figure case-figure--grey">
+          <div class="case-split">
+            <div class="case-split-cell case-split-cell--dark">
+              <p class="case-split-label case-split-label--lg">Major Problem 1</p>
+              <p class="case-split-copy">All 13 filters treated as equal, categorical filters, date ranges, and boolean toggles listed vertically with no hierarchy, regardless of how often each is actually used.</p>
+            </div>
+            <div class="case-split-cell">
+              <p class="case-split-label">Major Problem 2</p>
+              <p class="case-split-copy">The drawer occludes the list, users lose sight of the results they're trying to narrow while they're configuring the filter meant to narrow them.</p>
+            </div>
+          </div>
+          <div class="case-figure-inset">
+            <div class="case-figure-crop" style="aspect-ratio: 1062 / 521;">
+              <img width="711" height="419" src="images/coreloops/current-drawer.png" alt="The current right-side filter drawer" loading="lazy">
+            </div>
+          </div>
+          <figcaption>Current Drawer</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TARGET USERS ============ -->
+  <section class="case-section" id="users">
+    <div class="wrap">
+      <p class="case-label">Target Users</p>
+      <div class="case-user-list case-user-list--grid">
+        <div class="case-user-card case-user-card--grid">
+          <div class="case-user-card-body">
+            <span class="case-step-n">01</span>
+            <p class="case-user-card-title">Site Managers</p>
+            <p class="case-user-card-copy">Need to find documents tied to a specific site or supplier quickly, often mid-conversation or mid-task.</p>
+          </div>
+          <div class="case-user-card-media">
+            <img src="images/coreloops/Field Sales Rep - Nigerian Market.png" alt="Site manager on-site with a tablet and blueprints" loading="lazy">
+          </div>
+        </div>
+        <div class="case-user-card case-user-card--grid">
+          <div class="case-user-card-body">
+            <span class="case-step-n">02</span>
+            <p class="case-user-card-title">Project Accountants</p>
+            <p class="case-user-card-copy">Work across cost codes and payment statuses, typically the users applying more filters simultaneously.</p>
+          </div>
+          <div class="case-user-card-media">
+            <img src="images/coreloops/Field Sales Rep - Nigerian Market-1.png" alt="Project accountant reviewing figures on a laptop" loading="lazy">
+          </div>
+        </div>
+        <div class="case-user-card case-user-card--grid">
+          <div class="case-user-card-body">
+            <span class="case-step-n">03</span>
+            <p class="case-user-card-title">Finance Managers</p>
+            <p class="case-user-card-copy">Need reliable, repeatable views across suppliers and sites for oversight and reporting.</p>
+          </div>
+          <div class="case-user-card-media">
+            <img src="images/coreloops/Field Sales Rep - Nigerian Market-2.png" alt="Finance manager reviewing a report" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONSTRAINTS ============ -->
+  <section class="case-section">
+    <div class="wrap">
+      <p class="case-label case-label--lg">Constraints &amp; Proposed Solution</p>
+      <div class="case-figures" style="margin-top: 24px;">
+        <figure class="case-figure case-figure--grey">
+          <div class="case-split">
+            <div class="case-split-cell case-split-cell--dark">
+              <p class="case-split-label case-split-label--title">Constraints</p>
+              <p class="case-split-copy">
+                Primarily desktop, but tablet can't be ignored. The filter set itself (Status, Supplier, Cost
+                Code, etc.) had to stay the same, this was a reorganization brief, not a scope cut. Most
+                users apply 1&ndash;2 filters; some apply 5&ndash;6 at once. Current design: a right-side
+                drawer with a single batch Apply button.
+              </p>
+            </div>
+            <div class="case-split-cell case-split-cell--on-dark">
+              <p class="case-split-label case-split-label--title">Proposed Solution (MVP)</p>
+              <p class="case-split-copy">
+                Revamp the documents page filter experience to let users locate any document with minimal
+                clicks, prioritizing speed and familiarity for new, casual, and advanced users alike,
+                without losing any existing filter option.
+              </p>
+            </div>
+          </div>
+          <div class="case-figure-inset">
+            <div class="case-figure-crop" style="aspect-ratio: 1062 / 521;">
+              <img width="711" height="419" src="images/coreloops/current-drawer.png" alt="The current right-side filter drawer" loading="lazy">
+            </div>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MY SOLUTION ============ -->
+  <section class="case-section" id="solution">
+    <div class="wrap">
+      <p class="case-label">My Solution</p>
+      <p class="case-copy">
+        The core idea: separate filters by frequency of use. Five customizable filters live as persistent
+        inline chips directly in the toolbar, always visible, filtering on selection. Each chip opens
+        a scrollable dropdown where users make a selection and click Apply to see the list update
+        immediately below it. Every other filter moves into a focused "More Filters" modal, grouped by
+        theme.
+      </p>
+      <div class="case-figures case-figures--spaced">
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-head">
+            <p class="case-figure-head-title">Rest State</p>
+            <p class="case-figure-head-copy">Nothing applied yet. The five Quick Filter chips sit in the toolbar, one click from use, while every other filter waits behind More Filters.</p>
+          </div>
+          <div class="case-figure-inset">
+            <div class="case-frame" style="aspect-ratio: 1062 / 512;">
+              <img width="1080" height="526" src="images/coreloops/rest-state.png" alt="Documents page at rest, with the Quick Filter chips in the toolbar" loading="lazy">
+            </div>
+          </div>
+        </figure>
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-head">
+            <p class="case-figure-head-title">1 Filter State</p>
+            <p class="case-figure-head-copy">One chip applied. The chip shows a count badge, a single dismissible pill appears in the active filter strip, the result count updates at the top of the list, and Save Filter View becomes available.</p>
+          </div>
+          <div class="case-figure-inset">
+            <div class="case-frame" style="aspect-ratio: 1062 / 512;">
+              <img width="1080" height="527" src="images/coreloops/one-filter-state.png" alt="Documents page with one Quick Filter applied" loading="lazy">
+            </div>
+          </div>
+        </figure>
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-head">
+            <p class="case-figure-head-title">Multiple Filter State</p>
+            <p class="case-figure-head-copy">Several filters stacked. Each chip carries its own count, every active value shows as a pill with a Clear All link at the end of the strip, and More Filters shows how many of its own filters are on.</p>
+          </div>
+          <div class="case-figure-inset">
+            <div class="case-frame" style="aspect-ratio: 1062 / 428;">
+              <img width="1080" height="449" src="images/coreloops/multiple-filter-state.png" alt="Documents page with multiple filters applied" loading="lazy">
+            </div>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NOTABLE CHANGES ============ -->
+  <section class="case-section" id="changes">
+    <div class="wrap">
+      <p class="case-label case-label--lg">Notable Changes</p>
+      <div class="case-leadership-grid case-leadership-grid--cards">
+        <div class="case-leadership">
+          <p class="case-leadership-label">Persistent Inline Chips</p>
+          <p class="case-leadership-copy">Five customizable "Quick Filters" sit directly in the toolbar, always visible, zero clicks to reach. Each chip opens its own small dropdown with its own Apply button, updating the list immediately below.</p>
+          <div class="case-crop"><img width="1331" height="722" src="images/coreloops/screen-for-the-one-decision.png" alt="" loading="lazy" style="width: 179.78%; left: -0.89%; top: -47.97%;"></div>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">More Filters</p>
+          <p class="case-leadership-copy">Maintains the original drawer interaction while adding structure, every remaining filter (Cost Code, Sync Status, Assigned To, date ranges, three toggles) organized into five scannable sections: Documents, Ownership, Financial, Dates, Flags. Users can also customize their Quick Filters from here.</p>
+          <div class="case-crop"><img width="1080" height="671" src="images/coreloops/more-filters-modal.png" alt="" loading="lazy" style="width: 142.56%; left: -42.62%; top: -0.69%;"></div>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">Active Filter Strip</p>
+          <p class="case-leadership-copy">Dismissible pills between the toolbar and the document list, the single source of truth for what's active, whether set via a chip or via More Filters. Pills dismiss individually; a "Clear all" link sits at the strip's end.</p>
+          <div class="case-crop"><img width="1331" height="722" src="images/coreloops/screen-for-the-one-decision.png" alt="" loading="lazy" style="width: 242.66%; left: -0.89%; top: -51.06%;"></div>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">Filter Results Count</p>
+          <p class="case-leadership-copy">Moved to the top of the list so users see how many results match without scrolling down to find it.</p>
+          <div class="case-crop"><img width="1331" height="722" src="images/coreloops/screen-for-the-one-decision.png" alt="" loading="lazy" style="width: 242.66%; left: -0.89%; top: -51.06%;"></div>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">Save Filter View</p>
+          <p class="case-leadership-copy">Once a filter is applied, a "Save" option appears so users can store the combination and return to it from the custom dropdown next time, in addition to the "+" custom-view option already in the dropdown.</p>
+          <div class="case-crop"><img width="1331" height="722" src="images/coreloops/screen-for-the-one-decision.png" alt="" loading="lazy" style="width: 242.66%; left: -0.89%; top: -51.06%;"></div>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">Export (CSV)</p>
+          <p class="case-leadership-copy">Added an export button so users can pull the table contents out as CSV, an accessibility improvement outside the original filter brief.</p>
+          <div class="case-crop"><img width="1331" height="722" src="images/coreloops/screen-for-the-one-decision.png" alt="" loading="lazy" style="width: 242.66%; left: -138.4%; top: -51.06%;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EDGE CASES ============ -->
+  <section class="case-section">
+    <div class="wrap">
+      <p class="case-label case-label--lg">Edge Cases</p>
+      <div class="case-edge-grid">
+        <div class="case-edge">
+          <div class="case-edge-body">
+            <p class="case-edge-title">Zero-Results State</p>
+            <p class="case-edge-copy">When a combination matches nothing, the list says so plainly and offers a Clear All Filter button, so users can back out in one click instead of dismissing pills one by one.</p>
+          </div>
+          <div class="case-edge-media">
+            <div class="case-crop case-crop--cover"><img width="1080" height="682" src="images/coreloops/zero-results-state.png" alt="Zero-results state with a Clear All Filter button" loading="lazy"></div>
+          </div>
+        </div>
+        <div class="case-edge">
+          <div class="case-edge-body">
+            <p class="case-edge-title">Filter Count States</p>
+            <p class="case-edge-copy">The chips and the pill strip were designed for one value, several values and an overflowing selection, so counts stay readable however many values a user applies.</p>
+          </div>
+          <div class="case-edge-media">
+            <div class="case-crop"><img width="1331" height="722" src="images/coreloops/screen-for-the-one-decision.png" alt="Cost Codes dropdown showing single, multiple and overflowing filter items" loading="lazy" style="width: 179.84%; left: -0.93%; top: -49.25%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-flag-box">
+        <p class="case-flag-label">Flagged, not fixed</p>
+        <p class="case-flag-copy">During this work I couldn't find a way to rename a document anywhere in the product. That's outside this brief's scope, but worth flagging rather than quietly ignoring.</p>
+        <p class="case-flag-label">Also Flagged</p>
+        <p class="case-flag-copy">First-time navigation to the documents page itself took longer than expected to discover. I'd recommend a product tour to orient new users to where core features live, separate from this filter work.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE ONE DECISION ============ -->
+  <section class="case-section" style="padding-top: 92px;">
+    <div class="wrap">
+      <div class="case-decision" style="margin-top: 0;">
+        <p class="case-decision-label">The One Decision</p>
+        <p class="case-decision-copy">
+          I chose to require an explicit <span class="case-accent">Apply</span> action on every filter
+          surface, including the fast, always-visible toolbar chips, rather than auto-applying a filter the
+          moment it's selected, even though auto-apply would save a click for the single-filter case that
+          is Coreloops' most common usage pattern. Auto-apply is faster in isolation, but it fails as a
+          system: it would mean chips and the More Filters drawer behave differently from each other, and
+          finance users managing high-stakes documents are exactly the audience most disoriented by a
+          list that mutates under them mid-click. One consistent extra click bought zero disorientation
+          across the whole surface.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRADE-OFFS ============ -->
+  <section class="case-section" id="tradeoffs">
+    <div class="wrap">
+      <p class="case-label">Trade-offs</p>
+      <div class="case-stack-row">
+        <div class="case-stack">
+          <div class="case-stack-item">
+            <p class="case-stack-title">Apply Everywhere vs. Speed</p>
+            <p class="case-stack-copy">Consistent Apply behavior across chips and More Filters costs one extra click per interaction, but removes disorientation and fits the deliberate, precise nature of finance users.</p>
+          </div>
+          <div class="case-stack-item">
+            <p class="case-stack-title">Customization vs. Discoverability</p>
+            <p class="case-stack-copy">With Apply on chips, both power and first-time users get a familiar select-then-confirm pattern, the same behavior they already expect from the original drawer.</p>
+          </div>
+          <div class="case-stack-item">
+            <p class="case-stack-title">Result Count vs. Duplication</p>
+            <p class="case-stack-copy">Surfacing the count in the toolbar removes the need to scroll, but feels repetitive and adds one more element competing for toolbar space.</p>
+          </div>
+          <div class="case-stack-item">
+            <p class="case-stack-title">Export Button Added</p>
+            <p class="case-stack-copy">Improves accessibility and utility. Trade-off is toolbar real estate, every addition competes with the primary filter actions.</p>
+          </div>
+        </div>
+        <div class="case-stack-panel" aria-hidden="true"><img src="images/coreloops/Trade-offs Illustration.png" alt=""></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THINGS TO EXPLORE ============ -->
+  <section class="case-section">
+    <div class="wrap">
+      <p class="case-label">Things To Explore</p>
+      <div class="case-stack-row">
+        <div class="case-stack-panel case-stack-panel--grey" aria-hidden="true"><img src="images/coreloops/Trade-offs Illustration-1.png" alt=""></div>
+        <div class="case-stack case-stack--wide">
+          <div class="case-stack-item">
+            <p class="case-stack-title">Search Inside More Filters</p>
+            <p class="case-stack-copy">The five scannable sections work well for most users. A power user who knows exactly what they want would benefit from a search box inside the drawer, not built yet.</p>
+          </div>
+          <div class="case-stack-item">
+            <p class="case-stack-title">Explicit Save vs. Auto-Save</p>
+            <p class="case-stack-copy">Users have to consciously save filter presets, which can be tedious to remember. Worth exploring auto-save or a "previously used combinations" list.</p>
+          </div>
+          <div class="case-stack-item">
+            <p class="case-stack-title">Filter Strip vs. Content Density</p>
+            <p class="case-stack-copy">On sessions with many active filters, the strip consumes vertical space that could otherwise show another document row. Worth exploring a collapse/expand control.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHAT I'D MEASURE ============ -->
+  <section class="case-section" id="measure" style="padding-top: 88px;">
+    <div class="wrap">
+      <div class="case-duo">
+        <div class="case-duo-cell">
+          <p class="case-duo-title">What I'd Measure</p>
+          <p class="case-duo-copy">To validate before this ships: time-to-first-result, and how the drawer/More Filters open rate trends over time, a declining open rate would mean the quick filters are absorbing most of what people actually need.</p>
+        </div>
+        <div class="case-duo-cell">
+          <p class="case-duo-title">What Would Prove This Wrong</p>
+          <p class="case-duo-copy">The five-pin quick-filter cap and its defaults are informed assumptions, not confirmed data. If usage data showed most users regularly needed more than five pinned filters at once, the cap itself would need to move, not just which filters are pinned by default.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONCLUSION ============ -->
+  <section class="case-section">
+    <div class="wrap">
+      <p class="case-label">Conclusion</p>
+      <p class="case-copy">
+        This redesign trades a monolithic drawer for a hierarchy that matches how people actually
+        filter: fast, role-specific chips up front, full options organized behind More Filters. Apply
+        stays consistent across both surfaces, one extra click, but zero disorientation, which
+        matters for a user group managing high-stakes financial documents. The active filter strip and
+        the always-visible result count exist for the same reason: users should always see what's
+        narrowing their list, and always have a one-click way out.
+      </p>
+      <p class="case-status">Status: Delivered to Coreloops as a proposed redesign with a working Figma prototype, not yet shipped. The five-pin cap and quick-filter defaults are flagged as assumptions to confirm against real usage data before release.</p>
+      <a class="case-cta" href="https://www.figma.com/proto/wSzNuMP4qzW4GdchSugiPv/Coreloops-Filter-Results?page-id=1%3A3&node-id=22-10292&viewport=-3532%2C549%2C0.62&t=IrgRrAWG4njQChAA-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=22%3A10292" target="_blank" rel="noopener">View Figma Prototype <span aria-hidden="true">&rarr;</span></a>
+    </div>
+  </section>
+
+  <!-- ============ OTHER PROJECTS ============ -->
+  <section class="case-section case-other">
+    <div class="wrap">
+      <p class="case-label">Other Projects</p>
+      <div class="case-other-grid">
+        <a class="case-other-card" href="fundall.html">
+          <span class="case-other-name">Fundall</span>
+          <span class="case-other-meta">UI &middot; UX &middot; 2022</span>
+        </a>
+        <a class="case-other-card" href="teesaslms.html">
+          <span class="case-other-name">Teesas LMS</span>
+          <span class="case-other-meta">UI &middot; UX &middot; 2023&ndash;2024</span>
+        </a>
+        <a class="case-other-card" href="venx.html">
+          <span class="case-other-name">VENX</span>
+          <span class="case-other-meta">UI &middot; UX &middot; 2025</span>
+        </a>
+        <a class="case-other-card" href="omnione.html">
+          <span class="case-other-name">Omnione Design System</span>
+          <span class="case-other-meta">Design System &middot; 2024</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-top">
+    <p class="footer-label">Let's Connect</p>
+  </div>
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/makanju-excellent-211b0a44/" class="footer-link" target="_blank" rel="noopener">LinkedIn &rarr;</a>
+      <a href="https://www.behance.net/oemakanju" class="footer-link" target="_blank" rel="noopener">Behance &rarr;</a>
+      <a href="https://www.instagram.com/oluwaexcellent" class="footer-link" target="_blank" rel="noopener">Instagram &rarr;</a>
+    </div>
+  </div>
+  <div class="footer-legal-row">
+    <p class="wrap footer-legal">Excellent Makanju, Senior Product Designer</p>
+  </div>
+</footer>
+
+</body>
+</html>

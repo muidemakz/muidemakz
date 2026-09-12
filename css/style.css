@@ -1,0 +1,529 @@
+:root {
+  --ink: #1e2235;
+  --ink-soft: #4a4f66;
+  --paper: #f5f5f2;
+  --paper-line: rgba(30, 34, 53, 0.12);
+  --overlay-bg: rgba(45, 49, 74, 0.92);
+  --overlay-fg: #f5f5f2;
+  --accent: #ff3b00;
+
+  --font-display: "Baloo 2", sans-serif;
+  --font-serif: "Instrument Serif", serif;
+  --font-body: "Inter", sans-serif;
+
+  /* brutalist system tokens — used by the header/footer chrome (sitewide)
+     and by index/my-work/wrapped/fundall. About's own sections keep
+     reading --ink/--paper/--font-display/--font-body above untouched. */
+  --ink-hard: #0d0d0d;
+  --paper-hard: #f2f0eb;
+  --hard-line: rgba(13, 13, 13, 0.16);
+  --font-mono: "JetBrains Mono", monospace;
+  --font-hard: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --content-max: 1240px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ---------- Content container ----------
+   max-width + side margins so sections stop stretching edge to edge on
+   wide viewports; hairline borders on parent chrome can still run full
+   bleed, only the content inside is constrained. */
+
+.wrap {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+@media (max-width: 768px) {
+  .wrap { padding: 0 20px; }
+}
+
+/* ---------- Header (brutalist chrome — every page) ---------- */
+
+.site-header {
+  border-bottom: 1px solid var(--ink-hard);
+  background: var(--paper-hard);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.site-header .wrap {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  /* the bar collapsed to ~18px on its text alone, which made the nav links
+     an unusable tap target and left a gap under the sticky section bar */
+  min-height: 44px;
+}
+
+.logo {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  background: var(--ink-hard);
+  color: var(--paper-hard);
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.logo:hover { background: var(--accent); color: var(--ink-hard); }
+
+.site-nav {
+  display: flex;
+  align-items: stretch;
+}
+
+.site-nav a {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0 22px;
+  color: var(--ink-hard);
+  border-left: 1px solid var(--ink-hard);
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.site-nav a:hover,
+.site-nav a.is-active { background: var(--accent); color: var(--ink-hard); }
+
+.btn-outline {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0 22px;
+  border-left: 1px solid var(--ink-hard);
+  color: var(--ink-hard);
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.btn-outline:hover { background: var(--accent); color: var(--ink-hard); }
+
+@media (max-width: 600px) {
+  .logo { font-size: 11px; padding: 0 14px; }
+  .site-nav a,
+  .btn-outline { font-size: 11px; padding: 0 14px; }
+}
+
+/* ---------- Footer (brutalist chrome — every page) ---------- */
+
+.site-footer {
+  border-top: 1px solid var(--ink-hard);
+  background: var(--paper-hard);
+  color: var(--ink-hard);
+}
+
+.footer-top {
+  padding-top: 64px;
+  padding-bottom: 40px;
+}
+
+.footer-label {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(28px, 5vw, 56px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--ink-hard);
+}
+
+.footer-link {
+  flex: 1 1 180px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 20px;
+  border-right: 1px solid var(--ink-hard);
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+/* every cell draws its own right-hand divider, which left the first cell
+   with no line on its left edge and the row reading as open */
+.footer-link:first-child { border-left: 1px solid var(--ink-hard); }
+
+.footer-link:hover { background: var(--accent); color: var(--ink-hard); }
+
+.footer-legal-row {
+  border-top: 1px solid var(--ink-hard);
+}
+
+.footer-legal {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  padding-top: 22px;
+  padding-bottom: 22px;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .footer-top { padding-top: 48px; padding-bottom: 32px; }
+  .footer-legal { padding-top: 18px; padding-bottom: 18px; }
+}
+
+/* ---------- Hero (brutalist name-slab + year rail) ---------- */
+
+.hero {
+  position: relative;
+  background: var(--paper-hard);
+  color: var(--ink-hard);
+  border-bottom: 1px solid var(--ink-hard);
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 260px);
+  gap: 64px;
+  align-items: start;
+  padding-top: 96px;
+  padding-bottom: 84px;
+}
+
+.eyebrow-hard {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0 0 40px;
+}
+
+.eyebrow-hard--right { text-align: right; }
+
+.hero-intro {
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-name {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(44px, 10vw, 140px);
+  line-height: 0.86;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.hero-copy-hard {
+  font-family: var(--font-hard);
+  font-size: 18px;
+  line-height: 1.5;
+  max-width: 38ch;
+  margin: 40px 0 0;
+}
+
+.hero-hint {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin: 32px 0 0;
+}
+
+/* ---------- Year list ---------- */
+
+.hero-years {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  text-align: right;
+}
+
+.year-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.year-item {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: clamp(38px, 6.4vw, 84px);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--ink-hard);
+  cursor: pointer;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.hero-years:hover .year-item { opacity: 0.35; }
+.year-item:hover { opacity: 1 !important; color: var(--accent); }
+
+/* ---------- Year overlay (desktop hover reveal) ---------- */
+
+.year-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: rgba(196, 193, 186, 0.94);
+  color: var(--ink-hard);
+  overflow-y: auto;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.year-overlay.is-visible {
+  opacity: 1;
+}
+
+/* each year gets its own background/style, cycling the same paper/dark/accent
+   palette the Wrapped flow uses, so hovering across years already previews
+   the mood of that year's review before it's clicked. */
+.year-overlay[data-theme="dark"] {
+  background: rgba(13, 13, 13, 0.94);
+  color: var(--paper-hard);
+}
+
+.year-overlay[data-theme="accent"] {
+  background: rgba(255, 59, 0, 0.94);
+  color: var(--ink-hard);
+}
+
+/* the overlay background stays click/hover-through so the year list
+   underneath can still be hovered to switch years; only its own
+   interactive controls opt back in. overlay-content is width:fit-content
+   (below) so its auto hit-box hugs the left column and never reaches into
+   the year-rail column on the right. */
+.overlay-close,
+.overlay-content,
+.filmstrip-thumb {
+  pointer-events: auto;
+}
+
+.overlay-close {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  z-index: 1;
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 32px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.overlay-inner {
+  padding-top: 100px;
+  padding-bottom: 56px;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.overlay-content {
+  text-align: left;
+  width: fit-content;
+  max-width: 100%;
+  cursor: pointer;
+}
+
+.overlay-year {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: clamp(72px, 15vw, 200px);
+  display: block;
+  line-height: 0.82;
+  color: var(--accent);
+}
+
+/* accent-on-accent would disappear, so the year number flips to the ink
+   color only on the accent-themed overlay. */
+.year-overlay[data-theme="accent"] .overlay-year { color: var(--ink-hard); }
+
+.overlay-role {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: clamp(20px, 2.6vw, 32px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  max-width: 30ch;
+  margin: 24px 0 6px;
+}
+
+.overlay-company {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  opacity: 0.65;
+  margin: 0 0 20px;
+}
+
+.overlay-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+}
+
+.overlay-tags li {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 7px 11px;
+  border: 1px solid currentColor;
+}
+
+.overlay-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ink-hard);
+  color: var(--paper-hard);
+  border: 1px solid var(--ink-hard);
+  padding: 14px 22px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+}
+
+.overlay-cta:hover { background: var(--accent); border-color: var(--accent); color: var(--ink-hard); }
+
+/* on the dark-themed overlay an ink-on-ink button would vanish, so it flips
+   to paper — everywhere else the default ink button already has contrast. */
+.year-overlay[data-theme="dark"] .overlay-cta {
+  background: var(--paper-hard);
+  color: var(--ink-hard);
+  border-color: var(--paper-hard);
+}
+
+.year-overlay[data-theme="dark"] .overlay-cta:hover {
+  background: var(--accent);
+  color: var(--ink-hard);
+  border-color: var(--accent);
+}
+
+/* filmstrip: auto-scrolls only if content overflows */
+
+.overlay-filmstrip-wrap {
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.overlay-filmstrip {
+  display: flex;
+  gap: 14px;
+  width: max-content;
+}
+
+.overlay-filmstrip.is-scrolling {
+  animation: filmstrip-scroll 18s linear infinite;
+}
+
+.filmstrip-thumb {
+  width: 132px;
+  height: 88px;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: 1px solid currentColor;
+  background-image: repeating-linear-gradient(135deg, currentColor 0 1px, transparent 1px 8px);
+  display: flex;
+  align-items: flex-end;
+  padding: 7px;
+  transition: opacity 0.12s ease;
+}
+
+.filmstrip-thumb:hover { opacity: 0.7; }
+
+.filmstrip-thumb::after {
+  content: attr(aria-label);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--paper-hard);
+  color: var(--ink-hard);
+  padding: 3px 5px;
+}
+
+@keyframes filmstrip-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-top: 48px;
+    padding-bottom: 56px;
+  }
+
+  .hero-years { text-align: left; }
+
+  .year-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .year-item {
+    font-size: 26px;
+    background: var(--ink-hard);
+    color: var(--paper-hard);
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--ink-hard);
+  }
+
+  .hero-years:hover .year-item { opacity: 1; }
+  .year-item:hover { color: var(--paper-hard); background: var(--accent); border-color: var(--accent); }
+
+  .overlay-inner { padding-top: 84px; padding-bottom: 40px; }
+
+  /* on touch, the overlay isn't used — tapping navigates straight to the
+     year's wrap page, so it's kept hidden entirely */
+  .year-overlay { display: none !important; }
+}

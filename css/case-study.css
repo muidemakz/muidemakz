@@ -1,0 +1,1696 @@
+.case-main {
+  background: var(--paper-hard);
+  color: var(--ink-hard);
+}
+
+.case-back {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 11px 16px;
+  border: 2px solid var(--ink-hard);
+  margin-bottom: 28px;
+  transition: background 0.14s ease, color 0.14s ease, border-color 0.14s ease,
+              transform 0.14s ease, box-shadow 0.14s ease;
+}
+
+.case-back:hover,
+.case-back:focus-visible {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  transform: translate(-3px, -3px);
+  box-shadow: 5px 5px 0 var(--ink-hard);
+}
+
+.case-back:active { transform: translate(0, 0); box-shadow: none; }
+
+/* ---------- hero ---------- */
+
+/* pages opt into Outfit for display + body copy with <body class="type-outfit"> */
+.type-outfit { --font-hard: "Outfit", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+.type-outfit .case-title { max-width: 14.5em; }
+.type-outfit .case-lede,
+.type-outfit .case-copy { max-width: 681px; }
+.type-outfit .case-list li { max-width: 605px; }
+.type-outfit .case-decision-copy { max-width: 662px; }
+.type-outfit .case-falsifiable-copy { max-width: 641px; }
+.type-outfit .case-decision { border-color: var(--accent); }
+
+.case-hero { padding-top: 64px; border-bottom: 1px solid var(--ink-hard); }
+
+.case-hero-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.case-kicker {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0;
+}
+
+.case-visit {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.case-visit:hover { color: var(--accent); }
+
+.case-title {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  text-transform: uppercase;
+  /* was clamp(40px, 9vw, 130px) — at 130px an uppercase headline reads as
+     shouting rather than confident. Scaled back to a size that still leads
+     the page without dominating it. */
+  font-size: clamp(26px, 4.4vw, 56px);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  margin: 18px 0 0;
+  max-width: 26ch;
+}
+
+.case-lede {
+  font-family: var(--font-hard);
+  font-size: 18px;
+  line-height: 1.5;
+  max-width: 68ch;
+  margin: 22px 0 0;
+}
+
+.case-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  margin: 26px 0 0;
+  padding: 0;
+}
+
+/* Metadata, not controls -- these were bordered boxes sitting a few pixels
+   from the real buttons, so they read as clickable. Same fix as the About
+   page: a plain run of labels divided by an accent marker. */
+.case-tags li {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.case-tags li::after {
+  content: "\25A0";
+  color: var(--accent);
+  font-size: 7px;
+  vertical-align: middle;
+  margin: 0 13px;
+  opacity: 1;
+}
+
+.case-tags li:last-child::after { content: ""; margin: 0; }
+
+.case-hero-media {
+  margin-top: 48px;
+  height: clamp(220px, 34vw, 420px);
+  border-top: 1px solid var(--ink-hard);
+  background-image: repeating-linear-gradient(135deg, var(--hard-line) 0 2px, transparent 2px 11px);
+  display: flex;
+  align-items: flex-end;
+  padding: 20px 48px;
+}
+
+@media (max-width: 768px) {
+  .case-hero-media { padding: 16px 20px; }
+}
+
+/* ---------- circular "visit" link ---------- */
+
+.case-hero-cover { position: relative; margin-top: 48px; }
+.case-hero-cover .case-hero-media { margin-top: 0; }
+
+/* spans the content column's outer edge so the badge's right edge lines up
+   with it, and sits centred on the cover's top rule */
+.case-visit-rail {
+  position: absolute;
+  top: -78px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(var(--content-max), calc(100% - 40px));
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.case-visit-badge {
+  pointer-events: auto;
+  flex: none;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  border: 0.5px solid rgba(0, 4, 90, 0.25);
+  background: #000;
+  color: #f8f7f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: normal;
+  transition: background 0.14s ease, color 0.14s ease, border-color 0.14s ease,
+              transform 0.14s ease, box-shadow 0.14s ease;
+}
+
+/* same lift-and-shadow hover as the "All Work" back button */
+.case-visit-badge:hover,
+.case-visit-badge:focus-visible {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  transform: translate(-3px, -3px);
+  box-shadow: 5px 5px 0 var(--ink-hard);
+}
+
+.case-visit-badge:active { transform: translate(0, 0); box-shadow: none; }
+
+.case-visit-end { display: flex; margin-top: 67px; }
+
+@media (max-width: 1100px) {
+  .case-visit-rail { top: -53px; }
+  .case-visit-badge { width: 120px; height: 120px; font-size: 13px; }
+}
+
+@media (max-width: 768px) {
+  .case-visit-end { margin-top: 44px; }
+}
+
+/* ---------- generic section ---------- */
+
+.case-section {
+  padding-top: 64px;
+  padding-bottom: 64px;
+  border-bottom: 1px solid var(--ink-hard);
+}
+
+.case-label {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0 0 24px;
+}
+
+.case-copy {
+  font-family: var(--font-hard);
+  font-size: 17px;
+  line-height: 1.55;
+  max-width: 72ch;
+  margin: 0 0 18px;
+}
+
+.case-copy:last-child { margin-bottom: 0; }
+
+.case-list {
+  margin: 0 0 18px;
+  padding: 0;
+  list-style: none;
+  counter-reset: case-list;
+}
+
+.case-list li {
+  counter-increment: case-list;
+  position: relative;
+  padding-left: 34px;
+  font-family: var(--font-hard);
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 12px;
+  max-width: 68ch;
+}
+
+.case-list li::before {
+  content: counter(case-list);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--accent);
+}
+
+.case-list--plain { margin: 10px 0 0; }
+
+/* ---------- primary / secondary task split ---------- */
+
+.case-split {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  border: 1px solid var(--ink-hard);
+}
+
+.case-split-cell {
+  padding: 32px;
+  border-left: 1px solid var(--ink-hard);
+}
+
+.case-split-cell:first-child { border-left: none; }
+
+.case-split-cell--dark {
+  background: var(--ink-hard);
+  color: var(--paper-hard);
+}
+
+.case-split-label {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+}
+
+.case-split-cell--dark .case-split-label { color: var(--accent); }
+
+.case-split-copy {
+  font-family: var(--font-hard);
+  font-size: 18px;
+  line-height: 1.35;
+  margin: 0;
+}
+
+/* ---------- design process steps ---------- */
+
+.case-steps {
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.case-steps li {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--ink-hard);
+  box-shadow: 6px 6px 0 var(--ink-hard);
+  padding: 20px;
+}
+
+.case-step-n {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 30px;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.case-step-title {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 21px;
+  margin-bottom: 8px;
+}
+
+.case-step-copy {
+  font-family: var(--font-hard);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.case-steps--flush { gap: 0; }
+
+@media (max-width: 768px) {
+  .case-steps--flush { gap: 14px; }
+}
+
+/* ---------- persona ---------- */
+
+.case-quote {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: clamp(20px, 2.6vw, 30px);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  max-width: 46ch;
+  margin: 0;
+}
+
+.case-persona-name {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  opacity: 0.65;
+  margin: 14px 0 36px;
+}
+
+.case-persona-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+/* ---------- target-user card with a full-bleed photo ---------- */
+
+.case-user-list { display: flex; flex-direction: column; gap: 24px; margin-top: 24px; }
+
+.case-user-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 440px);
+  align-items: stretch;
+  border: 1px solid var(--ink-hard);
+  box-shadow: 6px 6px 0 var(--ink-hard);
+}
+
+.case-user-card-body {
+  padding: 32px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.case-user-card-title {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 28px;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin: 0 0 14px;
+}
+
+.case-user-card-copy {
+  font-family: var(--font-hard);
+  font-size: 16px;
+  line-height: 1.55;
+  margin: 0;
+  max-width: 54ch;
+}
+
+.case-user-card-media { position: relative; min-height: 220px; overflow: hidden; }
+.case-user-card-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+@media (max-width: 700px) {
+  .case-user-card { grid-template-columns: minmax(0, 1fr); }
+  .case-user-card-media { min-height: 200px; }
+  .case-user-card-body { padding: 24px 22px; }
+}
+
+/* grid variant: 3-up, image on top of each card instead of full-width rows */
+.case-user-list--grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+}
+
+.case-user-card--grid {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+}
+
+.case-user-card--grid .case-user-card-media {
+  height: auto;
+  min-height: 220px;
+}
+
+/* whatever gets cropped, anchor to the bottom so the subject never floats
+   above a gap — the crop (if any) always comes off the top instead */
+.case-user-card--grid .case-user-card-media img { object-position: center bottom; }
+
+.case-user-card--grid .case-user-card-body {
+  padding: 24px 22px;
+  justify-content: flex-start;
+}
+
+.case-user-card--grid .case-user-card-title { font-size: 22px; }
+
+@media (max-width: 560px) {
+  .case-user-list--grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+.case-fact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border: 1px solid var(--ink-hard);
+}
+
+.case-fact {
+  padding: 14px 16px;
+  border-left: 1px solid var(--ink-hard);
+  border-top: 1px solid var(--ink-hard);
+}
+
+.case-fact:nth-child(-n+2) { border-top: none; }
+.case-fact:nth-child(2n+1) { border-left: none; }
+
+.case-fact-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin: 0 0 4px;
+}
+
+.case-fact-value {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: 15px;
+  margin: 0;
+}
+
+.case-trait-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  justify-content: center;
+}
+
+.case-trait-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--hard-line);
+}
+
+.case-persona-copy { max-width: 72ch; }
+
+.case-persona-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin: 20px 0;
+}
+
+.case-persona-trait {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 10px 14px;
+  border: 1px solid var(--ink-hard);
+  display: inline-block;
+  margin: 8px 0 0;
+}
+
+/* ---------- generic media placeholder ---------- */
+
+.case-media-slot {
+  border: 1px solid var(--ink-hard);
+  background-image: repeating-linear-gradient(135deg, var(--hard-line) 0 2px, transparent 2px 11px);
+  aspect-ratio: 9 / 16;
+  display: flex;
+  align-items: flex-end;
+  padding: 14px;
+}
+
+.case-media-slot--wide { aspect-ratio: 16 / 7; }
+
+.case-media-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--paper-hard);
+  border: 1px solid var(--ink-hard);
+  padding: 5px 8px;
+}
+
+/* ---------- screens ---------- */
+
+.case-screen { margin-bottom: 48px; }
+.case-screen:last-of-type { margin-bottom: 0; }
+
+.case-screen-title {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 22px;
+  margin: 0 0 10px;
+}
+
+.case-before-after,
+.case-screen-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.case-screen-gallery--wide { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+
+/* ---------- outcome stats ---------- */
+
+.case-outcome-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  border-top: 1px solid var(--ink-hard);
+  border-left: 1px solid var(--ink-hard);
+}
+
+.case-outcome {
+  padding: 26px 22px;
+  border-right: 1px solid var(--ink-hard);
+  border-bottom: 1px solid var(--ink-hard);
+}
+
+.case-outcome-label {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 10px;
+}
+
+.case-outcome-value {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: clamp(28px, 3.4vw, 44px);
+  letter-spacing: -0.02em;
+  margin: 0 0 10px;
+}
+
+.case-outcome-copy {
+  font-family: var(--font-hard);
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.case-outcome--dark {
+  background: var(--ink-hard);
+  color: var(--paper-hard);
+  border-color: var(--paper-hard);
+}
+
+/* stat row fused to the top of a figure; the figure's own border closes it */
+.case-figure--stats { background: #ebe9e5; }
+.case-figure--stats .case-outcome-grid { border-top: 0; border-left: 0; }
+.case-figure--stats .case-outcome:last-child { border-right: 0; }
+
+.case-figure-inset { padding: 40px 40px 0; }
+.case-figure-crop { aspect-ratio: 1062 / 602; overflow: hidden; }
+
+@media (max-width: 600px) {
+  .case-figure-inset { padding: 20px 20px 0; }
+}
+
+/* ---------- next steps ---------- */
+
+.case-next-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.case-next-label {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 17px;
+  border-top: 3px solid var(--ink-hard);
+  padding-top: 12px;
+  margin: 0 0 8px;
+}
+
+/* ---------- CTA ---------- */
+
+.case-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 28px;
+  background: var(--ink-hard);
+  color: var(--paper-hard);
+  border: 2px solid var(--ink-hard);
+  padding: 15px 24px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background 0.14s ease, color 0.14s ease, border-color 0.14s ease,
+              transform 0.14s ease, box-shadow 0.14s ease;
+}
+
+.case-cta:hover,
+.case-cta:focus-visible {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  transform: translate(-3px, -3px);
+  box-shadow: 5px 5px 0 var(--ink-hard);
+}
+
+.case-cta:active { transform: translate(0, 0); box-shadow: none; }
+
+/* ---------- other projects ---------- */
+
+.case-other-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.case-other-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid var(--ink-hard);
+  padding: 22px;
+  transition: background 0.12s ease;
+}
+
+.case-other-card:hover { background: var(--accent); }
+
+.case-other-name {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+.case-other-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  opacity: 0.65;
+}
+
+/* ---------- iteration / version cards ---------- */
+
+.case-version-grid { display: flex; flex-direction: column; gap: 28px; }
+
+.case-version-card {
+  border: 1px solid var(--ink-hard);
+  box-shadow: 8px 8px 0 var(--ink-hard);
+  padding: 28px;
+}
+
+.case-version-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.case-version-n {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--accent);
+}
+
+.case-version-title {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(20px, 2.6vw, 26px);
+  margin: 0;
+}
+
+.case-version-rows {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.case-version-row-label {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin: 0 0 6px;
+}
+
+.case-version-row-copy {
+  font-family: var(--font-hard);
+  font-size: 15px;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* ---------- decision callout ("the one decision") ---------- */
+
+.case-decision {
+  border: 1px solid var(--ink-hard);
+  border-left: 8px solid var(--accent);
+  padding: 26px 28px;
+  margin-top: 28px;
+}
+
+.case-decision-label {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 10px;
+}
+
+.case-decision-copy {
+  font-family: var(--font-hard);
+  font-size: 17px;
+  line-height: 1.5;
+  max-width: 70ch;
+  margin: 0;
+}
+
+.case-decision-copy strong { background: var(--accent); padding: 0 4px; }
+
+/* ---------- falsifiable / measurement note ---------- */
+
+.case-falsifiable {
+  border-top: 3px solid var(--ink-hard);
+  margin-top: 32px;
+  padding-top: 22px;
+}
+
+.case-falsifiable-label {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+
+.case-falsifiable-copy {
+  font-family: var(--font-hard);
+  font-size: 16px;
+  line-height: 1.5;
+  max-width: 72ch;
+  margin: 0;
+}
+
+/* ---------- quick nav (summary / problem / solution / process / outcome) ---------- */
+
+/* Section jump bar. It used to sit inline at 65% opacity behind a hairline,
+   which read as decoration rather than navigation, and scrolled away on the
+   first swipe. It now sticks directly beneath the site header on every case
+   study and the links carry a real border and hover fill. */
+.case-quicknav {
+  position: sticky;
+  top: 44px; /* matches .site-header min-height */
+  z-index: 40;
+  background: var(--ink-hard);
+  border-bottom: 1px solid var(--ink-hard);
+  padding: 11px 0;
+  margin: 0;
+}
+
+.case-quicknav .wrap {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.case-quicknav .wrap::-webkit-scrollbar { display: none; }
+
+.case-quicknav a {
+  display: inline-block;
+  flex: none;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 9px 13px;
+  border: 1px solid rgba(242, 240, 235, 0.45);
+  color: var(--paper-hard);
+  white-space: nowrap;
+  transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+}
+
+.case-quicknav a:hover,
+.case-quicknav a:focus-visible {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* anchors must clear both sticky bars when jumped to */
+.case-section[id] { scroll-margin-top: 100px; }
+
+@media (max-width: 600px) {
+  .case-quicknav { padding: 9px 0; }
+  .case-quicknav a { font-size: 10px; padding: 8px 11px; }
+}
+
+/* ---------- leadership grid (design-manager signal); reused for Problem cards ---------- */
+
+.case-leadership-grid,
+.case-problem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  border-top: 1px solid var(--ink-hard);
+  border-left: 1px solid var(--ink-hard);
+}
+
+.case-leadership,
+.case-problem {
+  padding: 24px 22px;
+  border-right: 1px solid var(--ink-hard);
+  border-bottom: 1px solid var(--ink-hard);
+}
+
+.case-leadership-label,
+.case-problem-label {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 10px;
+}
+
+.case-leadership-copy,
+.case-problem-copy {
+  font-family: var(--font-hard);
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ---------- status line ---------- */
+
+.case-status {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.65;
+  margin-top: 16px;
+}
+
+/* ---------- password gate ---------- */
+
+.case-gate-form { max-width: 420px; }
+
+.case-gate-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.case-gate-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.case-gate-input {
+  flex: 1 1 200px;
+  border: 1px solid var(--ink-hard);
+  background: var(--paper-hard);
+  color: var(--ink-hard);
+  font-family: var(--font-hard);
+  font-size: 16px;
+  padding: 13px 16px;
+}
+
+.case-gate-input:focus { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+.case-gate-error {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  margin: 14px 0 0;
+}
+
+/* ---------- password gate modal ---------- */
+
+.case-gate-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(13, 13, 13, 0.72);
+}
+
+.case-gate-overlay.is-open { display: flex; }
+
+.case-gate-modal {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  background: var(--paper-hard);
+  border: 1px solid var(--ink-hard);
+  box-shadow: 10px 10px 0 var(--ink-hard);
+  padding: 36px 32px;
+}
+
+.case-gate-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: none;
+  border: none;
+  color: var(--ink-hard);
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.case-gate-close:hover { color: var(--accent); }
+
+.case-gate-modal .case-kicker { margin: 0 0 14px; }
+.case-gate-modal .case-copy { margin: 0 0 24px; }
+.case-gate-modal .case-gate-form { max-width: none; }
+
+/* ---------- mobile ---------- */
+
+@media (max-width: 768px) {
+  .case-hero { padding-top: 40px; }
+  .case-section { padding-top: 44px; padding-bottom: 44px; }
+  .case-persona-grid { grid-template-columns: 1fr; }
+  .case-split-cell { padding: 24px 20px; }
+}
+
+/* ---------- figures ----------------------------------------------------
+   Real <img> elements at their own aspect ratio, stacked with room.
+
+   Replaces the older `.case-media-slot` pattern, which painted screenshots
+   as CSS backgrounds inside a fixed 9/16 box — that cropped every landscape
+   capture to a portrait sliver and forced unrelated shots into a grid.
+   Here the image dictates its own height and nothing is cropped.
+   ---------------------------------------------------------------------- */
+
+.case-figures {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 26px;
+}
+
+.case-figure {
+  /* <figure> carries a UA default of `margin: 1em 40px`, which was insetting
+     every screenshot by 40px a side and shrinking it 80px below the content
+     width. It has to be reset explicitly. */
+  margin: 0;
+  border: 1px solid var(--ink-hard);
+  background: #fff;
+  overflow: hidden;
+}
+
+.case-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* the caption reads as a solid black bar rather than a grey strip, so each
+   figure is clearly labelled and closed off at the bottom */
+.case-figure figcaption {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 11px 13px;
+  border-top: 1px solid var(--ink-hard);
+  background: var(--ink-hard);
+  color: var(--paper-hard);
+}
+
+/* Landscape captures always take the full container width — never split
+   into columns, where they'd shrink to an unreadable strip. Only portrait
+   phone screens and the small competitor tiles sit side by side. */
+.case-figures--cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+/* Portrait phone screens sit in an even grid that fills the column — never
+   stacked full width, where a 482px-wide capture would blow up to 1089px.
+   Two-up by default (before/after pairs, and 4 screens as a tidy 2x2);
+   --phones-3 for a three-step sequence. */
+.case-figures--phones {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.case-figures--phones-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+@media (max-width: 600px) {
+  .case-figures { gap: 22px; }
+  /* a three-step sequence drops to two-up rather than three 100px slivers */
+  .case-figures--phones,
+  .case-figures--phones-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .case-figures--cols { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ---------- surface grid (Omnione) ------------------------------------
+   `.case-fact-grid` draws its dividers with nth-child rules that assume a
+   two-column layout; reusing it at four columns put the lines in the wrong
+   places. This uses the column-count-agnostic pattern instead: the
+   container draws top+left, every cell draws right+bottom. No doubles, no
+   stray rules, works at any number of columns.
+   --------------------------------------------------------------------- */
+
+.surface-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--ink-hard);
+  border-left: 1px solid var(--ink-hard);
+  margin-top: 10px;
+}
+
+.surface-cell {
+  padding: 15px 16px;
+  border-right: 1px solid var(--ink-hard);
+  border-bottom: 1px solid var(--ink-hard);
+}
+
+.surface-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin: 0 0 5px;
+}
+
+.surface-value {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: 15px;
+  margin: 0;
+}
+
+/* the internal tool is not one of the four teams — it sits under the grid
+   as its own full-width row so the team count reads unambiguously */
+.surface-note {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+  border: 1px solid var(--ink-hard);
+  border-top: 0;
+  padding: 15px 16px;
+  background: var(--paper-hard);
+}
+
+.surface-note .surface-label { margin: 0; }
+
+@media (max-width: 860px) {
+  .surface-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 460px) {
+  .surface-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ---------- 2026 case-study components (Coreloops / Omnione Figma) ---------- */
+
+.case-label--lg { font-size: 16px; }
+.case-copy--lg { font-size: 21px; line-height: 26.35px; }
+.case-accent { color: var(--accent); }
+
+/* grey framed figure: header content on top, inset screenshot below */
+.case-figure--grey { background: #ebe9e5; }
+.case-figure--grey .case-split { border: 0; border-bottom: 1px solid var(--ink-hard); }
+
+.case-split-label--lg { font-size: 15px; }
+.case-split-label--title { font-family: var(--font-hard); font-size: 16px; letter-spacing: 0.0825em; }
+.case-split-cell--on-dark { border-left-color: var(--paper-hard); }
+
+.case-figure-head { background: var(--ink-hard); color: var(--paper-hard); padding: 32px; }
+
+.case-figure-head-title {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.0625em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 12px;
+}
+
+.case-figure-head-copy { font-family: var(--font-hard); font-size: 18px; line-height: 1.35; margin: 0; }
+
+/* browser-window frame around a capture, open at the bottom edge */
+.case-frame { border: 4px solid #000; border-bottom: 0; border-radius: 8px 8px 0 0; overflow: hidden; }
+
+.case-figures--spaced { gap: 54px; margin-top: 50px; }
+
+.case-steps--lg .case-step-copy { font-size: 18px; line-height: 19.6px; }
+
+/* fixed crop of a larger capture; offsets are set per image inline */
+.case-crop {
+  position: relative;
+  margin-top: auto;
+  height: 157px;
+  overflow: hidden;
+  border: 2px solid #000;
+  border-bottom: 0;
+}
+
+.case-crop img { position: absolute; top: 0; left: 0; max-width: none; height: auto; }
+.case-crop--bare { border: 0; }
+.case-crop--cover img { inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+.case-leadership-grid--cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.case-leadership-grid--cards .case-leadership {
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+  padding: 24px 22px 0;
+}
+
+.case-leadership-grid--cards .case-leadership-label { font-size: 14px; letter-spacing: 0.0786em; }
+.case-leadership-grid--cards .case-leadership-copy { font-size: 16px; line-height: 22.5px; margin-bottom: 10px; }
+
+@media (max-width: 900px) {
+  .case-leadership-grid--cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 560px) {
+  .case-leadership-grid--cards { grid-template-columns: minmax(0, 1fr); }
+  .case-leadership-grid--cards .case-leadership { min-height: 0; }
+}
+
+/* text-only leadership cards, no card-shot image to reserve room for */
+.case-leadership-grid--auto .case-leadership { min-height: 0; }
+
+/* edge-case pair */
+.case-edge-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--ink-hard);
+  border-left: 1px solid var(--ink-hard);
+  margin-top: 24px;
+}
+
+.case-edge {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 480px;
+  border-right: 1px solid var(--ink-hard);
+  border-bottom: 1px solid var(--ink-hard);
+}
+
+.case-edge-body { padding: 32px; }
+
+.case-edge-title {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.0625em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 12px;
+}
+
+.case-edge-copy { font-family: var(--font-hard); font-size: 18px; line-height: 1.35; margin: 0; }
+.case-edge-media { padding: 16px 24px 0; }
+.case-edge-media .case-crop { height: 239px; }
+
+.case-flag-box { border: 1px solid var(--ink-hard); padding: 24px 22px; margin-top: 28px; }
+
+.case-flag-label {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.0786em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 10px;
+}
+
+.case-flag-copy { font-family: var(--font-hard); font-size: 17px; line-height: 26.35px; margin: 0 0 24px; }
+.case-flag-copy:last-child { margin-bottom: 0; }
+
+.case-flag-box--dark { background: var(--ink-hard); color: var(--paper-hard); }
+
+@media (max-width: 768px) {
+  .case-edge-grid { grid-template-columns: minmax(0, 1fr); }
+  .case-edge { min-height: 0; }
+}
+
+/* ruled list beside a solid panel (trade-offs / things to explore) */
+.case-stack-row { display: flex; align-items: stretch; margin-top: 24px; }
+
+.case-stack {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-bottom: 12px;
+  border: 2px solid var(--ink-hard);
+}
+
+.case-stack-title {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: 17px;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 12px 16px 0;
+}
+
+.case-stack-item + .case-stack-item .case-stack-title { border-top: 3px solid var(--ink-hard); }
+
+.case-stack-copy {
+  font-family: var(--font-hard);
+  font-size: 17px;
+  line-height: 26.35px;
+  max-width: 680px;
+  margin: 0;
+  padding: 8px 16px 0;
+}
+
+.case-stack--wide .case-stack-item { min-height: 148px; }
+.case-stack--wide .case-stack-title,
+.case-stack--wide .case-stack-copy { padding-left: 40px; padding-right: 40px; }
+.case-stack--wide .case-stack-copy { max-width: 448px; }
+
+.case-stack-panel {
+  flex: 0 0 46.5%;
+  background: var(--ink-hard);
+  border: 1px solid var(--ink-hard);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+
+.case-stack-panel img { max-width: 62%; height: auto; display: block; }
+
+.case-stack-panel--grey {
+  background: #ebe9e5;
+  border: 2px solid var(--ink-hard);
+  border-right: 0;
+}
+
+@media (max-width: 768px) {
+  .case-stack-row { flex-direction: column; }
+  .case-stack-panel { flex: 0 0 auto; width: 100%; min-height: 220px; padding: 24px; }
+  .case-stack-panel--grey { border-right: 2px solid var(--ink-hard); }
+}
+
+/* two-up bordered box (what I'd measure / what would prove it wrong) */
+.case-duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 1px solid var(--ink-hard); }
+.case-duo-cell { padding: 32px; min-height: 222px; }
+.case-duo-cell + .case-duo-cell { border-left: 1px solid var(--ink-hard); }
+
+.case-duo-title {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.0625em;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+}
+
+.case-duo-copy { font-family: var(--font-hard); font-size: 18px; line-height: 1.35; margin: 0; }
+
+@media (max-width: 768px) {
+  .case-duo { grid-template-columns: minmax(0, 1fr); }
+  .case-duo-cell { min-height: 0; }
+  .case-duo-cell + .case-duo-cell { border-left: 0; border-top: 1px solid var(--ink-hard); }
+}
+
+/* edge-card variants: a dark statement cell, and labelled full screenshots */
+.case-edge--dark { background: var(--ink-hard); color: var(--paper-hard); }
+
+.case-edge-kicker {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 8px;
+}
+
+.case-edge-title--ink { color: inherit; margin: 0; }
+
+.case-shot { border: 2px solid #000; border-bottom: 0; }
+.case-shot img { display: block; width: 100%; height: auto; }
+
+/* compact split header: every label orange, smaller copy */
+.case-split--compact .case-split-cell { padding: 26px 22px 40px; }
+.case-split--compact .case-split-label { color: var(--accent); }
+.case-split--compact .case-split-copy { font-size: 14px; line-height: 1.4; }
+
+/* phone captures laid out inside a framed figure */
+.case-phones { display: grid; gap: 32px; margin: 0 auto; }
+.case-phones--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 760px; }
+.case-phones--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.case-phones--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.case-phones + .case-phones { margin-top: 32px; }
+
+/* several captures stacked inside one framed figure */
+.case-figure-inset > img + img { margin-top: 24px; }
+
+/* fixed column counts so a header row never leaves one orphan cell */
+.case-split--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.case-split--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+@media (max-width: 899px) {
+  .case-split--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .case-split--4 .case-split-cell:nth-child(odd) { border-left: 0; }
+  .case-split--4 .case-split-cell:nth-child(n+3) { border-top: 1px solid var(--ink-hard); }
+}
+
+@media (max-width: 767px) {
+  .case-split--3 { grid-template-columns: minmax(0, 1fr); }
+  .case-split--3 .case-split-cell + .case-split-cell { border-left: 0; border-top: 1px solid var(--ink-hard); }
+}
+
+/* stacked split cells need a rule between them, not the side rule */
+@media (max-width: 559px) {
+  .case-split,
+  .case-split--4 { grid-template-columns: minmax(0, 1fr); }
+  .case-split-cell + .case-split-cell { border-left: 0; border-top: 1px solid var(--ink-hard); }
+}
+
+/* five-up rows (goals, stats) keep all five on one line down to tablet */
+.case-steps--tight,
+.case-outcome-grid--tight { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+
+/* quicknav jumps glide to their section */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* compact impact strip near the top of a case study, pointing to the outcome */
+.case-impact { display: flex; border: 1px solid var(--ink-hard); margin-top: 24px; }
+
+.case-impact-head {
+  flex: 0 0 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 18px 20px;
+  background: var(--ink-hard);
+}
+
+.case-impact-title {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0;
+}
+
+.case-impact-link {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--paper-hard);
+}
+
+.case-impact-link:hover,
+.case-impact-link:focus-visible { color: var(--accent); }
+
+.case-impact-item { flex: 1 1 0; min-width: 0; padding: 18px 20px; border-left: 1px solid var(--ink-hard); }
+
+.case-impact-value {
+  display: block;
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.case-impact-label {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+@media (max-width: 600px) {
+  .case-impact { flex-wrap: wrap; }
+  .case-impact-head { flex-basis: 100%; flex-direction: row; align-items: baseline; }
+  .case-impact-item { flex: 1 1 50%; border-left: 0; border-top: 1px solid var(--ink-hard); }
+  .case-impact-item:nth-child(odd) { border-left: 1px solid var(--ink-hard); }
+}
+
+/* single phone capture with a mono label under it */
+.case-phone { margin: 0; }
+.case-phone img { display: block; width: 100%; height: auto; }
+
+.case-phone-label {
+  margin: 10px 0 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.case-phones--narrow { max-width: 560px; }
+.case-phones--5 { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px; }
+.case-phones--7 { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 16px; }
+.case-figure-inset--pad { padding-bottom: 40px; }
+
+@media (max-width: 999px) {
+  .case-phones--7 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .case-phones--5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 600px) {
+  .case-phones--5,
+  .case-phones--7 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .case-figure-inset--pad { padding-bottom: 20px; }
+}
+
+/* bordered card grids with a fixed column count */
+.case-leadership-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.case-leadership-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+@media (max-width: 900px) {
+  .case-leadership-grid--3,
+  .case-leadership-grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 560px) {
+  .case-leadership-grid--3,
+  .case-leadership-grid--4 { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* fixed-column steps row, avoids the last card wrapping alone at the auto-fit's edge width */
+.case-steps--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+@media (max-width: 900px) {
+  .case-steps--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 560px) {
+  .case-steps--4 { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* card that ends in a whole capture on a grey ground */
+.case-card-shot {
+  display: flex;
+  justify-content: center;
+  margin: auto -22px 0;
+  padding: 24px 22px 0;
+  background: #ebe9e5;
+  border-top: 1px solid var(--ink-hard);
+}
+
+.case-card-shot img { display: block; width: auto; max-width: 100%; height: auto; max-height: 360px; }
+
+/* colour swatches */
+.case-swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  border-top: 1px solid var(--ink-hard);
+  border-left: 1px solid var(--ink-hard);
+}
+
+.case-swatch { border-right: 1px solid var(--ink-hard); border-bottom: 1px solid var(--ink-hard); }
+.case-swatch-chip { height: 64px; border-bottom: 1px solid var(--ink-hard); }
+
+.case-swatch-name,
+.case-swatch-hex {
+  margin: 0;
+  padding: 0 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.case-swatch-name { font-weight: 700; padding-top: 10px; }
+.case-swatch-hex { opacity: 0.6; padding-top: 2px; padding-bottom: 12px; }
+
+@media (max-width: 768px) {
+  .case-swatch-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+@media (max-width: 460px) {
+  .case-swatch-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* type scale specimen table */
+.case-type-list { border: 1px solid var(--ink-hard); }
+
+.case-type-row {
+  display: grid;
+  grid-template-columns: 120px 170px minmax(0, 1fr);
+  gap: 16px;
+  align-items: baseline;
+  padding: 14px 18px;
+}
+
+.case-type-row + .case-type-row { border-top: 1px solid var(--ink-hard); }
+
+.case-type-name {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.case-type-spec { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; opacity: 0.7; }
+.case-type-sample { font-family: var(--font-hard); font-size: 17px; }
+
+@media (max-width: 600px) {
+  .case-type-row { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+}
+
+/* tension rows: the trade-off on the left, how it was solved on the right */
+.case-tension-list { border: 1px solid var(--ink-hard); margin-top: 24px; }
+
+.case-tension {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 36px;
+  align-items: center;
+  padding: 30px 32px 30px 26px;
+}
+
+.case-tension + .case-tension { border-top: 1px solid var(--ink-hard); }
+
+.case-tension-label {
+  margin: 0 0 12px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.case-tension-copy { margin: 0; font-family: var(--font-hard); font-size: 16px; line-height: 1.45; max-width: 36ch; }
+
+.case-tension-card {
+  background: #fff;
+  border: 1px solid var(--ink-hard);
+  box-shadow: 6px 6px 0 var(--ink-hard);
+  padding: 24px 26px;
+}
+
+.case-tension-title {
+  margin: 0 0 10px;
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.case-tension-card-copy { margin: 0; font-family: var(--font-hard); font-size: 16px; line-height: 1.45; }
+
+@media (max-width: 768px) {
+  .case-tension { grid-template-columns: minmax(0, 1fr); gap: 20px; padding: 24px; }
+  .case-tension-copy { max-width: none; }
+}
+
+/* orange the section-name segment of a label, leave the rest ink */
+.case-label-accent { color: var(--accent); }
+
+@media (max-width: 600px) {
+  .case-phones { gap: 14px; }
+  .case-phones--3,
+  .case-phones--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* pull-quote in a bordered frame */
+.case-quote-box { border: 1px solid var(--ink-hard); border-left-width: 6px; padding: 30px 32px; margin-top: 28px; }
+.case-quote-box .case-quote { max-width: none; }
+.case-quote-box--dark { background: var(--ink-hard); color: var(--paper-hard); }
+
+@media (max-width: 600px) {
+  .case-quote-box { padding: 24px 20px; }
+}
+
+/* fixed-height card-shot image, for a row of components at equal height */
+.case-card-shot--eq { height: 230px; }
+.case-card-shot--eq img { height: 100%; width: auto; max-width: 100%; max-height: none; object-fit: contain; }

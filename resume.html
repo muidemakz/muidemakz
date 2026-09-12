@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Excellent Makanju &middot; Senior Product Designer &middot; CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* =========================================================================
+   resume.html, print-ready CV.
+
+   Content transcribed from Excellent_Makanju_Resume.pdf. The only edits to
+   the source content are in the contact line: the portfolio link now points
+   at muidemakz.com, with the Netlify address alongside it as a live fallback
+   while the domain's billing is being sorted.
+
+   To produce a PDF: open in a browser, Print, Save as PDF, A4, margins
+   "Default", and tick "Background graphics".
+   ========================================================================= */
+
+:root {
+  --ink: #0d0d0d;
+  --muted: #4a4a4a;
+  --rule: #d6d3cc;
+  --accent: #ff3b00;
+  --mono: "JetBrains Mono", monospace;
+  --body: "Inter", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #f2f0eb;
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 10.2pt;
+  line-height: 1.42;
+  -webkit-font-smoothing: antialiased;
+}
+
+.sheet {
+  max-width: 900px;
+  margin: 24px auto;
+  background: #fff;
+  padding: 40px 46px 46px;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ---------- header ---------- */
+
+.slab {
+  display: inline-block;
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 8.5pt;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  padding: 5px 10px;
+  margin-bottom: 12px;
+}
+
+h1 {
+  font-size: 25pt;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+
+.tagline {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 8.6pt;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 12px;
+}
+
+.tagline .accent { color: var(--accent); }
+
+.contact {
+  font-family: var(--mono);
+  font-size: 8.4pt;
+  line-height: 1.75;
+  border-top: 1.5px solid var(--ink);
+  border-bottom: 1.5px solid var(--ink);
+  padding: 9px 0;
+  margin-bottom: 20px;
+}
+
+.contact span { white-space: nowrap; }
+.contact .sep { color: var(--accent); padding: 0 7px; }
+.contact a { border-bottom: 1px solid var(--accent); }
+
+/* ---------- sections ---------- */
+
+h2 {
+  font-family: var(--mono);
+  font-size: 8.6pt;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin: 22px 0 9px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--rule);
+}
+
+h2:first-of-type { margin-top: 0; }
+
+p { margin: 0 0 8px; }
+
+.summary { margin-bottom: 4px; }
+
+ul { margin: 0 0 6px; padding: 0; list-style: none; }
+
+li {
+  position: relative;
+  padding-left: 15px;
+  margin-bottom: 6px;
+}
+
+li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 5px;
+  height: 5px;
+  background: var(--accent);
+}
+
+li strong { font-weight: 700; }
+
+/* ---------- roles ---------- */
+
+.role {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 14px 0 2px;
+  flex-wrap: wrap;
+}
+
+.role:first-of-type { margin-top: 4px; }
+
+.role-title { font-weight: 700; font-size: 10.6pt; }
+.role-title .co { color: var(--accent); }
+
+.role-dates {
+  font-family: var(--mono);
+  font-size: 8.2pt;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.role-context {
+  font-size: 9pt;
+  color: var(--muted);
+  margin: 0 0 7px;
+  font-style: italic;
+}
+
+/* ---------- competencies ---------- */
+
+.comp { margin-bottom: 5px; font-size: 9.6pt; }
+.comp b { font-weight: 700; }
+
+.edu-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.edu-row .d {
+  font-family: var(--mono);
+  font-size: 8.2pt;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+/* ---------- print ---------- */
+
+@media print {
+  @page { size: A4; margin: 11mm 12mm; }
+  body { background: #fff; font-size: 9.1pt; line-height: 1.34; }
+  .sheet { margin: 0; padding: 0; max-width: none; }
+  h1 { font-size: 21pt; }
+  h2 { margin: 15px 0 7px; }
+  .role { margin-top: 11px; }
+  li { margin-bottom: 4px; }
+  .role, li, .edu-row { break-inside: avoid; }
+  h2 { break-after: avoid; }
+  a { text-decoration: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <span class="slab">muidemakz</span>
+
+  <h1>Excellent Makanju</h1>
+
+  <p class="tagline">
+    Senior Product Designer <span class="accent">/</span> Payments, Wallet &amp; AI-Forward Product Building
+  </p>
+
+  <div class="contact">
+    <span><a href="mailto:muidemakz@gmail.com">muidemakz@gmail.com</a></span><span class="sep">/</span><span><a href="tel:+2348068790924">+234 806 879 0924</a></span><span class="sep">/</span><span>Lagos, Nigeria</span><br>
+    <span>Portfolio: <a href="https://muidemakz.com">muidemakz.com</a></span><span class="sep">/</span><span><a href="https://muidemakz.netlify.app">muidemakz.netlify.app</a></span><br>
+    <span>LinkedIn: <a href="https://www.linkedin.com/in/makanju-excellent-211b0a44/">linkedin.com/in/makanju-excellent</a></span><span class="sep">/</span><span>Dribbble: <a href="https://dribbble.com/muidemakz">dribbble.com/muidemakz</a></span><span class="sep">/</span><span>Behance: <a href="https://www.behance.net/oemakanju">behance.net/oemakanju</a></span>
+  </div>
+
+  <h2>Professional Summary</h2>
+  <p class="summary">
+    Senior Product Designer with 6+ years designing payment, wallet, credit, and B2B commerce experiences
+    across African fintech. Currently lead end-to-end design at OmniRetail, embedded alongside PMs and
+    engineers as the primary design voice, taking flows from research through shipped product across a
+    multi-app ecosystem serving 150,000+ retailers and a shared wallet layer. Increasingly build what I
+    design: run Figma MCP alongside Claude as a standing part of my workflow, generate
+    implementation-ready prompt sets for AI build tools, and have shipped small products end-to-end with
+    Lovable and the Anthropic API. Combine systems thinking, research-led decisions, and hands-on AI
+    fluency to move payment experiences from ambiguous problem to reliable, trustworthy product.
+  </p>
+
+  <h2>Selected Impact</h2>
+  <ul>
+    <li><strong>Payments &amp; wallet UX at scale:</strong> Led design for the Omnibiz retailer app and contributed to Omnipay, the shared wallet layer, on a platform processing $124M+ in annual NMV across 150,000+ retailers in 3 countries.</li>
+    <li><strong>Unified SSO across a multi-product ecosystem:</strong> Architected the single sign-on experience spanning Manufacturers, Distributors, Agents, Retailers, and Omnipay, blending each product's brand colour into the shared entry point so users always know which platform they're entering, cutting auth-related support tickets by 30%.</li>
+    <li><strong>AI feature that needed a second look:</strong> Shipped an AI ordering assistant, then noticed from usage data that people were using it to raise complaints instead of ordering. Rewrote the wording and interaction to clearly separate the two paths rather than patch it as a bug, a research-led fix, not a technical one.</li>
+    <li><strong>Design systems that scale across surfaces:</strong> Scaled a token-based, WCAG 2.1-compliant design system across 5+ business apps (OmniBiz, OmniHub, OmniPay, Mplify, Internal Ops), cutting design-to-engineering handoff time by 40%.</li>
+    <li><strong>Hands-on with AI build tools:</strong> Run Figma MCP with Claude as a daily workflow habit; built a task-triage agent on the Anthropic API inside a personal project-management app; shipped an events/waitlist page with Lovable and a points-based rewards e-commerce platform outside of work.</li>
+  </ul>
+
+  <h2>Core Competencies</h2>
+  <p class="comp"><b>Product Strategy &amp; Leadership:</b> Roadmap influence, product prioritisation, stakeholder management, design vision &amp; advocacy, mentorship &amp; design management</p>
+  <p class="comp"><b>UI/UX Craft:</b> End-to-end product design, information architecture, interaction design &amp; prototyping, high-fidelity UI, responsive &amp; mobile-first design</p>
+  <p class="comp"><b>Design Systems &amp; Scale:</b> Multi-product design systems, design tokens &amp; components, white-label theming, SSO design patterns, accessibility (WCAG 2.1)</p>
+  <p class="comp"><b>AI-Enhanced &amp; Build Workflows:</b> Figma MCP + Claude, Claude Code &amp; Cursor, Anthropic API integration &amp; agent prompting, generative prototyping (v0, Figma Make), voice/speech-to-text flows, LLM-powered UX copy</p>
+  <p class="comp"><b>Research &amp; Validation:</b> User research &amp; usability testing, journey mapping, competitive &amp; market research, behavioural analytics &amp; A/B testing</p>
+  <p class="comp"><b>Process &amp; Collaboration:</b> Agile/Scrum delivery, cross-functional partnership, design QA, critique facilitation, design ops rituals</p>
+  <p class="comp"><b>Front-End Literacy:</b> Working understanding of HTML, CSS, and front-end development concepts; comfortable reading and lightly editing code for accurate engineering handoff and AI-assisted prototyping</p>
+  <p class="comp"><b>Tools:</b> Figma, FigJam, Figma Variables, Figma Make, Figma MCP, Claude, Claude Code, ChatGPT, Cursor, v0, Lovable, Midjourney, Anthropic API, Jira, Slack, Notion</p>
+
+  <h2>Professional Experience</h2>
+
+  <div class="role">
+    <span class="role-title">Senior Product Designer <span class="co">| OmniRetail (Omnibiz)</span></span>
+    <span class="role-dates">Nov 2024 &ndash; Present</span>
+  </div>
+  <p class="role-context">Africa's #1 fastest-growing company (FT Africa 2024 &amp; 2025), B2B retail commerce and embedded finance platform serving 150,000+ retailers, 145 manufacturers, and 5,800+ distributors across Nigeria, Ghana, and Ivory Coast</p>
+  <ul>
+    <li>Led end-to-end product design for the Omnibiz Retailer app (responsive web and mobile-first), the company's flagship product enabling 150,000+ informal retailers to order 900+ FMCG products, access collateral-free credit, and pay digitally through Omnipay, supporting a platform processing $124M+ in annual NMV.</li>
+    <li>Architected the unified Single Sign-On (SSO) experience deployed across the OmniRetail ecosystem (Manufacturers, Distributors, Agents, Retailers, Internal teams), blending subtle product-specific brand colour into the shared entry point so each user always knows which platform they're in, cutting auth-related support tickets by 30%.</li>
+    <li>Scaled the multi-product design system to support 5+ business apps (OmniBiz, OmniHub, OmniPay, Mplify, Internal Ops), introducing token-based theming, modular components, WCAG 2.1-compliant patterns, and governance rituals that reduced design-to-engineering handoff time by 40%.</li>
+    <li>Owned white-label retail experiences for top-tier manufacturer partners, including Guinness, Flour Mills of Nigeria (FMN), and Lush, delivering brand-customisable apps from a shared design foundation and cutting per-partner delivery time by 50%.</li>
+    <li>Identified and redesigned the AI ordering assistant after usage data showed retailers were using it to raise complaints rather than place orders; adjusted wording and interaction to clearly separate the two paths, and separately shipped an AI speech-to-order module improving order completion speed by 35% for low-literacy and high-volume users.</li>
+    <li>Partnered with product leadership and engineering to influence roadmap prioritisation, align UX decisions with business KPIs (retention, NMV, support cost, credit utilisation), and embed AI tools (Claude, Figma MCP, ChatGPT, v0) across research, ideation, and prototyping.</li>
+  </ul>
+
+  <div class="role">
+    <span class="role-title">Lead Product Designer &amp; Design Manager <span class="co">| Synarktech</span></span>
+    <span class="role-dates">Sep 2024 &ndash; Mar 2025</span>
+  </div>
+  <p class="role-context">AI and Web3 product studio building AlphaBuzz (AI-powered crypto signals platform), Playhour, and TLQ</p>
+  <ul>
+    <li>Led design across an AI-driven product portfolio (AlphaBuzz, Playhour, TLQ), translating complex AI capabilities, including real-time crypto Quant AI signals delivered via voice and email, into intuitive, responsive consumer interfaces.</li>
+    <li>Managed a team of 2&ndash;3 designers across product and brand, running design ops rituals (bi-weekly reviews, design QA, critique sessions) that lifted cross-functional alignment with PM and engineering.</li>
+    <li>Built and rolled out a unified design system and component library across customer-facing products, reducing design-to-development handoff time by 30% and accelerating sprint velocity by 25%.</li>
+    <li>Drove information architecture and interaction design for AlphaBuzz's core quant-hunt flows, including voice-call and email alert experiences, contributing to a 25% lift in active user engagement.</li>
+    <li>Redesigned onboarding journeys using AI-assisted research synthesis and rapid prototyping, cutting account setup time by 40% and improving day-1 activation.</li>
+    <li>Embedded AI tools (Claude, ChatGPT, Midjourney, v0) into ideation, content generation, and design QA, enabling the team to explore 3&ndash;5&times; more design directions per sprint without expanding headcount.</li>
+  </ul>
+
+  <div class="role">
+    <span class="role-title">Lead Product Designer (Contract) <span class="co">| Teesas Education Limited</span></span>
+    <span class="role-dates">Jan 2023 &ndash; Jan 2025</span>
+  </div>
+  <p class="role-context">Top 3 EdTech brand in Nigeria, curriculum-aligned learning platform with 500,000+ app downloads, deployments across 100+ schools, and an Ondo State Government EMS partnership</p>
+  <ul>
+    <li>Directed the end-to-end design overhaul of the Teesas v2.0 web and mobile application, information architecture, responsive UI, and accessible interaction patterns, lifting user engagement by 30% and satisfaction scores by 25%.</li>
+    <li>Built and shipped the v2.0 design system, UI component library, and style guide, cutting design and development cycle time by 40% and enabling 2&times; faster feature rollout.</li>
+    <li>Designed the Education Management System (EMS) deployed to digitise public school operations, supporting 200+ institutions, 1,000+ teachers, and 10,000+ students with role-based dashboards, offline-capable layouts, and reporting, including a government deployment with Ondo State.</li>
+    <li>Introduced AI-assisted workflows for content structuring, lesson UX copy, and learner journey mapping, accelerating iteration on a complex multi-stakeholder product.</li>
+  </ul>
+
+  <div class="role">
+    <span class="role-title">Senior Product Designer <span class="co">| Traction Apps</span></span>
+    <span class="role-dates">Oct 2022 &ndash; Nov 2024</span>
+  </div>
+  <p class="role-context">Nigerian merchant fintech (acquired by OmniRetail, 2024), POS, wallet, credit, and payment software for 100,000+ small businesses</p>
+  <ul>
+    <li>Led design for Wallet, Loans, and Savings products serving 50,000+ active users across responsive web and mobile, supporting disbursements post-merger.</li>
+    <li>Owned UX strategy from discovery through launch, influencing roadmap prioritisation alongside PM and engineering, and presenting design rationale to leadership and stakeholders.</li>
+    <li>Spearheaded a cohesive cross-product design system, UI components, and style guides, standardising visual language across POS software, merchant wallet, and lending products, and accelerating delivery by 25%.</li>
+    <li>Ran user research, journey mapping, and usability testing programs that drove a 20% lift in user satisfaction and retention.</li>
+    <li>Partnered with PMs, engineers, and compliance stakeholders in Agile sprints to balance business goals, regulatory constraints, and user needs in a high-volume merchant-acquiring environment.</li>
+  </ul>
+
+  <div class="role">
+    <span class="role-title">Product Designer <span class="co">| Fundall</span></span>
+    <span class="role-dates">Mar 2022 &ndash; Jun 2023</span>
+  </div>
+  <p class="role-context">Personal and business finance platform</p>
+  <ul>
+    <li>Drove design for the HRIS dashboard used by 50+ business customers, improving core workflows and responsive layouts and reducing admin task time by 30%.</li>
+    <li>Owned design leadership for the Fundall Business brand, improving product delivery efficiency by 25%.</li>
+    <li>Proposed and shipped product enhancements, wireframes, prototypes, and high-fidelity UI, that improved delivery speed and user satisfaction by 30%, partnering with engineering on scalable component decisions.</li>
+  </ul>
+
+  <div class="role">
+    <span class="role-title">Founder &amp; Product Design Lead <span class="co">| Muidemakz (Independent Practice)</span></span>
+    <span class="role-dates">Jan 2019 &ndash; Present</span>
+  </div>
+  <p class="role-context">Boutique product design practice serving fintech, edtech, Web3, and SaaS clients</p>
+  <ul>
+    <li>Delivered end-to-end product design for clients across fintech, edtech, and Web3, including Fortnoto (2026), Motex (2023), Artbok (2024), and Pedropay (2020), from research and wireframes to high-fidelity, responsive UI systems.</li>
+    <li>Mentor junior designers and lead small cross-functional teams, shipping production-grade SaaS, web, and mobile applications for early-stage founders.</li>
+    <li>Use AI-enhanced workflows, Figma MCP with Claude, Figma Make prompt sets, Lovable, to compress research, ideation, and pitch timelines without compromising design quality.</li>
+  </ul>
+
+  <div class="role">
+    <span class="role-title">UI/UX Design Instructor <span class="co">| Ustacky</span></span>
+    <span class="role-dates">Feb 2022 &ndash; Apr 2022</span>
+  </div>
+  <ul>
+    <li>Designed and delivered a comprehensive UI/UX curriculum covering UX principles, wireframing, prototyping, and visual design fundamentals.</li>
+    <li>Led a redesign of the platform's flagship landing experience, improving conversion and learner clarity.</li>
+  </ul>
+
+  <div class="role">
+    <span class="role-title">Creative Designer <span class="co">| Nomba (formerly Kudi)</span></span>
+    <span class="role-dates">Feb 2020 &ndash; Nov 2021</span>
+  </div>
+  <ul>
+    <li>Designed marketing and brand assets that lifted social engagement by 15% during a period of rapid agent network expansion.</li>
+    <li>Produced go-to-market collateral distributed across 30 Nigerian states, supporting one of Africa's largest agent banking networks.</li>
+  </ul>
+
+  <div class="role">
+    <span class="role-title">Creative Director <span class="co">| Canary Nigeria</span></span>
+    <span class="role-dates">Jul 2019 &ndash; Nov 2019</span>
+  </div>
+  <ul>
+    <li>Led creative direction and client pitch decks, securing new business and managing post-production timelines across multiple projects.</li>
+  </ul>
+
+  <h2>Education</h2>
+  <div class="edu-row">
+    <span><strong>MBA, Business Administration</strong>, Obafemi Awolowo University, Ile-Ife</span>
+    <span class="d">May 2017</span>
+  </div>
+  <div class="edu-row">
+    <span><strong>B.Sc., Economics</strong>, Obafemi Awolowo University, Ile-Ife</span>
+    <span class="d">Mar 2013</span>
+  </div>
+
+  <h2>Certifications, Training &amp; Leadership</h2>
+  <ul>
+    <li>LSETF UI/UX Design Training (2018)</li>
+    <li>Realkathon by Pertinence Ltd (2019)</li>
+    <li>President, AMBAS Obafemi Awolowo University (2016&ndash;2017)</li>
+  </ul>
+
+</div>
+
+</body>
+</html>

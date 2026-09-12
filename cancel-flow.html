@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cancel Flow Brief — Muidemakz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/case-study.css">
+</head>
+<body class="type-outfit">
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="split.html" class="logo">muidemakz</a>
+    <nav class="site-nav">
+      <a href="split.html" class="is-active">Work</a>
+      <a href="about.html">About</a>
+    </nav>
+    <a href="mailto:muidemakz@gmail.com" class="btn-outline">Contact</a>
+  </div>
+</header>
+
+<main class="case-main">
+
+  <section class="case-hero">
+    <div class="wrap">
+      <a href="split.html" class="case-back">&larr; All Work</a>
+      <div class="case-hero-top">
+        <p class="case-kicker">Self-Initiated Brief &mdash; Weekend Exercise</p>
+      </div>
+      <h1 class="case-title">Two Clicks To Cancel, One Honest Offer To Stay</h1>
+      <p class="case-lede">
+        Most subscription cancellation is built to be hostile&mdash;buried three menus deep, a gauntlet of
+        confirmation screens, sometimes a phone call. It works in the short term and costs trust
+        permanently: users who leave easily come back later, users who had to fight their way out tell
+        everyone why they left. This brief redesigns cancellation as a retention argument, not an
+        obstacle course.
+      </p>
+      <ul class="case-tags">
+        <li>Design Brief, 2026</li>
+        <li>Product Design</li>
+        <li>Retention Strategy</li>
+        <li>Subscription UX</li>
+      </ul>
+    </div>
+    <div class="case-hero-media" aria-hidden="true">
+      <span class="case-media-label">Cancel Flow &mdash; Redesign</span>
+    </div>
+  </section>
+
+  <nav class="case-quicknav" aria-label="Section navigation">
+    <div class="wrap">
+      <a href="#brief">The Brief</a>
+      <a href="#constraints">Constraints</a>
+      <a href="#flow">The Flow</a>
+      <a href="#decision">The One Decision</a>
+      <a href="#measure">What I'd Measure</a>
+      <a href="#reflection">Reflection</a>
+    </div>
+  </nav>
+
+  <section class="case-section" id="brief">
+    <div class="wrap">
+      <p class="case-label">The Brief</p>
+      <div class="case-split">
+        <div class="case-split-cell case-split-cell--dark">
+          <p class="case-split-label">The Problem</p>
+          <p class="case-split-copy">
+            Friction-based retention treats every cancel attempt as a leak to plug. It boosts short-term
+            retention numbers while quietly increasing churn-related complaints, refund disputes, and the
+            number of ex-customers actively warning others off the product.
+          </p>
+        </div>
+        <div class="case-split-cell">
+          <p class="case-split-label">The Job</p>
+          <p class="case-split-copy">
+            Design a cancel flow that's genuinely easy to complete, while still giving the business one
+            fair, well-timed chance to retain the user&mdash;then measure whether that trade actually
+            pays off.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section" id="constraints">
+    <div class="wrap">
+      <p class="case-label">Constraints</p>
+      <ol class="case-steps case-steps--flush case-steps--4">
+        <li>
+          <span class="case-step-n">01</span>
+          <span class="case-step-title">Two Taps To Cancel</span>
+          <span class="case-step-copy">Must be findable in two taps from account settings, no support-ticket-only cancellation.</span>
+        </li>
+        <li>
+          <span class="case-step-n">02</span>
+          <span class="case-step-title">One Offer Only</span>
+          <span class="case-step-copy">Exactly one retention offer. Not a gauntlet of counter-offers.</span>
+        </li>
+        <li>
+          <span class="case-step-n">03</span>
+          <span class="case-step-title">Skippable, Useful Reason</span>
+          <span class="case-step-copy">Ask why they're leaving, but make it skippable, and make the reasons useful to the product team, not just a metric.</span>
+        </li>
+        <li>
+          <span class="case-step-n">04</span>
+          <span class="case-step-title">Confirm Clearly</span>
+          <span class="case-step-copy">When access ends, what happens to their data, and how to come back.</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="case-section" id="flow">
+    <div class="wrap">
+      <p class="case-label">The Flow</p>
+      <p class="case-copy">A conceptual brief, not a built product&mdash;these are labeled placeholders standing in for the four screens, not real screenshots.</p>
+
+      <div class="case-figures case-figures--spaced">
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-head">
+            <p class="case-figure-head-title">01 &middot; Entry Point</p>
+            <p class="case-figure-head-copy">"Manage Subscription" lives at the top level of Account Settings, not nested under Billing &rarr; Advanced &rarr; Plan Details. "Cancel Plan" is a visible, unstyled-as-a-trap text link on that screen&mdash;not a button disguised as something else.</p>
+          </div>
+          <div class="case-figure-inset">
+            <div class="case-frame">
+              <div class="case-media-slot case-media-slot--wide"><span class="case-media-label">Account Settings</span></div>
+            </div>
+          </div>
+        </figure>
+
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-head">
+            <p class="case-figure-head-title">02 &middot; The One Retention Offer</p>
+            <p class="case-figure-head-copy">A single screen, one offer sized to the reason they're about to give (see below)&mdash;e.g. a 30-day pause for "not using it enough," a discount for "too expensive." One accept button, one clearly-visible "No thanks, continue cancelling" link at equal visual weight.</p>
+          </div>
+          <div class="case-figure-inset">
+            <div class="case-frame">
+              <div class="case-media-slot case-media-slot--wide"><span class="case-media-label">Retention Offer</span></div>
+            </div>
+          </div>
+        </figure>
+
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-head">
+            <p class="case-figure-head-title">03 &middot; Skippable Exit Reason</p>
+            <p class="case-figure-head-copy">A single-question, multiple-choice reason (price, missing feature, switching elsewhere, no longer needed, other) with a visible "Skip" option at equal weight to "Submit." The offer shown on the previous screen is chosen based on this answer where possible&mdash;price objections get a discount, feature gaps get a roadmap note, not a discount.</p>
+          </div>
+          <div class="case-figure-inset">
+            <div class="case-frame">
+              <div class="case-media-slot case-media-slot--wide"><span class="case-media-label">Exit Reason</span></div>
+            </div>
+          </div>
+        </figure>
+
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-head">
+            <p class="case-figure-head-title">04 &middot; Clear Confirmation</p>
+            <p class="case-figure-head-copy">States the exact date access ends, what happens to saved data (kept for 90 days, then deleted&mdash;stated plainly), and a one-line reminder of how to reactivate. No further steps required after this screen.</p>
+          </div>
+          <div class="case-figure-inset">
+            <div class="case-frame">
+              <div class="case-media-slot case-media-slot--wide"><span class="case-media-label">Confirmation</span></div>
+            </div>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section" id="decision">
+    <div class="wrap">
+      <div class="case-decision">
+        <p class="case-decision-label">The One Decision</p>
+        <p class="case-decision-copy">
+          I chose to cap the retention flow at <span class="case-accent">exactly one offer</span>, matched to the user's
+          stated reason for leaving, instead of a sequence of escalating counter-offers. The common
+          argument against this is that more offers should mean more saves. I'd argue the opposite: a
+          gauntlet signals to the user that the company's default posture is "make it hard to leave,"
+          which erodes the goodwill that determines whether they ever come back. One well-matched offer,
+          respected if declined, protects reactivation and word-of-mouth&mdash;the two things a multi-step
+          gauntlet actively damages.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section" id="measure">
+    <div class="wrap">
+      <p class="case-label">What I'd Measure</p>
+      <div class="case-leadership-grid case-leadership-grid--cards case-leadership-grid--4">
+        <div class="case-leadership">
+          <p class="case-leadership-label">Completion Rate</p>
+          <p class="case-leadership-copy">% of cancel attempts that complete without hitting a support channel or dead end.</p>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">Offer Acceptance</p>
+          <p class="case-leadership-copy">% who accept the single retention offer&mdash;tracked per offer type against the stated cancel reason.</p>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">Reactivation Rate</p>
+          <p class="case-leadership-copy">% of cancelled users who return within 90 days&mdash;the real test of whether easy-exit pays off.</p>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">Support Contacts</p>
+          <p class="case-leadership-copy">Volume of "how do I cancel" tickets&mdash;should drop toward zero if the entry point is actually visible.</p>
+        </div>
+      </div>
+
+      <div class="case-flag-box" style="margin-top: 32px;">
+        <p class="case-flag-label">What Would Prove This Wrong</p>
+        <p class="case-flag-copy">
+          The bet is that easy cancellation increases 90-day reactivation enough to offset whatever
+          short-term retention a harder flow would have squeezed out. If reactivation stayed flat while
+          immediate cancel-through-completion went up, that would mean the old friction was actually
+          converting hesitant-but-recoverable users&mdash;and the fix would be a better-timed offer, not
+          a shorter flow.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section" id="reflection">
+    <div class="wrap">
+      <p class="case-label">Reflection</p>
+      <p class="case-copy">
+        The interesting problem here was never the screens&mdash;it's arguing for the user against a
+        short-term business incentive, and doing it with a retention/reactivation business case instead
+        of a moral one. "Dark patterns are bad" doesn't move a product team scored on monthly churn.
+        "Friction-based retention trades reactivation and word-of-mouth for a short-term save" does,
+        because it's the same language the team already uses to judge its own metrics.
+      </p>
+      <p class="case-status">Status: Self-initiated design brief, not built for or commissioned by any specific company&mdash;modeled on common subscription-cancellation patterns to demonstrate arguing a user-favorable design decision with a business case.</p>
+    </div>
+  </section>
+
+  <section class="case-section case-other">
+    <div class="wrap">
+      <p class="case-label">Other Projects</p>
+      <div class="case-other-grid">
+        <a class="case-other-card" href="fundall.html">
+          <span class="case-other-name">Fundall</span>
+          <span class="case-other-meta">UI &middot; UX &mdash; 2022</span>
+        </a>
+        <a class="case-other-card" href="teesaslms.html">
+          <span class="case-other-name">Teesas LMS</span>
+          <span class="case-other-meta">UI &middot; UX &mdash; 2023&ndash;2024</span>
+        </a>
+        <a class="case-other-card" href="venx.html">
+          <span class="case-other-name">VENX</span>
+          <span class="case-other-meta">UI &middot; UX &mdash; 2025</span>
+        </a>
+        <a class="case-other-card" href="coreloops.html">
+          <span class="case-other-name">Coreloops</span>
+          <span class="case-other-meta">UI &middot; UX &mdash; 2026</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-top">
+    <p class="footer-label">Let's Connect</p>
+  </div>
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/makanju-excellent-211b0a44/" class="footer-link" target="_blank" rel="noopener">LinkedIn &rarr;</a>
+      <a href="https://www.behance.net/oemakanju" class="footer-link" target="_blank" rel="noopener">Behance &rarr;</a>
+      <a href="https://www.instagram.com/oluwaexcellent" class="footer-link" target="_blank" rel="noopener">Instagram &rarr;</a>
+    </div>
+  </div>
+  <div class="footer-legal-row">
+    <p class="wrap footer-legal">Excellent Makanju &mdash; Senior Product Designer</p>
+  </div>
+</footer>
+
+</body>
+</html>

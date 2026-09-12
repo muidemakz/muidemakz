@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Year in Review — Muidemakz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/wrapped.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="logo">Excellent Makanju</a>
+    <nav class="site-nav">
+      <a href="my-work.html">Work</a>
+      <a href="about.html">About</a>
+    </nav>
+    <a href="mailto:muidemakz@gmail.com" class="btn-outline">Contact</a>
+  </div>
+</header>
+
+<div class="flow-player" id="flowPlayer">
+
+  <div class="flow-player-top">
+    <div class="flow-progress" id="flowProgress">
+      <!-- populated from js/wrapped.js -->
+    </div>
+    <button type="button" class="flow-close" id="flowClose" aria-label="Back to home">&times;</button>
+  </div>
+
+  <div class="flow-player-body" id="flowPlayerBody">
+
+    <div id="screenOriginal">
+      <section class="wrap wrap-card">
+        <p class="wrap-year" id="wrapYear"></p>
+
+        <div class="wrap-facts">
+          <div class="wrap-fact">
+            <p class="wrap-fact-label">The Role</p>
+            <p class="wrap-fact-title" id="wrapRole"></p>
+            <p class="wrap-fact-meta" id="wrapCompany"></p>
+          </div>
+          <div class="wrap-fact">
+            <p class="wrap-fact-label">Defining Project</p>
+            <p class="wrap-fact-title" id="wrapProject"></p>
+            <ul class="wrap-chip-list" id="wrapChips">
+              <!-- category chips, populated from js/wrapped.js -->
+            </ul>
+          </div>
+          <div class="wrap-fact">
+            <p class="wrap-fact-label">The Number &dagger;</p>
+            <p class="wrap-stat" id="wrapStat"></p>
+            <p class="wrap-fact-meta" id="wrapStatLabel"></p>
+          </div>
+        </div>
+
+        <blockquote class="wrap-lesson" id="wrapLesson"></blockquote>
+      </section>
+
+      <section class="playground-shelf" id="projectShelf" hidden>
+        <div class="wrap">
+          <p class="shelf-label">Projects this year</p>
+          <div class="shelf-grid" id="shelfGrid">
+            <!-- populated from js/wrapped.js -->
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="flow-fact" id="flowFact" hidden>
+      <!-- populated from js/wrapped.js -->
+    </section>
+
+  </div>
+
+  <div class="flow-player-bottom">
+    <div class="wrap year-strip" id="yearStrip">
+      <!-- populated from js/wrapped.js -->
+    </div>
+    <div class="wrap wrap-nav">
+      <a href="index.html" class="wrap-nav-home">&larr; Back to home</a>
+      <div class="wrap-nav-steps">
+        <button type="button" class="wrap-nav-btn" id="wrapPrev">&#9664; Earlier</button>
+        <button type="button" class="wrap-nav-btn" id="wrapNext">Later &#9654;</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/wrapped.js"></script>
+</body>
+</html>
