@@ -186,6 +186,25 @@
 
 .work-card.is-linked { cursor: pointer; }
 
+.work-card.is-soon { opacity: 0.55; }
+.work-card.is-soon:hover { transform: none; box-shadow: 8px 8px 0 var(--ink-hard); }
+
+.work-card-soon {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 9px;
+  background: var(--ink-hard);
+  color: var(--paper-hard);
+}
+
+.work-grid.is-list .work-card-soon { position: static; margin-right: 8px; }
+
 /* masonry rhythm: every 5th card goes wide (2 columns), every 4th goes
    tall (2 rows) — grid-auto-rows keeps every track the same height, so
    wide/tall/square cards all line up instead of drifting per aspect-ratio. */

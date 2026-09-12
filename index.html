@@ -3,17 +3,492 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Muidemakz — Senior Product Designer</title>
+<title>Excellent Makanju &middot; Senior Product Designer</title>
+<meta name="description" content="Senior Product Designer. 6+ years across payments, wallet, credit and B2B commerce.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<style>
+/* =========================================================================
+   index-concept.html — EXPLORATION DRAFT, not linked from anywhere live.
+
+   One locked-viewport screen (no page scroll), same composition as
+   wrapped.html's "2024" screen: a static details card up top (border-
+   bottom divider, big headline, facts, stats) and a dark horizontally-
+   scrollable project shelf underneath — except the top card is permanent
+   (it's the personal intro, not a year that changes) and the shelf holds
+   all 8 case studies from split.html instead of "this year's" projects.
+
+   Self-contained on purpose, same reasoning as split.html: re-declares the
+   brutalist tokens rather than linking css/style.css, so this single file
+   stands alone as a comparison artifact.
+   ========================================================================= */
+
+:root {
+  --ink-hard: #0d0d0d;
+  --paper-hard: #f2f0eb;
+  --hard-line: rgba(13, 13, 13, 0.16);
+  --accent: #ff3b00;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-hard: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; height: 100%; overflow: hidden; }
+
+/* the locked one-screen composition works at desktop sizes, but mobile
+   doesn't have room for hero + 5 stats + shelf + a 2-row link strip all
+   without scrolling — let it scroll there instead of hiding content */
+@media (max-width: 640px) {
+  html, body { height: auto; overflow: visible; }
+  body { min-height: 100%; }
+  .shelf { flex: none; }
+  .shelf-grid { flex: none; height: 46vh; min-height: 260px; }
+}
+
+body {
+  background: var(--paper-hard);
+  color: var(--ink-hard);
+  font-family: var(--font-body);
+  display: flex;
+  flex-direction: column;
+}
+
+.wrap { max-width: 1320px; margin: 0 auto; padding: 0 48px; width: 100%; }
+
+@media (max-width: 768px) {
+  .wrap { padding: 0 20px; }
+}
+
+a { color: inherit; }
+
+/* header chrome comes from the linked css/style.css (.site-header/.logo/
+   .site-nav/.btn-outline) — same markup and stylesheet as about.html and
+   every case study, not a local reimplementation. flex-shrink is a
+   layout-only addition so it survives being a flex child in this page's
+   locked single-viewport column, not a visual override. */
+.site-header { flex-shrink: 0; }
+
+/* ---------- static details card (never changes / never scrolls) ---------- */
+
+.hero-static {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 2.6vh;
+  padding-bottom: 2vh;
+  border-bottom: 1px solid var(--ink-hard);
+}
+
+.hero-greeting {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.65;
+  margin: 0 0 1.2vh;
+}
+
+.hero-headline {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(30px, 6.4vh, 84px);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .hero-headline { font-size: clamp(26px, 8.4vw, 44px); }
+}
+
+/* auto-width so the badge hugs each word tightly instead of sitting
+   centered in a box sized for the longest option — only the badge itself
+   resizes as the word cycles, nothing before it on the line shifts.
+   Symmetric-ish padding (no negative margin) makes the h1 size to the
+   badge's true height, so its bottom edge lands exactly flush on the box
+   outline below it instead of overflowing past the headline's own box —
+   a negative margin-bottom here previously left the overflow behind the
+   box's own background/border in paint order, invisible above the outline. */
+.hero-role-cycle {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.04em 0.16em 0.1em;
+  transition: opacity 0.25s ease;
+  vertical-align: top;
+}
+
+.hero-role-cycle.is-swapping { opacity: 0; }
+
+/* "Currently Building" facts + the stat row are one continuous bordered
+   box, not two separate elements — matches the reference exactly. Heavier
+   on the top/left, lighter on the bottom/right, and flush against the
+   headline above (no gap) so the role badge lands right on its top edge. */
+.hero-details {
+  width: 100%;
+  margin-top: 0;
+  border-top: 3px solid var(--ink-hard);
+  border-left: 3px solid var(--ink-hard);
+  border-right: 1px solid var(--ink-hard);
+  border-bottom: 1px solid var(--ink-hard);
+}
+
+.hero-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.6vh 32px;
+  padding: 1.6vh 22px;
+}
+
+.hero-fact-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.65;
+  margin: 0 0 6px;
+}
+
+.hero-fact-title {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: clamp(16px, 2vh, 21px);
+  line-height: 1.2;
+  margin: 0 0 4px;
+}
+
+.hero-fact-meta {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.45;
+  opacity: 0.75;
+  margin: 0;
+  max-width: 40ch;
+}
+
+.hero-chip-list { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 2px 0 0; padding: 0; }
+
+.hero-chip {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border: 1px solid var(--ink-hard);
+}
+
+/* focus-area tags — link out to About's expertise section. All 7 show on
+   desktop (plus the CTA); mobile keeps only the first 3 so the CTA is
+   reliably the 4th tile instead of buried after a long wrapped list. */
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 1.4vh 22px;
+  border-top: 1px solid var(--ink-hard);
+}
+
+.hero-tag {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 7px 12px;
+  border: 1px solid var(--ink-hard);
+  color: var(--ink-hard);
+  text-decoration: none;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.hero-tag:hover { background: var(--ink-hard); color: var(--paper-hard); }
+
+.hero-tag--more { background: var(--accent); color: #fff; border-color: var(--accent); }
+.hero-tag--more:hover { background: var(--ink-hard); border-color: var(--ink-hard); }
+
+@media (max-width: 640px) {
+  .hero-tag:nth-child(n+4):not(.hero-tag--more) { display: none; }
+}
+
+.hero-stats {
+  display: flex;
+  width: 100%;
+  border-top: 1px solid var(--ink-hard);
+}
+
+.hero-stat { flex: 1; padding: 10px 16px; border-left: 1px solid var(--ink-hard); }
+.hero-stat:first-child { border-left: 0; }
+
+/* first cell inverts, echoing split.html's alternating stat rhythm */
+.hero-stat:first-child { background: var(--ink-hard); color: var(--paper-hard); }
+.hero-stat:first-child .hero-stat-label { opacity: 0.75; }
+
+.hero-stat-num {
+  display: block;
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: clamp(18px, 2.4vh, 24px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  margin-bottom: 5px;
+}
+
+.hero-stat-label {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  line-height: 1.35;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  opacity: 0.7;
+}
+
+@media (max-width: 640px) {
+  .hero-stats { flex-wrap: wrap; }
+  .hero-stat { flex: 0 0 50%; border-left: 0; border-top: 1px solid var(--ink-hard); }
+  .hero-stat:nth-child(odd) { border-left: 0; }
+  .hero-stat:nth-child(even) { border-left: 1px solid var(--ink-hard); }
+  .hero-stat:nth-child(-n+2) { border-top: 0; }
+  /* 5 stats wrap 2-per-row, leaving the last one alone — span it full width
+     so its top border isn't a half-width line stopping mid-row */
+  .hero-stat:last-child { flex-basis: 100%; }
+}
+
+/* ---------- dark project shelf, horizontally scrollable ---------- */
+
+.shelf {
+  flex: 0 0 34vh;
+  min-height: 0;
+  background-color: var(--ink-hard);
+  background-image: repeating-linear-gradient(135deg, rgba(242, 240, 235, 0.07) 0 2px, transparent 2px 11px);
+  color: var(--paper-hard);
+  padding: 2.2vh 0 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- link strip: 7 across, icons swap in on mobile ---------- */
+
+.shelf-links {
+  flex-shrink: 0;
+  display: flex;
+  margin-top: 2vh;
+  border-top: 1px solid rgba(242, 240, 235, 0.3);
+}
+
+.shelf-link {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 6px;
+  border-left: 1px solid rgba(242, 240, 235, 0.3);
+  text-decoration: none;
+  color: var(--paper-hard);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.shelf-link:first-child { border-left: 0; background: var(--accent); color: #fff; }
+.shelf-link:hover { background: var(--accent); color: #fff; }
+.shelf-link:first-child:hover { background: var(--ink-hard); }
+
+.link-icon { display: none; }
+
+@media (max-width: 640px) {
+  /* 7 icons in one row is too cramped — wrap to 4 + 3 so each gets a real
+     touch target instead of a sliver */
+  .shelf-links { flex-wrap: wrap; }
+  .shelf-link { flex: 0 0 25%; padding: 16px 4px; border-top: 1px solid rgba(242, 240, 235, 0.3); }
+  .shelf-link:nth-child(-n+4) { border-top: 0; }
+  .shelf-link:nth-child(4n+1) { border-left: 0; }
+  /* row 1's last column (LinkedIn) has no row-2 sibling below it to supply
+     the row divider via border-top, so give it one directly */
+  .shelf-link:nth-child(4) { border-bottom: 1px solid rgba(242, 240, 235, 0.3); }
+  /* row 2 ends early (3 of 4 columns) — Behance needs its own closing edge
+     since there's no 4th item to supply one via border-left */
+  .shelf-link:last-child { border-right: 1px solid rgba(242, 240, 235, 0.3); }
+  .shelf-link .link-text { display: none; }
+  .shelf-link .link-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+  }
+  .shelf-link .link-icon--badge {
+    width: auto;
+    height: auto;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 12px;
+  }
+  .shelf-link svg.link-icon { width: 18px; height: 18px; }
+}
+
+.shelf-label-row {
+  flex-shrink: 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 0 1.6vh;
+}
+
+.shelf-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.65;
+  margin: 0;
+}
+
+.shelf-see-all {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.shelf-see-all:hover { color: var(--paper-hard); }
+
+/* the label stays within the standard content width (matching the header),
+   but the scrolling shelf itself breaks out full-bleed, edge to edge. It's
+   a real horizontally-scrollable container (not just an animated transform)
+   so touch/trackpad swipe always works — the JS auto-scroll below drives
+   scrollLeft directly and pauses itself on user interaction, rather than
+   fighting a CSS animation for control of the track. */
+.shelf-grid {
+  flex: 1;
+  min-height: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.shelf-grid::-webkit-scrollbar { display: none; }
+
+.shelf-track {
+  display: flex;
+  align-items: stretch;
+  gap: 22px;
+  width: max-content;
+  padding: 0 4px;
+}
+
+.shelf-card {
+  flex: 0 0 380px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 46%;
+  padding: 18px 22px;
+  border: 3px solid var(--paper-hard);
+  text-decoration: none;
+  color: var(--paper-hard);
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.18s ease;
+  transform: rotate(var(--rot, 0deg));
+}
+
+.shelf-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(13,13,13,0.62) 0%, rgba(13,13,13,0.85) 35%, rgba(13,13,13,0.99) 100%);
+}
+
+.shelf-card:hover { transform: rotate(0deg) translateY(-8px); }
+
+/* rotation is decorative and can cycle freely, but the accent highlight is
+   assigned per-project (Cardtonic, Omnione) below, not by position, so it
+   survives the shelf-track being duplicated for the marquee loop. */
+.shelf-card:nth-child(4n+1) { --rot: -2.5deg; }
+.shelf-card:nth-child(4n+2) { --rot: 1.8deg; }
+.shelf-card:nth-child(4n+3) { --rot: -1.4deg; }
+.shelf-card:nth-child(4n+4) { --rot: 2.2deg; border-style: dashed; }
+
+.shelf-card--highlight { box-shadow: 10px 10px 0 var(--accent); border-color: var(--accent); }
+
+.shelf-kind,
+.shelf-name,
+.shelf-caption,
+.shelf-cta { position: relative; z-index: 1; }
+
+.shelf-kind {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+  color: var(--accent);
+}
+
+.shelf-name {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(18px, 2.4vh, 24px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+}
+
+.shelf-caption {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.4;
+  max-width: 30ch;
+  margin: 0 0 14px;
+  opacity: 0.92;
+}
+
+.shelf-cta {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+@media (max-width: 640px) {
+  .shelf-card { flex-basis: 260px; padding: 16px; }
+  .shelf-caption { max-width: 24ch; }
+  .shelf-kind { display: none; }
+}
+</style>
 </head>
 <body>
 
 <header class="site-header">
   <div class="wrap">
-    <a href="index.html" class="logo">Excellent Makanju</a>
+    <a href="index.html" class="logo">muidemakz</a>
     <nav class="site-nav">
       <a href="my-work.html">Work</a>
       <a href="about.html">About</a>
@@ -22,61 +497,219 @@
   </div>
 </header>
 
-<main>
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-intro">
-        <p class="eyebrow-hard">Senior Product Designer</p>
-        <h1 class="hero-name">Excellent<br>Makanju</h1>
-        <p class="hero-copy-hard">Designing with purpose&mdash;where usability meets visual clarity to drive real-world results.</p>
-        <p class="hero-hint">Hover a year <span aria-hidden="true">&rarr;</span> click it to play that year in review</p>
-      </div>
+<section class="wrap hero-static">
+  <p class="hero-greeting">Hey, I'm Excellent</p>
+  <h1 class="hero-headline">Senior Product <span class="hero-role-cycle" id="heroRoleCycle">Designer</span></h1>
 
-      <div class="hero-years">
-        <p class="eyebrow-hard eyebrow-hard--right">Experience</p>
-        <ul class="year-list" id="yearList">
-          <!-- populated from js/data.js -->
-        </ul>
-      </div>
+  <div class="hero-details">
+  <div class="hero-facts">
+    <div>
+      <p class="hero-fact-label">Currently Building</p>
+      <p class="hero-fact-title">Valideity</p>
     </div>
-
-    <div class="year-overlay" id="yearOverlay" hidden>
-      <button class="overlay-close" id="overlayClose" aria-label="Close">&times;</button>
-      <div class="wrap overlay-inner">
-        <div class="overlay-content">
-          <span class="overlay-year" id="overlayYear">2022</span>
-          <ul class="overlay-tags" id="overlayTags"></ul>
-          <p class="overlay-role" id="overlayRole"></p>
-          <p class="overlay-company" id="overlayCompany"></p>
-          <a class="overlay-cta" id="overlayCta" href="wrapped.html">
-            <span aria-hidden="true">&#9654;</span> Play Year in Review
-          </a>
-        </div>
-        <div class="overlay-filmstrip-wrap">
-          <div class="overlay-filmstrip" id="overlayFilmstrip"></div>
-        </div>
-      </div>
+    <div>
+      <p class="hero-fact-meta">An AI-first UX research and usability testing built for product designers, product teams, and founders in West Africa.</p>
     </div>
-  </section>
-</main>
-
-<footer class="site-footer">
-  <div class="wrap footer-top">
-    <p class="footer-label">Let's Connect</p>
   </div>
+
+  <div class="hero-tags">
+    <a href="about.html#expertise" class="hero-tag">Payments &amp; Wallet UX</a>
+    <a href="about.html#expertise" class="hero-tag">Design Systems</a>
+    <a href="about.html#expertise" class="hero-tag">Complex B2B Workflows</a>
+    <a href="about.html#expertise" class="hero-tag">Design Management</a>
+    <a href="about.html#expertise" class="hero-tag">AI-Forward Building</a>
+    <a href="about.html#expertise" class="hero-tag">Information Architecture</a>
+    <a href="about.html#expertise" class="hero-tag">Multi-Persona UX</a>
+    <a href="about.html#expertise" class="hero-tag hero-tag--more">See More &rarr;</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="hero-stat-num">20+</span>
+      <span class="hero-stat-label">Products &amp; features shipped, full-time &amp; freelance &mdash; 8 case studies here</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">6+</span>
+      <span class="hero-stat-label">Years across fintech, edtech, B2B &amp; brand</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">3+</span>
+      <span class="hero-stat-label">Years leading design teams</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">$124M+</span>
+      <span class="hero-stat-label">Annual NMV on platforms I've designed</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">150K+</span>
+      <span class="hero-stat-label">Retailers on products I've led design for</span>
+    </div>
+  </div>
+  </div>
+</section>
+
+<section class="shelf">
   <div class="wrap">
-    <div class="footer-links">
-      <a href="https://www.linkedin.com/in/makanju-excellent-211b0a44/" class="footer-link" target="_blank" rel="noopener">LinkedIn &rarr;</a>
-      <a href="https://www.behance.net/oemakanju" class="footer-link" target="_blank" rel="noopener">Behance &rarr;</a>
-      <a href="https://www.instagram.com/oluwaexcellent" class="footer-link" target="_blank" rel="noopener">Instagram &rarr;</a>
+    <div class="shelf-label-row">
+      <p class="shelf-label">Selected Case Studies &middot; 08</p>
+      <a href="my-work.html" class="shelf-see-all">See All &rarr;</a>
     </div>
   </div>
-  <div class="footer-legal-row">
-    <p class="wrap footer-legal">Excellent Makanju &mdash; Senior Product Designer</p>
+  <div class="shelf-grid">
+    <div class="shelf-track" id="shelfTrack">
+      <a class="shelf-card" href="coreloops.html" style="background-image:url('images/coreloops/coreloop-cover.png')">
+        <p class="shelf-kind">Information Architecture</p>
+        <p class="shelf-name">Coreloops</p>
+        <p class="shelf-caption">Filters From A Drawer To Zero Clicks</p>
+        <p class="shelf-cta">View Case Study &rarr;</p>
+      </a>
+      <a class="shelf-card shelf-card--highlight" href="cardtonic.html" style="background-image:url('images/Cardtonic/00 &middot; Cover.png')">
+        <p class="shelf-kind">P2P Payments</p>
+        <p class="shelf-name">Cardtonic</p>
+        <p class="shelf-caption">Sending Money To People, Not Accounts</p>
+        <p class="shelf-cta">View Case Study &rarr;</p>
+      </a>
+      <a class="shelf-card" href="teesaslms.html" style="background-image:url('images/teesas/banner.png')">
+        <p class="shelf-kind">Multi-Persona UX</p>
+        <p class="shelf-name">Teesas LMS</p>
+        <p class="shelf-caption">Three Rebuilds To Get One LMS Right</p>
+        <p class="shelf-cta">View Case Study &rarr;</p>
+      </a>
+      <a class="shelf-card" href="fundall.html" style="background-image:url('images/fundall/cover.png')">
+        <p class="shelf-kind">Lending UX</p>
+        <p class="shelf-name">Fundall</p>
+        <p class="shelf-caption">Salary Advance: 6 Minutes To Under 2</p>
+        <p class="shelf-cta">View Case Study &rarr;</p>
+      </a>
+      <a class="shelf-card shelf-card--highlight" href="omnione.html" style="background-image:url('images/omnione/omnione-design-system-cover-banner.png')">
+        <p class="shelf-kind">Design Systems</p>
+        <p class="shelf-name">Omnione</p>
+        <p class="shelf-caption">One Design Language For Four Product Teams</p>
+        <p class="shelf-cta">View Case Study &rarr;</p>
+      </a>
+      <a class="shelf-card" href="empty-state.html" style="background-image:url('images/omnibiz/banner-image.png')">
+        <p class="shelf-kind">Empty States</p>
+        <p class="shelf-name">Omnibiz</p>
+        <p class="shelf-caption">Making &ldquo;Not Here Yet&rdquo; Feel Like A Preorder</p>
+        <p class="shelf-cta">View Case Study &rarr;</p>
+      </a>
+      <a class="shelf-card" href="raven-pay.html" style="background-image:url('images/ravenpay/banner-image.png')">
+        <p class="shelf-kind">Trust &amp; Onboarding</p>
+        <p class="shelf-name">Raven Pay</p>
+        <p class="shelf-caption">Making A Banking App Read As Serious, Not Cute</p>
+        <p class="shelf-cta">View Case Study &rarr;</p>
+      </a>
+      <a class="shelf-card" href="venx.html" style="background-image:url('images/venx/cover-banner-image.png')">
+        <p class="shelf-kind">AI Product Design</p>
+        <p class="shelf-name">VENX</p>
+        <p class="shelf-caption">A Full AI Sales CRM Concept In 24 Hours</p>
+        <p class="shelf-cta">View Case Study &rarr;</p>
+      </a>
+    </div>
   </div>
-</footer>
 
-<script src="js/data.js"></script>
-<script src="js/main.js"></script>
+  <div class="shelf-links">
+    <a class="shelf-link" href="mailto:muidemakz@gmail.com">
+      <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1"></rect><path d="M3 7l9 6 9-6"></path></svg>
+      <span class="link-text">Email Me &rarr;</span>
+    </a>
+    <a class="shelf-link" href="about.html">
+      <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
+      <span class="link-text">About Me &rarr;</span>
+    </a>
+    <a class="shelf-link" href="Excellent_Makanju_Resume_2026.pdf" download>
+      <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="M7.5 10.5L12 15l4.5-4.5"></path><path d="M4 19h16"></path></svg>
+      <span class="link-text">Download CV &darr;</span>
+    </a>
+    <a class="shelf-link" href="https://www.linkedin.com/in/makanju-excellent-211b0a44/" target="_blank" rel="noopener">
+      <span class="link-icon link-icon--badge">in</span>
+      <span class="link-text">LinkedIn &rarr;</span>
+    </a>
+    <a class="shelf-link" href="https://dribbble.com/muidemakz" target="_blank" rel="noopener">
+      <span class="link-icon link-icon--badge">Dr</span>
+      <span class="link-text">Dribbble &rarr;</span>
+    </a>
+    <a class="shelf-link" href="https://www.instagram.com/oluwaexcellent" target="_blank" rel="noopener">
+      <span class="link-icon link-icon--badge">Ig</span>
+      <span class="link-text">Instagram &rarr;</span>
+    </a>
+    <a class="shelf-link" href="https://www.behance.net/oemakanju" target="_blank" rel="noopener">
+      <span class="link-icon link-icon--badge">Be</span>
+      <span class="link-text">Behance &rarr;</span>
+    </a>
+  </div>
+</section>
+
+<script>
+(function () {
+  // duplicate the shelf cards once so the loop is seamless once we're
+  // halfway through — same trick as before, just no longer paired with a
+  // CSS transform animation.
+  const grid = document.querySelector('.shelf-grid');
+  const track = document.getElementById('shelfTrack');
+  if (!grid || !track) return;
+
+  const clone = track.innerHTML;
+  track.insertAdjacentHTML('beforeend', clone);
+
+  // real horizontal scroll (not a transform) so touch/trackpad swipe always
+  // works — this rAF loop just nudges scrollLeft forward and gets out of
+  // the way the moment a user grabs the shelf themselves, resuming a bit
+  // after they let go instead of fighting their gesture.
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let paused = reduceMotion;
+  let resumeTimer = null;
+
+  function pause() {
+    paused = true;
+    if (resumeTimer) clearTimeout(resumeTimer);
+  }
+  function scheduleResume(delay) {
+    if (reduceMotion) return;
+    if (resumeTimer) clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(() => { paused = false; }, delay);
+  }
+
+  grid.addEventListener('mouseenter', pause);
+  grid.addEventListener('mouseleave', () => scheduleResume(500));
+  grid.addEventListener('pointerdown', pause);
+  grid.addEventListener('pointerup', () => scheduleResume(1800));
+  grid.addEventListener('pointercancel', () => scheduleResume(1800));
+  grid.addEventListener('touchstart', pause, { passive: true });
+  grid.addEventListener('touchend', () => scheduleResume(1800), { passive: true });
+
+  if (!reduceMotion) {
+    const SPEED = 0.6; // px/frame, tuned to roughly match the old 42s loop
+    (function tick() {
+      if (!paused) {
+        const half = track.scrollWidth / 2;
+        grid.scrollLeft += SPEED;
+        if (grid.scrollLeft >= half) grid.scrollLeft -= half;
+      }
+      requestAnimationFrame(tick);
+    })();
+  }
+})();
+
+(function () {
+  const el = document.getElementById('heroRoleCycle');
+  if (!el) return;
+
+  const roles = ['Designer', 'Lead', 'Design Manager', 'Engineer'];
+  let i = 0;
+
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  setInterval(() => {
+    el.classList.add('is-swapping');
+    setTimeout(() => {
+      i = (i + 1) % roles.length;
+      el.textContent = roles[i];
+      el.classList.remove('is-swapping');
+    }, 250);
+  }, 2200);
+})();
+</script>
+
 </body>
 </html>

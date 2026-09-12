@@ -200,6 +200,14 @@ img { display: block; max-width: 100%; }
 
 .bio-role .accent { color: var(--accent); }
 
+.role-cycle {
+  display: inline-block;
+  color: var(--accent);
+  transition: opacity 0.25s ease;
+}
+
+.role-cycle.is-swapping { opacity: 0; }
+
 .bio-lede {
   font-size: 14.5px;
   line-height: 1.6;
@@ -809,14 +817,13 @@ img { display: block; max-width: 100%; }
       <h1 class="bio-name">Excellent<br><em>Makanju</em></h1>
 
       <p class="bio-role">
-        Senior Product Designer <span class="accent">/</span> Payments &amp; B2B Commerce
+        Senior Product <span class="role-cycle" id="roleCycle">Designer</span>
         <span class="accent">/</span> Lagos, NG
       </p>
 
       <p class="bio-lede">
-        I design the payment, wallet, credit and B2B commerce experiences that
-        <strong>150,000+ retailers</strong> use to run their businesses, currently leading
-        end-to-end design at OmniRetail across a multi-app ecosystem on a shared wallet layer.
+        Currently building <strong>Valideity</strong>, an AI-first UX research platform for
+        product designers and founders in West Africa.
       </p>
 
       <button type="button" class="bio-more-btn" id="bioMoreBtn" aria-expanded="false" aria-controls="bioMore">
@@ -829,21 +836,21 @@ img { display: block; max-width: 100%; }
           I take flows from ambiguous problem to shipped product: research, systems, and the
           error states nobody demos. I own foundation-level design system work other designers
           build on top of, and I partner with engineering on the tokens that ship it. I also
-          manage and mentor designers.
+          manage and mentor designers, including through 3MTT (2024) and MentorMe (2026).
         </p>
 
         <div class="stats">
           <div class="stat">
-            <span class="stat-num">150K+</span>
-            <span class="stat-label">Retailers on products I lead design for</span>
-          </div>
-          <div class="stat">
-            <span class="stat-num">$124M+</span>
-            <span class="stat-label">Annual NMV on platforms I've designed</span>
+            <span class="stat-num">20+</span>
+            <span class="stat-label">Products &amp; features shipped, full-time &amp; freelance &mdash; 8 case studies here</span>
           </div>
           <div class="stat">
             <span class="stat-num">6+</span>
-            <span class="stat-label">Years across fintech, edtech &amp; B2B</span>
+            <span class="stat-label">Years across fintech, edtech, B2B &amp; brand</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">3+</span>
+            <span class="stat-label">Years leading design teams</span>
           </div>
         </div>
 
@@ -1128,6 +1135,29 @@ img { display: block; max-width: 100%; }
     btn.setAttribute("aria-expanded", String(open));
     label.textContent = open ? "Show Less" : "View More About Me";
   });
+})();
+
+/* cycles the "Senior Product ___" role word — Designer, Lead, Manager,
+   Engineer — all four hats, without boxing the headline into just one. */
+(function () {
+  var el = document.getElementById("roleCycle");
+  if (!el) return;
+
+  var roles = ["Designer", "Lead", "Manager", "Engineer"];
+  var i = 0;
+
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return;
+  }
+
+  setInterval(function () {
+    el.classList.add("is-swapping");
+    setTimeout(function () {
+      i = (i + 1) % roles.length;
+      el.textContent = roles[i];
+      el.classList.remove("is-swapping");
+    }, 250);
+  }, 2200);
 })();
 </script>
 

@@ -136,18 +136,23 @@ const PROJECT_CATEGORIES = [
   "Illustration"
 ];
 
+// Live projects (real case-study `link`) sort first so they fill page 1
+// ahead of the "Coming Soon" placeholders — see js/work.js's is-soon badge.
 const PROJECTS = [
   { name: "Coreloops Documents Filter", year: 2026, categories: ["UI Design", "UX Design"], image: "images/coreloops/proposed-filter-modal.png", confirmed: true, link: "coreloops.html" },
   { name: "Cardtonic P2P Money Transfer", year: 2026, categories: ["UI Design", "UX Design"], image: "images/Cardtonic/00 · Cover.png", confirmed: true, link: "cardtonic.html" },
   { name: "Omnibiz Empty & Preorder States", year: 2024, categories: ["UX Design"], image: null, confirmed: true, link: "empty-state.html" },
   { name: "Cancel Flow Brief", year: 2026, categories: ["UX Design"], image: null, confirmed: true, link: "cancel-flow.html" },
+  { name: "Teesas LMS v2.0", year: 2024, categories: ["UI Design", "UX Design"], image: null, confirmed: true, link: "teesaslms.html" },
+  { name: "Omnione Design System", year: 2024, categories: ["UI Design", "Presentation"], image: null, confirmed: true, link: "omnione.html" },
+  { name: "Raven Pay", year: 2024, categories: ["UI Design", "UX Design"], image: null, confirmed: true, link: "raven-pay.html" },
+  { name: "Fundall", year: 2022, categories: ["UI Design", "UX Design", "Presentation"], image: "images/fundall/sign-in.png", confirmed: true, link: "fundall.html" },
+  { name: "VENX", year: 2025, categories: ["UI Design", "UX Design"], image: null, confirmed: true, link: "venx.html" },
   { name: "Fortnoto", year: 2026, categories: ["UI Design", "UX Design"], image: null, confirmed: true },
   { name: "OmniBiz Retailer App", year: 2025, categories: ["UI Design", "UX Design"], image: null, confirmed: true },
   { name: "Omnipay SSO", year: 2025, categories: ["UX Design"], image: null, confirmed: true },
   { name: "AlphaBuzz", year: 2024, categories: ["UI Design", "UX Design"], image: null, confirmed: true },
-  { name: "Teesas LMS v2.0", year: 2024, categories: ["UI Design", "UX Design"], image: null, confirmed: true, link: "teesaslms.html" },
   { name: "Playhour", year: 2024, categories: ["UI Design", "Animation"], image: null, confirmed: true },
-  { name: "Omnione Design System", year: 2024, categories: ["UI Design", "Presentation"], image: null, confirmed: true, link: "omnione.html" },
   { name: "Traction Apps Wallet", year: 2023, categories: ["UI Design", "UX Design"], image: null, confirmed: true },
   { name: "Traction Apps — Savings & Loan", year: 2023, categories: ["UI Design", "UX Design"], image: null, confirmed: true },
   { name: "Traction Apps — Ramp Website", year: 2023, categories: ["UI Design", "Presentation"], image: null, confirmed: true },
@@ -157,9 +162,6 @@ const PROJECTS = [
   { name: "Fortnoto — Marketing Studio", year: 2026, categories: ["UI Design", "Presentation"], image: null, confirmed: false },
   { name: "Fortnoto Branding & Design System", year: 2026, categories: ["Creative Design", "Presentation"], image: null, confirmed: false },
   { name: "Valideity Branding", year: 2026, categories: ["Creative Design"], image: null, confirmed: false },
-  { name: "Raven Pay", year: 2024, categories: ["UI Design", "UX Design"], image: null, confirmed: true, link: "raven-pay.html" },
-  { name: "Fundall", year: 2022, categories: ["UI Design", "UX Design", "Presentation"], image: "images/fundall/sign-in.png", confirmed: true, link: "fundall.html" },
-  { name: "VENX", year: 2025, categories: ["UI Design", "UX Design"], image: null, confirmed: true, link: "venx.html" },
   { name: "Nomba Brand Campaigns", year: 2021, categories: ["Creative Design", "Illustration"], image: null, confirmed: true },
   { name: "Crazy Ludo", year: 2021, categories: ["Creative Design", "Animation"], image: null, confirmed: false },
   { name: "Safari City", year: 2020, categories: ["Illustration", "Animation"], image: null, confirmed: false },

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muidemakz — Senior Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="logo">Excellent Makanju</a>
+    <nav class="site-nav">
+      <a href="my-work.html">Work</a>
+      <a href="about.html">About</a>
+    </nav>
+    <a href="mailto:muidemakz@gmail.com" class="btn-outline">Contact</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-intro">
+        <p class="eyebrow-hard">Senior Product Designer</p>
+        <h1 class="hero-name">Excellent<br>Makanju</h1>
+        <p class="hero-copy-hard">Designing with purpose&mdash;where usability meets visual clarity to drive real-world results.</p>
+        <p class="hero-hint">Hover a year <span aria-hidden="true">&rarr;</span> click it to play that year in review</p>
+      </div>
+
+      <div class="hero-years">
+        <p class="eyebrow-hard eyebrow-hard--right">Experience</p>
+        <ul class="year-list" id="yearList">
+          <!-- populated from js/data.js -->
+        </ul>
+      </div>
+    </div>
+
+    <div class="year-overlay" id="yearOverlay" hidden>
+      <button class="overlay-close" id="overlayClose" aria-label="Close">&times;</button>
+      <div class="wrap overlay-inner">
+        <div class="overlay-content">
+          <span class="overlay-year" id="overlayYear">2022</span>
+          <ul class="overlay-tags" id="overlayTags"></ul>
+          <p class="overlay-role" id="overlayRole"></p>
+          <p class="overlay-company" id="overlayCompany"></p>
+          <a class="overlay-cta" id="overlayCta" href="wrapped.html">
+            <span aria-hidden="true">&#9654;</span> Play Year in Review
+          </a>
+        </div>
+        <div class="overlay-filmstrip-wrap">
+          <div class="overlay-filmstrip" id="overlayFilmstrip"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-top">
+    <p class="footer-label">Let's Connect</p>
+  </div>
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/makanju-excellent-211b0a44/" class="footer-link" target="_blank" rel="noopener">LinkedIn &rarr;</a>
+      <a href="https://www.behance.net/oemakanju" class="footer-link" target="_blank" rel="noopener">Behance &rarr;</a>
+      <a href="https://www.instagram.com/oluwaexcellent" class="footer-link" target="_blank" rel="noopener">Instagram &rarr;</a>
+    </div>
+  </div>
+  <div class="footer-legal-row">
+    <p class="wrap footer-legal">Excellent Makanju &mdash; Senior Product Designer</p>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

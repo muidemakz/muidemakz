@@ -105,6 +105,12 @@
         li.addEventListener("keydown", (e) => {
           if (e.key === "Enter") window.location.href = project.link;
         });
+      } else {
+        li.classList.add("is-soon");
+        const banner = document.createElement("span");
+        banner.className = "work-card-soon";
+        banner.textContent = "Coming Soon";
+        li.appendChild(banner);
       }
 
       const name = document.createElement("span");
