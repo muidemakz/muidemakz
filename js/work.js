@@ -12,7 +12,7 @@
   const viewListBtn = document.getElementById("viewListBtn");
   const paginationEl = document.getElementById("workPagination");
 
-  const PAGE_SIZE = 10;
+  const PAGE_SIZE = 8; // multiple of 4 — see the masonry comment in css/work.css
 
   const years = EXPERIENCE_YEARS.map((e) => e.year); // already newest-first
 
@@ -97,6 +97,8 @@
       if (project.image) {
         li.style.backgroundImage = `url(${project.image})`;
         li.style.backgroundSize = "cover";
+      } else if (project.brand) {
+        li.classList.add("has-logo");
       }
       if (project.link) {
         li.classList.add("is-linked");
@@ -111,6 +113,13 @@
         banner.className = "work-card-soon";
         banner.textContent = "Coming Soon";
         li.appendChild(banner);
+      }
+
+      if (project.brand && !project.image) {
+        const logoDiv = document.createElement("div");
+        logoDiv.className = "work-card-logo";
+        logoDiv.textContent = project.brand;
+        li.appendChild(logoDiv);
       }
 
       const name = document.createElement("span");

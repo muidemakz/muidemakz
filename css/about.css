@@ -119,6 +119,21 @@
 
 .ab-title em { font-style: normal; color: var(--accent); }
 
+.ab-tagline {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+  opacity: 0.85;
+  max-width: 42ch;
+  margin: 0 0 28px;
+}
+
+.ab-tagline strong {
+  font-weight: 700;
+  opacity: 1;
+  box-shadow: inset 0 -3px 0 var(--accent);
+}
+
 .ab-hero-foot {
   display: flex;
   align-items: flex-end;

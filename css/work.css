@@ -170,13 +170,29 @@
   height: 100%;
   overflow: hidden;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 12px;
   padding: 16px;
   text-align: center;
   background: var(--paper-hard);
   background-image: repeating-linear-gradient(135deg, var(--hard-line) 0 1px, transparent 1px 10px);
   transition: transform 0.12s steps(2), box-shadow 0.12s steps(2);
+}
+
+.work-card:not(.has-logo) {
+  flex-direction: row;
+  gap: 0;
+}
+
+.work-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 13, 13, 0.35);
+  pointer-events: none;
+  z-index: 2;
 }
 
 .work-card:hover {
@@ -205,15 +221,46 @@
 
 .work-grid.is-list .work-card-soon { position: static; margin-right: 8px; }
 
-/* masonry rhythm: every 5th card goes wide (2 columns), every 4th goes
-   tall (2 rows) — grid-auto-rows keeps every track the same height, so
-   wide/tall/square cards all line up instead of drifting per aspect-ratio. */
-.work-card:nth-child(5n+1) {
-  grid-column: span 2;
+.work-card-logo {
+  position: relative;
+  z-index: 3;
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: clamp(22px, 3vw, 36px);
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  color: var(--ink-hard);
+  text-align: center;
+  max-width: 85%;
+  margin: 0;
 }
 
-.work-card:nth-child(5n+4) {
+.work-card.is-soon .work-card-logo { opacity: 0.6; }
+
+.work-card.has-logo .work-card-name {
+  z-index: 3;
+  font-size: clamp(10px, 1.2vw, 13px);
+  line-height: 1.2;
+  opacity: 0.75;
+}
+
+/* masonry rhythm: a repeating 4-card block that closes itself out every
+   2 rows, so tall and wide cards can coexist without the gap they caused
+   before (a row-spanning card blocking the column underneath it, stranding
+   grid-auto-flow: dense on a hole nothing left in the list fits back into).
+   Per block: card 1 is tall (column 1, both rows), card 2 is wide (fills
+   the remaining row-1 width), cards 3-4 are regular (fill what's left of
+   row 2) — 2+2+1+1 = 6 cells = exactly a 3-col x 2-row block, every time,
+   so blocks never carry a partial row into the next one. PAGE_SIZE is a
+   multiple of 4 (see js/work.js) so a full page is a whole number of
+   blocks; only the last, partial page can fall short of that. */
+.work-card:nth-child(4n+1) {
   grid-row: span 2;
+}
+
+.work-card:nth-child(4n+2) {
+  grid-column: span 2;
 }
 
 .work-card-name {
@@ -335,10 +382,11 @@
     height: auto;
     aspect-ratio: 1;
   }
-  .work-card:nth-child(5n+1),
-  .work-card:nth-child(5n+4) {
-    grid-column: span 1;
+  .work-card:nth-child(4n+1) {
     grid-row: span 1;
+  }
+  .work-card:nth-child(4n+2) {
+    grid-column: span 1;
   }
 
   .work-toolbar { flex-wrap: wrap; }

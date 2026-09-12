@@ -105,8 +105,22 @@ a { color: inherit; }
   margin: 0;
 }
 
+.hero-tagline {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 2.3vh, 20px);
+  line-height: 1.45;
+  margin: 1.4vh 0 2.2vh;
+  max-width: 58ch;
+}
+
+.hero-tagline strong {
+  font-weight: 700;
+  box-shadow: inset 0 -3px 0 var(--accent);
+}
+
 @media (max-width: 640px) {
   .hero-headline { font-size: clamp(26px, 8.4vw, 44px); }
+  .hero-tagline { font-size: 15px; margin-bottom: 2vh; }
 }
 
 /* auto-width so the badge hugs each word tightly instead of sitting
@@ -500,6 +514,7 @@ a { color: inherit; }
 <section class="wrap hero-static">
   <p class="hero-greeting">Hey, I'm Excellent</p>
   <h1 class="hero-headline">Senior Product <span class="hero-role-cycle" id="heroRoleCycle">Designer</span></h1>
+  <p class="hero-tagline">I've built a career turning ambiguous briefs into shipped products that produce <strong>consistent MRR</strong>.</p>
 
   <div class="hero-details">
   <div class="hero-facts">
@@ -526,7 +541,7 @@ a { color: inherit; }
   <div class="hero-stats">
     <div class="hero-stat">
       <span class="hero-stat-num">20+</span>
-      <span class="hero-stat-label">Products &amp; features shipped, full-time &amp; freelance &mdash; 8 case studies here</span>
+      <span class="hero-stat-label">Products &amp; features shipped, full-time &amp; freelance</span>
     </div>
     <div class="hero-stat">
       <span class="hero-stat-num">6+</span>
