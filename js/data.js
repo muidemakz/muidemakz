@@ -149,9 +149,8 @@ const PROJECTS = [
   { name: "Raven Pay", year: 2024, categories: ["UI Design", "UX Design"], image: null, brand: "Raven Pay", confirmed: true, link: "raven-pay.html" },
   { name: "Fundall", year: 2022, categories: ["UI Design", "UX Design", "Presentation"], image: "images/fundall/sign-in.png", confirmed: true, link: "fundall.html" },
   { name: "VENX", year: 2025, categories: ["UI Design", "UX Design"], image: null, brand: "VENX", confirmed: true, link: "venx.html" },
-  { name: "Fortnoto", year: 2026, categories: ["UI Design", "UX Design"], image: null, brand: "Fortnoto", confirmed: true },
+  { name: "Venda by Fortnoto", year: 2026, categories: ["Branding", "Creative Design"], image: null, brand: "Venda", confirmed: true },
   { name: "OmniBiz Retailer App", year: 2025, categories: ["UI Design", "UX Design"], image: null, brand: "OmniBiz", confirmed: true },
-  { name: "Omnipay SSO", year: 2025, categories: ["UX Design"], image: null, brand: "Omnipay", confirmed: true },
   { name: "AlphaBuzz", year: 2024, categories: ["UI Design", "UX Design"], image: null, brand: "AlphaBuzz", confirmed: true },
   { name: "Playhour", year: 2024, categories: ["UI Design", "Animation"], image: null, brand: "Playhour", confirmed: true },
   { name: "Traction Apps Wallet", year: 2023, categories: ["UI Design", "UX Design"], image: null, brand: "Traction Apps", confirmed: true },
@@ -166,5 +165,4 @@ const PROJECTS = [
   { name: "Nomba Brand Campaigns", year: 2021, categories: ["Creative Design", "Illustration"], image: null, brand: "Nomba", confirmed: true },
   { name: "Crazy Ludo", year: 2021, categories: ["Creative Design", "Animation"], image: null, brand: "Crazy Ludo", confirmed: false },
   { name: "Safari City", year: 2020, categories: ["Illustration", "Animation"], image: null, brand: "Safari City", confirmed: false },
-  { name: "UX Toolkit", year: 2020, categories: ["Presentation"], image: null, brand: "UX Toolkit", confirmed: false }
 ];
