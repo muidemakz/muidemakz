@@ -7,7 +7,7 @@
   display: inline-block;
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 11px 16px;
@@ -54,7 +54,7 @@
 .case-kicker {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent);
@@ -64,7 +64,7 @@
 .case-visit {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -109,7 +109,7 @@
 .case-tags li {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   opacity: 0.7;
@@ -214,7 +214,7 @@
 .case-label {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   margin: 0 0 24px;
@@ -255,7 +255,7 @@
   top: 0;
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--accent);
 }
 
@@ -284,7 +284,7 @@
 .case-split-label {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   margin: 0 0 12px;
@@ -336,7 +336,7 @@
 
 .case-step-copy {
   font-family: var(--font-hard);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.4;
 }
 
@@ -468,7 +468,7 @@
 
 .case-fact-label {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   opacity: 0.6;
@@ -478,7 +478,7 @@
 .case-fact-value {
   font-family: var(--font-hard);
   font-weight: 700;
-  font-size: 15px;
+  font-size: 17px;
   margin: 0;
 }
 
@@ -497,7 +497,7 @@
   align-items: center;
   justify-content: space-between;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -517,7 +517,7 @@
 .case-persona-trait {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 10px 14px;
@@ -541,7 +541,7 @@
 
 .case-media-label {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   background: var(--paper-hard);
@@ -590,7 +590,7 @@
 .case-outcome-label {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
@@ -607,7 +607,7 @@
 
 .case-outcome-copy {
   font-family: var(--font-hard);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.4;
   margin: 0;
 }
@@ -661,7 +661,7 @@
   padding: 15px 24px;
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   transition: background 0.14s ease, color 0.14s ease, border-color 0.14s ease,
@@ -707,7 +707,7 @@
 
 .case-other-meta {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.06em;
   opacity: 0.65;
 }
@@ -753,7 +753,7 @@
 .case-version-row-label {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   opacity: 0.6;
@@ -762,7 +762,7 @@
 
 .case-version-row-copy {
   font-family: var(--font-hard);
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.45;
   margin: 0;
 }
@@ -779,7 +779,7 @@
 .case-decision-label {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent);
@@ -807,7 +807,7 @@
 .case-falsifiable-label {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   margin: 0 0 10px;
@@ -827,33 +827,71 @@
    which read as decoration rather than navigation, and scrolled away on the
    first swipe. It now sticks directly beneath the site header on every case
    study and the links carry a real border and hover fill. */
+/* [REVERT POINT] was sticky, docked under the header (top: 44px) as a
+   full-width bar. Now a floating pill-bar fixed to the bottom of the
+   viewport instead, on every case study page (shared file). To revert:
+   restore position:sticky/top:44px/border-bottom, and delete the
+   .wrap override + the media-query bottom-offset tweak below. */
 .case-quicknav {
-  position: sticky;
-  top: 44px; /* matches .site-header min-height */
+  position: fixed;
+  top: auto;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 40;
+  width: max-content;
+  max-width: calc(100% - 32px);
   background: var(--ink-hard);
-  border-bottom: 1px solid var(--ink-hard);
-  padding: 11px 0;
+  border: 1px solid var(--ink-hard);
+  box-shadow: 6px 6px 0 var(--accent);
+  padding: 11px 14px;
   margin: 0;
 }
 
 .case-quicknav .wrap {
+  position: relative;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
   gap: 8px;
   overflow-x: auto;
   scrollbar-width: none;
+  /* floating bar is sized to its content now, not the shared 1240px
+     content column, so undo .wrap's page-level max-width/padding here */
+  max-width: none;
+  padding: 0;
 }
 
 .case-quicknav .wrap::-webkit-scrollbar { display: none; }
 
+/* current-section indicator (js/case-quicknav.js): a white pill that
+   slides behind whichever link matches the section in view as you
+   scroll. Deliberately a different visual (persistent white fill) from
+   the hover state (instant orange fill) so the two don't read as the
+   same affordance. Positioned absolute within .wrap so it scrolls with
+   the links on narrow screens instead of floating over the viewport. */
+.case-quicknav-highlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--paper-hard);
+  z-index: 0;
+  opacity: 0;
+  transition: transform 0.32s cubic-bezier(0.65, 0, 0.35, 1),
+              width 0.32s cubic-bezier(0.65, 0, 0.35, 1),
+              opacity 0.2s ease;
+  pointer-events: none;
+}
+
 .case-quicknav a {
+  position: relative;
+  z-index: 1;
   display: inline-block;
   flex: none;
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 10.5px;
+  font-size: 12.5px;
   letter-spacing: 0.09em;
   text-transform: uppercase;
   padding: 9px 13px;
@@ -870,12 +908,29 @@
   color: #fff;
 }
 
-/* anchors must clear both sticky bars when jumped to */
-.case-section[id] { scroll-margin-top: 100px; }
+/* the section-in-view indicator — the sliding white pill (above) shows
+   through since this link's own background stays transparent; only the
+   text/border flips so hovering a different (non-active) link's orange
+   fill is never confused with "this is where you are on the page". */
+.case-quicknav a.is-active {
+  color: var(--ink-hard);
+  border-color: var(--paper-hard);
+}
+
+/* [REVERT POINT] was 100px to clear both the sticky header AND the old
+   sticky quicknav stacked under it. The quicknav floats at the bottom
+   now, so anchors only need to clear the header. */
+.case-section[id] { scroll-margin-top: 60px; }
+
+/* the floating bar now sits on top of whatever content is at the bottom
+   of the page (the footer) instead of pushing it down like the old
+   sticky-top bar did — give the page enough bottom breathing room that
+   the bar never overlaps the footer's own text. */
+.site-footer { padding-bottom: 76px; }
 
 @media (max-width: 600px) {
-  .case-quicknav { padding: 9px 0; }
-  .case-quicknav a { font-size: 10px; padding: 8px 11px; }
+  .case-quicknav { padding: 9px 12px; }
+  .case-quicknav a { font-size: 14px; padding: 8px 11px; }
 }
 
 /* ---------- leadership grid (design-manager signal); reused for Problem cards ---------- */
@@ -899,7 +954,7 @@
 .case-problem-label {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--accent);
@@ -909,7 +964,7 @@
 .case-leadership-copy,
 .case-problem-copy {
   font-family: var(--font-hard);
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.5;
   margin: 0;
 }
@@ -919,7 +974,7 @@
 .case-status {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   opacity: 0.65;
@@ -934,7 +989,7 @@
   display: block;
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-bottom: 10px;
@@ -960,7 +1015,7 @@
 
 .case-gate-error {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.04em;
   color: var(--accent);
   margin: 14px 0 0;
@@ -1055,7 +1110,7 @@
 .case-figure figcaption {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 11px 13px;
@@ -1121,7 +1176,7 @@
 
 .surface-label {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   opacity: 0.6;
@@ -1131,7 +1186,7 @@
 .surface-value {
   font-family: var(--font-hard);
   font-weight: 700;
-  font-size: 15px;
+  font-size: 17px;
   margin: 0;
 }
 
@@ -1377,7 +1432,7 @@
 .case-edge-kicker {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
@@ -1392,7 +1447,7 @@
 /* compact split header: every label orange, smaller copy */
 .case-split--compact .case-split-cell { padding: 26px 22px 40px; }
 .case-split--compact .case-split-label { color: var(--accent); }
-.case-split--compact .case-split-copy { font-size: 14px; line-height: 1.4; }
+.case-split--compact .case-split-copy { font-size: 16px; line-height: 1.4; }
 
 /* phone captures laid out inside a framed figure */
 .case-phones { display: grid; gap: 32px; margin: 0 auto; }
@@ -1451,7 +1506,7 @@
 .case-impact-title {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
@@ -1460,7 +1515,7 @@
 
 .case-impact-link {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--paper-hard);
@@ -1484,7 +1539,7 @@
   display: block;
   margin-top: 6px;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   opacity: 0.7;
@@ -1504,7 +1559,7 @@
 .case-phone-label {
   margin: 10px 0 0;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 14px;
   line-height: 1.4;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1580,7 +1635,7 @@
   margin: 0;
   padding: 0 12px;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -1612,13 +1667,13 @@
 .case-type-name {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--accent);
 }
 
-.case-type-spec { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; opacity: 0.7; }
+.case-type-spec { font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.04em; opacity: 0.7; }
 .case-type-sample { font-family: var(--font-hard); font-size: 17px; }
 
 @media (max-width: 600px) {
@@ -1642,7 +1697,7 @@
   margin: 0 0 12px;
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);

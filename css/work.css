@@ -10,14 +10,17 @@
   color: var(--ink-hard);
 }
 
+/* [REVERT POINT] was clamp(40px, 8vw, 96px) — hero-scale, out of line with
+   every other page's h1 (About tops out at 48px). This is a listing-page
+   title, not a hero, so it's sized down to match. */
 .work-title {
   font-family: var(--font-hard);
   font-weight: 700;
   text-transform: uppercase;
-  font-size: clamp(40px, 8vw, 96px);
-  line-height: 0.9;
+  font-size: clamp(26px, 3.5vw, 48px);
+  line-height: 1.02;
   text-align: center;
-  margin: 20px 0 44px;
+  margin: 20px 0 28px;
 }
 
 /* ---------- toolbar: search + grid/list toggle ---------- */
@@ -64,7 +67,7 @@
   color: var(--ink-hard);
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   padding: 11px 16px;
@@ -94,7 +97,7 @@
 .filter-row-label {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   margin-right: 4px;
@@ -110,7 +113,7 @@
 .filter-chip {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   padding: 8px 12px;
@@ -128,7 +131,7 @@
 .filter-clear-all {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   margin-left: auto;
@@ -144,7 +147,7 @@
 
 .work-result-line {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.06em;
   opacity: 0.6;
   margin: 0 0 32px;
@@ -186,6 +189,15 @@
   gap: 0;
 }
 
+/* [REVERT POINT] a card with a caption needs its title stacked above the
+   caption, not side-by-side — the row layout above was fine when a
+   non-logo card only ever had one visible text child (the name; .meta is
+   pulled out of flow via position:absolute). */
+.work-card.has-caption {
+  flex-direction: column;
+  gap: 4px;
+}
+
 .work-card::before {
   content: "";
   position: absolute;
@@ -193,6 +205,23 @@
   background: rgba(13, 13, 13, 0.35);
   pointer-events: none;
   z-index: 2;
+}
+
+/* [REVERT POINT] the 0.35 wash above is fine over the plain paper/hatch
+   background (has-logo / no-image cards), but on real screenshots it let
+   too much busy, varied-contrast photo through — dark text over it was
+   inconsistently legible depending on what part of the image sat behind
+   it. For photo-backed cards specifically: a darker scrim + white text
+   with a dark halo (same reliable pattern as the homepage shelf cards)
+   instead of black text hoping a light halo is enough. */
+.work-card.has-image::before {
+  background: rgba(13, 13, 13, 0.65);
+}
+
+.work-card.has-image .work-card-name,
+.work-card.has-image .work-card-caption {
+  color: var(--paper-hard);
+  text-shadow: 0 1px 10px rgba(13, 13, 13, 0.9), 0 1px 3px rgba(13, 13, 13, 0.9);
 }
 
 .work-card:hover {
@@ -211,7 +240,7 @@
   left: 12px;
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 5px 9px;
@@ -263,12 +292,55 @@
   grid-column: span 2;
 }
 
+/* [REVERT POINT] first block only: the tall card normally lands in column
+   1 (the default dense-packing behavior every other block still uses).
+   Forcing it to column 3 here flips just this one block so it sits on the
+   right instead of the left — dense packing then auto-fills the wide card
+   and the two regular cards into the now-free columns 1-2 on its own,
+   no other overrides needed. Scoped to the 3-column desktop grid only;
+   at 900px/600px the columns collapse and this would place the card in a
+   column that doesn't exist. To revert: delete this media block. */
+@media (min-width: 901px) {
+  .work-card:nth-child(1) {
+    grid-column: 3;
+  }
+}
+
+/* [REVERT POINT] was missing z-index entirely on cards without a brand
+   logo (the real-screenshot cards, e.g. Coreloops, Fundall) — .work-card
+   is a flex container, so z-index applies to its children even at
+   position:static, and the ::before dark overlay sits at z-index:2. With
+   no z-index here the title painted BEHIND that overlay, so it was
+   present in the DOM but invisible/washed out over busy photo
+   backgrounds (has-logo cards worked by accident, since only that variant
+   set z-index:3 on its own .work-card-name override below). Lifting it
+   above the overlay + a text-shadow here makes titles legible on every
+   card, image-backed or not. */
 .work-card-name {
+  position: relative;
+  z-index: 3;
   font-family: var(--font-hard);
   font-weight: 700;
   text-transform: uppercase;
   font-size: clamp(18px, 2.2vw, 30px);
   color: var(--ink-hard);
+  text-shadow: 0 1px 10px rgba(242, 240, 235, 0.9), 0 1px 2px rgba(242, 240, 235, 0.9);
+}
+
+/* one-line descriptive tagline under the title (e.g. "Sending Money To
+   People, Not Accounts") — only rendered for projects with a real cover
+   image + caption in data.js, same z-index/halo treatment as the title
+   so it stays legible over busy photo backgrounds. */
+.work-card-caption {
+  position: relative;
+  z-index: 3;
+  display: block;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--ink-hard);
+  opacity: 0.85;
+  text-shadow: 0 1px 10px rgba(242, 240, 235, 0.9), 0 1px 2px rgba(242, 240, 235, 0.9);
 }
 
 .work-card-meta {
@@ -279,7 +351,7 @@
   display: flex;
   justify-content: flex-start;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -353,7 +425,7 @@
 .page-btn {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.06em;
   padding: 9px 14px;
   border: 1px solid var(--ink-hard);

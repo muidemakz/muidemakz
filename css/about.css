@@ -28,7 +28,7 @@
 .sec-label {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   margin: 0 0 26px;
@@ -97,7 +97,7 @@
   display: inline-block;
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   background: var(--accent);
@@ -121,7 +121,7 @@
 
 .ab-tagline {
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.5;
   opacity: 0.85;
   max-width: 42ch;
@@ -161,7 +161,7 @@
 .about-tags li {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   opacity: 0.72;
@@ -192,7 +192,7 @@
   gap: 10px;
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 11.5px;
+  font-size: 12.5px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 15px 22px;
@@ -240,7 +240,7 @@
 .ticker-track span {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   padding: 0 22px;
@@ -289,7 +289,7 @@
 
 .stat-label {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 14px;
   line-height: 1.6;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -382,7 +382,7 @@
 .exp-card-n {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.12em;
   color: var(--accent);
   display: block;
@@ -403,7 +403,7 @@
 
 .exp-card li {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.02em;
   line-height: 1.5;
   padding: 8px 0;
@@ -426,7 +426,7 @@
 .tools-group h3 {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   margin: 0 0 14px;
@@ -442,7 +442,7 @@
 .chips li {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   border: 1px solid var(--hard-line);
@@ -477,7 +477,7 @@
 .ledger-n {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.1em;
   opacity: 0.6;
 }
@@ -499,7 +499,7 @@
 
 .exp-dates {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -532,7 +532,7 @@
 
 .edu-meta {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   opacity: 0.65;

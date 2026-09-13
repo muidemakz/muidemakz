@@ -140,15 +140,15 @@ const PROJECT_CATEGORIES = [
 // ahead of the "Coming Soon" placeholders — see js/work.js's is-soon badge.
 // Reordered so variety appears on left side of grid: tall + 3 regulars per block.
 const PROJECTS = [
-  { name: "Coreloops Documents Filter", year: 2026, categories: ["UI Design", "UX Design"], image: "images/coreloops/proposed-filter-modal.png", confirmed: true, link: "coreloops.html" },
-  { name: "Omnibiz Empty & Preorder States", year: 2024, categories: ["UX Design"], image: null, brand: "Omnibiz", confirmed: true, link: "empty-state.html" },
-  { name: "Cardtonic P2P Money Transfer", year: 2026, categories: ["UI Design", "UX Design"], image: "images/Cardtonic/00 · Cover.png", confirmed: true, link: "cardtonic.html" },
+  { name: "Coreloops Documents Filter", year: 2026, categories: ["UI Design", "UX Design"], image: "images/coreloops/coreloop-cover.png", caption: "Filters From A Drawer To Zero Clicks", confirmed: true, link: "coreloops.html" },
+  { name: "Omnibiz Empty & Preorder States", year: 2024, categories: ["UX Design"], image: "images/omnibiz/banner-image.png", caption: "Making “Not Here Yet” Feel Like A Preorder", confirmed: true, link: "empty-state.html" },
+  { name: "Cardtonic P2P Money Transfer", year: 2026, categories: ["UI Design", "UX Design"], image: "images/Cardtonic/00 · Cover.png", caption: "Sending Money To People, Not Accounts", confirmed: true, link: "cardtonic.html" },
   { name: "Cancel Flow Brief", year: 2026, categories: ["UX Design"], image: null, brand: "Cancel Flow", confirmed: true, link: "cancel-flow.html" },
-  { name: "Teesas LMS v2.0", year: 2024, categories: ["UI Design", "UX Design"], image: null, brand: "Teesas", confirmed: true, link: "teesaslms.html" },
-  { name: "Omnione Design System", year: 2024, categories: ["UI Design", "Presentation"], image: null, brand: "Omnione", confirmed: true, link: "omnione.html" },
-  { name: "Raven Pay", year: 2024, categories: ["UI Design", "UX Design"], image: null, brand: "Raven Pay", confirmed: true, link: "raven-pay.html" },
-  { name: "Fundall", year: 2022, categories: ["UI Design", "UX Design", "Presentation"], image: "images/fundall/sign-in.png", confirmed: true, link: "fundall.html" },
-  { name: "VENX", year: 2025, categories: ["UI Design", "UX Design"], image: null, brand: "VENX", confirmed: true, link: "venx.html" },
+  { name: "Teesas LMS v2.0", year: 2024, categories: ["UI Design", "UX Design"], image: "images/teesas/banner.png", caption: "Three Rebuilds To Get One LMS Right", confirmed: true, link: "teesaslms.html" },
+  { name: "Omnione Design System", year: 2024, categories: ["UI Design", "Presentation"], image: "images/omnione/omnione-design-system-cover-banner.png", caption: "One Design Language For Four Product Teams", confirmed: true, link: "omnione.html" },
+  { name: "Raven Pay", year: 2024, categories: ["UI Design", "UX Design"], image: "images/ravenpay/banner-image.png", caption: "Making A Banking App Read As Serious, Not Cute", confirmed: true, link: "raven-pay.html" },
+  { name: "Fundall", year: 2022, categories: ["UI Design", "UX Design", "Presentation"], image: "images/fundall/cover.png", caption: "Salary Advance: 6 Minutes To Under 2", confirmed: true, link: "fundall.html" },
+  { name: "VENX", year: 2025, categories: ["UI Design", "UX Design"], image: "images/venx/cover-banner-image.png", caption: "A Full AI Sales CRM Concept In 24 Hours", confirmed: true, link: "venx.html" },
   { name: "Venda by Fortnoto", year: 2026, categories: ["Branding", "Creative Design"], image: null, brand: "Venda", confirmed: true },
   { name: "OmniBiz Retailer App", year: 2025, categories: ["UI Design", "UX Design"], image: null, brand: "OmniBiz", confirmed: true },
   { name: "AlphaBuzz", year: 2024, categories: ["UI Design", "UX Design"], image: null, brand: "AlphaBuzz", confirmed: true },

@@ -4,10 +4,42 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Excellent Makanju &middot; Senior Product Designer</title>
-<meta name="description" content="Senior Product Designer. 6+ years across payments, wallet, credit and B2B commerce.">
+<meta name="description" content="Excellent Makanju is a Senior Product Designer with 6+ years across payments, wallet, credit and B2B commerce. See selected case studies and get in touch.">
+<link rel="canonical" href="https://muidemakz.com/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Excellent Makanju">
+<meta property="og:title" content="Excellent Makanju &middot; Senior Product Designer">
+<meta property="og:description" content="Senior Product Designer with 6+ years across payments, wallet, credit and B2B commerce. Selected case studies and contact info.">
+<meta property="og:url" content="https://muidemakz.com/">
+<meta property="og:image" content="https://muidemakz.com/images/about/about-me.png">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Excellent Makanju &middot; Senior Product Designer">
+<meta name="twitter:description" content="Senior Product Designer with 6+ years across payments, wallet, credit and B2B commerce.">
+<meta name="twitter:image" content="https://muidemakz.com/images/about/about-me.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Excellent Makanju",
+  "url": "https://muidemakz.com/",
+  "image": "https://muidemakz.com/images/about/about-me.png",
+  "jobTitle": "Senior Product Designer",
+  "email": "mailto:muidemakz@gmail.com",
+  "sameAs": [
+    "https://www.linkedin.com/in/makanju-excellent-211b0a44/",
+    "https://dribbble.com/muidemakz",
+    "https://www.behance.net/oemakanju",
+    "https://www.instagram.com/oluwaexcellent"
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <style>
 /* =========================================================================
@@ -32,7 +64,11 @@
   --accent: #ff3b00;
   --font-mono: "JetBrains Mono", monospace;
   --font-hard: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-body: "Inter", sans-serif;
+  /* [REVERT POINT] was its own "Inter" redeclaration here, which silently
+     shadowed the shared --font-body from css/style.css (same bug pattern
+     as the old local .wrap max-width override) — Outfit updates there
+     were never taking effect on this page because of it. Removed so this
+     page inherits the shared token like every other page does. */
 }
 
 * { box-sizing: border-box; }
@@ -57,11 +93,12 @@ body {
   flex-direction: column;
 }
 
-.wrap { max-width: 1320px; margin: 0 auto; padding: 0 48px; width: 100%; }
-
-@media (max-width: 768px) {
-  .wrap { padding: 0 20px; }
-}
+/* .wrap intentionally NOT redeclared here — this page previously defined
+   its own max-width: 1320px, which silently overrode the shared 1240px
+   from css/style.css (--content-max) that about.html and my-work.html use
+   untouched. That made the homepage header, and every section width,
+   inconsistent with the rest of the site. Inheriting the shared rule now. */
+.wrap { width: 100%; }
 
 a { color: inherit; }
 
@@ -72,9 +109,34 @@ a { color: inherit; }
    locked single-viewport column, not a visual override. */
 .site-header { flex-shrink: 0; }
 
+/* =========================================================================
+   SECTION SWAP — top black+hatched, bottom grey     [REVERT POINT]
+
+   Was: .hero-static plain paper/light, .shelf black+hatched. Now inverted —
+   the intro card takes the same black+diagonal-hatch treatment as About's
+   hero (.ab-hero::after in css/about.css), and the shelf below it is grey.
+   .shelf-links (the Email/About/CV/social row) is pinned back to black
+   regardless, so it doesn't inherit the shelf's new grey — see its own rule
+   further down, also marked [REVERT POINT].
+
+   To revert: delete this block's background/color/::after additions on
+   .hero-static, restore .hero-static's original border-bottom-only rule,
+   and change .shelf back from var(--grey) to var(--ink-hard) with the hatch
+   background-image restored (see the .shelf [REVERT POINT] below).
+   ========================================================================= */
+
+:root {
+  /* [REVERT POINT] was #ebe9e5 (a distinct grey) — close enough to
+     --paper-hard (#f2f0eb) that the shelf-card borders (also paper-hard)
+     read as faint mismatched lines against it instead of blending clean.
+     Now literally the same white as the rest of the page. */
+  --grey: #f2f0eb;
+}
+
 /* ---------- static details card (never changes / never scrolls) ---------- */
 
 .hero-static {
+  position: relative;
   flex: 1;
   min-height: 0;
   display: flex;
@@ -83,11 +145,39 @@ a { color: inherit; }
   padding-top: 2.6vh;
   padding-bottom: 2vh;
   border-bottom: 1px solid var(--ink-hard);
+  background: var(--ink-hard);
+  color: var(--paper-hard);
+  overflow: hidden;
 }
+
+/* same diagonal hatch as About's hero */
+.hero-static::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.05) 0 12px,
+    transparent 12px 34px
+  );
+}
+
+/* [REVERT POINT] markup used to be <section class="wrap hero-static"> —
+   wrap and hero-static on the SAME element, which meant the black/hatched
+   background was capped at the 1240px content width instead of filling
+   the screen edge to edge (paper-coloured gaps showed on either side on
+   wide viewports). Now hero-static is the full-width section and .wrap is
+   a nested child that only constrains the content, matching the same
+   full-bleed-section/inner-wrap pattern .shelf already uses below.
+   To revert: put the wrap class back on the section tag itself and remove
+   the nested <div class="wrap">. */
+.hero-static > .wrap { position: relative; z-index: 1; }
 
 .hero-greeting {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -120,7 +210,7 @@ a { color: inherit; }
 
 @media (max-width: 640px) {
   .hero-headline { font-size: clamp(26px, 8.4vw, 44px); }
-  .hero-tagline { font-size: 15px; margin-bottom: 2vh; }
+  .hero-tagline { font-size: 17px; margin-bottom: 2vh; }
 }
 
 /* auto-width so the badge hugs each word tightly instead of sitting
@@ -149,22 +239,28 @@ a { color: inherit; }
 .hero-details {
   width: 100%;
   margin-top: 0;
-  border-top: 3px solid var(--ink-hard);
-  border-left: 3px solid var(--ink-hard);
-  border-right: 1px solid var(--ink-hard);
-  border-bottom: 1px solid var(--ink-hard);
+  /* [REVERT POINT] was solid var(--ink-hard) on all four sides — invisible
+     against the section's new black background. Translucent paper instead. */
+  border-top: 3px solid rgba(242, 240, 235, 0.55);
+  border-left: 3px solid rgba(242, 240, 235, 0.55);
+  border-right: 1px solid rgba(242, 240, 235, 0.28);
+  border-bottom: 1px solid rgba(242, 240, 235, 0.28);
 }
 
+/* [REVERT POINT] added the same translucent wash the "20+" stat cell
+   uses, so the two boxes in the details panel read as one consistent
+   visual treatment instead of one being tinted and the other plain. */
 .hero-facts {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.6vh 32px;
   padding: 1.6vh 22px;
+  background: rgba(242, 240, 235, 0.08);
 }
 
 .hero-fact-label {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -182,7 +278,7 @@ a { color: inherit; }
 
 .hero-fact-meta {
   font-family: var(--font-body);
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.45;
   opacity: 0.75;
   margin: 0;
@@ -193,58 +289,80 @@ a { color: inherit; }
 
 .hero-chip {
   font-family: var(--font-mono);
-  font-size: 10.5px;
+  font-size: 12.5px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   padding: 5px 10px;
-  border: 1px solid var(--ink-hard);
+  border: 1px solid rgba(242, 240, 235, 0.45); /* [REVERT POINT] was ink-hard */
 }
 
-/* focus-area tags — link out to About's expertise section. All 7 show on
-   desktop (plus the CTA); mobile keeps only the first 3 so the CTA is
-   reliably the 4th tile instead of buried after a long wrapped list. */
+/* focus-area tags — link out to About's expertise section.
+   [REVERT POINT] Was flex-wrap: wrap, with everything past the 3rd tag
+   hidden on mobile via nth-child(n+4). That meant most of the list was
+   never reachable on a phone. Now a single-line horizontally-scrolling
+   strip on every viewport — nothing hidden, always ends on the CTA tile —
+   and "Design Systems" is reordered in the markup to sit immediately
+   before that CTA (see the <div class="hero-tags"> markup below).
+   To revert: restore flex-wrap: wrap + the nth-child(n+4) mobile rule, put
+   .hero-tag color/hover back to ink-hard/paper-hard, and move the Design
+   Systems tag back to position 2 in the markup. */
 .hero-tags {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   gap: 8px;
   padding: 1.4vh 22px;
-  border-top: 1px solid var(--ink-hard);
+  border-top: 1px solid rgba(242, 240, 235, 0.28);
+  /* right-edge fade signals there's more to scroll to, since the row is
+     cut off mid-tag on narrow viewports rather than ending cleanly */
+  mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent 100%);
 }
 
+.hero-tags::-webkit-scrollbar { display: none; }
+
+/* [REVERT POINT] was transparent (no background, just a border) — sitting
+   directly on the diagonal-hatch pattern made the label text hard to read.
+   A lighter-black fill behind each pill gives the text a clean, flat
+   surface to sit on instead, without going all the way to solid ink. */
 .hero-tag {
+  flex: none;
+  white-space: nowrap;
   font-family: var(--font-mono);
-  font-size: 10.5px;
+  font-size: 12.5px;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   padding: 7px 12px;
-  border: 1px solid var(--ink-hard);
-  color: var(--ink-hard);
+  border: 1px solid rgba(242, 240, 235, 0.45);
+  background: rgba(242, 240, 235, 0.08);
+  color: var(--paper-hard);
   text-decoration: none;
-  transition: background 0.12s ease, color 0.12s ease;
+  transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
 }
 
-.hero-tag:hover { background: var(--ink-hard); color: var(--paper-hard); }
+.hero-tag:hover { background: var(--paper-hard); color: var(--ink-hard); border-color: var(--paper-hard); }
 
 .hero-tag--more { background: var(--accent); color: #fff; border-color: var(--accent); }
-.hero-tag--more:hover { background: var(--ink-hard); border-color: var(--ink-hard); }
-
-@media (max-width: 640px) {
-  .hero-tag:nth-child(n+4):not(.hero-tag--more) { display: none; }
-}
+.hero-tag--more:hover { background: var(--paper-hard); color: var(--ink-hard); border-color: var(--paper-hard); }
 
 .hero-stats {
   display: flex;
   width: 100%;
-  border-top: 1px solid var(--ink-hard);
+  /* [REVERT POINT] was translucent rgba(242,240,235,0.28) */
+  border-top: 1px solid var(--paper-hard);
 }
 
-.hero-stat { flex: 1; padding: 10px 16px; border-left: 1px solid var(--ink-hard); }
+.hero-stat { flex: 1; padding: 10px 16px; border-left: 1px solid var(--paper-hard); } /* [REVERT POINT] was translucent */
 .hero-stat:first-child { border-left: 0; }
 
-/* first cell inverts, echoing split.html's alternating stat rhythm */
-.hero-stat:first-child { background: var(--ink-hard); color: var(--paper-hard); }
+/* [REVERT POINT] back to the faint 8% translucent wash (was briefly a
+   solid white card) — matches the same translucent treatment now on
+   .hero-facts below, so the two boxes read consistently. */
+.hero-stat:first-child { background: rgba(242, 240, 235, 0.08); }
 .hero-stat:first-child .hero-stat-label { opacity: 0.75; }
 
 .hero-stat-num {
@@ -260,32 +378,35 @@ a { color: inherit; }
 
 .hero-stat-label {
   font-family: var(--font-mono);
-  font-size: 9.5px;
+  font-size: 14px;
   line-height: 1.35;
   text-transform: uppercase;
   letter-spacing: 0.03em;
   opacity: 0.7;
 }
 
+/* [REVERT POINT] was 2-per-row with the 5th (150K+) alone spanning full
+   width at the bottom. Now the 20+ stat (already the highlighted one,
+   with its own tinted background) spans full width up top instead, and
+   the remaining 4 form a clean 2x2 grid underneath it. */
 @media (max-width: 640px) {
   .hero-stats { flex-wrap: wrap; }
-  .hero-stat { flex: 0 0 50%; border-left: 0; border-top: 1px solid var(--ink-hard); }
-  .hero-stat:nth-child(odd) { border-left: 0; }
-  .hero-stat:nth-child(even) { border-left: 1px solid var(--ink-hard); }
-  .hero-stat:nth-child(-n+2) { border-top: 0; }
-  /* 5 stats wrap 2-per-row, leaving the last one alone — span it full width
-     so its top border isn't a half-width line stopping mid-row */
-  .hero-stat:last-child { flex-basis: 100%; }
+  .hero-stat { flex: 0 0 50%; border-left: 0; border-top: 1px solid var(--paper-hard); }
+  .hero-stat:first-child { flex-basis: 100%; border-top: 0; }
+  .hero-stat:nth-child(3), .hero-stat:nth-child(5) { border-left: 1px solid var(--paper-hard); }
 }
 
-/* ---------- dark project shelf, horizontally scrollable ---------- */
-
+/* ---------- project shelf, horizontally scrollable ---------- */
+/* [REVERT POINT] was background-color: var(--ink-hard) + the diagonal
+   hatch background-image, text paper-hard — that hatch now lives on
+   .hero-static above instead. To revert: swap --grey back to ink-hard,
+   restore the hatch background-image here, and set color back to
+   paper-hard. */
 .shelf {
   flex: 0 0 34vh;
   min-height: 0;
-  background-color: var(--ink-hard);
-  background-image: repeating-linear-gradient(135deg, rgba(242, 240, 235, 0.07) 0 2px, transparent 2px 11px);
-  color: var(--paper-hard);
+  background-color: var(--grey);
+  color: var(--ink-hard);
   padding: 2.2vh 0 0;
   display: flex;
   flex-direction: column;
@@ -293,10 +414,17 @@ a { color: inherit; }
 
 /* ---------- link strip: 7 across, icons swap in on mobile ---------- */
 
+/* [REVERT POINT] pinned to black explicitly — the shelf around it is now
+   grey, but this strip (and the Email Me button's own accent colour inside
+   it) stays exactly as it was. Was implicit (inherited from .shelf's old
+   ink-hard background); now explicit so it survives the shelf's colour
+   change untouched. */
 .shelf-links {
   flex-shrink: 0;
   display: flex;
   margin-top: 2vh;
+  background: var(--ink-hard);
+  color: var(--paper-hard);
   border-top: 1px solid rgba(242, 240, 235, 0.3);
 }
 
@@ -311,7 +439,7 @@ a { color: inherit; }
   text-decoration: none;
   color: var(--paper-hard);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -350,51 +478,25 @@ a { color: inherit; }
     height: auto;
     font-family: var(--font-mono);
     font-weight: 700;
-    font-size: 12px;
+    font-size: 14px;
   }
   .shelf-link svg.link-icon { width: 18px; height: 18px; }
 }
 
-.shelf-label-row {
-  flex-shrink: 0;
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
-  margin: 0 0 1.6vh;
-}
-
-.shelf-label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  opacity: 0.65;
-  margin: 0;
-}
-
-.shelf-see-all {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent);
-  text-decoration: none;
-}
-
-.shelf-see-all:hover { color: var(--paper-hard); }
-
-/* the label stays within the standard content width (matching the header),
-   but the scrolling shelf itself breaks out full-bleed, edge to edge. It's
-   a real horizontally-scrollable container (not just an animated transform)
-   so touch/trackpad swipe always works — the JS auto-scroll below drives
-   scrollLeft directly and pauses itself on user interaction, rather than
-   fighting a CSS animation for control of the track. */
+/* full-bleed, edge to edge. It's a real horizontally-scrollable container
+   (not just an animated transform) so touch/trackpad swipe always works —
+   the JS auto-scroll below drives scrollLeft directly and pauses itself on
+   user interaction, rather than fighting a CSS animation for control of
+   the track. */
+/* [REVERT POINT] was block (no display/align-items rule) — the track just
+   sat at the top of this box in normal flow, so all the slack between the
+   card height and the shelf's fixed 34vh landed below the cards, none
+   above. Flex + center gives equal top/bottom margin instead. */
 .shelf-grid {
   flex: 1;
   min-height: 0;
+  display: flex;
+  align-items: center;
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
@@ -420,7 +522,10 @@ a { color: inherit; }
   justify-content: flex-end;
   min-height: 46%;
   padding: 18px 22px;
-  border: 3px solid var(--paper-hard);
+  /* [REVERT POINT] was paper-hard (white) — invisible against the shelf's
+     now-white background (see --grey above). Black reads as an outline
+     again regardless of what the section background does. */
+  border: 3px solid var(--ink-hard);
   text-decoration: none;
   color: var(--paper-hard);
   background-size: cover;
@@ -429,11 +534,15 @@ a { color: inherit; }
   transform: rotate(var(--rot, 0deg));
 }
 
+/* [REVERT POINT] history: was 0.62/0.85/0.99 originally, then lightened to
+   0.15/0.35/0.68 (cover art showed but copy wasn't legible), then a
+   0.25/0.55/0.88 gradient. Now a flat 80% dark wash across the whole
+   card instead of a gradient. */
 .shelf-card::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(13,13,13,0.62) 0%, rgba(13,13,13,0.85) 35%, rgba(13,13,13,0.99) 100%);
+  background: rgba(13, 13, 13, 0.8);
 }
 
 .shelf-card:hover { transform: rotate(0deg) translateY(-8px); }
@@ -451,11 +560,17 @@ a { color: inherit; }
 .shelf-kind,
 .shelf-name,
 .shelf-caption,
-.shelf-cta { position: relative; z-index: 1; }
+.shelf-cta {
+  position: relative;
+  z-index: 1;
+  /* picks up the legibility the overlay gave up when it was lightened
+     above, so text still reads clearly over a bright part of the photo */
+  text-shadow: 0 1px 8px rgba(13, 13, 13, 0.85);
+}
 
 .shelf-kind {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -475,7 +590,7 @@ a { color: inherit; }
 
 .shelf-caption {
   font-family: var(--font-body);
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.4;
   max-width: 30ch;
   margin: 0 0 14px;
@@ -484,7 +599,7 @@ a { color: inherit; }
 
 .shelf-cta {
   font-family: var(--font-mono);
-  font-size: 10.5px;
+  font-size: 12.5px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -511,7 +626,8 @@ a { color: inherit; }
   </div>
 </header>
 
-<section class="wrap hero-static">
+<section class="hero-static">
+  <div class="wrap">
   <p class="hero-greeting">Hey, I'm Excellent</p>
   <h1 class="hero-headline">Senior Product <span class="hero-role-cycle" id="heroRoleCycle">Designer</span></h1>
   <p class="hero-tagline">I've built a career turning ambiguous briefs into shipped products that produce <strong>consistent MRR</strong>.</p>
@@ -529,12 +645,12 @@ a { color: inherit; }
 
   <div class="hero-tags">
     <a href="about.html#expertise" class="hero-tag">Payments &amp; Wallet UX</a>
-    <a href="about.html#expertise" class="hero-tag">Design Systems</a>
     <a href="about.html#expertise" class="hero-tag">Complex B2B Workflows</a>
     <a href="about.html#expertise" class="hero-tag">Design Management</a>
     <a href="about.html#expertise" class="hero-tag">AI-Forward Building</a>
     <a href="about.html#expertise" class="hero-tag">Information Architecture</a>
     <a href="about.html#expertise" class="hero-tag">Multi-Persona UX</a>
+    <a href="about.html#expertise" class="hero-tag">Design Systems</a>
     <a href="about.html#expertise" class="hero-tag hero-tag--more">See More &rarr;</a>
   </div>
 
@@ -561,15 +677,10 @@ a { color: inherit; }
     </div>
   </div>
   </div>
+  </div>
 </section>
 
 <section class="shelf">
-  <div class="wrap">
-    <div class="shelf-label-row">
-      <p class="shelf-label">Selected Projects &middot; 08</p>
-      <a href="my-work.html" class="shelf-see-all">See All &rarr;</a>
-    </div>
-  </div>
   <div class="shelf-grid">
     <div class="shelf-track" id="shelfTrack">
       <a class="shelf-card" href="coreloops.html" style="background-image:url('images/coreloops/coreloop-cover.png')">

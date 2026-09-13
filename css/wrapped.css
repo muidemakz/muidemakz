@@ -174,7 +174,7 @@
 
 .wrap-fact-label {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -193,7 +193,7 @@
 
 .wrap-fact-meta {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.5;
   opacity: 0.7;
   margin: 0;
@@ -220,7 +220,7 @@
 .wrap-chip {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -269,7 +269,7 @@
 .shelf-label {
   flex-shrink: 0;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -318,7 +318,7 @@
 
 .shelf-kind {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -337,7 +337,7 @@
 
 .shelf-note {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.5;
   margin: 0;
   opacity: 0.8;
@@ -369,7 +369,7 @@
 .flow-fact-kicker {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   opacity: 0.7;
@@ -443,7 +443,7 @@
   padding: 14px 22px;
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   cursor: pointer;
@@ -482,7 +482,7 @@
 
 .wrap-nav-home {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -502,7 +502,7 @@
 
 .wrap-nav-btn {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;

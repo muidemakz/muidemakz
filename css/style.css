@@ -9,7 +9,11 @@
 
   --font-display: "Baloo 2", sans-serif;
   --font-serif: "Instrument Serif", serif;
-  --font-body: "Inter", sans-serif;
+  /* [REVERT POINT] was Inter. Case study pages already opt into Outfit
+     for their body copy via .type-outfit (css/case-study.css); this makes
+     it the sitewide default for every other page's body text too, so the
+     two don't diverge. Inter kept as the fallback in the stack. */
+  --font-body: "Outfit", "Inter", sans-serif;
 
   /* brutalist system tokens — used by the header/footer chrome (sitewide)
      and by index/my-work/wrapped/fundall. About's own sections keep
@@ -93,7 +97,7 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 0 22px;
@@ -112,7 +116,7 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 0 22px;
@@ -125,9 +129,9 @@ a { color: inherit; text-decoration: none; }
 .btn-outline:hover { background: var(--accent); color: var(--ink-hard); }
 
 @media (max-width: 600px) {
-  .logo { font-size: 11px; padding: 0 14px; }
+  .logo { font-size: 14px; padding: 0 14px; }
   .site-nav a,
-  .btn-outline { font-size: 11px; padding: 0 14px; }
+  .btn-outline { font-size: 14px; padding: 0 14px; }
 }
 
 /* ---------- Footer (brutalist chrome — every page) ---------- */
@@ -163,7 +167,7 @@ a { color: inherit; text-decoration: none; }
   flex: 1 1 180px;
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 20px;
@@ -183,7 +187,7 @@ a { color: inherit; text-decoration: none; }
 
 .footer-legal {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   opacity: 0.6;
@@ -219,7 +223,7 @@ a { color: inherit; text-decoration: none; }
 .eyebrow-hard {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   margin: 0 0 40px;
@@ -253,7 +257,7 @@ a { color: inherit; text-decoration: none; }
 
 .hero-hint {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   opacity: 0.6;
@@ -386,7 +390,7 @@ a { color: inherit; text-decoration: none; }
 
 .overlay-company {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.06em;
   opacity: 0.65;
   margin: 0 0 20px;
@@ -403,7 +407,7 @@ a { color: inherit; text-decoration: none; }
 
 .overlay-tags li {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -421,7 +425,7 @@ a { color: inherit; text-decoration: none; }
   padding: 14px 22px;
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
@@ -479,7 +483,7 @@ a { color: inherit; text-decoration: none; }
 .filmstrip-thumb::after {
   content: attr(aria-label);
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 10.5px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   background: var(--paper-hard);

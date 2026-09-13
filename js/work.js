@@ -95,6 +95,7 @@
       const li = document.createElement("li");
       li.className = "work-card";
       if (project.image) {
+        li.classList.add("has-image");
         li.style.backgroundImage = `url(${project.image})`;
         li.style.backgroundSize = "cover";
       } else if (project.brand) {
@@ -126,6 +127,14 @@
       name.className = "work-card-name";
       name.textContent = project.name;
       li.appendChild(name);
+
+      if (project.caption) {
+        li.classList.add("has-caption");
+        const caption = document.createElement("span");
+        caption.className = "work-card-caption";
+        caption.textContent = project.caption;
+        li.appendChild(caption);
+      }
 
       const meta = document.createElement("span");
       meta.className = "work-card-meta";
