@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMFSR34FZG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-SMFSR34FZG");
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speech-to-Order &middot; Muidemakz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/case-study.css">
+<style>
+/* [REMOVE ONCE FILLED IN] visual flag for the still-missing screenshots
+   on this page only — every real case study on the site has this
+   stripped out once Excellent drops the 11 images in. Copy is final;
+   only media is still placeholder. */
+.case-ph {
+  display: inline-block;
+  border: 1.5px dashed var(--accent);
+  background: rgba(255, 59, 0, 0.08);
+  color: var(--accent);
+  padding: 1px 7px;
+  font-weight: 700;
+}
+</style>
+</head>
+<body class="type-outfit">
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="logo">muidemakz</a>
+    <nav class="site-nav">
+      <a href="my-work.html" class="is-active">Work</a>
+      <a href="about.html">About</a>
+    </nav>
+    <a href="mailto:muidemakz@gmail.com" class="btn-outline">Contact</a>
+  </div>
+</header>
+
+<main class="case-main">
+
+  <section class="case-hero">
+    <div class="wrap">
+      <a href="my-work.html" class="case-back">&larr; All Work</a>
+      <div class="case-hero-top">
+        <p class="case-kicker">OmniRetail &middot; Omnibiz</p>
+      </div>
+      <h1 class="case-title">Speech-to-Order: Redesigning Voice Commerce for Omnibiz</h1>
+      <p class="case-lede">
+        Turning spoken intent into completed orders for 150,000+ retailers.
+      </p>
+      <ul class="case-tags">
+        <li>Senior Product Designer (Embedded With PMs &amp; Engineers)</li>
+        <li>2026</li>
+        <li>Omnibiz Retailer App</li>
+        <li>150,000+ Retailers &middot; Nigeria, Ghana, Ivory Coast</li>
+      </ul>
+    </div>
+    <div class="case-hero-media" aria-hidden="true">
+      <span class="case-media-label">Speech-to-Order &mdash; Active Listening State <span class="case-ph">[IMAGE 1]</span></span>
+    </div>
+  </section>
+
+  <nav class="case-quicknav" aria-label="Section navigation">
+    <div class="wrap">
+      <a href="#context">Context</a>
+      <a href="#problem">The Problem</a>
+      <a href="#research">Research</a>
+      <a href="#solution">Redesign</a>
+      <a href="#testing">Testing</a>
+      <a href="#outcome">Outcome</a>
+      <a href="#reflection">Reflection</a>
+    </div>
+  </nav>
+
+  <!-- ============ CONTEXT ============ -->
+  <section class="case-section" id="context">
+    <div class="wrap">
+      <p class="case-label">Context</p>
+      <p class="case-copy">
+        Omnibiz is OmniRetail's B2B commerce platform, serving 150,000+ retailers across Nigeria, Ghana,
+        and Ivory Coast and processing $124M+ in annual NMV. The platform lets retailers order FMCG
+        products by speaking instead of typing &mdash; built for low-literacy and high-volume users who
+        need speed on mobile, often on slow networks.
+      </p>
+      <div class="case-figures" style="margin-top: 18px;">
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-inset">
+            <div class="case-frame">
+              <div class="case-media-slot case-media-slot--wide"><span class="case-media-label">Retailer App &mdash; Where Speech-to-Order Lives</span></div>
+            </div>
+          </div>
+          <figcaption>App Context <span class="case-ph">[IMAGE 2]</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE PROBLEM ============ -->
+  <section class="case-section" id="problem">
+    <div class="wrap">
+      <p class="case-label">The Problem</p>
+      <p class="case-copy">
+        Usage data &mdash; from an ElevenLabs voice interaction report and our internal analytics
+        dashboard &mdash; showed most users were trying to request customer support first. The AI never
+        made it clear that the same interface could also be used to place an order, so support requests
+        dominated actual ordering.
+      </p>
+      <p class="case-copy">
+        Average time to complete an order through the feature was <strong>over 2 minutes</strong>, largely
+        because users were stuck trying to get support before discovering they could order at all.
+      </p>
+      <p class="case-copy">
+        The original interface was a direct, unguided speech input with no context: users didn't know
+        they could switch between voice and text, and if multiple products matched what they said, those
+        options were buried inside a plain text response instead of being presented clearly.
+      </p>
+
+      <div class="case-figures case-figures--spaced" style="margin-top: 18px;">
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-head">
+            <p class="case-figure-head-title">Support vs. Order Usage <span class="case-ph">[IMAGE 6]</span></p>
+            <p class="case-figure-head-copy">From the ElevenLabs voice report / internal dashboard, showing the support-vs-order usage split.</p>
+          </div>
+          <div class="case-figure-inset">
+            <div class="case-frame">
+              <div class="case-media-slot case-media-slot--wide"><span class="case-media-label">Support vs. Order Usage Split</span></div>
+            </div>
+          </div>
+        </figure>
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-head">
+            <p class="case-figure-head-title">Old Flow &mdash; Listening <span class="case-ph">[IMAGE 3]</span></p>
+          </div>
+          <div class="case-figure-inset">
+            <div class="case-frame">
+              <div class="case-media-slot case-media-slot--wide"><span class="case-media-label">Old Flow &mdash; Listening / Recording State</span></div>
+            </div>
+          </div>
+        </figure>
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-head">
+            <p class="case-figure-head-title">Old Flow &mdash; Confirmation <span class="case-ph">[IMAGE 4]</span></p>
+            <p class="case-figure-head-copy">Product matches buried inside a plain text response, rather than presented clearly.</p>
+          </div>
+          <div class="case-figure-inset">
+            <div class="case-frame">
+              <div class="case-media-slot case-media-slot--wide"><span class="case-media-label">Old Flow &mdash; Confirmation / Response</span></div>
+            </div>
+          </div>
+        </figure>
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-head">
+            <p class="case-figure-head-title">Old Flow &mdash; Error State <span class="case-ph">[IMAGE 5 &mdash; optional, if one exists]</span></p>
+          </div>
+          <div class="case-figure-inset">
+            <div class="case-frame">
+              <div class="case-media-slot case-media-slot--wide"><span class="case-media-label">Old Flow &mdash; Error State (Optional)</span></div>
+            </div>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESEARCH & DISCOVERY ============ -->
+  <section class="case-section" id="research">
+    <div class="wrap">
+      <p class="case-label">Research &amp; Discovery</p>
+      <p class="case-copy">
+        Findings came from two sources: an ElevenLabs voice interaction report and the team's internal
+        usage analytics dashboard.
+      </p>
+      <p class="case-copy">
+        Both pointed to the same root issue &mdash; the interface gave no upfront guidance on what it
+        could do, so users defaulted to treating it as a support channel.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ REDESIGN APPROACH ============ -->
+  <section class="case-section" id="solution">
+    <div class="wrap">
+      <p class="case-label">Redesign Approach</p>
+      <p class="case-copy">Four core changes closed the gap between spoken intent and a completed order:</p>
+      <ol class="case-steps case-steps--flush case-steps--4">
+        <li>
+          <span class="case-step-n">01</span>
+          <span class="case-step-title">Support vs. Ordering, Made Explicit</span>
+          <span class="case-step-copy">The interface now sets expectations upfront so users know they can place an order, not just ask for help.</span>
+        </li>
+        <li>
+          <span class="case-step-n">02</span>
+          <span class="case-step-title">Numbered Product Matches</span>
+          <span class="case-step-copy">When multiple products matched a request, they're surfaced as a clear numbered list (e.g. &ldquo;1. 10KG bag of rice, 2. 15KG bag of beans&rdquo;) instead of being buried in a text response.</span>
+        </li>
+        <li>
+          <span class="case-step-n">03</span>
+          <span class="case-step-title">Visible Voice/Text Switch, Mid-Conversation</span>
+          <span class="case-step-copy">Users can move between speaking and typing without restarting the interaction.</span>
+        </li>
+        <li>
+          <span class="case-step-n">04</span>
+          <span class="case-step-title">Multi-Language Support</span>
+          <span class="case-step-copy">Added the option to switch from English to other languages, based on field testing feedback.</span>
+        </li>
+      </ol>
+
+      <div class="case-flag-box" style="margin-top: 8px;">
+        <p class="case-flag-label">A Real Constraint, Not Glossed Over</p>
+        <p class="case-flag-copy">
+          The voice/text switch saw real internal pushback around not storing conversation data for
+          customers. Persistent conversation memory &mdash; the more seamless version of this feature
+          &mdash; didn't make it through, because of legitimate data-storage concerns. What shipped
+          respects that constraint rather than working around it.
+        </p>
+      </div>
+
+      <div class="case-figures case-figures--spaced" style="margin-top: 24px;">
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-head"><p class="case-figure-head-title">New Flow &mdash; Listening <span class="case-ph">[IMAGE 7]</span></p></div>
+          <div class="case-figure-inset">
+            <div class="case-frame"><div class="case-media-slot case-media-slot--wide"><span class="case-media-label">New Flow &mdash; Listening / Recording State</span></div></div>
+          </div>
+        </figure>
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-head"><p class="case-figure-head-title">New Flow &mdash; Numbered Matches <span class="case-ph">[IMAGE 8]</span></p></div>
+          <div class="case-figure-inset">
+            <div class="case-frame"><div class="case-media-slot case-media-slot--wide"><span class="case-media-label">New Flow &mdash; Numbered Product Match / Review</span></div></div>
+          </div>
+        </figure>
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-head"><p class="case-figure-head-title">New Flow &mdash; Confirmation <span class="case-ph">[IMAGE 9]</span></p></div>
+          <div class="case-figure-inset">
+            <div class="case-frame"><div class="case-media-slot case-media-slot--wide"><span class="case-media-label">New Flow &mdash; Confirmation State</span></div></div>
+          </div>
+        </figure>
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-head"><p class="case-figure-head-title">New Flow &mdash; Voice/Text Switch <span class="case-ph">[IMAGE 10]</span></p></div>
+          <div class="case-figure-inset">
+            <div class="case-frame"><div class="case-media-slot case-media-slot--wide"><span class="case-media-label">New Flow &mdash; Voice/Text Switch In Action</span></div></div>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTING & ITERATION ============ -->
+  <section class="case-section" id="testing">
+    <div class="wrap">
+      <p class="case-label">Testing &amp; Iteration</p>
+      <p class="case-copy">
+        The team ran field tests with real retailers and refined the flow further based on post-launch
+        usage data, not a single ship-and-done pass. Language support was one of the refinements added
+        directly from field test feedback.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ OUTCOME ============ -->
+  <section class="case-section" id="outcome">
+    <div class="wrap">
+      <p class="case-label">Outcome &amp; Impact</p>
+      <p class="case-copy">
+        Order completion time &mdash; measured from first voice input to confirmed order, previously over
+        2 minutes &mdash; improved by <strong>35%</strong> after the redesign.
+      </p>
+
+      <div class="case-outcome-grid">
+        <div class="case-outcome">
+          <p class="case-outcome-label">Speed</p>
+          <p class="case-outcome-value">35%</p>
+          <p class="case-outcome-copy">Faster order completion, from first voice input to confirmed order.</p>
+        </div>
+        <div class="case-outcome">
+          <p class="case-outcome-label">Adoption</p>
+          <p class="case-outcome-value"><span class="case-ph">[OPTIONAL]</span></p>
+          <p class="case-outcome-copy"><span class="case-ph">[OPTIONAL: adoption change data &mdash; not yet available, add if/when confirmed]</span></p>
+        </div>
+      </div>
+
+      <div class="case-figures" style="margin-top: 24px;">
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-inset">
+            <div class="case-frame">
+              <div class="case-media-slot case-media-slot--wide"><span class="case-media-label">Before / After Comparison</span></div>
+            </div>
+          </div>
+          <figcaption>Before / After <span class="case-ph">[IMAGE 11]</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REFLECTION ============ -->
+  <section class="case-section" id="reflection">
+    <div class="wrap">
+      <p class="case-label">Reflection</p>
+      <p class="case-copy">
+        The biggest lesson: a technically capable AI feature can still fail if the interface doesn't tell
+        users what it's for. The fix wasn't more advanced AI, it was clearer product framing &mdash;
+        distinguishing support from ordering, surfacing options instead of burying them, and giving users
+        control to switch modes.
+      </p>
+      <p class="case-copy">
+        Also worth noting as a real design constraint: not every improvement, like persistent conversation
+        memory, made it through, due to legitimate data-storage concerns for customers. Good case studies
+        show real tradeoffs, not just wins.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ OTHER PROJECTS ============ -->
+  <section class="case-section case-other">
+    <div class="wrap">
+      <p class="case-label">Other Projects</p>
+      <div class="case-other-grid">
+        <a class="case-other-card" href="empty-state.html">
+          <span class="case-other-name">Omnibiz Empty &amp; Preorder States</span>
+          <span class="case-other-meta">UX &middot; 2024</span>
+        </a>
+        <a class="case-other-card" href="cardtonic.html">
+          <span class="case-other-name">Cardtonic</span>
+          <span class="case-other-meta">UI &middot; UX &middot; 2026</span>
+        </a>
+        <a class="case-other-card" href="fundall.html">
+          <span class="case-other-name">Fundall</span>
+          <span class="case-other-meta">UI &middot; UX &middot; 2022</span>
+        </a>
+        <a class="case-other-card" href="coreloops.html">
+          <span class="case-other-name">Coreloops</span>
+          <span class="case-other-meta">UI &middot; UX &middot; 2026</span>
+        </a>
+        <a class="case-other-card" href="omnione.html">
+          <span class="case-other-name">Omnione Design System</span>
+          <span class="case-other-meta">Design System &middot; 2024</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-top">
+    <p class="footer-label">Let's Connect</p>
+  </div>
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/makanju-excellent-211b0a44/" class="footer-link" target="_blank" rel="noopener">LinkedIn &rarr;</a>
+      <a href="https://dribbble.com/muidemakz" class="footer-link" target="_blank" rel="noopener">Dribbble &rarr;</a>
+      <a href="https://www.behance.net/oemakanju" class="footer-link" target="_blank" rel="noopener">Behance &rarr;</a>
+      <a href="https://www.instagram.com/oluwaexcellent" class="footer-link" target="_blank" rel="noopener">Instagram &rarr;</a>
+    </div>
+  </div>
+  <div class="footer-legal-row">
+    <p class="wrap footer-legal">Excellent Makanju, Senior Product Designer</p>
+  </div>
+</footer>
+
+<script src="js/case-quicknav.js"></script>
+</body>
+</html>

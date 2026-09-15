@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMFSR34FZG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-SMFSR34FZG");
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page Not Found &middot; Excellent Makanju</title>
+<meta name="description" content="This page doesn't exist, but the rest of Excellent Makanju's portfolio does.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* self-contained styles for this page only, same pattern as index.html's
+   local <style> block — reuses the shared tokens/header/footer from
+   css/style.css rather than redeclaring them. */
+
+.nf-main {
+  background: var(--ink-hard);
+  color: var(--paper-hard);
+  position: relative;
+  overflow: hidden;
+  min-height: calc(100vh - 45px);
+  display: flex;
+  align-items: center;
+}
+
+/* same diagonal hatch used on the homepage hero / About's hero */
+.nf-main::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.05) 0 12px,
+    transparent 12px 34px
+  );
+}
+
+.nf-inner {
+  position: relative;
+  z-index: 1;
+  padding-top: 64px;
+  padding-bottom: 64px;
+  text-align: center;
+}
+
+.nf-code {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: clamp(72px, 16vw, 180px);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  margin: 0;
+}
+
+.nf-title {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(24px, 4vw, 44px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 16px 0 0;
+}
+
+.nf-copy {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  opacity: 0.85;
+  max-width: 46ch;
+  margin: 18px auto 0;
+}
+
+.nf-path[hidden] { display: none; }
+
+.nf-path {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  background: rgba(242, 240, 235, 0.08);
+  border: 1px solid rgba(242, 240, 235, 0.3);
+  padding: 8px 14px;
+  margin-top: 18px;
+  word-break: break-all;
+}
+
+.nf-suggest[hidden] { display: none; }
+
+.nf-suggest {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 15px;
+  margin-top: 14px;
+}
+
+.nf-suggest a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.nf-suggest a:hover { color: var(--paper-hard); }
+
+.nf-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 36px;
+}
+
+.nf-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 15px 22px;
+  border: 2px solid var(--paper-hard);
+  color: var(--paper-hard);
+  text-decoration: none;
+  transition: background 0.14s ease, color 0.14s ease, border-color 0.14s ease,
+              transform 0.14s ease, box-shadow 0.14s ease;
+}
+
+.nf-btn--solid { background: var(--paper-hard); color: var(--ink-hard); }
+
+.nf-btn:hover,
+.nf-btn:focus-visible {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  transform: translate(-3px, -3px);
+  box-shadow: 5px 5px 0 rgba(242, 240, 235, 0.4);
+}
+
+.nf-btn:active { transform: translate(0, 0); box-shadow: none; }
+
+@media (max-width: 600px) {
+  .nf-btn { width: 100%; justify-content: center; }
+  .nf-actions { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="logo">muidemakz</a>
+    <nav class="site-nav">
+      <a href="my-work.html">Work</a>
+      <a href="about.html">About</a>
+    </nav>
+    <a href="mailto:muidemakz@gmail.com" class="btn-outline">Contact</a>
+  </div>
+</header>
+
+<main class="nf-main">
+  <div class="wrap nf-inner">
+    <p class="nf-code">404</p>
+    <h1 class="nf-title">This page didn't ship</h1>
+    <p class="nf-copy">Nothing's broken on your end. The link's just pointing somewhere that doesn't exist anymore, or never did. Everything else on the site is right where it should be.</p>
+    <p class="nf-path" id="nfPath" hidden></p>
+    <p class="nf-suggest" id="nfSuggest" hidden>Did you mean <a href="#" id="nfSuggestLink"></a>?</p>
+    <div class="nf-actions">
+      <a class="nf-btn nf-btn--solid" href="index.html">Go To Homepage &rarr;</a>
+      <a class="nf-btn" href="my-work.html">See My Work &rarr;</a>
+      <a class="nf-btn" href="mailto:muidemakz@gmail.com">Email Me &rarr;</a>
+    </div>
+  </div>
+</main>
+
+<script>
+(function () {
+  var pathEl = document.getElementById('nfPath');
+  var path = window.location.pathname;
+  var isRealMiss = path && path !== '/' && path !== '/404.html';
+
+  if (pathEl && isRealMiss) {
+    pathEl.textContent = 'You tried: ' + path;
+    pathEl.hidden = false;
+  }
+
+  if (!isRealMiss) return;
+
+  // "did you mean" — catches a typo'd or slightly-off URL (e.g. /cardtoniic,
+  // /card-tonic) rather than leaving a mistyped visitor with nothing but
+  // the generic actions below. Every real page on the site, matched by
+  // plain Levenshtein distance against whatever slug they landed on.
+  var PAGES = [
+    { slug: 'index', label: 'Home', href: 'index.html' },
+    { slug: 'about', label: 'About', href: 'about.html' },
+    { slug: 'my-work', label: 'My Work', href: 'my-work.html' },
+    { slug: 'work', label: 'My Work', href: 'my-work.html' },
+    { slug: 'coreloops', label: 'Coreloops', href: 'coreloops.html' },
+    { slug: 'cardtonic', label: 'Cardtonic', href: 'cardtonic.html' },
+    { slug: 'teesaslms', label: 'Teesas LMS', href: 'teesaslms.html' },
+    { slug: 'fundall', label: 'Fundall', href: 'fundall.html' },
+    { slug: 'omnione', label: 'Omnione', href: 'omnione.html' },
+    { slug: 'empty-state', label: 'Omnibiz', href: 'empty-state.html' },
+    { slug: 'raven-pay', label: 'Raven Pay', href: 'raven-pay.html' },
+    { slug: 'venx', label: 'VENX', href: 'venx.html' },
+    { slug: 'cancel-flow', label: 'Cancel Flow', href: 'cancel-flow.html' }
+  ];
+
+  function levenshtein(a, b) {
+    var m = a.length, n = b.length;
+    var d = [];
+    for (var i = 0; i <= m; i++) d[i] = [i];
+    for (var j = 0; j <= n; j++) d[0][j] = j;
+    for (i = 1; i <= m; i++) {
+      for (j = 1; j <= n; j++) {
+        d[i][j] = a[i - 1] === b[j - 1]
+          ? d[i - 1][j - 1]
+          : 1 + Math.min(d[i - 1][j - 1], d[i - 1][j], d[i][j - 1]);
+      }
+    }
+    return d[m][n];
+  }
+
+  var tried = path.replace(/^\/+|\/+$|\.html$/g, '').toLowerCase();
+  if (!tried) return;
+
+  // a truncated/partial URL (someone stopped typing early, or a copy-paste
+  // got cut off — e.g. "/cardto") is a real-world case Levenshtein alone
+  // handles badly, since a missing suffix counts as several edits. Check
+  // for a plain prefix match first, on either side, before falling back
+  // to edit-distance for genuine typos (transposed/wrong letters).
+  var best = null;
+  PAGES.forEach(function (p) {
+    if (best) return;
+    if (tried.length >= 3 && (p.slug.indexOf(tried) === 0 || tried.indexOf(p.slug) === 0)) {
+      best = p;
+    }
+  });
+
+  var bestDist = 0;
+  if (!best) {
+    bestDist = Infinity;
+    PAGES.forEach(function (p) {
+      var dist = levenshtein(tried, p.slug);
+      if (dist < bestDist) { bestDist = dist; best = p; }
+    });
+  }
+
+  // threshold scales with length so short slugs need a near-exact miss,
+  // longer ones tolerate a couple more typo'd characters
+  var threshold = Math.max(2, Math.floor(tried.length * 0.4));
+  if (best && (bestDist === 0 || bestDist <= threshold) && tried !== best.slug) {
+    var suggestEl = document.getElementById('nfSuggest');
+    var linkEl = document.getElementById('nfSuggestLink');
+    if (suggestEl && linkEl) {
+      linkEl.textContent = best.label;
+      linkEl.href = best.href;
+      suggestEl.hidden = false;
+    }
+  }
+})();
+</script>
+
+</body>
+</html>

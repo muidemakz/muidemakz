@@ -5,7 +5,6 @@
   const resultLine = document.getElementById("workResultLine");
 
   const categoryChipsEl = document.getElementById("categoryChips");
-  const yearChipsEl = document.getElementById("yearChips");
   const clearAllBtn = document.getElementById("clearAllBtn");
 
   const viewGridBtn = document.getElementById("viewGridBtn");
@@ -14,12 +13,9 @@
 
   const PAGE_SIZE = 8; // multiple of 4 — see the masonry comment in css/work.css
 
-  const years = EXPERIENCE_YEARS.map((e) => e.year); // already newest-first
-
   const state = {
     search: "",
     categories: new Set(), // empty = no filter (show all)
-    years: new Set(),
     view: "grid",
     page: 1
   };
@@ -28,16 +24,22 @@
     document.querySelector(".work-toolbar").scrollIntoView({ block: "start" });
   }
 
-  // arriving from the homepage year-hover, or a wrapped.html category chip,
-  // lands directly on that filter, pre-applied.
+  // [REVERT POINT] year used to be its own filter dimension (a Year chip
+  // row) — that UI is gone, but wrapped.html's per-year "See All" button
+  // still links here with ?year=YYYY, so a year search still needs to work.
+  // It's folded into the search box instead: a bare year drops straight
+  // into the search field and the word-matching below treats a 4-digit
+  // token as a year match (see renderGrid), not just a name substring.
+  // arriving from a wrapped.html category chip lands directly on that
+  // filter, pre-applied.
   const params = new URLSearchParams(window.location.search);
-  const yearParam = params.get("year");
-  if (yearParam && years.includes(Number(yearParam))) {
-    state.years.add(Number(yearParam));
-  }
   const categoryParam = params.get("category");
   if (categoryParam && PROJECT_CATEGORIES.includes(categoryParam)) {
     state.categories.add(categoryParam);
+  }
+  const yearParam = params.get("year");
+  if (yearParam && /^\d{4}$/.test(yearParam)) {
+    state.search = yearParam;
   }
 
   function buildChips(container, options, selectedSet) {
@@ -62,27 +64,42 @@
     });
   }
 
-  clearAllBtn.addEventListener("click", () => {
+  function clearAllFilters() {
     state.categories.clear();
-    state.years.clear();
     state.search = "";
     state.page = 1;
     searchInput.value = "";
     buildChips(categoryChipsEl, PROJECT_CATEGORIES, state.categories);
-    buildChips(yearChipsEl, years, state.years);
     renderGrid();
-  });
+  }
+
+  clearAllBtn.addEventListener("click", clearAllFilters);
+
+  // the empty-state's own "Clear Search & Filters" button reuses the same
+  // reset, so a dead-end search has one obvious way back to a full grid
+  const workEmptyClearBtn = document.getElementById("workEmptyClearBtn");
+  if (workEmptyClearBtn) workEmptyClearBtn.addEventListener("click", clearAllFilters);
 
   function renderGrid() {
-    const query = state.search.trim().toLowerCase();
+    // [FIX] was a single exact-phrase includes() check, so "empty states"
+    // never matched "Omnibiz Empty & Preorder States" — the words aren't
+    // contiguous in the title. Matching per-word (order-independent) finds
+    // it instead, same as most real search boxes behave. A bare 4-digit
+    // word is also matched against the project's year, not just its name
+    // — this is what lets typing "2026" work as a year filter now that the
+    // dedicated Year chip row is gone (see the ?year= handling above).
+    const queryWords = state.search.trim().toLowerCase().split(/\s+/).filter(Boolean);
 
     const filtered = PROJECTS.filter((project) => {
-      const matchesSearch = !query || project.name.toLowerCase().includes(query);
+      const name = project.name.toLowerCase();
+      const matchesSearch = queryWords.length === 0 || queryWords.every((w) => {
+        if (/^\d{4}$/.test(w)) return name.includes(w) || String(project.year) === w;
+        return name.includes(w);
+      });
       const matchesCategory =
         state.categories.size === 0 ||
         project.categories.some((c) => state.categories.has(c));
-      const matchesYear = state.years.size === 0 || state.years.has(project.year);
-      return matchesSearch && matchesCategory && matchesYear;
+      return matchesSearch && matchesCategory;
     });
 
     const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
@@ -96,7 +113,11 @@
       li.className = "work-card";
       if (project.image) {
         li.classList.add("has-image");
-        li.style.backgroundImage = `url(${project.image})`;
+        // quoted, since an unquoted CSS url() token can't contain the
+        // space in filenames like "00 · Cover.png" — Cardtonic's card
+        // was silently failing to render its cover for exactly this
+        // reason before this was quoted.
+        li.style.backgroundImage = `url("${project.image}")`;
         li.style.backgroundSize = "cover";
       } else if (project.brand) {
         li.classList.add("has-logo");
@@ -204,8 +225,11 @@
     renderGrid();
   });
 
+  // reflects a ?year= deep-link (or ?category=) in the search box itself,
+  // since state.search may already be pre-filled above
+  searchInput.value = state.search;
+
   buildChips(categoryChipsEl, PROJECT_CATEGORIES, state.categories);
-  buildChips(yearChipsEl, years, state.years);
 
   function setView(view) {
     state.view = view;
@@ -221,7 +245,7 @@
 
   renderGrid();
 
-  if (state.years.size > 0 || state.categories.size > 0) {
+  if (state.categories.size > 0 || state.search) {
     // scroll the grid into view so a filtered arrival actually lands on the
     // filtered results, not the page top.
     document.querySelector(".work-toolbar").scrollIntoView({ block: "start" });

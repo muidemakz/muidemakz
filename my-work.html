@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMFSR34FZG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-SMFSR34FZG");
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Work &middot; Excellent Makanju, Senior Product Designer</title>
@@ -90,14 +98,14 @@
       </div>
     </div>
 
+    <!-- [REVERT POINT] Year filter row removed from this listing page per
+         request — year still shows per case study (its own hero metadata
+         tags), just not as a filter dimension here. To revert: restore the
+         Year filter-row block (see git history) and move #clearAllBtn back
+         into it. -->
     <div class="filter-row">
       <span class="filter-row-label">Category</span>
       <div class="filter-chips" id="categoryChips"><!-- populated from js/work.js --></div>
-    </div>
-
-    <div class="filter-row">
-      <span class="filter-row-label">Year</span>
-      <div class="filter-chips" id="yearChips"><!-- populated from js/work.js --></div>
       <button type="button" class="filter-clear-all" id="clearAllBtn">Clear all &times;</button>
     </div>
 
@@ -107,7 +115,11 @@
       <!-- populated from js/data.js -->
     </ul>
 
-    <p class="work-empty" id="workEmpty" hidden>No projects match that search/filter.</p>
+    <div class="work-empty" id="workEmpty" hidden>
+      <p class="work-empty-title">No Matches Here</p>
+      <p class="work-empty-copy">Nothing's broken &mdash; there's just nothing under this search or these filters. Try a different word, or clear everything and start fresh.</p>
+      <button type="button" class="work-empty-btn" id="workEmptyClearBtn">Clear Search &amp; Filters &rarr;</button>
+    </div>
 
     <nav class="work-pagination" id="workPagination" aria-label="Pagination">
       <!-- populated from js/work.js -->

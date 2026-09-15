@@ -404,13 +404,62 @@
   flex-shrink: 0;
 }
 
+/* [REVERT POINT] was a single bare "No projects match" line — same
+   reassurance + clear-action treatment as the 404 page, scaled down for
+   an in-page empty state rather than a full lost-visitor screen. */
 .work-empty {
   text-align: center;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  opacity: 0.6;
   margin-top: 60px;
+  padding: 56px 24px;
+  border: 1px solid var(--hard-line);
 }
+
+.work-empty-title {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(20px, 3vw, 28px);
+  letter-spacing: -0.01em;
+  margin: 0 0 10px;
+}
+
+.work-empty-copy {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+  opacity: 0.75;
+  max-width: 44ch;
+  margin: 0 auto 26px;
+}
+
+.work-empty-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 13px 20px;
+  border: 2px solid var(--ink-hard);
+  background: var(--ink-hard);
+  color: var(--paper-hard);
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease,
+              transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.work-empty-btn:hover,
+.work-empty-btn:focus-visible {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  transform: translate(-3px, -3px);
+  box-shadow: 5px 5px 0 var(--ink-hard);
+}
+
+.work-empty-btn:active { transform: translate(0, 0); box-shadow: none; }
 
 /* ---------- pagination ---------- */
 
