@@ -708,75 +708,21 @@ a { color: inherit; }
   .shelf-kind { display: none; }
 }
 
-/* [REVERT POINT] TEST CHANGE (branch: test/homepage-backdrop-prose).
-   Deliberately kept light: a single horizontally-scrolling strip (same
-   pattern as .shelf-grid above), not a tall stacked grid — the page
-   already carries a lot between the hero and the project shelf, so this
-   adds one more scannable row rather than another dense block. */
-.testimonials {
-  background: var(--ink-hard);
-  color: var(--paper-hard);
-  padding: 34px 0;
-}
+/* [REVERT POINT] TEST CHANGE, round 2: .testimonials/.testimonial-grid/
+   .testimonial-card/etc. CSS that lived here has been moved to
+   css/about.css — testimonials now live on the About page instead of
+   stacking onto an already-busy homepage. See about.css for the new
+   .testimonials-section rules. */
 
-.testimonials-label {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  opacity: 0.6;
-  margin: 0 0 18px;
-}
-
-.testimonial-grid {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  padding-bottom: 2px;
-}
-
-.testimonial-grid::-webkit-scrollbar { display: none; }
-
-.testimonial-card {
-  flex: 0 0 320px;
-  border: 1px solid rgba(242, 240, 235, 0.28);
-  padding: 18px 20px;
-}
-
-.testimonial-quote {
-  font-family: var(--font-body);
-  font-size: 13.5px;
-  line-height: 1.55;
-  opacity: 0.85;
-  margin: 0 0 14px;
-  display: -webkit-box;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.testimonial-name {
-  font-family: var(--font-hard);
-  font-weight: 700;
-  font-size: 14px;
-  margin: 0 0 2px;
-}
-
-.testimonial-role {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  opacity: 0.6;
-  margin: 0;
-}
+/* [REVERT POINT] TEST CHANGE, round 2 (breathing room): more vertical
+   padding around the shelf section and before the footer link strip, so
+   hero → shelf → footer don't read as one unbroken wall of content. */
+.shelf { padding: 3.2vh 0 0; }
+.shelf-links { margin-top: 3.6vh; }
 
 @media (max-width: 640px) {
-  .testimonials { padding: 26px 0; }
-  .testimonial-card { flex-basis: 260px; padding: 16px; }
+  .shelf { padding-top: 3vh; }
+  .shelf-links { margin-top: 2.6vh; }
 }
 </style>
 </head>
@@ -809,8 +755,15 @@ a { color: inherit; }
        .hero-prose/.hero-prose-p/.hero-num/.hero-inline-link/.hero-see-more
        from css above — the original .hero-details/.hero-facts/.hero-tags/
        .hero-stats rules are left in place, untouched, below. -->
+  <!-- [REVERT POINT] TEST CHANGE, round 2 (user feedback: hero read as
+       "clunky", paragraph had 5 stats + 3 links fighting for attention).
+       Trimmed to the two headline numbers (6+ years, 20+ shipped); the
+       other three stats (3+ yrs leading teams, $124M+ NMV, 150K+
+       retailers) now live only on About's stat row — homepage teases,
+       About proves. To revert: restore the 5-stat paragraph above this
+       comment (see git log on this branch). -->
   <div class="hero-prose">
-    <p class="hero-prose-p">A Senior Product Designer with <strong class="hero-num">6+</strong> years shipping across fintech, payments, and B2B commerce, I currently lead design on <a href="about.html#expertise" class="hero-inline-link">Payments &amp; Wallet UX</a>, <a href="about.html#expertise" class="hero-inline-link">Complex B2B Workflows</a>, and <a href="about.html#expertise" class="hero-inline-link">AI-Forward Building</a> &mdash; with <strong class="hero-num">20+</strong> products and features shipped across full-time and freelance work, including <strong class="hero-num">3+</strong> years leading design teams. <strong class="hero-num">$124M+</strong> in annual NMV runs through platforms I've designed, serving <strong class="hero-num">150,000+</strong> retailers. <a href="about.html#expertise" class="hero-tag hero-tag--more hero-see-more">See More &rarr;</a></p>
+    <p class="hero-prose-p">A Senior Product Designer with <strong class="hero-num">6+</strong> years shipping across fintech, payments, and B2B commerce. I currently lead design on <a href="about.html#expertise" class="hero-inline-link">Payments &amp; Wallet UX</a>, <a href="about.html#expertise" class="hero-inline-link">Complex B2B Workflows</a>, and <a href="about.html#expertise" class="hero-inline-link">AI-Forward Building</a>, with <strong class="hero-num">20+</strong> products and features shipped across full-time and freelance work. <a href="about.html#expertise" class="hero-tag hero-tag--more hero-see-more">See More &rarr;</a></p>
     <p class="hero-prose-p hero-prose-building"><span class="hero-prose-label">Currently Building</span> &mdash; <strong class="hero-num">Valideity</strong>, an AI-first UX research and usability testing tool for product designers, product teams, and founders in West Africa.</p>
   </div>
   </div>
@@ -875,47 +828,15 @@ a { color: inherit; }
       </a>
     </div>
   </div>
-</section>
 
-<!-- [REVERT POINT] TEST CHANGE (branch: test/homepage-backdrop-prose).
-     New section — testimonials pulled from muidemakz.figma.site. Was not
-     previously on the site at all. Sits between the project shelf and the
-     footer link strip, which used to be the last child inside
-     <section class="shelf"> — it's now its own sibling <section
-     class="shelf-footer"> right below, same .shelf-links markup/CSS,
-     untouched. To revert: delete this whole <section class="testimonials">
-     block and merge .shelf-footer's contents back into .shelf as the
-     .shelf-links div (i.e. remove the two extra <section> tags this split
-     introduced). -->
-<section class="testimonials">
-  <div class="wrap">
-    <p class="testimonials-label">Testimonials</p>
-    <div class="testimonial-grid">
-      <div class="testimonial-card">
-        <p class="testimonial-quote">Working with Excellent was a masterclass in collaboration. He translated complex requirements into intuitive experiences that transformed how our users engaged with the platform. His ability to balance design clarity with business goals made our product stronger and easier to scale.</p>
-        <p class="testimonial-name">Chinenye Obele</p>
-        <p class="testimonial-role">Product Manager, Teesas Education</p>
-      </div>
-      <div class="testimonial-card">
-        <p class="testimonial-quote">Excellent&rsquo;s creativity and dedication significantly contributed to the success of our project. His keen attention to detail and commitment to delivering top-notch user experiences earned positive feedback from both our team and our clients.</p>
-        <p class="testimonial-name">Oluwatosin Adebayo</p>
-        <p class="testimonial-role">CEO, Becca Technologies Limited</p>
-      </div>
-      <div class="testimonial-card">
-        <p class="testimonial-quote">Excellent has a rare talent for simplifying complexity. He redesigned key financial flows that not only improved usability but also instilled trust in our users. His design leadership accelerated adoption and positioned us as more competitive in the fintech space.</p>
-        <p class="testimonial-name">Taiwo Obasan</p>
-        <p class="testimonial-role">COO, Fundall</p>
-      </div>
-      <div class="testimonial-card">
-        <p class="testimonial-quote">Collaborating with Excellent sharpened my own design practice. His leadership style is supportive yet challenging &mdash; pushing the team to think beyond aesthetics and focus on impact. He creates systems and experiences that scale, while mentoring others to grow alongside him.</p>
-        <p class="testimonial-name">Oghosa Gift</p>
-        <p class="testimonial-role">Product Designer, Omniretail</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="shelf-footer">
+  <!-- [REVERT POINT] TEST CHANGE, round 2 (user feedback: page was already
+       busy — testimonials moved to about.html instead of stacking a 4th
+       content block onto an already-dense homepage; see about.html for the
+       new "What People Say" section). This briefly lived here as its own
+       <section class="testimonials"> between .shelf-grid and .shelf-links,
+       with .shelf-links split out into its own <section class="shelf-footer">
+       — both undone, back to the single <section class="shelf"> wrapping
+       both .shelf-grid and .shelf-links like before. -->
   <div class="shelf-links">
     <a class="shelf-link" href="mailto:muidemakz@gmail.com">
       <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1"></rect><path d="M3 7l9 6 9-6"></path></svg>

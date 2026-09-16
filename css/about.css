@@ -301,6 +301,56 @@
 }
 
 /* =========================================================================
+   TESTIMONIALS
+   [REVERT POINT] TEST CHANGE (branch: test/homepage-backdrop-prose) — new
+   block, delete alongside the <section class="band band--grey"> testimonial
+   markup in about.html to revert.
+   ========================================================================= */
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--ink-hard);
+  border: 1px solid var(--ink-hard);
+  margin-top: 8px;
+}
+
+.testimonial-card {
+  background: var(--paper-hard);
+  padding: 30px 32px;
+}
+
+.testimonial-quote {
+  font-family: var(--font-hard);
+  font-size: 17px;
+  line-height: 1.42;
+  margin: 0 0 20px;
+}
+
+.testimonial-name {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  margin: 0 0 3px;
+}
+
+.testimonial-role {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .testimonial-grid { grid-template-columns: 1fr; }
+  .testimonial-card { padding: 24px 22px; }
+}
+
+/* =========================================================================
    STORY — numbered blocks
    ========================================================================= */
 
