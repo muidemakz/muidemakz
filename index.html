@@ -847,9 +847,12 @@ a { color: inherit; }
        a narrower, fixed-minimum bio column instead of one that grows
        past ~34% on wide screens. */
     grid-template-columns: minmax(380px, 34%) 1fr;
-    /* reserves room for .shelf-links, which stays position:fixed across
-       the full width at the very bottom regardless of this grid */
-    padding-bottom: 52px;
+    /* [REVERT POINT] TEST CHANGE, round 19 — was 52px, but .shelf-links is
+       only ~43px tall at this breakpoint (no wrap, single row), so the
+       extra ~9px plus .shelf's own bottom padding (removed below) left a
+       visible paper-coloured gap between the story card and the footer
+       bar. Trimmed to match the bar's real height. */
+    padding-bottom: 44px;
   }
 
   /* [REVERT POINT] TEST CHANGE, round 12 — was justify-content: center,
@@ -932,13 +935,17 @@ a { color: inherit; }
      page's left and right outer margins didn't match. Side padding now 48px
      to mirror the hero column exactly; top/bottom stay 24px (only left/right
      were reported as mismatched). */
+  /* [REVERT POINT] TEST CHANGE, round 19 — bottom padding removed (was
+     24px, same as top) so the story card's own black border sits flush
+     against .shelf-links instead of leaving a visible paper-coloured gap
+     above the fixed footer bar. Top/left/right padding unchanged. */
   .shelf {
     height: 100%;
     min-height: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 24px 48px;
+    padding: 24px 48px 0;
   }
 
   .story-shelf {
