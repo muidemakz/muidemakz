@@ -102,10 +102,17 @@
    vh-sized rule flagged below. */
 html, body { margin: 0; }
 
+/* [REVERT POINT] TEST CHANGE, round 5 — padding-bottom reserves space for
+   .shelf-links now that it's position:fixed (see its own rule below);
+   without this the fixed bar would sit on top of the last shelf cards
+   instead of after them. 52px matches the bar's single-row desktop
+   height; the mobile override further down bumps it to match the 2-row
+   wrapped layout there. */
 body {
   background: var(--paper-hard);
   color: var(--ink-hard);
   font-family: var(--font-body);
+  padding-bottom: 52px;
 }
 
 /* .wrap intentionally NOT redeclared here — this page previously defined
@@ -201,13 +208,16 @@ a { color: inherit; }
    window is, part of the one-screen-fit pattern). Every other big
    headline on the site (About's name, case-study titles) clamps against
    vw instead — switched to match, e.g. about.css's own hero title at
-   clamp(44px, 6vw, 82px). */
+   clamp(44px, 6vw, 82px).
+   [REVERT POINT] TEST CHANGE, round 4 — sized back down again
+   (clamp(34px, 5.6vw, 80px) read too large next to the now-generously-
+   padded hero) to clamp(28px, 3.6vw, 52px). */
 .hero-headline {
   font-family: var(--font-hard);
   font-weight: 700;
   text-transform: uppercase;
-  font-size: clamp(34px, 5.6vw, 80px);
-  line-height: 0.98;
+  font-size: clamp(28px, 3.6vw, 52px);
+  line-height: 1.05;
   letter-spacing: -0.03em;
   margin: 0;
 }
@@ -227,7 +237,7 @@ a { color: inherit; }
 
 @media (max-width: 640px) {
   .hero-static { padding: 48px 0 40px; }
-  .hero-headline { font-size: clamp(26px, 8.4vw, 44px); }
+  .hero-headline { font-size: clamp(24px, 8vw, 38px); }
   .hero-tagline { font-size: 17px; }
 }
 
@@ -239,8 +249,14 @@ a { color: inherit; }
    outline below it instead of overflowing past the headline's own box —
    a negative margin-bottom here previously left the overflow behind the
    box's own background/border in paint order, invisible above the outline. */
+/* [REVERT POINT] TEST CHANGE, round 4 — was inline right after "Senior
+   Product " on the same line, wrapping unpredictably once the cycling
+   word got long ("Design Manager"). A <br> in the markup now puts it on
+   its own line under "Senior Product" every time; margin-top added here
+   for the gap that break introduces. */
 .hero-role-cycle {
   display: inline-block;
+  margin-top: 0.12em;
   background: var(--accent);
   color: #fff;
   padding: 0.04em 0.16em 0.1em;
@@ -289,9 +305,22 @@ a { color: inherit; }
 .hero-fact-title {
   font-family: var(--font-hard);
   font-weight: 700;
-  font-size: clamp(16px, 2vh, 21px);
+  font-size: clamp(16px, 1.6vw, 21px);
   line-height: 1.2;
   margin: 0 0 4px;
+}
+
+/* [REVERT POINT] TEST CHANGE, round 4 — "Currently Building" moved back
+   into a bordered box (reusing .hero-fact-label/.hero-fact-title/
+   .hero-fact-meta, which were left in place untouched from the original
+   boxed hero for exactly this), instead of sitting as a plain inline
+   sentence in the prose block. */
+.hero-building-box {
+  margin-top: 22px;
+  padding: 18px 22px;
+  max-width: 480px;
+  border: 1px solid rgba(242, 240, 235, 0.32);
+  background: rgba(242, 240, 235, 0.08);
 }
 
 .hero-fact-meta {
@@ -453,21 +482,8 @@ a { color: inherit; }
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.65;
-  margin: 0 0 16px;
+  margin: 0;
   opacity: 0.92;
-}
-
-.hero-prose-building {
-  opacity: 0.75;
-  font-size: 14.5px;
-}
-
-.hero-prose-label {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 0.82em;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .hero-num {
@@ -484,13 +500,6 @@ a { color: inherit; }
 }
 
 .hero-inline-link:hover { text-decoration-color: var(--accent); color: var(--accent); }
-
-.hero-see-more {
-  display: inline-block;
-  vertical-align: 1px;
-  margin-left: 4px;
-  text-decoration: none;
-}
 
 @media (max-width: 640px) {
   .hero-prose { margin-top: 20px; }
@@ -521,9 +530,20 @@ a { color: inherit; }
    it) stays exactly as it was. Was implicit (inherited from .shelf's old
    ink-hard background); now explicit so it survives the shelf's colour
    change untouched. */
+/* [REVERT POINT] TEST CHANGE, round 5 — was a normal in-flow element
+   (`margin-top: 56px`) at the bottom of the page. Now pinned to the
+   viewport with `position: fixed`, so Email/About/CV/social stay reachable
+   without scrolling all the way down. `body` gets matching padding-bottom
+   below so the shelf cards don't end up hidden underneath it.
+   To revert: remove position/left/right/bottom/z-index here, restore
+   `margin-top: 56px`, and remove the body padding-bottom rules. */
 .shelf-links {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
   display: flex;
-  margin-top: 56px;
   background: var(--ink-hard);
   color: var(--paper-hard);
   border-top: 1px solid rgba(242, 240, 235, 0.3);
@@ -554,6 +574,9 @@ a { color: inherit; }
 .link-icon { display: none; }
 
 @media (max-width: 640px) {
+  /* fixed bar wraps to 2 rows here (see .shelf-links flex-wrap below),
+     so it's taller — body needs more reserved space to match. */
+  body { padding-bottom: 104px; }
   /* 7 icons in one row is too cramped — wrap to 4 + 3 so each gets a real
      touch target instead of a sliver */
   .shelf-links { flex-wrap: wrap; }
@@ -750,7 +773,7 @@ a { color: inherit; }
 <section class="hero-static">
   <div class="wrap">
   <p class="hero-greeting">Hey, I'm Excellent</p>
-  <h1 class="hero-headline">Senior Product <span class="hero-role-cycle" id="heroRoleCycle">Designer</span></h1>
+  <h1 class="hero-headline">Senior Product<br><span class="hero-role-cycle" id="heroRoleCycle">Designer</span></h1>
   <p class="hero-tagline">I've built a career turning ambiguous briefs into shipped products with <strong>real users and real revenue</strong> behind them.</p>
 
   <!-- [REVERT POINT] TEST CHANGE (branch: test/homepage-backdrop-prose).
@@ -770,9 +793,19 @@ a { color: inherit; }
        retailers) now live only on About's stat row — homepage teases,
        About proves. To revert: restore the 5-stat paragraph above this
        comment (see git log on this branch). -->
+  <!-- [REVERT POINT] TEST CHANGE, round 5 — paragraph shortened further
+       (dropped the "20+ products..." clause, now teased only on About's
+       stat row) and the "See More →" link removed; "Currently Building"
+       pulled back out of the prose flow into its own bordered
+       .hero-building-box (reusing .hero-fact-label/.hero-fact-title/
+       .hero-fact-meta from the original boxed hero). -->
   <div class="hero-prose">
-    <p class="hero-prose-p">A Senior Product Designer with <strong class="hero-num">6+</strong> years shipping across fintech, payments, and B2B commerce. I currently lead design on <a href="about.html#expertise" class="hero-inline-link">Payments &amp; Wallet UX</a>, <a href="about.html#expertise" class="hero-inline-link">Complex B2B Workflows</a>, and <a href="about.html#expertise" class="hero-inline-link">AI-Forward Building</a>, with <strong class="hero-num">20+</strong> products and features shipped across full-time and freelance work. <a href="about.html#expertise" class="hero-tag hero-tag--more hero-see-more">See More &rarr;</a></p>
-    <p class="hero-prose-p hero-prose-building"><span class="hero-prose-label">Currently Building</span> &mdash; <strong class="hero-num">Valideity</strong>, an AI-first UX research and usability testing tool for product designers, product teams, and founders in West Africa.</p>
+    <p class="hero-prose-p">A Senior Product Designer with <strong class="hero-num">6+</strong> years across fintech, payments, and B2B commerce &mdash; currently leading design on <a href="about.html#expertise" class="hero-inline-link">Payments &amp; Wallet UX</a>, <a href="about.html#expertise" class="hero-inline-link">Complex B2B Workflows</a>, and <a href="about.html#expertise" class="hero-inline-link">AI-Forward Building</a>.</p>
+  </div>
+  <div class="hero-building-box">
+    <p class="hero-fact-label">Currently Building</p>
+    <p class="hero-fact-title">Valideity</p>
+    <p class="hero-fact-meta">An AI-first UX research and usability testing tool for product designers, product teams, and founders in West Africa.</p>
   </div>
   </div>
 </section>
