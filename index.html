@@ -81,11 +81,18 @@
 
 * { box-sizing: border-box; }
 
-html, body { margin: 0; height: 100%; overflow: hidden; }
+/* [REVERT POINT] TEST CHANGE (branch: test/homepage-backdrop-prose).
+   Was `height: 100%; overflow: hidden;` — a locked, never-scrolls
+   one-screen composition (hero + shelf + footer link strip sized to
+   exactly fill the viewport via the flex column below). Adding a
+   testimonials section needs more vertical room than that locked
+   composition has, so this page now scrolls normally on desktop too,
+   same as every other page on the site. The mobile override below (which
+   already did this at <640px) is now redundant but left in place —
+   harmless, and it documents the original intent.
+   To revert: change back to `height: 100%; overflow: hidden;`. */
+html, body { margin: 0; height: auto; overflow: visible; }
 
-/* the locked one-screen composition works at desktop sizes, but mobile
-   doesn't have room for hero + 5 stats + shelf + a 2-row link strip all
-   without scrolling — let it scroll there instead of hiding content */
 @media (max-width: 640px) {
   html, body { height: auto; overflow: visible; }
   body { min-height: 100%; }
@@ -700,6 +707,77 @@ a { color: inherit; }
   .shelf-caption { max-width: 24ch; }
   .shelf-kind { display: none; }
 }
+
+/* [REVERT POINT] TEST CHANGE (branch: test/homepage-backdrop-prose).
+   Deliberately kept light: a single horizontally-scrolling strip (same
+   pattern as .shelf-grid above), not a tall stacked grid — the page
+   already carries a lot between the hero and the project shelf, so this
+   adds one more scannable row rather than another dense block. */
+.testimonials {
+  background: var(--ink-hard);
+  color: var(--paper-hard);
+  padding: 34px 0;
+}
+
+.testimonials-label {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin: 0 0 18px;
+}
+
+.testimonial-grid {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 2px;
+}
+
+.testimonial-grid::-webkit-scrollbar { display: none; }
+
+.testimonial-card {
+  flex: 0 0 320px;
+  border: 1px solid rgba(242, 240, 235, 0.28);
+  padding: 18px 20px;
+}
+
+.testimonial-quote {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.55;
+  opacity: 0.85;
+  margin: 0 0 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.testimonial-name {
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: 14px;
+  margin: 0 0 2px;
+}
+
+.testimonial-role {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .testimonials { padding: 26px 0; }
+  .testimonial-card { flex-basis: 260px; padding: 16px; }
+}
 </style>
 </head>
 <body>
@@ -797,7 +875,47 @@ a { color: inherit; }
       </a>
     </div>
   </div>
+</section>
 
+<!-- [REVERT POINT] TEST CHANGE (branch: test/homepage-backdrop-prose).
+     New section — testimonials pulled from muidemakz.figma.site. Was not
+     previously on the site at all. Sits between the project shelf and the
+     footer link strip, which used to be the last child inside
+     <section class="shelf"> — it's now its own sibling <section
+     class="shelf-footer"> right below, same .shelf-links markup/CSS,
+     untouched. To revert: delete this whole <section class="testimonials">
+     block and merge .shelf-footer's contents back into .shelf as the
+     .shelf-links div (i.e. remove the two extra <section> tags this split
+     introduced). -->
+<section class="testimonials">
+  <div class="wrap">
+    <p class="testimonials-label">Testimonials</p>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <p class="testimonial-quote">Working with Excellent was a masterclass in collaboration. He translated complex requirements into intuitive experiences that transformed how our users engaged with the platform. His ability to balance design clarity with business goals made our product stronger and easier to scale.</p>
+        <p class="testimonial-name">Chinenye Obele</p>
+        <p class="testimonial-role">Product Manager, Teesas Education</p>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-quote">Excellent&rsquo;s creativity and dedication significantly contributed to the success of our project. His keen attention to detail and commitment to delivering top-notch user experiences earned positive feedback from both our team and our clients.</p>
+        <p class="testimonial-name">Oluwatosin Adebayo</p>
+        <p class="testimonial-role">CEO, Becca Technologies Limited</p>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-quote">Excellent has a rare talent for simplifying complexity. He redesigned key financial flows that not only improved usability but also instilled trust in our users. His design leadership accelerated adoption and positioned us as more competitive in the fintech space.</p>
+        <p class="testimonial-name">Taiwo Obasan</p>
+        <p class="testimonial-role">COO, Fundall</p>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-quote">Collaborating with Excellent sharpened my own design practice. His leadership style is supportive yet challenging &mdash; pushing the team to think beyond aesthetics and focus on impact. He creates systems and experiences that scale, while mentoring others to grow alongside him.</p>
+        <p class="testimonial-name">Oghosa Gift</p>
+        <p class="testimonial-role">Product Designer, Omniretail</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="shelf-footer">
   <div class="shelf-links">
     <a class="shelf-link" href="mailto:muidemakz@gmail.com">
       <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1"></rect><path d="M3 7l9 6 9-6"></path></svg>
