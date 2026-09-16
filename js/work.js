@@ -135,16 +135,12 @@
       li.appendChild(caption);
     }
 
+    // [REVERT POINT] TEST CHANGE — used to also render a SHIPPED/CONCEPT
+    // badge here from project.status (still in js/data.js, just unused
+    // now). Removed per feedback; meta is just the category again.
     const meta = document.createElement("span");
     meta.className = "work-card-meta";
-    // SHIPPED/CONCEPT badge — shipped vs concept work is otherwise
-    // indistinguishable at a glance in the grid, and the "Coming Soon"
-    // banner already covers the not-yet-published entries, so this only
-    // shows on projects that actually declare a status.
-    const statusHtml = project.status
-      ? `<span class="work-card-status work-card-status--${project.status}">${project.status}</span>`
-      : "";
-    meta.innerHTML = `${statusHtml}<span>${project.categories[0]}</span>`;
+    meta.innerHTML = `<span>${project.categories[0]}</span>`;
     li.appendChild(meta);
 
     return li;

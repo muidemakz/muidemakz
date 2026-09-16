@@ -325,19 +325,21 @@ a { color: inherit; }
    minmax(200px,1fr)) so the description has enough room to settle on 2
    lines instead of 3, alongside .hero-fact-meta's own widened max-width
    above. */
+/* [REVERT POINT] TEST CHANGE, round 9 — was a fixed 2-column grid
+   (minmax(160px,auto) minmax(320px,1fr)) that didn't shrink below its
+   minimums, so the description ran past the box's right edge once the
+   split-view layout (round 8) made the hero column narrower than the
+   box's own 760px max-width. Single stacked column now, at every width —
+   label+title, then description underneath. */
 .hero-building-box {
   display: grid;
-  grid-template-columns: minmax(160px, auto) minmax(320px, 1fr);
-  gap: 10px 32px;
+  grid-template-columns: 1fr;
+  gap: 10px;
   margin-top: 22px;
   padding: 18px 22px;
-  max-width: 760px;
+  max-width: 480px;
   border: 1px solid rgba(242, 240, 235, 0.32);
   background: rgba(242, 240, 235, 0.08);
-}
-
-@media (max-width: 640px) {
-  .hero-building-box { grid-template-columns: 1fr; }
 }
 
 /* [REVERT POINT] TEST CHANGE, round 7 — max-width was 40ch, wrapping the
@@ -922,57 +924,50 @@ a { color: inherit; }
 
 <section class="shelf">
   <div class="shelf-grid">
-    <!-- [REVERT POINT] was Coreloops, Cardtonic, Teesas, Fundall, Omnione,
-         Omnibiz, Raven Pay, VENX — led with unshipped work. Reordered
-         shipped-first (Omnione, Fundall, Teesas, Omnibiz), then concept
-         work (Coreloops, Cardtonic, Raven Pay, VENX), matching my-work.html.
-         shelf-kind now also carries a Shipped/Concept tag, same status
-         source as js/data.js's `status` field. -->
+    <!-- [REVERT POINT] TEST CHANGE, round 9 — every card used to lead with
+         a <p class="shelf-kind"> orange category label (e.g. "Design
+         Systems", "Lending UX"), which also carried "&middot; Shipped"/
+         "&middot; Concept" until the edit right above this one. Removed
+         entirely per feedback — no orange label at all on these cards now,
+         just name/caption/CTA. .shelf-kind's CSS rule (accent color, mono,
+         uppercase) is left in place below, unused, for an easy revert. -->
     <div class="shelf-track" id="shelfTrack">
       <a class="shelf-card shelf-card--highlight" href="omnione.html" style="background-image:url(images/omnione/omnione-design-system-cover-banner.png)">
-        <p class="shelf-kind">Design Systems &middot; Shipped</p>
         <p class="shelf-name">Omnione</p>
         <p class="shelf-caption">One Design Language For Four Product Teams</p>
         <p class="shelf-cta">View Case Study &rarr;</p>
       </a>
       <a class="shelf-card" href="fundall.html" style="background-image:url(images/fundall/cover.png)">
-        <p class="shelf-kind">Lending UX &middot; Shipped</p>
         <p class="shelf-name">Fundall</p>
         <p class="shelf-caption">Salary Advance: 6 Minutes To Under 2</p>
         <p class="shelf-cta">View Case Study &rarr;</p>
       </a>
       <a class="shelf-card" href="teesaslms.html" style="background-image:url(images/teesas/banner.png)">
-        <p class="shelf-kind">Multi-Persona UX &middot; Shipped</p>
         <p class="shelf-name">Teesas LMS</p>
         <p class="shelf-caption">Three Rebuilds To Get One LMS Right</p>
         <p class="shelf-cta">View Case Study &rarr;</p>
       </a>
       <a class="shelf-card" href="empty-state.html" style="background-image:url(images/omnibiz/banner-image.png)">
-        <p class="shelf-kind">Empty States &middot; Shipped</p>
         <p class="shelf-name">Omnibiz</p>
         <p class="shelf-caption">Making &ldquo;Not Here Yet&rdquo; Feel Like A Preorder</p>
         <p class="shelf-cta">View Case Study &rarr;</p>
       </a>
       <a class="shelf-card" href="coreloops.html" style="background-image:url(images/coreloops/coreloop-cover.png)">
-        <p class="shelf-kind">Information Architecture &middot; Concept</p>
         <p class="shelf-name">Coreloops</p>
         <p class="shelf-caption">Filters From A Drawer To Zero Clicks</p>
         <p class="shelf-cta">View Case Study &rarr;</p>
       </a>
       <a class="shelf-card shelf-card--highlight" href="cardtonic.html" style="background-image:url(images/Cardtonic/00%20%C2%B7%20Cover.png)">
-        <p class="shelf-kind">P2P Payments &middot; Concept</p>
         <p class="shelf-name">Cardtonic</p>
         <p class="shelf-caption">Sending Money To People, Not Accounts</p>
         <p class="shelf-cta">View Case Study &rarr;</p>
       </a>
       <a class="shelf-card" href="raven-pay.html" style="background-image:url(images/ravenpay/banner-image.png)">
-        <p class="shelf-kind">Trust &amp; Onboarding &middot; Concept</p>
         <p class="shelf-name">Raven Pay</p>
         <p class="shelf-caption">Making A Banking App Read As Serious, Not Cute</p>
         <p class="shelf-cta">View Case Study &rarr;</p>
       </a>
       <a class="shelf-card" href="venx.html" style="background-image:url(images/venx/cover-banner-image.png)">
-        <p class="shelf-kind">AI Product Design &middot; Concept</p>
         <p class="shelf-name">VENX</p>
         <p class="shelf-caption">A Full AI Sales CRM Concept In 24 Hours</p>
         <p class="shelf-cta">View Case Study &rarr;</p>
