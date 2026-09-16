@@ -404,6 +404,87 @@ a { color: inherit; }
   .hero-stat:nth-child(3), .hero-stat:nth-child(5) { border-left: 1px solid var(--paper-hard); }
 }
 
+/* [REVERT POINT] TEST CHANGE (branch: test/homepage-backdrop-prose).
+   Low-opacity backdrop photo behind .hero-static's content, layered under
+   the existing diagonal hatch (::after) so both read as one textured
+   surface instead of a plain flat black. Desaturated + contrast-boosted
+   so it stays a background texture, never competes with the paper-hard
+   text sitting on top of it.
+   To revert: delete this rule (and the ::before selector addition has no
+   effect on markup — .hero-static's HTML is unchanged). */
+.hero-static::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("images/about/homepage-backdrop.png");
+  background-size: cover;
+  background-position: center 22%;
+  opacity: 0.16;
+  filter: grayscale(1) contrast(1.15);
+}
+
+/* [REVERT POINT] TEST CHANGE (branch: test/homepage-backdrop-prose).
+   Prose replacement for the old boxed .hero-details/.hero-facts/
+   .hero-tags/.hero-stats trio — same content, flowing paragraphs instead
+   of separated cards. Numbers get the same accent-orange treatment
+   .hero-stat-num used; focus-area names and "Valideity" stay inline links/
+   bold instead of separate pill/label elements. */
+.hero-prose {
+  width: 100%;
+  margin-top: 2.4vh;
+  max-width: 68ch;
+}
+
+.hero-prose-p {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 2vh, 17px);
+  line-height: 1.65;
+  margin: 0 0 1.6vh;
+  opacity: 0.92;
+}
+
+.hero-prose-building {
+  opacity: 0.75;
+  font-size: clamp(14px, 1.8vh, 15.5px);
+}
+
+.hero-prose-label {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.82em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-num {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.hero-inline-link {
+  color: var(--paper-hard);
+  text-decoration: underline;
+  text-decoration-color: rgba(242, 240, 235, 0.45);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.12s ease, color 0.12s ease;
+}
+
+.hero-inline-link:hover { text-decoration-color: var(--accent); color: var(--accent); }
+
+.hero-see-more {
+  display: inline-block;
+  vertical-align: 1px;
+  margin-left: 4px;
+  text-decoration: none;
+}
+
+@media (max-width: 640px) {
+  .hero-prose { margin-top: 2vh; }
+  .hero-prose-p { font-size: 15.5px; }
+}
+
 /* ---------- project shelf, horizontally scrollable ---------- */
 /* [REVERT POINT] was background-color: var(--ink-hard) + the diagonal
    hatch background-image, text paper-hard — that hatch now lives on
@@ -640,50 +721,19 @@ a { color: inherit; }
   <h1 class="hero-headline">Senior Product <span class="hero-role-cycle" id="heroRoleCycle">Designer</span></h1>
   <p class="hero-tagline">I've built a career turning ambiguous briefs into shipped products with <strong>real users and real revenue</strong> behind them.</p>
 
-  <div class="hero-details">
-  <div class="hero-facts">
-    <div>
-      <p class="hero-fact-label">Currently Building</p>
-      <p class="hero-fact-title">Valideity</p>
-    </div>
-    <div>
-      <p class="hero-fact-meta">An AI-first UX research and usability testing built for product designers, product teams, and founders in West Africa.</p>
-    </div>
-  </div>
-
-  <div class="hero-tags">
-    <a href="about.html#expertise" class="hero-tag">Payments &amp; Wallet UX</a>
-    <a href="about.html#expertise" class="hero-tag">Complex B2B Workflows</a>
-    <a href="about.html#expertise" class="hero-tag">Design Management</a>
-    <a href="about.html#expertise" class="hero-tag">AI-Forward Building</a>
-    <a href="about.html#expertise" class="hero-tag">Information Architecture</a>
-    <a href="about.html#expertise" class="hero-tag">Multi-Persona UX</a>
-    <a href="about.html#expertise" class="hero-tag">Design Systems</a>
-    <a href="about.html#expertise" class="hero-tag hero-tag--more">See More &rarr;</a>
-  </div>
-
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <span class="hero-stat-num">20+</span>
-      <span class="hero-stat-label">Products &amp; features shipped, full-time &amp; freelance</span>
-    </div>
-    <div class="hero-stat">
-      <span class="hero-stat-num">6+</span>
-      <span class="hero-stat-label">Years across fintech, edtech, B2B &amp; brand</span>
-    </div>
-    <div class="hero-stat">
-      <span class="hero-stat-num">3+</span>
-      <span class="hero-stat-label">Years leading design teams</span>
-    </div>
-    <div class="hero-stat">
-      <span class="hero-stat-num">$124M+</span>
-      <span class="hero-stat-label">Annual NMV on platforms I've designed</span>
-    </div>
-    <div class="hero-stat">
-      <span class="hero-stat-num">150K+</span>
-      <span class="hero-stat-label">Retailers on products I've led design for</span>
-    </div>
-  </div>
+  <!-- [REVERT POINT] TEST CHANGE (branch: test/homepage-backdrop-prose).
+       This whole block used to be <div class="hero-details"> containing
+       three boxed/bordered sub-sections: .hero-facts (Currently Building),
+       .hero-tags (expertise pills) and .hero-stats (5-cell stat strip).
+       Replaced with two flowing paragraphs carrying the same content as
+       prose. To revert: restore the markup from the "Convert Work page to
+       static HTML..." commit (the one right before this branch), and drop
+       .hero-prose/.hero-prose-p/.hero-num/.hero-inline-link/.hero-see-more
+       from css above — the original .hero-details/.hero-facts/.hero-tags/
+       .hero-stats rules are left in place, untouched, below. -->
+  <div class="hero-prose">
+    <p class="hero-prose-p">A Senior Product Designer with <strong class="hero-num">6+</strong> years shipping across fintech, payments, and B2B commerce, I currently lead design on <a href="about.html#expertise" class="hero-inline-link">Payments &amp; Wallet UX</a>, <a href="about.html#expertise" class="hero-inline-link">Complex B2B Workflows</a>, and <a href="about.html#expertise" class="hero-inline-link">AI-Forward Building</a> &mdash; with <strong class="hero-num">20+</strong> products and features shipped across full-time and freelance work, including <strong class="hero-num">3+</strong> years leading design teams. <strong class="hero-num">$124M+</strong> in annual NMV runs through platforms I've designed, serving <strong class="hero-num">150,000+</strong> retailers. <a href="about.html#expertise" class="hero-tag hero-tag--more hero-see-more">See More &rarr;</a></p>
+    <p class="hero-prose-p hero-prose-building"><span class="hero-prose-label">Currently Building</span> &mdash; <strong class="hero-num">Valideity</strong>, an AI-first UX research and usability testing tool for product designers, product teams, and founders in West Africa.</p>
   </div>
   </div>
 </section>

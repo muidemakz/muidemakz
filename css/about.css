@@ -258,9 +258,11 @@
    STATS
    ========================================================================= */
 
+/* [REVERT POINT] was repeat(3, 1fr) — widened to fit the new 4th stat
+   added in about.html. To revert: change back to repeat(3, 1fr). */
 .ab-stats {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   border-bottom: 1px solid var(--ink-hard);
 }
 
