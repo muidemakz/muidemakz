@@ -251,17 +251,20 @@ a { color: inherit; }
    box's own background/border in paint order, invisible above the outline. */
 /* [REVERT POINT] TEST CHANGE, round 4 — was inline right after "Senior
    Product " on the same line, wrapping unpredictably once the cycling
-   word got long ("Design Manager"). A <br> in the markup now puts it on
-   its own line under "Senior Product" every time; margin-top added here
-   for the gap that break introduces. */
+   word got long ("Design Manager"). A <br> in the markup put it on its
+   own line under "Senior Product" every time; margin-top and
+   vertical-align:top were tuned for THAT layout.
+   [REVERT POINT] TEST CHANGE, round 24 — back inline next to "Product"
+   (the <br> is gone, "Senior" dropped). margin-top/vertical-align:top
+   were still set for the own-line version, which sat the badge visibly
+   higher than "PRODUCT"'s own baseline — removed both; default
+   vertical-align (baseline) lines the badge up with the text next to it. */
 .hero-role-cycle {
   display: inline-block;
-  margin-top: 0.12em;
   background: var(--accent);
   color: #fff;
   padding: 0.04em 0.16em 0.1em;
   transition: opacity 0.25s ease;
-  vertical-align: top;
 }
 
 .hero-role-cycle.is-swapping { opacity: 0; }
@@ -515,6 +518,17 @@ a { color: inherit; }
 @media (max-width: 640px) {
   .hero-prose { margin-top: 20px; }
   .hero-prose-p { font-size: 15.5px; }
+
+  /* [REVERT POINT] TEST CHANGE, round 24 — box was matching the paragraph
+     column's width exactly (both inset the same 20px from the screen
+     edge); extended it past that column on mobile specifically, bleeding
+     12px further out on each side than the surrounding text, so it reads
+     as a distinct callout instead of just another paragraph-width block. */
+  .hero-building-box {
+    max-width: none;
+    margin-left: -12px;
+    margin-right: -12px;
+  }
 }
 
 /* ---------- project shelf, horizontally scrollable ---------- */
@@ -1054,7 +1068,13 @@ a { color: inherit; }
 <section class="hero-static">
   <div class="wrap">
   <p class="hero-greeting">Hey, I'm Excellent</p>
-  <h1 class="hero-headline">Senior Product<br><span class="hero-role-cycle" id="heroRoleCycle">Designer</span></h1>
+  <!-- [REVERT POINT] TEST CHANGE, round 24 — "Senior" dropped, and the
+       role-cycle badge moved back inline next to "Product" (was on its
+       own line via <br>, from round 4's fix for the badge wrapping
+       unpredictably next to the longer cycled words — now that "Senior"
+       is gone there's more room on the line, so revisit if "Design
+       Manager" wraps awkwardly at narrow widths). -->
+  <h1 class="hero-headline">Product <span class="hero-role-cycle" id="heroRoleCycle">Designer</span></h1>
   <p class="hero-tagline">I've built a career turning ambiguous briefs into shipped products with <strong>real users and real revenue</strong> behind them.</p>
 
   <!-- [REVERT POINT] TEST CHANGE (branch: test/homepage-backdrop-prose).
@@ -1105,7 +1125,9 @@ a { color: inherit; }
         <button type="button" class="story-seg" aria-label="Show Coreloops"><span class="story-seg-fill"></span></button>
         <button type="button" class="story-seg" aria-label="Show Omnione"><span class="story-seg-fill"></span></button>
       </div>
-      <a class="story-see-all" href="my-work.html">See All Work &rarr;</a>
+      <!-- [REVERT POINT] TEST CHANGE, round 24 — "See All Work" link
+           removed per feedback. .story-see-all CSS left in place, unused,
+           for an easy revert. -->
     </div>
     <!-- [REVERT POINT] TEST CHANGE, round 16 — the shelf used to be an
          8-card horizontally/vertically auto-scrolling row/column (see git
