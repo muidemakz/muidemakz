@@ -331,11 +331,14 @@ a { color: inherit; }
    split-view layout (round 8) made the hero column narrower than the
    box's own 760px max-width. Single stacked column now, at every width —
    label+title, then description underneath. */
+/* [REVERT POINT] TEST CHANGE, round 20 — margin-top was 22px; the "bleed
+   out of frame" magazine treatment discussed for this box isn't happening
+   for now, just a plain spacing reduction. */
 .hero-building-box {
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
-  margin-top: 22px;
+  margin-top: 14px;
   padding: 18px 22px;
   max-width: 480px;
   border: 1px solid rgba(242, 240, 235, 0.32);
@@ -838,6 +841,19 @@ a { color: inherit; }
 
   .site-header { flex-shrink: 0; }
 
+  /* [REVERT POINT] TEST CHANGE, round 19 — .site-header .wrap normally uses
+     justify-content: space-between across 3 groups (logo, nav, Contact).
+     That makes nav's own START position depend on nav's own WIDTH (grow
+     nav and space-between shifts it to keep gaps even) — which fights the
+     divider-alignment script below: adding margin before "Work" to hit the
+     grid boundary changes nav's width, which then moves nav's start,
+     undoing the very adjustment just made. Switching to flex-start (logo
+     and nav simply sit left, in flow) plus margin-left:auto on Contact
+     (still docks right) removes that feedback loop — nav's start position
+     is now fixed regardless of its own width. */
+  .site-header .wrap { justify-content: flex-start; }
+  .btn-outline { margin-left: auto; }
+
   .home-grid {
     flex: 1;
     min-height: 0;
@@ -925,7 +941,7 @@ a { color: inherit; }
   .hero-prose-p { font-size: clamp(13.5px, min(1.1vw, 1.9vh), 16px); line-height: 1.55; }
 
   .hero-building-box {
-    margin-top: clamp(10px, 2vh, 22px);
+    margin-top: clamp(8px, 1.4vh, 14px);
     padding: clamp(10px, 1.8vh, 18px) clamp(14px, 1.6vw, 22px);
     gap: clamp(6px, 1vh, 10px);
   }
@@ -964,8 +980,8 @@ a { color: inherit; }
          to About/Work, homepage header only (other pages' headers are
          separate copies, untouched). -->
     <nav class="site-nav">
-      <a href="about.html">About</a>
-      <a href="my-work.html">Work</a>
+      <a href="about.html" id="navAbout">About</a>
+      <a href="my-work.html" id="navWork">Work</a>
     </nav>
     <a href="mailto:muidemakz@gmail.com" class="btn-outline">Contact</a>
   </div>
@@ -1189,6 +1205,45 @@ a { color: inherit; }
     }
     requestAnimationFrame(render);
   })(performance.now());
+})();
+
+(function () {
+  // [REVERT POINT] TEST CHANGE, round 19 — aligns the header's About/Work
+  // divider line with the .home-grid column boundary below it (where
+  // .hero-static ends and the story reel begins), so the two "lines" read
+  // as one continuous grid rather than two unrelated layouts. About's own
+  // position is left untouched (it's the anchor); the gap between About
+  // and Work grows or shrinks via margin-left on Work so the divider
+  // between them lands exactly on that boundary. Only active at the same
+  // min-width:900px breakpoint the split-view grid itself uses — below
+  // that, the header goes back to its normal even spacing (see resize
+  // handling below, which clears the margin under 900px).
+  const workLink = document.getElementById('navWork');
+  const heroStatic = document.querySelector('.hero-static');
+  const isSplitView = window.matchMedia && window.matchMedia('(min-width: 900px)');
+
+  function alignDivider() {
+    if (!workLink || !heroStatic || !isSplitView || !isSplitView.matches) {
+      if (workLink) workLink.style.marginLeft = '';
+      return;
+    }
+    workLink.style.marginLeft = '';
+    // two passes: adding margin here changes nav's own rendered width,
+    // which (even with the flex-start fix above) still nudges the
+    // boundary/divider gap by a few px on the first pass — a second
+    // incremental correction closes that residual instead of leaving a
+    // near-miss.
+    let margin = 0;
+    for (let i = 0; i < 2; i++) {
+      const boundaryX = heroStatic.getBoundingClientRect().right;
+      const dividerX = workLink.getBoundingClientRect().left;
+      margin += boundaryX - dividerX;
+      workLink.style.marginLeft = margin + 'px';
+    }
+  }
+
+  alignDivider();
+  window.addEventListener('resize', alignDivider);
 })();
 
 (function () {
