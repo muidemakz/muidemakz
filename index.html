@@ -927,13 +927,18 @@ a { color: inherit; }
     gap: clamp(6px, 1vh, 10px);
   }
 
+  /* [REVERT POINT] TEST CHANGE, round 18 — side padding was 24px, half of
+     .hero-static's 48px (inherited from .wrap on its own inner div), so the
+     page's left and right outer margins didn't match. Side padding now 48px
+     to mirror the hero column exactly; top/bottom stay 24px (only left/right
+     were reported as mismatched). */
   .shelf {
     height: 100%;
     min-height: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 24px;
+    padding: 24px 48px;
   }
 
   .story-shelf {
@@ -948,9 +953,12 @@ a { color: inherit; }
 <header class="site-header">
   <div class="wrap">
     <a href="index.html" class="logo">muidemakz</a>
+    <!-- [REVERT POINT] TEST CHANGE, round 18 — order swapped from Work/About
+         to About/Work, homepage header only (other pages' headers are
+         separate copies, untouched). -->
     <nav class="site-nav">
-      <a href="my-work.html">Work</a>
       <a href="about.html">About</a>
+      <a href="my-work.html">Work</a>
     </nav>
     <a href="mailto:muidemakz@gmail.com" class="btn-outline">Contact</a>
   </div>
