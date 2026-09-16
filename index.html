@@ -861,8 +861,10 @@ a { color: inherit; }
     /* [REVERT POINT] TEST CHANGE, round 15 — was 1.05fr 1fr (roughly
        even halves). Matched to split.html's own left/right ratio instead:
        a narrower, fixed-minimum bio column instead of one that grows
-       past ~34% on wide screens. */
-    grid-template-columns: minmax(380px, 34%) 1fr;
+       past ~34% on wide screens.
+       [REVERT POINT] TEST CHANGE, round 22 — widened again, 380px/34% ->
+       420px/39%, per feedback that the hero column read too narrow. */
+    grid-template-columns: minmax(420px, 39%) 1fr;
     /* [REVERT POINT] TEST CHANGE, round 19 — was 52px, but .shelf-links is
        only ~43px tall at this breakpoint (no wrap, single row), so the
        extra ~9px plus .shelf's own bottom padding (removed below) left a
@@ -973,19 +975,15 @@ a { color: inherit; }
 </head>
 <body>
 
-<header class="site-header">
-  <div class="wrap">
-    <a href="index.html" class="logo">muidemakz</a>
-    <!-- [REVERT POINT] TEST CHANGE, round 18 — order swapped from Work/About
-         to About/Work, homepage header only (other pages' headers are
-         separate copies, untouched). -->
-    <nav class="site-nav">
-      <a href="about.html" id="navAbout">About</a>
-      <a href="my-work.html" id="navWork">Work</a>
-    </nav>
-    <a href="mailto:muidemakz@gmail.com" class="btn-outline">Contact</a>
-  </div>
-</header>
+<!-- [REVERT POINT] TEST CHANGE, round 21 — was a hardcoded <header
+     class="site-header"> copy (same markup duplicated across all 17
+     pages, which is exactly how index.html's About/Work order and other
+     pages' order drifted apart in the first place). Now the shared
+     component from js/header.js — see that file for the single source of
+     truth. Must stay a plain synchronous <script src>, not async/defer,
+     since it renders via document.write at this exact point in the body. -->
+<div id="site-header-root"></div>
+<script src="js/header.js"></script>
 
 <!-- [REVERT POINT] TEST CHANGE, round 8 — .hero-static and .shelf used to
      be full-width stacked sections (hero on top, shelf below). Wrapped in
@@ -1208,38 +1206,30 @@ a { color: inherit; }
 })();
 
 (function () {
-  // [REVERT POINT] TEST CHANGE, round 19 — aligns the header's About/Work
-  // divider line with the .home-grid column boundary below it (where
-  // .hero-static ends and the story reel begins), so the two "lines" read
-  // as one continuous grid rather than two unrelated layouts. About's own
-  // position is left untouched (it's the anchor); the gap between About
-  // and Work grows or shrinks via margin-left on Work so the divider
-  // between them lands exactly on that boundary. Only active at the same
-  // min-width:900px breakpoint the split-view grid itself uses — below
-  // that, the header goes back to its normal even spacing (see resize
-  // handling below, which clears the margin under 900px).
+  // [REVERT POINT] TEST CHANGE, round 22 — was margin-left on #navWork
+  // itself, which shoved Work away from About, leaving a dead gap between
+  // them with the divider floating in the middle of it. Per feedback,
+  // About and Work must stay side by side (touching, only the 1px border
+  // between them) — so the margin now goes on the whole .site-nav
+  // container instead, shifting About+Work together as one unit. The
+  // divider (Work's own border-left, sitting exactly at nav's own left
+  // edge + About's width) still lands on the .home-grid column boundary;
+  // About's right edge now touches it directly, Work's left edge starts
+  // right there too, same as the boundary itself.
+  const nav = document.querySelector('.site-nav');
   const workLink = document.getElementById('navWork');
   const heroStatic = document.querySelector('.hero-static');
   const isSplitView = window.matchMedia && window.matchMedia('(min-width: 900px)');
 
   function alignDivider() {
-    if (!workLink || !heroStatic || !isSplitView || !isSplitView.matches) {
-      if (workLink) workLink.style.marginLeft = '';
+    if (!nav || !workLink || !heroStatic || !isSplitView || !isSplitView.matches) {
+      if (nav) nav.style.marginLeft = '';
       return;
     }
-    workLink.style.marginLeft = '';
-    // two passes: adding margin here changes nav's own rendered width,
-    // which (even with the flex-start fix above) still nudges the
-    // boundary/divider gap by a few px on the first pass — a second
-    // incremental correction closes that residual instead of leaving a
-    // near-miss.
-    let margin = 0;
-    for (let i = 0; i < 2; i++) {
-      const boundaryX = heroStatic.getBoundingClientRect().right;
-      const dividerX = workLink.getBoundingClientRect().left;
-      margin += boundaryX - dividerX;
-      workLink.style.marginLeft = margin + 'px';
-    }
+    nav.style.marginLeft = '';
+    const boundaryX = heroStatic.getBoundingClientRect().right;
+    const dividerX = workLink.getBoundingClientRect().left;
+    nav.style.marginLeft = (boundaryX - dividerX) + 'px';
   }
 
   alignDivider();
