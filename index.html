@@ -792,7 +792,11 @@ a { color: inherit; }
     flex: 1;
     min-height: 0;
     display: grid;
-    grid-template-columns: 1.05fr 1fr;
+    /* [REVERT POINT] TEST CHANGE, round 15 — was 1.05fr 1fr (roughly
+       even halves). Matched to split.html's own left/right ratio instead:
+       a narrower, fixed-minimum bio column instead of one that grows
+       past ~34% on wide screens. */
+    grid-template-columns: minmax(380px, 34%) 1fr;
     /* reserves room for .shelf-links, which stays position:fixed across
        the full width at the very bottom regardless of this grid */
     padding-bottom: 52px;
