@@ -231,6 +231,15 @@
 
 .work-card.is-linked { cursor: pointer; }
 
+/* real <a> covering the whole card — see js/work.js buildCardEl — so the
+   card is a genuine link (works with no JS, reachable by crawlers and
+   keyboard) rather than a div with a JS click handler bolted on. */
+.work-card-hit {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+}
+
 .work-card.is-soon { opacity: 0.55; }
 .work-card.is-soon:hover { transform: none; box-shadow: 8px 8px 0 var(--ink-hard); }
 
@@ -350,6 +359,7 @@
   right: 16px;
   display: flex;
   justify-content: flex-start;
+  gap: 6px;
   font-family: var(--font-mono);
   font-size: 14px;
   font-weight: 700;
@@ -362,6 +372,23 @@
   background: var(--paper-hard);
   border: 1px solid var(--ink-hard);
   padding: 4px 8px;
+}
+
+/* SHIPPED / CONCEPT badge — same mono metadata treatment as the category
+   badge next to it, just color-coded so shipped-vs-concept reads at a
+   glance without having to open the case study. SHIPPED gets the bold
+   accent fill (Higher specificity than the generic ".work-card-meta span"
+   rule above so it wins); CONCEPT just inherits that same opaque
+   paper/ink badge look — legible over any card — dimmed slightly to read
+   as the quieter of the two. */
+.work-card-meta .work-card-status--shipped {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.work-card-meta .work-card-status--concept {
+  opacity: 0.7;
 }
 
 /* ---------- list view ---------- */

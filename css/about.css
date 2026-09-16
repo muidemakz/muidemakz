@@ -460,26 +460,39 @@
   margin-top: 4px;
 }
 
+/* [REVERT POINT] was padding: 20px 22px with no left border, and hover
+   inverted the whole row to solid accent + white text. Fine when every
+   row was one short line; once .exp-scope added a paragraph underneath,
+   a full-row color-invert on that much text read as too loud. Swapped for
+   a left accent bar + faint tint — quieter, still an obvious hover state.
+   padding-left is 3px tighter to net out at 22px total with the new
+   border, so nothing shifts when the border-left color changes. */
+/* [REVERT POINT] was 4 columns (54px ledger-n, company, role, dates), then
+   3 (company, role, dates) once numbering was removed — company and role
+   sat side by side. Now 2: .exp-head (company stacked above role) + dates,
+   so the two read as one identity block instead of a spreadsheet row. */
 .ledger-row {
   display: grid;
-  grid-template-columns: 54px minmax(0, 1.3fr) minmax(0, 1.2fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 20px;
-  align-items: baseline;
-  padding: 20px 22px;
+  align-items: start;
+  padding: 20px 22px 20px 19px;
   border-bottom: 1px solid var(--ink-hard);
-  transition: background 0.14s ease, color 0.14s ease;
+  border-left: 3px solid transparent;
+  transition: background 0.14s ease, border-color 0.14s ease;
 }
 
 .ledger-row:nth-child(2n) { background: var(--grey); }
 
-.ledger-row:hover { background: var(--accent); color: #fff; }
+.ledger-row:hover {
+  background: rgba(255, 59, 0, 0.06);
+  border-left-color: var(--accent);
+}
 
-.ledger-n {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.1em;
-  opacity: 0.6;
+.exp-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .exp-company {
@@ -496,6 +509,64 @@
   font-size: 13.5px;
   line-height: 1.35;
 }
+
+/* [REVERT POINT] was grid-column:2/-1 to skip past the row-number column
+   that used to sit at column 1. Numbering's gone now, company is column 1,
+   so this just spans the full row — still lines up under the company name
+   since that's where column 1 starts. Was also capped at max-width:62ch;
+   now fills the row's full width instead. A dedicated top border + margin
+   separates it from the header line instead of the two blocks running
+   together. */
+.exp-scope {
+  grid-column: 1 / -1;
+  margin: 10px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid rgba(13, 13, 13, 0.12);
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.55;
+  opacity: 0.75;
+}
+
+/* CONTRACT tag — same idea as the SHIPPED/CONCEPT work-card badge: a small
+   mono metadata marker so an overlapping date range reads as an
+   intentional contract engagement, not a scheduling error. [REVERT POINT]
+   was an outlined box sitting mid-sentence in the role text, cramped
+   against the words around it — a filled chip with real breathing room
+   reads as a deliberate tag instead of a stray fragment. Fixed colors now
+   that hover no longer inverts the row to solid accent (see .ledger-row). */
+.exp-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  margin-left: 8px;
+  background: rgba(255, 59, 0, 0.1);
+  color: var(--accent);
+  vertical-align: middle;
+}
+
+/* the collapsed "Also" row summarizes 4 minor roles in one dense line —
+   sized down a step from the 5 detailed rows so it reads as the
+   deliberately lighter, secondary entry it is. */
+/* black bg sets it apart as the one summary/closing row rather than a 7th
+   peer entry — nth-child(2n) grey striping and the accent hover tint
+   would both be invisible on black, so both are overridden here. */
+.ledger-row--collapsed {
+  background: var(--ink-hard);
+  color: var(--paper-hard);
+}
+
+.ledger-row--collapsed:hover {
+  background: #1a1a1a;
+  border-left-color: var(--accent);
+}
+
+.ledger-row--collapsed .exp-company { font-size: 16px; }
+.ledger-row--collapsed .exp-role { opacity: 0.7; }
 
 .exp-dates {
   font-family: var(--font-mono);
@@ -582,12 +653,16 @@
   .story-row { grid-template-columns: 1fr; gap: 16px; padding: 38px 0; }
   .story-head { max-width: none; }
 
+  /* [REVERT POINT] was "40px 1fr" (a number column + content column) with
+     .exp-role/.exp-dates forced into column 2 — that leading 40px column
+     existed only to hold the row number, now removed. Left as-is it would
+     squeeze .exp-company into that same narrow 40px column instead. Single
+     column, everything just stacks top to bottom. */
   .ledger-row {
-    grid-template-columns: 40px 1fr;
+    grid-template-columns: 1fr;
     row-gap: 6px;
     padding: 16px 16px;
   }
-  .exp-role, .exp-dates { grid-column: 2; }
 }
 
 @media (max-width: 560px) {

@@ -638,7 +638,7 @@ a { color: inherit; }
   <div class="wrap">
   <p class="hero-greeting">Hey, I'm Excellent</p>
   <h1 class="hero-headline">Senior Product <span class="hero-role-cycle" id="heroRoleCycle">Designer</span></h1>
-  <p class="hero-tagline">I've built a career turning ambiguous briefs into shipped products that produce <strong>consistent MRR</strong>.</p>
+  <p class="hero-tagline">I've built a career turning ambiguous briefs into shipped products with <strong>real users and real revenue</strong> behind them.</p>
 
   <div class="hero-details">
   <div class="hero-facts">
@@ -690,51 +690,57 @@ a { color: inherit; }
 
 <section class="shelf">
   <div class="shelf-grid">
+    <!-- [REVERT POINT] was Coreloops, Cardtonic, Teesas, Fundall, Omnione,
+         Omnibiz, Raven Pay, VENX — led with unshipped work. Reordered
+         shipped-first (Omnione, Fundall, Teesas, Omnibiz), then concept
+         work (Coreloops, Cardtonic, Raven Pay, VENX), matching my-work.html.
+         shelf-kind now also carries a Shipped/Concept tag, same status
+         source as js/data.js's `status` field. -->
     <div class="shelf-track" id="shelfTrack">
+      <a class="shelf-card shelf-card--highlight" href="omnione.html" style="background-image:url(images/omnione/omnione-design-system-cover-banner.png)">
+        <p class="shelf-kind">Design Systems &middot; Shipped</p>
+        <p class="shelf-name">Omnione</p>
+        <p class="shelf-caption">One Design Language For Four Product Teams</p>
+        <p class="shelf-cta">View Case Study &rarr;</p>
+      </a>
+      <a class="shelf-card" href="fundall.html" style="background-image:url(images/fundall/cover.png)">
+        <p class="shelf-kind">Lending UX &middot; Shipped</p>
+        <p class="shelf-name">Fundall</p>
+        <p class="shelf-caption">Salary Advance: 6 Minutes To Under 2</p>
+        <p class="shelf-cta">View Case Study &rarr;</p>
+      </a>
+      <a class="shelf-card" href="teesaslms.html" style="background-image:url(images/teesas/banner.png)">
+        <p class="shelf-kind">Multi-Persona UX &middot; Shipped</p>
+        <p class="shelf-name">Teesas LMS</p>
+        <p class="shelf-caption">Three Rebuilds To Get One LMS Right</p>
+        <p class="shelf-cta">View Case Study &rarr;</p>
+      </a>
+      <a class="shelf-card" href="empty-state.html" style="background-image:url(images/omnibiz/banner-image.png)">
+        <p class="shelf-kind">Empty States &middot; Shipped</p>
+        <p class="shelf-name">Omnibiz</p>
+        <p class="shelf-caption">Making &ldquo;Not Here Yet&rdquo; Feel Like A Preorder</p>
+        <p class="shelf-cta">View Case Study &rarr;</p>
+      </a>
       <a class="shelf-card" href="coreloops.html" style="background-image:url(images/coreloops/coreloop-cover.png)">
-        <p class="shelf-kind">Information Architecture</p>
+        <p class="shelf-kind">Information Architecture &middot; Concept</p>
         <p class="shelf-name">Coreloops</p>
         <p class="shelf-caption">Filters From A Drawer To Zero Clicks</p>
         <p class="shelf-cta">View Case Study &rarr;</p>
       </a>
       <a class="shelf-card shelf-card--highlight" href="cardtonic.html" style="background-image:url(images/Cardtonic/00%20%C2%B7%20Cover.png)">
-        <p class="shelf-kind">P2P Payments</p>
+        <p class="shelf-kind">P2P Payments &middot; Concept</p>
         <p class="shelf-name">Cardtonic</p>
         <p class="shelf-caption">Sending Money To People, Not Accounts</p>
         <p class="shelf-cta">View Case Study &rarr;</p>
       </a>
-      <a class="shelf-card" href="teesaslms.html" style="background-image:url(images/teesas/banner.png)">
-        <p class="shelf-kind">Multi-Persona UX</p>
-        <p class="shelf-name">Teesas LMS</p>
-        <p class="shelf-caption">Three Rebuilds To Get One LMS Right</p>
-        <p class="shelf-cta">View Case Study &rarr;</p>
-      </a>
-      <a class="shelf-card" href="fundall.html" style="background-image:url(images/fundall/cover.png)">
-        <p class="shelf-kind">Lending UX</p>
-        <p class="shelf-name">Fundall</p>
-        <p class="shelf-caption">Salary Advance: 6 Minutes To Under 2</p>
-        <p class="shelf-cta">View Case Study &rarr;</p>
-      </a>
-      <a class="shelf-card shelf-card--highlight" href="omnione.html" style="background-image:url(images/omnione/omnione-design-system-cover-banner.png)">
-        <p class="shelf-kind">Design Systems</p>
-        <p class="shelf-name">Omnione</p>
-        <p class="shelf-caption">One Design Language For Four Product Teams</p>
-        <p class="shelf-cta">View Case Study &rarr;</p>
-      </a>
-      <a class="shelf-card" href="empty-state.html" style="background-image:url(images/omnibiz/banner-image.png)">
-        <p class="shelf-kind">Empty States</p>
-        <p class="shelf-name">Omnibiz</p>
-        <p class="shelf-caption">Making &ldquo;Not Here Yet&rdquo; Feel Like A Preorder</p>
-        <p class="shelf-cta">View Case Study &rarr;</p>
-      </a>
       <a class="shelf-card" href="raven-pay.html" style="background-image:url(images/ravenpay/banner-image.png)">
-        <p class="shelf-kind">Trust &amp; Onboarding</p>
+        <p class="shelf-kind">Trust &amp; Onboarding &middot; Concept</p>
         <p class="shelf-name">Raven Pay</p>
         <p class="shelf-caption">Making A Banking App Read As Serious, Not Cute</p>
         <p class="shelf-cta">View Case Study &rarr;</p>
       </a>
       <a class="shelf-card" href="venx.html" style="background-image:url(images/venx/cover-banner-image.png)">
-        <p class="shelf-kind">AI Product Design</p>
+        <p class="shelf-kind">AI Product Design &middot; Concept</p>
         <p class="shelf-name">VENX</p>
         <p class="shelf-caption">A Full AI Sales CRM Concept In 24 Hours</p>
         <p class="shelf-cta">View Case Study &rarr;</p>

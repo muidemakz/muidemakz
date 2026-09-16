@@ -1287,24 +1287,44 @@
 .case-leadership-grid--auto .case-leadership { min-height: 0; }
 
 /* edge-case pair */
+/* [REVERT POINT] grid items default to align-items:stretch, so a card
+   paired with a taller sibling in the same row was being stretched to
+   match it — but since .case-edge's own content only hugs its own height
+   now (no more space-between), that extra stretched space just sat empty
+   below the image, before the card's own border. align-items:start makes
+   every card size to its own content only, regardless of row neighbors —
+   the image always touches its own bottom border now. */
 .case-edge-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
   border-top: 1px solid var(--ink-hard);
   border-left: 1px solid var(--ink-hard);
   margin-top: 24px;
 }
 
+/* [REVERT POINT] was justify-content:space-between + a fixed min-height:
+   480px — fine when body copy was long enough to fill that height, but a
+   short card (just a kicker + title, no copy paragraph, e.g. "Omni /
+   Single Sign On") left a huge dead gap between the text and the image
+   below it, since space-between stretched that gap to fill the full
+   480px regardless of content length. flex-start + a fixed gap makes
+   every card hug its own content instead. */
 .case-edge {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: 480px;
+  justify-content: flex-start;
+  min-height: 0;
   border-right: 1px solid var(--ink-hard);
   border-bottom: 1px solid var(--ink-hard);
 }
 
-.case-edge-body { padding: 32px; }
+.case-edge-body { padding: 32px 32px 0; }
+
+/* a card with no .case-edge-media sibling (e.g. the full-width text-only
+   "Surfaces It Had To Serve" banner) needs its own bottom padding back,
+   since that would otherwise come from .case-edge-media's top padding. */
+.case-edge-body:last-child { padding-bottom: 32px; }
 
 .case-edge-title {
   font-family: var(--font-hard);
@@ -1317,7 +1337,10 @@
 }
 
 .case-edge-copy { font-family: var(--font-hard); font-size: 18px; line-height: 1.35; margin: 0; }
-.case-edge-media { padding: 16px 24px 0; }
+/* top gap so text and image aren't touching, no bottom padding so the
+   image runs flush to the card's own bottom border instead of floating
+   with a gap above it. */
+.case-edge-media { padding: 28px 24px 0; }
 .case-edge-media .case-crop { height: 239px; }
 
 .case-flag-box { border: 1px solid var(--ink-hard); padding: 24px 22px; margin-top: 28px; }
@@ -1428,6 +1451,17 @@
 
 /* edge-card variants: a dark statement cell, and labelled full screenshots */
 .case-edge--dark { background: var(--ink-hard); color: var(--paper-hard); }
+
+/* [REVERT POINT] the intro/statement card used to sit as a half-width peer
+   next to the first surface card, paired with an image of its own. Now
+   spans the full grid width as a standalone banner (its image moved out
+   into its own dedicated "Omni / Single Sign On" card below) — min-height
+   reset since a full-width text-only card doesn't need the same fixed
+   480px as the image cards next to it. */
+.case-edge--full {
+  grid-column: 1 / -1;
+  min-height: 0;
+}
 
 .case-edge-kicker {
   font-family: var(--font-mono);

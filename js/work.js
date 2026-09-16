@@ -80,6 +80,87 @@
   const workEmptyClearBtn = document.getElementById("workEmptyClearBtn");
   if (workEmptyClearBtn) workEmptyClearBtn.addEventListener("click", clearAllFilters);
 
+  // builds one <li class="work-card"> exactly like the static markup
+  // embedded in my-work.html for the default first page — shared so the
+  // JS-rendered path (filters, search, other pages) never drifts from what
+  // a no-JS visitor or a crawler sees on first paint.
+  function buildCardEl(project) {
+    const li = document.createElement("li");
+    li.className = "work-card";
+    if (project.image) {
+      li.classList.add("has-image");
+      // quoted, since an unquoted CSS url() token can't contain the
+      // space in filenames like "00 · Cover.png" — Cardtonic's card
+      // was silently failing to render its cover for exactly this
+      // reason before this was quoted.
+      li.style.backgroundImage = `url("${project.image}")`;
+      li.style.backgroundSize = "cover";
+    } else if (project.brand) {
+      li.classList.add("has-logo");
+    }
+    if (project.link) {
+      li.classList.add("is-linked");
+      // a real <a>, not a JS click handler — the card works as a link
+      // with no JS at all, and is keyboard/crawler-reachable for free.
+      const hit = document.createElement("a");
+      hit.className = "work-card-hit";
+      hit.href = project.link;
+      hit.setAttribute("aria-label", "View case study: " + project.name);
+      li.appendChild(hit);
+    } else {
+      li.classList.add("is-soon");
+      const banner = document.createElement("span");
+      banner.className = "work-card-soon";
+      banner.textContent = "Coming Soon";
+      li.appendChild(banner);
+    }
+
+    if (project.brand && !project.image) {
+      const logoDiv = document.createElement("div");
+      logoDiv.className = "work-card-logo";
+      logoDiv.textContent = project.brand;
+      li.appendChild(logoDiv);
+    }
+
+    const name = document.createElement("span");
+    name.className = "work-card-name";
+    name.textContent = project.name;
+    li.appendChild(name);
+
+    if (project.caption) {
+      li.classList.add("has-caption");
+      const caption = document.createElement("span");
+      caption.className = "work-card-caption";
+      caption.textContent = project.caption;
+      li.appendChild(caption);
+    }
+
+    const meta = document.createElement("span");
+    meta.className = "work-card-meta";
+    // SHIPPED/CONCEPT badge — shipped vs concept work is otherwise
+    // indistinguishable at a glance in the grid, and the "Coming Soon"
+    // banner already covers the not-yet-published entries, so this only
+    // shows on projects that actually declare a status.
+    const statusHtml = project.status
+      ? `<span class="work-card-status work-card-status--${project.status}">${project.status}</span>`
+      : "";
+    meta.innerHTML = `${statusHtml}<span>${project.categories[0]}</span>`;
+    li.appendChild(meta);
+
+    return li;
+  }
+
+  function isDefaultState() {
+    return !state.search && state.categories.size === 0 && state.page === 1;
+  }
+
+  // [FIX] isDefaultState() alone isn't enough to decide "leave the DOM
+  // alone" — after a filter runs once and is then cleared back to default,
+  // the grid holds the *filtered* leftovers, not the original static
+  // markup, even though state is default again. Once JS has rebuilt the
+  // grid even a single time, it owns the grid from then on.
+  let staticMarkupIntact = true;
+
   function renderGrid() {
     // [FIX] was a single exact-phrase includes() check, so "empty states"
     // never matched "Omnibiz Empty & Preorder States" — the words aren't
@@ -107,63 +188,22 @@
     const startIdx = (state.page - 1) * PAGE_SIZE;
     const pageItems = filtered.slice(startIdx, startIdx + PAGE_SIZE);
 
-    grid.innerHTML = "";
-    pageItems.forEach((project) => {
-      const li = document.createElement("li");
-      li.className = "work-card";
-      if (project.image) {
-        li.classList.add("has-image");
-        // quoted, since an unquoted CSS url() token can't contain the
-        // space in filenames like "00 · Cover.png" — Cardtonic's card
-        // was silently failing to render its cover for exactly this
-        // reason before this was quoted.
-        li.style.backgroundImage = `url("${project.image}")`;
-        li.style.backgroundSize = "cover";
-      } else if (project.brand) {
-        li.classList.add("has-logo");
-      }
-      if (project.link) {
-        li.classList.add("is-linked");
-        li.tabIndex = 0;
-        li.addEventListener("click", () => { window.location.href = project.link; });
-        li.addEventListener("keydown", (e) => {
-          if (e.key === "Enter") window.location.href = project.link;
-        });
-      } else {
-        li.classList.add("is-soon");
-        const banner = document.createElement("span");
-        banner.className = "work-card-soon";
-        banner.textContent = "Coming Soon";
-        li.appendChild(banner);
-      }
-
-      if (project.brand && !project.image) {
-        const logoDiv = document.createElement("div");
-        logoDiv.className = "work-card-logo";
-        logoDiv.textContent = project.brand;
-        li.appendChild(logoDiv);
-      }
-
-      const name = document.createElement("span");
-      name.className = "work-card-name";
-      name.textContent = project.name;
-      li.appendChild(name);
-
-      if (project.caption) {
-        li.classList.add("has-caption");
-        const caption = document.createElement("span");
-        caption.className = "work-card-caption";
-        caption.textContent = project.caption;
-        li.appendChild(caption);
-      }
-
-      const meta = document.createElement("span");
-      meta.className = "work-card-meta";
-      meta.innerHTML = `<span>${project.categories[0]}</span>`;
-      li.appendChild(meta);
-
-      grid.appendChild(li);
-    });
+    // [REVERT POINT] the default (no search/filter, page 1) view is already
+    // present as static HTML in my-work.html — first paint and no-JS
+    // visitors see real cards, not an empty <ul>. JS only needs to rebuild
+    // the grid when the user actually changes the state away from that
+    // default; leaving the static markup alone otherwise avoids an
+    // unnecessary rebuild and keeps this a true progressive enhancement
+    // rather than a JS-only render. To revert: delete this `if` and always
+    // rebuild (see git history for the old unconditional version).
+    if (staticMarkupIntact && isDefaultState() && grid.children.length > 0) {
+      // state matches the static default and the DOM hasn't been touched
+      // yet — leave the server/static-rendered cards exactly as they are.
+    } else {
+      grid.innerHTML = "";
+      pageItems.forEach((project) => grid.appendChild(buildCardEl(project)));
+      staticMarkupIntact = false;
+    }
 
     empty.hidden = filtered.length > 0;
     if (filtered.length === 0) {
