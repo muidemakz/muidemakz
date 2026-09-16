@@ -723,15 +723,24 @@ a { color: inherit; }
   z-index: 1;
 }
 
-/* [REVERT POINT] history: was 0.62/0.85/0.99 originally, then lightened to
-   0.15/0.35/0.68 (cover art showed but copy wasn't legible), then a
-   0.25/0.55/0.88 gradient. Now a flat 80% dark wash across the whole
-   card instead of a gradient. */
+/* [REVERT POINT] TEST CHANGE, round 17 — the old flat 80% dark wash (see
+   git history) made every card's cover photo essentially invisible, which
+   defeats the point of a story reel showing each case study's own image.
+   Now a bottom-weighted gradient instead, like a magazine cover: the photo
+   reads clearly through the top ~55% of the card, and only the bottom
+   portion (where name/caption/CTA sit) darkens enough for the text to stay
+   legible over any image. */
 .shelf-card::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(13, 13, 13, 0.8);
+  background: linear-gradient(
+    180deg,
+    rgba(13, 13, 13, 0.05) 0%,
+    rgba(13, 13, 13, 0.1) 45%,
+    rgba(13, 13, 13, 0.55) 70%,
+    rgba(13, 13, 13, 0.92) 100%
+  );
 }
 
 .shelf-card--highlight { box-shadow: 10px 10px 0 var(--accent); border-color: var(--accent); }
