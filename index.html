@@ -812,6 +812,14 @@ a { color: inherit; }
     padding-bottom: 52px;
   }
 
+  /* [REVERT POINT] TEST CHANGE, round 12 — was justify-content: center,
+     which centered the (comparatively short) hero content in the full
+     locked-viewport column height, leaving a large empty gap both above
+     AND below it — the report was "whitespace at the bottom", but the
+     same amount also sat above, just less noticeable scrolled off-screen.
+     Top-aligned instead (flex-start + fixed top padding), matching the
+     right column, which fills edge-to-edge with cards and has no such
+     gap. To revert: swap back to justify-content: center; padding-top: 0. */
   .hero-static {
     height: 100%;
     min-height: 0;
@@ -819,8 +827,8 @@ a { color: inherit; }
     border-right: 1px solid var(--ink-hard);
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding-top: 0;
+    justify-content: flex-start;
+    padding-top: 72px;
     padding-bottom: 0;
   }
 
