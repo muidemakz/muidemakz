@@ -81,31 +81,31 @@
 
 * { box-sizing: border-box; }
 
-/* [REVERT POINT] TEST CHANGE (branch: test/homepage-backdrop-prose).
-   Was `height: 100%; overflow: hidden;` — a locked, never-scrolls
-   one-screen composition (hero + shelf + footer link strip sized to
-   exactly fill the viewport via the flex column below). Adding a
-   testimonials section needs more vertical room than that locked
-   composition has, so this page now scrolls normally on desktop too,
-   same as every other page on the site. The mobile override below (which
-   already did this at <640px) is now redundant but left in place —
-   harmless, and it documents the original intent.
-   To revert: change back to `height: 100%; overflow: hidden;`. */
-html, body { margin: 0; height: auto; overflow: visible; }
-
-@media (max-width: 640px) {
-  html, body { height: auto; overflow: visible; }
-  body { min-height: 100%; }
-  .shelf { flex: none; }
-  .shelf-grid { flex: none; height: 46vh; min-height: 260px; }
-}
+/* [REVERT POINT] TEST CHANGE, round 3 (branch: test/homepage-backdrop-prose).
+   Was `height: 100%; overflow: hidden;` with `body { display: flex;
+   flex-direction: column }` and every section below sized in vh
+   (`flex: 1`, `flex: 0 0 34vh`, padding/margins in vh, headline in
+   `clamp(30px, 6.4vh, 84px)`) — a locked one-screen composition that
+   squeezed every section to fit exactly one viewport height. Round 2
+   already dropped the hard `overflow: hidden` lock (for the testimonials
+   section), but the vh-based sizing underneath was never rebuilt, so
+   sections still felt cramped even once they could scroll — a short hero
+   paragraph still reads tight when its padding is `2.6vh`, because that
+   number shrinks right along with the window.
+   This round replaces the whole page with normal, content-driven block
+   flow — same as about.html/my-work.html: fixed px padding, vw-based
+   clamp() for type (not vh), sections sized to their own content instead
+   of a fraction of the viewport. See each section's own [REVERT POINT]
+   below for the specific before/after values.
+   To revert entirely: restore `height:100%; overflow:hidden` here, put
+   `display:flex; flex-direction:column` back on body, and revert each
+   vh-sized rule flagged below. */
+html, body { margin: 0; }
 
 body {
   background: var(--paper-hard);
   color: var(--ink-hard);
   font-family: var(--font-body);
-  display: flex;
-  flex-direction: column;
 }
 
 /* .wrap intentionally NOT redeclared here — this page previously defined
@@ -119,10 +119,7 @@ a { color: inherit; }
 
 /* header chrome comes from the linked css/style.css (.site-header/.logo/
    .site-nav/.btn-outline) — same markup and stylesheet as about.html and
-   every case study, not a local reimplementation. flex-shrink is a
-   layout-only addition so it survives being a flex child in this page's
-   locked single-viewport column, not a visual override. */
-.site-header { flex-shrink: 0; }
+   every case study, not a local reimplementation. */
 
 /* =========================================================================
    SECTION SWAP — top black+hatched, bottom grey     [REVERT POINT]
@@ -148,17 +145,16 @@ a { color: inherit; }
   --grey: #f2f0eb;
 }
 
-/* ---------- static details card (never changes / never scrolls) ---------- */
-
+/* ---------- intro section ---------- */
+/* [REVERT POINT] TEST CHANGE, round 3. Was `flex: 1; min-height: 0; display:
+   flex; flex-direction: column; justify-content: center;` sized by however
+   much of the locked viewport was left over, with `padding-top: 2.6vh;
+   padding-bottom: 2vh` — padding that shrinks with the window instead of
+   giving the content a fixed amount of room. Now a plain block section
+   with fixed padding, same convention as about.css's `.band-inner`. */
 .hero-static {
   position: relative;
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-top: 2.6vh;
-  padding-bottom: 2vh;
+  padding: 72px 0 64px;
   border-bottom: 1px solid var(--ink-hard);
   background: var(--ink-hard);
   color: var(--paper-hard);
@@ -197,14 +193,20 @@ a { color: inherit; }
   letter-spacing: 0.1em;
   text-transform: uppercase;
   opacity: 0.65;
-  margin: 0 0 1.2vh;
+  margin: 0 0 14px;
 }
 
+/* [REVERT POINT] TEST CHANGE, round 3 — was clamp(30px, 6.4vh, 84px), a
+   viewport-HEIGHT-based clamp (unusual; ties font size to how tall the
+   window is, part of the one-screen-fit pattern). Every other big
+   headline on the site (About's name, case-study titles) clamps against
+   vw instead — switched to match, e.g. about.css's own hero title at
+   clamp(44px, 6vw, 82px). */
 .hero-headline {
   font-family: var(--font-hard);
   font-weight: 700;
   text-transform: uppercase;
-  font-size: clamp(30px, 6.4vh, 84px);
+  font-size: clamp(34px, 5.6vw, 80px);
   line-height: 0.98;
   letter-spacing: -0.03em;
   margin: 0;
@@ -212,9 +214,9 @@ a { color: inherit; }
 
 .hero-tagline {
   font-family: var(--font-body);
-  font-size: clamp(15px, 2.3vh, 20px);
+  font-size: clamp(15px, 1.4vw, 20px);
   line-height: 1.45;
-  margin: 1.4vh 0 2.2vh;
+  margin: 16px 0 0;
   max-width: 58ch;
 }
 
@@ -224,8 +226,9 @@ a { color: inherit; }
 }
 
 @media (max-width: 640px) {
+  .hero-static { padding: 48px 0 40px; }
   .hero-headline { font-size: clamp(26px, 8.4vw, 44px); }
-  .hero-tagline { font-size: 17px; margin-bottom: 2vh; }
+  .hero-tagline { font-size: 17px; }
 }
 
 /* auto-width so the badge hugs each word tightly instead of sitting
@@ -438,23 +441,25 @@ a { color: inherit; }
    of separated cards. Numbers get the same accent-orange treatment
    .hero-stat-num used; focus-area names and "Valideity" stay inline links/
    bold instead of separate pill/label elements. */
+/* [REVERT POINT] TEST CHANGE, round 3 — margin-top/font-size were vh-based
+   (2.4vh, clamp(...,2vh,...)); now fixed px, same as everywhere else. */
 .hero-prose {
   width: 100%;
-  margin-top: 2.4vh;
+  margin-top: 28px;
   max-width: 68ch;
 }
 
 .hero-prose-p {
   font-family: var(--font-body);
-  font-size: clamp(15px, 2vh, 17px);
+  font-size: 16px;
   line-height: 1.65;
-  margin: 0 0 1.6vh;
+  margin: 0 0 16px;
   opacity: 0.92;
 }
 
 .hero-prose-building {
   opacity: 0.75;
-  font-size: clamp(14px, 1.8vh, 15.5px);
+  font-size: 14.5px;
 }
 
 .hero-prose-label {
@@ -488,7 +493,7 @@ a { color: inherit; }
 }
 
 @media (max-width: 640px) {
-  .hero-prose { margin-top: 2vh; }
+  .hero-prose { margin-top: 20px; }
   .hero-prose-p { font-size: 15.5px; }
 }
 
@@ -498,14 +503,15 @@ a { color: inherit; }
    .hero-static above instead. To revert: swap --grey back to ink-hard,
    restore the hatch background-image here, and set color back to
    paper-hard. */
+/* [REVERT POINT] TEST CHANGE, round 3 — was `flex: 0 0 34vh` (a fixed
+   fraction of the viewport, part of the one-screen-fit layout) with
+   padding in vh. Now sized to its own content: fixed px padding, and
+   .shelf-grid/.shelf-card below get an explicit px height instead of a
+   percentage that depended on this being 34vh tall. */
 .shelf {
-  flex: 0 0 34vh;
-  min-height: 0;
   background-color: var(--grey);
   color: var(--ink-hard);
-  padding: 2.2vh 0 0;
-  display: flex;
-  flex-direction: column;
+  padding: 56px 0 0;
 }
 
 /* ---------- link strip: 7 across, icons swap in on mobile ---------- */
@@ -516,9 +522,8 @@ a { color: inherit; }
    ink-hard background); now explicit so it survives the shelf's colour
    change untouched. */
 .shelf-links {
-  flex-shrink: 0;
   display: flex;
-  margin-top: 2vh;
+  margin-top: 56px;
   background: var(--ink-hard);
   color: var(--paper-hard);
   border-top: 1px solid rgba(242, 240, 235, 0.3);
@@ -588,9 +593,12 @@ a { color: inherit; }
    sat at the top of this box in normal flow, so all the slack between the
    card height and the shelf's fixed 34vh landed below the cards, none
    above. Flex + center gives equal top/bottom margin instead. */
+/* [REVERT POINT] TEST CHANGE, round 3 — was `flex: 1; min-height: 0`,
+   sized by the parent .shelf's leftover 34vh. Now a fixed height so
+   .shelf-card's min-height:46% below (also converted to a fixed px value)
+   has something concrete to size against. */
 .shelf-grid {
-  flex: 1;
-  min-height: 0;
+  height: 420px;
   display: flex;
   align-items: center;
   overflow-x: auto;
@@ -610,13 +618,16 @@ a { color: inherit; }
   padding: 0 4px;
 }
 
+/* [REVERT POINT] TEST CHANGE, round 3 — min-height was 46% (of the
+   shelf-grid's old vh-derived height). Fixed px now that shelf-grid has
+   a fixed height of its own. */
 .shelf-card {
   flex: 0 0 380px;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  min-height: 46%;
+  min-height: 320px;
   padding: 18px 22px;
   /* [REVERT POINT] was paper-hard (white) — invisible against the shelf's
      now-white background (see --grey above). Black reads as an outline
@@ -678,7 +689,7 @@ a { color: inherit; }
   font-family: var(--font-hard);
   font-weight: 700;
   text-transform: uppercase;
-  font-size: clamp(18px, 2.4vh, 24px);
+  font-size: clamp(18px, 2vw, 24px);
   line-height: 1.05;
   letter-spacing: -0.01em;
   margin: 0 0 8px;
@@ -703,7 +714,10 @@ a { color: inherit; }
 }
 
 @media (max-width: 640px) {
-  .shelf-card { flex-basis: 260px; padding: 16px; }
+  .shelf { padding-top: 40px; }
+  .shelf-links { margin-top: 40px; }
+  .shelf-grid { height: 300px; }
+  .shelf-card { flex-basis: 260px; min-height: 260px; padding: 16px; }
   .shelf-caption { max-width: 24ch; }
   .shelf-kind { display: none; }
 }
@@ -712,18 +726,12 @@ a { color: inherit; }
    .testimonial-card/etc. CSS that lived here has been moved to
    css/about.css — testimonials now live on the About page instead of
    stacking onto an already-busy homepage. See about.css for the new
-   .testimonials-section rules. */
-
-/* [REVERT POINT] TEST CHANGE, round 2 (breathing room): more vertical
-   padding around the shelf section and before the footer link strip, so
-   hero → shelf → footer don't read as one unbroken wall of content. */
-.shelf { padding: 3.2vh 0 0; }
-.shelf-links { margin-top: 3.6vh; }
-
-@media (max-width: 640px) {
-  .shelf { padding-top: 3vh; }
-  .shelf-links { margin-top: 2.6vh; }
-}
+   .testimonials-section rules.
+   The round-2 "breathing room" overrides that used to sit here
+   (`.shelf { padding: 3.2vh 0 0 }` / `.shelf-links { margin-top: 3.6vh }`)
+   are gone too — round 3 folded fixed px versions of that spacing
+   straight into .shelf/.shelf-links' own base rules above instead of
+   layering a second override on top. */
 </style>
 </head>
 <body>
