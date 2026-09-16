@@ -828,8 +828,42 @@ a { color: inherit; }
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 72px;
+    padding-top: clamp(24px, 6vh, 72px);
     padding-bottom: 0;
+  }
+
+  /* [REVERT POINT] TEST CHANGE, round 13 — on shorter screens (laptop
+     window heights, browser chrome eating into the viewport, etc.) the
+     hero content was taller than the locked column and got clipped by
+     `overflow: hidden`, cutting the Currently Building description off
+     behind the fixed footer bar. Every vertical gap/font-size below is
+     now clamp()'d against vh (font-sizes also keep their vw minimum via
+     min(), so they never grow past what width alone would allow) so the
+     whole block compresses to fit short viewports instead of overflowing.
+     Only active at this breakpoint — mobile/tablet (<900px) already
+     scrolls normally and never had this problem.
+     To revert: change each rule below back to its fixed px value (see the
+     non-split-view version of the same selector earlier in this file). */
+  .hero-greeting { margin-bottom: clamp(6px, 1.4vh, 14px); }
+
+  .hero-headline { font-size: clamp(24px, min(3.6vw, 5.2vh), 52px); }
+
+  .hero-tagline {
+    margin-top: clamp(8px, 1.6vh, 16px);
+    font-size: clamp(14px, min(1.4vw, 2vh), 20px);
+  }
+
+  .hero-prose {
+    margin-top: clamp(12px, 2.6vh, 28px);
+    max-width: 62ch;
+  }
+
+  .hero-prose-p { font-size: clamp(13.5px, min(1.1vw, 1.9vh), 16px); line-height: 1.55; }
+
+  .hero-building-box {
+    margin-top: clamp(10px, 2vh, 22px);
+    padding: clamp(10px, 1.8vh, 18px) clamp(14px, 1.6vw, 22px);
+    gap: clamp(6px, 1vh, 10px);
   }
 
   .shelf {
