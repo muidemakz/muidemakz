@@ -775,6 +775,80 @@ a { color: inherit; }
    are gone too — round 3 folded fixed px versions of that spacing
    straight into .shelf/.shelf-links' own base rules above instead of
    layering a second override on top. */
+
+/* =========================================================================
+   SIDE-BY-SIDE SPLIT + LOCKED VIEWPORT      [REVERT POINT] TEST CHANGE, round 8
+
+   User wants: hero left, project shelf right, page NOT scrollable at this
+   width — the shelf auto-scrolls vertically inside its own column instead
+   (same auto-advance loop as before, now on the Y axis; see the <script>
+   at the bottom of the body for the JS side of this).
+
+   Scoped to min-width: 900px, same breakpoint as everywhere else on the
+   site that switches between mobile-stacked and desktop layouts — below
+   it, .home-grid's two <section>s just stack normally and the page
+   scrolls like every other page (unchanged from round 3-7).
+
+   To revert: delete this whole media query block, and in the <script>
+   at the bottom, remove the `isSplitView`/`vertical` branching in the
+   auto-scroll tick (restore the plain scrollLeft/scrollWidth version).
+   ========================================================================= */
+@media (min-width: 900px) {
+  html, body { height: 100%; overflow: hidden; }
+
+  body { display: flex; flex-direction: column; padding-bottom: 0; }
+
+  .site-header { flex-shrink: 0; }
+
+  .home-grid {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    /* reserves room for .shelf-links, which stays position:fixed across
+       the full width at the very bottom regardless of this grid */
+    padding-bottom: 52px;
+  }
+
+  .hero-static {
+    height: 100%;
+    min-height: 0;
+    border-bottom: 0;
+    border-right: 1px solid var(--ink-hard);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .shelf {
+    height: 100%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+  }
+
+  /* vertical scroll container instead of horizontal */
+  .shelf-grid {
+    height: 100%;
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  /* cards stack in a column instead of a row */
+  .shelf-track {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    padding: 24px 24px;
+  }
+
+  .shelf-card { flex: 0 0 230px; width: 100%; }
+}
 </style>
 </head>
 <body>
@@ -790,6 +864,18 @@ a { color: inherit; }
   </div>
 </header>
 
+<!-- [REVERT POINT] TEST CHANGE, round 8 — .hero-static and .shelf used to
+     be full-width stacked sections (hero on top, shelf below). Wrapped in
+     .home-grid so they can sit side by side at wider widths (hero left,
+     horizontally-scrolling project shelf right) while the page itself
+     still scrolls normally, vertically — the grid just places the two
+     sections, it doesn't lock/crop either one to a fixed height. Below
+     the .home-grid breakpoint they stack exactly as before.
+     To revert: delete the <div class="home-grid"> opening/closing tags
+     (leave the two <section>s themselves as siblings again) and drop the
+     .home-grid rule + the .hero-static/.shelf border/height tweaks inside
+     its media query. -->
+<div class="home-grid">
 <section class="hero-static">
   <div class="wrap">
   <p class="hero-greeting">Hey, I'm Excellent</p>
@@ -820,7 +906,7 @@ a { color: inherit; }
        .hero-building-box (reusing .hero-fact-label/.hero-fact-title/
        .hero-fact-meta from the original boxed hero). -->
   <div class="hero-prose">
-    <p class="hero-prose-p">With <strong class="hero-num">6+</strong> years across fintech, payments, and B2B commerce &mdash; currently leading design on <a href="about.html#expertise" class="hero-inline-link">Payments &amp; Wallet UX</a>, <a href="about.html#expertise" class="hero-inline-link">Complex B2B Workflows</a>, and <a href="about.html#expertise" class="hero-inline-link">AI-Forward Building</a>.</p>
+    <p class="hero-prose-p">With <strong class="hero-num">6+</strong> years across fintech, payments, and B2B commerce &mdash; leading design on <a href="about.html#expertise" class="hero-inline-link">Payments &amp; Wallet UX</a>, <a href="about.html#expertise" class="hero-inline-link">Complex B2B Workflows</a>, and <a href="about.html#expertise" class="hero-inline-link">AI-Forward Building</a>.</p>
   </div>
   <div class="hero-building-box">
     <div>
@@ -933,6 +1019,7 @@ a { color: inherit; }
     </a>
   </div>
 </section>
+</div>
 
 <script>
 (function () {
@@ -972,13 +1059,28 @@ a { color: inherit; }
   grid.addEventListener('touchstart', pause, { passive: true });
   grid.addEventListener('touchend', () => scheduleResume(1800), { passive: true });
 
+  // [REVERT POINT] TEST CHANGE, round 8 — the shelf switches from a
+  // horizontal row to a vertical column at the same min-width:900px
+  // breakpoint .home-grid uses (see CSS above), so the auto-scroll needs
+  // to drive scrollTop/scrollHeight there instead of scrollLeft/
+  // scrollWidth. Checked once per tick (cheap) via the same media query,
+  // so resizing across the breakpoint switches axis on the fly.
+  const isSplitView = window.matchMedia && window.matchMedia('(min-width: 900px)');
+
   if (!reduceMotion) {
     const SPEED = 0.6; // px/frame, tuned to roughly match the old 42s loop
     (function tick() {
       if (!paused) {
-        const half = track.scrollWidth / 2;
-        grid.scrollLeft += SPEED;
-        if (grid.scrollLeft >= half) grid.scrollLeft -= half;
+        const vertical = isSplitView && isSplitView.matches;
+        if (vertical) {
+          const half = track.scrollHeight / 2;
+          grid.scrollTop += SPEED;
+          if (grid.scrollTop >= half) grid.scrollTop -= half;
+        } else {
+          const half = track.scrollWidth / 2;
+          grid.scrollLeft += SPEED;
+          if (grid.scrollLeft >= half) grid.scrollLeft -= half;
+        }
       }
       requestAnimationFrame(tick);
     })();
