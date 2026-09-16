@@ -315,10 +315,18 @@ a { color: inherit; }
    .hero-fact-meta, which were left in place untouched from the original
    boxed hero for exactly this), instead of sitting as a plain inline
    sentence in the prose block. */
+/* [REVERT POINT] TEST CHANGE, round 6 — was a single stacked column
+   (label, title, description all in one flow). Back to the original
+   two-column split: label+title on one side, description on the other,
+   same grid pattern .hero-facts used before (auto-fit so it collapses to
+   one column once there isn't room for both). */
 .hero-building-box {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px 32px;
   margin-top: 22px;
   padding: 18px 22px;
-  max-width: 480px;
+  max-width: 620px;
   border: 1px solid rgba(242, 240, 235, 0.32);
   background: rgba(242, 240, 235, 0.08);
 }
@@ -803,9 +811,13 @@ a { color: inherit; }
     <p class="hero-prose-p">A Senior Product Designer with <strong class="hero-num">6+</strong> years across fintech, payments, and B2B commerce &mdash; currently leading design on <a href="about.html#expertise" class="hero-inline-link">Payments &amp; Wallet UX</a>, <a href="about.html#expertise" class="hero-inline-link">Complex B2B Workflows</a>, and <a href="about.html#expertise" class="hero-inline-link">AI-Forward Building</a>.</p>
   </div>
   <div class="hero-building-box">
-    <p class="hero-fact-label">Currently Building</p>
-    <p class="hero-fact-title">Valideity</p>
-    <p class="hero-fact-meta">An AI-first UX research and usability testing tool for product designers, product teams, and founders in West Africa.</p>
+    <div>
+      <p class="hero-fact-label">Currently Building</p>
+      <p class="hero-fact-title">Valideity</p>
+    </div>
+    <div>
+      <p class="hero-fact-meta">An AI-first UX research and usability testing tool for product designers, product teams, and founders in West Africa.</p>
+    </div>
   </div>
   </div>
 </section>
