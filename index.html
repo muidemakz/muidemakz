@@ -726,6 +726,53 @@ a { color: inherit; }
   z-index: 1;
 }
 
+/* [REVERT POINT] TEST CHANGE, round 23 — manual prev/next arrows over the
+   story stage, on top of the auto-advance and clickable progress bar.
+   z-index:2, above .shelf-card's own z-index:1 (is-active), so they stay
+   clickable regardless of which card is showing; opacity fades in on
+   hover/focus of the stage so they don't compete with the photo at rest. */
+.story-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(242, 240, 235, 0.5);
+  background: rgba(13, 13, 13, 0.45);
+  color: var(--paper-hard);
+  font-family: var(--font-hard);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s ease, background 0.12s ease, border-color 0.12s ease;
+}
+
+.story-stage:hover .story-nav,
+.story-stage:focus-within .story-nav {
+  opacity: 1;
+}
+
+.story-nav:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.story-nav--prev { left: 14px; }
+.story-nav--next { right: 14px; }
+
+@media (hover: none) {
+  /* touch devices have no hover state to reveal these on — show them
+     dimly at rest instead of hiding them behind an interaction that
+     doesn't exist on this device. */
+  .story-nav { opacity: 0.55; }
+}
+
 /* [REVERT POINT] TEST CHANGE, round 17 — the old flat 80% dark wash (see
    git history) made every card's cover photo essentially invisible, which
    defeats the point of a story reel showing each case study's own image.
@@ -869,8 +916,15 @@ a { color: inherit; }
        only ~43px tall at this breakpoint (no wrap, single row), so the
        extra ~9px plus .shelf's own bottom padding (removed below) left a
        visible paper-coloured gap between the story card and the footer
-       bar. Trimmed to match the bar's real height. */
-    padding-bottom: 44px;
+       bar. Trimmed to match the bar's real height.
+       [REVERT POINT] TEST CHANGE, round 23 — trimmed 4px further (44 ->
+       40). Matching the bar's height exactly still left a sub-pixel (under
+       1px) remainder depending on viewport height, which anti-aliased
+       into a faint hairline between the card and the fixed bar. A small
+       deliberate overlap guarantees content tucks fully behind
+       .shelf-links (z-index:40, so the overlap is always hidden) instead
+       of leaving that remainder to rounding. */
+    padding-bottom: 40px;
   }
 
   /* [REVERT POINT] TEST CHANGE, round 12 — was justify-content: center,
@@ -1088,6 +1142,10 @@ a { color: inherit; }
         <p class="shelf-caption">One Design Language For Four Product Teams</p>
         <p class="shelf-cta">View Case Study &rarr;</p>
       </a>
+      <!-- [REVERT POINT] TEST CHANGE, round 23 — manual prev/next controls,
+           on top of the auto-advance + clickable progress segments. -->
+      <button type="button" class="story-nav story-nav--prev" id="storyPrev" aria-label="Previous case study">&larr;</button>
+      <button type="button" class="story-nav story-nav--next" id="storyNext" aria-label="Next case study">&rarr;</button>
     </div>
   </div>
 
@@ -1171,6 +1229,20 @@ a { color: inherit; }
 
   segs.forEach((s, i) => s.addEventListener('click', () => goTo(i)));
 
+  // [REVERT POINT] TEST CHANGE, round 23 — manual prev/next arrows, on top
+  // of clicking a segment directly. Both wrap around (last -> first,
+  // first -> last) rather than stopping at the ends.
+  const prevBtn = document.getElementById('storyPrev');
+  const nextBtn = document.getElementById('storyNext');
+  if (prevBtn) prevBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    goTo((idx - 1 + cards.length) % cards.length);
+  });
+  if (nextBtn) nextBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    goTo((idx + 1) % cards.length);
+  });
+
   function pause() {
     paused = true;
     if (resumeTimer) clearTimeout(resumeTimer);
@@ -1234,6 +1306,15 @@ a { color: inherit; }
 
   alignDivider();
   window.addEventListener('resize', alignDivider);
+  // [REVERT POINT] TEST CHANGE, round 23 — the header's font (JetBrains
+  // Mono, loaded from Google Fonts) can still be loading when this script
+  // first runs, so the initial alignDivider() call sometimes measured
+  // About/Work at their FALLBACK-font width, landing the divider a few px
+  // off until the next resize. Re-running once the real font is in means
+  // it's correct on first paint too, not just after a manual resize.
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(alignDivider);
+  }
 })();
 
 (function () {
