@@ -465,26 +465,12 @@ a { color: inherit; }
   .hero-stat:nth-child(3), .hero-stat:nth-child(5) { border-left: 1px solid var(--paper-hard); }
 }
 
-/* [REVERT POINT] TEST CHANGE (branch: test/homepage-backdrop-prose).
-   Low-opacity backdrop photo behind .hero-static's content, layered under
-   the existing diagonal hatch (::after) so both read as one textured
-   surface instead of a plain flat black. Desaturated + contrast-boosted
-   so it stays a background texture, never competes with the paper-hard
-   text sitting on top of it.
-   To revert: delete this rule (and the ::before selector addition has no
-   effect on markup — .hero-static's HTML is unchanged). */
-.hero-static::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image: url("images/about/homepage-backdrop.png");
-  background-size: cover;
-  background-position: center 22%;
-  opacity: 0.16;
-  filter: grayscale(1) contrast(1.15);
-}
+/* [REVERT POINT] TEST CHANGE, round 14 — the low-opacity backdrop photo
+   (.hero-static::before, images/about/homepage-backdrop.png) has been
+   removed per feedback. .hero-static is back to just the flat ink-hard
+   background + diagonal hatch (::after), same as before this branch
+   started. The image file itself is untouched at
+   images/about/homepage-backdrop.png if it's wanted again later. */
 
 /* [REVERT POINT] TEST CHANGE (branch: test/homepage-backdrop-prose).
    Prose replacement for the old boxed .hero-details/.hero-facts/
@@ -829,7 +815,28 @@ a { color: inherit; }
     flex-direction: column;
     justify-content: flex-start;
     padding-top: clamp(24px, 6vh, 72px);
-    padding-bottom: 0;
+    padding-bottom: clamp(24px, 6vh, 72px);
+  }
+
+  /* [REVERT POINT] TEST CHANGE, round 14 — top-aligning (round 12) moved
+     the empty space from "half above, half below" to "all below", but
+     didn't remove it: .hero-static > .wrap was never given a height, so
+     it only ever took its own content's height, leaving hero-static's
+     remaining 100%-tall space empty underneath it. .wrap now stretches
+     to fill hero-static (flex: 1) and distributes ITS OWN children
+     (greeting/headline/tagline/prose/building-box) with even gaps across
+     that full height via justify-content: space-between, so the building
+     box lands at the bottom of the column instead of leaving a gap after
+     it — the space is spread as breathing room between elements instead
+     of dumped in one place at the end.
+     To revert: remove this rule (and hero-static's padding-bottom
+     change above, back to 0). */
+  .hero-static > .wrap {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   /* [REVERT POINT] TEST CHANGE, round 13 — on shorter screens (laptop
