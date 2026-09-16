@@ -320,24 +320,36 @@ a { color: inherit; }
    two-column split: label+title on one side, description on the other,
    same grid pattern .hero-facts used before (auto-fit so it collapses to
    one column once there isn't room for both). */
+/* [REVERT POINT] TEST CHANGE, round 7 — max-width was 620px; widened to
+   760px (plus a wider second column: minmax(320px,1fr) instead of
+   minmax(200px,1fr)) so the description has enough room to settle on 2
+   lines instead of 3, alongside .hero-fact-meta's own widened max-width
+   above. */
 .hero-building-box {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: minmax(160px, auto) minmax(320px, 1fr);
   gap: 10px 32px;
   margin-top: 22px;
   padding: 18px 22px;
-  max-width: 620px;
+  max-width: 760px;
   border: 1px solid rgba(242, 240, 235, 0.32);
   background: rgba(242, 240, 235, 0.08);
 }
 
+@media (max-width: 640px) {
+  .hero-building-box { grid-template-columns: 1fr; }
+}
+
+/* [REVERT POINT] TEST CHANGE, round 7 — max-width was 40ch, wrapping the
+   Currently Building description to 3 lines even once the box had room.
+   Widened to 58ch so it settles on 2 lines on desktop. */
 .hero-fact-meta {
   font-family: var(--font-body);
   font-size: 15px;
   line-height: 1.45;
   opacity: 0.75;
   margin: 0;
-  max-width: 40ch;
+  max-width: 58ch;
 }
 
 .hero-chip-list { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 2px 0 0; padding: 0; }
@@ -808,7 +820,7 @@ a { color: inherit; }
        .hero-building-box (reusing .hero-fact-label/.hero-fact-title/
        .hero-fact-meta from the original boxed hero). -->
   <div class="hero-prose">
-    <p class="hero-prose-p">A Senior Product Designer with <strong class="hero-num">6+</strong> years across fintech, payments, and B2B commerce &mdash; currently leading design on <a href="about.html#expertise" class="hero-inline-link">Payments &amp; Wallet UX</a>, <a href="about.html#expertise" class="hero-inline-link">Complex B2B Workflows</a>, and <a href="about.html#expertise" class="hero-inline-link">AI-Forward Building</a>.</p>
+    <p class="hero-prose-p">With <strong class="hero-num">6+</strong> years across fintech, payments, and B2B commerce &mdash; currently leading design on <a href="about.html#expertise" class="hero-inline-link">Payments &amp; Wallet UX</a>, <a href="about.html#expertise" class="hero-inline-link">Complex B2B Workflows</a>, and <a href="about.html#expertise" class="hero-inline-link">AI-Forward Building</a>.</p>
   </div>
   <div class="hero-building-box">
     <div>
