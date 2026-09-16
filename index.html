@@ -615,61 +615,112 @@ a { color: inherit; }
   .shelf-link svg.link-icon { width: 18px; height: 18px; }
 }
 
-/* full-bleed, edge to edge. It's a real horizontally-scrollable container
-   (not just an animated transform) so touch/trackpad swipe always works —
-   the JS auto-scroll below drives scrollLeft directly and pauses itself on
-   user interaction, rather than fighting a CSS animation for control of
-   the track. */
-/* [REVERT POINT] was block (no display/align-items rule) — the track just
-   sat at the top of this box in normal flow, so all the slack between the
-   card height and the shelf's fixed 34vh landed below the cards, none
-   above. Flex + center gives equal top/bottom margin instead. */
-/* [REVERT POINT] TEST CHANGE, round 3 — was `flex: 1; min-height: 0`,
-   sized by the parent .shelf's leftover 34vh. Now a fixed height so
-   .shelf-card's min-height:46% below (also converted to a fixed px value)
-   has something concrete to size against. */
-.shelf-grid {
+/* =========================================================================
+   STORY-STYLE CASE STUDY REEL      [REVERT POINT] TEST CHANGE, round 16
+
+   Replaces the horizontally-auto-scrolling shelf with an Instagram-Stories-
+   style reel: one case study fills the stage at a time, a segmented
+   progress bar above it fills over 10s per card then auto-advances, and a
+   "See All Work" link sits alongside the segments. Five cards (the ones
+   the case-study rubric review ranked strongest), not all eight — the rest
+   are reachable via See All.
+
+   .shelf-card is reused as-is for its image/overlay/name/caption/cta
+   styling; only its layout role changes here (was a flex-item in a
+   scrolling row, now an absolutely-positioned full-bleed layer in
+   .story-stage, cross-faded via opacity — see the JS timer at the bottom
+   of the body for the actual advance/pause logic).
+
+   To revert: restore the old .shelf-grid/.shelf-track/.shelf-card (flex-
+   row, scrollLeft-scrolling) rules from git history on this branch, put
+   all 8 cards back in a single .shelf-track, and remove .story-progress/
+   .story-stage/.story-see-all + their JS.
+   ========================================================================= */
+.story-shelf {
+  display: flex;
+  flex-direction: column;
   height: 420px;
+}
+
+.story-topline {
   display: flex;
   align-items: center;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  gap: 16px;
+  padding: 0 4px 14px;
 }
 
-.shelf-grid::-webkit-scrollbar { display: none; }
-
-.shelf-track {
+.story-progress {
+  flex: 1;
   display: flex;
-  align-items: stretch;
-  gap: 22px;
-  width: max-content;
-  padding: 0 4px;
+  gap: 6px;
 }
 
-/* [REVERT POINT] TEST CHANGE, round 3 — min-height was 46% (of the
-   shelf-grid's old vh-derived height). Fixed px now that shelf-grid has
-   a fixed height of its own. */
-.shelf-card {
-  flex: 0 0 380px;
+.story-seg {
+  flex: 1;
+  height: 3px;
+  padding: 0;
+  border: 0;
+  background: rgba(13, 13, 13, 0.15);
+  cursor: pointer;
   position: relative;
+  overflow: hidden;
+}
+
+.story-seg-fill {
+  position: absolute;
+  inset: 0;
+  width: 0%;
+  background: var(--accent);
+}
+
+.story-seg.is-done .story-seg-fill { width: 100%; }
+
+.story-see-all {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-hard);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink-hard);
+  padding-bottom: 2px;
+  white-space: nowrap;
+}
+
+.story-see-all:hover { color: var(--accent); border-color: var(--accent); }
+
+.story-stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+/* base card look (image bg, dark overlay, padding, border) — same visual
+   treatment .shelf-card always had, just no longer flex/rotate, since each
+   card is now a full-bleed absolutely-positioned layer in .story-stage. */
+.shelf-card {
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  min-height: 320px;
   padding: 18px 22px;
-  /* [REVERT POINT] was paper-hard (white) — invisible against the shelf's
-     now-white background (see --grey above). Black reads as an outline
-     again regardless of what the section background does. */
   border: 3px solid var(--ink-hard);
   text-decoration: none;
   color: var(--paper-hard);
   background-size: cover;
   background-position: center;
-  transition: transform 0.18s ease;
-  transform: rotate(var(--rot, 0deg));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.shelf-card.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 1;
 }
 
 /* [REVERT POINT] history: was 0.62/0.85/0.99 originally, then lightened to
@@ -682,16 +733,6 @@ a { color: inherit; }
   inset: 0;
   background: rgba(13, 13, 13, 0.8);
 }
-
-.shelf-card:hover { transform: rotate(0deg) translateY(-8px); }
-
-/* rotation is decorative and can cycle freely, but the accent highlight is
-   assigned per-project (Cardtonic, Omnione) below, not by position, so it
-   survives the shelf-track being duplicated for the marquee loop. */
-.shelf-card:nth-child(4n+1) { --rot: -2.5deg; }
-.shelf-card:nth-child(4n+2) { --rot: 1.8deg; }
-.shelf-card:nth-child(4n+3) { --rot: -1.4deg; }
-.shelf-card:nth-child(4n+4) { --rot: 2.2deg; border-style: dashed; }
 
 .shelf-card--highlight { box-shadow: 10px 10px 0 var(--accent); border-color: var(--accent); }
 
@@ -747,8 +788,8 @@ a { color: inherit; }
 @media (max-width: 640px) {
   .shelf { padding-top: 40px; }
   .shelf-links { margin-top: 40px; }
-  .shelf-grid { height: 300px; }
-  .shelf-card { flex-basis: 260px; min-height: 260px; padding: 16px; }
+  .story-shelf { height: 300px; }
+  .shelf-card { padding: 16px; }
   .shelf-caption { max-width: 24ch; }
   .shelf-kind { display: none; }
 }
@@ -883,26 +924,13 @@ a { color: inherit; }
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0;
+    padding: 24px;
   }
 
-  /* vertical scroll container instead of horizontal */
-  .shelf-grid {
+  .story-shelf {
     height: 100%;
-    display: block;
-    overflow-x: hidden;
-    overflow-y: auto;
+    max-height: 100%;
   }
-
-  /* cards stack in a column instead of a row */
-  .shelf-track {
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-    padding: 24px 24px;
-  }
-
-  .shelf-card { flex: 0 0 230px; width: 100%; }
 }
 </style>
 </head>
@@ -976,18 +1004,35 @@ a { color: inherit; }
 </section>
 
 <section class="shelf">
-  <div class="shelf-grid">
-    <!-- [REVERT POINT] TEST CHANGE, round 9 — every card used to lead with
-         a <p class="shelf-kind"> orange category label (e.g. "Design
-         Systems", "Lending UX"), which also carried "&middot; Shipped"/
-         "&middot; Concept" until the edit right above this one. Removed
-         entirely per feedback — no orange label at all on these cards now,
-         just name/caption/CTA. .shelf-kind's CSS rule (accent color, mono,
-         uppercase) is left in place below, unused, for an easy revert. -->
-    <div class="shelf-track" id="shelfTrack">
-      <a class="shelf-card shelf-card--highlight" href="omnione.html" style="background-image:url(images/omnione/omnione-design-system-cover-banner.png)">
-        <p class="shelf-name">Omnione</p>
-        <p class="shelf-caption">One Design Language For Four Product Teams</p>
+  <div class="story-shelf" id="storyShelf">
+    <div class="story-topline">
+      <div class="story-progress" id="storyProgress">
+        <button type="button" class="story-seg" aria-label="Show Teesas LMS"><span class="story-seg-fill"></span></button>
+        <button type="button" class="story-seg" aria-label="Show Cardtonic"><span class="story-seg-fill"></span></button>
+        <button type="button" class="story-seg" aria-label="Show Fundall"><span class="story-seg-fill"></span></button>
+        <button type="button" class="story-seg" aria-label="Show Coreloops"><span class="story-seg-fill"></span></button>
+        <button type="button" class="story-seg" aria-label="Show Omnione"><span class="story-seg-fill"></span></button>
+      </div>
+      <a class="story-see-all" href="my-work.html">See All Work &rarr;</a>
+    </div>
+    <!-- [REVERT POINT] TEST CHANGE, round 16 — the shelf used to be an
+         8-card horizontally/vertically auto-scrolling row/column (see git
+         history on this branch). Now a 5-card story reel: one <a
+         class="shelf-card"> at a time, cross-faded via .is-active,
+         advanced by the timer JS at the bottom of the body. Ordered by the
+         case-study rubric review (impact + research + wireframes +
+         prototype + execution) — strongest first. The 3 dropped from the
+         reel (Omnibiz, Raven Pay, VENX) are still on my-work.html via
+         See All. -->
+    <div class="story-stage" id="storyStage">
+      <a class="shelf-card is-active" href="teesaslms.html" style="background-image:url(images/teesas/banner.png)">
+        <p class="shelf-name">Teesas LMS</p>
+        <p class="shelf-caption">Three Rebuilds To Get One LMS Right</p>
+        <p class="shelf-cta">View Case Study &rarr;</p>
+      </a>
+      <a class="shelf-card" href="cardtonic.html" style="background-image:url(images/Cardtonic/00%20%C2%B7%20Cover.png)">
+        <p class="shelf-name">Cardtonic</p>
+        <p class="shelf-caption">Sending Money To People, Not Accounts</p>
         <p class="shelf-cta">View Case Study &rarr;</p>
       </a>
       <a class="shelf-card" href="fundall.html" style="background-image:url(images/fundall/cover.png)">
@@ -995,34 +1040,14 @@ a { color: inherit; }
         <p class="shelf-caption">Salary Advance: 6 Minutes To Under 2</p>
         <p class="shelf-cta">View Case Study &rarr;</p>
       </a>
-      <a class="shelf-card" href="teesaslms.html" style="background-image:url(images/teesas/banner.png)">
-        <p class="shelf-name">Teesas LMS</p>
-        <p class="shelf-caption">Three Rebuilds To Get One LMS Right</p>
-        <p class="shelf-cta">View Case Study &rarr;</p>
-      </a>
-      <a class="shelf-card" href="empty-state.html" style="background-image:url(images/omnibiz/banner-image.png)">
-        <p class="shelf-name">Omnibiz</p>
-        <p class="shelf-caption">Making &ldquo;Not Here Yet&rdquo; Feel Like A Preorder</p>
-        <p class="shelf-cta">View Case Study &rarr;</p>
-      </a>
       <a class="shelf-card" href="coreloops.html" style="background-image:url(images/coreloops/coreloop-cover.png)">
         <p class="shelf-name">Coreloops</p>
         <p class="shelf-caption">Filters From A Drawer To Zero Clicks</p>
         <p class="shelf-cta">View Case Study &rarr;</p>
       </a>
-      <a class="shelf-card shelf-card--highlight" href="cardtonic.html" style="background-image:url(images/Cardtonic/00%20%C2%B7%20Cover.png)">
-        <p class="shelf-name">Cardtonic</p>
-        <p class="shelf-caption">Sending Money To People, Not Accounts</p>
-        <p class="shelf-cta">View Case Study &rarr;</p>
-      </a>
-      <a class="shelf-card" href="raven-pay.html" style="background-image:url(images/ravenpay/banner-image.png)">
-        <p class="shelf-name">Raven Pay</p>
-        <p class="shelf-caption">Making A Banking App Read As Serious, Not Cute</p>
-        <p class="shelf-cta">View Case Study &rarr;</p>
-      </a>
-      <a class="shelf-card" href="venx.html" style="background-image:url(images/venx/cover-banner-image.png)">
-        <p class="shelf-name">VENX</p>
-        <p class="shelf-caption">A Full AI Sales CRM Concept In 24 Hours</p>
+      <a class="shelf-card" href="omnione.html" style="background-image:url(images/omnione/omnione-design-system-cover-banner.png)">
+        <p class="shelf-name">Omnione</p>
+        <p class="shelf-caption">One Design Language For Four Product Teams</p>
         <p class="shelf-cta">View Case Study &rarr;</p>
       </a>
     </div>
@@ -1071,23 +1096,42 @@ a { color: inherit; }
 
 <script>
 (function () {
-  // duplicate the shelf cards once so the loop is seamless once we're
-  // halfway through — same trick as before, just no longer paired with a
-  // CSS transform animation.
-  const grid = document.querySelector('.shelf-grid');
-  const track = document.getElementById('shelfTrack');
-  if (!grid || !track) return;
+  // [REVERT POINT] TEST CHANGE, round 16 — replaces the old scrollLeft/
+  // scrollTop auto-scroll marquee with an Instagram-Stories-style timer:
+  // each card gets DURATION ms on screen, a segmented progress bar fills
+  // to match, then it cross-fades to the next card. A segment can also be
+  // clicked to jump straight to that card. rAF-driven (not setInterval) so
+  // pause/resume on hover or touch doesn't lose track of partial progress
+  // — see the elapsed/startTime dance in render() below.
+  const stage = document.getElementById('storyStage');
+  const segWrap = document.getElementById('storyProgress');
+  if (!stage || !segWrap) return;
 
-  const clone = track.innerHTML;
-  track.insertAdjacentHTML('beforeend', clone);
+  const cards = Array.prototype.slice.call(stage.querySelectorAll('.shelf-card'));
+  const segs = Array.prototype.slice.call(segWrap.querySelectorAll('.story-seg'));
+  if (!cards.length || cards.length !== segs.length) return;
 
-  // real horizontal scroll (not a transform) so touch/trackpad swipe always
-  // works — this rAF loop just nudges scrollLeft forward and gets out of
-  // the way the moment a user grabs the shelf themselves, resuming a bit
-  // after they let go instead of fighting their gesture.
+  const DURATION = 10000; // 10s per card
   const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let paused = reduceMotion;
+
+  let idx = 0;
+  let elapsed = 0;
+  let startTime = null;
+  let paused = false;
   let resumeTimer = null;
+
+  function goTo(i) {
+    idx = i;
+    elapsed = 0;
+    startTime = null;
+    cards.forEach((c, ci) => c.classList.toggle('is-active', ci === i));
+    segs.forEach((s, si) => {
+      s.classList.toggle('is-done', si < i);
+      s.querySelector('.story-seg-fill').style.width = si < i ? '100%' : '0%';
+    });
+  }
+
+  segs.forEach((s, i) => s.addEventListener('click', () => goTo(i)));
 
   function pause() {
     paused = true;
@@ -1096,43 +1140,31 @@ a { color: inherit; }
   function scheduleResume(delay) {
     if (reduceMotion) return;
     if (resumeTimer) clearTimeout(resumeTimer);
-    resumeTimer = setTimeout(() => { paused = false; }, delay);
+    resumeTimer = setTimeout(() => { paused = false; startTime = null; }, delay);
   }
 
-  grid.addEventListener('mouseenter', pause);
-  grid.addEventListener('mouseleave', () => scheduleResume(500));
-  grid.addEventListener('pointerdown', pause);
-  grid.addEventListener('pointerup', () => scheduleResume(1800));
-  grid.addEventListener('pointercancel', () => scheduleResume(1800));
-  grid.addEventListener('touchstart', pause, { passive: true });
-  grid.addEventListener('touchend', () => scheduleResume(1800), { passive: true });
+  stage.addEventListener('mouseenter', pause);
+  stage.addEventListener('mouseleave', () => scheduleResume(300));
+  stage.addEventListener('pointerdown', pause);
+  stage.addEventListener('pointerup', () => scheduleResume(1500));
+  stage.addEventListener('pointercancel', () => scheduleResume(1500));
+  stage.addEventListener('touchstart', pause, { passive: true });
+  stage.addEventListener('touchend', () => scheduleResume(1500), { passive: true });
 
-  // [REVERT POINT] TEST CHANGE, round 8 — the shelf switches from a
-  // horizontal row to a vertical column at the same min-width:900px
-  // breakpoint .home-grid uses (see CSS above), so the auto-scroll needs
-  // to drive scrollTop/scrollHeight there instead of scrollLeft/
-  // scrollWidth. Checked once per tick (cheap) via the same media query,
-  // so resizing across the breakpoint switches axis on the fly.
-  const isSplitView = window.matchMedia && window.matchMedia('(min-width: 900px)');
+  goTo(0);
 
-  if (!reduceMotion) {
-    const SPEED = 0.6; // px/frame, tuned to roughly match the old 42s loop
-    (function tick() {
-      if (!paused) {
-        const vertical = isSplitView && isSplitView.matches;
-        if (vertical) {
-          const half = track.scrollHeight / 2;
-          grid.scrollTop += SPEED;
-          if (grid.scrollTop >= half) grid.scrollTop -= half;
-        } else {
-          const half = track.scrollWidth / 2;
-          grid.scrollLeft += SPEED;
-          if (grid.scrollLeft >= half) grid.scrollLeft -= half;
-        }
-      }
-      requestAnimationFrame(tick);
-    })();
-  }
+  if (reduceMotion) return; // static: first card shown, segments clickable, no auto-advance
+
+  (function render(now) {
+    if (!paused) {
+      if (startTime === null) startTime = now - elapsed;
+      elapsed = now - startTime;
+      const pct = Math.min(100, (elapsed / DURATION) * 100);
+      segs[idx].querySelector('.story-seg-fill').style.width = pct + '%';
+      if (elapsed >= DURATION) goTo((idx + 1) % cards.length);
+    }
+    requestAnimationFrame(render);
+  })(performance.now());
 })();
 
 (function () {
