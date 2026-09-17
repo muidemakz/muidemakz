@@ -724,10 +724,20 @@ a { color: inherit; }
   min-height: 0;
 }
 
+/* .story-col is a flex column that holds .story-topline above .story-stage.
+   It takes flex:1 in the row so both topline and image are always the same
+   width — arrow buttons don't affect it. */
+.story-col {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+}
+
 .story-stage {
   position: relative;
   flex: 1;
-  height: 100%;
   min-height: 0;
 }
 
@@ -1136,18 +1146,6 @@ a { color: inherit; }
 
 <section class="shelf">
   <div class="story-shelf" id="storyShelf">
-    <div class="story-topline">
-      <div class="story-progress" id="storyProgress">
-        <button type="button" class="story-seg" aria-label="Show Teesas LMS"><span class="story-seg-fill"></span></button>
-        <button type="button" class="story-seg" aria-label="Show Cardtonic"><span class="story-seg-fill"></span></button>
-        <button type="button" class="story-seg" aria-label="Show Fundall"><span class="story-seg-fill"></span></button>
-        <button type="button" class="story-seg" aria-label="Show Coreloops"><span class="story-seg-fill"></span></button>
-        <button type="button" class="story-seg" aria-label="Show Omnione"><span class="story-seg-fill"></span></button>
-      </div>
-      <!-- [REVERT POINT] TEST CHANGE, round 24 — "See All Work" link
-           removed per feedback. .story-see-all CSS left in place, unused,
-           for an easy revert. -->
-    </div>
     <!-- [REVERT POINT] TEST CHANGE, round 16 — the shelf used to be an
          8-card horizontally/vertically auto-scrolling row/column (see git
          history on this branch). Now a 5-card story reel: one <a
@@ -1159,32 +1157,49 @@ a { color: inherit; }
          See All. -->
     <div class="story-stage-row">
       <button type="button" class="story-nav story-nav--prev" id="storyPrev" aria-label="Previous case study">&larr;</button>
-      <div class="story-stage" id="storyStage">
-        <a class="shelf-card is-active" href="teesaslms.html" style="background-image:url(images/teesas/banner.png)">
-          <p class="shelf-name">Teesas LMS</p>
-          <p class="shelf-caption">Three Rebuilds To Get One LMS Right</p>
-          <p class="shelf-cta">View Case Study &rarr;</p>
-        </a>
-        <a class="shelf-card" href="cardtonic.html" style="background-image:url(images/Cardtonic/00%20%C2%B7%20Cover.png)">
-          <p class="shelf-name">Cardtonic</p>
-          <p class="shelf-caption">Sending Money To People, Not Accounts</p>
-          <p class="shelf-cta">View Case Study &rarr;</p>
-        </a>
-        <a class="shelf-card" href="fundall.html" style="background-image:url(images/fundall/cover.png)">
-          <p class="shelf-name">Fundall</p>
-          <p class="shelf-caption">Salary Advance: 6 Minutes To Under 2</p>
-          <p class="shelf-cta">View Case Study &rarr;</p>
-        </a>
-        <a class="shelf-card" href="coreloops.html" style="background-image:url(images/coreloops/coreloop-cover.png)">
-          <p class="shelf-name">Coreloops</p>
-          <p class="shelf-caption">Filters From A Drawer To Zero Clicks</p>
-          <p class="shelf-cta">View Case Study &rarr;</p>
-        </a>
-        <a class="shelf-card" href="omnione.html" style="background-image:url(images/omnione/omnione-design-system-cover-banner.png); background-position: left center;">
-          <p class="shelf-name">Omnione</p>
-          <p class="shelf-caption">One Design Language For Four Product Teams</p>
-          <p class="shelf-cta">View Case Study &rarr;</p>
-        </a>
+      <!-- .story-col locks topline + stage to the same width; the column
+           takes flex:1 in the row so the arrow buttons never affect the
+           progress bar width. -->
+      <div class="story-col">
+        <div class="story-topline">
+          <div class="story-progress" id="storyProgress">
+            <button type="button" class="story-seg" aria-label="Show Teesas LMS"><span class="story-seg-fill"></span></button>
+            <button type="button" class="story-seg" aria-label="Show Cardtonic"><span class="story-seg-fill"></span></button>
+            <button type="button" class="story-seg" aria-label="Show Fundall"><span class="story-seg-fill"></span></button>
+            <button type="button" class="story-seg" aria-label="Show Coreloops"><span class="story-seg-fill"></span></button>
+            <button type="button" class="story-seg" aria-label="Show Omnione"><span class="story-seg-fill"></span></button>
+          </div>
+          <!-- [REVERT POINT] TEST CHANGE, round 24 — "See All Work" link
+               removed per feedback. .story-see-all CSS left in place, unused,
+               for an easy revert. -->
+        </div>
+        <div class="story-stage" id="storyStage">
+          <a class="shelf-card is-active" href="teesaslms.html" style="background-image:url(images/teesas/banner.png)">
+            <p class="shelf-name">Teesas LMS</p>
+            <p class="shelf-caption">Three Rebuilds To Get One LMS Right</p>
+            <p class="shelf-cta">View Case Study &rarr;</p>
+          </a>
+          <a class="shelf-card" href="cardtonic.html" style="background-image:url(images/Cardtonic/00%20%C2%B7%20Cover.png)">
+            <p class="shelf-name">Cardtonic</p>
+            <p class="shelf-caption">Sending Money To People, Not Accounts</p>
+            <p class="shelf-cta">View Case Study &rarr;</p>
+          </a>
+          <a class="shelf-card" href="fundall.html" style="background-image:url(images/fundall/cover.png)">
+            <p class="shelf-name">Fundall</p>
+            <p class="shelf-caption">Salary Advance: 6 Minutes To Under 2</p>
+            <p class="shelf-cta">View Case Study &rarr;</p>
+          </a>
+          <a class="shelf-card" href="coreloops.html" style="background-image:url(images/coreloops/coreloop-cover.png)">
+            <p class="shelf-name">Coreloops</p>
+            <p class="shelf-caption">Filters From A Drawer To Zero Clicks</p>
+            <p class="shelf-cta">View Case Study &rarr;</p>
+          </a>
+          <a class="shelf-card" href="omnione.html" style="background-image:url(images/omnione/omnione-design-system-cover-banner.png); background-position: left center;">
+            <p class="shelf-name">Omnione</p>
+            <p class="shelf-caption">One Design Language For Four Product Teams</p>
+            <p class="shelf-cta">View Case Study &rarr;</p>
+          </a>
+        </div>
       </div>
       <button type="button" class="story-nav story-nav--next" id="storyNext" aria-label="Next case study">&rarr;</button>
     </div>
