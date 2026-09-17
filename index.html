@@ -712,34 +712,17 @@ a { color: inherit; }
 
 .story-see-all:hover { color: var(--accent); border-color: var(--accent); }
 
-/* [TEST] arrows-outside — .story-stage-row is a flex row holding the prev
-   button, the image stage (which expands to fill the middle), and the next
-   button. .story-stage itself only needs position:relative + 100% height;
-   the row handles all the sizing. */
-.story-stage-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex: 1;
-  min-height: 0;
-}
-
-/* .story-col is a flex column that holds .story-topline above .story-stage.
-   It takes flex:1 in the row so both topline and image are always the same
-   width — arrow buttons don't affect it. */
-.story-col {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-height: 0;
-  height: 100%;
-}
-
+/* [TEST] swipe-hint — back to a simple column layout inside .story-shelf;
+   no row wrapper or col wrapper needed since there are no flanking buttons.
+   .story-stage takes flex:1 to fill all remaining height. */
 .story-stage {
   position: relative;
   flex: 1;
   min-height: 0;
+  cursor: grab;
 }
+
+.story-stage:active { cursor: grabbing; }
 
 /* base card look (image bg, dark overlay, padding, border) — same visual
    treatment .shelf-card always had, just no longer flex/rotate, since each
@@ -759,6 +742,8 @@ a { color: inherit; }
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.5s ease;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .shelf-card.is-active {
@@ -767,37 +752,87 @@ a { color: inherit; }
   z-index: 1;
 }
 
-/* [TEST] arrows-outside — buttons are now static flex siblings of
-   .story-stage inside .story-stage-row. Always visible; no fade-in needed
-   since there is no image behind them to obscure at rest. */
-.story-nav {
-  position: static;
-  transform: none;
-  flex-shrink: 0;
-  width: 40px;
-  height: 40px;
+/* ── Swipe hint tag ─────────────────────────────────────────────────────────
+   Lives on the left edge of .story-stage. At rest it's fully translated
+   left (hidden behind the split divider). On stage hover it slides right
+   into view — like a tag peeling out from the left panel.
+   cubic-bezier(0.34, 1.56, 0.64, 1) gives a subtle spring overshoot.    */
+.story-swipe-hint {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) translateX(calc(-100% - 3px));
+  z-index: 4;
+  pointer-events: none;
   display: flex;
   align-items: center;
-  justify-content: center;
-  border: 2px solid var(--ink-hard);
-  background: var(--paper-hard);
-  color: var(--ink-hard);
-  font-family: var(--font-hard);
-  font-size: 18px;
-  line-height: 1;
-  cursor: pointer;
-  opacity: 1;
-  transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
-}
-
-.story-nav:hover {
+  gap: 9px;
+  padding: 11px 16px 11px 14px;
   background: var(--accent);
-  border-color: var(--accent);
   color: #fff;
+  font-family: var(--font-hard);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  /* right notch — makes it read as a tag/label shape */
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%);
+  padding-right: 22px;
+  opacity: 0;
+  transition:
+    transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity   0.25s ease;
 }
 
+/* Reveal on hover — devices that support hover (desktop) */
+@media (hover: hover) {
+  .story-stage:hover .story-swipe-hint {
+    transform: translateY(-50%) translateX(0);
+    opacity: 1;
+  }
+}
+
+/* On touch devices show it briefly on first load, then fade it out —
+   no hover state exists, so we do a one-shot CSS animation instead. */
 @media (hover: none) {
-  .story-nav { opacity: 1; }
+  .story-swipe-hint {
+    animation: hint-touch-flash 3s ease 0.8s forwards;
+  }
+}
+
+@keyframes hint-touch-flash {
+  0%   { transform: translateY(-50%) translateX(calc(-100% - 3px)); opacity: 0; }
+  15%  { transform: translateY(-50%) translateX(0);                  opacity: 1; }
+  70%  { transform: translateY(-50%) translateX(0);                  opacity: 1; }
+  100% { transform: translateY(-50%) translateX(calc(-100% - 3px)); opacity: 0; }
+}
+
+/* ── Swipe arrows inside the tag — bounce apart on a loop ────────────────── */
+.swipe-hint-arrows {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.swipe-hint-arrow {
+  display: inline-block;
+  line-height: 1;
+}
+
+@keyframes hint-nudge-l {
+  0%, 100% { transform: translateX(0); }
+  50%       { transform: translateX(-4px); }
+}
+@keyframes hint-nudge-r {
+  0%, 100% { transform: translateX(0); }
+  50%       { transform: translateX(4px); }
+}
+
+.swipe-hint-arrow--l {
+  animation: hint-nudge-l 1.5s ease-in-out infinite;
+}
+.swipe-hint-arrow--r {
+  animation: hint-nudge-r 1.5s ease-in-out infinite;
 }
 
 /* [REVERT POINT] TEST CHANGE, round 17 — the old flat 80% dark wash (see
@@ -1155,56 +1190,56 @@ a { color: inherit; }
          prototype + execution) — strongest first. The 3 dropped from the
          reel (Omnibiz, Raven Pay, VENX) are still on my-work.html via
          See All. -->
-    <div class="story-stage-row">
-      <button type="button" class="story-nav story-nav--prev" id="storyPrev" aria-label="Previous case study">&larr;</button>
-      <!-- .story-col locks topline + stage to the same width; the column
-           takes flex:1 in the row so the arrow buttons never affect the
-           progress bar width. -->
-      <div class="story-col">
-        <div class="story-topline">
-          <div class="story-progress" id="storyProgress">
-            <button type="button" class="story-seg" aria-label="Show Teesas LMS"><span class="story-seg-fill"></span></button>
-            <button type="button" class="story-seg" aria-label="Show Cardtonic"><span class="story-seg-fill"></span></button>
-            <button type="button" class="story-seg" aria-label="Show Fundall"><span class="story-seg-fill"></span></button>
-            <button type="button" class="story-seg" aria-label="Show Coreloops"><span class="story-seg-fill"></span></button>
-            <button type="button" class="story-seg" aria-label="Show Omnione"><span class="story-seg-fill"></span></button>
-          </div>
-          <!-- [REVERT POINT] TEST CHANGE, round 24 — "See All Work" link
-               removed per feedback. .story-see-all CSS left in place, unused,
-               for an easy revert. -->
-        </div>
-        <div class="story-stage" id="storyStage">
-          <a class="shelf-card is-active" href="teesaslms.html" style="background-image:url(images/teesas/banner.png)">
-            <p class="shelf-name">Teesas LMS</p>
-            <p class="shelf-caption">Three Rebuilds To Get One LMS Right</p>
-            <p class="shelf-cta">View Case Study &rarr;</p>
-          </a>
-          <a class="shelf-card" href="cardtonic.html" style="background-image:url(images/Cardtonic/00%20%C2%B7%20Cover.png)">
-            <p class="shelf-name">Cardtonic</p>
-            <p class="shelf-caption">Sending Money To People, Not Accounts</p>
-            <p class="shelf-cta">View Case Study &rarr;</p>
-          </a>
-          <a class="shelf-card" href="fundall.html" style="background-image:url(images/fundall/cover.png)">
-            <p class="shelf-name">Fundall</p>
-            <p class="shelf-caption">Salary Advance: 6 Minutes To Under 2</p>
-            <p class="shelf-cta">View Case Study &rarr;</p>
-          </a>
-          <a class="shelf-card" href="coreloops.html" style="background-image:url(images/coreloops/coreloop-cover.png)">
-            <p class="shelf-name">Coreloops</p>
-            <p class="shelf-caption">Filters From A Drawer To Zero Clicks</p>
-            <p class="shelf-cta">View Case Study &rarr;</p>
-          </a>
-          <a class="shelf-card" href="omnione.html" style="background-image:url(images/omnione/omnione-design-system-cover-banner.png); background-position: left center;">
-            <p class="shelf-name">Omnione</p>
-            <p class="shelf-caption">One Design Language For Four Product Teams</p>
-            <p class="shelf-cta">View Case Study &rarr;</p>
-          </a>
-        </div>
+    <div class="story-topline">
+      <div class="story-progress" id="storyProgress">
+        <button type="button" class="story-seg" aria-label="Show Teesas LMS"><span class="story-seg-fill"></span></button>
+        <button type="button" class="story-seg" aria-label="Show Cardtonic"><span class="story-seg-fill"></span></button>
+        <button type="button" class="story-seg" aria-label="Show Fundall"><span class="story-seg-fill"></span></button>
+        <button type="button" class="story-seg" aria-label="Show Coreloops"><span class="story-seg-fill"></span></button>
+        <button type="button" class="story-seg" aria-label="Show Omnione"><span class="story-seg-fill"></span></button>
       </div>
-      <button type="button" class="story-nav story-nav--next" id="storyNext" aria-label="Next case study">&rarr;</button>
+      <!-- [REVERT POINT] TEST CHANGE, round 24 — "See All Work" link
+           removed per feedback. .story-see-all CSS left in place, unused,
+           for an easy revert. -->
     </div>
-
+    <div class="story-stage" id="storyStage">
+      <a class="shelf-card is-active" href="teesaslms.html" style="background-image:url(images/teesas/banner.png)">
+        <p class="shelf-name">Teesas LMS</p>
+        <p class="shelf-caption">Three Rebuilds To Get One LMS Right</p>
+        <p class="shelf-cta">View Case Study &rarr;</p>
+      </a>
+      <a class="shelf-card" href="cardtonic.html" style="background-image:url(images/Cardtonic/00%20%C2%B7%20Cover.png)">
+        <p class="shelf-name">Cardtonic</p>
+        <p class="shelf-caption">Sending Money To People, Not Accounts</p>
+        <p class="shelf-cta">View Case Study &rarr;</p>
+      </a>
+      <a class="shelf-card" href="fundall.html" style="background-image:url(images/fundall/cover.png)">
+        <p class="shelf-name">Fundall</p>
+        <p class="shelf-caption">Salary Advance: 6 Minutes To Under 2</p>
+        <p class="shelf-cta">View Case Study &rarr;</p>
+      </a>
+      <a class="shelf-card" href="coreloops.html" style="background-image:url(images/coreloops/coreloop-cover.png)">
+        <p class="shelf-name">Coreloops</p>
+        <p class="shelf-caption">Filters From A Drawer To Zero Clicks</p>
+        <p class="shelf-cta">View Case Study &rarr;</p>
+      </a>
+      <a class="shelf-card" href="omnione.html" style="background-image:url(images/omnione/omnione-design-system-cover-banner.png); background-position: left center;">
+        <p class="shelf-name">Omnione</p>
+        <p class="shelf-caption">One Design Language For Four Product Teams</p>
+        <p class="shelf-cta">View Case Study &rarr;</p>
+      </a>
+      <!-- [TEST] swipe hint — slides in from the left edge of the shelf
+           on hover, like a tag peeling out from the split divider. -->
+      <div class="story-swipe-hint" aria-hidden="true">
+        <span class="swipe-hint-arrows">
+          <span class="swipe-hint-arrow swipe-hint-arrow--l">&larr;</span>
+          <span class="swipe-hint-arrow swipe-hint-arrow--r">&rarr;</span>
+        </span>
+        <span class="swipe-hint-label">Swipe</span>
+      </div>
+    </div>
   </div>
+
 
   <!-- [REVERT POINT] TEST CHANGE, round 2 (user feedback: page was already
        busy — testimonials moved to about.html instead of stacking a 4th
@@ -1286,19 +1321,62 @@ a { color: inherit; }
 
   segs.forEach((s, i) => s.addEventListener('click', () => goTo(i)));
 
-  // [REVERT POINT] TEST CHANGE, round 23 — manual prev/next arrows, on top
-  // of clicking a segment directly. Both wrap around (last -> first,
-  // first -> last) rather than stopping at the ends.
-  const prevBtn = document.getElementById('storyPrev');
-  const nextBtn = document.getElementById('storyNext');
-  if (prevBtn) prevBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    goTo((idx - 1 + cards.length) % cards.length);
+  // ── Swipe / drag navigation ──────────────────────────────────────────────
+  // Threshold: 45px drag = navigate. dragDelta is read by click handlers on
+  // the anchor cards to suppress navigation when the gesture was a drag, not
+  // a tap.
+  const SWIPE_THRESHOLD = 45;
+  let dragStartX = 0;
+  let dragDelta  = 0;
+  let dragging   = false;
+
+  // Suppress card link navigation when the interaction was a drag, not a tap
+  cards.forEach(card => {
+    card.addEventListener('click', e => {
+      if (Math.abs(dragDelta) > 10) e.preventDefault();
+    });
   });
-  if (nextBtn) nextBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    goTo((idx + 1) % cards.length);
+
+  // Touch swipe
+  stage.addEventListener('touchstart', e => {
+    dragStartX = e.touches[0].clientX;
+    dragDelta  = 0;
+  }, { passive: true });
+
+  stage.addEventListener('touchend', e => {
+    dragDelta = e.changedTouches[0].clientX - dragStartX;
+    if (Math.abs(dragDelta) >= SWIPE_THRESHOLD) {
+      goTo(dragDelta < 0
+        ? (idx + 1) % cards.length
+        : (idx - 1 + cards.length) % cards.length);
+    }
+  }, { passive: true });
+
+  // Mouse drag
+  stage.addEventListener('mousedown', e => {
+    dragStartX = e.clientX;
+    dragDelta  = 0;
+    dragging   = true;
   });
+
+  stage.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    dragDelta = e.clientX - dragStartX;
+  });
+
+  function endDrag(e) {
+    if (!dragging) return;
+    dragging = false;
+    dragDelta = (e.clientX || 0) - dragStartX;
+    if (Math.abs(dragDelta) >= SWIPE_THRESHOLD) {
+      goTo(dragDelta < 0
+        ? (idx + 1) % cards.length
+        : (idx - 1 + cards.length) % cards.length);
+    }
+  }
+  stage.addEventListener('mouseup',    endDrag);
+  stage.addEventListener('mouseleave', e => { endDrag(e); dragging = false; });
+  // ─────────────────────────────────────────────────────────────────────────
 
   function pause() {
     paused = true;
