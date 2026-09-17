@@ -336,12 +336,16 @@ a { color: inherit; }
    label+title, then description underneath. */
 /* [REVERT POINT] TEST CHANGE, round 20 — margin-top was 22px; the "bleed
    out of frame" magazine treatment discussed for this box isn't happening
-   for now, just a plain spacing reduction. */
+   for now, just a plain spacing reduction.
+   [REVERT POINT] TEST CHANGE, round 28 — reversed again: per feedback,
+   the box should read as clearly separate from the greeting/headline/
+   tagline/prose cluster above it (which stays tight, close together),
+   not just another closely-spaced element in that same group. */
 .hero-building-box {
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
-  margin-top: 14px;
+  margin-top: 48px;
   padding: 18px 22px;
   max-width: 480px;
   border: 1px solid rgba(242, 240, 235, 0.32);
@@ -1019,8 +1023,12 @@ a { color: inherit; }
 
   .hero-prose-p { font-size: clamp(13.5px, min(1.1vw, 1.9vh), 16px); line-height: 1.55; }
 
+  /* [REVERT POINT] TEST CHANGE, round 28 — was clamp(8px, 1.4vh, 14px),
+     matching the tight spacing of the cluster above it. Widened
+     significantly so the box reads as its own distinct block, still
+     compressing on short viewports via the vh clamp. */
   .hero-building-box {
-    margin-top: clamp(8px, 1.4vh, 14px);
+    margin-top: clamp(24px, 6vh, 56px);
     padding: clamp(10px, 1.8vh, 18px) clamp(14px, 1.6vw, 22px);
     gap: clamp(6px, 1vh, 10px);
   }
