@@ -720,6 +720,8 @@ a { color: inherit; }
   flex: 1;
   min-height: 0;
   cursor: grab;
+  display: flex;
+  overflow: hidden;
 }
 
 /* Grabbing state is driven by a JS class on <body> so the cursor stays
@@ -734,8 +736,9 @@ body.is-shelf-dragging * {
    treatment .shelf-card always had, just no longer flex/rotate, since each
    card is now a full-bleed absolutely-positioned layer in .story-stage. */
 .shelf-card {
-  position: absolute;
-  inset: 0;
+  flex: 0 0 100%;
+  height: 100%;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -745,17 +748,10 @@ body.is-shelf-dragging * {
   color: var(--paper-hard);
   background-size: cover;
   background-position: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s ease, transform 0.12s ease;
+  pointer-events: auto;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
   user-select: none;
   -webkit-user-drag: none;
-}
-
-.shelf-card.is-active {
-  opacity: 1;
-  pointer-events: auto;
-  z-index: 1;
 }
 
 /* ── Swipe hint tag ─────────────────────────────────────────────────────────
@@ -1318,7 +1314,11 @@ body.is-shelf-dragging * {
     idx = i;
     elapsed = 0;
     startTime = null;
-    cards.forEach((c, ci) => c.classList.toggle('is-active', ci === i));
+    cards.forEach((c, ci) => {
+      c.classList.toggle('is-active', ci === i);
+      c.style.transition = ''; // Restore CSS transition
+      c.style.transform = 'translateX(-' + (idx * 100) + '%)';
+    });
     segs.forEach((s, si) => {
       s.classList.toggle('is-done', si < i);
       s.querySelector('.story-seg-fill').style.width = si < i ? '100%' : '0%';
@@ -1346,9 +1346,12 @@ body.is-shelf-dragging * {
     document.body.classList.remove('is-shelf-dragging');
   }
 
-  // Snap the currently-pulled card back to rest
-  function resetCardPull() {
-    cards.forEach(c => { c.style.transform = ''; });
+  // Live pull: move the entire track of cards under the finger
+  function applyPull(pull) {
+    cards.forEach(c => {
+      c.style.transition = 'none'; // Disable transition for 1:1 tracking
+      c.style.transform = `translateX(calc(-${idx * 100}% + ${pull}px))`;
+    });
   }
 
   // Suppress card link navigation when the interaction was a drag, not a tap
@@ -1367,18 +1370,21 @@ body.is-shelf-dragging * {
   stage.addEventListener('touchmove', e => {
     if (!e.touches.length) return;
     dragDelta = e.touches[0].clientX - dragStartX;
-    // Real-time pull feedback: card follows finger, capped at ±32px
-    const pull = Math.sign(dragDelta) * Math.min(Math.abs(dragDelta) * 0.35, 32);
-    if (cards[idx]) cards[idx].style.transform = 'translateX(' + pull + 'px)';
+    // Add resistance if pulling past the ends
+    let pull = dragDelta;
+    if (idx === 0 && pull > 0) pull *= 0.3;
+    if (idx === cards.length - 1 && pull < 0) pull *= 0.3;
+    applyPull(pull);
   }, { passive: true });
 
   stage.addEventListener('touchend', e => {
     dragDelta = e.changedTouches[0].clientX - dragStartX;
-    resetCardPull();
     if (Math.abs(dragDelta) >= SWIPE_THRESHOLD) {
       goTo(dragDelta < 0
         ? (idx + 1) % cards.length
         : (idx - 1 + cards.length) % cards.length);
+    } else {
+      goTo(idx); // Snap back to current card
     }
   }, { passive: true });
 
@@ -1393,20 +1399,22 @@ body.is-shelf-dragging * {
   window.addEventListener('mousemove', e => {
     if (!dragging) return;
     dragDelta = e.clientX - dragStartX;
-    // Real-time pull: card resists drag, caps at ±32px
-    const pull = Math.sign(dragDelta) * Math.min(Math.abs(dragDelta) * 0.35, 32);
-    if (cards[idx]) cards[idx].style.transform = 'translateX(' + pull + 'px)';
+    let pull = dragDelta;
+    if (idx === 0 && pull > 0) pull *= 0.3;
+    if (idx === cards.length - 1 && pull < 0) pull *= 0.3;
+    applyPull(pull);
   });
 
   window.addEventListener('mouseup', e => {
     if (!dragging) return;
     dragDelta = e.clientX - dragStartX;
     stopGrab();
-    resetCardPull();
     if (Math.abs(dragDelta) >= SWIPE_THRESHOLD) {
       goTo(dragDelta < 0
         ? (idx + 1) % cards.length
         : (idx - 1 + cards.length) % cards.length);
+    } else {
+      goTo(idx);
     }
   });
 
