@@ -712,9 +712,22 @@ a { color: inherit; }
 
 .story-see-all:hover { color: var(--accent); border-color: var(--accent); }
 
+/* [TEST] arrows-outside — .story-stage-row is a flex row holding the prev
+   button, the image stage (which expands to fill the middle), and the next
+   button. .story-stage itself only needs position:relative + 100% height;
+   the row handles all the sizing. */
+.story-stage-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-height: 0;
+}
+
 .story-stage {
   position: relative;
   flex: 1;
+  height: 100%;
   min-height: 0;
 }
 
@@ -744,35 +757,27 @@ a { color: inherit; }
   z-index: 1;
 }
 
-/* [REVERT POINT] TEST CHANGE, round 23 — manual prev/next arrows over the
-   story stage, on top of the auto-advance and clickable progress bar.
-   z-index:2, above .shelf-card's own z-index:1 (is-active), so they stay
-   clickable regardless of which card is showing; opacity fades in on
-   hover/focus of the stage so they don't compete with the photo at rest. */
+/* [TEST] arrows-outside — buttons are now static flex siblings of
+   .story-stage inside .story-stage-row. Always visible; no fade-in needed
+   since there is no image behind them to obscure at rest. */
 .story-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
+  position: static;
+  transform: none;
+  flex-shrink: 0;
   width: 40px;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(242, 240, 235, 0.5);
-  background: rgba(13, 13, 13, 0.45);
-  color: var(--paper-hard);
+  border: 2px solid var(--ink-hard);
+  background: var(--paper-hard);
+  color: var(--ink-hard);
   font-family: var(--font-hard);
   font-size: 18px;
   line-height: 1;
   cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.15s ease, background 0.12s ease, border-color 0.12s ease;
-}
-
-.story-stage:hover .story-nav,
-.story-stage:focus-within .story-nav {
   opacity: 1;
+  transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
 }
 
 .story-nav:hover {
@@ -781,14 +786,8 @@ a { color: inherit; }
   color: #fff;
 }
 
-.story-nav--prev { left: 14px; }
-.story-nav--next { right: 14px; }
-
 @media (hover: none) {
-  /* touch devices have no hover state to reveal these on — show them
-     dimly at rest instead of hiding them behind an interaction that
-     doesn't exist on this device. */
-  .story-nav { opacity: 0.55; }
+  .story-nav { opacity: 1; }
 }
 
 /* [REVERT POINT] TEST CHANGE, round 17 — the old flat 80% dark wash (see
@@ -1158,37 +1157,38 @@ a { color: inherit; }
          prototype + execution) — strongest first. The 3 dropped from the
          reel (Omnibiz, Raven Pay, VENX) are still on my-work.html via
          See All. -->
-    <div class="story-stage" id="storyStage">
-      <a class="shelf-card is-active" href="teesaslms.html" style="background-image:url(images/teesas/banner.png)">
-        <p class="shelf-name">Teesas LMS</p>
-        <p class="shelf-caption">Three Rebuilds To Get One LMS Right</p>
-        <p class="shelf-cta">View Case Study &rarr;</p>
-      </a>
-      <a class="shelf-card" href="cardtonic.html" style="background-image:url(images/Cardtonic/00%20%C2%B7%20Cover.png)">
-        <p class="shelf-name">Cardtonic</p>
-        <p class="shelf-caption">Sending Money To People, Not Accounts</p>
-        <p class="shelf-cta">View Case Study &rarr;</p>
-      </a>
-      <a class="shelf-card" href="fundall.html" style="background-image:url(images/fundall/cover.png)">
-        <p class="shelf-name">Fundall</p>
-        <p class="shelf-caption">Salary Advance: 6 Minutes To Under 2</p>
-        <p class="shelf-cta">View Case Study &rarr;</p>
-      </a>
-      <a class="shelf-card" href="coreloops.html" style="background-image:url(images/coreloops/coreloop-cover.png)">
-        <p class="shelf-name">Coreloops</p>
-        <p class="shelf-caption">Filters From A Drawer To Zero Clicks</p>
-        <p class="shelf-cta">View Case Study &rarr;</p>
-      </a>
-      <a class="shelf-card" href="omnione.html" style="background-image:url(images/omnione/omnione-design-system-cover-banner.png); background-position: left center;">
-        <p class="shelf-name">Omnione</p>
-        <p class="shelf-caption">One Design Language For Four Product Teams</p>
-        <p class="shelf-cta">View Case Study &rarr;</p>
-      </a>
-      <!-- [REVERT POINT] TEST CHANGE, round 23 — manual prev/next controls,
-           on top of the auto-advance + clickable progress segments. -->
+    <div class="story-stage-row">
       <button type="button" class="story-nav story-nav--prev" id="storyPrev" aria-label="Previous case study">&larr;</button>
+      <div class="story-stage" id="storyStage">
+        <a class="shelf-card is-active" href="teesaslms.html" style="background-image:url(images/teesas/banner.png)">
+          <p class="shelf-name">Teesas LMS</p>
+          <p class="shelf-caption">Three Rebuilds To Get One LMS Right</p>
+          <p class="shelf-cta">View Case Study &rarr;</p>
+        </a>
+        <a class="shelf-card" href="cardtonic.html" style="background-image:url(images/Cardtonic/00%20%C2%B7%20Cover.png)">
+          <p class="shelf-name">Cardtonic</p>
+          <p class="shelf-caption">Sending Money To People, Not Accounts</p>
+          <p class="shelf-cta">View Case Study &rarr;</p>
+        </a>
+        <a class="shelf-card" href="fundall.html" style="background-image:url(images/fundall/cover.png)">
+          <p class="shelf-name">Fundall</p>
+          <p class="shelf-caption">Salary Advance: 6 Minutes To Under 2</p>
+          <p class="shelf-cta">View Case Study &rarr;</p>
+        </a>
+        <a class="shelf-card" href="coreloops.html" style="background-image:url(images/coreloops/coreloop-cover.png)">
+          <p class="shelf-name">Coreloops</p>
+          <p class="shelf-caption">Filters From A Drawer To Zero Clicks</p>
+          <p class="shelf-cta">View Case Study &rarr;</p>
+        </a>
+        <a class="shelf-card" href="omnione.html" style="background-image:url(images/omnione/omnione-design-system-cover-banner.png); background-position: left center;">
+          <p class="shelf-name">Omnione</p>
+          <p class="shelf-caption">One Design Language For Four Product Teams</p>
+          <p class="shelf-cta">View Case Study &rarr;</p>
+        </a>
+      </div>
       <button type="button" class="story-nav story-nav--next" id="storyNext" aria-label="Next case study">&rarr;</button>
     </div>
+
   </div>
 
   <!-- [REVERT POINT] TEST CHANGE, round 2 (user feedback: page was already
