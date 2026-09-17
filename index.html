@@ -972,14 +972,23 @@ a { color: inherit; }
      box lands at the bottom of the column instead of leaving a gap after
      it — the space is spread as breathing room between elements instead
      of dumped in one place at the end.
-     To revert: remove this rule (and hero-static's padding-bottom
-     change above, back to 0). */
+     [REVERT POINT] TEST CHANGE, round 27 — space-between stretched the
+     gap BETWEEN each element (headline/tagline/prose/box) to fill the
+     column, even though those elements already had their own small
+     margins — on a tall column that meant huge, disconnected-looking
+     gaps between lines of copy that belong together. Switched to
+     center: children keep their own natural (small, clamp()'d) margins,
+     stay close to each other, and the whole cluster centers as one
+     group in the column — leaving even breathing room above/below
+     instead of stretching the space inside the content itself.
+     To revert: change back to space-between (and hero-static's
+     padding-bottom change above, back to 0). */
   .hero-static > .wrap {
     flex: 1;
     min-height: 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
   }
 
   /* [REVERT POINT] TEST CHANGE, round 13 — on shorter screens (laptop
