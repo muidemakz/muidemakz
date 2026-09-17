@@ -53,16 +53,10 @@
 </head>
 <body>
 
-<header class="site-header">
-  <div class="wrap">
-    <a href="index.html" class="logo">muidemakz</a>
-    <nav class="site-nav">
-      <a href="my-work.html" class="is-active">Work</a>
-      <a href="about.html">About</a>
-    </nav>
-    <a href="mailto:muidemakz@gmail.com" class="btn-outline">Contact</a>
-  </div>
-</header>
+<!-- [REVERT POINT] TEST CHANGE, round 21 -- shared header component,
+     see js/header.js. Was a hardcoded <header class="site-header"> copy. -->
+<div id="site-header-root"></div>
+<script src="js/header.js"></script>
 
 <main class="work-main">
   <div class="wrap">
@@ -124,49 +118,49 @@
         <a class="work-card-hit" href="omnione.html" aria-label="View case study: Omnione Design System"></a>
         <span class="work-card-name">Omnione Design System</span>
         <span class="work-card-caption">One Design Language For Four Product Teams</span>
-        <span class="work-card-meta"><span class="work-card-status work-card-status--shipped">shipped</span><span>UI Design</span></span>
+        <span class="work-card-meta"><span>UI Design</span></span>
       </li>
       <li class="work-card has-image has-caption is-linked" style="background-image:url(images/fundall/cover.png);background-size:cover">
         <a class="work-card-hit" href="fundall.html" aria-label="View case study: Fundall"></a>
         <span class="work-card-name">Fundall</span>
         <span class="work-card-caption">Salary Advance: 6 Minutes To Under 2</span>
-        <span class="work-card-meta"><span class="work-card-status work-card-status--shipped">shipped</span><span>UI Design</span></span>
+        <span class="work-card-meta"><span>UI Design</span></span>
       </li>
       <li class="work-card has-image has-caption is-linked" style="background-image:url(images/teesas/banner.png);background-size:cover">
         <a class="work-card-hit" href="teesaslms.html" aria-label="View case study: Teesas LMS v2.0"></a>
         <span class="work-card-name">Teesas LMS v2.0</span>
         <span class="work-card-caption">Three Rebuilds To Get One LMS Right</span>
-        <span class="work-card-meta"><span class="work-card-status work-card-status--shipped">shipped</span><span>UI Design</span></span>
+        <span class="work-card-meta"><span>UI Design</span></span>
       </li>
       <li class="work-card has-image has-caption is-linked" style="background-image:url(images/omnibiz/banner-image.png);background-size:cover">
         <a class="work-card-hit" href="empty-state.html" aria-label="View case study: Omnibiz Empty &amp; Preorder States"></a>
         <span class="work-card-name">Omnibiz Empty &amp; Preorder States</span>
         <span class="work-card-caption">Making &ldquo;Not Here Yet&rdquo; Feel Like A Preorder</span>
-        <span class="work-card-meta"><span class="work-card-status work-card-status--shipped">shipped</span><span>UX Design</span></span>
+        <span class="work-card-meta"><span>UX Design</span></span>
       </li>
       <li class="work-card has-image has-caption is-linked" style="background-image:url(images/coreloops/coreloop-cover.png);background-size:cover">
         <a class="work-card-hit" href="coreloops.html" aria-label="View case study: Coreloops Documents Filter"></a>
         <span class="work-card-name">Coreloops Documents Filter</span>
         <span class="work-card-caption">Filters From A Drawer To Zero Clicks</span>
-        <span class="work-card-meta"><span class="work-card-status work-card-status--concept">concept</span><span>UI Design</span></span>
+        <span class="work-card-meta"><span>UI Design</span></span>
       </li>
       <li class="work-card has-image has-caption is-linked" style="background-image:url(images/Cardtonic/00%20%C2%B7%20Cover.png);background-size:cover">
         <a class="work-card-hit" href="cardtonic.html" aria-label="View case study: Cardtonic P2P Money Transfer"></a>
         <span class="work-card-name">Cardtonic P2P Money Transfer</span>
         <span class="work-card-caption">Sending Money To People, Not Accounts</span>
-        <span class="work-card-meta"><span class="work-card-status work-card-status--concept">concept</span><span>UI Design</span></span>
+        <span class="work-card-meta"><span>UI Design</span></span>
       </li>
       <li class="work-card has-image has-caption is-linked" style="background-image:url(images/ravenpay/banner-image.png);background-size:cover">
         <a class="work-card-hit" href="raven-pay.html" aria-label="View case study: Raven Pay"></a>
         <span class="work-card-name">Raven Pay</span>
         <span class="work-card-caption">Making A Banking App Read As Serious, Not Cute</span>
-        <span class="work-card-meta"><span class="work-card-status work-card-status--concept">concept</span><span>UI Design</span></span>
+        <span class="work-card-meta"><span>UI Design</span></span>
       </li>
       <li class="work-card has-image has-caption is-linked" style="background-image:url(images/venx/cover-banner-image.png);background-size:cover">
         <a class="work-card-hit" href="venx.html" aria-label="View case study: VENX"></a>
         <span class="work-card-name">VENX</span>
         <span class="work-card-caption">A Full AI Sales CRM Concept In 24 Hours</span>
-        <span class="work-card-meta"><span class="work-card-status work-card-status--concept">concept</span><span>UI Design</span></span>
+        <span class="work-card-meta"><span>UI Design</span></span>
       </li>
     </ul>
 

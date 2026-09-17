@@ -53,16 +53,10 @@
 </head>
 <body>
 
-<header class="site-header">
-  <div class="wrap">
-    <a href="index.html" class="logo">muidemakz</a>
-    <nav class="site-nav">
-      <a href="my-work.html">Work</a>
-      <a href="about.html" class="is-active">About</a>
-    </nav>
-    <a href="mailto:muidemakz@gmail.com" class="btn-outline">Contact</a>
-  </div>
-</header>
+<!-- [REVERT POINT] TEST CHANGE, round 21 -- shared header component,
+     see js/header.js. Was a hardcoded <header class="site-header"> copy. -->
+<div id="site-header-root"></div>
+<script src="js/header.js"></script>
 
 <main class="about-main">
 
@@ -117,6 +111,14 @@
     <div class="ab-stat">
       <span class="stat-value">$124M+</span>
       <span class="stat-label">Annual NMV processed on the platforms I've designed</span>
+    </div>
+    <!-- [REVERT POINT] new 4th stat, added for the homepage-backdrop test
+         change; grid moved from repeat(3,1fr) to repeat(4,1fr) in
+         css/about.css to fit it. To revert: delete this block and put
+         grid-template-columns back to repeat(3, 1fr). -->
+    <div class="ab-stat">
+      <span class="stat-value">20+</span>
+      <span class="stat-label">Products &amp; features shipped, full-time &amp; freelance</span>
     </div>
     <div class="ab-stat">
       <span class="stat-value">6+</span>
@@ -397,7 +399,16 @@
     </div>
   </section>
 
-  <!-- ================= CLOSING CTA ================= -->
+  <!-- ================= CLOSING CTA + TESTIMONIALS ================= -->
+  <!-- [REVERT POINT] TEST CHANGE, round 10 — the standalone "07 What People
+       Say" <section class="band band--grey"> (2-column grid of light cards)
+       that used to sit here as its own section is gone; the same 4
+       testimonials now live inside .ab-cta itself, below the CTA buttons,
+       as a horizontally-scrolling strip (.testimonial-grid switched from a
+       2-col grid to a flex row — see css/about.css) restyled for the dark
+       ab-cta background. To revert: split .ab-cta-testimonials back out
+       into its own band--grey section above .ab-cta, and restore
+       .testimonial-grid/.testimonial-card's grid/light-card CSS. -->
   <section class="ab-cta">
     <div class="wrap ab-cta-inner">
       <h2>Got a product problem<br>worth <em>solving?</em></h2>
@@ -405,6 +416,31 @@
         <a class="ab-btn ab-btn--solid" href="mailto:muidemakz@gmail.com">Email Me &rarr;</a>
         <a class="ab-btn" href="Excellent_Makanju_Resume_2026.pdf" download>Download CV &darr;</a>
         <a class="ab-btn" href="my-work.html">See Work &rarr;</a>
+      </div>
+
+      <div class="ab-cta-testimonials">
+        <div class="testimonial-grid" id="testimonialGrid">
+          <div class="testimonial-card">
+            <p class="testimonial-quote">&ldquo;Working with Excellent was a masterclass in collaboration. He translated complex requirements into intuitive experiences that transformed how our users engaged with the platform. His ability to balance design clarity with business goals made our product stronger and easier to scale.&rdquo;</p>
+            <p class="testimonial-name">Chinenye Obele</p>
+            <p class="testimonial-role">Product Manager, Teesas Education</p>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-quote">&ldquo;Excellent&rsquo;s creativity and dedication significantly contributed to the success of our project. His keen attention to detail and commitment to delivering top-notch user experiences earned positive feedback from both our team and our clients.&rdquo;</p>
+            <p class="testimonial-name">Oluwatosin Adebayo</p>
+            <p class="testimonial-role">CEO, Becca Technologies Limited</p>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-quote">&ldquo;Excellent has a rare talent for simplifying complexity. He redesigned key financial flows that not only improved usability but also instilled trust in our users. His design leadership accelerated adoption and positioned us as more competitive in the fintech space.&rdquo;</p>
+            <p class="testimonial-name">Taiwo Obasan</p>
+            <p class="testimonial-role">COO, Fundall</p>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-quote">&ldquo;Collaborating with Excellent sharpened my own design practice. His leadership style is supportive yet challenging &mdash; pushing the team to think beyond aesthetics and focus on impact. He creates systems and experiences that scale, while mentoring others to grow alongside him.&rdquo;</p>
+            <p class="testimonial-name">Oghosa Gift</p>
+            <p class="testimonial-role">Product Designer, Omniretail</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -427,6 +463,57 @@
     <p class="wrap footer-legal">Excellent Makanju, Senior Product Designer</p>
   </div>
 </footer>
+
+<!-- [REVERT POINT] TEST CHANGE, round 11 — testimonial strip now
+     auto-scrolls horizontally, same duplicate-content-then-nudge-
+     scrollLeft pattern as the homepage's project shelf (index.html), just
+     without a separate track element since .testimonial-grid's own
+     children are the row here. To revert: delete this script and the
+     id="testimonialGrid" attribute on .testimonial-grid in the markup
+     above. -->
+<script>
+(function () {
+  const grid = document.getElementById('testimonialGrid');
+  if (!grid) return;
+
+  const clone = grid.innerHTML;
+  grid.insertAdjacentHTML('beforeend', clone);
+
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let paused = reduceMotion;
+  let resumeTimer = null;
+
+  function pause() {
+    paused = true;
+    if (resumeTimer) clearTimeout(resumeTimer);
+  }
+  function scheduleResume(delay) {
+    if (reduceMotion) return;
+    if (resumeTimer) clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(() => { paused = false; }, delay);
+  }
+
+  grid.addEventListener('mouseenter', pause);
+  grid.addEventListener('mouseleave', () => scheduleResume(500));
+  grid.addEventListener('pointerdown', pause);
+  grid.addEventListener('pointerup', () => scheduleResume(1800));
+  grid.addEventListener('pointercancel', () => scheduleResume(1800));
+  grid.addEventListener('touchstart', pause, { passive: true });
+  grid.addEventListener('touchend', () => scheduleResume(1800), { passive: true });
+
+  if (!reduceMotion) {
+    const SPEED = 0.5;
+    (function tick() {
+      if (!paused) {
+        const half = grid.scrollWidth / 2;
+        grid.scrollLeft += SPEED;
+        if (grid.scrollLeft >= half) grid.scrollLeft -= half;
+      }
+      requestAnimationFrame(tick);
+    })();
+  }
+})();
+</script>
 
 </body>
 </html>

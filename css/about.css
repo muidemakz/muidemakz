@@ -258,9 +258,11 @@
    STATS
    ========================================================================= */
 
+/* [REVERT POINT] was repeat(3, 1fr) — widened to fit the new 4th stat
+   added in about.html. To revert: change back to repeat(3, 1fr). */
 .ab-stats {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   border-bottom: 1px solid var(--ink-hard);
 }
 
@@ -296,6 +298,70 @@
   opacity: 0.7;
   display: block;
   max-width: 26ch;
+}
+
+/* =========================================================================
+   TESTIMONIALS
+   [REVERT POINT] TEST CHANGE, round 10 — was a standalone band--grey
+   section with a 2-column grid of light (paper-hard) cards. Now lives
+   inside .ab-cta instead (dark background), as a horizontally-scrolling
+   strip — same auto-fit-to-content pattern as .shelf-grid on the
+   homepage, restyled for dark-on-dark instead of light cards on grey.
+   ========================================================================= */
+
+.ab-cta-testimonials { margin-top: 64px; text-align: left; }
+
+.testimonial-grid {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 4px;
+}
+
+.testimonial-grid::-webkit-scrollbar { display: none; }
+
+/* [REVERT POINT] TEST CHANGE, round 11 — flex-basis was 320px; widened to
+   440px per feedback ("increase the length of each card horizontally"). */
+.testimonial-card {
+  flex: 0 0 440px;
+  text-align: left;
+  padding: 24px 26px;
+  border: 1px solid rgba(242, 240, 235, 0.28);
+  background: rgba(242, 240, 235, 0.06);
+}
+
+.testimonial-quote {
+  font-family: var(--font-hard);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--paper-hard);
+  margin: 0 0 18px;
+}
+
+.testimonial-name {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--paper-hard);
+  margin: 0 0 3px;
+}
+
+.testimonial-role {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--paper-hard);
+  opacity: 0.55;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .ab-cta-testimonials { margin-top: 44px; }
+  .testimonial-card { flex-basis: 260px; padding: 18px 20px; }
 }
 
 /* =========================================================================
