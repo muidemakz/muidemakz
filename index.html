@@ -722,7 +722,13 @@ a { color: inherit; }
   cursor: grab;
 }
 
-.story-stage:active { cursor: grabbing; }
+/* Grabbing state is driven by a JS class on <body> so the cursor stays
+   locked even when the mouse moves outside the stage mid-drag. */
+body.is-shelf-dragging,
+body.is-shelf-dragging * {
+  cursor: grabbing !important;
+  user-select: none;
+}
 
 /* base card look (image bg, dark overlay, padding, border) — same visual
    treatment .shelf-card always had, just no longer flex/rotate, since each
@@ -741,7 +747,7 @@ a { color: inherit; }
   background-position: center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease, transform 0.12s ease;
   user-select: none;
   -webkit-user-drag: none;
 }
@@ -1321,14 +1327,29 @@ a { color: inherit; }
 
   segs.forEach((s, i) => s.addEventListener('click', () => goTo(i)));
 
-  // ── Swipe / drag navigation ──────────────────────────────────────────────
-  // Threshold: 45px drag = navigate. dragDelta is read by click handlers on
-  // the anchor cards to suppress navigation when the gesture was a drag, not
-  // a tap.
-  const SWIPE_THRESHOLD = 45;
-  let dragStartX = 0;
-  let dragDelta  = 0;
-  let dragging   = false;
+  // ── Swipe / drag / trackpad navigation ───────────────────────────────────
+  const SWIPE_THRESHOLD = 45;  // px for mouse drag & touch
+  const WHEEL_THRESHOLD = 55;  // accumulated deltaX for trackpad swipe
+  let dragStartX  = 0;
+  let dragDelta   = 0;
+  let dragging    = false;
+  let wheelAccX   = 0;
+  let wheelCooldown = false;
+
+  // Helper: lock cursor across the whole page while dragging
+  function startGrab() {
+    dragging = true;
+    document.body.classList.add('is-shelf-dragging');
+  }
+  function stopGrab() {
+    dragging = false;
+    document.body.classList.remove('is-shelf-dragging');
+  }
+
+  // Snap the currently-pulled card back to rest
+  function resetCardPull() {
+    cards.forEach(c => { c.style.transform = ''; });
+  }
 
   // Suppress card link navigation when the interaction was a drag, not a tap
   cards.forEach(card => {
@@ -1337,14 +1358,23 @@ a { color: inherit; }
     });
   });
 
-  // Touch swipe
+  // ── Touch swipe ──────────────────────────────────────────────────────────
   stage.addEventListener('touchstart', e => {
     dragStartX = e.touches[0].clientX;
     dragDelta  = 0;
   }, { passive: true });
 
+  stage.addEventListener('touchmove', e => {
+    if (!e.touches.length) return;
+    dragDelta = e.touches[0].clientX - dragStartX;
+    // Real-time pull feedback: card follows finger, capped at ±32px
+    const pull = Math.sign(dragDelta) * Math.min(Math.abs(dragDelta) * 0.35, 32);
+    if (cards[idx]) cards[idx].style.transform = 'translateX(' + pull + 'px)';
+  }, { passive: true });
+
   stage.addEventListener('touchend', e => {
     dragDelta = e.changedTouches[0].clientX - dragStartX;
+    resetCardPull();
     if (Math.abs(dragDelta) >= SWIPE_THRESHOLD) {
       goTo(dragDelta < 0
         ? (idx + 1) % cards.length
@@ -1352,30 +1382,54 @@ a { color: inherit; }
     }
   }, { passive: true });
 
-  // Mouse drag
+  // ── Mouse / trackpad drag (click-and-drag) ───────────────────────────────
   stage.addEventListener('mousedown', e => {
     dragStartX = e.clientX;
     dragDelta  = 0;
-    dragging   = true;
+    startGrab();
   });
 
-  stage.addEventListener('mousemove', e => {
+  // Use window so fast drags that leave the stage still finish correctly
+  window.addEventListener('mousemove', e => {
     if (!dragging) return;
     dragDelta = e.clientX - dragStartX;
+    // Real-time pull: card resists drag, caps at ±32px
+    const pull = Math.sign(dragDelta) * Math.min(Math.abs(dragDelta) * 0.35, 32);
+    if (cards[idx]) cards[idx].style.transform = 'translateX(' + pull + 'px)';
   });
 
-  function endDrag(e) {
+  window.addEventListener('mouseup', e => {
     if (!dragging) return;
-    dragging = false;
-    dragDelta = (e.clientX || 0) - dragStartX;
+    dragDelta = e.clientX - dragStartX;
+    stopGrab();
+    resetCardPull();
     if (Math.abs(dragDelta) >= SWIPE_THRESHOLD) {
       goTo(dragDelta < 0
         ? (idx + 1) % cards.length
         : (idx - 1 + cards.length) % cards.length);
     }
-  }
-  stage.addEventListener('mouseup',    endDrag);
-  stage.addEventListener('mouseleave', e => { endDrag(e); dragging = false; });
+  });
+
+  // ── Trackpad / mousepad horizontal swipe (wheel events) ──────────────────
+  // Trackpad swipes fire wheel events with deltaX, not mouse events.
+  // Accumulate deltaX until threshold; cooldown prevents double-fires.
+  stage.addEventListener('wheel', function(e) {
+    // Ignore if predominantly vertical (normal scroll)
+    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+    e.preventDefault(); // stop page from scrolling sideways
+    if (wheelCooldown) return;
+
+    wheelAccX += e.deltaX;
+    if (Math.abs(wheelAccX) >= WHEEL_THRESHOLD) {
+      var dir = wheelAccX > 0 ? 1 : -1;
+      wheelAccX = 0;
+      wheelCooldown = true;
+      setTimeout(function() { wheelCooldown = false; }, 750);
+      goTo(dir > 0
+        ? (idx + 1) % cards.length
+        : (idx - 1 + cards.length) % cards.length);
+    }
+  }, { passive: false }); // passive:false required to call preventDefault
   // ─────────────────────────────────────────────────────────────────────────
 
   function pause() {
