@@ -1,33 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMFSR34FZG"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag("js", new Date());
-  gtag("config", "G-SMFSR34FZG");
-</script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Excellent Makanju &middot; Senior Product Designer</title>
-<meta name="description" content="Excellent Makanju is a Senior Product Designer with 6+ years across payments, wallet, credit and B2B commerce. See selected case studies and get in touch.">
-<link rel="canonical" href="https://muidemakz.com/">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMFSR34FZG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("js", new Date());
+    gtag("config", "G-SMFSR34FZG");
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excellent Makanju &middot; Senior Product Designer</title>
+  <meta name="description"
+    content="Excellent Makanju is a Senior Product Designer with 6+ years across payments, wallet, credit and B2B commerce. See selected case studies and get in touch.">
+  <link rel="canonical" href="https://muidemakz.com/">
 
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Excellent Makanju">
-<meta property="og:title" content="Excellent Makanju &middot; Senior Product Designer">
-<meta property="og:description" content="Senior Product Designer with 6+ years across payments, wallet, credit and B2B commerce. Selected case studies and contact info.">
-<meta property="og:url" content="https://muidemakz.com/">
-<meta property="og:image" content="https://muidemakz.com/images/about/about-me.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Excellent Makanju">
+  <meta property="og:title" content="Excellent Makanju &middot; Senior Product Designer">
+  <meta property="og:description"
+    content="Senior Product Designer with 6+ years across payments, wallet, credit and B2B commerce. Selected case studies and contact info.">
+  <meta property="og:url" content="https://muidemakz.com/">
+  <meta property="og:image" content="https://muidemakz.com/images/about/about-me.png">
 
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Excellent Makanju &middot; Senior Product Designer">
-<meta name="twitter:description" content="Senior Product Designer with 6+ years across payments, wallet, credit and B2B commerce.">
-<meta name="twitter:image" content="https://muidemakz.com/images/about/about-me.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Excellent Makanju &middot; Senior Product Designer">
+  <meta name="twitter:description"
+    content="Senior Product Designer with 6+ years across payments, wallet, credit and B2B commerce.">
+  <meta name="twitter:image" content="https://muidemakz.com/images/about/about-me.png">
 
-<script type="application/ld+json">
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -45,12 +49,14 @@
 }
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<style>
-/* =========================================================================
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* =========================================================================
    index-concept.html — EXPLORATION DRAFT, not linked from anywhere live.
 
    One locked-viewport screen (no page scroll), same composition as
@@ -65,23 +71,25 @@
    stands alone as a comparison artifact.
    ========================================================================= */
 
-:root {
-  --ink-hard: #0d0d0d;
-  --paper-hard: #f2f0eb;
-  --hard-line: rgba(13, 13, 13, 0.16);
-  --accent: #ff3b00;
-  --font-mono: "JetBrains Mono", monospace;
-  --font-hard: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  /* [REVERT POINT] was its own "Inter" redeclaration here, which silently
+    :root {
+      --ink-hard: #0d0d0d;
+      --paper-hard: #f2f0eb;
+      --hard-line: rgba(13, 13, 13, 0.16);
+      --accent: #ff3b00;
+      --font-mono: "JetBrains Mono", monospace;
+      --font-hard: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      /* [REVERT POINT] was its own "Inter" redeclaration here, which silently
      shadowed the shared --font-body from css/style.css (same bug pattern
      as the old local .wrap max-width override) — Outfit updates there
      were never taking effect on this page because of it. Removed so this
      page inherits the shared token like every other page does. */
-}
+    }
 
-* { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
-/* [REVERT POINT] TEST CHANGE, round 3 (branch: test/homepage-backdrop-prose).
+    /* [REVERT POINT] TEST CHANGE, round 3 (branch: test/homepage-backdrop-prose).
    Was `height: 100%; overflow: hidden;` with `body { display: flex;
    flex-direction: column }` and every section below sized in vh
    (`flex: 1`, `flex: 0 0 34vh`, padding/margins in vh, headline in
@@ -100,35 +108,42 @@
    To revert entirely: restore `height:100%; overflow:hidden` here, put
    `display:flex; flex-direction:column` back on body, and revert each
    vh-sized rule flagged below. */
-html, body { margin: 0; }
+    html,
+    body {
+      margin: 0;
+    }
 
-/* [REVERT POINT] TEST CHANGE, round 5 — padding-bottom reserves space for
+    /* [REVERT POINT] TEST CHANGE, round 5 — padding-bottom reserves space for
    .shelf-links now that it's position:fixed (see its own rule below);
    without this the fixed bar would sit on top of the last shelf cards
    instead of after them. 52px matches the bar's single-row desktop
    height; the mobile override further down bumps it to match the 2-row
    wrapped layout there. */
-body {
-  background: var(--paper-hard);
-  color: var(--ink-hard);
-  font-family: var(--font-body);
-  padding-bottom: 52px;
-}
+    body {
+      background: var(--paper-hard);
+      color: var(--ink-hard);
+      font-family: var(--font-body);
+      padding-bottom: 52px;
+    }
 
-/* .wrap intentionally NOT redeclared here — this page previously defined
+    /* .wrap intentionally NOT redeclared here — this page previously defined
    its own max-width: 1320px, which silently overrode the shared 1240px
    from css/style.css (--content-max) that about.html and my-work.html use
    untouched. That made the homepage header, and every section width,
    inconsistent with the rest of the site. Inheriting the shared rule now. */
-.wrap { width: 100%; }
+    .wrap {
+      width: 100%;
+    }
 
-a { color: inherit; }
+    a {
+      color: inherit;
+    }
 
-/* header chrome comes from the linked css/style.css (.site-header/.logo/
+    /* header chrome comes from the linked css/style.css (.site-header/.logo/
    .site-nav/.btn-outline) — same markup and stylesheet as about.html and
    every case study, not a local reimplementation. */
 
-/* =========================================================================
+    /* =========================================================================
    SECTION SWAP — top black+hatched, bottom grey     [REVERT POINT]
 
    Was: .hero-static plain paper/light, .shelf black+hatched. Now inverted —
@@ -144,45 +159,43 @@ a { color: inherit; }
    background-image restored (see the .shelf [REVERT POINT] below).
    ========================================================================= */
 
-:root {
-  /* [REVERT POINT] was #ebe9e5 (a distinct grey) — close enough to
+    :root {
+      /* [REVERT POINT] was #ebe9e5 (a distinct grey) — close enough to
      --paper-hard (#f2f0eb) that the shelf-card borders (also paper-hard)
      read as faint mismatched lines against it instead of blending clean.
      Now literally the same white as the rest of the page. */
-  --grey: #f2f0eb;
-}
+      --grey: #f2f0eb;
+    }
 
-/* ---------- intro section ---------- */
-/* [REVERT POINT] TEST CHANGE, round 3. Was `flex: 1; min-height: 0; display:
+    /* ---------- intro section ---------- */
+    /* [REVERT POINT] TEST CHANGE, round 3. Was `flex: 1; min-height: 0; display:
    flex; flex-direction: column; justify-content: center;` sized by however
    much of the locked viewport was left over, with `padding-top: 2.6vh;
    padding-bottom: 2vh` — padding that shrinks with the window instead of
    giving the content a fixed amount of room. Now a plain block section
    with fixed padding, same convention as about.css's `.band-inner`. */
-.hero-static {
-  position: relative;
-  padding: 72px 0 64px;
-  border-bottom: 1px solid var(--ink-hard);
-  background: var(--ink-hard);
-  color: var(--paper-hard);
-  overflow: hidden;
-}
+    .hero-static {
+      position: relative;
+      padding: 72px 0 64px;
+      border-bottom: 1px solid var(--ink-hard);
+      background: var(--ink-hard);
+      color: var(--paper-hard);
+      overflow: hidden;
+    }
 
-/* same diagonal hatch as About's hero */
-.hero-static::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background-image: repeating-linear-gradient(
-    -45deg,
-    rgba(255, 255, 255, 0.05) 0 12px,
-    transparent 12px 34px
-  );
-}
+    /* same diagonal hatch as About's hero */
+    .hero-static::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image: repeating-linear-gradient(-45deg,
+          rgba(255, 255, 255, 0.05) 0 12px,
+          transparent 12px 34px);
+    }
 
-/* [REVERT POINT] markup used to be <section class="wrap hero-static"> —
+    /* [REVERT POINT] markup used to be <section class="wrap hero-static"> —
    wrap and hero-static on the SAME element, which meant the black/hatched
    background was capped at the 1240px content width instead of filling
    the screen edge to edge (paper-coloured gaps showed on either side on
@@ -191,19 +204,22 @@ a { color: inherit; }
    full-bleed-section/inner-wrap pattern .shelf already uses below.
    To revert: put the wrap class back on the section tag itself and remove
    the nested <div class="wrap">. */
-.hero-static > .wrap { position: relative; z-index: 1; }
+    .hero-static>.wrap {
+      position: relative;
+      z-index: 1;
+    }
 
-.hero-greeting {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  opacity: 0.65;
-  margin: 0 0 14px;
-}
+    .hero-greeting {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.65;
+      margin: 0 0 14px;
+    }
 
-/* [REVERT POINT] TEST CHANGE, round 3 — was clamp(30px, 6.4vh, 84px), a
+    /* [REVERT POINT] TEST CHANGE, round 3 — was clamp(30px, 6.4vh, 84px), a
    viewport-HEIGHT-based clamp (unusual; ties font size to how tall the
    window is, part of the one-screen-fit pattern). Every other big
    headline on the site (About's name, case-study titles) clamps against
@@ -212,36 +228,44 @@ a { color: inherit; }
    [REVERT POINT] TEST CHANGE, round 4 — sized back down again
    (clamp(34px, 5.6vw, 80px) read too large next to the now-generously-
    padded hero) to clamp(28px, 3.6vw, 52px). */
-.hero-headline {
-  font-family: var(--font-hard);
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: clamp(28px, 3.6vw, 52px);
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  margin: 0;
-}
+    .hero-headline {
+      font-family: var(--font-hard);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: clamp(28px, 3.6vw, 52px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin: 0;
+    }
 
-.hero-tagline {
-  font-family: var(--font-body);
-  font-size: clamp(15px, 1.4vw, 20px);
-  line-height: 1.45;
-  margin: 16px 0 0;
-  max-width: 58ch;
-}
+    .hero-tagline {
+      font-family: var(--font-body);
+      font-size: clamp(15px, 1.4vw, 20px);
+      line-height: 1.45;
+      margin: 16px 0 0;
+      max-width: 58ch;
+    }
 
-.hero-tagline strong {
-  font-weight: 700;
-  box-shadow: inset 0 -3px 0 var(--accent);
-}
+    .hero-tagline strong {
+      font-weight: 700;
+      box-shadow: inset 0 -3px 0 var(--accent);
+    }
 
-@media (max-width: 640px) {
-  .hero-static { padding: 48px 0 40px; }
-  .hero-headline { font-size: clamp(24px, 8vw, 38px); }
-  .hero-tagline { font-size: 17px; }
-}
+    @media (max-width: 640px) {
+      .hero-static {
+        padding: 48px 0 40px;
+      }
 
-/* auto-width so the badge hugs each word tightly instead of sitting
+      .hero-headline {
+        font-size: clamp(24px, 8vw, 38px);
+      }
+
+      .hero-tagline {
+        font-size: 17px;
+      }
+    }
+
+    /* auto-width so the badge hugs each word tightly instead of sitting
    centered in a box sized for the longest option — only the badge itself
    resizes as the word cycles, nothing before it on the line shifts.
    Symmetric-ish padding (no negative margin) makes the h1 size to the
@@ -249,7 +273,7 @@ a { color: inherit; }
    outline below it instead of overflowing past the headline's own box —
    a negative margin-bottom here previously left the overflow behind the
    box's own background/border in paint order, invisible above the outline. */
-/* [REVERT POINT] TEST CHANGE, round 4 — was inline right after "Senior
+    /* [REVERT POINT] TEST CHANGE, round 4 — was inline right after "Senior
    Product " on the same line, wrapping unpredictably once the cycling
    word got long ("Design Manager"). A <br> in the markup put it on its
    own line under "Senior Product" every time; margin-top and
@@ -259,124 +283,134 @@ a { color: inherit; }
    were still set for the own-line version, which sat the badge visibly
    higher than "PRODUCT"'s own baseline — removed both; default
    vertical-align (baseline) lines the badge up with the text next to it. */
-.hero-role-cycle {
-  display: inline-block;
-  background: var(--accent);
-  color: #fff;
-  padding: 0.04em 0.16em 0.1em;
-  transition: opacity 0.25s ease;
-}
+    .hero-role-cycle {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.04em 0.16em 0.1em;
+      transition: opacity 0.25s ease;
+    }
 
-.hero-role-cycle.is-swapping { opacity: 0; }
+    .hero-role-cycle.is-swapping {
+      opacity: 0;
+    }
 
-/* "Currently Building" facts + the stat row are one continuous bordered
+    /* "Currently Building" facts + the stat row are one continuous bordered
    box, not two separate elements — matches the reference exactly. Heavier
    on the top/left, lighter on the bottom/right, and flush against the
    headline above (no gap) so the role badge lands right on its top edge. */
-.hero-details {
-  width: 100%;
-  margin-top: 0;
-  /* [REVERT POINT] was solid var(--ink-hard) on all four sides — invisible
+    .hero-details {
+      width: 100%;
+      margin-top: 0;
+      /* [REVERT POINT] was solid var(--ink-hard) on all four sides — invisible
      against the section's new black background. Translucent paper instead. */
-  border-top: 3px solid rgba(242, 240, 235, 0.55);
-  border-left: 3px solid rgba(242, 240, 235, 0.55);
-  border-right: 1px solid rgba(242, 240, 235, 0.28);
-  border-bottom: 1px solid rgba(242, 240, 235, 0.28);
-}
+      border-top: 3px solid rgba(242, 240, 235, 0.55);
+      border-left: 3px solid rgba(242, 240, 235, 0.55);
+      border-right: 1px solid rgba(242, 240, 235, 0.28);
+      border-bottom: 1px solid rgba(242, 240, 235, 0.28);
+    }
 
-/* [REVERT POINT] added the same translucent wash the "20+" stat cell
+    /* [REVERT POINT] added the same translucent wash the "20+" stat cell
    uses, so the two boxes in the details panel read as one consistent
    visual treatment instead of one being tinted and the other plain. */
-.hero-facts {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.6vh 32px;
-  padding: 1.6vh 22px;
-  background: rgba(242, 240, 235, 0.08);
-}
+    .hero-facts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.6vh 32px;
+      padding: 1.6vh 22px;
+      background: rgba(242, 240, 235, 0.08);
+    }
 
-.hero-fact-label {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  opacity: 0.65;
-  margin: 0 0 6px;
-}
+    .hero-fact-label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.65;
+      margin: 0 0 6px;
+    }
 
-.hero-fact-title {
-  font-family: var(--font-hard);
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 1.2;
-  margin: 0 0 4px;
-}
+    .hero-fact-title {
+      font-family: var(--font-hard);
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 1.2;
+      margin: 0 0 4px;
+    }
 
-/* [REVERT POINT] TEST CHANGE, round 4 — "Currently Building" moved back
+    /* [REVERT POINT] TEST CHANGE, round 4 — "Currently Building" moved back
    into a bordered box (reusing .hero-fact-label/.hero-fact-title/
    .hero-fact-meta, which were left in place untouched from the original
    boxed hero for exactly this), instead of sitting as a plain inline
    sentence in the prose block. */
-/* [REVERT POINT] TEST CHANGE, round 6 — was a single stacked column
+    /* [REVERT POINT] TEST CHANGE, round 6 — was a single stacked column
    (label, title, description all in one flow). Back to the original
    two-column split: label+title on one side, description on the other,
    same grid pattern .hero-facts used before (auto-fit so it collapses to
    one column once there isn't room for both). */
-/* [REVERT POINT] TEST CHANGE, round 7 — max-width was 620px; widened to
+    /* [REVERT POINT] TEST CHANGE, round 7 — max-width was 620px; widened to
    760px (plus a wider second column: minmax(320px,1fr) instead of
    minmax(200px,1fr)) so the description has enough room to settle on 2
    lines instead of 3, alongside .hero-fact-meta's own widened max-width
    above. */
-/* [REVERT POINT] TEST CHANGE, round 9 — was a fixed 2-column grid
+    /* [REVERT POINT] TEST CHANGE, round 9 — was a fixed 2-column grid
    (minmax(160px,auto) minmax(320px,1fr)) that didn't shrink below its
    minimums, so the description ran past the box's right edge once the
    split-view layout (round 8) made the hero column narrower than the
    box's own 760px max-width. Single stacked column now, at every width —
    label+title, then description underneath. */
-/* [REVERT POINT] TEST CHANGE, round 20 — margin-top was 22px; the "bleed
+    /* [REVERT POINT] TEST CHANGE, round 20 — margin-top was 22px; the "bleed
    out of frame" magazine treatment discussed for this box isn't happening
    for now, just a plain spacing reduction.
    [REVERT POINT] TEST CHANGE, round 28 — reversed again: per feedback,
    the box should read as clearly separate from the greeting/headline/
    tagline/prose cluster above it (which stays tight, close together),
    not just another closely-spaced element in that same group. */
-.hero-building-box {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
-  margin-top: 48px;
-  padding: 18px 22px;
-  max-width: 480px;
-  border: 1px solid rgba(242, 240, 235, 0.32);
-  background: rgba(242, 240, 235, 0.08);
-}
+    .hero-building-box {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 48px;
+      padding: 18px 22px;
+      max-width: 480px;
+      border: 1px solid rgba(242, 240, 235, 0.32);
+      background: rgba(242, 240, 235, 0.08);
+    }
 
-/* [REVERT POINT] TEST CHANGE, round 7 — max-width was 40ch, wrapping the
+    /* [REVERT POINT] TEST CHANGE, round 7 — max-width was 40ch, wrapping the
    Currently Building description to 3 lines even once the box had room.
    Widened to 58ch so it settles on 2 lines on desktop. */
-.hero-fact-meta {
-  font-family: var(--font-body);
-  font-size: 14px;
-  line-height: 1.45;
-  opacity: 0.75;
-  margin: 0;
-  max-width: 58ch;
-}
+    .hero-fact-meta {
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.45;
+      opacity: 0.75;
+      margin: 0;
+      max-width: 58ch;
+    }
 
-.hero-chip-list { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 2px 0 0; padding: 0; }
+    .hero-chip-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 2px 0 0;
+      padding: 0;
+    }
 
-.hero-chip {
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 5px 10px;
-  border: 1px solid rgba(242, 240, 235, 0.45); /* [REVERT POINT] was ink-hard */
-}
+    .hero-chip {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border: 1px solid rgba(242, 240, 235, 0.45);
+      /* [REVERT POINT] was ink-hard */
+    }
 
-/* focus-area tags — link out to About's expertise section.
+    /* focus-area tags — link out to About's expertise section.
    [REVERT POINT] Was flex-wrap: wrap, with everything past the 3rd tag
    hidden on mobile via nth-child(n+4). That meant most of the list was
    never reachable on a phone. Now a single-line horizontally-scrolling
@@ -386,257 +420,353 @@ a { color: inherit; }
    To revert: restore flex-wrap: wrap + the nth-child(n+4) mobile rule, put
    .hero-tag color/hover back to ink-hard/paper-hard, and move the Design
    Systems tag back to position 2 in the markup. */
-.hero-tags {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  gap: 8px;
-  padding: 1.4vh 22px;
-  border-top: 1px solid rgba(242, 240, 235, 0.28);
-  /* right-edge fade signals there's more to scroll to, since the row is
+    .hero-tags {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      gap: 8px;
+      padding: 1.4vh 22px;
+      border-top: 1px solid rgba(242, 240, 235, 0.28);
+      /* right-edge fade signals there's more to scroll to, since the row is
      cut off mid-tag on narrow viewports rather than ending cleanly */
-  mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent 100%);
-  -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent 100%);
-}
+      mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent 100%);
+    }
 
-.hero-tags::-webkit-scrollbar { display: none; }
+    .hero-tags::-webkit-scrollbar {
+      display: none;
+    }
 
-/* [REVERT POINT] was transparent (no background, just a border) — sitting
+    /* [REVERT POINT] was transparent (no background, just a border) — sitting
    directly on the diagonal-hatch pattern made the label text hard to read.
    A lighter-black fill behind each pill gives the text a clean, flat
    surface to sit on instead, without going all the way to solid ink. */
-.hero-tag {
-  flex: none;
-  white-space: nowrap;
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  padding: 7px 12px;
-  border: 1px solid rgba(242, 240, 235, 0.45);
-  background: rgba(242, 240, 235, 0.08);
-  color: var(--paper-hard);
-  text-decoration: none;
-  transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
-}
+    .hero-tag {
+      flex: none;
+      white-space: nowrap;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 7px 12px;
+      border: 1px solid rgba(242, 240, 235, 0.45);
+      background: rgba(242, 240, 235, 0.08);
+      color: var(--paper-hard);
+      text-decoration: none;
+      transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+    }
 
-.hero-tag:hover { background: var(--paper-hard); color: var(--ink-hard); border-color: var(--paper-hard); }
+    .hero-tag:hover {
+      background: var(--paper-hard);
+      color: var(--ink-hard);
+      border-color: var(--paper-hard);
+    }
 
-.hero-tag--more { background: var(--accent); color: #fff; border-color: var(--accent); }
-.hero-tag--more:hover { background: var(--paper-hard); color: var(--ink-hard); border-color: var(--paper-hard); }
+    .hero-tag--more {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
 
-.hero-stats {
-  display: flex;
-  width: 100%;
-  /* [REVERT POINT] was translucent rgba(242,240,235,0.28) */
-  border-top: 1px solid var(--paper-hard);
-}
+    .hero-tag--more:hover {
+      background: var(--paper-hard);
+      color: var(--ink-hard);
+      border-color: var(--paper-hard);
+    }
 
-.hero-stat { flex: 1; padding: 10px 16px; border-left: 1px solid var(--paper-hard); } /* [REVERT POINT] was translucent */
-.hero-stat:first-child { border-left: 0; }
+    .hero-stats {
+      display: flex;
+      width: 100%;
+      /* [REVERT POINT] was translucent rgba(242,240,235,0.28) */
+      border-top: 1px solid var(--paper-hard);
+    }
 
-/* [REVERT POINT] back to the faint 8% translucent wash (was briefly a
+    .hero-stat {
+      flex: 1;
+      padding: 10px 16px;
+      border-left: 1px solid var(--paper-hard);
+    }
+
+    /* [REVERT POINT] was translucent */
+    .hero-stat:first-child {
+      border-left: 0;
+    }
+
+    /* [REVERT POINT] back to the faint 8% translucent wash (was briefly a
    solid white card) — matches the same translucent treatment now on
    .hero-facts below, so the two boxes read consistently. */
-.hero-stat:first-child { background: rgba(242, 240, 235, 0.08); }
-.hero-stat:first-child .hero-stat-label { opacity: 0.75; }
+    .hero-stat:first-child {
+      background: rgba(242, 240, 235, 0.08);
+    }
 
-.hero-stat-num {
-  display: block;
-  font-family: var(--font-hard);
-  font-weight: 700;
-  font-size: clamp(18px, 2.4vh, 24px);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--accent);
-  margin-bottom: 5px;
-}
+    .hero-stat:first-child .hero-stat-label {
+      opacity: 0.75;
+    }
 
-.hero-stat-label {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  line-height: 1.35;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  opacity: 0.7;
-}
+    .hero-stat-num {
+      display: block;
+      font-family: var(--font-hard);
+      font-weight: 700;
+      font-size: clamp(18px, 2.4vh, 24px);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--accent);
+      margin-bottom: 5px;
+    }
 
-/* [REVERT POINT] was 2-per-row with the 5th (150K+) alone spanning full
+    .hero-stat-label {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      line-height: 1.35;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      opacity: 0.7;
+    }
+
+    /* [REVERT POINT] was 2-per-row with the 5th (150K+) alone spanning full
    width at the bottom. Now the 20+ stat (already the highlighted one,
    with its own tinted background) spans full width up top instead, and
    the remaining 4 form a clean 2x2 grid underneath it. */
-@media (max-width: 640px) {
-  .hero-stats { flex-wrap: wrap; }
-  .hero-stat { flex: 0 0 50%; border-left: 0; border-top: 1px solid var(--paper-hard); }
-  .hero-stat:first-child { flex-basis: 100%; border-top: 0; }
-  .hero-stat:nth-child(3), .hero-stat:nth-child(5) { border-left: 1px solid var(--paper-hard); }
-}
+    @media (max-width: 640px) {
+      .hero-stats {
+        flex-wrap: wrap;
+      }
 
-/* [REVERT POINT] TEST CHANGE, round 14 — the low-opacity backdrop photo
+      .hero-stat {
+        flex: 0 0 50%;
+        border-left: 0;
+        border-top: 1px solid var(--paper-hard);
+      }
+
+      .hero-stat:first-child {
+        flex-basis: 100%;
+        border-top: 0;
+      }
+
+      .hero-stat:nth-child(3),
+      .hero-stat:nth-child(5) {
+        border-left: 1px solid var(--paper-hard);
+      }
+    }
+
+    /* [REVERT POINT] TEST CHANGE, round 14 — the low-opacity backdrop photo
    (.hero-static::before, images/about/homepage-backdrop.png) has been
    removed per feedback. .hero-static is back to just the flat ink-hard
    background + diagonal hatch (::after), same as before this branch
    started. The image file itself is untouched at
    images/about/homepage-backdrop.png if it's wanted again later. */
 
-/* [REVERT POINT] TEST CHANGE (branch: test/homepage-backdrop-prose).
+    /* [REVERT POINT] TEST CHANGE (branch: test/homepage-backdrop-prose).
    Prose replacement for the old boxed .hero-details/.hero-facts/
    .hero-tags/.hero-stats trio — same content, flowing paragraphs instead
    of separated cards. Numbers get the same accent-orange treatment
    .hero-stat-num used; focus-area names and "Valideity" stay inline links/
    bold instead of separate pill/label elements. */
-/* [REVERT POINT] TEST CHANGE, round 3 — margin-top/font-size were vh-based
+    /* [REVERT POINT] TEST CHANGE, round 3 — margin-top/font-size were vh-based
    (2.4vh, clamp(...,2vh,...)); now fixed px, same as everywhere else. */
-.hero-prose {
-  width: 100%;
-  margin-top: 28px;
-  max-width: 68ch;
-}
+    .hero-prose {
+      width: 100%;
+      margin-top: 28px;
+      max-width: 68ch;
+    }
 
-.hero-prose-p {
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.65;
-  margin: 0;
-  opacity: 0.92;
-}
+    .hero-prose-p {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      margin: 0;
+      opacity: 0.92;
+    }
 
-.hero-num {
-  font-weight: 700;
-  color: var(--accent);
-}
+    .hero-num {
+      font-weight: 700;
+      color: var(--accent);
+    }
 
-.hero-inline-link {
-  color: var(--paper-hard);
-  text-decoration: underline;
-  text-decoration-color: rgba(242, 240, 235, 0.45);
-  text-underline-offset: 3px;
-  transition: text-decoration-color 0.12s ease, color 0.12s ease;
-}
+    .hero-inline-link {
+      color: var(--paper-hard);
+      text-decoration: underline;
+      text-decoration-color: rgba(242, 240, 235, 0.45);
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.12s ease, color 0.12s ease;
+    }
 
-.hero-inline-link:hover { text-decoration-color: var(--accent); color: var(--accent); }
+    .hero-inline-link:hover {
+      text-decoration-color: var(--accent);
+      color: var(--accent);
+    }
 
-@media (max-width: 640px) {
-  .hero-prose { margin-top: 20px; }
-  .hero-prose-p { font-size: 15.5px; }
+    @media (max-width: 640px) {
+      .hero-prose {
+        margin-top: 20px;
+      }
 
-  /* [REVERT POINT] TEST CHANGE, round 24 — box was matching the paragraph
+      .hero-prose-p {
+        font-size: 15.5px;
+      }
+
+      /* [REVERT POINT] TEST CHANGE, round 24 — box was matching the paragraph
      column's width exactly (both inset the same 20px from the screen
      edge); extended it past that column on mobile specifically, bleeding
      12px further out on each side than the surrounding text, so it reads
      as a distinct callout instead of just another paragraph-width block. */
-  .hero-building-box {
-    max-width: none;
-    margin-left: -12px;
-    margin-right: -12px;
-  }
-}
+      .hero-building-box {
+        max-width: none;
+        margin-left: -12px;
+        margin-right: -12px;
+      }
+    }
 
-/* ---------- project shelf, horizontally scrollable ---------- */
-/* [REVERT POINT] was background-color: var(--ink-hard) + the diagonal
+    /* ---------- project shelf, horizontally scrollable ---------- */
+    /* [REVERT POINT] was background-color: var(--ink-hard) + the diagonal
    hatch background-image, text paper-hard — that hatch now lives on
    .hero-static above instead. To revert: swap --grey back to ink-hard,
    restore the hatch background-image here, and set color back to
    paper-hard. */
-/* [REVERT POINT] TEST CHANGE, round 3 — was `flex: 0 0 34vh` (a fixed
+    /* [REVERT POINT] TEST CHANGE, round 3 — was `flex: 0 0 34vh` (a fixed
    fraction of the viewport, part of the one-screen-fit layout) with
    padding in vh. Now sized to its own content: fixed px padding, and
    .shelf-grid/.shelf-card below get an explicit px height instead of a
    percentage that depended on this being 34vh tall. */
-.shelf {
-  background-color: var(--grey);
-  color: var(--ink-hard);
-  padding: 56px 0 0;
-}
+    .shelf {
+      background-color: var(--grey);
+      color: var(--ink-hard);
+      padding: 56px 0 0;
+    }
 
-/* ---------- link strip: 7 across, icons swap in on mobile ---------- */
+    /* ---------- link strip: 7 across, icons swap in on mobile ---------- */
 
-/* [REVERT POINT] pinned to black explicitly — the shelf around it is now
+    /* [REVERT POINT] pinned to black explicitly — the shelf around it is now
    grey, but this strip (and the Email Me button's own accent colour inside
    it) stays exactly as it was. Was implicit (inherited from .shelf's old
    ink-hard background); now explicit so it survives the shelf's colour
    change untouched. */
-/* [REVERT POINT] TEST CHANGE, round 5 — was a normal in-flow element
+    /* [REVERT POINT] TEST CHANGE, round 5 — was a normal in-flow element
    (`margin-top: 56px`) at the bottom of the page. Now pinned to the
    viewport with `position: fixed`, so Email/About/CV/social stay reachable
    without scrolling all the way down. `body` gets matching padding-bottom
    below so the shelf cards don't end up hidden underneath it.
    To revert: remove position/left/right/bottom/z-index here, restore
    `margin-top: 56px`, and remove the body padding-bottom rules. */
-.shelf-links {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 40;
-  display: flex;
-  background: var(--ink-hard);
-  color: var(--paper-hard);
-  border-top: 1px solid rgba(242, 240, 235, 0.3);
-}
+    .shelf-links {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 40;
+      display: flex;
+      background: var(--ink-hard);
+      color: var(--paper-hard);
+      border-top: 1px solid rgba(242, 240, 235, 0.3);
+    }
 
-.shelf-link {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 12px 6px;
-  border-left: 1px solid rgba(242, 240, 235, 0.3);
-  text-decoration: none;
-  color: var(--paper-hard);
-  font-family: var(--font-mono);
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  transition: background 0.12s ease, color 0.12s ease;
-}
+    .shelf-link {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 6px;
+      border-left: 1px solid rgba(242, 240, 235, 0.3);
+      text-decoration: none;
+      color: var(--paper-hard);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: background 0.12s ease, color 0.12s ease;
+    }
 
-.shelf-link:first-child { border-left: 0; background: var(--accent); color: #fff; }
-.shelf-link:hover { background: var(--accent); color: #fff; }
-.shelf-link:first-child:hover { background: var(--ink-hard); }
+    .shelf-link:first-child {
+      border-left: 0;
+      background: var(--accent);
+      color: #fff;
+    }
 
-.link-icon { display: none; }
+    .shelf-link:hover {
+      background: var(--accent);
+      color: #fff;
+    }
 
-@media (max-width: 640px) {
-  /* fixed bar wraps to 2 rows here (see .shelf-links flex-wrap below),
+    .shelf-link:first-child:hover {
+      background: var(--ink-hard);
+    }
+
+    .link-icon {
+      display: none;
+    }
+
+    @media (max-width: 640px) {
+
+      /* fixed bar wraps to 2 rows here (see .shelf-links flex-wrap below),
      so it's taller — body needs more reserved space to match. */
-  body { padding-bottom: 104px; }
-  /* 7 icons in one row is too cramped — wrap to 4 + 3 so each gets a real
-     touch target instead of a sliver */
-  .shelf-links { flex-wrap: wrap; }
-  .shelf-link { flex: 0 0 25%; padding: 16px 4px; border-top: 1px solid rgba(242, 240, 235, 0.3); }
-  .shelf-link:nth-child(-n+4) { border-top: 0; }
-  .shelf-link:nth-child(4n+1) { border-left: 0; }
-  /* row 1's last column (LinkedIn) has no row-2 sibling below it to supply
-     the row divider via border-top, so give it one directly */
-  .shelf-link:nth-child(4) { border-bottom: 1px solid rgba(242, 240, 235, 0.3); }
-  /* row 2 ends early (3 of 4 columns) — Behance needs its own closing edge
-     since there's no 4th item to supply one via border-left */
-  .shelf-link:last-child { border-right: 1px solid rgba(242, 240, 235, 0.3); }
-  .shelf-link .link-text { display: none; }
-  .shelf-link .link-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-  }
-  .shelf-link .link-icon--badge {
-    width: auto;
-    height: auto;
-    font-family: var(--font-mono);
-    font-weight: 700;
-    font-size: 14px;
-  }
-  .shelf-link svg.link-icon { width: 18px; height: 18px; }
-}
+      body {
+        padding-bottom: 104px;
+      }
 
-/* =========================================================================
+      /* 7 icons in one row is too cramped — wrap to 4 + 3 so each gets a real
+     touch target instead of a sliver */
+      .shelf-links {
+        flex-wrap: wrap;
+      }
+
+      .shelf-link {
+        flex: 0 0 25%;
+        padding: 16px 4px;
+        border-top: 1px solid rgba(242, 240, 235, 0.3);
+      }
+
+      .shelf-link:nth-child(-n+4) {
+        border-top: 0;
+      }
+
+      .shelf-link:nth-child(4n+1) {
+        border-left: 0;
+      }
+
+      /* row 1's last column (LinkedIn) has no row-2 sibling below it to supply
+     the row divider via border-top, so give it one directly */
+      .shelf-link:nth-child(4) {
+        border-bottom: 1px solid rgba(242, 240, 235, 0.3);
+      }
+
+      /* row 2 ends early (3 of 4 columns) — Behance needs its own closing edge
+     since there's no 4th item to supply one via border-left */
+      .shelf-link:last-child {
+        border-right: 1px solid rgba(242, 240, 235, 0.3);
+      }
+
+      .shelf-link .link-text {
+        display: none;
+      }
+
+      .shelf-link .link-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+      }
+
+      .shelf-link .link-icon--badge {
+        width: auto;
+        height: auto;
+        font-family: var(--font-mono);
+        font-weight: 700;
+        font-size: 14px;
+      }
+
+      .shelf-link svg.link-icon {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    /* =========================================================================
    STORY-STYLE CASE STUDY REEL      [REVERT POINT] TEST CHANGE, round 16
 
    Replaces the horizontally-auto-scrolling shelf with an Instagram-Stories-
@@ -657,267 +787,321 @@ a { color: inherit; }
    all 8 cards back in a single .shelf-track, and remove .story-progress/
    .story-stage/.story-see-all + their JS.
    ========================================================================= */
-.story-shelf {
-  display: flex;
-  flex-direction: column;
-  height: 420px;
-}
+    .story-shelf {
+      display: flex;
+      flex-direction: column;
+      height: 420px;
+    }
 
-.story-topline {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 0 4px 14px;
-}
+    .story-topline {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 0 4px 14px;
+    }
 
-.story-progress {
-  flex: 1;
-  display: flex;
-  gap: 6px;
-}
+    .story-progress {
+      flex: 1;
+      display: flex;
+      gap: 6px;
+    }
 
-.story-seg {
-  flex: 1;
-  height: 3px;
-  padding: 0;
-  border: 0;
-  background: rgba(13, 13, 13, 0.15);
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
+    .story-seg {
+      flex: 1;
+      height: 3px;
+      padding: 0;
+      border: 0;
+      background: rgba(13, 13, 13, 0.15);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
 
-.story-seg-fill {
-  position: absolute;
-  inset: 0;
-  width: 0%;
-  background: var(--accent);
-}
+    .story-seg-fill {
+      position: absolute;
+      inset: 0;
+      width: 0%;
+      background: var(--accent);
+    }
 
-.story-seg.is-done .story-seg-fill { width: 100%; }
+    .story-seg.is-done .story-seg-fill {
+      width: 100%;
+    }
 
-.story-see-all {
-  flex: none;
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-hard);
-  text-decoration: none;
-  border-bottom: 1px solid var(--ink-hard);
-  padding-bottom: 2px;
-  white-space: nowrap;
-}
+    .story-see-all {
+      flex: none;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-hard);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink-hard);
+      padding-bottom: 2px;
+      white-space: nowrap;
+    }
 
-.story-see-all:hover { color: var(--accent); border-color: var(--accent); }
+    .story-see-all:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
 
-/* [TEST] swipe-hint — back to a simple column layout inside .story-shelf;
+    /* [TEST] swipe-hint — back to a simple column layout inside .story-shelf;
    no row wrapper or col wrapper needed since there are no flanking buttons.
    .story-stage takes flex:1 to fill all remaining height. */
-.story-stage {
-  position: relative;
-  flex: 1;
-  min-height: 0;
-  cursor: grab;
-  display: flex;
-  overflow: hidden;
-}
+    .story-stage {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      cursor: grab;
+      display: flex;
+      overflow: hidden;
+    }
 
-/* Grabbing state is driven by a JS class on <body> so the cursor stays
+    /* Grabbing state is driven by a JS class on <body> so the cursor stays
    locked even when the mouse moves outside the stage mid-drag. */
-body.is-shelf-dragging,
-body.is-shelf-dragging * {
-  cursor: grabbing !important;
-  user-select: none;
-}
+    body.is-shelf-dragging,
+    body.is-shelf-dragging * {
+      cursor: grabbing !important;
+      user-select: none;
+    }
 
-/* base card look (image bg, dark overlay, padding, border) — same visual
+    /* base card look (image bg, dark overlay, padding, border) — same visual
    treatment .shelf-card always had, just no longer flex/rotate, since each
    card is now a full-bleed absolutely-positioned layer in .story-stage. */
-.shelf-card {
-  flex: 0 0 100%;
-  height: 100%;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 18px 22px;
-  border: 3px solid var(--ink-hard);
-  text-decoration: none;
-  color: var(--paper-hard);
-  background-size: cover;
-  background-position: center;
-  pointer-events: auto;
-  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-  user-select: none;
-  -webkit-user-drag: none;
-}
+    .shelf-card {
+      flex: 0 0 100%;
+      height: 100%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 18px 22px;
+      border: 3px solid var(--ink-hard);
+      text-decoration: none;
+      color: var(--paper-hard);
+      background-size: cover;
+      background-position: center;
+      pointer-events: auto;
+      transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+      user-select: none;
+      -webkit-user-drag: none;
+    }
 
-/* ── Swipe hint tag ─────────────────────────────────────────────────────────
+    /* ── Swipe hint tag ─────────────────────────────────────────────────────────
    Lives on the left edge of .story-stage. At rest it's fully translated
    left (hidden behind the split divider). On stage hover it slides right
    into view — like a tag peeling out from the left panel.
    cubic-bezier(0.34, 1.56, 0.64, 1) gives a subtle spring overshoot.    */
-.story-swipe-hint {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%) translateX(calc(-100% - 3px));
-  z-index: 4;
-  pointer-events: none;
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  padding: 11px 16px 11px 14px;
-  background: var(--accent);
-  color: #fff;
-  font-family: var(--font-hard);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  /* right notch — makes it read as a tag/label shape */
-  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%);
-  padding-right: 22px;
-  opacity: 0;
-  transition:
-    transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
-    opacity   0.25s ease;
-}
+    .story-swipe-hint {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%) translateX(calc(-100% - 3px));
+      z-index: 4;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 11px 16px 11px 14px;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--font-hard);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      /* right notch — makes it read as a tag/label shape */
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%);
+      padding-right: 22px;
+      opacity: 0;
+      transition:
+        transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+        opacity 0.25s ease;
+    }
 
-/* Reveal on hover — devices that support hover (desktop) */
-@media (hover: hover) {
-  .story-stage:hover .story-swipe-hint {
-    transform: translateY(-50%) translateX(0);
-    opacity: 1;
-  }
-}
+    /* Reveal on hover — devices that support hover (desktop) */
+    @media (hover: hover) {
+      .story-stage:hover .story-swipe-hint {
+        transform: translateY(-50%) translateX(0);
+        opacity: 1;
+      }
+    }
 
-/* On touch devices show it briefly on first load, then fade it out —
+    /* On touch devices show it briefly on first load, then fade it out —
    no hover state exists, so we do a one-shot CSS animation instead. */
-@media (hover: none) {
-  .story-swipe-hint {
-    animation: hint-touch-flash 3s ease 0.8s forwards;
-  }
-}
+    @media (hover: none) {
+      .story-swipe-hint {
+        animation: hint-touch-flash 3s ease 0.8s forwards;
+      }
+    }
 
-@keyframes hint-touch-flash {
-  0%   { transform: translateY(-50%) translateX(calc(-100% - 3px)); opacity: 0; }
-  15%  { transform: translateY(-50%) translateX(0);                  opacity: 1; }
-  70%  { transform: translateY(-50%) translateX(0);                  opacity: 1; }
-  100% { transform: translateY(-50%) translateX(calc(-100% - 3px)); opacity: 0; }
-}
+    @keyframes hint-touch-flash {
+      0% {
+        transform: translateY(-50%) translateX(calc(-100% - 3px));
+        opacity: 0;
+      }
 
-/* ── Swipe arrows inside the tag — bounce apart on a loop ────────────────── */
-.swipe-hint-arrows {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-}
+      15% {
+        transform: translateY(-50%) translateX(0);
+        opacity: 1;
+      }
 
-.swipe-hint-arrow {
-  display: inline-block;
-  line-height: 1;
-}
+      70% {
+        transform: translateY(-50%) translateX(0);
+        opacity: 1;
+      }
 
-@keyframes hint-nudge-l {
-  0%, 100% { transform: translateX(0); }
-  50%       { transform: translateX(-4px); }
-}
-@keyframes hint-nudge-r {
-  0%, 100% { transform: translateX(0); }
-  50%       { transform: translateX(4px); }
-}
+      100% {
+        transform: translateY(-50%) translateX(calc(-100% - 3px));
+        opacity: 0;
+      }
+    }
 
-.swipe-hint-arrow--l {
-  animation: hint-nudge-l 1.5s ease-in-out infinite;
-}
-.swipe-hint-arrow--r {
-  animation: hint-nudge-r 1.5s ease-in-out infinite;
-}
+    /* ── Swipe arrows inside the tag — bounce apart on a loop ────────────────── */
+    .swipe-hint-arrows {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
 
-/* [REVERT POINT] TEST CHANGE, round 17 — the old flat 80% dark wash (see
+    .swipe-hint-arrow {
+      display: inline-block;
+      line-height: 1;
+    }
+
+    @keyframes hint-nudge-l {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      50% {
+        transform: translateX(-4px);
+      }
+    }
+
+    @keyframes hint-nudge-r {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      50% {
+        transform: translateX(4px);
+      }
+    }
+
+    .swipe-hint-arrow--l {
+      animation: hint-nudge-l 1.5s ease-in-out infinite;
+    }
+
+    .swipe-hint-arrow--r {
+      animation: hint-nudge-r 1.5s ease-in-out infinite;
+    }
+
+    /* [REVERT POINT] TEST CHANGE, round 17 — the old flat 80% dark wash (see
    git history) made every card's cover photo essentially invisible, which
    defeats the point of a story reel showing each case study's own image.
    Now a bottom-weighted gradient instead, like a magazine cover: the photo
    reads clearly through the top ~55% of the card, and only the bottom
    portion (where name/caption/CTA sit) darkens enough for the text to stay
    legible over any image. */
-.shelf-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(13, 13, 13, 0.05) 0%,
-    rgba(13, 13, 13, 0.1) 45%,
-    rgba(13, 13, 13, 0.55) 70%,
-    rgba(13, 13, 13, 0.92) 100%
-  );
-}
+    .shelf-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+          rgba(13, 13, 13, 0.05) 0%,
+          rgba(13, 13, 13, 0.1) 45%,
+          rgba(13, 13, 13, 0.55) 70%,
+          rgba(13, 13, 13, 0.92) 100%);
+    }
 
-.shelf-card--highlight { box-shadow: 10px 10px 0 var(--accent); border-color: var(--accent); }
+    .shelf-card--highlight {
+      box-shadow: 10px 10px 0 var(--accent);
+      border-color: var(--accent);
+    }
 
-.shelf-kind,
-.shelf-name,
-.shelf-caption,
-.shelf-cta {
-  position: relative;
-  z-index: 1;
-  /* picks up the legibility the overlay gave up when it was lightened
+    .shelf-kind,
+    .shelf-name,
+    .shelf-caption,
+    .shelf-cta {
+      position: relative;
+      z-index: 1;
+      /* picks up the legibility the overlay gave up when it was lightened
      above, so text still reads clearly over a bright part of the photo */
-  text-shadow: 0 1px 8px rgba(13, 13, 13, 0.85);
-}
+      text-shadow: 0 1px 8px rgba(13, 13, 13, 0.85);
+    }
 
-.shelf-kind {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin: 0 0 8px;
-  color: var(--accent);
-}
+    .shelf-kind {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+      color: var(--accent);
+    }
 
-.shelf-name {
-  font-family: var(--font-hard);
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: clamp(18px, 2vw, 24px);
-  line-height: 1.05;
-  letter-spacing: -0.01em;
-  margin: 0 0 8px;
-}
+    .shelf-name {
+      font-family: var(--font-hard);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin: 0 0 8px;
+    }
 
-.shelf-caption {
-  font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.4;
-  max-width: 30ch;
-  margin: 0 0 14px;
-  opacity: 0.92;
-}
+    .shelf-caption {
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.4;
+      max-width: 30ch;
+      margin: 0 0 14px;
+      opacity: 0.92;
+    }
 
-.shelf-cta {
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
+    .shelf-cta {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
 
-@media (max-width: 640px) {
-  .shelf { padding-top: 40px; }
-  .shelf-links { margin-top: 40px; }
-  .story-shelf { height: 300px; }
-  .shelf-card { padding: 16px; }
-  .shelf-caption { max-width: 24ch; }
-  .shelf-kind { display: none; }
-}
+    @media (max-width: 640px) {
+      .shelf {
+        padding-top: 40px;
+      }
 
-/* [REVERT POINT] TEST CHANGE, round 2: .testimonials/.testimonial-grid/
+      .shelf-links {
+        margin-top: 40px;
+      }
+
+      .story-shelf {
+        height: 300px;
+      }
+
+      .shelf-card {
+        padding: 16px;
+      }
+
+      .shelf-caption {
+        max-width: 24ch;
+      }
+
+      .shelf-kind {
+        display: none;
+      }
+    }
+
+    /* [REVERT POINT] TEST CHANGE, round 2: .testimonials/.testimonial-grid/
    .testimonial-card/etc. CSS that lived here has been moved to
    css/about.css — testimonials now live on the About page instead of
    stacking onto an already-busy homepage. See about.css for the new
@@ -928,7 +1112,7 @@ body.is-shelf-dragging * {
    straight into .shelf/.shelf-links' own base rules above instead of
    layering a second override on top. */
 
-/* =========================================================================
+    /* =========================================================================
    SIDE-BY-SIDE SPLIT + LOCKED VIEWPORT      [REVERT POINT] TEST CHANGE, round 8
 
    User wants: hero left, project shelf right, page NOT scrollable at this
@@ -945,14 +1129,25 @@ body.is-shelf-dragging * {
    at the bottom, remove the `isSplitView`/`vertical` branching in the
    auto-scroll tick (restore the plain scrollLeft/scrollWidth version).
    ========================================================================= */
-@media (min-width: 900px) {
-  html, body { height: 100%; overflow: hidden; }
+    @media (min-width: 900px) {
 
-  body { display: flex; flex-direction: column; padding-bottom: 0; }
+      html,
+      body {
+        height: 100%;
+        overflow: hidden;
+      }
 
-  .site-header { flex-shrink: 0; }
+      body {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 0;
+      }
 
-  /* [REVERT POINT] TEST CHANGE, round 19 — .site-header .wrap normally uses
+      .site-header {
+        flex-shrink: 0;
+      }
+
+      /* [REVERT POINT] TEST CHANGE, round 19 — .site-header .wrap normally uses
      justify-content: space-between across 3 groups (logo, nav, Contact).
      That makes nav's own START position depend on nav's own WIDTH (grow
      nav and space-between shifts it to keep gaps even) — which fights the
@@ -962,21 +1157,26 @@ body.is-shelf-dragging * {
      and nav simply sit left, in flow) plus margin-left:auto on Contact
      (still docks right) removes that feedback loop — nav's start position
      is now fixed regardless of its own width. */
-  .site-header .wrap { justify-content: flex-start; }
-  .btn-outline { margin-left: auto; }
+      .site-header .wrap {
+        justify-content: flex-start;
+      }
 
-  .home-grid {
-    flex: 1;
-    min-height: 0;
-    display: grid;
-    /* [REVERT POINT] TEST CHANGE, round 15 — was 1.05fr 1fr (roughly
+      .btn-outline {
+        margin-left: auto;
+      }
+
+      .home-grid {
+        flex: 1;
+        min-height: 0;
+        display: grid;
+        /* [REVERT POINT] TEST CHANGE, round 15 — was 1.05fr 1fr (roughly
        even halves). Matched to split.html's own left/right ratio instead:
        a narrower, fixed-minimum bio column instead of one that grows
        past ~34% on wide screens.
        [REVERT POINT] TEST CHANGE, round 22 — widened again, 380px/34% ->
        420px/39%, per feedback that the hero column read too narrow. */
-    grid-template-columns: minmax(420px, 39%) 1fr;
-    /* [REVERT POINT] TEST CHANGE, round 19 — was 52px, but .shelf-links is
+        grid-template-columns: minmax(420px, 39%) 1fr;
+        /* [REVERT POINT] TEST CHANGE, round 19 — was 52px, but .shelf-links is
        only ~43px tall at this breakpoint (no wrap, single row), so the
        extra ~9px plus .shelf's own bottom padding (removed below) left a
        visible paper-coloured gap between the story card and the footer
@@ -988,10 +1188,10 @@ body.is-shelf-dragging * {
        deliberate overlap guarantees content tucks fully behind
        .shelf-links (z-index:40, so the overlap is always hidden) instead
        of leaving that remainder to rounding. */
-    padding-bottom: 40px;
-  }
+        padding-bottom: 40px;
+      }
 
-  /* [REVERT POINT] TEST CHANGE, round 12 — was justify-content: center,
+      /* [REVERT POINT] TEST CHANGE, round 12 — was justify-content: center,
      which centered the (comparatively short) hero content in the full
      locked-viewport column height, leaving a large empty gap both above
      AND below it — the report was "whitespace at the bottom", but the
@@ -999,19 +1199,19 @@ body.is-shelf-dragging * {
      Top-aligned instead (flex-start + fixed top padding), matching the
      right column, which fills edge-to-edge with cards and has no such
      gap. To revert: swap back to justify-content: center; padding-top: 0. */
-  .hero-static {
-    height: 100%;
-    min-height: 0;
-    border-bottom: 0;
-    border-right: 1px solid var(--ink-hard);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding-top: clamp(24px, 6vh, 72px);
-    padding-bottom: clamp(24px, 6vh, 72px);
-  }
+      .hero-static {
+        height: 100%;
+        min-height: 0;
+        border-bottom: 0;
+        border-right: 1px solid var(--ink-hard);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: clamp(24px, 6vh, 72px);
+        padding-bottom: clamp(24px, 6vh, 72px);
+      }
 
-  /* [REVERT POINT] TEST CHANGE, round 14 — top-aligning (round 12) moved
+      /* [REVERT POINT] TEST CHANGE, round 14 — top-aligning (round 12) moved
      the empty space from "half above, half below" to "all below", but
      didn't remove it: .hero-static > .wrap was never given a height, so
      it only ever took its own content's height, leaving hero-static's
@@ -1033,15 +1233,15 @@ body.is-shelf-dragging * {
      instead of stretching the space inside the content itself.
      To revert: change back to space-between (and hero-static's
      padding-bottom change above, back to 0). */
-  .hero-static > .wrap {
-    flex: 1;
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+      .hero-static>.wrap {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
 
-  /* [REVERT POINT] TEST CHANGE, round 13 — on shorter screens (laptop
+      /* [REVERT POINT] TEST CHANGE, round 13 — on shorter screens (laptop
      window heights, browser chrome eating into the viewport, etc.) the
      hero content was taller than the locked column and got clipped by
      `overflow: hidden`, cutting the Currently Building description off
@@ -1053,73 +1253,81 @@ body.is-shelf-dragging * {
      scrolls normally and never had this problem.
      To revert: change each rule below back to its fixed px value (see the
      non-split-view version of the same selector earlier in this file). */
-  .hero-greeting { margin-bottom: clamp(6px, 1.4vh, 14px); }
+      .hero-greeting {
+        margin-bottom: clamp(6px, 1.4vh, 14px);
+      }
 
-  .hero-headline { font-size: clamp(24px, min(3.6vw, 5.2vh), 52px); }
+      .hero-headline {
+        font-size: clamp(24px, min(3.6vw, 5.2vh), 52px);
+      }
 
-  .hero-tagline {
-    margin-top: clamp(8px, 1.6vh, 16px);
-    font-size: clamp(14px, min(1.4vw, 2vh), 20px);
-  }
+      .hero-tagline {
+        margin-top: clamp(8px, 1.6vh, 16px);
+        font-size: clamp(14px, min(1.4vw, 2vh), 20px);
+      }
 
-  .hero-prose {
-    margin-top: clamp(12px, 2.6vh, 28px);
-    max-width: 62ch;
-  }
+      .hero-prose {
+        margin-top: clamp(12px, 2.6vh, 28px);
+        max-width: 62ch;
+      }
 
-  .hero-prose-p { font-size: clamp(13.5px, min(1.1vw, 1.9vh), 16px); line-height: 1.55; }
+      .hero-prose-p {
+        font-size: clamp(13.5px, min(1.1vw, 1.9vh), 16px);
+        line-height: 1.55;
+      }
 
-  /* [REVERT POINT] TEST CHANGE, round 28 — was clamp(8px, 1.4vh, 14px),
+      /* [REVERT POINT] TEST CHANGE, round 28 — was clamp(8px, 1.4vh, 14px),
      matching the tight spacing of the cluster above it. Widened
      significantly so the box reads as its own distinct block, still
      compressing on short viewports via the vh clamp.
      [REVERT POINT] TEST CHANGE, round 29 — max raised 56px -> 168px per
      feedback ("about 168 on web"); still clamps down to 24px on short
      viewports instead of overflowing. */
-  .hero-building-box {
-    margin-top: clamp(24px, 20vh, 168px);
-    padding: clamp(10px, 1.8vh, 18px) clamp(14px, 1.6vw, 22px);
-    gap: clamp(6px, 1vh, 10px);
-  }
+      .hero-building-box {
+        margin-top: clamp(24px, 20vh, 168px);
+        padding: clamp(10px, 1.8vh, 18px) clamp(14px, 1.6vw, 22px);
+        gap: clamp(6px, 1vh, 10px);
+      }
 
-  /* [REVERT POINT] TEST CHANGE, round 18 — side padding was 24px, half of
+      /* [REVERT POINT] TEST CHANGE, round 18 — side padding was 24px, half of
      .hero-static's 48px (inherited from .wrap on its own inner div), so the
      page's left and right outer margins didn't match. Side padding now 48px
      to mirror the hero column exactly; top/bottom stay 24px (only left/right
      were reported as mismatched). */
-  /* [REVERT POINT] TEST CHANGE, round 19 — bottom padding removed (was
+      /* [REVERT POINT] TEST CHANGE, round 19 — bottom padding removed (was
      24px, same as top) so the story card's own black border sits flush
      against .shelf-links instead of leaving a visible paper-coloured gap
      above the fixed footer bar. Top/left/right padding unchanged. */
-  .shelf {
-    height: 100%;
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 24px 48px 0;
-  }
+      .shelf {
+        height: 100%;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 24px 48px 0;
+      }
 
-  .story-shelf {
-    height: 100%;
-    max-height: 100%;
-  }
-}
-</style>
+      .story-shelf {
+        height: 100%;
+        max-height: 100%;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- [REVERT POINT] TEST CHANGE, round 21 — was a hardcoded <header
+  <!-- [REVERT POINT] TEST CHANGE, round 21 — was a hardcoded <header
      class="site-header"> copy (same markup duplicated across all 17
      pages, which is exactly how index.html's About/Work order and other
      pages' order drifted apart in the first place). Now the shared
      component from js/header.js — see that file for the single source of
      truth. Must stay a plain synchronous <script src>, not async/defer,
      since it renders via document.write at this exact point in the body. -->
-<div id="site-header-root"></div>
-<script src="js/header.js"></script>
+  <div id="site-header-root"></div>
+  <script src="js/header.js"></script>
 
-<!-- [REVERT POINT] TEST CHANGE, round 8 — .hero-static and .shelf used to
+  <!-- [REVERT POINT] TEST CHANGE, round 8 — .hero-static and .shelf used to
      be full-width stacked sections (hero on top, shelf below). Wrapped in
      .home-grid so they can sit side by side at wider widths (hero left,
      horizontally-scrolling project shelf right) while the page itself
@@ -1130,20 +1338,21 @@ body.is-shelf-dragging * {
      (leave the two <section>s themselves as siblings again) and drop the
      .home-grid rule + the .hero-static/.shelf border/height tweaks inside
      its media query. -->
-<div class="home-grid">
-<section class="hero-static">
-  <div class="wrap">
-  <p class="hero-greeting">Hey, I'm Excellent</p>
-  <!-- [REVERT POINT] TEST CHANGE, round 24 — "Senior" dropped, and the
+  <div class="home-grid">
+    <section class="hero-static">
+      <div class="wrap">
+        <p class="hero-greeting">Hey, I'm Excellent</p>
+        <!-- [REVERT POINT] TEST CHANGE, round 24 — "Senior" dropped, and the
        role-cycle badge moved back inline next to "Product" (was on its
        own line via <br>, from round 4's fix for the badge wrapping
        unpredictably next to the longer cycled words — now that "Senior"
        is gone there's more room on the line, so revisit if "Design
        Manager" wraps awkwardly at narrow widths). -->
-  <h1 class="hero-headline">Product <span class="hero-role-cycle" id="heroRoleCycle">Designer</span></h1>
-  <p class="hero-tagline">I've built a career turning ambiguous briefs into shipped products with <strong>real users and real revenue</strong> behind them.</p>
+        <h1 class="hero-headline">Product <span class="hero-role-cycle" id="heroRoleCycle">Designer</span></h1>
+        <p class="hero-tagline">I've built a career turning ambiguous briefs into shipped products with <strong>real
+            users and real revenue</strong> behind them.</p>
 
-  <!-- [REVERT POINT] TEST CHANGE (branch: test/homepage-backdrop-prose).
+        <!-- [REVERT POINT] TEST CHANGE (branch: test/homepage-backdrop-prose).
        This whole block used to be <div class="hero-details"> containing
        three boxed/bordered sub-sections: .hero-facts (Currently Building),
        .hero-tags (expertise pills) and .hero-stats (5-cell stat strip).
@@ -1153,37 +1362,44 @@ body.is-shelf-dragging * {
        .hero-prose/.hero-prose-p/.hero-num/.hero-inline-link/.hero-see-more
        from css above — the original .hero-details/.hero-facts/.hero-tags/
        .hero-stats rules are left in place, untouched, below. -->
-  <!-- [REVERT POINT] TEST CHANGE, round 2 (user feedback: hero read as
+        <!-- [REVERT POINT] TEST CHANGE, round 2 (user feedback: hero read as
        "clunky", paragraph had 5 stats + 3 links fighting for attention).
        Trimmed to the two headline numbers (6+ years, 20+ shipped); the
        other three stats (3+ yrs leading teams, $124M+ NMV, 150K+
        retailers) now live only on About's stat row — homepage teases,
        About proves. To revert: restore the 5-stat paragraph above this
        comment (see git log on this branch). -->
-  <!-- [REVERT POINT] TEST CHANGE, round 5 — paragraph shortened further
+        <!-- [REVERT POINT] TEST CHANGE, round 5 — paragraph shortened further
        (dropped the "20+ products..." clause, now teased only on About's
        stat row) and the "See More →" link removed; "Currently Building"
        pulled back out of the prose flow into its own bordered
        .hero-building-box (reusing .hero-fact-label/.hero-fact-title/
        .hero-fact-meta from the original boxed hero). -->
-  <div class="hero-prose">
-    <p class="hero-prose-p">With <strong class="hero-num">6+</strong> years across fintech, payments, and B2B commerce &mdash; leading design on <a href="about.html#expertise" class="hero-inline-link">Payments &amp; Wallet UX</a>, <a href="about.html#expertise" class="hero-inline-link">Complex B2B Workflows</a>, and <a href="about.html#expertise" class="hero-inline-link">AI-Forward Building</a>.</p>
-  </div>
-  <div class="hero-building-box">
-    <div>
-      <p class="hero-fact-label">Currently Building</p>
-      <p class="hero-fact-title">Valideity</p>
-    </div>
-    <div>
-      <p class="hero-fact-meta">An AI-first UX research and usability testing tool for product designers, product teams, and founders in West Africa.</p>
-    </div>
-  </div>
-  </div>
-</section>
+        <div class="hero-prose">
+          <p class="hero-prose-p">Over the last <strong class="hero-num">6+</strong> years, I’ve designed and led
+            products across fintech, payments, B2B commerce, edtech, and AI &mdash; shaping <a
+              href="about.html#expertise" class="hero-inline-link">Payments &amp; Wallet UX</a>, <a
+              href="about.html#expertise" class="hero-inline-link">Complex B2B Workflows</a>, and <a
+              href="about.html#expertise" class="hero-inline-link">AI-Forward Building</a> from early concepts through
+            to
+            shipped experiences.</p>
+        </div>
+        <div class="hero-building-box">
+          <div>
+            <p class="hero-fact-label">Currently Building</p>
+            <p class="hero-fact-title">Valideity</p>
+          </div>
+          <div>
+            <p class="hero-fact-meta">An AI-first UX research and usability testing tool for product designers, product
+              teams, and founders in West Africa.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section class="shelf">
-  <div class="story-shelf" id="storyShelf">
-    <!-- [REVERT POINT] TEST CHANGE, round 16 — the shelf used to be an
+    <section class="shelf">
+      <div class="story-shelf" id="storyShelf">
+        <!-- [REVERT POINT] TEST CHANGE, round 16 — the shelf used to be an
          8-card horizontally/vertically auto-scrolling row/column (see git
          history on this branch). Now a 5-card story reel: one <a
          class="shelf-card"> at a time, cross-faded via .is-active,
@@ -1192,58 +1408,65 @@ body.is-shelf-dragging * {
          prototype + execution) — strongest first. The 3 dropped from the
          reel (Omnibiz, Raven Pay, VENX) are still on my-work.html via
          See All. -->
-    <div class="story-topline">
-      <div class="story-progress" id="storyProgress">
-        <button type="button" class="story-seg" aria-label="Show Teesas LMS"><span class="story-seg-fill"></span></button>
-        <button type="button" class="story-seg" aria-label="Show Cardtonic"><span class="story-seg-fill"></span></button>
-        <button type="button" class="story-seg" aria-label="Show Fundall"><span class="story-seg-fill"></span></button>
-        <button type="button" class="story-seg" aria-label="Show Coreloops"><span class="story-seg-fill"></span></button>
-        <button type="button" class="story-seg" aria-label="Show Omnione"><span class="story-seg-fill"></span></button>
-      </div>
-      <!-- [REVERT POINT] TEST CHANGE, round 24 — "See All Work" link
+        <div class="story-topline">
+          <div class="story-progress" id="storyProgress">
+            <button type="button" class="story-seg" aria-label="Show Teesas LMS"><span
+                class="story-seg-fill"></span></button>
+            <button type="button" class="story-seg" aria-label="Show Cardtonic"><span
+                class="story-seg-fill"></span></button>
+            <button type="button" class="story-seg" aria-label="Show Fundall"><span
+                class="story-seg-fill"></span></button>
+            <button type="button" class="story-seg" aria-label="Show Coreloops"><span
+                class="story-seg-fill"></span></button>
+            <button type="button" class="story-seg" aria-label="Show Omnione"><span
+                class="story-seg-fill"></span></button>
+          </div>
+          <!-- [REVERT POINT] TEST CHANGE, round 24 — "See All Work" link
            removed per feedback. .story-see-all CSS left in place, unused,
            for an easy revert. -->
-    </div>
-    <div class="story-stage" id="storyStage">
-      <a class="shelf-card is-active" href="teesaslms.html" style="background-image:url(images/teesas/banner.png)">
-        <p class="shelf-name">Teesas LMS</p>
-        <p class="shelf-caption">Three Rebuilds To Get One LMS Right</p>
-        <p class="shelf-cta">View Case Study &rarr;</p>
-      </a>
-      <a class="shelf-card" href="cardtonic.html" style="background-image:url(images/Cardtonic/00%20%C2%B7%20Cover.png)">
-        <p class="shelf-name">Cardtonic</p>
-        <p class="shelf-caption">Sending Money To People, Not Accounts</p>
-        <p class="shelf-cta">View Case Study &rarr;</p>
-      </a>
-      <a class="shelf-card" href="fundall.html" style="background-image:url(images/fundall/cover.png)">
-        <p class="shelf-name">Fundall</p>
-        <p class="shelf-caption">Salary Advance: 6 Minutes To Under 2</p>
-        <p class="shelf-cta">View Case Study &rarr;</p>
-      </a>
-      <a class="shelf-card" href="coreloops.html" style="background-image:url(images/coreloops/coreloop-cover.png)">
-        <p class="shelf-name">Coreloops</p>
-        <p class="shelf-caption">Filters From A Drawer To Zero Clicks</p>
-        <p class="shelf-cta">View Case Study &rarr;</p>
-      </a>
-      <a class="shelf-card" href="omnione.html" style="background-image:url(images/omnione/omnione-design-system-cover-banner.png); background-position: left center;">
-        <p class="shelf-name">Omnione</p>
-        <p class="shelf-caption">One Design Language For Four Product Teams</p>
-        <p class="shelf-cta">View Case Study &rarr;</p>
-      </a>
-      <!-- [TEST] swipe hint — slides in from the left edge of the shelf
+        </div>
+        <div class="story-stage" id="storyStage">
+          <a class="shelf-card is-active" href="teesaslms.html" style="background-image:url(images/teesas/banner.png)">
+            <p class="shelf-name">Teesas LMS</p>
+            <p class="shelf-caption">Three Rebuilds To Get One LMS Right</p>
+            <p class="shelf-cta">View Case Study &rarr;</p>
+          </a>
+          <a class="shelf-card" href="cardtonic.html"
+            style="background-image:url(images/Cardtonic/00%20%C2%B7%20Cover.png)">
+            <p class="shelf-name">Cardtonic</p>
+            <p class="shelf-caption">Sending Money To People, Not Accounts</p>
+            <p class="shelf-cta">View Case Study &rarr;</p>
+          </a>
+          <a class="shelf-card" href="fundall.html" style="background-image:url(images/fundall/cover.png)">
+            <p class="shelf-name">Fundall</p>
+            <p class="shelf-caption">Salary Advance: 6 Minutes To Under 2</p>
+            <p class="shelf-cta">View Case Study &rarr;</p>
+          </a>
+          <a class="shelf-card" href="coreloops.html" style="background-image:url(images/coreloops/coreloop-cover.png)">
+            <p class="shelf-name">Coreloops</p>
+            <p class="shelf-caption">Filters From A Drawer To Zero Clicks</p>
+            <p class="shelf-cta">View Case Study &rarr;</p>
+          </a>
+          <a class="shelf-card" href="omnione.html"
+            style="background-image:url(images/omnione/omnione-design-system-cover-banner.png); background-position: left center;">
+            <p class="shelf-name">Omnione</p>
+            <p class="shelf-caption">One Design Language For Four Product Teams</p>
+            <p class="shelf-cta">View Case Study &rarr;</p>
+          </a>
+          <!-- [TEST] swipe hint — slides in from the left edge of the shelf
            on hover, like a tag peeling out from the split divider. -->
-      <div class="story-swipe-hint" aria-hidden="true">
-        <span class="swipe-hint-arrows">
-          <span class="swipe-hint-arrow swipe-hint-arrow--l">&larr;</span>
-          <span class="swipe-hint-arrow swipe-hint-arrow--r">&rarr;</span>
-        </span>
-        <span class="swipe-hint-label">Swipe</span>
+          <div class="story-swipe-hint" aria-hidden="true">
+            <span class="swipe-hint-arrows">
+              <span class="swipe-hint-arrow swipe-hint-arrow--l">&larr;</span>
+              <span class="swipe-hint-arrow swipe-hint-arrow--r">&rarr;</span>
+            </span>
+            <span class="swipe-hint-label">Swipe</span>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 
 
-  <!-- [REVERT POINT] TEST CHANGE, round 2 (user feedback: page was already
+      <!-- [REVERT POINT] TEST CHANGE, round 2 (user feedback: page was already
        busy — testimonials moved to about.html instead of stacking a 4th
        content block onto an already-dense homepage; see about.html for the
        new "What People Say" section). This briefly lived here as its own
@@ -1251,288 +1474,303 @@ body.is-shelf-dragging * {
        with .shelf-links split out into its own <section class="shelf-footer">
        — both undone, back to the single <section class="shelf"> wrapping
        both .shelf-grid and .shelf-links like before. -->
-  <div class="shelf-links">
-    <a class="shelf-link" href="mailto:muidemakz@gmail.com">
-      <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1"></rect><path d="M3 7l9 6 9-6"></path></svg>
-      <span class="link-text">Email Me &rarr;</span>
-    </a>
-    <a class="shelf-link" href="about.html">
-      <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
-      <span class="link-text">About Me &rarr;</span>
-    </a>
-    <a class="shelf-link" href="Excellent_Makanju_Resume_2026.pdf" download>
-      <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="M7.5 10.5L12 15l4.5-4.5"></path><path d="M4 19h16"></path></svg>
-      <span class="link-text">Download CV &darr;</span>
-    </a>
-    <a class="shelf-link" href="https://www.linkedin.com/in/makanju-excellent-211b0a44/" target="_blank" rel="noopener">
-      <span class="link-icon link-icon--badge">in</span>
-      <span class="link-text">LinkedIn &rarr;</span>
-    </a>
-    <a class="shelf-link" href="https://dribbble.com/muidemakz" target="_blank" rel="noopener">
-      <span class="link-icon link-icon--badge">Dr</span>
-      <span class="link-text">Dribbble &rarr;</span>
-    </a>
-    <a class="shelf-link" href="https://www.instagram.com/oluwaexcellent" target="_blank" rel="noopener">
-      <span class="link-icon link-icon--badge">Ig</span>
-      <span class="link-text">Instagram &rarr;</span>
-    </a>
-    <a class="shelf-link" href="https://www.behance.net/oemakanju" target="_blank" rel="noopener">
-      <span class="link-icon link-icon--badge">Be</span>
-      <span class="link-text">Behance &rarr;</span>
-    </a>
+      <div class="shelf-links">
+        <a class="shelf-link" href="mailto:muidemakz@gmail.com">
+          <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="14" rx="1"></rect>
+            <path d="M3 7l9 6 9-6"></path>
+          </svg>
+          <span class="link-text">Email Me &rarr;</span>
+        </a>
+        <a class="shelf-link" href="about.html">
+          <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4"></circle>
+            <path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path>
+          </svg>
+          <span class="link-text">About Me &rarr;</span>
+        </a>
+        <a class="shelf-link" href="Excellent_Makanju_Resume_2026.pdf" download>
+          <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3v12"></path>
+            <path d="M7.5 10.5L12 15l4.5-4.5"></path>
+            <path d="M4 19h16"></path>
+          </svg>
+          <span class="link-text">Download CV &darr;</span>
+        </a>
+        <a class="shelf-link" href="https://www.linkedin.com/in/makanju-excellent-211b0a44/" target="_blank"
+          rel="noopener">
+          <span class="link-icon link-icon--badge">in</span>
+          <span class="link-text">LinkedIn &rarr;</span>
+        </a>
+        <a class="shelf-link" href="https://dribbble.com/muidemakz" target="_blank" rel="noopener">
+          <span class="link-icon link-icon--badge">Dr</span>
+          <span class="link-text">Dribbble &rarr;</span>
+        </a>
+        <a class="shelf-link" href="https://www.instagram.com/oluwaexcellent" target="_blank" rel="noopener">
+          <span class="link-icon link-icon--badge">Ig</span>
+          <span class="link-text">Instagram &rarr;</span>
+        </a>
+        <a class="shelf-link" href="https://www.behance.net/oemakanju" target="_blank" rel="noopener">
+          <span class="link-icon link-icon--badge">Be</span>
+          <span class="link-text">Behance &rarr;</span>
+        </a>
+      </div>
+    </section>
   </div>
-</section>
-</div>
 
-<script>
-(function () {
-  // [REVERT POINT] TEST CHANGE, round 16 — replaces the old scrollLeft/
-  // scrollTop auto-scroll marquee with an Instagram-Stories-style timer:
-  // each card gets DURATION ms on screen, a segmented progress bar fills
-  // to match, then it cross-fades to the next card. A segment can also be
-  // clicked to jump straight to that card. rAF-driven (not setInterval) so
-  // pause/resume on hover or touch doesn't lose track of partial progress
-  // — see the elapsed/startTime dance in render() below.
-  const stage = document.getElementById('storyStage');
-  const segWrap = document.getElementById('storyProgress');
-  if (!stage || !segWrap) return;
+  <script>
+    (function () {
+      // [REVERT POINT] TEST CHANGE, round 16 — replaces the old scrollLeft/
+      // scrollTop auto-scroll marquee with an Instagram-Stories-style timer:
+      // each card gets DURATION ms on screen, a segmented progress bar fills
+      // to match, then it cross-fades to the next card. A segment can also be
+      // clicked to jump straight to that card. rAF-driven (not setInterval) so
+      // pause/resume on hover or touch doesn't lose track of partial progress
+      // — see the elapsed/startTime dance in render() below.
+      const stage = document.getElementById('storyStage');
+      const segWrap = document.getElementById('storyProgress');
+      if (!stage || !segWrap) return;
 
-  const cards = Array.prototype.slice.call(stage.querySelectorAll('.shelf-card'));
-  const segs = Array.prototype.slice.call(segWrap.querySelectorAll('.story-seg'));
-  if (!cards.length || cards.length !== segs.length) return;
+      const cards = Array.prototype.slice.call(stage.querySelectorAll('.shelf-card'));
+      const segs = Array.prototype.slice.call(segWrap.querySelectorAll('.story-seg'));
+      if (!cards.length || cards.length !== segs.length) return;
 
-  const DURATION = 10000; // 10s per card
-  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const DURATION = 10000; // 10s per card
+      const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  let idx = 0;
-  let elapsed = 0;
-  let startTime = null;
-  let paused = false;
-  let resumeTimer = null;
+      let idx = 0;
+      let elapsed = 0;
+      let startTime = null;
+      let paused = false;
+      let resumeTimer = null;
 
-  function goTo(i) {
-    idx = i;
-    elapsed = 0;
-    startTime = null;
-    cards.forEach((c, ci) => {
-      c.classList.toggle('is-active', ci === i);
-      c.style.transition = ''; // Restore CSS transition
-      c.style.transform = 'translateX(-' + (idx * 100) + '%)';
-    });
-    segs.forEach((s, si) => {
-      s.classList.toggle('is-done', si < i);
-      s.querySelector('.story-seg-fill').style.width = si < i ? '100%' : '0%';
-    });
-  }
+      function goTo(i) {
+        idx = i;
+        elapsed = 0;
+        startTime = null;
+        cards.forEach((c, ci) => {
+          c.classList.toggle('is-active', ci === i);
+          c.style.transition = ''; // Restore CSS transition
+          c.style.transform = 'translateX(-' + (idx * 100) + '%)';
+        });
+        segs.forEach((s, si) => {
+          s.classList.toggle('is-done', si < i);
+          s.querySelector('.story-seg-fill').style.width = si < i ? '100%' : '0%';
+        });
+      }
 
-  segs.forEach((s, i) => s.addEventListener('click', () => goTo(i)));
+      segs.forEach((s, i) => s.addEventListener('click', () => goTo(i)));
 
-  // ── Swipe / drag / trackpad navigation ───────────────────────────────────
-  const SWIPE_THRESHOLD = 45;  // px for mouse drag & touch
-  const WHEEL_THRESHOLD = 55;  // accumulated deltaX for trackpad swipe
-  let dragStartX  = 0;
-  let dragDelta   = 0;
-  let dragging    = false;
-  let wheelAccX   = 0;
-  let wheelCooldown = false;
+      // ── Swipe / drag / trackpad navigation ───────────────────────────────────
+      const SWIPE_THRESHOLD = 45;  // px for mouse drag & touch
+      const WHEEL_THRESHOLD = 55;  // accumulated deltaX for trackpad swipe
+      let dragStartX = 0;
+      let dragDelta = 0;
+      let dragging = false;
+      let wheelAccX = 0;
+      let wheelCooldown = false;
 
-  // Helper: lock cursor across the whole page while dragging
-  function startGrab() {
-    dragging = true;
-    document.body.classList.add('is-shelf-dragging');
-  }
-  function stopGrab() {
-    dragging = false;
-    document.body.classList.remove('is-shelf-dragging');
-  }
+      // Helper: lock cursor across the whole page while dragging
+      function startGrab() {
+        dragging = true;
+        document.body.classList.add('is-shelf-dragging');
+      }
+      function stopGrab() {
+        dragging = false;
+        document.body.classList.remove('is-shelf-dragging');
+      }
 
-  // Live pull: move the entire track of cards under the finger
-  function applyPull(pull) {
-    cards.forEach(c => {
-      c.style.transition = 'none'; // Disable transition for 1:1 tracking
-      c.style.transform = `translateX(calc(-${idx * 100}% + ${pull}px))`;
-    });
-  }
+      // Live pull: move the entire track of cards under the finger
+      function applyPull(pull) {
+        cards.forEach(c => {
+          c.style.transition = 'none'; // Disable transition for 1:1 tracking
+          c.style.transform = `translateX(calc(-${idx * 100}% + ${pull}px))`;
+        });
+      }
 
-  // Suppress card link navigation when the interaction was a drag, not a tap
-  cards.forEach(card => {
-    card.addEventListener('click', e => {
-      if (Math.abs(dragDelta) > 10) e.preventDefault();
-    });
-  });
+      // Suppress card link navigation when the interaction was a drag, not a tap
+      cards.forEach(card => {
+        card.addEventListener('click', e => {
+          if (Math.abs(dragDelta) > 10) e.preventDefault();
+        });
+      });
 
-  // ── Touch swipe ──────────────────────────────────────────────────────────
-  stage.addEventListener('touchstart', e => {
-    dragStartX = e.touches[0].clientX;
-    dragDelta  = 0;
-  }, { passive: true });
+      // ── Touch swipe ──────────────────────────────────────────────────────────
+      stage.addEventListener('touchstart', e => {
+        dragStartX = e.touches[0].clientX;
+        dragDelta = 0;
+      }, { passive: true });
 
-  stage.addEventListener('touchmove', e => {
-    if (!e.touches.length) return;
-    dragDelta = e.touches[0].clientX - dragStartX;
-    // Add resistance if pulling past the ends
-    let pull = dragDelta;
-    if (idx === 0 && pull > 0) pull *= 0.3;
-    if (idx === cards.length - 1 && pull < 0) pull *= 0.3;
-    applyPull(pull);
-  }, { passive: true });
+      stage.addEventListener('touchmove', e => {
+        if (!e.touches.length) return;
+        dragDelta = e.touches[0].clientX - dragStartX;
+        // Add resistance if pulling past the ends
+        let pull = dragDelta;
+        if (idx === 0 && pull > 0) pull *= 0.3;
+        if (idx === cards.length - 1 && pull < 0) pull *= 0.3;
+        applyPull(pull);
+      }, { passive: true });
 
-  stage.addEventListener('touchend', e => {
-    dragDelta = e.changedTouches[0].clientX - dragStartX;
-    if (Math.abs(dragDelta) >= SWIPE_THRESHOLD) {
-      goTo(dragDelta < 0
-        ? (idx + 1) % cards.length
-        : (idx - 1 + cards.length) % cards.length);
-    } else {
-      goTo(idx); // Snap back to current card
-    }
-  }, { passive: true });
+      stage.addEventListener('touchend', e => {
+        dragDelta = e.changedTouches[0].clientX - dragStartX;
+        if (Math.abs(dragDelta) >= SWIPE_THRESHOLD) {
+          goTo(dragDelta < 0
+            ? (idx + 1) % cards.length
+            : (idx - 1 + cards.length) % cards.length);
+        } else {
+          goTo(idx); // Snap back to current card
+        }
+      }, { passive: true });
 
-  // ── Mouse / trackpad drag (click-and-drag) ───────────────────────────────
-  stage.addEventListener('mousedown', e => {
-    dragStartX = e.clientX;
-    dragDelta  = 0;
-    startGrab();
-  });
+      // ── Mouse / trackpad drag (click-and-drag) ───────────────────────────────
+      stage.addEventListener('mousedown', e => {
+        dragStartX = e.clientX;
+        dragDelta = 0;
+        startGrab();
+      });
 
-  // Use window so fast drags that leave the stage still finish correctly
-  window.addEventListener('mousemove', e => {
-    if (!dragging) return;
-    dragDelta = e.clientX - dragStartX;
-    let pull = dragDelta;
-    if (idx === 0 && pull > 0) pull *= 0.3;
-    if (idx === cards.length - 1 && pull < 0) pull *= 0.3;
-    applyPull(pull);
-  });
+      // Use window so fast drags that leave the stage still finish correctly
+      window.addEventListener('mousemove', e => {
+        if (!dragging) return;
+        dragDelta = e.clientX - dragStartX;
+        let pull = dragDelta;
+        if (idx === 0 && pull > 0) pull *= 0.3;
+        if (idx === cards.length - 1 && pull < 0) pull *= 0.3;
+        applyPull(pull);
+      });
 
-  window.addEventListener('mouseup', e => {
-    if (!dragging) return;
-    dragDelta = e.clientX - dragStartX;
-    stopGrab();
-    if (Math.abs(dragDelta) >= SWIPE_THRESHOLD) {
-      goTo(dragDelta < 0
-        ? (idx + 1) % cards.length
-        : (idx - 1 + cards.length) % cards.length);
-    } else {
-      goTo(idx);
-    }
-  });
+      window.addEventListener('mouseup', e => {
+        if (!dragging) return;
+        dragDelta = e.clientX - dragStartX;
+        stopGrab();
+        if (Math.abs(dragDelta) >= SWIPE_THRESHOLD) {
+          goTo(dragDelta < 0
+            ? (idx + 1) % cards.length
+            : (idx - 1 + cards.length) % cards.length);
+        } else {
+          goTo(idx);
+        }
+      });
 
-  // ── Trackpad / mousepad horizontal swipe (wheel events) ──────────────────
-  // Trackpad swipes fire wheel events with deltaX, not mouse events.
-  // Accumulate deltaX until threshold; cooldown prevents double-fires.
-  stage.addEventListener('wheel', function(e) {
-    // Ignore if predominantly vertical (normal scroll)
-    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
-    e.preventDefault(); // stop page from scrolling sideways
-    if (wheelCooldown) return;
+      // ── Trackpad / mousepad horizontal swipe (wheel events) ──────────────────
+      // Trackpad swipes fire wheel events with deltaX, not mouse events.
+      // Accumulate deltaX until threshold; cooldown prevents double-fires.
+      stage.addEventListener('wheel', function (e) {
+        // Ignore if predominantly vertical (normal scroll)
+        if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+        e.preventDefault(); // stop page from scrolling sideways
+        if (wheelCooldown) return;
 
-    wheelAccX += e.deltaX;
-    if (Math.abs(wheelAccX) >= WHEEL_THRESHOLD) {
-      var dir = wheelAccX > 0 ? 1 : -1;
-      wheelAccX = 0;
-      wheelCooldown = true;
-      setTimeout(function() { wheelCooldown = false; }, 750);
-      goTo(dir > 0
-        ? (idx + 1) % cards.length
-        : (idx - 1 + cards.length) % cards.length);
-    }
-  }, { passive: false }); // passive:false required to call preventDefault
-  // ─────────────────────────────────────────────────────────────────────────
+        wheelAccX += e.deltaX;
+        if (Math.abs(wheelAccX) >= WHEEL_THRESHOLD) {
+          var dir = wheelAccX > 0 ? 1 : -1;
+          wheelAccX = 0;
+          wheelCooldown = true;
+          setTimeout(function () { wheelCooldown = false; }, 750);
+          goTo(dir > 0
+            ? (idx + 1) % cards.length
+            : (idx - 1 + cards.length) % cards.length);
+        }
+      }, { passive: false }); // passive:false required to call preventDefault
+      // ─────────────────────────────────────────────────────────────────────────
 
-  function pause() {
-    paused = true;
-    if (resumeTimer) clearTimeout(resumeTimer);
-  }
-  function scheduleResume(delay) {
-    if (reduceMotion) return;
-    if (resumeTimer) clearTimeout(resumeTimer);
-    resumeTimer = setTimeout(() => { paused = false; startTime = null; }, delay);
-  }
+      function pause() {
+        paused = true;
+        if (resumeTimer) clearTimeout(resumeTimer);
+      }
+      function scheduleResume(delay) {
+        if (reduceMotion) return;
+        if (resumeTimer) clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(() => { paused = false; startTime = null; }, delay);
+      }
 
-  stage.addEventListener('mouseenter', pause);
-  stage.addEventListener('mouseleave', () => scheduleResume(300));
-  stage.addEventListener('pointerdown', pause);
-  stage.addEventListener('pointerup', () => scheduleResume(1500));
-  stage.addEventListener('pointercancel', () => scheduleResume(1500));
-  stage.addEventListener('touchstart', pause, { passive: true });
-  stage.addEventListener('touchend', () => scheduleResume(1500), { passive: true });
+      stage.addEventListener('mouseenter', pause);
+      stage.addEventListener('mouseleave', () => scheduleResume(300));
+      stage.addEventListener('pointerdown', pause);
+      stage.addEventListener('pointerup', () => scheduleResume(1500));
+      stage.addEventListener('pointercancel', () => scheduleResume(1500));
+      stage.addEventListener('touchstart', pause, { passive: true });
+      stage.addEventListener('touchend', () => scheduleResume(1500), { passive: true });
 
-  goTo(0);
+      goTo(0);
 
-  if (reduceMotion) return; // static: first card shown, segments clickable, no auto-advance
+      if (reduceMotion) return; // static: first card shown, segments clickable, no auto-advance
 
-  (function render(now) {
-    if (!paused) {
-      if (startTime === null) startTime = now - elapsed;
-      elapsed = now - startTime;
-      const pct = Math.min(100, (elapsed / DURATION) * 100);
-      segs[idx].querySelector('.story-seg-fill').style.width = pct + '%';
-      if (elapsed >= DURATION) goTo((idx + 1) % cards.length);
-    }
-    requestAnimationFrame(render);
-  })(performance.now());
-})();
+      (function render(now) {
+        if (!paused) {
+          if (startTime === null) startTime = now - elapsed;
+          elapsed = now - startTime;
+          const pct = Math.min(100, (elapsed / DURATION) * 100);
+          segs[idx].querySelector('.story-seg-fill').style.width = pct + '%';
+          if (elapsed >= DURATION) goTo((idx + 1) % cards.length);
+        }
+        requestAnimationFrame(render);
+      })(performance.now());
+    })();
 
-(function () {
-  // [REVERT POINT] TEST CHANGE, round 22 — was margin-left on #navWork
-  // itself, which shoved Work away from About, leaving a dead gap between
-  // them with the divider floating in the middle of it. Per feedback,
-  // About and Work must stay side by side (touching, only the 1px border
-  // between them) — so the margin now goes on the whole .site-nav
-  // container instead, shifting About+Work together as one unit. The
-  // divider (Work's own border-left, sitting exactly at nav's own left
-  // edge + About's width) still lands on the .home-grid column boundary;
-  // About's right edge now touches it directly, Work's left edge starts
-  // right there too, same as the boundary itself.
-  const nav = document.querySelector('.site-nav');
-  const workLink = document.getElementById('navWork');
-  const heroStatic = document.querySelector('.hero-static');
-  const isSplitView = window.matchMedia && window.matchMedia('(min-width: 900px)');
+    (function () {
+      // [REVERT POINT] TEST CHANGE, round 22 — was margin-left on #navWork
+      // itself, which shoved Work away from About, leaving a dead gap between
+      // them with the divider floating in the middle of it. Per feedback,
+      // About and Work must stay side by side (touching, only the 1px border
+      // between them) — so the margin now goes on the whole .site-nav
+      // container instead, shifting About+Work together as one unit. The
+      // divider (Work's own border-left, sitting exactly at nav's own left
+      // edge + About's width) still lands on the .home-grid column boundary;
+      // About's right edge now touches it directly, Work's left edge starts
+      // right there too, same as the boundary itself.
+      const nav = document.querySelector('.site-nav');
+      const workLink = document.getElementById('navWork');
+      const heroStatic = document.querySelector('.hero-static');
+      const isSplitView = window.matchMedia && window.matchMedia('(min-width: 900px)');
 
-  function alignDivider() {
-    if (!nav || !workLink || !heroStatic || !isSplitView || !isSplitView.matches) {
-      if (nav) nav.style.marginLeft = '';
-      return;
-    }
-    nav.style.marginLeft = '';
-    const boundaryX = heroStatic.getBoundingClientRect().right;
-    const dividerX = workLink.getBoundingClientRect().left;
-    nav.style.marginLeft = (boundaryX - dividerX) + 'px';
-  }
+      function alignDivider() {
+        if (!nav || !workLink || !heroStatic || !isSplitView || !isSplitView.matches) {
+          if (nav) nav.style.marginLeft = '';
+          return;
+        }
+        nav.style.marginLeft = '';
+        const boundaryX = heroStatic.getBoundingClientRect().right;
+        const dividerX = workLink.getBoundingClientRect().left;
+        nav.style.marginLeft = (boundaryX - dividerX) + 'px';
+      }
 
-  alignDivider();
-  window.addEventListener('resize', alignDivider);
-  // [REVERT POINT] TEST CHANGE, round 23 — the header's font (JetBrains
-  // Mono, loaded from Google Fonts) can still be loading when this script
-  // first runs, so the initial alignDivider() call sometimes measured
-  // About/Work at their FALLBACK-font width, landing the divider a few px
-  // off until the next resize. Re-running once the real font is in means
-  // it's correct on first paint too, not just after a manual resize.
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(alignDivider);
-  }
-})();
+      alignDivider();
+      window.addEventListener('resize', alignDivider);
+      // [REVERT POINT] TEST CHANGE, round 23 — the header's font (JetBrains
+      // Mono, loaded from Google Fonts) can still be loading when this script
+      // first runs, so the initial alignDivider() call sometimes measured
+      // About/Work at their FALLBACK-font width, landing the divider a few px
+      // off until the next resize. Re-running once the real font is in means
+      // it's correct on first paint too, not just after a manual resize.
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(alignDivider);
+      }
+    })();
 
-(function () {
-  const el = document.getElementById('heroRoleCycle');
-  if (!el) return;
+    (function () {
+      const el = document.getElementById('heroRoleCycle');
+      if (!el) return;
 
-  const roles = ['Designer', 'Lead', 'Design Manager', 'Engineer'];
-  let i = 0;
+      const roles = ['Designer', 'Lead', 'Design Manager', 'Engineer'];
+      let i = 0;
 
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  setInterval(() => {
-    el.classList.add('is-swapping');
-    setTimeout(() => {
-      i = (i + 1) % roles.length;
-      el.textContent = roles[i];
-      el.classList.remove('is-swapping');
-    }, 250);
-  }, 2200);
-})();
-</script>
+      setInterval(() => {
+        el.classList.add('is-swapping');
+        setTimeout(() => {
+          i = (i + 1) % roles.length;
+          el.textContent = roles[i];
+          el.classList.remove('is-swapping');
+        }, 250);
+      }, 2200);
+    })();
+  </script>
 
 </body>
+
 </html>
