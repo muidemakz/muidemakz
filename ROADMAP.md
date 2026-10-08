@@ -21,7 +21,7 @@ history) still get added where relevant — this order is the spine, not a hard 
 count. `.case-problem-grid`/`.case-leadership-grid` share CSS (`css/case-study.css`), so either
 name works; use whichever reads clearer for the section.
 
-**Retrofit call:** apply this order to new case studies going forward. Don't rewrite the seven
+**Retrofit call:** apply this order to new case studies going forward. Don't rewrite the existing
 already-built ones to match — they're already using the deeper "briefs" structure (Challenge →
 Process → Research → Insights → Decision → Screens → Testing → Outcome → Next Steps) which is
 richer than this leaner order and not broken. If it's ever worth revisiting one, the cheap version
@@ -35,10 +35,14 @@ everything underneath it.
 | Omnibiz — item not-available / preorder states | `empty-state.html` | Live |
 | Fundall — loan / salary advance | `fundall.html` | Live |
 | Teesas LMS | `teesaslms.html` | Live — flagged for a possible polish pass |
-| Raven Pay redesign | `raven-pay.html` | Live, password-gated (modal) |
+| Raven Pay redesign | `raven-pay.html` | Linked concept, password-gated (modal) |
 | VENX | `venx.html` | Live |
-| Coreloops documents filter | `coreloops.html` | Live |
-| Cancel Flow (weekend brief) | `cancel-flow.html` | Live |
+| Coreloops documents filter | `coreloops.html` | Linked proposed redesign with a working Figma prototype |
+| Omnione Design System | `omnione.html` | Linked |
+| Cardtonic P2P Money Transfer | `cardtonic.html` | Linked concept |
+| Valideity product story | `valideity.html` | Prepared in positioning review branch; ongoing product |
+| Speech-to-Order | `omnibiz-speech-to-order.html` | Draft, noindex and unlinked; real media and measurement context outstanding |
+| Cancel Flow (weekend brief) | `cancel-flow.html` | Draft, noindex and unlinked |
 
 ## Categories
 
@@ -58,7 +62,7 @@ site's own taxonomy (`PROJECT_CATEGORIES` in `js/data.js`) and the case-study "m
 | HR platform | **Fundall — HR Platform (HRMS/HRPP)** |
 | Branding / creative campaign | Fundall Brand Campaign, Nomba Brand Campaigns, Fortnoto Branding & Design System, Valideity Branding |
 | Game design | Crazy Ludo (revamp + reasoning), Safari City (assets + improvements) |
-| Cancel flow / retention | Cancel Flow Brief (built) |
+| Cancel flow / retention | Cancel Flow Brief (draft) |
 | AI CRM concept | VENX (built) |
 
 ## Planned — mapped to existing `PROJECTS` entries, need a case study page + `link`
@@ -66,7 +70,6 @@ site's own taxonomy (`PROJECT_CATEGORIES` in `js/data.js`) and the case-study "m
 | Roadmap item | `PROJECTS` entry | Category |
 |---|---|---|
 | Omnibiz — SSO flow | `Omnipay SSO` (2025) | SSO / account migration |
-| Omnibiz — Design system | `Omnione Design System` (2024) — confirmed same thing | Design system |
 | Nomba — Creative design campaign | `Nomba Brand Campaigns` (2021) | Branding / creative campaign |
 | Crazy Ludo — revamp + reasoning | `Crazy Ludo` (2021) | Game design |
 | Safari City — assets + improvements | `Safari City` (2020) | Game design |
@@ -96,7 +99,7 @@ site's own taxonomy (`PROJECT_CATEGORIES` in `js/data.js`) and the case-study "m
 
 ## Still open
 
-1. What year is the Valideity personal project?
+1. Valideity product building is represented in 2026; the separate branding archive entry still needs its date/scope confirmed.
 2. What year did the Fundall V2 relaunch actually happen (for the landing page entry)?
 3. Should the Fortnoto AI feature explainer be its own case study, or a section inside the main Fortnoto product case study?
 

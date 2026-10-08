@@ -17,6 +17,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/case-study.css">
+<link rel="stylesheet" href="css/case-media.css">
 </head>
 <body class="type-outfit">
 
@@ -38,7 +39,7 @@
         <p class="case-kicker">Coreloops &middot; Documents Filter Redesign</p>
         <a class="case-visit" href="https://www.figma.com/proto/wSzNuMP4qzW4GdchSugiPv/Coreloops-Filter-Results?page-id=1%3A3&node-id=22-10292&viewport=-3532%2C549%2C0.62&t=IrgRrAWG4njQChAA-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=22%3A10292" target="_blank" rel="noopener">View Figma Prototype <span aria-hidden="true">&rarr;</span></a>
       </div>
-      <h1 class="case-title">Taking The Most-Used Filters From A Drawer To Zero Clicks</h1>
+      <h1 class="case-title">Making The Most-Used Filters Easier To Reach</h1>
       <p class="case-lede">
         Coreloops' documents page filter panel treated all 13 filter options as equal, funneling every
         user, whether they needed one filter or six, through the same right-side drawer:
@@ -58,9 +59,7 @@
         <li>Web App (B2B)</li>
       </ul>
     </div>
-    <div class="case-hero-media" aria-hidden="true" style="background-image:url(images/coreloops/coreloop-cover.png); background-size:cover; background-position:top center;">
-      <span class="case-media-label">Coreloops &middot; Documents Filter Redesign</span>
-    </div>
+    <div class="case-hero-media case-cinema-loop" data-case-loop aria-label="coreloops product preview"><img class="case-loop-frame is-current" src="images/cinema/coreloops-banner.svg" alt="coreloops cinematic product preview" data-loop-label="No filters"><img class="case-loop-frame" src="images/cinema/coreloops-banner-2.svg" alt="coreloops cinematic product preview" data-loop-label="One filter" aria-hidden="true"><img class="case-loop-frame" src="images/cinema/coreloops-banner-3.svg" alt="coreloops cinematic product preview" data-loop-label="Combined filters" aria-hidden="true"></div>
   </section>
 
   <nav class="case-quicknav" aria-label="Section navigation">
@@ -185,6 +184,7 @@
   <section class="case-section" id="solution">
     <div class="wrap">
       <p class="case-label">My Solution</p>
+<div class="case-figures case-walkthrough"><figure class="case-figure case-figure--grey" data-case-loop aria-label="Quick filters in use"><div class="case-loop-stage" style="aspect-ratio:1080/526"><img class="case-loop-frame is-current" src="images/coreloops/rest-state.png" alt="No filters" data-loop-label="No filters" loading="lazy" width="1080" height="526"><img class="case-loop-frame" src="images/coreloops/one-filter-state.png" alt="One filter" data-loop-label="One filter" loading="lazy" aria-hidden="true" width="1080" height="527"><img class="case-loop-frame" src="images/coreloops/multiple-filter-state.png" alt="Combined filters" data-loop-label="Combined filters" loading="lazy" aria-hidden="true" width="1080" height="449"></div><div class="case-loop-controls"><span class="case-loop-label">No filters</span><div class="case-loop-steps" aria-label="Walkthrough screens"><button type="button" data-loop-step="0" aria-label="Show No filters" aria-current="step"><span class="case-loop-progress" aria-hidden="true"></span></button><button type="button" data-loop-step="1" aria-label="Show One filter"><span class="case-loop-progress" aria-hidden="true"></span></button><button type="button" data-loop-step="2" aria-label="Show Combined filters"><span class="case-loop-progress" aria-hidden="true"></span></button></div></div><figcaption>Original design screens · No filters, one filter, combined filters</figcaption></figure></div>
       <p class="case-copy">
         The core idea: separate filters by frequency of use. Five customizable filters live as persistent
         inline chips directly in the toolbar, always visible, filtering on selection. Each chip opens
@@ -452,5 +452,6 @@
 </footer>
 
 <script src="js/case-quicknav.js"></script>
+<script src="js/case-media.js" defer></script>
 </body>
 </html>

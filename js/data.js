@@ -136,26 +136,19 @@ const PROJECT_CATEGORIES = [
   "Illustration"
 ];
 
-// Live projects (real case-study `link`) sort first so they fill page 1
-// ahead of the "Coming Soon" placeholders — see js/work.js's is-soon badge.
-// [REVERT POINT] order was: Coreloops, Omnibiz, Cardtonic, (2 coming-soon),
-// Teesas, Omnione, Raven Pay, Fundall, VENX — led with unshipped work.
-// Reordered shipped-first: Omnione, Fundall, Teesas, Omnibiz empty-states
-// (all live/shipped, per each page's own "Status:" line), then the concept
-// work (Coreloops, Cardtonic, Raven Pay, VENX — each explicitly says
-// "not yet shipped" / "self-initiated" / "concept" on its own page), then
-// the two not-yet-finished Coming Soon entries. `status` drives the new
-// SHIPPED/CONCEPT badge in js/work.js's buildCardEl — keep it in sync with
-// each case study's own status disclosure, don't just guess.
+// Editorial order: systems and financial UX, then product building and broader work.
+// All archive entries remain available through the existing filters and pagination.
+// Status is descriptive data; the catalogue does not display status badges.
 const PROJECTS = [
   { name: "Omnione Design System", year: 2024, categories: ["UI Design", "Presentation"], image: "images/omnione/omnione-design-system-cover-banner.png", caption: "One Design Language For Four Product Teams", status: "shipped", confirmed: true, link: "omnione.html" },
-  { name: "Fundall", year: 2022, categories: ["UI Design", "UX Design", "Presentation"], image: "images/fundall/cover.png", caption: "Salary Advance: 6 Minutes To Under 2", status: "shipped", confirmed: true, link: "fundall.html" },
-  { name: "Teesas LMS v2.0", year: 2024, categories: ["UI Design", "UX Design"], image: "images/teesas/banner.png", caption: "Three Rebuilds To Get One LMS Right", status: "shipped", confirmed: true, link: "teesaslms.html" },
-  { name: "Omnibiz Empty & Preorder States", year: 2024, categories: ["UX Design"], image: "images/omnibiz/banner-image.png", caption: "Making “Not Here Yet” Feel Like A Preorder", status: "shipped", confirmed: true, link: "empty-state.html" },
-  { name: "Coreloops Documents Filter", year: 2026, categories: ["UI Design", "UX Design"], image: "images/coreloops/coreloop-cover.png", caption: "Filters From A Drawer To Zero Clicks", status: "concept", confirmed: true, link: "coreloops.html" },
-  { name: "Cardtonic P2P Money Transfer", year: 2026, categories: ["UI Design", "UX Design"], image: "images/Cardtonic/00 · Cover.png", caption: "Sending Money To People, Not Accounts", status: "concept", confirmed: true, link: "cardtonic.html" },
-  { name: "Raven Pay", year: 2024, categories: ["UI Design", "UX Design"], image: "images/ravenpay/banner-image.png", caption: "Making A Banking App Read As Serious, Not Cute", status: "concept", confirmed: true, link: "raven-pay.html" },
-  { name: "VENX", year: 2025, categories: ["UI Design", "UX Design"], image: "images/venx/cover-banner-image.png", caption: "A Full AI Sales CRM Concept In 24 Hours", status: "concept", confirmed: true, link: "venx.html" },
+  { name: "Fundall", year: 2022, categories: ["UI Design", "UX Design", "Presentation"], image: "images/fundall/cover.png", caption: "Salary Advance: 6 Minutes To 2", status: "shipped", confirmed: true, link: "fundall.html" },
+  { name: "Valideity", year: 2026, categories: ["UI Design", "UX Design"], image: "images/cinema/valideity-cover.svg", caption: "Testing Valideity On Its Own Pricing Flow", status: "building", confirmed: true, link: "valideity.html" },
+  { name: "Teesas LMS v2.0", year: 2024, categories: ["UI Design", "UX Design"], image: "images/cinema/teesas-laptop-cover.svg", caption: "Three Rebuilds To Get One LMS Right", status: "shipped", confirmed: true, link: "teesaslms.html" },
+  { name: "Omnibiz Empty & Preorder States", year: 2024, categories: ["UX Design"], image: "images/cinema/omnibiz-cover.svg", caption: "Making “Not Here Yet” Feel Like A Preorder", status: "shipped", confirmed: true, link: "empty-state.html" },
+  { name: "Coreloops Documents Filter", year: 2026, categories: ["UI Design", "UX Design"], image: "images/cinema/coreloops-cover.svg", caption: "Making Frequent Filters Easier To Reach", status: "concept", confirmed: true, link: "coreloops.html" },
+  { name: "Cardtonic P2P Money Transfer", year: 2026, categories: ["UI Design", "UX Design"], image: "images/cinema/cardtonic-cover.svg", caption: "Sending Money To People, Not Accounts", status: "concept", confirmed: true, link: "cardtonic.html" },
+  { name: "VENX", year: 2025, categories: ["UI Design", "UX Design"], image: "images/cinema/venx-cover.svg", caption: "A Full AI Sales CRM Concept In 24 Hours", status: "concept", confirmed: true, link: "venx.html" },
+  { name: "Raven Pay", year: 2024, categories: ["UI Design", "UX Design"], image: "images/cinema/ravenpay-cover.svg", caption: "Making A Banking App Read As Serious, Not Cute", status: "concept", confirmed: true, link: "raven-pay.html" },
   { name: "Cancel Flow Brief", year: 2026, categories: ["UX Design"], image: null, brand: "Cancel Flow", confirmed: true }, // [REVERT POINT] not finished — link removed so it renders as Coming Soon; add back `link: "cancel-flow.html"` once ready
   { name: "Omnibiz Speech-to-Order", year: 2026, categories: ["UX Design"], image: null, brand: "Speech-to-Order", confirmed: true }, // [REVERT POINT] not finished — link removed so it renders as Coming Soon; add back `link: "omnibiz-speech-to-order.html"` once ready
   { name: "Venda by Fortnoto", year: 2026, categories: ["Branding", "Creative Design"], image: null, brand: "Venda", confirmed: true },

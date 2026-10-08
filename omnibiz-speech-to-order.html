@@ -23,8 +23,8 @@
 <style>
 /* [REMOVE ONCE FILLED IN] visual flag for the still-missing screenshots
    on this page only — every real case study on the site has this
-   stripped out once Excellent drops the 11 images in. Copy is final;
-   only media is still placeholder. */
+   stripped out once Excellent drops the 11 images in. Copy and supporting evidence are under review;
+   media is still placeholder. */
 .case-ph {
   display: inline-block;
   border: 1.5px dashed var(--accent);
@@ -52,13 +52,13 @@
       </div>
       <h1 class="case-title">Speech-to-Order: Redesigning Voice Commerce for Omnibiz</h1>
       <p class="case-lede">
-        Turning spoken intent into completed orders for 150,000+ retailers.
+        Making ordering intent explicit and reducing friction in a voice ordering flow for Omnibiz retailers.
       </p>
       <ul class="case-tags">
         <li>Senior Product Designer (Embedded With PMs &amp; Engineers)</li>
         <li>2026</li>
         <li>Omnibiz Retailer App</li>
-        <li>150,000+ Retailers &middot; Nigeria, Ghana, Ivory Coast</li>
+        <li>B2B Commerce &middot; Voice Interaction</li>
       </ul>
     </div>
     <div class="case-hero-media" aria-hidden="true">
@@ -84,9 +84,15 @@
       <p class="case-label">Context</p>
       <p class="case-copy">
         Omnibiz is OmniRetail's B2B commerce platform, serving 150,000+ retailers across Nigeria, Ghana,
-        and Ivory Coast and processing $124M+ in annual NMV. The platform lets retailers order FMCG
+        and Ivory Coast and processing $124M+ in annual NMV. The speech-to-order module lets retailers order FMCG
         products by speaking instead of typing &mdash; built for low-literacy and high-volume users who
         need speed on mobile, often on slow networks.
+      </p>
+      <p class="case-copy">
+        My work covered two related efforts: reframing the AI ordering assistant after usage showed
+        retailers treating it as a complaints channel, and separately shipping a speech-to-order module
+        for low-literacy and high-volume users. The reported 35% speed improvement belongs to the voice
+        module; it is not a combined result for both efforts.
       </p>
       <div class="case-figures" style="margin-top: 18px;">
         <figure class="case-figure case-figure--grey">
@@ -112,8 +118,8 @@
         dominated actual ordering.
       </p>
       <p class="case-copy">
-        Average time to complete an order through the feature was <strong>over 2 minutes</strong>, largely
-        because users were stuck trying to get support before discovering they could order at all.
+        The existing voice-flow baseline was <strong>over 2 minutes</strong> to complete an order.
+        Alongside the assistant framing issue, product matching and mode switching added interaction friction.
       </p>
       <p class="case-copy">
         The original interface was a direct, unguided speech input with no context: users didn't know
@@ -187,7 +193,7 @@
   <section class="case-section" id="solution">
     <div class="wrap">
       <p class="case-label">Redesign Approach</p>
-      <p class="case-copy">Four core changes closed the gap between spoken intent and a completed order:</p>
+      <p class="case-copy">The assistant reframing and voice-flow work addressed four sources of friction:</p>
       <ol class="case-steps case-steps--flush case-steps--4">
         <li>
           <span class="case-step-n">01</span>
@@ -267,20 +273,19 @@
     <div class="wrap">
       <p class="case-label">Outcome &amp; Impact</p>
       <p class="case-copy">
-        Order completion time &mdash; measured from first voice input to confirmed order, previously over
-        2 minutes &mdash; improved by <strong>35%</strong> after the redesign.
+        The speech-to-order module was reported to improve order completion speed by <strong>35%</strong>
+        for low-literacy and high-volume users. This result belongs to the voice module, separately
+        from the ordering assistant's support-versus-ordering reframing.
       </p>
 
+      <!-- Evidence follow-up before publication: retain the internal analytics source,
+           measurement window, cohort and exact speed definition with the before/after capture.
+           The CV establishes the 35% result and separates the two initiatives. -->
       <div class="case-outcome-grid">
         <div class="case-outcome">
           <p class="case-outcome-label">Speed</p>
           <p class="case-outcome-value">35%</p>
-          <p class="case-outcome-copy">Faster order completion, from first voice input to confirmed order.</p>
-        </div>
-        <div class="case-outcome">
-          <p class="case-outcome-label">Adoption</p>
-          <p class="case-outcome-value"><span class="case-ph">[OPTIONAL]</span></p>
-          <p class="case-outcome-copy"><span class="case-ph">[OPTIONAL: adoption change data &mdash; not yet available, add if/when confirmed]</span></p>
+          <p class="case-outcome-copy">Reported improvement in order completion speed for the speech-to-order module.</p>
         </div>
       </div>
 
@@ -308,9 +313,9 @@
         control to switch modes.
       </p>
       <p class="case-copy">
-        Also worth noting as a real design constraint: not every improvement, like persistent conversation
-        memory, made it through, due to legitimate data-storage concerns for customers. Good case studies
-        show real tradeoffs, not just wins.
+        Persistent conversation memory did not ship because of customer-data storage concerns.
+        That constraint shaped the interaction: helping retailers switch modes also meant deciding
+        how much context the product could retain.
       </p>
     </div>
   </section>

@@ -17,6 +17,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/case-study.css">
+<link rel="stylesheet" href="css/case-media.css">
 </head>
 <body class="type-outfit">
 
@@ -58,9 +59,7 @@
       </ul>
     </div>
     <div class="case-hero-cover">
-      <div class="case-hero-media" aria-hidden="true" style="background-image:url(images/Cardtonic/00%20%C2%B7%20Cover.png); background-size:cover; background-position:center;">
-        <span class="case-media-label">Cardtonic &middot; P2P Money Transfer</span>
-      </div>
+      <div class="case-hero-media case-cinema-loop" data-case-loop aria-label="cardtonic product preview"><img class="case-loop-frame is-current" src="images/cinema/cardtonic-banner.svg" alt="cardtonic cinematic product preview" data-loop-label="Amount"><img class="case-loop-frame" src="images/cinema/cardtonic-banner-2.svg" alt="cardtonic cinematic product preview" data-loop-label="Review" aria-hidden="true"><img class="case-loop-frame" src="images/cinema/cardtonic-banner-3.svg" alt="cardtonic cinematic product preview" data-loop-label="Authentication" aria-hidden="true"></div>
       <div class="case-visit-rail">
         <a class="case-visit-badge" href="https://www.figma.com/proto/kRW3O61oRWMQRskiWHXS5j/Cardtonic-P2P-Money-Transfer-%E2%80%94-Flow-Exploration?node-id=116-2207&viewport=812%2C1047%2C0.19&t=TCJ2MfzFV5MFjDHf-9&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=116%3A2207&show-proto-sidebar=1&page-id=3%3A9" target="_blank" rel="noopener">View<br>Figma Prototype</a>
       </div>
@@ -360,6 +359,7 @@
   <section class="case-section" id="solution">
     <div class="wrap">
       <p class="case-label"><span class="case-label-accent">Solution</span> &middot; Option A: P2P Service Tile</p>
+<div class="case-figures case-walkthrough"><figure class="case-figure case-figure--grey" data-case-loop aria-label="Verify, review and send"><div class="case-loop-stage case-loop-stage--phone" style="aspect-ratio:448/912"><img class="case-loop-frame is-current" src="images/Cardtonic/Mockup.png" alt="Verify recipient" data-loop-label="Verify recipient" loading="lazy" width="448" height="912"><img class="case-loop-frame" src="images/Cardtonic/Mockup-2.png" alt="Enter amount" data-loop-label="Enter amount" loading="lazy" aria-hidden="true" width="448" height="912"><img class="case-loop-frame" src="images/Cardtonic/Mockup-1.png" alt="Review transfer" data-loop-label="Review transfer" loading="lazy" aria-hidden="true" width="448" height="912"><img class="case-loop-frame" src="images/Cardtonic/Mockup-4.png" alt="Authenticate" data-loop-label="Authenticate" loading="lazy" aria-hidden="true" width="448" height="912"><img class="case-loop-frame" src="images/Cardtonic/Mockup-5.png" alt="Confirmation" data-loop-label="Confirmation" loading="lazy" aria-hidden="true" width="448" height="912"></div><div class="case-loop-controls"><span class="case-loop-label">Verify recipient</span><div class="case-loop-steps" aria-label="Walkthrough screens"><button type="button" data-loop-step="0" aria-label="Show Verify recipient" aria-current="step"><span class="case-loop-progress" aria-hidden="true"></span></button><button type="button" data-loop-step="1" aria-label="Show Enter amount"><span class="case-loop-progress" aria-hidden="true"></span></button><button type="button" data-loop-step="2" aria-label="Show Review transfer"><span class="case-loop-progress" aria-hidden="true"></span></button><button type="button" data-loop-step="3" aria-label="Show Authenticate"><span class="case-loop-progress" aria-hidden="true"></span></button><button type="button" data-loop-step="4" aria-label="Show Confirmation"><span class="case-loop-progress" aria-hidden="true"></span></button></div></div><figcaption>Concept walkthrough · Original design screens</figcaption></figure></div>
       <p class="case-copy">Fast entry from Home into recipient search, balancing trust, safety, and speed.</p>
 
       <div class="case-figures" style="margin-top: 24px;">
@@ -705,5 +705,6 @@
 </footer>
 
 <script src="js/case-quicknav.js"></script>
+<script src="js/case-media.js" defer></script>
 </body>
 </html>

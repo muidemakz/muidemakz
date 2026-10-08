@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMFSR34FZG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-SMFSR34FZG");
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valideity: Testing Its Own Pricing Flow · Excellent Makanju</title>
+  <meta name="description" content="Building Valideity and testing its own pricing flow: three simulated runs, fixes to pricing discovery, and a Predicted UX score of 53% to 94%.">
+  <link rel="canonical" href="https://muidemakz.com/valideity.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Valideity · AI-First UX Research · Excellent Makanju">
+  <meta property="og:description" content="A founder-led pricing-flow case study: 53%, 52%, then 94% Predicted across three runs, with the findings and fixes kept inspectable.">
+  <meta property="og:url" content="https://muidemakz.com/valideity.html">
+  <meta property="og:image" content="https://muidemakz.com/images/about/about-me.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Outfit:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/case-study.css">
+</head>
+<body class="type-outfit">
+<div id="site-header-root"></div>
+<script src="js/header.js"></script>
+<main class="case-main">
+  <section class="case-hero">
+    <div class="wrap">
+      <a href="my-work.html" class="case-back">&larr; All Work</a>
+      <div class="case-hero-top"><p class="case-kicker">Valideity · Product Ownership &amp; Building</p></div>
+      <h1 class="case-title">Using Valideity To Fix Its Own Pricing Flow</h1>
+      <p class="case-lede">I own and am building Valideity, an AI-first UX research product. I used it to test a simple question on its own website: could a visitor find the Pro plan’s monthly price before creating an account?</p>
+      <p class="case-lede">Three simulated runs exposed a missing route, caught a fix that still sent visitors to login, and verified the working pricing path. The Predicted UX score moved from <strong>53% to 94%</strong>.</p>
+      <ul class="case-tags"><li>AI Product · September 2026</li><li>Product Owner</li><li>Design &amp; AI-Assisted Build</li><li>Live Website Test</li><li>Predicted Evidence</li></ul>
+    </div>
+    <div class="case-hero-cover">
+      <div class="case-hero-media" role="img" aria-label="Cinematic rendering of the Valideity brand mark beside a product display in a graphite studio" style="background-image:url(images/valideity/banner-product-cinematic-small-logo.png);background-size:contain;background-repeat:no-repeat;background-position:center;background-color:#13171c;"></div>
+      <div class="case-visit-rail"><a class="case-visit-badge" href="https://valideity.com/" target="_blank" rel="noopener">Visit<br>Valideity</a></div>
+    </div>
+  </section>
+  <nav class="case-quicknav" aria-label="Section navigation"><div class="wrap"><a href="#summary">Summary</a><a href="#problem">Problem</a><a href="#solution">Three Runs</a><a href="#decisions">Fixes</a><a href="#building">Building</a><a href="#outcome">Outcome</a></div></nav>
+  <section class="case-section" id="summary"><div class="wrap">
+    <p class="case-label">Summary</p>
+    <p class="case-copy">Valideity lets a team test a prototype or live site with simulated personas, then run the study with real people. Building it means owning the product definition, interaction design and AI-assisted implementation, including how its interface distinguishes Predicted findings from Measured evidence.</p>
+    <p class="case-copy">On 27 September 2026, I used the product on its own public waitlist page. The task was <strong>“Find out how much the Pro plan costs a month.”</strong> Each run used the same task and one simulated persona, with five sessions per run. I reviewed the findings, changed the live experience, and tested again.</p>
+    <ul class="case-list"><li><strong>Define the question.</strong> Test whether a potential buyer can discover pricing without an account.</li><li><strong>Inspect the behavior.</strong> Follow where the simulated sessions went and what stopped the task, alongside the headline score.</li><li><strong>Implement and verify.</strong> Fix the public pricing route, then check the actual signed-out experience and rerun the study.</li></ul>
+    <div class="case-figures">
+      <figure class="case-figure case-figure--grey"><div class="case-figure-inset case-figure-inset--pad"><img src="images/valideity/study-setup.jpg" alt="Original Valideity study builder with one website test on valideity.com" width="480" height="357" loading="lazy" style="max-width:640px;margin:0 auto;"></div><figcaption>Original study setup · 27 September 2026</figcaption></figure>
+      <figure class="case-figure case-figure--grey"><div class="case-figure-inset case-figure-inset--pad"><img src="images/valideity/persona-and-sessions.jpg" alt="Busy Startup Founder persona selected, with the five-session Quick option" width="480" height="357" loading="lazy" style="max-width:640px;margin:0 auto;"></div><figcaption>One simulated persona · Five sessions per run</figcaption></figure>
+    </div>
+  </div></section>
+  <section class="case-section" id="problem"><div class="wrap">
+    <p class="case-label">The Problem</p>
+    <p class="case-copy">A visitor evaluating the product needed to know its price. The landing page offered a waitlist and login, but no clear route to the pricing page. The first run completed all five simulations, yet none completed the visitor’s task. A finished simulation was not the same as a successful user journey.</p>
+    <div class="case-problem-grid"><div class="case-problem"><p class="case-problem-label">No Pricing Route</p><p class="case-problem-copy">All five simulated sessions failed to find the Pro price and reached login instead.</p></div><div class="case-problem"><p class="case-problem-label">A Fix That Still Blocked Access</p><p class="case-problem-copy">New pricing links looked right but opened an in-app pricing control that redirected signed-out visitors to login.</p></div><div class="case-problem"><p class="case-problem-label">Currency Still Needed Clarity</p><p class="case-problem-copy">Once the route worked, the report caught an approximate dollar price with no explicit currency unit.</p></div></div>
+  </div></section>
+  <section class="case-section" id="solution"><div class="wrap">
+    <p class="case-label">Three Runs, One Task</p>
+    <div class="case-outcome-grid"><div class="case-outcome"><p class="case-outcome-label">Run 1 · Predicted</p><p class="case-outcome-value">53%</p><p class="case-outcome-copy">No pricing link. 0 of 5 simulated sessions completed the task.</p></div><div class="case-outcome"><p class="case-outcome-label">Run 2 · Predicted</p><p class="case-outcome-value">52%</p><p class="case-outcome-copy">Visible links still led to login. Task completion remained 0 of 5.</p></div><div class="case-outcome"><p class="case-outcome-label">Run 3 · Predicted</p><p class="case-outcome-value">94%</p><p class="case-outcome-copy">Public pricing route worked. 5 of 5 simulated sessions found the price.</p></div></div>
+    <ul class="case-list"><li><strong>Run 1 identified the discovery problem.</strong> The findings showed sessions scanning the page, looking for plan information and ending up at login. The useful action was to expose Pricing in the navigation and near the sign-up area.</li><li><strong>Run 2 checked the implementation.</strong> “See plans and prices” was recognizable, but the route was wrong. The new links invoked the authenticated in-app pricing experience. Another completed test exposed a fix that had not solved the visitor’s problem.</li><li><strong>Run 3 checked the working public route.</strong> After the links opened the public pricing page directly, every simulated session found the price. The report still surfaced the unclear currency helper text.</li></ul>
+    <p class="case-copy">The one-point change from 53% to 52% was not the important signal: both runs had zero task completion. What mattered was that the finding persisted until the underlying route actually worked.</p>
+    <div class="case-figures"><figure class="case-figure case-figure--grey"><div class="case-figure-inset case-figure-inset--pad"><img src="images/valideity/run-three-overview.jpg" alt="Historical Simulate number 3 overview showing 94 percent, five completed sessions, three findings and one persona" width="480" height="357" loading="lazy" style="max-width:640px;margin:0 auto;"></div><figcaption>Original Run 3 overview · 94% Predicted</figcaption></figure></div>
+  </div></section>
+  <section class="case-section" id="decisions"><div class="wrap">
+    <p class="case-label">The Fixes &amp; Their Tradeoffs</p>
+    <div class="case-decision"><p class="case-decision-label">Make Pricing Public, Not Just Visible</p><p class="case-decision-copy">A correctly labelled link was insufficient. Its destination also had to work for a visitor who was evaluating the product before signing up. I corrected the links to open the public pricing page and verified them in a signed-out browser.</p></div>
+    <div class="case-figures"><figure class="case-figure"><img src="images/valideity/pricing-run-three.png" alt="Historical public pricing page showing Free, Pro and Team plans; Pro helper text reads About 10 a month without a currency unit" width="1540" height="908" loading="lazy"><figcaption>Pricing page evaluated in Run 3 · Currency wording was the remaining finding</figcaption></figure></div>
+    <p class="case-copy">The remaining finding was specific: the Pro card showed a naira amount and “About 10 a month,” without stating the currency of that approximate amount. I clarified the helper text afterward. The 94% score belongs to the version before that wording change; I do not assign it a later, unrecorded score.</p>
+    <div class="case-decision"><p class="case-decision-label">Preserve The Difference Between Versions</p><p class="case-decision-copy">After the tested target changed, “Add to this run” refused to blend new sessions with the old run and required a new run instead. That boundary matters: a combined score would hide whether a finding came from before or after a fix.</p></div>
+    <div class="case-figures"><figure class="case-figure case-figure--grey"><div class="case-figure-inset case-figure-inset--pad"><img src="images/valideity/version-guard.jpg" alt="Original Add to this run dialog refusing to append sessions because the section or target changed since the run" width="480" height="357" loading="lazy" style="max-width:640px;margin:0 auto;"></div><figcaption>Original version guard · Changed target requires a new run</figcaption></figure></div>
+  </div></section>
+  <section class="case-section" id="building"><div class="wrap">
+    <p class="case-label">Designing, Building &amp; Using The Product</p>
+    <p class="case-copy">My fintech and B2B work has centred on making complex workflows understandable and reliable. With Valideity, I carry that judgment through product definition and working implementation. This test connected the research tool I was building to a decision on the product itself.</p>
+    <p class="case-copy">I use AI-assisted implementation, then inspect the resulting behavior. Here, a visible interface fix was not enough: the signed-out path had to work, the findings had to remain attached to the version that produced them, and the result had to be labelled as simulated evidence.</p>
+    <ul class="case-list"><li><strong>Review AI suggestions before applying them.</strong> The study assistant proposes tasks and questions for the researcher to select.</li><li><strong>Keep the score grounded in the run.</strong> Application logic computes scores and supporting counts; AI helps phrase the findings.</li><li><strong>Keep Predicted and Measured distinct.</strong> Five simulated sessions are five simulations, not five real customers.</li></ul>
+    <a class="case-cta" href="https://valideity.com/first-read" target="_blank" rel="noopener">Try Free AI First Read <span aria-hidden="true">&rarr;</span></a>
+  </div></section>
+  <section class="case-section" id="outcome"><div class="wrap">
+    <p class="case-label">Outcome &amp; Next Validation</p>
+    <p class="case-copy">The Predicted UX score rose from <strong>53% to 94%</strong>, and simulated task completion moved from <strong>0 of 5 to 5 of 5</strong>. More usefully, the sequence showed that findings could guide a change, expose a broken implementation of that change, and point to a remaining clarity issue after the main path worked.</p>
+    <div class="case-flag-box"><p class="case-flag-label">Next: Check The Same Task With Real People</p><p class="case-flag-copy">These results come from one simulated persona and five sessions per run on my own product. Real-participant testing of the final version is the next step for this case. A Measured result is not claimed here, and this experiment does not establish prediction accuracy or a conversion uplift.</p></div>
+    <p class="case-copy">Valideity remains an ongoing product with early access by invitation. This case shows a concrete loop from question to findings to implemented change and rerun, alongside my broader ownership of the product.</p>
+    <div class="case-visit-end"><a class="case-visit-badge" href="https://valideity.com/" target="_blank" rel="noopener">Visit<br>Valideity</a></div>
+  </div></section>
+  <section class="case-section case-other"><div class="wrap"><p class="case-label">Related Work</p><div class="case-other-grid"><a class="case-other-card" href="omnione.html"><span class="case-other-name">Omnione Design System</span><span class="case-other-meta">Systems · B2B · Leadership</span></a><a class="case-other-card" href="fundall.html"><span class="case-other-name">Fundall</span><span class="case-other-meta">Credit · Financial UX</span></a><a class="case-other-card" href="venx.html"><span class="case-other-name">VENX</span><span class="case-other-meta">AI Interaction Concept</span></a></div></div></section>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-top"><p class="footer-label">Let's Connect</p></div>
+  <div class="wrap"><div class="footer-links">
+    <a href="https://www.linkedin.com/in/makanju-excellent-211b0a44/" class="footer-link" target="_blank" rel="noopener">LinkedIn &rarr;</a>
+    <a href="https://dribbble.com/muidemakz" class="footer-link" target="_blank" rel="noopener">Dribbble &rarr;</a>
+    <a href="https://www.behance.net/oemakanju" class="footer-link" target="_blank" rel="noopener">Behance &rarr;</a>
+    <a href="https://www.instagram.com/oluwaexcellent" class="footer-link" target="_blank" rel="noopener">Instagram &rarr;</a>
+  </div></div>
+  <div class="footer-legal-row"><p class="wrap footer-legal">Excellent Makanju, Senior Product Designer</p></div>
+</footer>
+<script src="js/case-quicknav.js"></script>
+</body>
+</html>
