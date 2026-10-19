@@ -86,6 +86,7 @@
   // a no-JS visitor or a crawler sees on first paint.
   function buildCardEl(project) {
     const li = document.createElement("li");
+    const comingSoon = project.status === "coming-soon" || !project.link;
     li.className = "work-card";
     if (project.image) {
       li.classList.add("has-image");
@@ -107,9 +108,10 @@
       const hit = document.createElement("a");
       hit.className = "work-card-hit";
       hit.href = project.link;
-      hit.setAttribute("aria-label", "View case study: " + project.name);
+      hit.setAttribute("aria-label", (comingSoon ? "Preview project (case study coming soon): " : "View case study: ") + project.name);
       li.appendChild(hit);
-    } else {
+    }
+    if (comingSoon) {
       li.classList.add("is-soon");
       const banner = document.createElement("span");
       banner.className = "work-card-soon";
@@ -117,7 +119,7 @@
       li.appendChild(banner);
     }
 
-    if ((project.motion || project.motionFrame) && project.link) {
+    if ((project.motion || project.motionFrame) && project.link && !comingSoon) {
       li.dataset.projectMotion = '';
       li.dataset.motionMode = 'hover';
       li.dataset.motionLabel = project.name + ' preview';

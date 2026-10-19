@@ -138,7 +138,8 @@ const PROJECT_CATEGORIES = [
 
 // Editorial order: systems and financial UX, then product building and broader work.
 // All archive entries remain available through the existing filters and pagination.
-// Status is descriptive data; the catalogue does not display status badges.
+// shipped/building/concept describe the work. coming-soon describes case-study
+// availability only, not whether the underlying product has shipped.
 const PROJECTS = [
   { name: "Omnione Design System", year: 2024, categories: ["UI Design", "Presentation"], image: "images/omnione/omnione-design-system-cover-banner.png", caption: "One Design Language For Four Product Teams", status: "shipped", confirmed: true, link: "omnione.html" },
   { name: "Fundall", year: 2022, categories: ["UI Design", "UX Design", "Presentation"], image: "videos/fundall/work-opening-frame.png", caption: "Bringing Salary Advance Into Mobile", motion: "videos/fundall/sign-in-loop.mp4", motionPoster: "videos/fundall/work-opening-frame.png", status: "shipped", confirmed: true, link: "fundall.html" },
@@ -149,22 +150,26 @@ const PROJECTS = [
   { name: "Cardtonic P2P Money Transfer", year: 2026, categories: ["UI Design", "UX Design"], image: "images/cinema/cardtonic-cover.svg", caption: "Sending Money To People, Not Accounts", status: "concept", confirmed: true, link: "cardtonic.html" },
   { name: "VENX", year: 2025, categories: ["UI Design", "UX Design"], image: "images/cinema/venx-cover.svg", caption: "A Full AI Sales CRM Concept In 24 Hours", status: "concept", confirmed: true, link: "venx.html" },
   { name: "Raven Pay", year: 2024, categories: ["UI Design", "UX Design"], image: "images/cinema/ravenpay-cover.svg", caption: "Making A Banking App Read As Serious, Not Cute", status: "concept", confirmed: true, link: "raven-pay.html" },
-  { name: "Cancel Flow Brief", year: 2026, categories: ["UX Design"], image: null, brand: "Cancel Flow", confirmed: true }, // [REVERT POINT] not finished — link removed so it renders as Coming Soon; add back `link: "cancel-flow.html"` once ready
-  { name: "Omnibiz Speech-to-Order", year: 2026, categories: ["UX Design"], image: null, brand: "Speech-to-Order", confirmed: true }, // [REVERT POINT] not finished — link removed so it renders as Coming Soon; add back `link: "omnibiz-speech-to-order.html"` once ready
-  { name: "Venda by Fortnoto", year: 2026, categories: ["Branding", "Creative Design"], image: null, brand: "Venda", confirmed: true },
-  { name: "OmniBiz Retailer App", year: 2025, categories: ["UI Design", "UX Design"], image: null, brand: "OmniBiz", confirmed: true },
-  { name: "AlphaBuzz", year: 2024, categories: ["UI Design", "UX Design"], image: null, brand: "AlphaBuzz", confirmed: true },
-  { name: "Playhour", year: 2024, categories: ["UI Design", "Animation"], image: null, brand: "Playhour", confirmed: true },
-  { name: "Traction Apps Wallet", year: 2023, categories: ["UI Design", "UX Design"], image: null, brand: "Traction Apps", confirmed: true },
-  { name: "Traction Apps — Savings & Loan", year: 2023, categories: ["UI Design", "UX Design"], image: null, brand: "Traction Apps", confirmed: true },
-  { name: "Traction Apps — Ramp Website", year: 2023, categories: ["UI Design", "Presentation"], image: null, brand: "Traction Apps", confirmed: true },
-  { name: "Fundall — HR Platform (HRMS/HRPP)", year: 2022, categories: ["UI Design", "UX Design", "Presentation"], image: null, brand: "Fundall", confirmed: true },
-  { name: "Fundall — V2 Landing Page Relaunch", year: 2022, categories: ["UI Design", "Presentation"], image: null, brand: "Fundall", confirmed: false },
-  { name: "Fundall Brand Campaign", year: 2022, categories: ["Creative Design"], image: null, brand: "Fundall", confirmed: false },
-  { name: "Fortnoto — Marketing Studio", year: 2026, categories: ["UI Design", "Presentation"], image: null, brand: "Fortnoto", confirmed: false },
-  { name: "Fortnoto Branding & Design System", year: 2026, categories: ["Creative Design", "Presentation"], image: null, brand: "Fortnoto", confirmed: false },
-  { name: "Valideity Branding", year: 2026, categories: ["Creative Design"], image: null, brand: "Valideity", confirmed: false },
-  { name: "Nomba Brand Campaigns", year: 2021, categories: ["Creative Design", "Illustration"], image: null, brand: "Nomba", confirmed: true },
-  { name: "Crazy Ludo", year: 2021, categories: ["Creative Design", "Animation"], image: null, brand: "Crazy Ludo", confirmed: false },
-  { name: "Safari City", year: 2020, categories: ["Illustration", "Animation"], image: null, brand: "Safari City", confirmed: false },
+  // [REVERT POINT] Unfinished entries now link to an explicitly noindex preview.
+  // Keep draft files and their unreviewed content out of the public preview.
+  // Only add preview.role/summary/scope from owner-confirmed material.
+  { name: "Cancel Flow Brief", year: 2026, categories: ["UX Design"], image: null, brand: "Cancel Flow", confirmed: true, status: "coming-soon", slug: "cancel-flow", link: "project-preview.html?project=cancel-flow" },
+  { name: "Omnibiz Speech-to-Order", year: 2026, categories: ["UX Design"], image: null, brand: "Speech-to-Order", confirmed: true, status: "coming-soon", slug: "omnibiz-speech-to-order", link: "project-preview.html?project=omnibiz-speech-to-order" },
+  { name: "Venda by Fortnoto", year: 2026, categories: ["Branding", "Creative Design"], image: null, brand: "Venda", confirmed: true, status: "coming-soon", slug: "venda", link: "project-preview.html?project=venda" },
+  { name: "OmniBiz Retailer App", year: 2025, categories: ["UI Design", "UX Design"], image: null, brand: "OmniBiz", confirmed: true, status: "coming-soon", slug: "omnibiz-retailer-app", link: "project-preview.html?project=omnibiz-retailer-app" },
+  { name: "AlphaBuzz", year: 2024, categories: ["UI Design", "UX Design"], image: null, brand: "AlphaBuzz", confirmed: true, status: "coming-soon", slug: "alphabuzz", link: "project-preview.html?project=alphabuzz" },
+  { name: "Playhour", year: 2024, categories: ["UI Design", "Animation"], image: null, brand: "Playhour", confirmed: true, status: "coming-soon", slug: "playhour", link: "project-preview.html?project=playhour" },
+  { name: "Traction Apps Wallet", year: 2023, categories: ["UI Design", "UX Design"], image: null, brand: "Traction Apps", confirmed: true, status: "coming-soon", slug: "traction-wallet", link: "project-preview.html?project=traction-wallet" },
+  { name: "Traction Apps — Savings & Loan", year: 2023, categories: ["UI Design", "UX Design"], image: null, brand: "Traction Apps", confirmed: true, status: "coming-soon", slug: "traction-savings-loan", link: "project-preview.html?project=traction-savings-loan" },
+  { name: "Traction Apps — Ramp Website", year: 2023, categories: ["UI Design", "Presentation"], image: null, brand: "Traction Apps", confirmed: true, status: "coming-soon", slug: "traction-ramp", link: "project-preview.html?project=traction-ramp" },
+  { name: "Fundall — HR Platform (HRMS/HRPP)", year: 2022, categories: ["UI Design", "UX Design", "Presentation"], image: null, brand: "Fundall", confirmed: true, status: "coming-soon", slug: "fundall-hr", link: "project-preview.html?project=fundall-hr" },
+  // These three narrow scope descriptions are confirmed in ROADMAP.md's resolved questions.
+  { name: "Fundall — V2 Landing Page Relaunch", year: 2022, categories: ["UI Design", "Presentation"], image: null, brand: "Fundall", confirmed: false, status: "coming-soon", slug: "fundall-v2", link: "project-preview.html?project=fundall-v2", preview: { summary: "Landing page redesign for Fundall’s V2 relaunch.", scope: ["Landing page redesign"] } },
+  { name: "Fundall Brand Campaign", year: 2022, categories: ["Creative Design"], image: null, brand: "Fundall", confirmed: false, status: "coming-soon", slug: "fundall-brand", link: "project-preview.html?project=fundall-brand" },
+  { name: "Fortnoto — Marketing Studio", year: 2026, categories: ["UI Design", "Presentation"], image: null, brand: "Fortnoto", confirmed: false, status: "coming-soon", slug: "fortnoto-marketing", link: "project-preview.html?project=fortnoto-marketing", preview: { summary: "Marketing website work for Fortnoto.", scope: ["Marketing website"] } },
+  { name: "Fortnoto Branding & Design System", year: 2026, categories: ["Creative Design", "Presentation"], image: null, brand: "Fortnoto", confirmed: false, status: "coming-soon", slug: "fortnoto-branding", link: "project-preview.html?project=fortnoto-branding", preview: { summary: "Brand identity and design system work for Fortnoto.", scope: ["Brand identity", "Design system"] } },
+  { name: "Valideity Branding", year: 2026, categories: ["Creative Design"], image: null, brand: "Valideity", confirmed: false, status: "coming-soon", slug: "valideity-branding", link: "project-preview.html?project=valideity-branding" },
+  { name: "Nomba Brand Campaigns", year: 2021, categories: ["Creative Design", "Illustration"], image: null, brand: "Nomba", confirmed: true, status: "coming-soon", slug: "nomba-brand", link: "project-preview.html?project=nomba-brand" },
+  { name: "Crazy Ludo", year: 2021, categories: ["Creative Design", "Animation"], image: null, brand: "Crazy Ludo", confirmed: false, status: "coming-soon", slug: "crazy-ludo", link: "project-preview.html?project=crazy-ludo" },
+  { name: "Safari City", year: 2020, categories: ["Illustration", "Animation"], image: null, brand: "Safari City", confirmed: false, status: "coming-soon", slug: "safari-city", link: "project-preview.html?project=safari-city" },
 ];

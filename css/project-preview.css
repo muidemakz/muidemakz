@@ -1,0 +1,76 @@
+/* Case-study availability, using the original portfolio's hard tokens. */
+:root {
+  --preview-surface: var(--paper-hard);
+  --preview-ink: var(--ink-hard);
+  --preview-muted: #57554f;
+  --preview-rule: rgba(13,13,13,.2);
+  --preview-marker: var(--accent);
+}
+.preview-hero { padding-bottom: 0; }
+.preview-hero .case-tags { margin-bottom: 32px; }
+.preview-hero .case-lede { margin-bottom: 32px; }
+.preview-hero .case-lede:has(+ .case-tags:not([hidden])) { margin-bottom: 0; }
+.preview-hero .case-kicker { color: var(--preview-muted); }
+.preview-hero .case-back:hover, .preview-hero .case-back:focus-visible { color: var(--preview-ink); }
+.preview-cover { margin: 0; border-top: 1px solid var(--preview-ink); }
+.preview-cover__placeholder {
+  min-height: clamp(240px, 30vw, 400px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 40px 24px;
+  color: var(--preview-surface);
+  background: var(--preview-ink);
+  background-image: repeating-linear-gradient(-45deg, rgba(242,240,235,.045) 0 12px, transparent 12px 34px);
+  text-align: center;
+}
+.preview-cover__label,
+.preview-cover__note,
+.preview-status__label {
+  margin: 0;
+  font: 500 11px/1.5 var(--font-mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.preview-cover__label { border: 1px solid rgba(242,240,235,.45); padding: 6px 10px; }
+.preview-cover__brand { max-width: 100%; font: 600 clamp(28px,5vw,64px)/1.05 var(--font-hard); letter-spacing: -.025em; overflow-wrap: anywhere; }
+.preview-cover__note { color: #c1beb7; }
+.preview-cover figcaption { padding: 12px 24px; color: var(--preview-muted); background: var(--preview-surface); border-top: 1px solid var(--preview-rule); font: 400 12px/1.5 var(--font-body); text-align: center; }
+.preview-cover img,
+.preview-cover video { display: block; width: 100%; max-height: 620px; object-fit: contain; background: var(--preview-ink); }
+.preview-section { padding-top: 64px; padding-bottom: 72px; }
+.preview-status { display: grid; grid-template-columns: minmax(0,.85fr) minmax(0,1.15fr); border: 2px solid var(--preview-ink); }
+.preview-status__sign { padding: 36px; background: var(--preview-ink); color: var(--preview-surface); }
+.preview-status__label { color: #c1beb7; }
+.preview-status__sign h2 { margin: 18px 0 0; font: 700 clamp(42px,6vw,76px)/.95 var(--font-hard); letter-spacing: -.045em; text-transform: uppercase; }
+.preview-status__sign h2::after { content: ""; display: block; width: 56px; height: 5px; margin-top: 28px; background: var(--preview-marker); }
+.preview-status__content { padding: 36px; align-self: center; }
+.preview-status__copy { max-width: 48ch; margin: 0; color: var(--preview-muted); font: 400 17px/1.65 var(--font-body); }
+.preview-facts { margin: 28px 0 0; border-top: 1px solid var(--preview-rule); }
+.preview-facts > div { margin-top: 18px; }
+.preview-facts dt { margin-bottom: 6px; font: 700 11px/1.5 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; }
+.preview-facts dd { margin: 0; font: 400 16px/1.6 var(--font-body); }
+.preview-facts ul { margin: 0; padding-left: 20px; }
+.preview-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.preview-action { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; max-width: 100%; padding: 12px 16px; color: var(--preview-ink); border: 2px solid var(--preview-ink); font: 700 12px/1.4 var(--font-mono); text-align: center; text-decoration: none; }
+.preview-action--primary { color: var(--preview-surface); background: var(--preview-ink); }
+.preview-action:hover { color: var(--preview-surface); background: var(--preview-ink); text-decoration: underline; text-underline-offset: 4px; }
+.preview-action:focus-visible { outline: 3px solid var(--preview-ink); outline-offset: 4px; }
+.preview-noscript { margin-top: 24px; font: 400 14px/1.6 var(--font-body); }
+.preview-cover[hidden], .preview-cover__placeholder[hidden], .preview-hero .case-tags[hidden], .preview-facts[hidden], .preview-facts > div[hidden] { display: none; }
+
+@media (max-width: 760px) {
+  .preview-status { grid-template-columns: minmax(0,1fr); }
+  .preview-status__sign, .preview-status__content { padding: 28px; }
+  .preview-status__sign h2 { font-size: clamp(40px,10vw,64px); }
+  .preview-status__sign h2 br { display: none; }
+  .preview-section { padding-top: 40px; padding-bottom: 48px; }
+}
+@media (max-width: 420px) {
+  .preview-status__sign, .preview-status__content { padding: 22px; }
+  .preview-status__copy { font-size: 16px; }
+  .preview-actions { flex-direction: column; }
+  .preview-action { width: 100%; }
+}

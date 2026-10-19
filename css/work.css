@@ -240,10 +240,15 @@
   z-index: 6;
 }
 
-.work-card.is-soon { opacity: 0.55; }
+.work-card.is-soon { opacity: 1; }
+.work-card.is-soon:not(.has-image)::before { background: transparent; }
 .work-card.is-soon:hover { transform: none; box-shadow: 8px 8px 0 var(--ink-hard); }
+.work-card.is-soon.is-linked:hover,
+.work-card.is-soon.is-linked:focus-within { transform: translate(-4px, -4px); box-shadow: 12px 12px 0 var(--accent); }
+.work-card.is-soon .work-card-hit:focus-visible { outline: 3px solid var(--paper-hard); outline-offset: -7px; box-shadow: inset 0 0 0 8px var(--ink-hard); }
 
 .work-card-soon {
+  z-index: 4;
   position: absolute;
   top: 12px;
   left: 12px;
@@ -274,7 +279,7 @@
   margin: 0;
 }
 
-.work-card.is-soon .work-card-logo { opacity: 0.6; }
+.work-card.is-soon .work-card-logo { opacity: 1; }
 
 .work-card.has-logo .work-card-name {
   z-index: 3;
@@ -518,4 +523,25 @@
   .view-btn-label { display: none; }
   .filter-row-label { flex-basis: 100%; margin-bottom: 2px; }
   .filter-clear-all { margin-left: 0; flex-basis: 100%; text-align: left; padding-left: 0; }
+}
+
+/* Linked previews keep a readable title/status in list mode. The old flex row
+   clipped long names and the Coming Soon badge on phones. */
+.work-grid.is-list .work-card.is-soon {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px 20px;
+  align-items: center;
+  aspect-ratio: auto;
+}
+.work-grid.is-list .work-card.is-soon .work-card-logo { display: none; }
+.work-grid.is-list .work-card.is-soon .work-card-name { grid-column: 1; grid-row: 1; max-width: 100%; text-align: left; overflow-wrap: anywhere; }
+.work-grid.is-list .work-card.is-soon .work-card-soon { grid-column: 2; grid-row: 1; justify-self: end; margin: 0; font-size: 11px; }
+.work-grid.is-list .work-card.is-soon .work-card-meta { grid-column: 1 / -1; grid-row: 2; margin: 0; }
+.work-grid.is-list .work-card.is-soon:hover { transform: none; box-shadow: none; }
+@media (max-width: 600px) {
+  .work-grid.is-list .work-card.is-soon { grid-template-columns: minmax(0, 1fr); }
+  .work-grid.is-list .work-card.is-soon .work-card-soon { grid-column: 1; grid-row: 1; justify-self: start; }
+  .work-grid.is-list .work-card.is-soon .work-card-name { grid-column: 1; grid-row: 2; }
+  .work-grid.is-list .work-card.is-soon .work-card-meta { grid-column: 1; grid-row: 3; }
 }

@@ -18,8 +18,9 @@ python -m http.server 5500 --bind 127.0.0.1
 - `about.html`: positioning, expertise and experience ledger.
 - `my-work.html`: complete project catalogue with the existing search, category filters, grid/list toggle and pagination.
 - `wrapped.html`: year-in-review stories and project links.
-- Published case-study links: Omnione, Fundall, Teesas, Omnibiz empty/preorder states, Coreloops, Cardtonic, Raven Pay and VENX. Valideity is added in the positioning review branch.
-- Drafts: `omnibiz-speech-to-order.html` and `cancel-flow.html` remain unlinked from Work and excluded from search indexing.
+- Published case-study links: Omnione, Fundall, Teesas, Omnibiz empty/preorder states, Coreloops, Cardtonic, Raven Pay, VENX and Valideity.
+- Coming-soon previews: the 18 unfinished entries use `project-preview.html?project=<slug>`, with visible Work-card tags and `noindex, follow` on the preview template.
+- Draft source files: `omnibiz-speech-to-order.html` and `cancel-flow.html` remain intact, unlinked from Work and excluded from search indexing. Their Work entries lead to coming-soon previews instead of exposing unreviewed draft content.
 
 `js/data.js` holds `PROJECTS`, `PROJECT_CATEGORIES` and `EXPERIENCE_YEARS`.
 The first eight `PROJECTS` entries must match the static cards in `my-work.html`;
@@ -45,8 +46,10 @@ padding independently so its side padding remains intact.
 
 Use an existing case study's markup and the current `css/case-study.css` components.
 Keep `.case-quicknav` outside the hero with a `.wrap` inside it, matching
-`js/case-quicknav.js`. Link only ready pages through `PROJECTS`, add their sitemap
-entry, and cross-link them through existing related-work cards.
+`js/case-quicknav.js`. Link complete case studies through `PROJECTS`, add their sitemap
+entry, and cross-link them through existing related-work cards. Unfinished entries
+use the shared noindex preview, not the draft page. See [coming-soon workflow](docs/coming-soon-pages.md)
+for preview content, confirmed fields, and publication checks.
 
 Verify ownership, scope, shipping status and outcomes against source material.
 An ecosystem's scale is context, not a feature's adoption metric. Simulated AI

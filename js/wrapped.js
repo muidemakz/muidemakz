@@ -101,7 +101,7 @@
 
       card.appendChild(el("p", "shelf-kind", project.categories[0] || "Project"));
       card.appendChild(el("p", "shelf-name", project.name));
-      card.appendChild(el("p", "shelf-note", project.link ? "View case study →" : "View in Work →"));
+      card.appendChild(el("p", "shelf-note", project.status === "coming-soon" ? "Case study coming soon →" : (project.link ? "View case study →" : "View in Work →")));
       shelfGrid.appendChild(card);
     });
   }
