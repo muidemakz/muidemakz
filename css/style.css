@@ -129,9 +129,12 @@ a { color: inherit; text-decoration: none; }
 .btn-outline:hover { background: var(--accent); color: var(--ink-hard); }
 
 @media (max-width: 600px) {
-  .logo { font-size: 14px; padding: 0 14px; }
+  /* Keep the four header actions inside narrow phone viewports without
+     introducing page-level horizontal scrolling. */
+  .site-header .wrap { padding-inline: 0; }
+  .logo { font-size: 12px; padding: 0 10px; }
   .site-nav a,
-  .btn-outline { font-size: 14px; padding: 0 14px; }
+  .btn-outline { font-size: 12px; padding: 0 10px; }
 }
 
 /* ---------- Footer (brutalist chrome — every page) ---------- */

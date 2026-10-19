@@ -55,6 +55,7 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;500;600;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/project-motion.css">
   <style>
     /* =========================================================================
    index-concept.html — EXPLORATION DRAFT, not linked from anywhere live.
@@ -1410,19 +1411,23 @@
           <!-- [REVERT POINT] TEST CHANGE, round 24 — "See All Work" link
            removed per feedback. .story-see-all CSS left in place, unused,
            for an easy revert. -->
+          <button type="button" class="motion-button story-motion-toggle" id="storyMotionToggle" aria-label="Pause project reel and animations">Pause</button>
         </div>
         <div class="story-stage" id="storyStage">
-          <a class="shelf-card is-active" href="omnione.html" style="background-image:url(images/omnione/omnione-design-system-cover-banner.png)">
+          <a class="shelf-card shelf-card-omnione is-active" href="omnione.html" data-project-motion data-motion-mode="story" data-motion-label="Omnione design system" data-story-duration="14000" style="background-image:url(images/omnione/omnione-design-system-cover-banner.png)">
+            <iframe class="project-motion-frame" data-motion-frame src="artifacts/animation/omnione/preview.html?embed=1&amp;canvas=1" title="Omnione Figma design system animation" loading="lazy" aria-hidden="true" tabindex="-1"></iframe>
             <p class="shelf-name">Omnione</p>
             <p class="shelf-caption">One Design Language For Four Product Teams</p>
             <p class="shelf-cta">View Case Study &rarr;</p>
           </a>
-          <a class="shelf-card" href="fundall.html" style="background-image:url(images/fundall/cover.png)">
+          <a class="shelf-card" href="fundall.html" data-project-motion data-motion-mode="story" data-story-duration="12500" style="background-image:url(images/fundall/cover.png)">
+            <video class="project-motion-video" data-motion-video src="videos/fundall/sign-in-loop.mp4" poster="videos/fundall/sign-in-poster.png" preload="none" muted loop playsinline aria-hidden="true"></video>
             <p class="shelf-name">Fundall</p>
-            <p class="shelf-caption">Salary Advance: 6 Minutes To 2</p>
+            <p class="shelf-caption">Bringing Salary Advance Into Mobile</p>
             <p class="shelf-cta">View Case Study &rarr;</p>
           </a>
-          <a class="shelf-card" href="valideity.html" style="background-image:url(images/cinema/valideity-cover.svg)">
+          <a class="shelf-card shelf-card-valideity" href="valideity.html" data-project-motion data-motion-mode="story" data-motion-label="Valideity product workflow" data-story-duration="15500" style="background-image:url(images/valideity/banner-product-cinematic-small-logo.png)">
+            <iframe class="project-motion-frame" data-motion-frame src="artifacts/animation/valideity/preview.html?embed=1" title="Valideity pricing study, report and sharing workflow" loading="lazy" aria-hidden="true" tabindex="-1"></iframe>
             <p class="shelf-name">Valideity</p>
             <p class="shelf-caption">Testing Valideity On Its Own Pricing Flow</p>
             <p class="shelf-cta">View Case Study &rarr;</p>
@@ -1523,7 +1528,12 @@
       if (!cards.length || cards.length !== segs.length) return;
 
       const DURATION = 10000; // 10s per card
-      const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const shelf = document.getElementById('storyShelf');
+      const motionToggle = document.getElementById('storyMotionToggle');
+      let manualPaused = motionPreference.matches;
+      let stageHovered = false, stageFocused = false;
+      shelf.dataset.motionPaused = String(manualPaused);
 
       let idx = 0;
       let elapsed = 0;
@@ -1537,6 +1547,8 @@
         startTime = null;
         cards.forEach((c, ci) => {
           c.classList.toggle('is-active', ci === i);
+          c.tabIndex = ci === i ? 0 : -1;
+          c.setAttribute('aria-hidden', String(ci !== i));
           c.style.transition = ''; // Restore CSS transition
           c.style.transform = 'translateX(-' + (idx * 100) + '%)';
         });
@@ -1666,13 +1678,18 @@
         if (resumeTimer) clearTimeout(resumeTimer);
       }
       function scheduleResume(delay) {
-        if (reduceMotion) return;
+        if (manualPaused || stageHovered || stageFocused) return;
         if (resumeTimer) clearTimeout(resumeTimer);
         resumeTimer = setTimeout(() => { paused = false; startTime = null; }, delay);
       }
 
-      stage.addEventListener('mouseenter', pause);
-      stage.addEventListener('mouseleave', () => scheduleResume(300));
+      stage.addEventListener('mouseenter', () => { stageHovered = true; pause(); });
+      stage.addEventListener('mouseleave', () => { stageHovered = false; scheduleResume(300); });
+      stage.addEventListener('focusin', () => { stageFocused = true; pause(); });
+      stage.addEventListener('focusout', event => {
+        stageFocused = stage.contains(event.relatedTarget);
+        if (!stageFocused) scheduleResume(300);
+      });
       stage.addEventListener('pointerdown', pause);
       stage.addEventListener('pointerup', () => scheduleResume(1500));
       stage.addEventListener('pointercancel', () => scheduleResume(1500));
@@ -1681,15 +1698,37 @@
 
       goTo(0);
 
-      if (reduceMotion) return; // static: first card shown, segments clickable, no auto-advance
+      function reflectMotionPreference() {
+        shelf.dataset.motionPaused = String(manualPaused);
+        motionToggle.textContent = manualPaused ? 'Play' : 'Pause';
+        motionToggle.setAttribute('aria-label', (manualPaused ? 'Play' : 'Pause') + ' project reel and animations');
+        document.dispatchEvent(new Event('projectmotionrefresh'));
+      }
+      motionToggle.addEventListener('click', () => {
+        manualPaused = !manualPaused;
+        shelf.dataset.motionExplicit = String(!manualPaused);
+        if (manualPaused) pause();
+        else { paused = false; startTime = null; }
+        reflectMotionPreference();
+      });
+      motionPreference.addEventListener('change', () => {
+        manualPaused = motionPreference.matches;
+        shelf.dataset.motionExplicit = 'false';
+        if (manualPaused) pause();
+        else scheduleResume(0);
+        reflectMotionPreference();
+      });
+      reflectMotionPreference();
+      document.addEventListener('visibilitychange', () => { startTime = null; });
 
       (function render(now) {
-        if (!paused) {
+        if (!paused && !manualPaused && !document.hidden) {
           if (startTime === null) startTime = now - elapsed;
           elapsed = now - startTime;
-          const pct = Math.min(100, (elapsed / DURATION) * 100);
+          const duration = Number(cards[idx].dataset.storyDuration) || DURATION;
+          const pct = Math.min(100, (elapsed / duration) * 100);
           segs[idx].querySelector('.story-seg-fill').style.width = pct + '%';
-          if (elapsed >= DURATION) goTo((idx + 1) % cards.length);
+          if (elapsed >= duration) goTo((idx + 1) % cards.length);
         }
         requestAnimationFrame(render);
       })(performance.now());
@@ -1755,6 +1794,7 @@
     })();
   </script>
 
+<script src="js/project-motion.js" defer></script>
 </body>
 
 </html>

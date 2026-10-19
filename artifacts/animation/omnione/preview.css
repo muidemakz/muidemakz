@@ -1,0 +1,54 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body { background: #e9e8e4; color: #20201e; font-family: Outfit, Inter, Arial, sans-serif; }
+.preview { min-height: 100vh; display: grid; place-items: center; padding: clamp(16px, 4vw, 64px); }
+.stage { position: relative; width: min(100%, 1320px); aspect-ratio: 2099 / 681; overflow: hidden; background: #f5f4f0; }
+.frame { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position:center top; opacity: 0; transform: scale(.99); transition: none; }
+.frame:first-child { object-fit: cover; }
+.frame.is-active { opacity: 1; transform: scale(1); animation: settle 700ms cubic-bezier(.2,.7,.2,1) both; }
+@keyframes settle { from { transform: scale(.99); } to { transform: scale(1); } }
+.caption { position: absolute; left: clamp(18px, 3vw, 42px); bottom: clamp(16px, 2.4vw, 32px); margin: 0; padding: 9px 13px; color: #161616; background: rgba(245,244,240,.9); font-size: clamp(12px, 1.15vw, 15px); letter-spacing: .02em; opacity: 0; transform: translateY(6px); transition: opacity 350ms ease, transform 350ms ease; }
+.caption.is-visible { opacity: 1; transform: translateY(0); }
+.controls { position: absolute; top: 14px; right: 14px; display: flex; gap: 8px; opacity: 0; transition: opacity 180ms ease; }
+.stage:hover .controls, .stage:focus-within .controls { opacity: 1; }
+button { border: 1px solid #252523; background: rgba(245,244,240,.94); padding: 9px 13px; font: inherit; cursor: pointer; }
+button:hover, button:focus-visible { background: #252523; color: white; }
+@media (max-width: 700px) {
+  .preview { padding: 12px; }
+  .stage { aspect-ratio: 1 / 1; }
+  .frame:first-child { object-fit: contain; }
+  .caption { bottom: 10px; left: 10px; }
+  .controls { opacity: 1; top: 8px; right: 8px; }
+  button { padding: 7px 10px; font-size: 12px; }
+}
+/* Embedded cards inherit their own shape. Portrait tiles crop the same source
+   frame consistently; wide placements retain the complete original screens. */
+html[data-embed="true"], html[data-embed="true"] body { width:100%; height:100%; overflow:hidden; background:#111; }
+html[data-embed="true"] .preview { width:100%; height:100%; min-height:0; padding:0; }
+html[data-embed="true"] .stage { width:100%; height:100%; aspect-ratio:auto; }
+html[data-embed="true"] .caption, html[data-embed="true"] .controls { display:none; }
+/* The Omnione captures are full Figma windows. Keep each complete window
+   visible inside its placement instead of enlarging and cropping it to fit. */
+html[data-canvas="true"] .stage { background:#111; }
+html[data-canvas="true"] .frame { object-fit:contain; object-position:center top; }
+html[data-embed="true"][data-canvas="true"] .stage { border-radius:16px 16px 0 0; }
+/* The dashboard reel becomes portrait at tablet widths. In that placement,
+   use a deliberate crop of the Figma canvas so it fills the card instead of
+   shrinking to a landscape strip with empty space above and below. */
+@media (max-aspect-ratio: 1 / 1) {
+  html[data-embed="true"][data-canvas="true"]:not([data-case-study="true"]) .stage { background:#111; }
+  html[data-embed="true"][data-canvas="true"]:not([data-case-study="true"]) .frame {
+    inset:4% auto auto 0;
+    width:100%;
+    height:56%;
+    object-fit:contain;
+    object-position:center top;
+  }
+  html[data-embed="true"][data-canvas="true"]:not([data-case-study="true"]) .frame:first-child { object-fit:cover; object-position:center top; }
+}
+html[data-tile-preview="true"] .preview { display:flex; flex-direction:column; justify-content:center; gap:10px; width:min(100%, 390px); min-height:100vh; margin:0 auto; padding:12px; }
+html[data-tile-preview="true"] .stage { width:100%; aspect-ratio:2 / 3; }
+html[data-tile-preview="true"] .frame { object-fit:cover; object-position:center; }
+html[data-tile-preview="true"] .controls { top:10px; right:10px; gap:4px; padding:4px; background:#20201e; opacity:1; }
+html[data-tile-preview="true"] .caption { left:10px; bottom:10px; padding:7px 9px; font-size:12px; opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce) { .frame, .caption { transition: none; animation: none; transform: none; } }

@@ -2,6 +2,8 @@
 
 Excellent Makanju's portfolio — plain HTML, CSS and JavaScript, with no build step.
 
+Career and social-content working files live in the separate `Excellent Makanju Work` folder. See [working folders](WORKSPACES.md) for their locations and archive records.
+
 ## Local preview
 
 Serve this directory over HTTP and open the local URL. For example:

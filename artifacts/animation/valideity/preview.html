@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Valideity · Product workflow motion study</title>
+  <script>if (new URLSearchParams(location.search).has('embed')) document.documentElement.dataset.embed = 'true';</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="preview.css">
+</head>
+<body>
+  <main class="preview">
+    <p class="preview-label">Valideity · Motion study</p>
+    <section class="banner" aria-label="Valideity simulated workflow animation">
+      <div class="screen" aria-live="off">
+        <div class="app" id="app">
+          <aside class="sidebar">
+            <div class="brand"><img class="brand-mark-img" src="../../../images/valideity/logo.png" alt=""><span>Valideity</span></div>
+            <div class="workspace"><span class="workspace-avatar">M</span><span>Muidemakz<small>Switch workspace</small></span></div>
+            <nav class="side-nav" aria-label="Product navigation">
+              <span>◉ <i>Notifications</i></span><span>▦ <i>Dashboard</i></span><span class="selected">▣ <i>Studies</i></span><span>✳ <i>AI First Read</i></span><span>♙ <i>Personas</i></span><span>♧ <i>Team Members</i></span>
+            </nav>
+            <div class="credits"><b>Your credits</b><span>65 sessions left</span></div>
+            <div class="plan"><b>Pro plan</b><span>Unlimited runs</span></div>
+            <div class="profile"><span class="profile-avatar">E</span><span>Excellent Makanju<small>excellent@valideity.com</small></span></div>
+          </aside>
+          <section class="workspace-main">
+            <header class="topbar">
+              <div class="crumb">Studies <span>›</span> Smoke test 27 Sep <span>›</span> Simulate #3</div>
+              <div class="run-heading"><div><small>SIMULATE #3 <b class="active-dot">Active</b></small><h1>Smoke test 27 Sep</h1></div><div class="top-actions"><button>▷ Play v1</button><button>+ Add to this run</button><button class="accent-button">Recruit real users</button></div></div>
+              <div class="run-meta"><span>◷ 27 September 2026</span><span>⌁ Live URL</span><span>▤ 0 questions</span></div>
+              <nav class="tabs" aria-label="Study sections">
+                <button class="tab is-active" data-tab="overview">Overview</button><button class="tab">Sessions <b>5</b></button><button class="tab">Personas <b>1</b></button><button class="tab">Findings <b>3</b></button><button class="tab">Analytics</button><button class="tab" data-tab="reports">Reports <b>1</b></button>
+              </nav>
+            </header>
+            <div class="scroll-area" id="scrollArea">
+              <div class="overview page-view" id="overviewView">
+                <div class="score-strip"><div><small>Predicted UX score</small><strong>94%</strong><span class="score-meter"><i></i></span><em>Strong</em></div><div><small>Sessions</small><strong>5</strong><em>5 completed</em></div><div><small>Findings</small><strong>3</strong><em class="warning">1 high severity</em></div><div><small>Personas</small><strong>1</strong></div></div>
+                <div class="version-note"><b>↗</b><span><strong>The site was updated since Simulate #2, but its start page looks the same</strong><small>2 new · 1 also in Simulate #2 · 0 from Simulate #2 not seen this run · Open Simulate #2</small></span></div>
+                <section class="data-panel"><h2>Run details</h2><div class="data-row"><span>Study title</span><b>Smoke test 27 Sep</b></div><div class="data-row"><span>Personas used</span><b>1</b></div><div class="data-row"><span>Sessions requested</span><b>5</b></div><div class="data-row"><span>Sessions run</span><b>5</b></div><div class="data-row"><span>Behavioural variation</span><b>Standard</b></div></section>
+                <section class="data-panel lower-panel"><h2>Study setup</h2><p>Find out how much the Pro plan costs a month.</p><div class="data-row"><span>Target</span><b>valideity.com</b></div></section>
+              </div>
+              <div class="reports page-view" id="reportsView" hidden>
+                <section class="report-card">
+                  <div class="report-header"><div><h2>Smoke test 27 Sep</h2><small>Simulation report</small></div><div class="report-actions"><button class="quiet-button">Print</button><button class="share-button" id="shareOpen">♧ Share</button></div></div>
+                  <div class="report-summary">
+                    <div class="report-ring"><div><strong>94%</strong><small>OVERALL</small></div></div>
+                    <div class="summary-copy"><span class="predicted">PREDICTED</span><p>Run on 27 Sep 2026 · 5 participants · 1 persona</p><small>Predicted UX score</small></div>
+                  </div>
+                  <div class="report-content"><h3>Summary</h3><p>Five simulated sessions found the Pro price after the public pricing route was fixed.</p><dl><div><dt>Sessions</dt><dd>5 of 5 completed</dd></div><div><dt>Findings</dt><dd>3 identified</dd></div><div><dt>Evidence</dt><dd>Predicted · simulated participants</dd></div></dl></div>
+                </section>
+                <section class="data-panel findings-panel"><h2>Key findings <span class="count">3</span></h2><div class="finding-row"><span class="finding-mark">!</span><div><b>Pricing currency needed clarification</b><small>The remaining finding concerned the approximate monthly price wording.</small></div></div></section>
+              </div>
+            </div>
+          </section>
+          <div class="dialog-scrim" id="dialogScrim" aria-hidden="true">
+            <section class="share-dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle">
+              <button class="dialog-close" id="shareClose" aria-label="Close share dialog">×</button>
+              <div class="dialog-heading"><span class="dialog-icon">↗</span><div><h2 id="dialogTitle">Share simulation</h2><p>Anyone with this link can view a read-only version of this report — no Valideity account required.</p></div></div>
+              <div class="sharing-state"><span></span><p><b>Sharing is on</b>. Anyone with the link can view it.</p></div>
+              <div class="link-card"><b>Your link</b><small>Send it to anyone. Revoke it any time and it stops working.</small><div class="link-entry"><span>valideity.com/share/••••••</span><button id="copyButton"><span>▢</span> Copy</button></div></div>
+              <div class="shared-with"><span class="globe-icon">◎</span><span><b>Anyone with the link</b><small>Read-only access to the report</small></span><i>On</i></div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="preview-controls"><span id="beatLabel">Overview · opening frame</span><button id="playPause" type="button">Pause</button><button id="replay" type="button">Replay</button></div>
+    <p class="preview-note">The opening uses the existing banner. Interface states are a motion study based on the captured overview, documented case results and current product components.</p>
+  </main>
+  <script src="preview.js"></script>
+</body>
+</html>

@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/case-study.css">
 <link rel="stylesheet" href="css/case-media.css">
+<link rel="stylesheet" href="css/project-motion.css">
 </head>
 <body class="type-outfit">
 
@@ -32,9 +33,9 @@
     <div class="wrap">
       <a href="my-work.html" class="case-back">&larr; All Work</a>
       <div class="case-hero-top">
-        <p class="case-kicker">Live Project</p>
+        <p class="case-kicker">Live Project &middot; Product Designer</p>
       </div>
-      <h1 class="case-title">Cutting Salary Advance Requests From 6 Minutes To 2</h1>
+      <h1 class="case-title">Bringing Salary Advance Into Fundall's Mobile App</h1>
       <p class="case-lede">
         &ldquo;I can only take a loan on the web app. It's frustrating to always go to my browser
         whenever I want to apply for Salary Advance.&rdquo; That was real QA feedback on Fundall, an
@@ -55,8 +56,8 @@
       </ul>
     </div>
     <div class="case-hero-cover">
-      <div class="case-hero-media" aria-hidden="true" style="background-image:url(images/fundall/cover-phones.png); background-size:cover; background-position:center;">
-        <span class="case-media-label">Fundall &middot; Loans &amp; Salary Advance</span>
+      <div class="case-hero-motion" data-project-motion data-motion-mode="visible" data-motion-label="Fundall sign-in animation">
+        <video class="project-motion-video" data-motion-video src="videos/fundall/sign-in-loop.mp4" poster="videos/fundall/sign-in-poster.png" width="1800" height="542" preload="none" muted loop playsinline aria-label="Looping Fundall sign-in animation"></video>
       </div>
       <div class="case-visit-rail">
         <a class="case-visit-badge" href="https://fundall.io/" target="_blank" rel="noopener">Visit<br>Website</a>
@@ -66,9 +67,11 @@
 
   <nav class="case-quicknav" aria-label="Section navigation">
     <div class="wrap">
+      <a href="#summary">Summary</a>
       <a href="#challenge">Challenge</a>
       <a href="#process">Process</a>
       <a href="#research">Research</a>
+      <a href="#decision">Decision</a>
       <a href="#persona">Persona</a>
       <a href="#system">Design System</a>
       <a href="#screens">Screens</a>
@@ -76,6 +79,32 @@
       <a href="#lessons">Lessons</a>
     </div>
   </nav>
+
+  <!-- ============ SUMMARY ============ -->
+  <section class="case-section" id="summary">
+    <div class="wrap">
+      <p class="case-label">Summary</p>
+      <p class="case-copy">
+        Fundall already offered borrowing on the web. I led the design of Loans &amp; Salary Advance
+        for its mobile app during a post-acquisition rebrand. This was a new mobile borrowing
+        experience inside an existing financial product.
+      </p>
+      <p class="case-copy">My responsibilities covered:</p>
+      <ol class="case-list">
+        <li><strong>Finding the access problem.</strong> Use interviews, the product brief, and
+          internal QA feedback to understand why users were leaving the app to request an advance.</li>
+        <li><strong>Designing the borrowing journey.</strong> Map the flow from the home dashboard
+          through eligibility, application, and confirmation; make advance history visible alongside it.</li>
+        <li><strong>Connecting design to delivery.</strong> Prototype and test the iOS experience,
+          contribute to the shared design system, and work with engineering on implementation.</li>
+      </ol>
+      <p class="case-copy">
+        The central decision was to make borrowing a visible destination and show eligible amounts
+        before the application. The screen walkthrough below follows that journey, rather than
+        presenting the redesign as a collection of unrelated screens.
+      </p>
+    </div>
+  </section>
 
   <!-- ============ CHALLENGE ============ -->
   <section class="case-section" id="challenge">
@@ -138,9 +167,8 @@
         </li>
       </ol>
       <p class="case-copy">
-        The design process brought a fresh outlook to how we approached problems, encouraging faster
-        iteration, cross-team collaboration, and continuous feedback. It helped break down silos, align
-        product goals, and ensure that every solution was both user-centered and business-driven.
+        The complaint about leaving the app gave the work a concrete starting point. I used the
+        research to define the mobile journey, then tested the interface before handing it to engineering.
       </p>
     </div>
   </section>
@@ -149,7 +177,7 @@
   <section class="case-section" id="research">
     <div class="wrap">
       <p class="case-label">User Research &amp; Insights</p>
-      <p class="case-copy">To deeply understand the user's financial behavior, I used mixed methods:</p>
+      <p class="case-copy">I combined user feedback, internal QA observations, and a review of other borrowing products:</p>
       <div class="case-figures" style="margin-top: 24px;">
         <figure class="case-figure case-figure--grey">
           <div class="case-split case-split--compact case-split--3">
@@ -158,8 +186,8 @@
               <p class="case-split-copy">Direct interviews and the web-only complaint quoted above, cross-checked against other users' feedback to confirm it wasn't a one-off.</p>
             </div>
             <div class="case-split-cell">
-              <p class="case-split-label">Quantitative Data</p>
-              <p class="case-split-copy">Quantitative feedback from internal QA testing Slack channel.</p>
+              <p class="case-split-label">Internal QA Feedback</p>
+              <p class="case-split-copy">Observations shared in the QA testing Slack channel helped identify access and usability problems.</p>
             </div>
             <div class="case-split-cell">
               <p class="case-split-label">Competitive Analysis</p>
@@ -175,9 +203,9 @@
         </figure>
       </div>
       <p class="case-copy" style="margin-top: 18px;">
-        The resulting user research and insights created a shared understanding of user behaviors and
-        pain points, informed design priorities across the merged products, and ensured that decisions
-        were grounded in real user needs rather than assumptions.
+        The feedback established an access problem: users wanted to request an advance without
+        switching to a browser. I used that as a starting point for the mobile flow. Whether the
+        new flow improved completion or adoption needed a separate check after launch.
       </p>
     </div>
   </section>
@@ -201,17 +229,19 @@
         </li>
       </ol>
 
-      <div class="case-decision">
+      <div class="case-decision" id="decision">
         <p class="case-decision-label">The One Decision</p>
         <p class="case-decision-copy">
-          I chose to <strong>surface Loans &amp; Salary Advance as a primary entry point on the home
-          dashboard</strong>, rather than tuck it into a secondary menu the way the original web flow did.
-          That was a harder call internally than it sounds, during a post-acquisition rebrand, the
-          instinct is often to look conservative and "financially responsible" rather than put a loan
-          button in front of every user on login. I made the case using the QA feedback directly: the
-          friction wasn't that users didn't want the feature, it was that they couldn't find it. Hiding a
-          feature people are already asking for doesn't read as caution, it reads as a support ticket
-          waiting to happen.
+          I chose to <strong>make Loans &amp; Salary Advance visible from the home dashboard</strong>
+          and give borrowing its own destination in the app. The QA complaint showed that users
+          were having to leave mobile to access the feature; the new flow brought that task into the app.
+        </p>
+        <p class="case-decision-copy">
+          Visibility was only the first part of the decision. I also surfaced eligible amounts
+          before the application and kept advance history accessible. The aim was to help users
+          understand their available options before they started, then keep track of what they had
+          requested. These are design choices visible in the screens below; the adoption figures
+          belong to the separate outcome section.
         </p>
       </div>
     </div>
@@ -394,7 +424,6 @@
   <section class="case-section" id="screens">
     <div class="wrap">
       <p class="case-label">Screens</p>
-<div class="case-figures case-walkthrough"><figure class="case-figure case-figure--grey" data-case-loop aria-label="Salary advance application"><div class="case-loop-stage case-loop-stage--phone" style="aspect-ratio:482/1022"><img class="case-loop-frame is-current" src="images/fundall/salary-advance-page-1.png" alt="Salary advance" data-loop-label="Salary advance" loading="lazy" width="482" height="1022"><img class="case-loop-frame" src="images/fundall/salary-advance-application-page-1.png" alt="Application step 1" data-loop-label="Application step 1" loading="lazy" aria-hidden="true" width="482" height="1016"><img class="case-loop-frame" src="images/fundall/salary-advance-application-page-2.png" alt="Application step 2" data-loop-label="Application step 2" loading="lazy" aria-hidden="true" width="482" height="1022"><img class="case-loop-frame" src="images/fundall/salary-advance-application-page-3.png" alt="Application step 3" data-loop-label="Application step 3" loading="lazy" aria-hidden="true" width="482" height="1022"></div><div class="case-loop-controls"><span class="case-loop-label">Salary advance</span><div class="case-loop-steps" aria-label="Walkthrough screens"><button type="button" data-loop-step="0" aria-label="Show Salary advance" aria-current="step"><span class="case-loop-progress" aria-hidden="true"></span></button><button type="button" data-loop-step="1" aria-label="Show Application step 1"><span class="case-loop-progress" aria-hidden="true"></span></button><button type="button" data-loop-step="2" aria-label="Show Application step 2"><span class="case-loop-progress" aria-hidden="true"></span></button><button type="button" data-loop-step="3" aria-label="Show Application step 3"><span class="case-loop-progress" aria-hidden="true"></span></button></div></div><figcaption>Original design screens · Application walkthrough</figcaption></figure></div>
       <div class="case-figures case-figures--spaced" style="margin-top: 24px;">
 
         <figure class="case-figure case-figure--grey">
@@ -475,6 +504,14 @@
               <img width="482" height="1022" src="images/fundall/salary-advance-application-page-4.png" alt="Salary Advance application, step 4" loading="lazy">
             </div>
           </div>
+        </figure>
+
+        <figure class="case-figure case-motion" id="borrowing-walkthrough" data-project-motion data-motion-mode="visible" data-motion-label="salary advance walkthrough">
+          <div class="case-figure-head">
+            <p class="case-figure-head-title">From Home To Salary Advance</p>
+            <p class="case-figure-head-copy">Follow the journey through eligibility, employer details and request confirmation.</p>
+          </div>
+          <video class="project-motion-video" data-motion-video src="videos/fundall/borrowing-loop.mp4" poster="videos/fundall/borrowing-poster.png" width="1800" height="542" preload="none" muted loop playsinline aria-label="Looping salary advance design walkthrough"></video>
         </figure>
 
         <figure class="case-figure case-figure--grey">
@@ -665,5 +702,6 @@
 
 <script src="js/case-quicknav.js"></script>
 <script src="js/case-media.js" defer></script>
+<script src="js/project-motion.js" defer></script>
 </body>
 </html>

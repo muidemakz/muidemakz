@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Omnione — Motion Study</title>
+  <script>
+    const previewParams = new URLSearchParams(location.search);
+    if (previewParams.has('embed')) document.documentElement.dataset.embed = 'true';
+    if (previewParams.has('canvas')) document.documentElement.dataset.canvas = 'true';
+    if (previewParams.has('tile')) document.documentElement.dataset.tilePreview = 'true';
+    if (previewParams.has('case')) document.documentElement.dataset.caseStudy = 'true';
+  </script>
+  <link rel="stylesheet" href="preview.css">
+</head>
+<body>
+  <main class="preview" aria-label="Omnione design system motion study">
+    <div class="stage" data-stage>
+      <img class="frame is-active" src="../../../images/omnione/omnione-design-system-cover-banner.png" alt="Omnione design system in Figma" data-caption="One system. Four product teams.">
+      <img class="frame" src="../../../images/omnione/variable-assets-defined-in-figma.png" alt="Omnione foundation and semantic colour tokens" data-caption="A shared foundation of tokens.">
+      <img class="frame" src="../../../images/omnione/table-column-assets.png" alt="Omnione table components and variants" data-caption="Components built from that foundation.">
+      <img class="frame frame--wide" src="../../../images/omnione/sso-screens.png" alt="OmniRetail shared sign-in screens" data-caption="Shared patterns, applied to real products.">
+      <img class="frame frame--wide" src="../../../images/omnione/retail-operating-system-ros-omnibiz.png" alt="Omnibiz retail operating system" data-caption="Retail · Omnibiz">
+      <img class="frame frame--wide" src="../../../images/omnione/distrubutors-operating-system-dos-0-omnihub.png" alt="OmniHub distributor operating system" data-caption="Distribution · OmniHub">
+      <img class="frame frame--wide" src="../../../images/omnione/manufacturers-operating-system-mos-omnione.png" alt="OmniOne manufacturer operating system" data-caption="Manufacturing · OmniOne">
+      <img class="frame frame--wide" src="../../../images/omnione/omnipay.png" alt="Omnipay product screens" data-caption="Payments · Omnipay">
+      <p class="caption" data-caption aria-live="polite">One system. Four product teams.</p>
+      <div class="controls" aria-label="Animation controls">
+        <button type="button" data-toggle aria-label="Pause animation">Pause</button>
+        <button type="button" data-replay>Replay</button>
+      </div>
+    </div>
+  </main>
+  <script src="preview.js"></script>
+</body>
+</html>

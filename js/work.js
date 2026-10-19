@@ -93,6 +93,8 @@
       // space in filenames like "00 · Cover.png" — Cardtonic's card
       // was silently failing to render its cover for exactly this
       // reason before this was quoted.
+      if (project.motion || project.motionFrame) li.classList.add("has-motion-preview");
+      // Keep the cover visible as the default state beneath the motion layer.
       li.style.backgroundImage = `url("${project.image}")`;
       li.style.backgroundSize = "cover";
     } else if (project.brand) {
@@ -113,6 +115,35 @@
       banner.className = "work-card-soon";
       banner.textContent = "Coming Soon";
       li.appendChild(banner);
+    }
+
+    if ((project.motion || project.motionFrame) && project.link) {
+      li.dataset.projectMotion = '';
+      li.dataset.motionMode = 'hover';
+      li.dataset.motionLabel = project.name + ' preview';
+      if (project.motionFrame) {
+        const frame = document.createElement('iframe');
+        frame.className = 'project-motion-frame';
+        frame.dataset.motionFrame = '';
+        frame.src = project.motionFrame;
+        frame.title = project.name + ' product workflow animation';
+        frame.loading = 'lazy';
+        frame.setAttribute('aria-hidden', 'true');
+        frame.tabIndex = -1;
+        li.appendChild(frame);
+      } else {
+        const video = document.createElement('video');
+        video.className = 'project-motion-video';
+        video.dataset.motionVideo = '';
+        video.src = project.motion;
+        video.poster = project.motionPoster || project.image || "";
+        video.preload = 'none';
+        video.muted = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.setAttribute('aria-hidden', 'true');
+        li.appendChild(video);
+      }
     }
 
     if (project.brand && !project.image) {
@@ -183,7 +214,6 @@
     if (state.page > totalPages) state.page = totalPages;
     const startIdx = (state.page - 1) * PAGE_SIZE;
     const pageItems = filtered.slice(startIdx, startIdx + PAGE_SIZE);
-
     // [REVERT POINT] the default (no search/filter, page 1) view is already
     // present as static HTML in my-work.html — first paint and no-JS
     // visitors see real cards, not an empty <ul>. JS only needs to rebuild
