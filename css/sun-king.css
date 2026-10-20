@@ -1,0 +1,777 @@
+/* Sun King case study: page-scoped components.
+   Everything reads the portfolio's own tokens (style.css); nothing here
+   restyles a shared case-study block. New components, all prefixed sk-:
+   sk-stage (laptop), sk-toggle, sk-compare, sk-list, sk-personas, sk-log. */
+
+/* ---------- toggle (segmented control) ---------- */
+
+.sk-toggle {
+  display: inline-flex;
+  border: 2px solid var(--ink-hard);
+  background: var(--paper-hard);
+}
+
+.sk-toggle button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--ink-hard);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 12px 20px;
+  min-height: 44px;
+  cursor: pointer;
+  transition: background 0.14s ease, color 0.14s ease;
+}
+
+.sk-toggle button + button { border-left: 2px solid var(--ink-hard); }
+
+.sk-toggle button[aria-pressed="true"] { background: var(--ink-hard); color: var(--paper-hard); }
+
+.sk-toggle button:hover:not([aria-pressed="true"]) { background: var(--accent); color: #fff; }
+
+.sk-toggle button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* ---------- laptop stage (hero) ---------- */
+
+.sk-stage {
+  border-top: 1px solid var(--ink-hard);
+  background-image: repeating-linear-gradient(135deg, var(--hard-line) 0 2px, transparent 2px 11px);
+  padding: 56px 24px 0;
+  overflow: hidden;
+}
+
+.sk-stage-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.sk-stage-hint {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.sk-laptop { max-width: 920px; margin: 0 auto; }
+
+.sk-laptop-lid {
+  background: #151515;
+  border: 2px solid var(--ink-hard);
+  border-radius: 16px 16px 0 0;
+  padding: 16px 16px 20px;
+}
+
+.sk-laptop-screen {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: #fff;
+  border-radius: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ink-hard) #e4e1da;
+}
+
+.sk-laptop-screen:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.sk-laptop-screen img { display: block; width: 100%; height: auto; }
+
+.sk-laptop-base {
+  position: relative;
+  height: 20px;
+  width: calc(100% + 56px);
+  margin-left: -28px;
+  background: linear-gradient(#d9d6cf, #a9a59c);
+  border: 2px solid var(--ink-hard);
+  border-radius: 0 0 22px 22px;
+}
+
+.sk-laptop-base::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  width: 120px;
+  height: 8px;
+  transform: translateX(-50%);
+  background: #8f8b82;
+  border-radius: 0 0 10px 10px;
+}
+
+/* ---------- compare (before / after) ---------- */
+
+.sk-compare { border: 1px solid var(--ink-hard); background: #fff; }
+
+.sk-compare-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 20px 24px;
+  background: var(--ink-hard);
+  color: var(--paper-hard);
+}
+
+.sk-compare-title {
+  margin: 0;
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.0625em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.sk-compare-copy { margin: 6px 0 0; font-size: 16px; line-height: 1.35; max-width: 56ch; }
+
+.sk-compare .sk-toggle { border-color: var(--paper-hard); background: transparent; }
+.sk-compare .sk-toggle button { color: var(--paper-hard); }
+.sk-compare .sk-toggle button + button { border-left-color: var(--paper-hard); }
+.sk-compare .sk-toggle button[aria-pressed="true"] { background: var(--paper-hard); color: var(--ink-hard); }
+
+.sk-compare-stage { background: #ebe9e5; padding: 24px 24px 0; }
+
+.sk-compare-stage .case-frame { background: #fff; }
+
+.sk-compare-stage img { display: block; width: 100%; height: auto; }
+
+/* ---------- spec list (replaces stretched card grids) ---------- */
+
+/* a two-column table: label cell | copy cell, ruled on every side */
+.sk-list { border: 1px solid var(--ink-hard); margin: 0; padding: 0; list-style: none; background: #fff; }
+
+.sk-list li {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.42fr) 1fr;
+  border-bottom: 1px solid var(--ink-hard);
+}
+
+.sk-list li:last-child { border-bottom: 0; }
+
+.sk-list-label {
+  margin: 0;
+  padding: 18px 20px;
+  border-right: 1px solid var(--ink-hard);
+  background: var(--paper-hard);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.sk-list-copy { margin: 0; padding: 18px 20px; font-size: 18px; line-height: 1.4; }
+
+/* a laptop page, cropped to where the footer ends */
+.sk-page { overflow: hidden; }
+.sk-page img { display: block; width: 100%; height: auto; }
+
+/* equal-size report shots with the badge inside the frame */
+.sk-shot { position: relative; }
+.sk-shot .case-frame { background: #fff; }
+.sk-shot .case-frame img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+.sk-shot .case-visit-badge {
+  position: absolute;
+  right: 20px;
+  bottom: 64px;
+  width: 120px;
+  height: 120px;
+  font-size: 13px;
+  z-index: 2;
+}
+
+/* looping skill prompt (rebuild) */
+.sk-term { background: var(--ink-hard); color: var(--paper-hard); border: 1px solid var(--ink-hard); }
+
+.sk-term-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(242, 240, 235, 0.3);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.sk-term-body { padding: 24px 24px 28px; min-height: 300px; }
+
+.sk-term-prompt { margin: 0; font-family: var(--font-mono); font-size: 16px; line-height: 1.5; min-height: 4.5em; }
+.sk-term-prompt .sk-term-skill { color: var(--accent); font-weight: 700; }
+
+.sk-term-caret { display: inline-block; width: 9px; height: 1.1em; margin-left: 2px; vertical-align: text-bottom; background: var(--paper-hard); }
+
+.sk-term-steps { margin: 20px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+
+.sk-term-step {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.4;
+  color: rgba(242, 240, 235, 0.45);
+  transition: color 0.3s ease;
+}
+
+.sk-term-step::before { content: "\25CB"; }
+.sk-term-step.is-done { color: var(--paper-hard); }
+.sk-term-step.is-done::before { content: "\2713"; color: var(--accent); font-weight: 700; }
+
+.sk-term-note { margin: 0; padding: 12px 24px; border-top: 1px solid rgba(242, 240, 235, 0.3); font-family: var(--font-mono); font-size: 14px; color: rgba(242, 240, 235, 0.72); }
+
+.sk-two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; }
+
+.sk-sub {
+  margin: 0 0 12px;
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- personas ---------- */
+
+.sk-personas {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sk-persona { border: 1px solid var(--ink-hard); background: #fff; }
+
+.sk-persona svg { display: block; width: 100%; height: auto; border-bottom: 1px solid var(--ink-hard); }
+
+.sk-persona-body { padding: 14px; }
+
+.sk-persona-name { margin: 0; font-family: var(--font-hard); font-weight: 700; font-size: 16px; line-height: 1.15; }
+
+.sk-persona-role { margin: 6px 0 0; font-size: 14px; line-height: 1.3; }
+
+.sk-note {
+  margin: 16px 0 0;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* ---------- prompt log ---------- */
+
+.sk-log { background: var(--ink-hard); color: var(--paper-hard); border: 1px solid var(--ink-hard); }
+
+.sk-log-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(242, 240, 235, 0.3);
+}
+
+.sk-log-title {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.sk-log-count { font-family: var(--font-mono); font-weight: 700; font-size: 14px; letter-spacing: 0.08em; }
+
+.sk-log-replay {
+  appearance: none;
+  background: transparent;
+  color: var(--paper-hard);
+  border: 2px solid var(--paper-hard);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.sk-log-replay:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+.sk-log-replay:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.sk-log-bar { height: 4px; background: rgba(242, 240, 235, 0.2); }
+.sk-log-bar span { display: block; height: 100%; width: 100%; background: var(--accent); transition: width 0.5s ease; }
+
+.sk-log-list { margin: 0; padding: 8px 24px 24px; list-style: none; }
+
+.sk-log-item {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 4px 20px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(242, 240, 235, 0.18);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.sk-log-item:last-child { border-bottom: 0; }
+
+.sk-log-time { font-family: var(--font-mono); font-weight: 700; font-size: 14px; letter-spacing: 0.06em; color: rgba(242, 240, 235, 0.72); padding-top: 2px; }
+
+.sk-log-prompt { margin: 0; font-size: 16px; line-height: 1.35; }
+
+.sk-log-result {
+  margin: 4px 0 0;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--accent);
+}
+
+.sk-log-result::before { content: "\2192\00a0"; }
+
+/* when scripted, items start hidden and are revealed in order */
+.sk-log.is-scripted .sk-log-item { opacity: 0; transform: translateY(8px); }
+.sk-log.is-scripted .sk-log-item.is-shown { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sk-log.is-scripted .sk-log-item { opacity: 1; transform: none; transition: none; }
+  .sk-log-bar span { transition: none; }
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 999px) {
+  .sk-personas { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .sk-two { grid-template-columns: 1fr; gap: 40px; }
+}
+
+@media (max-width: 700px) {
+  .sk-stage { padding: 32px 12px 0; }
+  .sk-laptop-lid { padding: 10px 10px 12px; border-radius: 12px 12px 0 0; }
+  .sk-laptop-base { width: calc(100% + 24px); margin-left: -12px; height: 14px; }
+  .sk-laptop-screen { aspect-ratio: 4 / 5; }
+  .sk-list li { grid-template-columns: 1fr; }
+  .sk-list-label { border-right: 0; border-bottom: 1px solid var(--ink-hard); padding: 12px 16px; }
+  .sk-list-copy { padding: 12px 16px 16px; }
+  .sk-shot .case-visit-badge { width: 96px; height: 96px; font-size: 12px; right: 12px; bottom: 56px; }
+  .sk-compare-stage { padding: 16px 16px 0; }
+  .sk-compare-head { padding: 16px; }
+  .sk-personas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sk-log-item { grid-template-columns: 1fr; }
+  .sk-log-list { padding: 4px 16px 16px; }
+}
+
+/* the hidden attribute must beat the display:block rules above */
+.sk-laptop-screen img[hidden],
+.sk-compare-stage img[hidden] { display: none; }
+
+/* ---------- result duo: first cell dark, both titles orange ---------- */
+
+.sk-duo .case-duo-cell:first-child { background: var(--ink-hard); color: var(--paper-hard); }
+.sk-duo .case-duo-title { color: var(--accent); }
+
+/* ---------- closing cards: Figma shot + skill card, badge inside each ---------- */
+
+.sk-skillcard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 40px 40px 160px;
+  background: var(--ink-hard);
+  color: var(--paper-hard);
+  border: 1px solid var(--ink-hard);
+}
+
+.sk-skillcard-kicker {
+  margin: 0 0 16px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.sk-skillcard-name {
+  margin: 0 0 20px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: clamp(22px, 3vw, 36px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+}
+
+.sk-skillcard-copy { margin: 0; max-width: 34ch; font-size: 18px; line-height: 1.4; }
+
+.sk-skillcard .case-visit-badge { position: absolute; right: 20px; bottom: 20px; width: 120px; height: 120px; font-size: 13px; }
+
+.sk-badge--paper { background: var(--paper-hard); color: var(--ink-hard); border-color: var(--paper-hard); }
+.sk-badge--paper:hover, .sk-badge--paper:focus-visible { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+@media (max-width: 700px) {
+  .sk-skillcard { padding: 28px 20px 130px; }
+  .sk-skillcard .case-visit-badge { width: 96px; height: 96px; font-size: 12px; right: 12px; bottom: 12px; }
+}
+
+/* ---------- playthrough: header with replay, laptop below ---------- */
+
+.sk-play { border: 1px solid var(--ink-hard); background: var(--paper-hard); }
+
+.sk-play-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  padding: 20px 24px;
+  background: var(--ink-hard);
+  color: var(--paper-hard);
+}
+
+.sk-play-title {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.sk-play-count { font-family: var(--font-mono); font-weight: 700; font-size: 14px; letter-spacing: 0.08em; }
+
+.sk-play-replay {
+  appearance: none;
+  background: transparent;
+  color: var(--paper-hard);
+  border: 2px solid var(--paper-hard);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.sk-play-replay:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+.sk-play-replay:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.sk-play-bar { height: 4px; background: var(--ink-hard); }
+.sk-play-bar span { display: block; height: 100%; width: 0; background: var(--accent); transition: width 0.4s ease; }
+
+.sk-play-stage {
+  background-image: repeating-linear-gradient(135deg, var(--hard-line) 0 2px, transparent 2px 11px);
+  padding: 40px 24px 28px;
+  overflow: hidden;
+}
+
+.sk-play .sk-laptop { max-width: 880px; }
+
+.sk-play-screen {
+  position: relative;
+  aspect-ratio: 1200 / 955;
+  overflow: hidden;
+  background: #f5f3f0;
+  border-radius: 4px;
+}
+
+.sk-play-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.sk-play-frame.is-current { opacity: 1; }
+
+.sk-play-label {
+  margin: 28px 0 0;
+  min-height: 2.8em;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+}
+
+.sk-play-steps { display: flex; justify-content: center; gap: 8px; margin-top: 12px; }
+
+.sk-play-steps button {
+  appearance: none;
+  width: 44px;
+  height: 44px;
+  border: 2px solid var(--ink-hard);
+  background: var(--paper-hard);
+  color: var(--ink-hard);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.14s ease, color 0.14s ease;
+}
+
+.sk-play-steps button[aria-current="step"] { background: var(--ink-hard); color: var(--paper-hard); }
+.sk-play-steps button:hover:not([aria-current="step"]) { background: var(--accent); border-color: var(--accent); color: #fff; }
+.sk-play-steps button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sk-play-frame, .sk-play-bar span { transition: none; }
+}
+
+@media (max-width: 700px) {
+  .sk-play-stage { padding: 24px 12px 20px; }
+  .sk-play-head { padding: 16px; }
+}
+
+/* ---------- before / after cross-fade in the figma card ---------- */
+
+.sk-fade { position: relative; }
+.sk-fade img { position: absolute; inset: 0; }
+.sk-fade-before { animation: sk-fade-out 8s ease-in-out infinite; }
+.sk-fade-after { animation: sk-fade-in 8s ease-in-out infinite; }
+
+.sk-fade-tag {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  z-index: 1;
+  padding: 6px 12px;
+  background: var(--ink-hard);
+  color: var(--paper-hard);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.sk-fade-tag--before { animation: sk-fade-out 8s ease-in-out infinite; }
+.sk-fade-tag--after { background: var(--accent); color: #fff; animation: sk-fade-in 8s ease-in-out infinite; }
+
+@keyframes sk-fade-out { 0%, 40% { opacity: 1; } 50%, 90% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes sk-fade-in { 0%, 40% { opacity: 0; } 50%, 90% { opacity: 1; } 100% { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .sk-fade-before, .sk-fade-tag--before { animation: none; opacity: 0; }
+  .sk-fade-after, .sk-fade-tag--after { animation: none; opacity: 1; }
+}
+
+/* playthrough refinements: static rule under the header, framed screen with breathing room */
+.sk-play-bar { height: 4px; background: var(--accent); }
+
+.sk-play-screen {
+  border: 3px solid var(--ink-hard);
+  border-radius: 6px;
+  padding: 0;
+}
+
+.sk-play-frame {
+  inset: 36px 40px 28px 40px;
+  width: calc(100% - 80px);
+  height: calc(100% - 64px);
+  object-fit: contain;
+  object-position: top left;
+}
+
+@media (max-width: 700px) {
+  .sk-play-frame { inset: 14px 14px 10px 14px; width: calc(100% - 28px); height: calc(100% - 24px); }
+}
+
+/* ---------- prompt log inside a laptop screen ---------- */
+
+.sk-laptop--silver .sk-laptop-lid { background: #d9d6cf; }
+
+.sk-log .sk-play-stage { padding-top: 36px; }
+
+.sk-log-screen {
+  height: 520px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--ink-hard);
+  color: var(--paper-hard);
+  border: 3px solid var(--ink-hard);
+  border-radius: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--ink-hard);
+}
+
+.sk-log-screen:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.sk-log-screen .sk-log-list { padding: 8px 32px 24px; }
+
+@media (max-width: 700px) {
+  .sk-log-screen { height: 440px; }
+  .sk-log-screen .sk-log-list { padding: 4px 16px 16px; }
+}
+
+.sk-log-intro {
+  margin: 0;
+  padding: 24px 32px 16px;
+  font-size: 18px;
+  line-height: 1.4;
+  border-bottom: 1px solid rgba(242, 240, 235, 0.3);
+}
+
+@media (max-width: 700px) { .sk-log-intro { padding: 16px; font-size: 16px; } }
+
+.sk-persona img { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border-bottom: 1px solid var(--ink-hard); }
+
+/* conclusion card: crop both images to the price block and the buttons (bottom right) */
+.sk-end .sk-fade img {
+  inset: auto 0 0 auto;
+  width: 170%;
+  max-width: none;
+  height: auto;
+  object-fit: fill;
+}
+
+/* keep the Figma badge clear of the buttons in the cropped image */
+.sk-end .sk-shot .case-visit-badge { top: 16px; bottom: auto; right: 16px; }
+
+/* playthrough: a smaller laptop so the section is not so tall */
+.sk-play .sk-laptop { max-width: 680px; }
+.sk-play .sk-play-stage { padding: 32px 24px 24px; }
+.sk-play-frame { inset: 28px 30px 20px 30px; width: calc(100% - 60px); height: calc(100% - 48px); }
+.sk-play-label { margin-top: 20px; }
+
+@media (max-width: 700px) {
+  .sk-play-frame { inset: 12px 12px 8px 12px; width: calc(100% - 24px); height: calc(100% - 20px); }
+}
+
+/* shorter screen: the form frames are cropped from the bottom (the open list needs the top 800px) */
+.sk-play-screen { aspect-ratio: 1200 / 800; }
+.sk-play-frame { object-fit: cover; object-position: top left; }
+
+/* rebuild prompt inside a laptop screen */
+.sk-term .sk-laptop { max-width: 760px; }
+
+.sk-term-screen {
+  min-height: 0;
+  padding: 32px 36px 36px;
+  background: var(--ink-hard);
+  color: var(--paper-hard);
+  border: 3px solid var(--ink-hard);
+  border-radius: 6px;
+}
+
+.sk-term .sk-play-stage { padding: 36px 24px 28px; }
+
+@media (max-width: 700px) {
+  .sk-term-screen { padding: 18px 16px 20px; }
+  .sk-term-prompt { font-size: 14px; }
+}
+
+/* the stage behind every laptop is the light hatched paper, even inside the dark containers */
+.sk-term .sk-play-stage,
+.sk-log .sk-play-stage { background-color: #e4e1da; }
+
+/* rebuild laptop: a fixed-size screen, so nothing grows while the prompt types */
+.sk-term-screen { height: 400px; overflow: hidden; box-sizing: border-box; }
+
+@media (max-width: 700px) {
+  .sk-term-screen { height: 470px; }
+}
+
+/* constant height at every width, tall enough for the wrapped text, never growing */
+@media (max-width: 1000px) { .sk-term-screen { height: 440px; } }
+@media (max-width: 700px) { .sk-term-screen { height: 560px; } }
+
+/* rebuild screen: a true laptop shape at every width. The content is laid out once at a fixed
+   480 by 300 size and scaled to fit the screen, so nothing reflows or grows while it types. */
+.sk-term-screen,
+.sk-term-screen:is(*) {
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 16 / 10;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.sk-term-inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 480px;
+  height: 300px;
+  padding: 24px 28px;
+  box-sizing: border-box;
+  transform-origin: 0 0;
+  transform: scale(var(--sk-s, 1));
+}
+
+.sk-term-inner .sk-term-prompt { font-size: 15px; min-height: 0; }
+.sk-term-inner .sk-term-steps { margin-top: 14px; gap: 6px; }
+.sk-term-inner .sk-term-step { font-size: 13px; }
+
+@media (max-width: 1000px) { .sk-term-screen { height: auto; } }
+@media (max-width: 700px) { .sk-term-screen { height: auto; padding: 0; } }
+
+/* prompt log on a phone: laptop proportions, scrolls inside */
+@media (max-width: 700px) {
+  .sk-log-screen { height: auto; aspect-ratio: 4 / 3; }
+}
+
+/* ---------- every laptop screen is the same 16 by 10 shape at every width ---------- */
+
+/* hero page screen: keep the laptop shape on a phone too */
+@media (max-width: 700px) { .sk-laptop-screen { aspect-ratio: 16 / 10; } }
+
+/* get phone playthrough */
+.sk-play-screen { aspect-ratio: 16 / 10; }
+
+/* prompt log: laid out once at 760 by 475, scaled to the screen; it scrolls inside */
+.sk-log-screen,
+.sk-log-screen:is(*) {
+  height: auto;
+  aspect-ratio: 16 / 10;
+  position: relative;
+  overflow: hidden;
+}
+
+.sk-log-inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 760px;
+  height: 475px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  transform-origin: 0 0;
+  transform: scale(var(--sk-s, 1));
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--ink-hard);
+}
+
+.sk-log-inner:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+
+@media (max-width: 1000px) { .sk-log-screen { height: auto; } }
+@media (max-width: 700px) { .sk-log-screen { height: auto; aspect-ratio: 16 / 10; } }
