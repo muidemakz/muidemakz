@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMFSR34FZG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-SMFSR34FZG");
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Making Account Verification Status And Limits Clearer · Excellent Makanju</title>
+  <meta name="description" content="An independent exploration of a merchant account upgrade flow: clearer status, limits and next steps, tested before and after with synthetic sessions. Predicted evidence, not production results.">
+  <link rel="canonical" href="https://muidemakz.com/moniepoint-verification.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Making Account Verification Status And Limits Clearer · Excellent Makanju">
+  <meta property="og:description" content="Independent exploration, rebuilt from supplied product captures and tested before and after with synthetic sessions. Predicted usability evidence, not production results.">
+  <meta property="og:url" content="https://muidemakz.com/moniepoint-verification.html">
+  <meta property="og:image" content="https://muidemakz.com/images/moniepoint/social-cover.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Making Account Verification Status And Limits Clearer · Excellent Makanju">
+  <meta name="twitter:description" content="Independent exploration, tested before and after with synthetic sessions. Predicted usability evidence, not production results.">
+  <meta name="twitter:image" content="https://muidemakz.com/images/moniepoint/social-cover.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Outfit:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/case-study.css">
+  <link rel="stylesheet" href="css/before-after.css">
+  <link rel="stylesheet" href="css/study-panel.css">
+  <link rel="stylesheet" href="css/moniepoint.css">
+</head>
+<body class="type-outfit">
+<div id="site-header-root"></div>
+<script src="js/header.js"></script>
+<main class="case-main">
+
+  <section class="case-hero">
+    <div class="wrap">
+      <a href="my-work.html" class="case-back">&larr; All Work</a>
+      <div class="case-hero-top"><p class="case-kicker">Independent Exploration · Verification UX</p></div>
+      <h1 class="case-title">Making account verification status and limits clearer</h1>
+      <p class="case-lede">Partway through a Level 3 account upgrade, one screen tells a merchant they have reached Level 3 and that they are still on Level 2. I redesigned the status, limits and next-step moments of that journey, then tested the result against the original.</p>
+      <p class="case-lede">This is an independent exploration, rebuilt from supplied product captures. It is not commissioned or official Moniepoint work, and the tests used synthetic sessions, so every result is predicted usability evidence.</p>
+      <ul class="case-tags"><li>Independent Exploration · October 2026</li><li>Research, Design &amp; Evaluation</li><li>Figma</li><li>Synthetic Test</li></ul>
+      <p class="mv-shipped">Looking for shipped work? <a href="omnione.html">Omnione</a> · <a href="fundall.html">Fundall</a> · <a href="teesaslms.html">Teesas LMS</a> · <a href="my-work.html">All work &rarr;</a></p>
+    </div>
+    <div class="mv-hero-stage">
+      <div class="mv-hero-pair">
+        <figure class="mv-phone mv-phone--before" style="margin:0">
+          <span class="mv-phone-chip">Before</span>
+          <div class="mv-phone-screen"><img src="images/moniepoint/status-before.png" width="499" height="1294" alt="Before: status screen titled Welcome To Level 3!, with a notice saying you are currently on Level 2 and a requirements list where Physical Address Verification is still processing."></div>
+        </figure>
+        <figure class="mv-phone mv-phone--after" style="margin:0">
+          <span class="mv-phone-chip">After</span>
+          <div class="mv-phone-screen"><img src="images/moniepoint/status-after.png" width="499" height="1553" alt="After: the same status screen titled Level 3 upgrade in progress, with a notice saying you are on Level 2 now and to keep location permissions on, and a checks list labelled 4 of 5 complete."></div>
+        </figure>
+      </div>
+      <p class="mv-hero-cue">The same screen, one decision apart</p>
+    </div>
+  </section>
+
+  <nav class="case-quicknav" aria-label="Section navigation"><div class="wrap"><a href="#summary">Summary</a><a href="#problem">Problem</a><a href="#decisions">Decisions</a><a href="#results">Results</a><a href="#limits">Limits</a><a href="#skill">My Skill</a><a href="#next">Next &amp; Links</a></div></nav>
+
+  <section class="case-section" id="summary"><div class="wrap">
+    <p class="case-label">Summary</p>
+    <p class="case-copy">Moniepoint accounts come in levels, and a higher level unlocks higher limits. A merchant midway through an upgrade asks a simple question: where do I stand? The original journey gave three different answers. A title welcomed them to Level 3, a notice said they were on Level 2, and the limits card showed only the limits they did not have yet.</p>
+    <p class="case-copy">I rebuilt the journey in Figma from supplied captures, changed six things the evidence and the supplied facts supported, and ran the original and the alternative through matched synthetic tests. The personal fields and media are fictional, and the camera, location and processing steps are simulated. No real banking, identity verification or location service was performed.</p>
+    <div class="case-fact-grid">
+      <div class="case-fact"><p class="case-fact-label">Type</p><p class="case-fact-value">Independent exploration</p></div>
+      <div class="case-fact"><p class="case-fact-label">Role</p><p class="case-fact-value">Research, design and evaluation</p></div>
+      <div class="case-fact"><p class="case-fact-label">Scope</p><p class="case-fact-value">Status, limits, dashboard, legal signpost, partner intro</p></div>
+      <div class="case-fact"><p class="case-fact-label">Tools</p><p class="case-fact-value">Figma · Valideity · <a href="#skill" style="border-bottom:2px solid var(--accent)">UI Design with MM</a></p></div>
+      <div class="case-fact"><p class="case-fact-label">Date</p><p class="case-fact-value">October 2026</p></div>
+      <div class="case-fact"><p class="case-fact-label">Evidence</p><p class="case-fact-value">Predicted by simulated users, not measured with real people</p></div>
+    </div>
+  </div></section>
+
+  <section class="case-section" id="problem"><div class="wrap">
+    <p class="case-label">Why This Flow</p>
+    <p class="case-copy">Public Android reviews of Moniepoint’s business app describe two kinds of trouble: face verification that fails, and address or document verification that is hard to complete (<a href="https://play.google.com/store/apps/details?gl=ng&amp;hl=en-gb&amp;id=com.moniepoint.business" target="_blank" rel="noopener" style="border-bottom:2px solid var(--accent)">read the reviews</a>). Reviews show a symptom, not a cause. They do not establish what causes the problem, how common it is or whether it persists, so I treated them as a reason to look and not as a diagnosis.</p>
+    <p class="case-copy">This redesign targets how well people understand their status, limits and next step. It does not claim to fix face verification failures, which need engineering and product work.</p>
+    <div id="original-feedback">
+      <h2 class="case-label" style="margin-top:40px">Original Customer Feedback</h2>
+      <p class="case-copy">These public Google Play reviews prompted the investigation. Two distinct reviewer profiles reported face-verification failures in October 2026. A separate September review described repeated utility-bill rejection during an account upgrade. They report different symptoms, not one established cause.</p>
+      <div class="case-figures">
+        <figure class="case-figure">
+          <a href="images/moniepoint/research/face-verification-october.png" target="_blank" rel="noopener" aria-label="Open the original face-verification review screenshot at full size">
+            <img src="images/moniepoint/research/face-verification-october.png" width="1280" height="720" loading="lazy" alt="Original Google Play review capture: Eddy Tech, 18 October 2026, reports inability to verify a face; Onuegbu Valentine Uzoma, 17 October 2026, reports failed verification with a metadata-size error.">
+          </a>
+          <figcaption>Face verification. Eddy Tech, 18 October 2026, and Onuegbu Valentine Uzoma, 17 October 2026. The second review includes a technical error; these reports do not establish that interface wording caused the failures. Open the image for full-size text.</figcaption>
+        </figure>
+        <figure class="case-figure">
+          <a href="images/moniepoint/research/document-verification-september.png" target="_blank" rel="noopener" aria-label="Open the original utility-bill rejection review and developer response at full size">
+            <img src="images/moniepoint/research/document-verification-september.png" width="1280" height="720" loading="lazy" alt="Original Google Play review capture: IROR, 3 September 2026, describes repeated utility-bill rejection and being stuck at Tier 2. Moniepoint responds with document-recency and address-matching guidance.">
+          </a>
+          <figcaption>Document verification. IROR, 3 September 2026, with Moniepoint's response from the same date. The response suggests a recent bill and matching address; it does not establish that this customer's issue was resolved. Open the image for full-size text.</figcaption>
+        </figure>
+      </div>
+      <p class="case-copy">Source: <a href="https://play.google.com/store/apps/details?gl=ng&amp;hl=en-gb&amp;id=com.moniepoint.business" target="_blank" rel="noopener" style="border-bottom:2px solid var(--accent)">Moniepoint Business Banking on Google Play</a>. Unedited browser screenshots captured on 25 October 2026. Review dates are shown above; the capture date does not make an older review new. Surrounding comments are retained as source context, not endorsed as verified claims.</p>
+      <p class="case-copy"><strong>From feedback to design question.</strong> These Android reports motivated investigation of verification. The status-wording issue came from inspecting the supplied iOS journey. The synthetic findings below assess the reconstruction; they do not prove a cause or resolution of these reviewers' failures.</p>
+    </div>
+    <p class="case-copy">I rebuilt the Level 3 upgrade end to end, from the first screen to the dashboard. Then I ran a first test: five synthetic sessions of one persona, a small-business owner in Lagos on an entry-level Android phone with an unstable network.</p>
+    <p class="case-label" style="margin-top:40px">What The First Test Found</p>
+    <p class="case-copy">All five sessions finished the task, so completion told me little. The report listed 17 friction findings, which I triaged and did not treat as 17 defects. Some came from limits of the reconstruction, such as buttons that did nothing in a click-through prototype. I picked three I could address with the facts I had.</p>
+    <div class="case-problem-grid">
+      <div class="case-problem"><p class="case-problem-label">Partner Consent</p><p class="case-problem-copy">OkHi appears mid flow and asks for background location with little explanation. The report flagged it, and all five sessions reached that screen.</p></div>
+      <div class="case-problem"><p class="case-problem-label">Late Legal Text</p><p class="case-problem-copy">A dense indemnity page follows a screen that says verification has started. Several sessions described accepting without finishing reading.</p></div>
+      <div class="case-problem"><p class="case-problem-label">Mixed Status Wording</p><p class="case-problem-copy">The dashboard says Level 2. A later screen says Welcome To Level 3 and also says you are currently on Level 2. Only 3 of 5 sessions reached that screen, so I also checked it directly in the reconstruction.</p></div>
+    </div>
+    <p class="case-copy" style="margin-top:24px">I led with status because the contradiction is visible in the reconstruction and could be tested with a small, comparable change. Consent mattered too, but better answers needed facts I did not have.</p>
+  </div></section>
+
+  <section class="case-section" id="decisions"><div class="wrap">
+    <p class="case-label">Six Decisions, Before And After</p>
+    <p class="case-copy">I reused the existing components and kept every figure on screen exactly as supplied. The one new component is a limits card. Drag any comparison, press its Before or After tag, or pick a change to see where it lives on the screen.</p>
+
+    <!-- 1 status -->
+    <article class="mv-decision mv-reveal">
+      <div class="mv-decision-head">
+        <p class="mv-decision-n">Decision 1 of 6</p>
+        <h2 class="mv-decision-title">Say what is true right now</h2>
+        <p class="mv-decision-lead">The status screen made two claims at once. The title welcomed the merchant to Level 3 while the notice underneath said they were still on Level 2. I rewrote both to agree, and to say what happens next.</p>
+      </div>
+      <div class="mv-decision-body">
+        <p class="mv-changes-label">What changed</p>
+        <ol class="mv-changes" data-ba-target="ba-status">
+          <li><button type="button" class="mv-change" data-box="110 132 280 90"><span class="mv-change-n">1</span><span><strong>Title.</strong> “Welcome To Level 3!” becomes “Level 3 upgrade in progress”.</span></button></li>
+          <li><button type="button" class="mv-change" data-box="40 360 420 96"><span class="mv-change-n">2</span><span><strong>Notice.</strong> “You are currently on Level 2” becomes “You are on Level 2 now. Keep location permissions on while physical address verification is in progress.”</span></button></li>
+          <li><button type="button" class="mv-change" data-box="22 493 260 26"><span class="mv-change-n">3</span><span><strong>Checks.</strong> “Level 3 Requirements” becomes “Level 3 checks: 4 of 5 complete”, so the finished checks read apart from the one still processing.</span></button></li>
+        </ol>
+        <div class="mv-evidence"><p class="mv-evidence-label">Evidence · what the simulated testers said afterwards</p><p>In the Before run, 13 of 20 answers pointed out the contradiction between the Welcome or Level 3 badge and Level 2. In the After run, none of the 20 did, including none of the 18 who saw the new status screen.</p></div>
+      </div>
+      <div class="mv-decision-media">
+        <figure class="ba-figure">
+          <div class="ba" id="ba-status" data-ba-label="status screen" style="--ba-w:499;--ba-ch:810;--ba-ct:0">
+            <img class="ba-img ba-img--before" src="images/moniepoint/status-before.png" width="499" height="1294" alt="Before: status screen titled Welcome To Level 3! with a notice saying you are currently on Level 2." loading="lazy">
+            <img class="ba-img ba-img--after" src="images/moniepoint/status-after.png" width="499" height="1553" alt="After: status screen titled Level 3 upgrade in progress with a notice saying you are on Level 2 now and checks labelled 4 of 5 complete." loading="lazy">
+          </div>
+          <figcaption class="ba-caption">Status screen, top half</figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <!-- 2 limits -->
+    <article class="mv-decision mv-reveal">
+      <div class="mv-decision-head">
+        <p class="mv-decision-n">Decision 2 of 6</p>
+        <h2 class="mv-decision-title">Show what is available now beside what comes later</h2>
+        <p class="mv-decision-lead">The original showed only the Level 3 limits, so a merchant on Level 2 saw amounts they could not use yet. The new limits card separates the two states and keeps the supplied figures. I invented no policy.</p>
+      </div>
+      <div class="mv-decision-body">
+        <p class="mv-changes-label">What changed</p>
+        <ol class="mv-changes" data-ba-target="ba-limits">
+          <li><button type="button" class="mv-change" data-box="22 818 200 26"><span class="mv-change-n">1</span><span><strong>Heading.</strong> “Level 3 Benefits” becomes “Your limits”.</span></button></li>
+          <li><button type="button" class="mv-change" data-box="35 866 430 235"><span class="mv-change-n">2</span><span><strong>Available now (provisional).</strong> The limits that apply today, including the balance limit.</span></button></li>
+          <li><button type="button" class="mv-change" data-box="35 1120 430 170"><span class="mv-change-n">3</span><span><strong>After verification (Level 3).</strong> The higher amounts, labelled as what comes later.</span></button></li>
+        </ol>
+        <div class="mv-evidence"><p class="mv-evidence-label">Evidence · what the simulated testers said afterwards</p><p>9 of 20 Before answers gave the Level 3 amounts. The other 11 did not, and most said they never saw them. In the After run 19 of 20 gave them, including all 18 who reached the new screen.</p></div>
+      </div>
+      <div class="mv-decision-media">
+        <figure class="ba-figure">
+          <div class="ba" id="ba-limits" data-ba-label="limits card" style="--ba-w:499;--ba-ch:500;--ba-ct:815">
+            <img class="ba-img ba-img--before" src="images/moniepoint/status-before.png" width="499" height="1294" alt="Before: a Level 3 Benefits card showing only the Level 3 limits, with daily credit unlimited and daily and single debit both ₦5,000,000." loading="lazy">
+            <img class="ba-img ba-img--after" src="images/moniepoint/status-after.png" width="499" height="1553" alt="After: a Your limits section with Available now (provisional) amounts above an After verification (Level 3) block with the higher amounts." loading="lazy">
+          </div>
+          <figcaption class="ba-caption">Limits card, lower half of the status screen</figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <!-- 3 dashboard -->
+    <article class="mv-decision mv-reveal">
+      <div class="mv-decision-head">
+        <p class="mv-decision-n">Decision 3 of 6</p>
+        <h2 class="mv-decision-title">Tell people what to do, and make the banner work</h2>
+        <p class="mv-decision-lead">While the address check runs, the dashboard banner reported progress but gave no instruction, and in the Before prototype tapping it did nothing. I added one line and made the whole banner open the status screen.</p>
+      </div>
+      <div class="mv-decision-body">
+        <p class="mv-changes-label">What changed</p>
+        <ol class="mv-changes" data-ba-target="ba-dashboard">
+          <li><button type="button" class="mv-change" data-box="14 190 440 56"><span class="mv-change-n">1</span><span><strong>Instruction.</strong> The banner now says “Keep location on” and “Tap to view your status”.</span></button></li>
+          <li><button type="button" class="mv-change" data-box="0 128 499 124"><span class="mv-change-n">2</span><span><strong>Route.</strong> The whole banner is now the way to the status screen.</span></button></li>
+        </ol>
+        <div class="mv-evidence"><p class="mv-evidence-label">Evidence · with a caveat</p><p>18 of 20 After answers described using the banner to reach status. In the Before run, 16 of 20 described tapping a dashboard control and getting no response, and 2 found a way through the level chip. Part of that difference is a repaired prototype link, not better wording, and the new line says “tap”, so some answers may echo it.</p></div>
+      </div>
+      <div class="mv-decision-media">
+        <figure class="ba-figure">
+          <div class="ba" id="ba-dashboard" data-ba-label="dashboard" style="--ba-w:499;--ba-ch:700;--ba-ct:0">
+            <img class="ba-img ba-img--before" src="images/moniepoint/dashboard-before.png" width="499" height="1080" alt="Before: dashboard with an Address verification in progress banner reading We’ll notify you once it’s complete." loading="lazy">
+            <img class="ba-img ba-img--after" src="images/moniepoint/dashboard-after.png" width="499" height="1080" alt="After: the same banner now reading Keep location on. We’ll notify you once it’s complete. Tap to view your status." loading="lazy">
+          </div>
+          <figcaption class="ba-caption">Dashboard while the address check runs</figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <!-- 4 progress -->
+    <article class="mv-decision mv-reveal">
+      <div class="mv-decision-head">
+        <p class="mv-decision-n">Decision 4 of 6</p>
+        <h2 class="mv-decision-title">Separate the finished check from the one still running</h2>
+        <p class="mv-decision-lead">This screen celebrated verified proof of address and, in the same breath, talked about provisional limits. The new wording says which check is done, which is still in progress, and what level the merchant is on for now.</p>
+      </div>
+      <div class="mv-decision-body">
+        <p class="mv-changes-label">What changed</p>
+        <ol class="mv-changes" data-ba-target="ba-progress">
+          <li><button type="button" class="mv-change" data-box="115 372 270 78"><span class="mv-change-n">1</span><span><strong>Title.</strong> “Account upgrade in progress…” becomes “Level 3 upgrade in progress”, matching the status screen.</span></button></li>
+          <li><button type="button" class="mv-change" data-box="25 468 450 92"><span class="mv-change-n">2</span><span><strong>Body.</strong> Adds “Physical address verification is still in progress, so you are on Level 2 for now.”</span></button></li>
+        </ol>
+        <div class="mv-evidence"><p class="mv-evidence-label">Evidence · not scored on its own</p><p>I did not score this change separately. It is there to keep the wording consistent, and I do not count it as a result.</p></div>
+      </div>
+      <div class="mv-decision-media">
+        <figure class="ba-figure">
+          <div class="ba" id="ba-progress" data-ba-label="upgrade in progress screen" style="--ba-w:499;--ba-ch:780;--ba-ct:130">
+            <img class="ba-img ba-img--before" src="images/moniepoint/progress-before.png" width="499" height="1080" alt="Before: screen titled Account upgrade in progress saying your proof of address has been verified successfully, above provisional send and receive limits." loading="lazy">
+            <img class="ba-img ba-img--after" src="images/moniepoint/progress-after.png" width="499" height="1080" alt="After: screen titled Level 3 upgrade in progress saying proof of address is verified, physical address verification is still in progress and you are on Level 2 for now." loading="lazy">
+          </div>
+          <figcaption class="ba-caption">Upgrade in progress screen</figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <!-- 5 signpost -->
+    <article class="mv-decision mv-reveal">
+      <div class="mv-decision-head">
+        <p class="mv-decision-n">Decision 5 of 6</p>
+        <h2 class="mv-decision-title">Warn about the legal step before it arrives</h2>
+        <p class="mv-decision-lead">After a screen saying verification had started, a dense legal page appeared. I left the legal text alone. I cannot verify what it should say, and I did not want to invent an exit that may not exist. The only changes are a signpost and a button label.</p>
+      </div>
+      <div class="mv-decision-body">
+        <p class="mv-changes-label">What changed</p>
+        <ol class="mv-changes" data-ba-target="ba-signpost">
+          <li><button type="button" class="mv-change" data-box="40 430 410 115"><span class="mv-change-n">1</span><span><strong>Signpost.</strong> “One more step: you will be asked to read and grant permission for the indemnity agreement.”</span></button></li>
+          <li><button type="button" class="mv-change" data-box="48 930 404 78"><span class="mv-change-n">2</span><span><strong>Button.</strong> “Finish” becomes “Continue”, so it no longer implies the journey is over.</span></button></li>
+        </ol>
+        <div class="mv-evidence"><p class="mv-evidence-label">Evidence · partial</p><p>11 of the 18 After participants who reached the page recalled being told another step was coming, against none in the Before run. 7 of 18 still found the page unexpected. The legal wording, including “the Request”, is unchanged, and the report still flags the indemnity term as unexplained for 13 of 20 in both versions.</p></div>
+      </div>
+      <div class="mv-decision-media">
+        <figure class="ba-figure ba-figure--narrow">
+          <div class="ba" id="ba-signpost" data-ba-label="verification started screen" style="--ba-w:499;--ba-ch:975;--ba-ct:60">
+            <img class="ba-img ba-img--before" src="images/moniepoint/signpost-before.png" width="499" height="1080" alt="Before: Success, verification started screen saying carry on as normal, with a Finish button." loading="lazy">
+            <img class="ba-img ba-img--after" src="images/moniepoint/signpost-after.png" width="499" height="1080" alt="After: the same screen opening with one more step, the indemnity agreement, and a Continue button." loading="lazy">
+          </div>
+          <figcaption class="ba-caption">Verification started screen</figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <!-- 6 OkHi -->
+    <article class="mv-decision mv-reveal">
+      <div class="mv-decision-head">
+        <p class="mv-decision-n">Decision 6 of 6</p>
+        <h2 class="mv-decision-title">Name the partner</h2>
+        <p class="mv-decision-lead">OkHi appears mid flow and asks about background location. I said what it is in the introduction and kept everything else as supplied. I added no privacy, retention, optional-access or eligibility assurances, because I have no facts to back them.</p>
+      </div>
+      <div class="mv-decision-body">
+        <p class="mv-changes-label">What changed</p>
+        <ol class="mv-changes" data-ba-target="ba-okhi">
+          <li><button type="button" class="mv-change" data-box="45 222 410 85"><span class="mv-change-n">1</span><span><strong>Introduction.</strong> Now reads “OkHi, an address verification service”.</span></button></li>
+          <li><button type="button" class="mv-change" data-box="45 866 360 26"><span class="mv-change-n">2</span><span><strong>Footer.</strong> “For more detail, read our full Terms and Privacy Policy”.</span></button></li>
+        </ol>
+        <div class="mv-evidence"><p class="mv-evidence-label">Evidence · no change seen</p><p>All 20 Before answers could already say what OkHi does from the screen text, and so could all 18 After participants who reached it. How long OkHi keeps location data, and whether location access is mandatory, remain open and need product answers.</p></div>
+      </div>
+      <div class="mv-decision-media">
+        <figure class="ba-figure ba-figure--narrow">
+          <div class="ba" id="ba-okhi" data-ba-label="partner consent screen" style="--ba-w:499;--ba-ch:975;--ba-ct:60">
+            <img class="ba-img ba-img--before" src="images/moniepoint/okhi-before.png" width="499" height="1080" alt="Before: consent screen saying Moniepoint uses OkHi to collect, verify and update your addresses." loading="lazy">
+            <img class="ba-img ba-img--after" src="images/moniepoint/okhi-after.png" width="499" height="1080" alt="After: the same screen saying Moniepoint uses OkHi, an address verification service, to collect, verify and update your addresses." loading="lazy">
+          </div>
+          <figcaption class="ba-caption">Partner consent screen</figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <div class="case-decision mv-left-alone">
+      <p class="case-decision-label">Deliberately Left Alone</p>
+      <p class="case-decision-copy">Whether location access is mandatory or optional, how long OkHi keeps location data, what the indemnity text should say, the dead end behind View More on the Level 3 entry screen, the findings about the camera shutter, and permission rows that look tappable. Each needs a <strong>product, legal or engineering answer</strong>, or reflects a limit of the reconstruction. Design copy cannot settle them.</p>
+    </div>
+
+    <div class="mv-play" data-study-links-row hidden>
+      <h3 class="mv-play-title">Take the study yourself</h3>
+      <p class="mv-play-copy">Run the same task as a real participant, on the Before or the After. Both use fictional data, and the camera, location and processing steps are simulated. Real participants are counted separately from the simulated sessions below.</p>
+      <div class="mv-play-actions">
+        <a class="mv-btn mv-btn--before" data-study-link="before" href="#" target="_blank" rel="noopener" hidden>Take the<br>Before study<small>Original journey</small></a>
+        <a class="mv-btn mv-btn--after" data-study-link="after" href="#" target="_blank" rel="noopener" hidden>Take the<br>After study<small>Redesigned flow</small></a>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="case-section" id="results"><div class="wrap">
+    <p class="case-label">What The Test Showed</p>
+    <p class="case-copy">I tested the original journey the same way as the redesign: the same task, the same device and the same five follow-up questions. Each version had 20 simulated sessions across six merchant personas, run in a live browser. I read every raw answer, not only the score.</p>
+    <p class="case-copy">A smaller pilot came first: five sessions per version, one persona, scoring 80 and 82. It pointed the same way on the limits, the contradiction and finding status. I report the larger run as the study and do not add the two together, because the personas and the simulator version were different.</p>
+
+    <div class="mv-table-wrap">
+      <table class="mv-table">
+        <caption>The six personas, in the same order and split in both versions</caption>
+        <thead><tr><th scope="col">Persona</th><th scope="col">Sessions</th><th scope="col">Profile</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Lagos Small-Business Owner</th><td>4</td><td class="mv-wrap">SME owner, entry-level Android, unstable 2G to 3G, data-conscious.</td></tr>
+          <tr><th scope="row">Lagos POS Agent</th><td>4</td><td class="mv-wrap">POS agent and shop operator, mid-range Android, mostly 4G, skims long legal text.</td></tr>
+          <tr><th scope="row">Cautious Older Shop Owner</th><td>3</td><td class="mv-wrap">Neighbourhood shop owner, low tech literacy, entry-level Android, unstable 3G, high skepticism.</td></tr>
+          <tr><th scope="row">Lagos Market Vendor</th><td>3</td><td class="mv-wrap">Market trader, entry-level Android, 2G to 3G, shares the phone.</td></tr>
+          <tr><th scope="row">Lagos Growing Retailer</th><td>3</td><td class="mv-wrap">Retail owner with staff who uses Moniebook, mid-range Android, good Wi-Fi.</td></tr>
+          <tr><th scope="row">Lagos Young Online Seller</th><td>3</td><td class="mv-wrap">Sells through Instagram and WhatsApp, mid-range Android, mostly 4G, impatient.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="case-copy" style="margin-top:16px">Five of the six personas were written by me for this test. The sixth, Lagos Small-Business Owner, is the persona from the pilot. They encode my assumptions about merchants, so the result depends on how I described them.</p>
+
+    <div id="mv-study" class="mv-study" style="margin-top:36px"><noscript><p class="case-copy">Overall Valideity score: Before 81, After 84. 20 synthetic sessions each across six personas. Real participants tested so far: 0. Snapshot, 28 Oct 2026.</p></noscript></div>
+    <script type="application/json" id="mv-study-data">
+    {
+      "snapshot": "2026-10-28",
+      "endpoint": null,
+      "personas": 6,
+      "sessionsTotal": 40,
+      "sessionsPerVersion": 20,
+      "conditions": [
+        { "key": "before", "label": "Before", "score": 81, "sessions": 20, "completed": 18, "note": "The original journey. One session was partial and one was abandoned." },
+        { "key": "after", "label": "After", "score": 84, "sessions": 20, "completed": 18, "note": "Two sessions stopped on an entry screen I did not change, before seeing any redesigned screen." }
+      ],
+      "measured": { "participants": 0, "note": "Every figure here comes from synthetic sessions. No measured result is claimed." },
+      "studyLinks": {
+        "before": "https://app.valideity.com/s/badc944e-ebf0-4766-adea-e6219ad85889",
+        "after": "https://app.valideity.com/s/49dc6202-f758-462f-8d34-33b1d93d59dc"
+      }
+    }
+    </script>
+
+    <div class="case-outcome-grid">
+      <div class="case-outcome"><p class="case-outcome-label">Overall Score</p><p class="case-outcome-value">81 &rarr; 84</p><p class="case-outcome-copy">A three point gap from 20 sessions each. I report it but do not count it as an improvement.</p></div>
+      <div class="case-outcome"><p class="case-outcome-label">Finished The Task</p><p class="case-outcome-value" style="font-size:clamp(22px,2.5vw,34px);white-space:nowrap">18 of 20 &rarr; 18 of 20</p><p class="case-outcome-copy">Two After sessions stopped on an entry screen I did not change.</p></div>
+      <div class="case-outcome"><p class="case-outcome-label">Reached The New Screens</p><p class="case-outcome-value">18 of 20</p><p class="case-outcome-copy">In the After, 18 of 20 sessions got as far as the redesigned screens. Some counts below use all 20 sessions, others only those 18.</p></div>
+    </div>
+    <p class="case-copy" style="margin-top:16px;font-size:15px;opacity:.8">Valideity filed 19 findings for the Before and 14 for the After. Part of that drop comes from fixing the dashboard link that did nothing in the Before, so I do not read it as better wording alone.</p>
+
+    <p class="case-copy" style="margin-top:28px">The headline score barely moved, so I read the answers underneath it. They show movement on <mark class="mv-hl">future limits</mark>, <mark class="mv-hl">the Welcome versus Level 2 contradiction</mark> and <mark class="mv-hl">finding status again</mark>. They show <mark class="mv-hl mv-hl--flat">no movement on OkHi</mark>, and <mark class="mv-hl mv-hl--flat">a partial result on the legal signpost</mark>.</p>
+
+    <div class="mv-bars-head" style="margin-top:36px">
+      <p class="mv-bars-title">Comprehension answers</p>
+      <div class="mv-legend"><span><i></i>Before, of 20</span><span><i></i>After, of 20</span></div>
+    </div>
+    <div class="mv-bars" data-mv-bars>
+      <div class="mv-bar-row">
+        <div><p class="mv-bar-title">Gave the Level 3 limits</p><p class="mv-bar-note">All 18 who reached the new screens gave them. The 19th read them from the entry card. In the Before, 11 did not give them, and most of those said they never saw the Level 3 figures.</p></div>
+        <div>
+          <div class="mv-bar mv-bar--before"><span class="mv-bar-tag">Before</span><span class="mv-bar-track"><span class="mv-bar-fill" style="--v:0.45;--i:0"></span></span><span class="mv-bar-val">9 of 20</span></div>
+          <div class="mv-bar mv-bar--after"><span class="mv-bar-tag">After</span><span class="mv-bar-track"><span class="mv-bar-fill" style="--v:0.95;--i:1"></span></span><span class="mv-bar-val">19 of 20</span></div>
+        </div>
+      </div>
+      <div class="mv-bar-row">
+        <div><p class="mv-bar-title">Pointed out the Welcome versus Level 2 contradiction</p><p class="mv-bar-note"><span class="mv-tag">Lower is better</span>0 of the 18 who reached the new status screen raised it.</p></div>
+        <div>
+          <div class="mv-bar mv-bar--before"><span class="mv-bar-tag">Before</span><span class="mv-bar-track"><span class="mv-bar-fill" style="--v:0.65;--i:0"></span></span><span class="mv-bar-val">13 of 20</span></div>
+          <div class="mv-bar mv-bar--after"><span class="mv-bar-tag">After</span><span class="mv-bar-track"><span class="mv-bar-fill" style="--v:0;--i:1"></span></span><span class="mv-bar-val">0 of 20</span></div>
+        </div>
+      </div>
+      <div class="mv-bar-row">
+        <div><p class="mv-bar-title">Named a working way back to status</p><p class="mv-bar-note"><span class="mv-tag mv-tag--warn">Includes a repaired link</span>Part of this gain comes from fixing a prototype link that did nothing. The banner now also says “tap”, so some answers may simply repeat it.</p></div>
+        <div>
+          <div class="mv-bar mv-bar--before"><span class="mv-bar-tag">Before</span><span class="mv-bar-track"><span class="mv-bar-fill" style="--v:0.1;--i:0"></span></span><span class="mv-bar-val">2 of 20</span></div>
+          <div class="mv-bar mv-bar--after"><span class="mv-bar-tag">After</span><span class="mv-bar-track"><span class="mv-bar-fill" style="--v:0.9;--i:1"></span></span><span class="mv-bar-val">18 of 20</span></div>
+        </div>
+      </div>
+      <div class="mv-bar-row">
+        <div><p class="mv-bar-title">Described a dashboard control that did nothing</p><p class="mv-bar-note"><span class="mv-tag">Lower is better</span>The one After case was See All on the to-do list, which I did not change.</p></div>
+        <div>
+          <div class="mv-bar mv-bar--before"><span class="mv-bar-tag">Before</span><span class="mv-bar-track"><span class="mv-bar-fill" style="--v:0.8;--i:0"></span></span><span class="mv-bar-val">16 of 20</span></div>
+          <div class="mv-bar mv-bar--after"><span class="mv-bar-tag">After</span><span class="mv-bar-track"><span class="mv-bar-fill" style="--v:0.05;--i:1"></span></span><span class="mv-bar-val">1 of 20</span></div>
+        </div>
+      </div>
+      <div class="mv-bar-row">
+        <div><p class="mv-bar-title">Recalled being told a legal step was coming</p><p class="mv-bar-note"><span class="mv-tag">Different denominators</span>Counted only among those who reached the legal page.</p></div>
+        <div>
+          <div class="mv-bar mv-bar--before"><span class="mv-bar-tag">Before</span><span class="mv-bar-track"><span class="mv-bar-fill" style="--v:0;--i:0"></span></span><span class="mv-bar-val">0 of 19</span></div>
+          <div class="mv-bar mv-bar--after"><span class="mv-bar-tag">After</span><span class="mv-bar-track"><span class="mv-bar-fill" style="--v:0.61;--i:1"></span></span><span class="mv-bar-val">11 of 18</span></div>
+          <p class="mv-bar-scale">Share of those who reached the legal page: 19 Before, 18 After.</p>
+        </div>
+      </div>
+      <div class="mv-bar-row">
+        <div><p class="mv-bar-title">Found the legal step unexpected</p><p class="mv-bar-note"><span class="mv-tag">Lower is better</span><span class="mv-tag">Different denominators</span>Two of the 11 who recalled the signpost were still surprised. The legal text is unchanged.</p></div>
+        <div>
+          <div class="mv-bar mv-bar--before"><span class="mv-bar-tag">Before</span><span class="mv-bar-track"><span class="mv-bar-fill" style="--v:0.84;--i:0"></span></span><span class="mv-bar-val">16+ of 19</span></div>
+          <div class="mv-bar mv-bar--after"><span class="mv-bar-tag">After</span><span class="mv-bar-track"><span class="mv-bar-fill" style="--v:0.39;--i:1"></span></span><span class="mv-bar-val">7 of 18</span></div>
+          <p class="mv-bar-scale">Share of those who reached the legal page: 19 Before, 18 After. The Before count is a minimum, so its bar is too.</p>
+        </div>
+      </div>
+      <div class="mv-bar-row">
+        <div><p class="mv-bar-title">Could say what OkHi does</p><p class="mv-bar-note"><span class="mv-tag">No change</span><span class="mv-tag">Different denominators</span>The two After sessions that said otherwise never reached that screen.</p></div>
+        <div>
+          <div class="mv-bar mv-bar--before"><span class="mv-bar-tag">Before</span><span class="mv-bar-track"><span class="mv-bar-fill" style="--v:1;--i:0"></span></span><span class="mv-bar-val">20 of 20</span></div>
+          <div class="mv-bar mv-bar--after"><span class="mv-bar-tag">After</span><span class="mv-bar-track"><span class="mv-bar-fill" style="--v:1;--i:1"></span></span><span class="mv-bar-val">18 of 18</span></div>
+          <p class="mv-bar-scale">Share of those who reached the OkHi screen: 20 Before, 18 After.</p>
+        </div>
+      </div>
+      <div class="mv-bar-row">
+        <div><p class="mv-bar-title">Noticed the mandatory versus “continue without location” conflict</p><p class="mv-bar-note"><span class="mv-tag">Screen unchanged</span>An existing tension I left alone. I do not attribute this difference to the design.</p></div>
+        <div>
+          <div class="mv-bar mv-bar--before"><span class="mv-bar-tag">Before</span><span class="mv-bar-track"><span class="mv-bar-fill" style="--v:0.25;--i:0"></span></span><span class="mv-bar-val">5 of 20</span></div>
+          <div class="mv-bar mv-bar--after"><span class="mv-bar-tag">After</span><span class="mv-bar-track"><span class="mv-bar-fill" style="--v:0.05;--i:1"></span></span><span class="mv-bar-val">1 of 20</span></div>
+        </div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="case-section" id="limits"><div class="wrap">
+    <p class="case-label">What Weakens The Result</p>
+    <ul class="case-list">
+      <li><strong>Not everyone saw the new screens.</strong> Two After sessions stopped on the Level 3 entry screen, which I did not change, after tapping View More. So 18 of 20 saw the redesigned screens.</li>
+      <li><strong>Simulated participants.</strong> Six personas, 3 or 4 sessions each. Differences between personas are leads, not findings. Five of the six personas were written by me, so the result depends on how I described them.</li>
+      <li><strong>Targeted questions.</strong> The five follow-ups were asked after the task and were about the topics I changed, so the answers partly reflect what I asked.</li>
+      <li><strong>One person sorting the answers, not blind.</strong> I sorted the answers myself, with a keyword search and a manual read, knowing which version each came from.</li>
+      <li><strong>Stand-in photos and a repaired link.</strong> The camera and document steps use fixed stand-in media, and part of the status gain comes from a repaired prototype link.</li>
+      <li><strong>I could not watch the After play back.</strong> The Figma player would not render in my test browsers, so I checked how the screens connect in the Figma file instead.</li>
+      <li><strong>No business outcome.</strong> I measured no conversion, verification approval, revenue or support-volume change.</li>
+    </ul>
+
+    <details class="mv-details">
+      <summary>Method and scoring in detail</summary>
+      <div class="mv-details-body">
+        <p class="case-copy">I ran both studies in Valideity, the research product I am building (see <a href="valideity.html" style="border-bottom:2px solid var(--accent)">Valideity</a>), which is a conflict of interest, so I am saying so. Valideity scores each run under the rules in place when it finished, and does not give each simulated participant a stable ID, so I make no claims about individual participants.</p>
+        <div class="mv-table-wrap">
+          <table class="mv-table">
+            <caption>Score components, descriptive only</caption>
+            <thead><tr><th scope="col">Measure</th><th scope="col">Before</th><th scope="col">After</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Overall score</th><td>81</td><td>84</td></tr>
+              <tr><th scope="row">Completion</th><td>72</td><td>78</td></tr>
+              <tr><th scope="row">Ease</th><td>76</td><td>79</td></tr>
+              <tr><th scope="row">Confidence</th><td>100</td><td>100</td></tr>
+              <tr><th scope="row">Time</th><td>97</td><td>98</td></tr>
+              <tr><th scope="row">Friction-free</th><td>84</td><td>84</td></tr>
+              <tr><th scope="row">Findings filed</th><td>19</td><td>14</td></tr>
+              <tr><th scope="row">Total issues across sessions (average per session)</th><td>210 (10.5)</td><td>140 (7.0)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul class="case-list">
+          <li><strong>The score does not measure what I changed.</strong> I cannot say how big a gap has to be to matter at 20 sessions. Fewer issues in the After partly come from the repaired dashboard link, which removes controls that did nothing in the Before prototype.</li>
+          <li><strong>Two rounds, reported separately.</strong> Valideity would not let me add sessions to the pilot runs, because the study sections or target had changed since, and I do not know what changed. So the larger study is a fresh run. The simulator was also updated between the two rounds, so differences between them are not design effects.</li>
+          <li><strong>Two days.</strong> The two versions ran on 27 and 28 October. Both used Valideity’s standard setting for how much simulated people differ from each other.</li>
+          <li><strong>Earlier scores are not controls.</strong> A first full-journey run scored 89, a focused camera pilot scored 80, and a camera wording comparison scored 86 in both versions with no improvement. Their tasks, questions and fixtures differed, so I do not compare against them.</li>
+          <li><strong>Research questions.</strong> Valideity’s automatic AI check of my questions was not read in detail, and I do not use it as evidence.</li>
+        </ul>
+      </div>
+    </details>
+  </div></section>
+
+  <section class="case-section" id="skill"><div class="wrap">
+    <p class="case-label">How I Designed It</p>
+    <div class="mv-skill">
+      <div class="mv-skill-main">
+        <h2 class="mv-skill-title">I built it with my own design skill</h2>
+        <p class="case-copy"><strong>UI Design with MM</strong> is a portable design skill I wrote. It works with Claude, Codex and other compatible assistants, and takes a design from questions and research, through design tokens, to Figma or code. It is MIT licensed.</p>
+        <p class="case-copy">I used it as the method for rebuilding the original journey. Here is what that looked like in practice:</p>
+        <ul class="case-list">
+          <li><strong>Measure before editing.</strong> The source screens were measured, and nothing in the source was added, removed or renamed without approval.</li>
+          <li><strong>Keep personal media out.</strong> Raw face, account and address captures stayed local. The prototype uses labelled stand-ins and simulated camera, location and processing.</li>
+          <li><strong>Record what I could not establish.</strong> The original font family and production timing were unknowable from captures, so I noted them instead of presenting approximations as matches.</li>
+          <li><strong>Hand off against evidence.</strong> The skill ends with a checklist, and nothing counts as done until each item is ticked with proof.</li>
+        </ul>
+      </div>
+      <div class="mv-skill-side">
+        <div>
+          <h3 class="mv-play-title">Download it and explore</h3>
+          <p class="mv-play-copy">Use it yourself. Download or clone the repository, then for Claude Code copy the skill folder into <code style="font-family:var(--font-mono);font-size:13px">~/.claude/skills/</code>.</p>
+        </div>
+        <div class="mv-skill-actions">
+          <a class="mv-btn mv-btn--solid" href="https://github.com/muidemakz/ui-design-with-mm" target="_blank" rel="noopener">Get the skill<br>on GitHub</a>
+          <p class="mv-skill-meta">Public repository · MIT License · No personal preferences included</p>
+        </div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="case-section" id="next"><div class="wrap">
+    <p class="case-label">What I Would Do Next</p>
+    <ul class="case-list">
+      <li><strong>Test with real merchants.</strong> Put the redesigned status and limits screens in front of them. Synthetic sessions show where to look, not what people will do.</li>
+      <li><strong>Fix the dead end behind View More.</strong> On the Level 3 entry screen, four After participants tapped it and reached the prototype note, and two of them gave up there.</li>
+      <li><strong>Get product answers first.</strong> Mandatory versus optional location, and how long location data is kept, before I write more copy about either.</li>
+      <li><strong>Ask a legal owner</strong> for a plain-language summary of the indemnity text. It is not mine to write.</li>
+    </ul>
+    <p class="case-copy">I started from evidence rather than taste, changed only what the facts allowed, tested it against the original with the same questions, and read the raw answers when the headline score barely moved. I also wrote down what did not move.</p>
+
+    <p class="case-label" style="margin-top:44px">Sources And Prototypes</p>
+    <ul class="mv-links">
+      <li><a class="mv-link" href="https://www.figma.com/proto/twrcL6UWdFKkj6nIa5qjyK?node-id=50-479&amp;starting-point-node-id=50%3A479&amp;scaling=scale-down&amp;content-scaling=fixed" target="_blank" rel="noopener"><span class="mv-link-name">Before prototype</span><span class="mv-link-arrow">Figma &nearr;</span><span class="mv-link-note">The original journey, rebuilt from supplied captures. Fictional data, simulated media.</span></a></li>
+      <li><a class="mv-link" href="https://www.figma.com/proto/twrcL6UWdFKkj6nIa5qjyK?node-id=195-4774&amp;starting-point-node-id=195%3A4774&amp;scaling=scale-down&amp;content-scaling=fixed" target="_blank" rel="noopener"><span class="mv-link-name">After prototype</span><span class="mv-link-arrow">Figma &nearr;</span><span class="mv-link-note">The redesigned status, limits and next-step flow.</span></a></li>
+      <li><a class="mv-link" href="https://play.google.com/store/apps/details?gl=ng&amp;hl=en-gb&amp;id=com.moniepoint.business" target="_blank" rel="noopener"><span class="mv-link-name">Public Android reviews</span><span class="mv-link-arrow">Google Play &nearr;</span><span class="mv-link-note">The symptoms that prompted this. They do not establish cause, prevalence or persistence.</span></a></li>
+      <li><a class="mv-link" href="https://github.com/muidemakz/ui-design-with-mm" target="_blank" rel="noopener"><span class="mv-link-name">UI Design with MM</span><span class="mv-link-arrow">GitHub &nearr;</span><span class="mv-link-note">The design skill used for the reconstruction. Public repository, MIT licensed.</span></a></li>
+    </ul>
+    <p class="case-copy" style="margin-top:18px;font-size:15px;opacity:.8">The Valideity reports sit in a private workspace and ask for a login, so the evidence above is written to stand without them.</p>
+  </div></section>
+
+  <section class="case-section case-other"><div class="wrap"><p class="case-label">Shipped Work</p><div class="case-other-grid"><a class="case-other-card" href="omnione.html"><span class="case-other-name">Omnione Design System</span><span class="case-other-meta">Systems · B2B · Leadership</span></a><a class="case-other-card" href="fundall.html"><span class="case-other-name">Fundall</span><span class="case-other-meta">Credit · Financial UX</span></a><a class="case-other-card" href="teesaslms.html"><span class="case-other-name">Teesas LMS v2.0</span><span class="case-other-meta">EdTech · Product Design</span></a><a class="case-other-card" href="valideity.html"><span class="case-other-name">Valideity</span><span class="case-other-meta">AI Research · Product Ownership</span></a></div></div></section>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-top"><p class="footer-label">Let's Connect</p></div>
+  <div class="wrap"><div class="footer-links">
+    <a href="https://www.linkedin.com/in/makanju-excellent-211b0a44/" class="footer-link" target="_blank" rel="noopener">LinkedIn &rarr;</a>
+    <a href="https://dribbble.com/muidemakz" class="footer-link" target="_blank" rel="noopener">Dribbble &rarr;</a>
+    <a href="https://www.behance.net/oemakanju" class="footer-link" target="_blank" rel="noopener">Behance &rarr;</a>
+    <a href="https://www.instagram.com/oluwaexcellent" class="footer-link" target="_blank" rel="noopener">Instagram &rarr;</a>
+  </div></div>
+  <div class="footer-legal-row"><p class="wrap footer-legal">Excellent Makanju, Senior Product Designer</p></div>
+</footer>
+<script src="js/case-quicknav.js"></script>
+<script src="js/before-after.js"></script>
+<script src="js/study-live.js"></script>
+<script src="js/moniepoint-page.js"></script>
+</body>
+</html>

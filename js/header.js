@@ -32,4 +32,13 @@
       "</div>" +
     "</header>"
   );
+
+  // Site-wide UI motion layer. Every page already loads this file at the top
+  // of <body>, so it is the one place to include the layer. The stylesheet is
+  // written here (render-blocking, so nothing flashes unstyled) and, being in
+  // the body, it comes after every head stylesheet in the cascade. The script
+  // waits for DOMContentLoaded itself. Both are no-ops for visitors who prefer
+  // reduced motion. Remove these two lines to switch the layer off everywhere.
+  document.write('<link rel="stylesheet" href="css/motion.css">');
+  document.write('<script src="js/motion.js"><\/script>');
 })();

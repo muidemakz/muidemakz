@@ -19,10 +19,11 @@ test('all 18 unfinished entries have distinct working preview routes', () => {
   }
 });
 
-test('the nine existing case-study links and availability stay intact', () => {
+test('the eleven existing case-study links and availability stay intact', () => {
   assert.deepEqual(Array.from(projects.filter(project => project.status !== 'coming-soon'), project => project.link), [
     'omnione.html', 'fundall.html', 'teesaslms.html', 'valideity.html',
-    'empty-state.html', 'coreloops.html', 'cardtonic.html', 'venx.html', 'raven-pay.html'
+    'empty-state.html', 'cardtonic.html', 'moniepoint-verification.html', 'sun-king.html',
+    'coreloops.html', 'venx.html', 'raven-pay.html'
   ]);
 });
 

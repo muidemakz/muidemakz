@@ -650,20 +650,26 @@
 
 /* ---------- CTA ---------- */
 
+/* A call to action is a circle, the same shape as the "Visit" badge in the hero,
+   so every outbound action on a case study reads as one family. Text goes inside
+   on two short lines (use <br>), no arrow. */
 .case-cta {
   display: inline-flex;
+  flex: none;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  width: 170px;
+  height: 170px;
   margin-top: 28px;
-  background: var(--ink-hard);
-  color: var(--paper-hard);
-  border: 2px solid var(--ink-hard);
-  padding: 15px 24px;
+  border-radius: 50%;
+  border: 0.5px solid rgba(0, 4, 90, 0.25);
+  background: #000;
+  color: #f8f7f9;
+  text-align: center;
   font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: normal;
   transition: background 0.14s ease, color 0.14s ease, border-color 0.14s ease,
               transform 0.14s ease, box-shadow 0.14s ease;
 }
@@ -678,6 +684,10 @@
 }
 
 .case-cta:active { transform: translate(0, 0); box-shadow: none; }
+
+@media (max-width: 1100px) {
+  .case-cta { width: 120px; height: 120px; font-size: 13px; }
+}
 
 /* ---------- other projects ---------- */
 

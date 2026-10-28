@@ -78,8 +78,7 @@
     <div class="wrap">
       <p class="case-label">The Problem</p>
       <p class="case-copy case-copy--lg">
-        The right-side drawer pattern forces a context switch on every filter attempt, open,
-        configure in isolation, apply, then return to see results. That's reasonable for complex
+        The right-side drawer pattern forces a context switch on every filter attempt: open, configure in isolation, apply, then return to see results. That's reasonable for complex
         query-building, but creates friction for users who just want to narrow by a single dimension, or
         who frequently switch between combinations.
       </p>
@@ -88,11 +87,11 @@
           <div class="case-split">
             <div class="case-split-cell case-split-cell--dark">
               <p class="case-split-label case-split-label--lg">Major Problem 1</p>
-              <p class="case-split-copy">All 13 filters treated as equal, categorical filters, date ranges, and boolean toggles listed vertically with no hierarchy, regardless of how often each is actually used.</p>
+              <p class="case-split-copy">All 13 filters treated as equal: categorical filters, date ranges and on/off toggles listed vertically with no hierarchy, regardless of how often each is actually used.</p>
             </div>
             <div class="case-split-cell">
               <p class="case-split-label">Major Problem 2</p>
-              <p class="case-split-copy">The drawer occludes the list, users lose sight of the results they're trying to narrow while they're configuring the filter meant to narrow them.</p>
+              <p class="case-split-copy">The drawer covers the list, so users lose sight of the results they are trying to narrow while they configure the filter meant to narrow them.</p>
             </div>
           </div>
           <div class="case-figure-inset">
@@ -156,7 +155,7 @@
               <p class="case-split-label case-split-label--title">Constraints</p>
               <p class="case-split-copy">
                 Primarily desktop, but tablet can't be ignored. The filter set itself (Status, Supplier, Cost
-                Code, etc.) had to stay the same, this was a reorganization brief, not a scope cut. Most
+                Code, etc.) had to stay the same: this was a reorganization brief, not a scope cut. Most
                 users apply 1&ndash;2 filters; some apply 5&ndash;6 at once. Current design: a right-side
                 drawer with a single batch Apply button.
               </p>
@@ -186,8 +185,7 @@
       <p class="case-label">My Solution</p>
 <div class="case-figures case-walkthrough"><figure class="case-figure case-figure--grey" data-case-loop aria-label="Quick filters in use"><div class="case-loop-stage" style="aspect-ratio:1080/526"><img class="case-loop-frame is-current" src="images/coreloops/rest-state.png" alt="No filters" data-loop-label="No filters" loading="lazy" width="1080" height="526"><img class="case-loop-frame" src="images/coreloops/one-filter-state.png" alt="One filter" data-loop-label="One filter" loading="lazy" aria-hidden="true" width="1080" height="527"><img class="case-loop-frame" src="images/coreloops/multiple-filter-state.png" alt="Combined filters" data-loop-label="Combined filters" loading="lazy" aria-hidden="true" width="1080" height="449"></div><div class="case-loop-controls"><span class="case-loop-label">No filters</span><div class="case-loop-steps" aria-label="Walkthrough screens"><button type="button" data-loop-step="0" aria-label="Show No filters" aria-current="step"><span class="case-loop-progress" aria-hidden="true"></span></button><button type="button" data-loop-step="1" aria-label="Show One filter"><span class="case-loop-progress" aria-hidden="true"></span></button><button type="button" data-loop-step="2" aria-label="Show Combined filters"><span class="case-loop-progress" aria-hidden="true"></span></button></div></div><figcaption>Original design screens · No filters, one filter, combined filters</figcaption></figure></div>
       <p class="case-copy">
-        The core idea: separate filters by frequency of use. Five customizable filters live as persistent
-        inline chips directly in the toolbar, always visible, filtering on selection. Each chip opens
+        The core idea: separate filters by frequency of use. Five customizable filters live as persistent inline chips directly in the toolbar, always visible and one click away. Each chip opens
         a scrollable dropdown where users make a selection and click Apply to see the list update
         immediately below it. Every other filter moves into a focused "More Filters" modal, grouped by
         theme.
@@ -242,12 +240,12 @@
         </div>
         <div class="case-leadership">
           <p class="case-leadership-label">More Filters</p>
-          <p class="case-leadership-copy">Maintains the original drawer interaction while adding structure, every remaining filter (Cost Code, Sync Status, Assigned To, date ranges, three toggles) organized into five scannable sections: Documents, Ownership, Financial, Dates, Flags. Users can also customize their Quick Filters from here.</p>
+          <p class="case-leadership-copy">Keeps the original drawer interaction and adds structure: every remaining filter (Cost Code, Sync Status, Assigned To, date ranges, three toggles) organized into five scannable sections: Documents, Ownership, Financial, Dates, Flags. Users can also customize their Quick Filters from here.</p>
           <div class="case-crop"><img width="1080" height="671" src="images/coreloops/more-filters-modal.png" alt="" loading="lazy" style="width: 142.56%; left: -42.62%; top: -0.69%;"></div>
         </div>
         <div class="case-leadership">
           <p class="case-leadership-label">Active Filter Strip</p>
-          <p class="case-leadership-copy">Dismissible pills between the toolbar and the document list, the single source of truth for what's active, whether set via a chip or via More Filters. Pills dismiss individually; a "Clear all" link sits at the strip's end.</p>
+          <p class="case-leadership-copy">Dismissible pills between the toolbar and the document list, the one place that shows everything that is active, whether it was set from a chip or from More Filters. Pills dismiss individually; a "Clear all" link sits at the strip's end.</p>
           <div class="case-crop"><img width="1331" height="722" src="images/coreloops/screen-for-the-one-decision.png" alt="" loading="lazy" style="width: 242.66%; left: -0.89%; top: -51.06%;"></div>
         </div>
         <div class="case-leadership">
@@ -380,7 +378,7 @@
       <div class="case-duo">
         <div class="case-duo-cell">
           <p class="case-duo-title">What I'd Measure</p>
-          <p class="case-duo-copy">To validate before this ships: time-to-first-result, and how the drawer/More Filters open rate trends over time, a declining open rate would mean the quick filters are absorbing most of what people actually need.</p>
+          <p class="case-duo-copy">To validate before this ships: time-to-first-result, and how often people open the More Filters drawer over time. A declining open rate would mean the quick filters are absorbing most of what people actually need.</p>
         </div>
         <div class="case-duo-cell">
           <p class="case-duo-title">What Would Prove This Wrong</p>
@@ -403,7 +401,7 @@
         narrowing their list, and always have a one-click way out.
       </p>
       <p class="case-status">Status: Delivered to Coreloops as a proposed redesign with a working Figma prototype, not yet shipped. The five-pin cap and quick-filter defaults are flagged as assumptions to confirm against real usage data before release.</p>
-      <a class="case-cta" href="https://www.figma.com/proto/wSzNuMP4qzW4GdchSugiPv/Coreloops-Filter-Results?page-id=1%3A3&node-id=22-10292&viewport=-3532%2C549%2C0.62&t=IrgRrAWG4njQChAA-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=22%3A10292" target="_blank" rel="noopener">View Figma Prototype <span aria-hidden="true">&rarr;</span></a>
+      <a class="case-cta" href="https://www.figma.com/proto/wSzNuMP4qzW4GdchSugiPv/Coreloops-Filter-Results?page-id=1%3A3&node-id=22-10292&viewport=-3532%2C549%2C0.62&t=IrgRrAWG4njQChAA-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=22%3A10292" target="_blank" rel="noopener">View Figma<br>Prototype</a>
     </div>
   </section>
 

@@ -1,0 +1,125 @@
+/* Valideity scores panel (js/study-live.js).
+   Predicted (synthetic sessions) and Measured (real participants) are kept as
+   separate figures on purpose. Shared by every case study that shows scores. */
+
+/* ---------- Valideity scores panel (js/study-live.js) ---------- */
+
+.mv-study { margin: 8px 0 44px; }
+
+.mv-study-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  margin-bottom: 18px;
+}
+
+.mv-study-head .case-label { margin: 0; }
+
+.mv-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 11px;
+  border: 1px solid var(--ink-hard);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.mv-badge--live { background: var(--ink-hard); color: var(--paper-hard); }
+.mv-badge i { width: 8px; height: 8px; border-radius: 50%; background: #2fd16b; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .mv-badge i { animation: mv-blink 1.6s ease-in-out infinite; }
+}
+
+@keyframes mv-blink { 50% { opacity: 0.25; } }
+
+.mv-study-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--ink-hard);
+  border-left: 1px solid var(--ink-hard);
+}
+
+.mv-score {
+  padding: 24px 22px 26px;
+  border-right: 1px solid var(--ink-hard);
+  border-bottom: 1px solid var(--ink-hard);
+}
+
+.mv-score--after { background: var(--ink-hard); color: var(--paper-hard); }
+
+.mv-score-label {
+  margin: 0 0 8px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.mv-score-value {
+  margin: 0 0 14px;
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: clamp(56px, 7vw, 88px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.mv-score-value small { margin-left: 6px; font-size: 0.26em; letter-spacing: 0; opacity: 0.55; }
+
+.mv-meter { height: 8px; margin-bottom: 16px; background: var(--hard-line); overflow: hidden; }
+.mv-score--after .mv-meter { background: rgba(242, 240, 235, 0.22); }
+.mv-meter span { display: block; height: 100%; background: var(--ink-hard); transform-origin: left; transform: scaleX(var(--v)); }
+.mv-score--after .mv-meter span { background: var(--paper-hard); }
+.mv-score--measured .mv-meter span { background: var(--accent); }
+
+.mv-pips { display: flex; gap: 6px; margin-bottom: 14px; }
+
+.mv-pip {
+  flex: 1;
+  height: 12px;
+  border: 1.5px solid currentColor;
+}
+
+/* 20 sessions per version: thinner gaps so every session still gets a pip */
+.mv-pips--dense { gap: 2px; }
+.mv-pips--dense .mv-pip { border-width: 1px; }
+.mv-pip.is-done { background: currentColor; }
+.mv-pip.is-stopped { background: repeating-linear-gradient(135deg, currentColor 0 2px, transparent 2px 5px); }
+
+.mv-score-copy { margin: 0; font-family: var(--font-hard); font-size: 15.5px; line-height: 1.45; }
+
+/* animate in once visible */
+.mv-js .mv-study:not(.is-in) .mv-meter span { transform: scaleX(0); }
+.mv-js .mv-study:not(.is-in) .mv-pip { opacity: 0; transform: scaleY(0.2); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .mv-meter span { transition: transform 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s; }
+  .mv-pip { transition: opacity 0.3s ease, transform 0.3s ease; transition-delay: calc(0.25s + var(--i) * 90ms); transform-origin: bottom; }
+}
+
+.mv-study-foot {
+  margin: 16px 0 0;
+  max-width: 76ch;
+  font-family: var(--font-hard);
+  font-size: 14.5px;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+@media (max-width: 860px) {
+  .mv-study-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* A quick-nav link to the scores section stays hidden until scores exist.
+   The nav sets its own display, which would otherwise beat the hidden attribute. */
+[data-study-nav][hidden] { display: none; }

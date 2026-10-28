@@ -1,0 +1,284 @@
+/* Before / after comparison (js/before-after.js).
+
+   One stage shows two screens at the same crop. The After sits on top and is
+   clipped from the handle rightwards, so dragging left reveals more After and
+   dragging right reveals more Before. Source images may differ in height (the
+   status screen grows once the limits card is added), so each stage declares
+   the crop window it shows with three custom properties set inline:
+
+     --ba-w   source image width in px
+     --ba-ch  height of the crop window in px
+     --ba-ct  top of the crop window in px
+
+   Both images are then positioned from those numbers, never stretched. */
+
+/* wide pages (desktop screenshots) use the full column. The extra right padding
+   keeps the offset shadow from being clipped by an overflow-hidden parent. */
+.ba-figure.ba-figure--wide { max-width: none; padding: 0 8px 8px 0; }
+
+.ba-figure {
+  margin: 0;
+  width: 100%;
+  max-width: 440px;
+}
+
+.ba {
+  --ba-pos: 50;
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--ba-w) / var(--ba-ch);
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--ba-bg, #f7f7f7);
+  border: 2px solid var(--ink-hard);
+  box-shadow: 8px 8px 0 var(--ink-hard);
+  /* horizontal drags belong to the comparison; vertical swipes still scroll
+     the page, so the stage never traps a thumb on a phone */
+  touch-action: pan-y;
+  cursor: ew-resize;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.ba img {
+  position: absolute;
+  left: 0;
+  top: calc(var(--ba-ct) / var(--ba-ch) * -100%);
+  width: 100%;
+  height: auto;
+  max-width: none;
+  display: block;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.ba-after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  clip-path: inset(0 0 0 calc(var(--ba-pos) * 1%));
+}
+
+/* ---------- handle ---------- */
+
+.ba-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--ba-pos) * 1%);
+  width: 3px;
+  margin-left: -1.5px;
+  z-index: 4;
+  background: var(--ink-hard);
+  /* hairline halo so the line survives the dark navy card on the dashboard */
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9);
+  pointer-events: none;
+}
+
+.ba-grip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  background: var(--accent);
+  border: 2px solid var(--ink-hard);
+  color: #fff;
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+
+.ba-grip svg { width: 22px; height: 22px; display: block; }
+
+.ba.is-dragging .ba-grip {
+  transform: translate(-50%, -50%) scale(1.08);
+  box-shadow: 3px 3px 0 var(--ink-hard);
+}
+
+/* keyboard focus lives on the hidden range input; show it on the grip */
+.ba-range {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ba-range:focus-visible ~ .ba-handle .ba-grip {
+  outline: 3px solid var(--ink-hard);
+  outline-offset: 3px;
+}
+
+/* ---------- Before / After chips ---------- */
+
+/* The Before and After tags sit in a row above the image, not on it, so a
+   highlighted region near the top edge is never covered by a tag. */
+.ba-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 12px;
+}
+
+.ba-chip {
+  padding: 5px 9px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--ink-hard);
+  /* real buttons: press one and the line glides to that side */
+  cursor: pointer;
+  min-height: 30px;
+  transition: background 0.14s ease, color 0.14s ease, border-color 0.14s ease,
+              transform 0.14s ease, box-shadow 0.14s ease;
+}
+
+.ba-chip--before { background: var(--paper-hard); color: var(--ink-hard); }
+.ba-chip--after { background: var(--ink-hard); color: var(--paper-hard); }
+
+.ba-chip:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink-hard);
+}
+
+.ba-chip:active { transform: none; box-shadow: none; }
+.ba-chip:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* the side currently filling the frame */
+.ba-chip[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--accent); }
+.ba-chip[aria-pressed="true"]:hover { box-shadow: 3px 3px 0 var(--ink-hard), 0 0 0 2px var(--accent); }
+
+/* ---------- change markers (driven by the "what changed" list) ---------- */
+
+.ba-mark {
+  position: absolute;
+  z-index: 3;
+  border: 3px solid var(--accent);
+  background: rgba(255, 59, 0, 0.08);
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.2, 0.7, 0.2, 1);
+  pointer-events: none;
+}
+
+.ba-mark.is-on { opacity: 1; transform: none; }
+.ba[data-side="before"] .ba-mark { opacity: 0; }
+
+.ba-mark-n {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  display: grid;
+  place-items: center;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.ba-caption {
+  margin: 14px 0 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ba-grip, .ba-chip, .ba-mark { transition: none; }
+  .ba-chip:hover { transform: none; }
+}
+
+/* ---------- "what changed" list and evidence note ----------
+   The list beside a comparison: <ol data-ba-target="ID"> whose buttons carry
+   data-box, so pressing one slides to After and outlines that region (see
+   js/before-after.js). Shared by every case study that uses the component. */
+
+.mv-changes-label {
+  margin: 0 0 10px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.mv-changes {
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
+  border-top: 1px solid var(--ink-hard);
+}
+
+.mv-changes li { border-bottom: 1px solid var(--ink-hard); }
+
+.mv-change {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 14px;
+  align-items: start;
+  width: 100%;
+  padding: 14px 14px 14px 4px;
+  background: transparent;
+  border: 0;
+  color: var(--ink-hard);
+  font-family: var(--font-hard);
+  font-size: 16px;
+  line-height: 1.45;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.14s ease, color 0.14s ease, padding 0.14s ease;
+}
+
+.mv-change-n {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  margin-left: 4px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.mv-change:hover { background: rgba(255, 59, 0, 0.1); }
+.mv-change[aria-pressed="true"] { background: var(--ink-hard); color: var(--paper-hard); padding-left: 10px; }
+.mv-change:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+.mv-change strong { font-weight: 700; }
+
+.mv-evidence {
+  border: 1px solid var(--ink-hard);
+  padding: 18px 20px;
+  max-width: 62ch;
+}
+
+.mv-evidence-label {
+  margin: 0 0 8px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.mv-evidence p:last-child { margin: 0; font-family: var(--font-hard); font-size: 15.5px; line-height: 1.5; }
