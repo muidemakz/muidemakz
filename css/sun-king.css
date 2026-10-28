@@ -788,3 +788,42 @@
   .sk-compare-stage--ba { padding: 16px 16px 20px 16px; }
   .sk-compare-changes { padding: 18px 16px 22px; }
 }
+
+/* the simulated mouse in the Get Phone playthrough */
+.sk-cursor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  width: 26px;
+  height: 26px;
+  margin: -2px 0 0 -3px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(0, 0);
+  transition: transform 1s cubic-bezier(0.22, 0.9, 0.22, 1), opacity 0.3s ease;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.35));
+  will-change: transform;
+}
+.sk-cursor.is-on { opacity: 1; }
+.sk-cursor.is-snap { transition: opacity 0.3s ease; }
+.sk-cursor svg { display: block; transform-origin: 3px 2px; transition: transform 0.12s ease; }
+.sk-cursor.is-click svg { transform: scale(0.8); }
+.sk-cursor-ring {
+  position: absolute;
+  left: 3px;
+  top: 2px;
+  width: 36px;
+  height: 36px;
+  margin: -18px 0 0 -18px;
+  border-radius: 50%;
+  border: 3px solid var(--accent);
+  opacity: 0;
+  transform: scale(0.2);
+}
+.sk-cursor.is-click .sk-cursor-ring { animation: sk-ring 0.5s ease-out; }
+@keyframes sk-ring {
+  0% { opacity: 0.95; transform: scale(0.2); }
+  100% { opacity: 0; transform: scale(1.5); }
+}
+@media (prefers-reduced-motion: reduce) { .sk-cursor { display: none; } }

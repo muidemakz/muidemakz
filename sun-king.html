@@ -38,10 +38,7 @@
       </div>
       <h1 class="case-title">Read The Page, Rebuild It, Fix It</h1>
       <p class="case-lede">
-        I read Sun King's smartphone page twice with Valideity, rebuilt it in Figma with my design skill,
-        tested it with 5 simulated shoppers, then redesigned it from what they found. Installments stay
-        the main path. The total cost is now visible, pay in full is a clear second option, and every form
-        and button works.
+        I read Sun King's smartphone page twice with Valideity, rebuilt it in Figma with my design skill, then redesigned it from what the simulated shoppers found. Installments stay the main path. The total cost is now visible and pay in full is a clear second option. Tested the same way, the rebuilt original scored 76 and the redesign 86.
       </p>
       <p class="case-lede">
         An independent exercise on Sun King's public page, not a Sun King project. Every finding comes from
@@ -126,20 +123,29 @@
             "score": 86,
             "sessions": 10,
             "completed": 9,
-            "note": "The redesign in Figma, with 8 findings, none high severity."
+            "note": "The redesign in Figma, with 8 findings (6 to fix, 2 that worked), none high severity."
           }
         ],
         "measured": {
           "participants": 0,
           "note": "No real customer took part. Every figure here comes from simulated shoppers."
         },
-        "foot": "Valideity's own Predicted scores for my Figma prototypes, not Sun King's live page. Same run on the same day: 10 sessions each, 5 personas, Valideity's standard setting for how much simulated people differ from each other, and the same 13 questions. A first round with 5 sessions each scored 61 for the Before and 87 for the After. The rebuilt buttons were not wired up yet then, so I report the rounds separately and do not add them together. Predicted means scored from simulated sessions. Measured means real people took part.",
+        "foot": "Valideity's own Predicted scores for my Figma prototypes, not Sun King's live page. Same run on the same day: 10 sessions each, 5 personas, Valideity's standard setting for how much simulated people differ from each other, and the same 13 questions. A first round with 5 sessions each scored 61 for the Before and 87 for the After. The rebuilt buttons were not wired up yet then, so I report the rounds separately and do not add them together. Predicted means scored from simulated sessions. Measured means real people took part. After these runs I removed the Pay outright price row from the More smartphones cards, renamed the Buy now, pay later button to Pay small small, and removed the saving badges from the cards and the phone page price tiles, and lengthened one phone description, so the After score is for the version before those changes.",
         "studyLinks": {
           "before": null,
           "after": null
         }
       }
       </script>
+
+      <div class="mv-play" data-study-links-row hidden>
+        <h3 class="mv-play-title">Take the study yourself</h3>
+        <p class="mv-play-copy">Run the same task as a real participant, on the Before or the After. Both are my Figma prototypes, not Sun King&rsquo;s live page, and no payment is taken. Real participants are counted separately from the simulated shoppers above.</p>
+        <div class="mv-play-actions">
+          <a class="mv-btn mv-btn--before" data-study-link="before" href="#" target="_blank" rel="noopener" hidden>Take the<br>Before study<small>Rebuilt original</small></a>
+          <a class="mv-btn mv-btn--after" data-study-link="after" href="#" target="_blank" rel="noopener" hidden>Take the<br>After study<small>Redesigned page</small></a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -159,7 +165,7 @@
         </div>
         <div class="case-impact-item"><span class="case-impact-value">8</span><span class="case-impact-label">Findings on the live page</span></div>
         <div class="case-impact-item"><span class="case-impact-value">14&rarr;1</span><span class="case-impact-label">Cards built from one component</span></div>
-        <div class="case-impact-item"><span class="case-impact-value">0</span><span class="case-impact-label">Dead controls out of 66 tap targets</span></div>
+        <div class="case-impact-item"><span class="case-impact-value">0</span><span class="case-impact-label">Unwired controls in my own check of 66 tap targets</span></div>
         <div class="case-impact-item"><span class="case-impact-value">10</span><span class="case-impact-label">Prompts for the core redesign</span></div>
       </div>
 
@@ -198,7 +204,7 @@
               <p class="sk-list-copy">found "pay small small" (Sun King's name for paying in installments) undefined: no amount, frequency or term.</p>
             </li>
           </ul>
-          <p class="sk-note">8 findings in all. The report scores the page 51 ("Mixed"). That is a prediction and Valideity's scoring is still being tuned, so I rely on the findings, not the number.</p>
+          <p class="sk-note">8 findings in all, from 5 sessions. Valideity's scoring is still being tuned, so I rely on the findings, not a score.</p>
         </div>
       </div>
 
@@ -274,9 +280,7 @@
         order, every part a reusable component. That gave me a faithful copy to test and change safely.
       </p>
       <p class="case-copy">
-        I ran the rebuild through Valideity before editing it: 5 friction findings, 4 high severity. The
-        pricing finding matched the live page. Two pointed at my rebuild, not Sun King's page: the buttons
-        and form were not wired up yet. On the live page they work.
+        I ran the rebuild through Valideity before editing it. The pricing finding matched the live page. Two findings pointed at my rebuild, not Sun King's page: the buttons and form were not wired up yet. On the live page they work.
       </p>
       <div class="sk-term" data-sk-term style="margin-top: 32px;">
         <div class="sk-term-bar">UI Design with MM &middot; rebuild</div>
@@ -319,7 +323,7 @@
       <ul class="sk-list">
         <li>
           <p class="sk-list-label">Total cost is visible</p>
-          <p class="sk-list-copy">Each card shows the pay-small-small (installment) total, with the pay-in-full price and saving beside it. Installments stay first.</p>
+          <p class="sk-list-copy">Each card shows the pay-small-small (installment) total, with the pay-in-full option beside it. Installments stay first.</p>
         </li>
         <li>
           <p class="sk-list-label">Pay in full</p>
@@ -335,7 +339,7 @@
         </li>
         <li>
           <p class="sk-list-label">Buttons</p>
-          <p class="sk-list-copy">0 dead controls across 66 tap targets. Buttons scroll to the form and show feedback.</p>
+          <p class="sk-list-copy">In my own check, none of the 66 tap targets was left unwired. Buttons scroll to the form and show feedback. Valideity's After run still reported the ⓘ next to EasyBuy doing nothing for 3 of 10 simulated shoppers.</p>
         </li>
       </ul>
       </div>
@@ -393,14 +397,14 @@
           <div class="sk-compare-head">
             <div>
               <p class="sk-compare-title">More Smartphones</p>
-              <p class="sk-compare-copy">The price moves out of “Details” onto the card, with pay in full beside it. The pay-in-full prices are my assumptions.</p>
+              <p class="sk-compare-copy">The price moves out of “Details” onto the card, and the main button now says Pay small small. Pay in full is a second, outlined Buy outright button that carries its own price. The pay-in-full prices are my assumptions, and so is the longer Infinix Hot 70 description, which I lengthened to match the other cards.</p>
             </div>
           </div>
           <div class="sk-compare-stage sk-compare-stage--ba">
             <figure class="ba-figure ba-figure--wide">
-              <div class="ba" id="ba-more" data-ba-label="more smartphones" style="--ba-w:1280;--ba-ch:1064;--ba-ct:0;--ba-bg:#fff">
+              <div class="ba" id="ba-more" data-ba-label="more smartphones" style="--ba-w:1280;--ba-ch:992;--ba-ct:0;--ba-bg:#fff">
                 <img class="ba-img ba-img--before" src="images/sun-king/before-more.png" width="1280" height="776" alt="More smartphones before: no price in view" loading="lazy">
-                <img class="ba-img ba-img--after" src="images/sun-king/after-more.png" width="1280" height="1064" alt="More smartphones after: outright and pay small small prices on each card" loading="lazy">
+                <img class="ba-img ba-img--after" src="images/sun-king/after-more.png" width="1280" height="992" alt="More smartphones after: the pay small small price on each card, a yellow Pay small small button and an outlined Buy outright button" loading="lazy">
               </div>
               <figcaption class="ba-caption">Drag the line, or press Before or After</figcaption>
             </figure>
@@ -408,9 +412,9 @@
           <div class="sk-compare-changes">
             <p class="mv-changes-label">What changed</p>
             <ol class="mv-changes" data-ba-target="ba-more">
-            <li><button type="button" class="mv-change" data-box="64 508 234 212; 370 532 234 212; 676 532 234 212; 982 532 234 212"><span class="mv-change-n">1</span><span><strong>Price on the card.</strong> The pay-outright and pay-small-small totals, with the down payment and weekly term, now sit on the card face and not behind Details.</span></button></li>
-            <li><button type="button" class="mv-change" data-box="76 642 210 30; 382 666 210 30; 688 666 210 30; 994 666 210 30"><span class="mv-change-n">2</span><span><strong>The saving, stated.</strong> Each card says what paying outright saves: ₦35,000 or ₦45,000, depending on the phone. These figures are assumptions.</span></button></li>
-            <li><button type="button" class="mv-change" data-box="64 795 234 44; 370 819 234 44; 676 819 234 44; 982 819 234 44"><span class="mv-change-n">3</span><span><strong>Pay in full, beside Buy now.</strong> A second, outlined button runs the outright purchase. Buy now, pay later stays yellow and first.</span></button></li>
+            <li><button type="button" class="mv-change" data-box="64 532 234 139; 370 532 234 139; 676 532 234 139; 982 532 234 139"><span class="mv-change-n">1</span><span><strong>Price on the card.</strong> The pay-small-small total, with the down payment and weekly term, now sits on the card face and not behind Details.</span></button></li>
+            <li><button type="button" class="mv-change" data-box="64 691 234 44; 370 691 234 44; 676 691 234 44; 982 691 234 44"><span class="mv-change-n">2</span><span><strong>The button says what it is.</strong> &ldquo;Buy now, pay later&rdquo; becomes &ldquo;Pay small small&rdquo;, so it reads as the same plan as the price above it.</span></button></li>
+            <li><button type="button" class="mv-change" data-box="64 747 234 44; 370 747 234 44; 676 747 234 44; 982 747 234 44"><span class="mv-change-n">3</span><span><strong>Pay in full, beside it.</strong> A second, outlined button runs the outright purchase. Pay small small stays yellow and first.</span></button></li>
             </ol>
           </div>
         </div>
@@ -430,6 +434,7 @@
               <img class="sk-play-frame" src="images/sun-king/play-4.png" width="1200" height="955" alt="Phone list open, with a tick box and a picture for each phone" data-label="Phone list open, with a tick box and a picture for each phone" aria-hidden="true" loading="lazy">
               <img class="sk-play-frame" src="images/sun-king/play-5.png" width="1200" height="955" alt="Phone chosen, both consents ticked, human check passed" data-label="Phone chosen, both consents ticked, human check passed" aria-hidden="true" loading="lazy">
               <img class="sk-play-frame" src="images/sun-king/play-6.png" width="1200" height="955" alt="Submitted: the request, and what happens next" data-label="Submitted: the request, and what happens next" aria-hidden="true" loading="lazy">
+              <span class="sk-cursor" data-sk-cursor aria-hidden="true"><i class="sk-cursor-ring"></i><svg viewBox="0 0 24 24" width="26" height="26" focusable="false"><path d="M3 2v17l5-4.5L11.5 22l3-1.4L11 13.2 18 13z" fill="#fff" stroke="#0d0d0d" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
                 </div>
               </div>
               <div class="sk-laptop-base" aria-hidden="true"></div>
@@ -546,17 +551,17 @@
     <div class="wrap">
       <div class="case-duo sk-duo">
         <div class="case-duo-cell">
-          <p class="case-duo-title">What I Found</p>
-          <p class="case-duo-copy">I ran the updated design through Valideity too. In 19 simulated sessions, none chose Buy outright, and 9 looked at it and decided against it, mostly on cash flow. So installments stay the main path.</p>
+          <p class="case-duo-title">What The Two Figma Runs Found</p>
+          <p class="case-duo-copy">Same task, 10 simulated sessions each: the rebuilt original scored 76 and the redesign 86. The top finding in both was the enquiry confirmation. It recorded no chosen plan or next steps in the Before (7 of 10), and in the After 9 of 10 still said it was missing plan details, so that is the next fix. Also flagged in the After: phone not preselected (6 of 10) and no phone name on the form (5 of 10). Buy outright exists only in the After, and none of its findings concern it, so I cannot say how shoppers would use it.</p>
         </div>
         <div class="case-duo-cell">
           <p class="case-duo-title">What This Does Not Show</p>
-          <p class="case-duo-copy">It is a pointer, not proof. Most of the personas were installment shoppers by design, and the page leans that way too. No real customer took part.</p>
+          <p class="case-duo-copy">It is a pointer, not proof. Ten sessions per version and five personas, all simulated. No real customer took part.</p>
         </div>
       </div>
       <div class="case-flag-box" style="margin-top: 24px;">
         <p class="case-flag-label">Next</p>
-        <p class="case-flag-copy">Test with real Sun King customers.</p>
+        <p class="case-flag-copy">Make the confirmation repeat the chosen plan, then test with real Sun King customers, including the Buy outright path, which only the After has and these findings do not cover.</p>
       </div>
     </div>
   </section>
@@ -567,10 +572,7 @@
       <p class="case-label">Conclusion</p>
       <p class="case-copy case-copy--lg">
         The research kept finding the same friction: people could not see what a phone would cost, and the
-        path from a card to a finished enquiry gave them no feedback. The redesign removes both without
-        touching Sun King’s model. Installments stay the main path. The total and the pay-in-full price sit
-        on every card, so no one does the sums. Every button responds, and the form says what happens next.
-        The page now answers the questions people hesitated over.
+        path from a card to a finished enquiry gave them no feedback. The redesign addresses both without touching Sun King’s model. Installments stay the main path, and the total and the pay-in-full price sit on every card, so no one does the sums. The score moved from 76 to 86, but the After run still found the confirmation missing plan details for 9 of 10 simulated shoppers, so that is the next thing to fix.
       </p>
       <div class="sk-two sk-end" style="margin-top: 32px;">
         <figure class="case-figure case-figure--grey sk-shot">
@@ -578,7 +580,7 @@
             <div class="ba-figure ba-figure--wide">
               <div class="ba" id="ba-detail" data-ba-label="EZ 3 Pro phone page" style="--ba-w:1280;--ba-ch:945;--ba-ct:0;--ba-bg:#fff">
                 <img class="ba-img ba-img--before" src="images/sun-king/before-detail.png" width="1280" height="892" alt="The EZ 3 Pro phone page before: weekly price and one Buy now button" loading="lazy">
-                <img class="ba-img ba-img--after" src="images/sun-king/after-detail.png" width="1280" height="945" alt="The EZ 3 Pro phone page after: weekly price, the saving for paying outright, Buy now pay later and Buy outright" loading="lazy">
+                <img class="ba-img ba-img--after" src="images/sun-king/after-detail.png" width="1280" height="945" alt="The EZ 3 Pro phone page after: weekly price, a Pay small small button and a Buy outright button" loading="lazy">
               </div>
             </div>
           </div>

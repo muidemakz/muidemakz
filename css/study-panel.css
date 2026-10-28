@@ -123,3 +123,78 @@
 /* A quick-nav link to the scores section stays hidden until scores exist.
    The nav sets its own display, which would otherwise beat the hidden attribute. */
 [data-study-nav][hidden] { display: none; }
+
+/* ---------- take the study yourself (shared by Moniepoint and Sun King) ---------- */
+
+.mv-play {
+  margin-top: 40px;
+  padding: 30px 28px;
+  border: 1px solid var(--ink-hard);
+  background: var(--ink-hard);
+  color: var(--paper-hard);
+}
+
+.mv-play-title {
+  margin: 0 0 10px;
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: clamp(22px, 2.6vw, 30px);
+  text-transform: uppercase;
+  letter-spacing: -0.015em;
+}
+
+.mv-play-copy { margin: 0 0 24px; max-width: 60ch; font-family: var(--font-hard); font-size: 17px; line-height: 1.5; }
+
+.mv-play-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+
+/* Calls to action are circles, matching the hero Visit badge across the portfolio. */
+.mv-btn {
+  display: inline-flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  padding: 0 14px;
+  border-radius: 50%;
+  border: 2px solid var(--paper-hard);
+  background: transparent;
+  color: var(--paper-hard);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.35;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background 0.14s ease, color 0.14s ease, border-color 0.14s ease, transform 0.14s ease, box-shadow 0.14s ease;
+}
+
+.mv-btn:hover, .mv-btn:focus-visible {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  transform: translate(-3px, -3px);
+  box-shadow: 5px 5px 0 var(--paper-hard);
+}
+
+.mv-btn:active { transform: none; box-shadow: none; }
+.mv-btn--solid { background: var(--paper-hard); color: var(--ink-hard); }
+
+/* The two study buttons echo the Before and After tags in the comparisons:
+   Before is the pale, outlined one; After is the solid orange one. */
+.mv-btn small {
+  display: block;
+  margin-top: 7px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  opacity: 0.78;
+}
+
+/* dark text on the orange, as in the site's active nav: about 6:1 contrast, where white would be about 3:1 */
+.mv-btn--after { background: var(--accent); border-color: var(--accent); color: var(--ink-hard); }
+.mv-btn--after:hover, .mv-btn--after:focus-visible { background: var(--paper-hard); border-color: var(--paper-hard); color: var(--ink-hard); }
+.mv-btn[hidden] { display: none; }
+.mv-play-note { margin: 18px 0 0; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; line-height: 1.6; opacity: 0.75; }

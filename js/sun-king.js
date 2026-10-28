@@ -110,22 +110,32 @@
     }
   }
 
-  // ---- get phone playthrough (loops; replay in the header) ----
+  // ---- get phone playthrough: a simulated cursor moves over the screens and clicks to reveal the next one ----
   var playBox = document.querySelector("[data-sk-play]");
   if (playBox) {
     var pframes = Array.prototype.slice.call(playBox.querySelectorAll(".sk-play-frame"));
-    var pbtns = Array.prototype.slice.call(playBox.querySelectorAll("[data-sk-step]"));
-    var pcount = playBox.querySelector("[data-sk-playcount]");
+    var pscreen = playBox.querySelector(".sk-play-screen");
+    var pcursor = playBox.querySelector("[data-sk-cursor]");
     var plabel = playBox.querySelector("[data-sk-playlabel]");
-    var pbar = playBox.querySelector(".sk-play-bar span");
-    var preplay = playBox.querySelector("[data-sk-playreplay]");
-    var pidx = 0;
-    var ptimer = null;
     var pvisible = false;
+    var ptimer = null;
+    var pgen = 0;
+    var pplaced = false;
     var preduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+    // One entry per screen. click = where the cursor presses on THIS screen (in the 1200 x 955 image's own pixels)
+    // to reveal the next one; read = how long to let people look at this screen before the cursor moves.
+    var PSTEPS = [
+      { hold: 2600 },                               // Before: the original form
+      { click: [600, 58], read: 1500 },             // After, empty: click First Name
+      { click: [800, 254], read: 1300 },            // Details typed in: click the phone selector
+      { click: [500, 310], read: 1400 },            // Phone list open: click Sun King EZ 3
+      { click: [468, 589], read: 1700 },            // Phone chosen, consents ticked: click Submit
+      { hold: 3600 }                                // Submitted
+    ];
+    var NATW = 1200, NATH = 955;
+
     function pshow(i) {
-      pidx = i;
       pframes.forEach(function (f, k) {
         f.classList.toggle("is-current", k === i);
         f.setAttribute("aria-hidden", k === i ? "false" : "true");
@@ -133,22 +143,79 @@
       if (plabel) plabel.textContent = pframes[i].getAttribute("data-label");
     }
 
-    function pstart() {
-      clearInterval(ptimer);
-      if (preduce) return;
-      ptimer = setInterval(function () {
-        if (!pvisible) return;
-        pshow((pidx + 1) % pframes.length);
-      }, 2600);
+    // image pixel -> position inside the screen box (object-fit: cover, anchored top left)
+    function pto(pt, frame) {
+      var s = pscreen.getBoundingClientRect();
+      var f = frame.getBoundingClientRect();
+      var k = Math.max(f.width / NATW, f.height / NATH);
+      return [f.left - s.left - pscreen.clientLeft + pt[0] * k, f.top - s.top - pscreen.clientTop + pt[1] * k];
     }
 
-        pshow(0);
+    function pmove(xy) { pcursor.style.transform = "translate(" + xy[0].toFixed(1) + "px," + xy[1].toFixed(1) + "px)"; }
+
+    function pcursorOn(frame) {
+      if (pplaced) return;
+      // start just off the lower right edge with no glide, then fade in
+      pcursor.classList.add("is-snap");
+      pmove(pto([NATW + 40, NATH * 0.9], frame));
+      void pcursor.offsetWidth;
+      pcursor.classList.remove("is-snap");
+      pcursor.classList.add("is-on");
+      pplaced = true;
+    }
+
+    function pcursorOff() {
+      pcursor.classList.remove("is-on", "is-click");
+      pplaced = false;
+    }
+
+    function pafter(ms, fn) {
+      var mine = pgen;
+      clearTimeout(ptimer);
+      ptimer = setTimeout(function () {
+        if (mine !== pgen) return;
+        if (!pvisible) { pcursorOff(); return; }   // scrolled away: the loop restarts when it is seen again
+        fn();
+      }, ms);
+    }
+
+    function pgo(i) {
+      var s = PSTEPS[i];
+      pshow(i);
+      if (!s.click) {
+        pcursorOff();
+        pafter(s.hold, function () { pgo((i + 1) % PSTEPS.length); });
+        return;
+      }
+      pcursorOn(pframes[i]);
+      pafter(s.read, function () {
+        pmove(pto(s.click, pframes[i]));
+        pafter(1000, function () {
+          pcursor.classList.add("is-click");
+          pafter(260, function () {
+            pcursor.classList.remove("is-click");
+            pgo(i + 1);
+          });
+        });
+      });
+    }
+
+    function pstart() {
+      pgen++;
+      clearTimeout(ptimer);
+      pcursorOff();
+      pshow(0);
+      if (preduce) return;
+      pgo(0);
+    }
+
+    pshow(0);
 
     if ("IntersectionObserver" in window) {
       var pio = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting && !pvisible) { pvisible = true; pshow(0); pstart(); }
-          else if (!e.isIntersecting) { pvisible = false; }
+        entries.forEach(function (en) {
+          if (en.isIntersecting && !pvisible) { pvisible = true; pstart(); }
+          else if (!en.isIntersecting) { pvisible = false; }
         });
       }, { threshold: 0.3 });
       pio.observe(playBox);
