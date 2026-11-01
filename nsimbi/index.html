@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="An independent, interactive Nsimbi design concept. Demo purchases only.">
+  <title>Nsimbi · Mobile prototype</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="data:,">
+  <link rel="preload" href="./assets/PlusJakartaSans.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="./styles.css?v=15">
+  <link rel="stylesheet" href="./modal.css?v=15">
+  <link rel="stylesheet" href="./profile.css?v=15">
+  <link rel="stylesheet" href="./balance.css?v=15">
+  <link rel="stylesheet" href="./conversation.css?v=15">
+  <link rel="stylesheet" href="./entry-recipients.css?v=15">
+  <link rel="stylesheet" href="./polish.css?v=15">
+<link rel="stylesheet" href="./wallet-mode.css?v=15">
+  <link rel="stylesheet" href="./page-shell.css?v=15">
+  <link rel="stylesheet" href="./reward.css?v=15">
+</head>
+<body>
+  <main id="app" class="app" aria-label="Nsimbi interactive concept"></main>
+  <div id="overlay"></div>
+  <div id="announcer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+  <script>
+    // Remove caches and service workers from earlier prototype builds so a phone
+    // always opens the current Profile and chat screens instead of stale copies.
+    if (window.caches) caches.keys().then(keys => keys.forEach(key => caches.delete(key))).catch(() => {});
+    if ('serviceWorker' in navigator) navigator.serviceWorker.getRegistrations().then(list => list.forEach(worker => worker.unregister())).catch(() => {});
+  </script>
+  <script src="./assets/pdf/pdf-lib.min.js"></script><script type="module" src="./app.mjs?v=15"></script>
+</body>
+</html>

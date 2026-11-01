@@ -1,0 +1,50 @@
+[
+  {
+    "file": "mtn.svg",
+    "source": "https://www.mtn.co.ug/wp-content/themes/mtn-vivid-wp/public/img/favicon.svg",
+    "type": "image/svg+xml",
+    "bytes": 692
+  },
+  {
+    "file": "stanbic.png",
+    "source": "https://www.stanbicbank.co.ug/static_file/assets/favicons/apple-icon-180x180.png",
+    "type": "image/png",
+    "bytes": 30732
+  },
+  {
+    "file": "centenary.png",
+    "source": "https://www.centenarybank.co.ug/assets/img/apple-touch-icon.png",
+    "type": "image/png",
+    "bytes": 6481
+  },
+  {
+    "file": "absa.png",
+    "source": "https://www.absa.co.ug/content/dam/uganda/absa/logos/absa-logo-bg.png",
+    "type": "image/png",
+    "bytes": 10989
+  },
+  {
+    "file": "uedcl.png",
+    "source": "https://uedcl.co.ug/uedcl.png",
+    "type": "image/png",
+    "bytes": 147783
+  },
+  {
+    "file": "airtel.png",
+    "source": "https://www.airtel.africa/sites/default/files/airtel-logo_0.png",
+    "bytes": 2142
+  },
+  {
+    "file": "mtn.png",
+    "derivedFrom": "mtn.svg",
+    "method": "128px PNG rasterisation of the official SVG, for native Image support"
+  },
+  {
+    "file": "mymomo.png",
+    "source": "https://momo.mtn.com/wp-content/uploads/sites/15/2022/07/cropped-MoMo-App-Badge-Flat-RGB.png",
+    "type": "image/png",
+    "bytes": 3399,
+    "dimensions": "192x192",
+    "note": "Official My MoMo app badge used for the balance account thumbnail."
+  }
+]

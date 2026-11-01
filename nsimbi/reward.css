@@ -1,0 +1,57 @@
+/* A user-initiated daily demo reward. No automatic tapping or monetary claims. */
+.reward-name-wrap{display:inline-flex;position:relative;isolation:isolate;--reward-progress:0}
+.reward-glow{position:absolute;inset:-7px;border-radius:22px;background:conic-gradient(from -90deg,#a78bfa calc(var(--reward-progress)*1turn),transparent 0);opacity:calc(.3 + var(--reward-progress)*.5);filter:drop-shadow(0 0 calc(var(--reward-progress)*12px) #9b70ed);transition:background 200ms,filter 220ms,opacity 220ms;z-index:-1}
+.reward-glow:after{content:'';position:absolute;inset:4px;border-radius:19px;background:var(--canvas)}
+.reward-hint{display:block;font-size:11px;line-height:1.5;letter-spacing:0;font-weight:450;color:var(--muted);margin:12px 0 17px;min-height:17px}
+.home-prompt{display:block}.home-question .greet{display:inline-flex;align-items:center}
+.reward-traveller{position:fixed;left:0;top:0;width:40px;height:40px;border-radius:50%;background:radial-gradient(circle,#fff,#c4a2ff 35%,#7c3aed80 60%,transparent 72%);box-shadow:0 0 24px #a78bfa;pointer-events:none;z-index:100}
+.reward-credit-label{position:fixed;left:0;top:0;z-index:100;pointer-events:none;font:700 16px var(--font);color:var(--action);padding:6px 10px;border-radius:99px;background:var(--surface);box-shadow:0 3px 16px #5b21b633}
+.home-hero .mini-balance{position:relative;isolation:isolate}.reward-highlight:after{content:'';position:absolute;inset:-6px;border-radius:20px;pointer-events:none;border:2px solid var(--action);background:linear-gradient(110deg,transparent 20%,#c4b5fd50,transparent 80%);animation:reward-shimmer 550ms ease-out both}
+@keyframes reward-shimmer{from{opacity:0;transform:translateX(-8px)}35%{opacity:1}to{opacity:0;transform:translateX(8px)}}
+.reward-popup{display:flex;flex-direction:column;align-items:center;gap:14px;padding:10px 0;text-align:center}.reward-popup>p{margin:0}.reward-gift{display:grid;place-items:center;width:68px;height:68px;border-radius:22px;background:var(--tint);color:var(--action)}.reward-gift svg{width:34px;height:34px}
+.reward-sound{display:flex;align-items:center;gap:8px;min-height:44px;background:transparent;color:var(--muted);font-size:12px;border:0}.reward-sound svg{width:16px;height:16px}.reward-sound[aria-pressed=false]{opacity:.7}
+.reward-notice{font-size:11px;line-height:1.5;color:var(--success);text-align:center;padding:0 12px}.reward-notice:empty{display:none}.reward-notice>strong,.reward-notice>span{display:block}
+@media(max-height:720px){.reward-hint{font-size:10px;margin:9px 0 12px}.home-question{font-size:20px}.home-question .name-tag{font-size:23px}}
+@media(prefers-reduced-motion:reduce){.reward-glow{transition:none;filter:none}.reward-highlight:after{animation:none;opacity:.4;transform:none}}
+@property --reward-progress{syntax:'<number>';inherits:true;initial-value:0}
+.reward-name-wrap{transition:--reward-progress 220ms ease-out}
+.reward-glow{transform:scale(calc(1 + var(--reward-progress)*.1))}
+@media(prefers-reduced-motion:reduce){.reward-name-wrap{transition:none}}
+/* Returning reward state. Reuses sheet, button, icon and existing theme tokens. */
+:root{--reward-return-number-size:36px;--reward-return-amount-size:24px;--reward-return-panel:var(--tint);--reward-return-ink:var(--ink);--reward-return-radius:var(--radius)}
+.overlay>.sheet.sheet-still{animation:none}
+.reward-return{display:flex;flex-direction:column;align-items:stretch;gap:var(--s4);padding:var(--s1) 0}
+.reward-return-summary{display:flex;align-items:center;justify-content:center;gap:var(--s3)}
+.reward-gift--compact{display:grid;place-items:center;width:44px;height:44px;flex:0 0 44px;border-radius:50%;background:var(--reward-return-panel);color:var(--action)}
+.reward-gift--compact svg{width:24px;height:24px}
+.reward-return-summary p{font-size:12px;line-height:1.5;margin:0;color:var(--muted)}
+.reward-return-summary strong{display:block;font-size:var(--reward-return-amount-size);line-height:1.4;letter-spacing:-.6px;color:var(--reward-return-ink)}
+.reward-countdown-panel{padding:var(--s5) var(--s4);border:1px solid var(--line);border-radius:var(--reward-return-radius);background:var(--reward-return-panel);text-align:center}
+.reward-countdown-panel>p{font-size:12px;line-height:1.5;margin:0 0 var(--s3);color:var(--muted)}
+.reward-countdown{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);gap:var(--s2);align-items:start;color:var(--reward-return-ink);font-variant-numeric:tabular-nums}
+.reward-time-unit{min-width:0;display:flex;flex-direction:column;align-items:center;gap:var(--s1)}
+.reward-time-unit strong{font-size:var(--reward-return-number-size);line-height:1.15;font-weight:750;letter-spacing:-1px}
+.reward-time-unit>span{font-size:12px;line-height:1.5;color:var(--muted)}
+.reward-time-colon{font-size:24px;line-height:1.5;color:var(--muted)}
+.reward-reset-time{display:flex;align-items:center;justify-content:center;gap:var(--s2);margin-top:var(--s4);font-size:12px;line-height:1.5;color:var(--muted)}
+.reward-reset-time svg{width:14px;height:14px;flex-shrink:0}
+.reward-return-copy{font-size:16px;line-height:1.5;text-align:center;margin:0 auto;max-width:27ch;color:var(--muted)}
+.reward-reminder-feedback{display:flex;align-items:flex-start;gap:var(--s3);padding:var(--s4);border-radius:var(--reward-return-radius);color:var(--success);background:var(--success-bg);animation:reward-reminder-in var(--motion-feedback) var(--ease-out) both}
+.reward-reminder-feedback>span{display:flex;padding-top:2px}.reward-reminder-feedback svg{width:20px;height:20px;flex-shrink:0}
+.reward-reminder-feedback strong{display:block;font-size:16px;line-height:1.5;font-weight:700}.reward-reminder-feedback p{font-size:16px;line-height:1.5;margin:var(--s1) 0 0}
+.reward-ready-note{display:flex;flex-direction:column;align-items:center;gap:var(--s3);padding:var(--s5);text-align:center;border-radius:var(--reward-return-radius);background:var(--success-bg);color:var(--success)}
+.reward-ready-note>span svg{width:28px;height:28px}.reward-ready-note strong{font-size:20px;line-height:1.4}.reward-ready-note p{font-size:16px;line-height:1.5;margin:0}
+.notification-button{position:relative}.notification-count{position:absolute;right:-1px;top:-1px;display:grid;place-items:center;min-width:16px;height:16px;border-radius:99px;padding:0 3px;background:var(--action);color:var(--on-action);font-size:10px;font-weight:700;border:1px solid var(--surface)}
+@keyframes reward-reminder-in{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:359px){.reward-return{--reward-return-number-size:32px}.reward-countdown-panel{padding:var(--s4) var(--s3)}}
+@media(prefers-reduced-motion:reduce){.reward-reminder-feedback{animation:none}}
+.home-question:has(.reward-discovery){padding-top:64px}
+.reward-discovery{position:absolute;right:-46px;top:-64px;width:110px;text-align:center;font-family:Caveat,cursive;font-size:20px;font-weight:600;line-height:1.05;color:var(--ink);pointer-events:none;animation:reward-discover 15s ease-in-out infinite}
+.reward-discovery svg{display:block;width:30px;height:30px;margin:0 auto;color:var(--action);transform:rotate(-12deg)}
+.is-tapping .reward-discovery{visibility:hidden}
+@keyframes reward-discover{0%,18%{opacity:1;transform:translateY(0)}20%,99%{opacity:0;transform:translateY(4px)}100%{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.reward-discovery{animation-name:reward-discover-still}}
+@keyframes reward-discover-still{0%,19%{opacity:1}20%,99%{opacity:0}100%{opacity:1}}
+@font-face{font-family:Caveat;src:url('./assets/Caveat.ttf') format('truetype');font-weight:400 700;font-display:swap}
+
+.reward-popup .reward-eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.08em;font-weight:650;color:var(--action);margin-top:20px}.reward-unlocked-value{display:flex;align-items:baseline;justify-content:center;gap:8px;font-size:64px;line-height:1.2;font-weight:800;letter-spacing:-2px;color:var(--ink);margin:6px 0 16px}.reward-unlocked-value small{font-size:20px;letter-spacing:0;font-weight:600;color:var(--muted)}

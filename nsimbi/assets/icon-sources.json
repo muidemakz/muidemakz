@@ -1,0 +1,27 @@
+[
+  {
+    "icon": "Gift",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/gift.svg",
+    "license": "ISC, existing lucide-LICENSE.txt"
+  },
+  {
+    "icon": "Tv",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/tv.svg",
+    "license": "ISC, existing lucide-LICENSE.txt"
+  },
+  {
+    "icon": "Trophy",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/trophy.svg",
+    "license": "ISC, existing lucide-LICENSE.txt"
+  },
+  {
+    "icon": "TicketPlus",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/ticket-plus.svg",
+    "license": "ISC, existing lucide-LICENSE.txt"
+  },
+  {
+    "icon": "TicketMinus",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/ticket-minus.svg",
+    "license": "ISC, existing lucide-LICENSE.txt"
+  }
+]
