@@ -18,7 +18,7 @@ import * as M from './model.mjs';
 import {createPdf,createReceiptPdf,createAccountPdf,downloadPdf} from './statement-pdf.mjs';
 import {icons} from './assets/icons.mjs';
 const app=document.querySelector('#app'),overlay=document.querySelector('#overlay'),announcer=document.querySelector('#announcer');
-const STORE='nsimbi-concept-v3';const FLAW_FEE=(()=>{try{return new URLSearchParams(location.search).get('flaw')==='fee'?1500:0;}catch{return 0;}})();const DEMO_PAY=(()=>{try{return new URLSearchParams(location.search).get('demo')==='1';}catch{return false;}})();
+const STORE='nsimbi-concept-v3';const FLAW_FEE=(()=>{try{return new URLSearchParams(location.search).get('flaw')==='fee'?150000:0;}catch{return 0;}})();const DEMO_PAY=(()=>{try{return new URLSearchParams(location.search).get('demo')==='1';}catch{return false;}})();
 const stored=k=>{try{return localStorage.getItem(k);}catch{return null;}};
 let profile=P.restoreProfile(stored(P.PROFILE_STORE)),profileTab='overview',profileReturn='home',profileName='',profileError='';
 let state=M.restore(stored(STORE)),view='home',sheet=null,drawer=false,draft='',hidden=profile.hideBalance,theme=stored('nsimbi-concept-theme')||profile.theme,typing=false,checking=null,interrupt=false,failNext=false,refreshing=false,focusReturn=null,addMoneyDismissed=false,attachment=null;
