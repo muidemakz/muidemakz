@@ -202,3 +202,15 @@
 .reward-popup{position:relative;overflow:hidden;border-radius:24px;background:var(--tint);padding:28px 16px}.reward-popup .reward-gift{position:relative;z-index:1}.reward-return-summary{border-radius:20px;background:var(--tint);padding:20px}.reward-countdown-panel{border:1px solid var(--line);border-radius:20px;background:var(--surface)}
 @media(prefers-reduced-motion:reduce){.beneficiary-toggle input:before{transition:none}}
 .selection-search,.recipient-search-field{background:var(--surface);border:1px solid var(--line)}.period-choices>.button,.recipient-choice>.button{border:1px solid var(--line)}
+
+/* Shared action feedback uses the existing field-error colors. */
+:root{--validation-error-text:#ae2825}
+[data-theme=dark]{--validation-error-text:#ffafa9}
+.action-errors{color:var(--validation-error-text);font-size:13px;line-height:1.5;margin:12px 0;overflow-wrap:anywhere}
+.action-errors:empty{display:none}
+.action-error-copy{display:flex;align-items:flex-start;gap:8px}
+.action-error-copy>svg{width:18px;height:18px;flex:0 0 18px;margin-top:2px}
+.action-errors strong{font-weight:650}
+.action-errors ul{margin:4px 0 0;padding-left:18px}
+.action-errors:focus-visible{outline:2px solid var(--focus);outline-offset:4px;border-radius:4px}
+.service-footer .action-errors{margin:0 0 10px}
