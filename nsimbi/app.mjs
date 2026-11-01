@@ -18,7 +18,7 @@ import * as M from './model.mjs';
 import {createPdf,createReceiptPdf,createAccountPdf,downloadPdf} from './statement-pdf.mjs';
 import {icons} from './assets/icons.mjs';
 const app=document.querySelector('#app'),overlay=document.querySelector('#overlay'),announcer=document.querySelector('#announcer');
-const STORE='nsimbi-concept-v3';
+const STORE='nsimbi-concept-v3';const DEMO_PAY=(()=>{try{return new URLSearchParams(location.search).get('demo')==='1';}catch{return false;}})();
 const stored=k=>{try{return localStorage.getItem(k);}catch{return null;}};
 let profile=P.restoreProfile(stored(P.PROFILE_STORE)),profileTab='overview',profileReturn='home',profileName='',profileError='';
 let state=M.restore(stored(STORE)),view='home',sheet=null,drawer=false,draft='',hidden=profile.hideBalance,theme=stored('nsimbi-concept-theme')||profile.theme,typing=false,checking=null,interrupt=false,failNext=false,refreshing=false,focusReturn=null,addMoneyDismissed=false,attachment=null;
@@ -241,7 +241,7 @@ if(action==='copy-account'){navigator.clipboard.writeText(M.RULES.phone).then(()
 if(action==='prompt'){send(id);return;}if(action==='statement-prompt'){close(()=>send('Get statement'));return;}
 if(action==='review'&&!checking){checking=id;render({scroll:false});later(()=>{state=M.review(state,id);checking=null;save();const t=M.findTask(state,id);if(t.status==='review'){sheet={kind:'review',id};render({scroll:false});}else{render({scroll:false});app.querySelector(`[data-card="${id}"] [aria-invalid="true"]`)?.focus();announce('Check the highlighted purchase details.');}},400);return;}
 if(action==='edit'){state=M.updateTask(state,id,{});if(walletPayment?.id===id){close(()=>{patchService();app.querySelector('.service-body input')?.focus({preventScroll:true});});return;}close(()=>{render({scroll:false});app.querySelector(`[data-card="${id}"] input`)?.focus();});return;}
-if(action==='pay'){const t=M.findTask(state,id);if(!t||t.status!=='review')return;sheet={kind:'auth',id,step:'choose'};renderOverlay();return;}
+if(action==='pay'){const t=M.findTask(state,id);if(!t||t.status!=='review')return;if(DEMO_PAY){sheet={kind:'auth',id,step:'checking'};renderOverlay();later(()=>finishAuthentication(id),650);return;}sheet={kind:'auth',id,step:'choose'};renderOverlay();return;}
 if(action==='auth-biometric'){if(!sheet)return;sheet={...sheet,step:'checking'};renderOverlay();const id=sheet.id;later(()=>finishAuthentication(id),650);return;}
 if(action==='auth-pin'){if(!sheet)return;sheet={...sheet,step:'pin',error:''};renderOverlay();setTimeout(()=>overlay.querySelector('#pin')?.focus(),60);return;}
 if(action==='auth-confirm'){if(!sheet)return;const pin=String(sheet.pin||'').replace(/\D/g,'');if(pin.length<4){sheet={...sheet,error:'Enter your 4-digit PIN.'};renderOverlay();return;}sheet={...sheet,step:'checking',error:''};renderOverlay();const id=sheet.id;delete sheet.pin;later(()=>finishAuthentication(id),650);return;}
