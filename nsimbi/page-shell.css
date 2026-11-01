@@ -213,4 +213,4 @@
 .action-errors strong{font-weight:650}
 .action-errors ul{margin:4px 0 0;padding-left:18px}
 .action-errors:focus-visible{outline:2px solid var(--focus);outline-offset:4px;border-radius:4px}
-.service-footer .action-errors{margin:0 0 10px}
+.service-footer .action-errors{margin:10px 0 0}

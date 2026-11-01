@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="./entry-recipients.css?v=15">
   <link rel="stylesheet" href="./polish.css?v=15">
 <link rel="stylesheet" href="./wallet-mode.css?v=15">
-  <link rel="stylesheet" href="./page-shell.css?v=17">
+  <link rel="stylesheet" href="./page-shell.css?v=20">
   <link rel="stylesheet" href="./reward.css?v=15">
 </head>
 <body>
@@ -30,6 +30,6 @@
     if (window.caches) caches.keys().then(keys => keys.forEach(key => caches.delete(key))).catch(() => {});
     if ('serviceWorker' in navigator) navigator.serviceWorker.getRegistrations().then(list => list.forEach(worker => worker.unregister())).catch(() => {});
   </script>
-  <script src="./assets/pdf/pdf-lib.min.js"></script><script type="module" src="./app.mjs?v=19"></script>
+  <script src="./assets/pdf/pdf-lib.min.js"></script><script type="module" src="./app.mjs?v=20"></script>
 </body>
 </html>
