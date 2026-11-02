@@ -58,10 +58,14 @@ must not be described as implemented.
 
 ## Remaining evidence gaps
 
-- Speech-to-Order still needs its real screenshot assets and the analytics capture
-  documenting the period, cohort and definition behind the reported 35% speed
-  improvement. The CV describes assistant reframing and the voice module as separate
-  efforts; the result belongs to the voice module. Keep the draft unlinked and noindex.
+- Speech-to-Order still needs its real screenshot assets and two analytics captures.
+  The main story is the support-versus-ordering reframing: roughly 90% to 65% complaint
+  sessions and 10% to 35% order sessions over the two weeks after the updates (figures
+  supplied by the owner, 2 November 2026). Capture the before and after split with its
+  window, session count and the definition of a "complaint" session. The reported 35%
+  order-completion speed improvement is a separate measure that belongs to the voice
+  module; it needs its own capture of period, cohort and speed definition and must not be
+  combined with the split. Keep the draft unlinked and noindex.
 - Valideity's pricing-flow case uses original 27 September 2026 captures. Its
   recorded Predicted sequence is 53% → 52% → 94%, with one persona and five
   sessions per run. Some historical screenshots are compact 480px captures;

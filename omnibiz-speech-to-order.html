@@ -50,9 +50,9 @@
       <div class="case-hero-top">
         <p class="case-kicker">OmniRetail &middot; Omnibiz</p>
       </div>
-      <h1 class="case-title">Speech-to-Order: Redesigning Voice Commerce for Omnibiz</h1>
+      <h1 class="case-title">Speech-to-Order: Separating Ordering From Support</h1>
       <p class="case-lede">
-        Making ordering intent explicit and reducing friction in a voice ordering flow for Omnibiz retailers.
+        Roughly 9 in 10 voice sessions were complaints, not orders. This is how I made the assistant's purpose clear, and what moved.
       </p>
       <ul class="case-tags">
         <li>Senior Product Designer (Embedded With PMs &amp; Engineers)</li>
@@ -74,6 +74,7 @@
       <a href="#solution">Redesign</a>
       <a href="#testing">Testing</a>
       <a href="#outcome">Outcome</a>
+      <a href="#voice-flow">Voice Flow</a>
       <a href="#reflection">Reflection</a>
     </div>
   </nav>
@@ -84,15 +85,15 @@
       <p class="case-label">Context</p>
       <p class="case-copy">
         Omnibiz is OmniRetail's B2B commerce platform, serving 150,000+ retailers across Nigeria, Ghana,
-        and Ivory Coast and processing $124M+ in annual NMV. The speech-to-order module lets retailers order FMCG
+        and Ivory Coast and processing $124M+ in annual NMV. Speech to Order was intended to let retailers order FMCG
         products by speaking instead of typing &mdash; built for low-literacy and high-volume users who
         need speed on mobile, often on slow networks.
       </p>
       <p class="case-copy">
-        My work covered two related efforts: reframing the AI ordering assistant after usage showed
-        retailers treating it as a complaints channel, and separately shipping a speech-to-order module
-        for low-literacy and high-volume users. The reported 35% speed improvement belongs to the voice
-        module; it is not a combined result for both efforts.
+        I owned the design of the experience. This case study is mainly about one question: retailers
+        were using the assistant, but not for what it was built for. A separate set of voice-flow
+        improvements, including a reported 35% faster order completion, has its own section further down and is
+        not part of the result in the Outcome section.
       </p>
       <div class="case-figures" style="margin-top: 18px;">
         <figure class="case-figure case-figure--grey">
@@ -112,19 +113,15 @@
     <div class="wrap">
       <p class="case-label">The Problem</p>
       <p class="case-copy">
-        Usage data &mdash; from an ElevenLabs voice interaction report and our internal analytics
-        dashboard &mdash; showed most users were trying to request customer support first. The AI never
-        made it clear that the same interface could also be used to place an order, so support requests
-        dominated actual ordering.
+        When we reviewed usage, roughly <strong>90% of voice sessions involved complaints rather than
+        orders</strong>. Retailers were finding and using the assistant, but its presentation wasn't making
+        its purpose clear.
       </p>
       <p class="case-copy">
-        The existing voice-flow baseline was <strong>over 2 minutes</strong> to complete an order.
-        Alongside the assistant framing issue, product matching and mode switching added interaction friction.
-      </p>
-      <p class="case-copy">
-        The original interface was a direct, unguided speech input with no context: users didn't know
-        they could switch between voice and text, and if multiple products matched what they said, those
-        options were buried inside a plain text response instead of being presented clearly.
+        The split came from an ElevenLabs voice interaction report and our internal analytics
+        dashboard. The original interface was a direct, unguided speech input with no context about what
+        it could do, so retailers treated it as a support channel and the same interface never signalled
+        that it could also take an order.
       </p>
 
       <div class="case-figures case-figures--spaced" style="margin-top: 18px;">
@@ -149,6 +146,126 @@
             </div>
           </div>
         </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESEARCH & DISCOVERY ============ -->
+  <section class="case-section" id="research">
+    <div class="wrap">
+      <p class="case-label">Research &amp; Discovery</p>
+      <p class="case-copy">
+        Findings came from two sources: an ElevenLabs voice interaction report and the team's internal
+        usage analytics dashboard.
+      </p>
+      <p class="case-copy">
+        Both pointed to the same root issue &mdash; the interface gave no upfront guidance on what it
+        could do, so retailers defaulted to treating it as a support channel. Adoption wasn't the
+        problem. Retailers were using the assistant, but use didn't mean ordering.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ REDESIGN APPROACH ============ -->
+  <section class="case-section" id="solution">
+    <div class="wrap">
+      <p class="case-label">Redesign Approach</p>
+      <p class="case-copy">
+        My goal was to help retailers tell ordering and support apart. I reworked the wording and
+        interaction to create a clearer separation between the two, then refined the experience through
+        feedback from retailers.
+      </p>
+      <p class="case-copy">
+        The interface now sets expectations upfront, so retailers know they can place an order, not just
+        ask for help.
+      </p>
+
+      <div class="case-figures case-figures--spaced" style="margin-top: 24px;">
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-head"><p class="case-figure-head-title">New Flow &mdash; Listening <span class="case-ph">[IMAGE 7]</span></p></div>
+          <div class="case-figure-inset">
+            <div class="case-frame"><div class="case-media-slot case-media-slot--wide"><span class="case-media-label">New Flow &mdash; Listening / Recording State</span></div></div>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTING & ITERATION ============ -->
+  <section class="case-section" id="testing">
+    <div class="wrap">
+      <p class="case-label">Testing &amp; Iteration</p>
+      <p class="case-copy">
+        We assessed the change through conversation logs, usage reports and retailer feedback. The team
+        also ran field tests with real retailers and kept refining the flow from post-launch usage data,
+        rather than treating launch as the end.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ OUTCOME ============ -->
+  <section class="case-section" id="outcome">
+    <div class="wrap">
+      <p class="case-label">Outcome &amp; Impact</p>
+      <p class="case-copy">
+        Over the two weeks after the updates, complaint interactions fell from roughly 90% to 65% of
+        voice sessions, while ordering interactions rose from 10% to 35%.
+      </p>
+
+      <!-- Evidence follow-up before publication: keep the ElevenLabs report / dashboard capture
+           that shows the before and after split, with the measurement window, session count and
+           the definition of a "complaint" session. -->
+      <div class="case-outcome-grid">
+        <div class="case-outcome">
+          <p class="case-outcome-label">Complaint Sessions</p>
+          <p class="case-outcome-value">90% &rarr; 65%</p>
+          <p class="case-outcome-copy">Share of voice sessions that were complaints, before and after the updates.</p>
+        </div>
+        <div class="case-outcome">
+          <p class="case-outcome-label">Order Sessions</p>
+          <p class="case-outcome-value">10% &rarr; 35%</p>
+          <p class="case-outcome-copy">Share of voice sessions that were orders, before and after the updates.</p>
+        </div>
+        <div class="case-outcome">
+          <p class="case-outcome-label">Window</p>
+          <p class="case-outcome-value">2 weeks</p>
+          <p class="case-outcome-copy">Measured over the two weeks after the updates.</p>
+        </div>
+      </div>
+
+      <div class="case-flag-box" style="margin-top: 24px;">
+        <p class="case-flag-label">Not Fully Resolved</p>
+        <p class="case-flag-copy">
+          That was meaningful progress, although complaints still accounted for most voice sessions, so
+          the problem wasn't fully resolved.
+        </p>
+      </div>
+
+      <div class="case-figures" style="margin-top: 24px;">
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-inset">
+            <div class="case-frame">
+              <div class="case-media-slot case-media-slot--wide"><span class="case-media-label">Before / After Comparison</span></div>
+            </div>
+          </div>
+          <figcaption>Before / After <span class="case-ph">[IMAGE 11]</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VOICE FLOW (separate effort) ============ -->
+  <section class="case-section" id="voice-flow">
+    <div class="wrap">
+      <p class="case-label">Also Shipped: The Voice Flow</p>
+      <p class="case-copy">
+        Separately from the support-versus-ordering work, the voice flow had its own friction. The
+        existing baseline was <strong>over 2 minutes</strong> to complete an order. Retailers weren't told
+        they could switch between voice and text, and when several products matched what they said, the
+        options were buried inside a plain text response.
+      </p>
+
+      <div class="case-figures case-figures--spaced" style="margin-top: 18px;">
         <figure class="case-figure case-figure--grey">
           <div class="case-figure-head">
             <p class="case-figure-head-title">Old Flow &mdash; Confirmation <span class="case-ph">[IMAGE 4]</span></p>
@@ -171,47 +288,20 @@
           </div>
         </figure>
       </div>
-    </div>
-  </section>
 
-  <!-- ============ RESEARCH & DISCOVERY ============ -->
-  <section class="case-section" id="research">
-    <div class="wrap">
-      <p class="case-label">Research &amp; Discovery</p>
-      <p class="case-copy">
-        Findings came from two sources: an ElevenLabs voice interaction report and the team's internal
-        usage analytics dashboard.
-      </p>
-      <p class="case-copy">
-        Both pointed to the same root issue &mdash; the interface gave no upfront guidance on what it
-        could do, so users defaulted to treating it as a support channel.
-      </p>
-    </div>
-  </section>
-
-  <!-- ============ REDESIGN APPROACH ============ -->
-  <section class="case-section" id="solution">
-    <div class="wrap">
-      <p class="case-label">Redesign Approach</p>
-      <p class="case-copy">The assistant reframing and voice-flow work addressed four sources of friction:</p>
-      <ol class="case-steps case-steps--flush case-steps--4">
+      <ol class="case-steps case-steps--flush" style="margin-top: 24px;">
         <li>
           <span class="case-step-n">01</span>
-          <span class="case-step-title">Support vs. Ordering, Made Explicit</span>
-          <span class="case-step-copy">The interface now sets expectations upfront so users know they can place an order, not just ask for help.</span>
-        </li>
-        <li>
-          <span class="case-step-n">02</span>
           <span class="case-step-title">Numbered Product Matches</span>
           <span class="case-step-copy">When multiple products matched a request, they're surfaced as a clear numbered list (e.g. &ldquo;1. 10KG bag of rice, 2. 15KG bag of beans&rdquo;) instead of being buried in a text response.</span>
         </li>
         <li>
-          <span class="case-step-n">03</span>
+          <span class="case-step-n">02</span>
           <span class="case-step-title">Visible Voice/Text Switch, Mid-Conversation</span>
-          <span class="case-step-copy">Users can move between speaking and typing without restarting the interaction.</span>
+          <span class="case-step-copy">Retailers can move between speaking and typing without restarting the interaction.</span>
         </li>
         <li>
-          <span class="case-step-n">04</span>
+          <span class="case-step-n">03</span>
           <span class="case-step-title">Multi-Language Support</span>
           <span class="case-step-copy">Added the option to switch from English to other languages, based on field testing feedback.</span>
         </li>
@@ -227,13 +317,16 @@
         </p>
       </div>
 
+      <!-- Evidence follow-up before publication: retain the internal analytics source,
+           measurement window, cohort and exact speed definition with the before/after capture.
+           The CV establishes the 35% result and separates it from the reframing work. -->
+      <p class="case-copy" style="margin-top: 24px;">
+        The voice module was reported to improve order completion speed by <strong>35%</strong> for
+        low-literacy and high-volume users. That is a speed measure for the voice flow only. It is a
+        different measure from the complaint and order split above, and the two shouldn't be combined.
+      </p>
+
       <div class="case-figures case-figures--spaced" style="margin-top: 24px;">
-        <figure class="case-figure case-figure--grey">
-          <div class="case-figure-head"><p class="case-figure-head-title">New Flow &mdash; Listening <span class="case-ph">[IMAGE 7]</span></p></div>
-          <div class="case-figure-inset">
-            <div class="case-frame"><div class="case-media-slot case-media-slot--wide"><span class="case-media-label">New Flow &mdash; Listening / Recording State</span></div></div>
-          </div>
-        </figure>
         <figure class="case-figure case-figure--grey">
           <div class="case-figure-head"><p class="case-figure-head-title">New Flow &mdash; Numbered Matches <span class="case-ph">[IMAGE 8]</span></p></div>
           <div class="case-figure-inset">
@@ -256,66 +349,19 @@
     </div>
   </section>
 
-  <!-- ============ TESTING & ITERATION ============ -->
-  <section class="case-section" id="testing">
-    <div class="wrap">
-      <p class="case-label">Testing &amp; Iteration</p>
-      <p class="case-copy">
-        The team ran field tests with real retailers and refined the flow further based on post-launch
-        usage data, not a single ship-and-done pass. Language support was one of the refinements added
-        directly from field test feedback.
-      </p>
-    </div>
-  </section>
-
-  <!-- ============ OUTCOME ============ -->
-  <section class="case-section" id="outcome">
-    <div class="wrap">
-      <p class="case-label">Outcome &amp; Impact</p>
-      <p class="case-copy">
-        The speech-to-order module was reported to improve order completion speed by <strong>35%</strong>
-        for low-literacy and high-volume users. This result belongs to the voice module, separately
-        from the ordering assistant's support-versus-ordering reframing.
-      </p>
-
-      <!-- Evidence follow-up before publication: retain the internal analytics source,
-           measurement window, cohort and exact speed definition with the before/after capture.
-           The CV establishes the 35% result and separates the two initiatives. -->
-      <div class="case-outcome-grid">
-        <div class="case-outcome">
-          <p class="case-outcome-label">Speed</p>
-          <p class="case-outcome-value">35%</p>
-          <p class="case-outcome-copy">Reported improvement in order completion speed for the speech-to-order module.</p>
-        </div>
-      </div>
-
-      <div class="case-figures" style="margin-top: 24px;">
-        <figure class="case-figure case-figure--grey">
-          <div class="case-figure-inset">
-            <div class="case-frame">
-              <div class="case-media-slot case-media-slot--wide"><span class="case-media-label">Before / After Comparison</span></div>
-            </div>
-          </div>
-          <figcaption>Before / After <span class="case-ph">[IMAGE 11]</span></figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ REFLECTION ============ -->
   <section class="case-section" id="reflection">
     <div class="wrap">
       <p class="case-label">Reflection</p>
       <p class="case-copy">
-        The biggest lesson: a technically capable AI feature can still fail if the interface doesn't tell
-        users what it's for. The fix wasn't more advanced AI, it was clearer product framing &mdash;
-        distinguishing support from ordering, surfacing options instead of burying them, and giving users
-        control to switch modes.
+        The main lesson was that usage alone wasn't a useful sign of success. Retailers were finding and
+        using the assistant, but most of that use was complaints. We needed to understand what retailers
+        were trying to do and whether the experience was helping them do it.
       </p>
       <p class="case-copy">
-        Persistent conversation memory did not ship because of customer-data storage concerns.
-        That constraint shaped the interaction: helping retailers switch modes also meant deciding
-        how much context the product could retain.
+        The fix wasn't more advanced AI, it was clearer product framing &mdash; telling retailers upfront
+        that ordering and support are different things. It moved the split meaningfully, but not all
+        the way, and complaints still being most sessions is the open problem.
       </p>
     </div>
   </section>
