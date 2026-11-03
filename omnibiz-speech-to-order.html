@@ -33,6 +33,50 @@
   padding: 1px 7px;
   font-weight: 700;
 }
+
+/* Complaint vs order chart: redrawn from the owner's reported figures */
+.sto-chart { padding: 28px 24px 24px; display: flex; flex-direction: column; gap: 22px; background: var(--paper, #f2f0eb); border: 1px solid var(--ink, #0d0d0d); }
+.sto-chart p { margin: 0; }
+.sto-row-label { font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 8px !important; }
+.sto-bar { display: flex; height: 52px; border: 2px solid var(--ink, #0d0d0d); }
+.sto-seg { display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; white-space: nowrap; overflow: hidden; }
+.sto-seg--c { background: var(--ink, #0d0d0d); color: #fff; }
+.sto-seg--o { background: var(--accent, #ff3b00); color: #0d0d0d; }
+.sto-key { font-size: 14px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.sto-dot { width: 12px; height: 12px; display: inline-block; border: 1.5px solid var(--ink, #0d0d0d); }
+.sto-dot--c { background: var(--ink, #0d0d0d); }
+.sto-dot--o { background: var(--accent, #ff3b00); margin-left: 10px; }
+@media (max-width: 520px) { .sto-seg { font-size: 12px; } .sto-chart { padding: 20px 14px; } }
+
+.sto-shot { display: block; width: 100%; height: auto; }
+/* Topic bubbles: area is relative (orders ~ 1/9 of complaints, as reported ~10% vs ~90%) */
+.sto-topics { padding: 24px; background: var(--paper, #f2f0eb); border: 1px solid var(--ink, #0d0d0d); }
+.sto-bubbles { position: relative; width: 100%; aspect-ratio: 2 / 1; }
+.sto-b { position: absolute; aspect-ratio: 1; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: 2px solid var(--ink, #0d0d0d); line-height: 1.15; }
+.sto-b em { font-style: normal; font-weight: 700; }
+.sto-b small { font-size: 13px; }
+.sto-b--c { left: 8%; top: 4%; width: 46%; background: var(--ink, #0d0d0d); color: #fff; justify-content: flex-start; padding-top: 7%; font-size: clamp(13px, 2.4vw, 22px); }
+.sto-b--p { left: 28%; top: 48%; width: 18%; background: var(--paper, #f2f0eb); color: var(--ink, #0d0d0d); font-size: clamp(9px, 1.5vw, 14px); padding: 4px; }
+.sto-b--o { left: 66.5%; top: 37%; width: 15%; background: var(--accent, #ff3b00); color: #0d0d0d; font-size: clamp(8px, 1.4vw, 13px); padding: 3px; }
+.sto-b--o small, .sto-b--p small { font-size: inherit; }
+.sto-legend { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
+.sto-legend li { display: flex; align-items: center; gap: 8px; }
+.sto-dot--p { background: var(--paper, #f2f0eb); }
+.sto-legend .sto-dot--o { margin-left: 0; }
+@media (max-width: 520px) { .sto-topics { padding: 14px; } .sto-b--p em, .sto-b--o em, .sto-b--o small { display: none; } }
+
+/* Phone clips: the mockup is part of the video, so no extra frame around them.
+   The clip-path trims the MP4's white corners to the phone's outline. */
+.case-phone-video { display: block; width: 100%; height: auto; aspect-ratio: 776 / 1700; clip-path: inset(0 0.77% round 11.7% / 5.35%); cursor: pointer; }
+.case-phone-clip { width: min(100%, 320px); margin: 0 auto; padding-bottom: 40px; }
+.case-hero-media.case-hero-phone { height: auto; justify-content: center; padding: 40px 20px 48px; background: #ebe9e5; }
+.case-hero-phone .case-phone-video { width: min(100%, 300px); }
+.case-phone-pair { padding-bottom: 40px; }
+@media (max-width: 600px) {
+  .case-phone-clip { padding-bottom: 20px; }
+  /* two-up would shrink each phone to ~150px, too small to read the screen */
+  .case-phone-pair { padding-bottom: 20px; grid-template-columns: minmax(0, 1fr); gap: 28px; max-width: 300px; }
+}
 </style>
 </head>
 <body class="type-outfit">
@@ -61,8 +105,10 @@
         <li>B2B Commerce &middot; Voice Interaction</li>
       </ul>
     </div>
-    <div class="case-hero-media" aria-hidden="true">
-      <span class="case-media-label">Speech-to-Order &mdash; Active Listening State <span class="case-ph">[IMAGE 1]</span></span>
+    <div class="case-hero-media case-hero-phone">
+      <video class="case-phone-video" poster="videos/speech-to-order/voice-pulse-poster.png" width="776" height="1700" autoplay muted loop playsinline preload="auto" aria-label="Looping animation of the voice assistant, with waves pulsing out from the microphone button">
+        <source src="videos/speech-to-order/voice-pulse.mp4" type="video/mp4">
+      </video>
     </div>
   </section>
 
@@ -74,7 +120,7 @@
       <a href="#solution">Redesign</a>
       <a href="#testing">Testing</a>
       <a href="#outcome">Outcome</a>
-      <a href="#voice-flow">Voice Flow</a>
+      <a href="#voice-flow">Two Modes</a>
       <a href="#reflection">Reflection</a>
     </div>
   </nav>
@@ -91,18 +137,24 @@
       </p>
       <p class="case-copy">
         I owned the design of the experience. This case study is mainly about one question: retailers
-        were using the assistant, but not for what it was built for. A separate set of voice-flow
-        improvements, including a reported 35% faster order completion, has its own section further down and is
-        not part of the result in the Outcome section.
+        were using the assistant, but not for what it was built for. A related gap, that retailers
+        didn't know the assistant had two modes, chat and call, or that they could place an order by calling,
+        has its own section further down.
+      </p>
+      <p class="case-copy">
+        This work was done in April 2026. The design has been updated a lot since, so the screens in the
+        main story show that early version, and the last section shows where it stands now.
       </p>
       <div class="case-figures" style="margin-top: 18px;">
         <figure class="case-figure case-figure--grey">
           <div class="case-figure-inset">
-            <div class="case-frame">
-              <div class="case-media-slot case-media-slot--wide"><span class="case-media-label">Retailer App &mdash; Where Speech-to-Order Lives</span></div>
+            <div class="case-phone-clip">
+              <video class="case-phone-video" poster="videos/speech-to-order/where-speech-to-order-lives-poster.png" width="776" height="1700" autoplay muted loop playsinline preload="auto" aria-label="Walkthrough of the Omnibiz retailer app home screen, scrolling past the floating button that opens the assistant">
+                <source src="videos/speech-to-order/where-speech-to-order-lives.mp4" type="video/mp4">
+              </video>
             </div>
           </div>
-          <figcaption>App Context <span class="case-ph">[IMAGE 2]</span></figcaption>
+          <figcaption>App Context: Where Speech-to-Order Lives</figcaption>
         </figure>
       </div>
     </div>
@@ -127,22 +179,22 @@
       <div class="case-figures case-figures--spaced" style="margin-top: 18px;">
         <figure class="case-figure case-figure--grey">
           <div class="case-figure-head">
-            <p class="case-figure-head-title">Support vs. Order Usage <span class="case-ph">[IMAGE 6]</span></p>
-            <p class="case-figure-head-copy">From the ElevenLabs voice report / internal dashboard, showing the support-vs-order usage split.</p>
+            <p class="case-figure-head-title">Trending Conversation Topics</p>
+            <p class="case-figure-head-copy">Illustration of the ElevenLabs topics view, with the reported split of about 90% complaints and 10% ordering. Topic names, counts and rates are blurred because they are not measured Omnibiz figures.</p>
           </div>
           <div class="case-figure-inset">
-            <div class="case-frame">
-              <div class="case-media-slot case-media-slot--wide"><span class="case-media-label">Support vs. Order Usage Split</span></div>
-            </div>
+            <img class="sto-shot" src="images/omnibiz/speech-to-order-topics-before.png" width="1400" height="772" alt="Illustration of a conversation-topics view headed 90% complaints, 10% ordering. Topic names, counts and rates are blurred." loading="lazy">
           </div>
         </figure>
         <figure class="case-figure case-figure--grey">
           <div class="case-figure-head">
-            <p class="case-figure-head-title">Old Flow &mdash; Listening <span class="case-ph">[IMAGE 3]</span></p>
+            <p class="case-figure-head-title">Old Flow</p>
           </div>
           <div class="case-figure-inset">
-            <div class="case-frame">
-              <div class="case-media-slot case-media-slot--wide"><span class="case-media-label">Old Flow &mdash; Listening / Recording State</span></div>
+            <div class="case-phone-clip">
+              <video class="case-phone-video" poster="videos/speech-to-order/old-flow-poster.png" width="776" height="1700" autoplay muted loop playsinline preload="auto" aria-label="Old flow: tapping the floating button goes straight into the voice assistant, with no choice of what it is for">
+                <source src="videos/speech-to-order/old-flow.mp4" type="video/mp4">
+              </video>
             </div>
           </div>
         </figure>
@@ -182,9 +234,16 @@
 
       <div class="case-figures case-figures--spaced" style="margin-top: 24px;">
         <figure class="case-figure case-figure--grey">
-          <div class="case-figure-head"><p class="case-figure-head-title">New Flow &mdash; Listening <span class="case-ph">[IMAGE 7]</span></p></div>
+          <div class="case-figure-head">
+            <p class="case-figure-head-title">New Flow</p>
+            <p class="case-figure-head-copy">Tapping the button now offers two clear paths: place an order or raise a complaint. Choosing to place an order then offers two ways to do it, chat or call.</p>
+          </div>
           <div class="case-figure-inset">
-            <div class="case-frame"><div class="case-media-slot case-media-slot--wide"><span class="case-media-label">New Flow &mdash; Listening / Recording State</span></div></div>
+            <div class="case-phone-clip">
+              <video class="case-phone-video" poster="videos/speech-to-order/new-flow-chat-poster.png" width="776" height="1700" autoplay muted loop playsinline preload="auto" aria-label="New flow from start to finish: tapping the floating button opens Place an order and Raise a complaint, then Place an order leads to a choice of chat or call, and Via Chat opens the speech screen with the microphone button">
+                <source src="videos/speech-to-order/new-flow-chat.mp4" type="video/mp4">
+              </video>
+            </div>
           </div>
         </figure>
       </div>
@@ -200,6 +259,18 @@
         also ran field tests with real retailers and kept refining the flow from post-launch usage data,
         rather than treating launch as the end.
       </p>
+
+      <div class="case-figures" style="margin-top: 24px;">
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-head">
+            <p class="case-figure-head-title">Two Weeks After The Updates</p>
+            <p class="case-figure-head-copy">Illustration of the ElevenLabs topics view, with the reported split of about 65% complaints and 35% ordering. Topic names, counts and rates are blurred because they are not measured Omnibiz figures.</p>
+          </div>
+          <div class="case-figure-inset">
+            <img class="sto-shot" src="images/omnibiz/speech-to-order-topics-after.png" width="1400" height="883" alt="Illustration of a conversation-topics view headed 65% complaints, 35% ordering. Topic names, counts and rates are blurred." loading="lazy">
+          </div>
+        </figure>
+      </div>
     </div>
   </section>
 
@@ -233,118 +304,141 @@
         </div>
       </div>
 
-      <div class="case-flag-box" style="margin-top: 24px;">
-        <p class="case-flag-label">Not Fully Resolved</p>
-        <p class="case-flag-copy">
-          That was meaningful progress, although complaints still accounted for most voice sessions, so
-          the problem wasn't fully resolved.
-        </p>
-      </div>
-
       <div class="case-figures" style="margin-top: 24px;">
         <figure class="case-figure case-figure--grey">
+          <div class="case-figure-head">
+            <p class="case-figure-head-title">Not Fully Resolved</p>
+            <p class="case-figure-head-copy">That was meaningful progress, although complaints still accounted for most voice sessions, so the problem wasn't fully resolved.</p>
+          </div>
           <div class="case-figure-inset">
-            <div class="case-frame">
-              <div class="case-media-slot case-media-slot--wide"><span class="case-media-label">Before / After Comparison</span></div>
+            <div class="sto-chart" role="img" aria-label="Share of voice sessions. Before the updates: about 90 percent complaints and 10 percent orders. Two weeks after the updates: about 65 percent complaints and 35 percent orders.">
+              <div class="sto-row">
+                <p class="sto-row-label">Before the updates</p>
+                <div class="sto-bar" aria-hidden="true"><span class="sto-seg sto-seg--c" style="width:90%">~90% complaints</span><span class="sto-seg sto-seg--o" style="width:10%">~10%</span></div>
+              </div>
+              <div class="sto-row">
+                <p class="sto-row-label">Two weeks after</p>
+                <div class="sto-bar" aria-hidden="true"><span class="sto-seg sto-seg--c" style="width:65%">~65% complaints</span><span class="sto-seg sto-seg--o" style="width:35%">~35% orders</span></div>
+              </div>
+              <p class="sto-key" aria-hidden="true"><span class="sto-dot sto-dot--c"></span>Complaint sessions <span class="sto-dot sto-dot--o"></span>Order sessions</p>
             </div>
           </div>
-          <figcaption>Before / After <span class="case-ph">[IMAGE 11]</span></figcaption>
+          <figcaption>Complaint vs. order sessions. Figures from the ElevenLabs voice report and internal analytics, redrawn as a chart. This is not a dashboard capture.</figcaption>
         </figure>
       </div>
     </div>
   </section>
 
-  <!-- ============ VOICE FLOW (separate effort) ============ -->
+  <!-- ============ TWO MODES (separate effort) ============ -->
   <section class="case-section" id="voice-flow">
     <div class="wrap">
-      <p class="case-label">Also Shipped: The Voice Flow</p>
+      <p class="case-label">Also Shipped: Making The Two Modes Visible</p>
       <p class="case-copy">
-        Separately from the support-versus-ordering work, the voice flow had its own friction. The
-        existing baseline was <strong>over 2 minutes</strong> to complete an order. Retailers weren't told
-        they could switch between voice and text, and when several products matched what they said, the
-        options were buried inside a plain text response.
+        Alongside the support-versus-ordering work, there was a second gap. The assistant had two modes,
+        chat and call, but retailers weren't told they could place an order by calling at all. If you
+        didn't know ordering by call existed, you couldn't choose it.
+      </p>
+      <p class="case-copy">
+        The change was to make both modes visible inside the interaction, so retailers could see they
+        had a choice: after choosing to place an order, they pick Via Chat or Via Call.
       </p>
 
-      <div class="case-figures case-figures--spaced" style="margin-top: 18px;">
+      <!-- Evidence follow-up before publication: confirm exactly what changed in the UI to surface the
+           two modes, and whether any before/after figure exists for it. The earlier "35% faster order
+           completion" claim and "over 2 minutes" baseline were removed from the page because they
+           describe speed, not discoverability. Re-add only with a source, window and definition. -->
+      <div class="case-figures" style="margin-top: 18px;">
         <figure class="case-figure case-figure--grey">
           <div class="case-figure-head">
-            <p class="case-figure-head-title">Old Flow &mdash; Confirmation <span class="case-ph">[IMAGE 4]</span></p>
-            <p class="case-figure-head-copy">Product matches buried inside a plain text response, rather than presented clearly.</p>
+            <p class="case-figure-head-title">Two Modes, Made Visible</p>
+            <p class="case-figure-head-copy">After choosing to place an order, retailers see both ways to do it, chat or call.</p>
           </div>
           <div class="case-figure-inset">
-            <div class="case-frame">
-              <div class="case-media-slot case-media-slot--wide"><span class="case-media-label">Old Flow &mdash; Confirmation / Response</span></div>
-            </div>
-          </div>
-        </figure>
-        <figure class="case-figure case-figure--grey">
-          <div class="case-figure-head">
-            <p class="case-figure-head-title">Old Flow &mdash; Error State <span class="case-ph">[IMAGE 5 &mdash; optional, if one exists]</span></p>
-          </div>
-          <div class="case-figure-inset">
-            <div class="case-frame">
-              <div class="case-media-slot case-media-slot--wide"><span class="case-media-label">Old Flow &mdash; Error State (Optional)</span></div>
+            <div class="case-phones case-phones--2 case-phone-pair">
+              <figure class="case-phone">
+                <video class="case-phone-video" poster="videos/speech-to-order/new-flow-chat-poster.png" width="776" height="1700" autoplay muted loop playsinline preload="auto" aria-label="Chat mode: choosing Via Chat from the preferred option sheet opens the assistant with a message field">
+                  <source src="videos/speech-to-order/new-flow-chat.mp4" type="video/mp4">
+                </video>
+                <figcaption class="case-phone-label">Via Chat</figcaption>
+              </figure>
+              <figure class="case-phone">
+                <video class="case-phone-video" poster="videos/speech-to-order/new-flow-call-poster.png" width="776" height="1700" autoplay muted loop playsinline preload="auto" aria-label="Call mode: choosing Via Call from the preferred option sheet starts a call from Omnibiz Customer Care">
+                  <source src="videos/speech-to-order/new-flow-call.mp4" type="video/mp4">
+                </video>
+                <figcaption class="case-phone-label">Via Call</figcaption>
+              </figure>
             </div>
           </div>
         </figure>
       </div>
 
-      <ol class="case-steps case-steps--flush" style="margin-top: 24px;">
-        <li>
-          <span class="case-step-n">01</span>
-          <span class="case-step-title">Numbered Product Matches</span>
-          <span class="case-step-copy">When multiple products matched a request, they're surfaced as a clear numbered list (e.g. &ldquo;1. 10KG bag of rice, 2. 15KG bag of beans&rdquo;) instead of being buried in a text response.</span>
-        </li>
-        <li>
-          <span class="case-step-n">02</span>
-          <span class="case-step-title">Visible Voice/Text Switch, Mid-Conversation</span>
-          <span class="case-step-copy">Retailers can move between speaking and typing without restarting the interaction.</span>
-        </li>
-        <li>
-          <span class="case-step-n">03</span>
-          <span class="case-step-title">Multi-Language Support</span>
-          <span class="case-step-copy">Added the option to switch from English to other languages, based on field testing feedback.</span>
-        </li>
-      </ol>
-
-      <div class="case-flag-box" style="margin-top: 8px;">
+      <div class="case-flag-box" style="margin-top: 24px;">
         <p class="case-flag-label">A Real Constraint, Not Glossed Over</p>
         <p class="case-flag-copy">
-          The voice/text switch saw real internal pushback around not storing conversation data for
+          The chat and call options saw real internal pushback around not storing conversation data for
           customers. Persistent conversation memory &mdash; the more seamless version of this feature
           &mdash; didn't make it through, because of legitimate data-storage concerns. What shipped
           respects that constraint rather than working around it.
         </p>
       </div>
+    </div>
+  </section>
 
-      <!-- Evidence follow-up before publication: retain the internal analytics source,
-           measurement window, cohort and exact speed definition with the before/after capture.
-           The CV establishes the 35% result and separates it from the reframing work. -->
-      <p class="case-copy" style="margin-top: 24px;">
-        The voice module was reported to improve order completion speed by <strong>35%</strong> for
-        low-literacy and high-volume users. That is a speed measure for the voice flow only. It is a
-        different measure from the complaint and order split above, and the two shouldn't be combined.
+  <!-- ============ WHERE IT STANDS NOW ============ -->
+  <section class="case-section" id="now">
+    <div class="wrap">
+      <p class="case-label">Where It Stands Now</p>
+      <p class="case-copy">
+        The results from this April work helped persuade the company to put a better plan behind how
+        this is managed. The design has changed a lot since then, and this is what it looks like today.
       </p>
+      <!-- Evidence follow-up before publication: confirm what the "better plan" actually is (a dedicated
+           app, a funded roadmap, etc.) and who made the call, then name it here. Do not claim a
+           specific outcome until it is confirmed. -->
+      <div class="case-figures" style="margin-top: 18px;">
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-head">
+            <p class="case-figure-head-title">Current Design</p>
+          </div>
+          <div class="case-figure-inset" style="padding: 32px 16px;">
+            <div class="case-device">
+              <div class="case-device-screen">
+                <video src="videos/speech-to-order/current-design.mp4" autoplay muted loop playsinline preload="auto" aria-label="Screen recording of the current Speech-to-Order design. Click to pause or play." onclick="this.paused ? this.play() : this.pause()" style="cursor:pointer"></video>
+                <script>
+                  (function () {
+                    var v = document.currentScript.previousElementSibling;
+                    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; }
+                  })();
+                </script>
+              </div>
+            </div>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
 
-      <div class="case-figures case-figures--spaced" style="margin-top: 24px;">
-        <figure class="case-figure case-figure--grey">
-          <div class="case-figure-head"><p class="case-figure-head-title">New Flow &mdash; Numbered Matches <span class="case-ph">[IMAGE 8]</span></p></div>
-          <div class="case-figure-inset">
-            <div class="case-frame"><div class="case-media-slot case-media-slot--wide"><span class="case-media-label">New Flow &mdash; Numbered Product Match / Review</span></div></div>
+  <!-- ============ NEXT STEPS ============ -->
+  <section class="case-section" id="next">
+    <div class="wrap">
+      <p class="case-label">Next Steps</p>
+      <p class="case-copy">Complaints still make up most voice sessions, so there are areas where the assistant can be improved further:</p>
+      <div class="case-stack-row">
+        <div class="case-stack-panel case-stack-panel--grey" aria-hidden="true"><img src="images/coreloops/Trade-offs Illustration-1.png" alt=""></div>
+        <div class="case-stack case-stack--wide">
+          <div class="case-stack-item">
+            <p class="case-stack-title">Understand Complaints</p>
+            <p class="case-stack-copy">Break the remaining complaint sessions down by topic, to see which ones the product can fix and which need support.</p>
           </div>
-        </figure>
-        <figure class="case-figure case-figure--grey">
-          <div class="case-figure-head"><p class="case-figure-head-title">New Flow &mdash; Confirmation <span class="case-ph">[IMAGE 9]</span></p></div>
-          <div class="case-figure-inset">
-            <div class="case-frame"><div class="case-media-slot case-media-slot--wide"><span class="case-media-label">New Flow &mdash; Confirmation State</span></div></div>
+          <div class="case-stack-item">
+            <p class="case-stack-title">Track The Split</p>
+            <p class="case-stack-copy">Keep measuring complaint against order sessions with a fixed definition and window, so the trend can be trusted.</p>
           </div>
-        </figure>
-        <figure class="case-figure case-figure--grey">
-          <div class="case-figure-head"><p class="case-figure-head-title">New Flow &mdash; Voice/Text Switch <span class="case-ph">[IMAGE 10]</span></p></div>
-          <div class="case-figure-inset">
-            <div class="case-frame"><div class="case-media-slot case-media-slot--wide"><span class="case-media-label">New Flow &mdash; Voice/Text Switch In Action</span></div></div>
+          <div class="case-stack-item">
+            <p class="case-stack-title">Make Both Modes Known</p>
+            <p class="case-stack-copy">Keep refining how chat and call are introduced, so more retailers know they can place an order by calling.</p>
           </div>
-        </figure>
+        </div>
       </div>
     </div>
   </section>
@@ -415,5 +509,24 @@
 </footer>
 
 <script src="js/case-quicknav.js"></script>
+<script>
+  (function () {
+    var clips = document.querySelectorAll('.case-phone-video');
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    clips.forEach(function (v) {
+      if (reduced) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; return; }
+      v.addEventListener('click', function () { v.dataset.stopped = v.paused ? '' : '1'; if (v.paused) v.play(); else v.pause(); });
+    });
+    if (reduced || !('IntersectionObserver' in window)) return;
+    var seen = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var v = e.target;
+        if (!e.isIntersecting) v.pause();
+        else if (!v.dataset.stopped) { var p = v.play(); if (p) p.catch(function () {}); }
+      });
+    }, { rootMargin: '100px 0px' });
+    clips.forEach(function (v) { seen.observe(v); });
+  })();
+</script>
 </body>
 </html>

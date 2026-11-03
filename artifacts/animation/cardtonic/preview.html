@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Cardtonic P2P · Type A Motion Study</title>
+  <style>
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:24px; background:#f4f8fa; font-family:Arial,sans-serif; }
+    main { width:min(1200px,100%); }
+    video { display:block; width:100%; aspect-ratio:16/9; object-fit:cover; object-position:center; background:#f4f8fa; }
+    .controls { display:flex; align-items:center; gap:12px; padding:10px 0; color:#002444; }
+    button { min-height:36px; border:1px solid #002444; padding:7px 12px; color:#002444; background:transparent; font:600 12px Arial,sans-serif; cursor:pointer; }
+    button:hover,button:focus-visible { color:#fff; background:#002444; }
+    .progress { flex:1; height:2px; background:#00244430; }
+    .progress span { display:block; width:0; height:100%; background:#00aebd; }
+    p { margin:6px 0 0; color:#435562; font:12px/1.5 Arial,sans-serif; letter-spacing:.03em; }
+    @media(max-width:640px) { body { padding:12px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <video data-video autoplay muted loop playsinline preload="metadata" poster="../../../videos/cardtonic/transfer-type-a-poster.png" aria-label="Cardtonic peer-to-peer transfer walkthrough: Home, recipient search and verification, amount, review, PIN, success, then back to Home">
+      <source src="../../../videos/cardtonic/transfer-type-a.mp4" type="video/mp4">
+    </video>
+    <div class="controls" aria-label="Animation controls">
+      <button type="button" data-toggle aria-label="Pause animation">Pause</button>
+      <button type="button" data-replay>Replay</button>
+      <div class="progress" role="progressbar" aria-label="Animation progress"><span data-progress></span></div>
+    </div>
+    <p>Cardtonic · Type A direction · Original screens in one consistent device, from Home back to Home.</p>
+  </main>
+  <script>
+    const video = document.querySelector('[data-video]');
+    const toggle = document.querySelector('[data-toggle]');
+    const progress = document.querySelector('[data-progress]');
+    toggle.addEventListener('click', () => {
+      if (video.paused) video.play(); else video.pause();
+    });
+    video.addEventListener('play', () => { toggle.textContent = 'Pause'; toggle.setAttribute('aria-label','Pause animation'); });
+    video.addEventListener('pause', () => { toggle.textContent = 'Play'; toggle.setAttribute('aria-label','Play animation'); });
+    video.addEventListener('timeupdate', () => {
+      progress.style.width = video.duration ? `${video.currentTime / video.duration * 100}%` : '0%';
+    });
+    document.querySelector('[data-replay]').addEventListener('click', () => {
+      video.currentTime = 0;
+      video.play();
+    });
+  </script>
+</body>
+</html>

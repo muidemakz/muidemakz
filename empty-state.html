@@ -17,6 +17,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/case-study.css">
+<style>
+/* Hero: one phone walks through the flow on the studio plate. Frames are crops of the
+   original screens already used below, so no extra image files. */
+.case-hero-media.case-hero-flow { height: auto; justify-content: center; align-items: center; padding: 40px 20px 28px; background-size: cover; background-position: center; background-color: #e9ddc9; }
+.case-hero-flow { position: relative; overflow: hidden; isolation: isolate; }
+.case-hero-flow::before { content: ""; position: absolute; inset: -40px; z-index: -1; background: url(images/cinema/omnibiz-studio.jpg) center / cover no-repeat; filter: blur(22px); }
+.ob-flow { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.ob-phone { height: clamp(380px, 48vw, 560px); aspect-ratio: 395 / 800; padding: 9px; border-radius: 44px; background: #0d0d10; box-shadow: 0 0 0 3px #d9d5e4, 0 30px 60px -18px rgba(60, 30, 10, .45); }
+.ob-screen { position: relative; width: 100%; height: 100%; border-radius: 36px; overflow: hidden; background: #fff; }
+.ob-frame { position: absolute; inset: 0; background-size: 506.3% auto; background-repeat: no-repeat; opacity: 0; transition: opacity .55s ease; }
+.ob-frame.is-current { opacity: 1; }
+.ob-tap { position: absolute; width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 50%; background: rgba(40, 40, 50, .28); border: 2px solid rgba(255, 255, 255, .85); opacity: 0; pointer-events: none; }
+.ob-tap.go { animation: ob-tap .9s ease-out; }
+@keyframes ob-tap { 0% { opacity: 0; transform: scale(1.5); } 25% { opacity: 1; transform: scale(1); } 60% { opacity: 1; transform: scale(.82); } 100% { opacity: 0; transform: scale(1.25); } }
+.ob-meta { display: flex; flex-direction: column; align-items: center; gap: 10px; color: #3b2a1c; font: 600 13px/1 'Outfit', sans-serif; letter-spacing: .02em; }
+.ob-dots { display: flex; gap: 6px; }
+.ob-dot { width: 26px; height: 3px; border-radius: 2px; background: rgba(59, 42, 28, .22); overflow: hidden; }
+.ob-dot i { display: block; height: 100%; width: 0; background: #f15a29; }
+.ob-dot.is-done i { width: 100%; }
+.ob-dot.is-current i { animation: ob-fill var(--ob-ms, 3000ms) linear forwards; }
+[data-ob-flow].is-paused .ob-dot.is-current i { animation-play-state: paused; }
+@keyframes ob-fill { to { width: 100%; } }
+@media (prefers-reduced-motion: reduce) { .ob-frame { transition: none; } .ob-dot.is-current i { animation: none; width: 100%; } }
+</style>
 </head>
 <body class="type-outfit">
 
@@ -48,7 +72,22 @@
         <li>Empty States</li>
       </ul>
     </div>
-    <div class="case-hero-media" role="img" aria-label="omnibiz original product screens in a cinematic studio" style="background-image:url(images/cinema/omnibiz-banner.svg);background-size:contain;background-repeat:no-repeat;background-position:center;background-color:#e9ddc9;"></div>
+    <div class="case-hero-media case-hero-flow" role="img" aria-label="Animated walkthrough of the Omnibiz flow: empty catalog, unserved market notice, notify me, trending products, preorder and checkout">
+      <div class="ob-flow" data-ob-flow>
+        <div class="ob-phone">
+          <div class="ob-screen">
+        <div class="ob-frame is-current" style="background-image:url(images/omnibiz/initial-landing-page-for-unserved.png);background-position:71.03% 47.00%" data-label="Empty catalog"></div>
+        <div class="ob-frame" style="background-image:url(images/omnibiz/new-landing-page-for-unserved-market-state.png);background-position:9.47% 100.00%" data-label="Unserved market" data-tap="49.9,74.4"></div>
+        <div class="ob-frame" style="background-image:url(images/omnibiz/new-landing-page-for-unserved-market-state.png);background-position:49.97% 100.00%" data-label="Notify me, confirmed"></div>
+        <div class="ob-frame" style="background-image:url(images/omnibiz/new-landing-page-for-unserved-market-state.png);background-position:90.47% 100.00%" data-label="Trending elsewhere"></div>
+        <div class="ob-frame" style="background-image:url(images/omnibiz/preorder-state-flow.png);background-position:9.47% 100.00%" data-label="Preorder in the catalog" data-tap="26,78.9"></div>
+        <div class="ob-frame" style="background-image:url(images/omnibiz/preorder-state-flow.png);background-position:90.47% 100.00%" data-label="Reserved at checkout"></div>
+            <i class="ob-tap" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="ob-meta" aria-hidden="true"><span class="ob-label">Empty catalog</span><span class="ob-dots"><span class="ob-dot is-current"><i></i></span><span class="ob-dot"><i></i></span><span class="ob-dot"><i></i></span><span class="ob-dot"><i></i></span><span class="ob-dot"><i></i></span><span class="ob-dot"><i></i></span></span></div>
+      </div>
+    </div>
   </section>
 
   <nav class="case-quicknav" aria-label="Section navigation">
@@ -262,5 +301,38 @@
 </footer>
 
 <script src="js/case-quicknav.js"></script>
+<script>
+  (function () {
+    var root = document.querySelector('[data-ob-flow]');
+    if (!root) return;
+    var frames = [].slice.call(root.querySelectorAll('.ob-frame'));
+    var dots = [].slice.call(root.querySelectorAll('.ob-dot'));
+    var label = root.querySelector('.ob-label');
+    var tap = root.querySelector('.ob-tap');
+    var MS = 3000, i = 0, timer = null, tapTimer = null, visible = true;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    root.style.setProperty('--ob-ms', MS + 'ms');
+    function show(n) {
+      i = n;
+      frames.forEach(function (f, k) { f.classList.toggle('is-current', k === n); });
+      dots.forEach(function (d, k) {
+        d.classList.remove('is-current'); d.classList.toggle('is-done', k < n);
+        if (k === n) { void d.offsetWidth; d.classList.add('is-current'); }
+      });
+      label.textContent = frames[n].getAttribute('data-label');
+      var t = frames[n].getAttribute('data-tap');
+      clearTimeout(tapTimer); tap.classList.remove('go');
+      if (t) { var p = t.split(','); tap.style.left = p[0] + '%'; tap.style.top = p[1] + '%'; tapTimer = setTimeout(function () { void tap.offsetWidth; tap.classList.add('go'); }, 1300); }
+    }
+    function next() { show((i + 1) % frames.length); }
+    function run() { clearInterval(timer); if (visible && !document.hidden) timer = setInterval(next, MS); }
+    function halt() { clearInterval(timer); }
+    show(0); run();
+    root.addEventListener('mouseenter', function () { root.classList.add('is-paused'); halt(); });
+    root.addEventListener('mouseleave', function () { root.classList.remove('is-paused'); show(i); run(); });
+    document.addEventListener('visibilitychange', function () { document.hidden ? halt() : run(); });
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { visible = e[0].isIntersecting; visible ? run() : halt(); }).observe(root);
+  })();
+</script>
 </body>
 </html>

@@ -411,7 +411,7 @@
 }
 
 .case-user-card-media { position: relative; min-height: 220px; overflow: hidden; }
-.case-user-card-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.case-user-card-media img { display: block; width: 100%; height: 100%; object-fit: contain; }
 
 @media (max-width: 700px) {
   .case-user-card { grid-template-columns: minmax(0, 1fr); }
@@ -1270,7 +1270,7 @@
 
 .case-crop img { position: absolute; top: 0; left: 0; max-width: none; height: auto; }
 .case-crop--bare { border: 0; }
-.case-crop--cover img { inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.case-crop--cover img { inset: 0; width: 100%; height: 100%; object-fit: contain; }
 
 .case-leadership-grid--cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
@@ -1369,6 +1369,32 @@
 .case-flag-copy:last-child { margin-bottom: 0; }
 
 .case-flag-box--dark { background: var(--ink-hard); color: var(--paper-hard); }
+
+/* flag boxes read as the split card used for target users: text on the left,
+   a solid black panel standing in for the image on the right */
+.case-flag-box {
+  position: relative;
+  padding: 32px calc(30% + 36px) 32px 36px;
+  box-shadow: 6px 6px 0 var(--ink-hard);
+  background: var(--paper-hard);
+  min-height: 150px;
+}
+.case-flag-box::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 30%;
+  background: var(--ink-hard);
+}
+.case-flag-box--dark { background: var(--ink-hard); }
+.case-flag-box--dark::after { background: var(--accent); }
+
+@media (max-width: 640px) {
+  .case-flag-box { padding: 24px 22px 80px; }
+  .case-flag-box::after { top: auto; left: 0; width: auto; height: 56px; }
+}
 
 @media (max-width: 768px) {
   .case-edge-grid { grid-template-columns: minmax(0, 1fr); }
@@ -1793,3 +1819,26 @@
 /* fixed-height card-shot image, for a row of components at equal height */
 .case-card-shot--eq { height: 230px; }
 .case-card-shot--eq img { height: 100%; width: auto; max-width: 100%; max-height: none; object-fit: contain; }
+
+/* phone mockup holding a screen recording */
+.case-device { margin: 0 auto; width: min(100%, 300px); padding: 10px; background: #0d0d0d; border-radius: 40px; box-shadow: 0 18px 40px rgba(0, 0, 0, .18); }
+.case-device-screen { position: relative; border-radius: 30px; overflow: hidden; background: #000; aspect-ratio: 9 / 19.5; }
+.case-device-screen video { display: block; width: 100%; height: 100%; object-fit: contain; }
+.case-device-screen::before { content: ""; position: absolute; top: 8px; left: 50%; width: 76px; height: 20px; transform: translateX(-50%); background: #0d0d0d; border-radius: 12px; z-index: 1; pointer-events: none; }
+
+/* hero walkthrough: whole screen sets cross-fading on a stage, same cadence as the
+   Omnibiz empty-state hero (see js/hero-flow.js) */
+.case-hero-media.hf-hero { height: auto; display: flex; justify-content: center; align-items: center; padding: 40px 20px 28px; }
+.hf-flow { display: flex; flex-direction: column; align-items: center; gap: 18px; width: min(100%, 980px); }
+.hf-stage { position: relative; width: 100%; aspect-ratio: var(--hf-ratio, 1530 / 737); border-radius: 14px; overflow: hidden; background: #fff; box-shadow: 0 30px 60px -18px rgba(0, 0, 0, .55); }
+.hf-frame { position: absolute; inset: 0; background-repeat: no-repeat; background-size: 100% auto; opacity: 0; transform: scale(1.015); transition: opacity .6s ease, transform 3.4s ease-out; }
+.hf-frame.is-current { opacity: 1; transform: scale(1); }
+.hf-meta { display: flex; flex-direction: column; align-items: center; gap: 10px; color: #f2f0eb; font: 600 13px/1 'Outfit', sans-serif; letter-spacing: .02em; }
+.hf-dots { display: flex; gap: 6px; }
+.hf-dot { width: 26px; height: 3px; border-radius: 2px; background: rgba(242, 240, 235, .28); overflow: hidden; }
+.hf-dot i { display: block; height: 100%; width: 0; background: #ff3b00; }
+.hf-dot.is-done i { width: 100%; }
+.hf-dot.is-current i { animation: hf-fill var(--hf-ms, 3200ms) linear forwards; }
+[data-hf-flow].is-paused .hf-dot.is-current i { animation-play-state: paused; }
+@keyframes hf-fill { to { width: 100%; } }
+@media (prefers-reduced-motion: reduce) { .hf-frame { transition: none; transform: none; } .hf-dot.is-current i { animation: none; width: 100%; } }

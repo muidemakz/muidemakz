@@ -1,0 +1,23 @@
+{
+  "width": 1800,
+  "height": 542,
+  "fps": 30,
+  "variants": {
+    "A": {
+      "file": "fundall-A-borrowing-v1.mp4",
+      "duration": 13.0
+    },
+    "B": {
+      "file": "fundall-B-face-id-v2.mp4",
+      "duration": 12.5
+    }
+  },
+  "same_video_for_all_placements": true,
+  "original_assets_modified": false,
+  "illustrative_states": [
+    "Face ID prompt",
+    "authentication loading",
+    "welcome"
+  ],
+  "loop_endpoints_identical_before_encoding": true
+}

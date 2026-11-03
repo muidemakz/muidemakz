@@ -1,0 +1,4 @@
+interface:
+  display_name: "Excellent Design and Motion"
+  short_description: "Intentional UI and motion using real brand assets"
+  default_prompt: "Use $excellent-design-motion to design a focused product animation using my existing screens and brand."

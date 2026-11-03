@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Landing exploration &middot; Colour bento &middot; Muidemakz</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+/* Exploration only: neo-brutalist colour bento.
+   Ink, paper and the orange accent are the site's own tokens (css/style.css);
+   the pastel set is new for this exploration and is used one colour per tile. */
+:root {
+  --ink: #0d0d0d;
+  --paper: #f2f0eb;
+  --white: #fff;
+  --accent: #ff3b00;
+
+  --yellow: #ffd84d;
+  --pink: #ff9fd0;
+  --lilac: #c3b2ff;
+  --lime: #c4f25c;
+  --sky: #8ad4ff;
+  --coral: #ff6a45;
+  --peach: #ffb38a;
+
+  --pc: var(--sky);               /* the project colour, set per slide by the script */
+
+  --bw: 2.5px;
+  --r: 18px;
+  --shadow: 5px 5px 0 var(--ink);
+  --shadow-up: 8px 8px 0 var(--ink);
+  --gap: 12px;
+
+  --mono: "JetBrains Mono", monospace;
+  --display: "Outfit", "Helvetica Neue", Arial, sans-serif;
+
+  /* motion tokens: the site's spring for UI, a plain ease-out for fades */
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --fast: 140ms;
+  --base: 300ms;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 16px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+p, h1, h2, ul { margin: 0; padding: 0; }
+ul { list-style: none; }
+
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+.mono { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* ---------- bento ---------- */
+.bento {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--gap);
+  padding: var(--gap);
+  max-width: 1760px;
+  margin: 0 auto;
+}
+
+.tile {
+  position: relative;
+  border: var(--bw) solid var(--ink);
+  border-radius: var(--r);
+  box-shadow: var(--shadow);
+  background: var(--white);
+  min-width: 0;
+  transition: transform var(--base) var(--spring), box-shadow var(--base) var(--spring), background-color 400ms var(--ease);
+}
+
+/* ---------- header tiles ---------- */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  min-height: 56px;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.brand-mark {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 26px;
+  height: 26px;
+  border: var(--bw) solid var(--ink);
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.brand-mark i:nth-child(1) { background: var(--yellow); }
+.brand-mark i:nth-child(2) { background: var(--pink); }
+.brand-mark i:nth-child(3) { background: var(--sky); }
+.brand-mark i:nth-child(4) { background: var(--lime); }
+
+.brand small { color: rgba(13, 13, 13, 0.7); font-weight: 400; margin-left: auto; }
+
+.nav { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
+
+.nav a {
+  display: grid;
+  place-items: center;
+  min-height: 56px;
+  padding: 0 14px;
+  border: var(--bw) solid var(--ink);
+  border-radius: var(--r);
+  box-shadow: var(--shadow);
+  transition: transform var(--base) var(--spring), box-shadow var(--base) var(--spring);
+}
+
+.nav a:nth-child(1) { background: var(--yellow); }
+.nav a:nth-child(2) { background: var(--pink); }
+.nav a:nth-child(3) { background: var(--sky); }
+.nav a:nth-child(n+4) { display: none; background: var(--lime); }
+.nav a:hover { transform: translate(-3px, -3px); box-shadow: var(--shadow-up); }
+.nav a:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--ink); transition-duration: 80ms; }
+
+/* ---------- hero ---------- */
+.hero {
+  background: var(--yellow);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 2.4vh, 24px);
+  padding: clamp(18px, 3vh, 30px) clamp(18px, 2.2vw, 32px);
+  overflow: hidden;
+}
+
+.chip {
+  align-self: flex-start;
+  padding: 6px 12px;
+  border: var(--bw) solid var(--ink);
+  border-radius: 999px;
+  background: var(--white);
+}
+
+.deco { position: absolute; pointer-events: none; }
+.deco--a { top: -34px; right: -26px; width: 130px; height: 130px; border: var(--bw) solid var(--ink); border-radius: 50%; background: var(--coral); }
+.deco--b { bottom: 22px; right: 34px; width: 54px; height: 54px; border: var(--bw) solid var(--ink); background: var(--lilac); transform: rotate(14deg); border-radius: 11px; box-shadow: 4px 4px 0 var(--ink); }
+
+h1 {
+  position: relative;
+  font-weight: 800;
+  font-size: clamp(34px, min(4.9vw, 7.6vh), 82px);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.stk {
+  position: relative;
+  display: inline-block;
+  padding: 0 0.12em;
+  margin: 0 0.02em;
+  border: var(--bw) solid var(--ink);
+  border-radius: 0.2em;
+  box-shadow: 4px 4px 0 var(--ink);
+  line-height: 1.02;
+}
+
+.stk--pink { background: var(--pink); transform: rotate(-2deg); }
+.stk--lime { background: var(--lime); transform: rotate(1.6deg); }
+
+/* a Figma-style cursor tag, the one wink at the trade */
+.cursor {
+  position: absolute;
+  right: -10px;
+  bottom: -30px;
+  display: flex;
+  align-items: flex-start;
+  pointer-events: none;
+  animation: cursor-in 800ms 400ms var(--spring) both;
+}
+
+.cursor svg { width: 20px; height: 24px; fill: var(--ink); stroke: var(--white); stroke-width: 1.5; margin-top: -2px; }
+.cursor b { margin: 10px 0 0 -2px; padding: 4px 9px; border-radius: 6px; background: var(--ink); color: var(--white); font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; }
+
+@keyframes cursor-in { from { opacity: 0; transform: translate(-90px, -60px); } to { opacity: 1; transform: none; } }
+
+.mk {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin-left: 6px;
+  vertical-align: super;
+  border: var(--bw) solid var(--ink);
+  border-radius: 50%;
+  background: var(--white);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: lowercase;
+  transition: transform var(--base) var(--spring), background-color var(--fast) linear, color var(--fast) linear;
+}
+
+.mk:hover, .mk.is-on { background: var(--ink); color: var(--white); transform: scale(1.18); }
+
+.lede { max-width: 42ch; font-size: clamp(16px, 1.3vw, 20px); font-weight: 500; line-height: 1.35; }
+.lede .mk { vertical-align: middle; margin-left: 4px; }
+
+.cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 0 20px;
+  border: var(--bw) solid var(--ink);
+  border-radius: 14px;
+  background: var(--white);
+  box-shadow: 4px 4px 0 var(--ink);
+  font-weight: 800;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  transition: transform var(--base) var(--spring), box-shadow var(--base) var(--spring), background-color var(--fast) linear;
+}
+
+.btn--solid { background: var(--ink); color: var(--white); }
+.btn:hover { transform: translate(-3px, -3px); box-shadow: 7px 7px 0 var(--ink); }
+.btn--solid:hover { background: var(--coral); color: var(--ink); }
+.btn:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--ink); transition-duration: 80ms; }
+
+/* ---------- evidence tiles ---------- */
+.ev {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 16px 14px;
+}
+
+.ev--a { background: var(--pink); }
+.ev--b { background: var(--lilac); }
+.ev--c { background: var(--lime); }
+
+.ev:hover, .ev.is-on { transform: translate(-3px, -3px) rotate(-1deg); box-shadow: var(--shadow-up); }
+
+.ev-top { display: flex; align-items: center; gap: 8px; }
+.ev-top .mk { margin: 0; vertical-align: baseline; }
+
+.ev-stat { font-weight: 800; font-size: clamp(28px, min(2.6vw, 5.4vh), 46px); line-height: 1; letter-spacing: -0.04em; }
+.ev-cap { font-size: 16px; font-weight: 500; line-height: 1.3; }
+.ev-src { margin-top: auto; padding-top: 6px; border-top: var(--bw) dashed rgba(13, 13, 13, 0.55); }
+
+/* ---------- phone tile ---------- */
+.phone {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 14px 16px;
+  background-color: var(--pc);
+  background-image: radial-gradient(rgba(13, 13, 13, 0.2) 1.5px, transparent 1.7px);
+  background-size: 16px 16px;
+  min-height: 560px;
+}
+
+.phone-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.fig { padding: 5px 10px; border: var(--bw) solid var(--ink); border-radius: 999px; background: var(--white); white-space: nowrap; }
+
+.segs { display: flex; gap: 6px; }
+
+.seg {
+  position: relative;
+  padding: 6px 10px;
+  border: var(--bw) solid var(--ink);
+  border-radius: 999px;
+  background: var(--white);
+  overflow: hidden;
+  transition: background-color var(--fast) linear, color var(--fast) linear;
+}
+
+.seg:hover { background: var(--yellow); }
+.seg.is-on { background: var(--ink); color: var(--white); }
+.seg .t { position: relative; z-index: 1; }
+.seg .fill, .legend .fill { position: absolute; left: 0; bottom: 0; height: 4px; width: 100%; background: var(--coral); transform-origin: left; transform: scaleX(var(--p, 0)); }
+.seg.is-on .fill { transition: transform 120ms linear; }
+
+.stage { position: relative; flex: 1; min-height: 0; padding: 0 10px 8px 16px; }
+.slides { position: relative; height: 100%; }
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(24px) scale(0.98);
+  transition: opacity var(--base) var(--ease), transform var(--base) var(--ease), visibility 0s linear var(--base);
+}
+
+.slide.is-on { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+
+.shot {
+  position: relative;
+  height: calc(100% - 8px);
+  max-width: 100%;
+  aspect-ratio: var(--ar);
+  border: var(--bw) solid var(--ink);
+  border-radius: 22px;
+  box-shadow: 6px 6px 0 var(--ink);
+  background: var(--white);
+}
+
+.shot img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; border-radius: 19px; }
+
+.target {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  border: 3px solid var(--ink);
+  border-radius: 10px;
+  box-shadow: 0 0 0 3px var(--white), 4px 4px 0 3px var(--ink);
+  transition: opacity var(--fast) linear;
+}
+
+.tag {
+  position: absolute;
+  translate: 0 calc(-100% - 8px);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px 3px 3px;
+  border: var(--bw) solid var(--ink);
+  border-radius: 999px;
+  background: var(--yellow);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tag .n { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--ink); color: var(--white); }
+
+.shot.has-target .target { opacity: 1; }
+.shot.has-target .tag { opacity: 1; animation: tag-in var(--base) var(--spring) both; }
+
+@keyframes tag-in { from { opacity: 0; scale: 0.7; } to { opacity: 1; scale: 1; } }
+
+.pin {
+  position: absolute;
+  left: 0;
+  translate: -50% -50%;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: var(--bw) solid var(--ink);
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  z-index: 2;
+  transition: background-color var(--fast) linear, color var(--fast) linear, scale var(--base) var(--spring);
+}
+
+.pin:hover { scale: 1.12; }
+.pin.is-on { background: var(--coral); color: var(--ink); scale: 1.2; }
+
+.slide.is-on .pin { animation: pin-in var(--base) var(--spring) both; animation-delay: calc(160ms + var(--i) * 60ms); }
+
+@keyframes pin-in { from { opacity: 0; scale: 0.3; } to { opacity: 1; scale: 1; } }
+
+/* ---------- note tile ---------- */
+.note {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 18px 18px;
+  background-color: color-mix(in srgb, var(--pc) 32%, var(--white));
+  overflow: auto;
+}
+
+.note-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.note-idx { padding: 4px 10px; border: var(--bw) solid var(--ink); border-radius: 999px; background: var(--white); }
+.note-open { text-decoration: underline; text-underline-offset: 3px; }
+.note-open:hover { background: var(--yellow); }
+
+.note-title { font-weight: 800; font-size: clamp(26px, 2.4vw, 38px); line-height: 1; letter-spacing: -0.03em; text-transform: uppercase; }
+
+.blk { display: grid; gap: 6px; }
+.blk[hidden] { display: none; }
+.blk .lab { justify-self: start; padding: 3px 9px; border: var(--bw) solid var(--ink); border-radius: 6px; background: var(--ink); color: var(--white); transform: rotate(-2deg); }
+.blk--data .lab { background: var(--pc); color: var(--ink); transform: rotate(1.5deg); }
+.blk .v { font-size: clamp(17px, 1.35vw, 21px); font-weight: 600; line-height: 1.3; }
+.blk--data .v { font-size: 16px; font-weight: 500; }
+
+/* ---------- legend tile ---------- */
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px 16px;
+  background: var(--ink);
+  color: var(--white);
+}
+
+.legend-head { display: flex; justify-content: space-between; gap: 8px; color: rgba(255, 255, 255, 0.78); }
+
+.pins { display: grid; gap: 8px; }
+
+.pins button {
+  position: relative;
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  min-height: 46px;
+  padding: 6px 12px 6px 8px;
+  border: var(--bw) solid var(--white);
+  border-radius: 14px;
+  background: transparent;
+  color: var(--white);
+  text-align: left;
+  font-weight: 600;
+  overflow: hidden;
+  transition: background-color var(--fast) linear, color var(--fast) linear, transform var(--base) var(--spring);
+}
+
+.pins button:hover { transform: translateX(3px); }
+.pins button.is-on { background: var(--pc); border-color: var(--pc); color: var(--ink); }
+.pins .n { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; border: var(--bw) solid currentColor; font-family: var(--mono); font-size: 12px; font-weight: 700; }
+.pins .fill { height: 5px; background: var(--ink); opacity: 0.85; }
+
+.ctrls { display: flex; gap: 8px; margin-top: auto; }
+
+.ctrl {
+  min-width: 44px;
+  min-height: 40px;
+  padding: 0 14px;
+  border: var(--bw) solid var(--white);
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  transition: background-color var(--fast) linear, color var(--fast) linear, transform var(--base) var(--spring);
+}
+
+.ctrl:hover { background: var(--yellow); color: var(--ink); transform: translateY(-2px); }
+.ctrl:last-child { margin-left: auto; }
+
+/* ---------- desktop: one screen, no scrolling ---------- */
+@media (min-width: 1101px) {
+  .bento {
+    height: 100dvh;
+    min-height: 640px;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: 56px repeat(5, minmax(0, 1fr));
+  }
+
+  .brand { grid-column: 1 / 7; grid-row: 1; }
+  .nav { grid-column: 7 / 13; grid-row: 1; grid-template-columns: repeat(5, 1fr); }
+  .nav a:nth-child(n+4) { display: grid; }
+  .hero { grid-column: 1 / 7; grid-row: 2 / 5; }
+  .ev--a { grid-column: 1 / 3; grid-row: 5 / 7; }
+  .ev--b { grid-column: 3 / 5; grid-row: 5 / 7; }
+  .ev--c { grid-column: 5 / 7; grid-row: 5 / 7; }
+  .phone { grid-column: 7 / 10; grid-row: 2 / 7; min-height: 0; }
+  .note { grid-column: 10 / 13; grid-row: 2 / 5; }
+  .legend { grid-column: 10 / 13; grid-row: 5 / 7; }
+}
+
+/* short desktop windows scroll instead of crushing the tiles */
+@media (min-width: 1101px) and (max-height: 639px) {
+  .bento { height: auto; grid-template-rows: 56px repeat(5, 130px); }
+}
+
+/* tablet and below: the same tiles, in reading order */
+@media (max-width: 1100px) {
+  .bento { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .brand, .nav, .hero, .phone, .note, .legend { grid-column: 1 / -1; }
+  .ev { grid-column: span 2; }
+  .phone { height: min(82vh, 680px); }
+  h1 { font-size: clamp(38px, 8.6vw, 78px); }
+  .hero .cta { margin-top: 8px; }
+}
+
+@media (max-width: 760px) {
+  .bento { grid-template-columns: minmax(0, 1fr); }
+  .ev { grid-column: 1 / -1; }
+  .brand small { display: none; }
+  .nav a { min-height: 48px; }
+  .deco--b { display: none; }
+  .deco--a { top: -30px; right: -30px; width: 84px; height: 84px; }
+  .chip { max-width: calc(100% - 56px); }
+  .phone { height: 600px; padding: 10px 10px 14px; }
+  .segs { width: 100%; }
+  .seg { flex: 1; text-align: center; padding: 6px 4px; }
+  .cursor { right: -4px; bottom: -34px; }
+  .ev-stat { font-size: clamp(36px, 11vw, 52px); }
+  .deco--b { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide { transform: none; transition: opacity var(--fast) linear, visibility 0s linear var(--fast); }
+  .slide.is-on .pin, .shot.has-target .tag, .cursor { animation: none; }
+  .tile, .btn, .nav a, .mk, .pin, .pins button, .ctrl { transition-duration: 0.01ms; }
+  .ev:hover, .ev.is-on { transform: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="bento" id="bento">
+
+  <a class="tile brand" href="../../../index.html" aria-label="Muidemakz home">
+    <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Muidemakz
+    <small class="mono">Senior Product Designer</small>
+  </a>
+
+  <nav class="nav mono" aria-label="Primary">
+    <a href="../../../my-work.html">Work</a>
+    <a href="../../../about.html">About</a>
+    <a href="https://www.linkedin.com/in/makanju-excellent-211b0a44/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://dribbble.com/muidemakz" target="_blank" rel="noopener">Dribbble</a>
+    <a href="https://www.behance.net/oemakanju" target="_blank" rel="noopener">Behance</a>
+  </nav>
+
+  <section class="tile hero" aria-labelledby="headline">
+    <span class="deco deco--a" aria-hidden="true"></span>
+    <span class="deco deco--b" aria-hidden="true"></span>
+    <span class="chip mono">Product designer &middot; payments &amp; B2B &middot; 2026</span>
+    <h1 id="headline">I make
+      <span class="stk stk--pink">complex
+        <span class="cursor" aria-hidden="true"><svg viewBox="0 0 18 22"><path d="M1 1l15 10.5-6.5 1.4L6.6 20z"/></svg><b>EXCELLENT</b></span>
+      </span>
+      money products<button class="mk" type="button" data-ev="a" aria-label="Evidence a: complex money products">a</button>
+      <span class="stk stk--lime">clear</span> to use.<button class="mk" type="button" data-ev="b" aria-label="Evidence b: clear to use">b</button>
+    </h1>
+    <p class="lede">Payments, wallets, credit and B2B workflows on a platform serving 150,000+ retailers<button class="mk" type="button" data-ev="c" aria-label="Evidence c: 150,000+ retailers">c</button></p>
+    <div class="cta">
+      <a class="btn btn--solid" href="../../../my-work.html">View selected work <span aria-hidden="true">&rarr;</span></a>
+      <a class="btn" href="../../../about.html">About me</a>
+    </div>
+  </section>
+
+  <article class="tile ev ev--a" data-ev="a" tabindex="-1">
+    <div class="ev-top"><span class="mk" aria-hidden="true">a</span><span class="mono">Scope</span></div>
+    <p class="ev-stat">6+ years</p>
+    <p class="ev-cap">Payments, wallets, credit and B2B commerce. Led the Omnibiz retailer app and the Omnipay wallet layer.</p>
+    <p class="ev-src mono">Source: About page</p>
+  </article>
+
+  <article class="tile ev ev--b" data-ev="b" tabindex="-1">
+    <div class="ev-top"><span class="mk" aria-hidden="true">b</span><span class="mono">Clarity</span></div>
+    <p class="ev-stat">&minus;30% &middot; &minus;40%</p>
+    <p class="ev-cap">Auth support tickets after unified SSO across 5 products. Handoff time with a token design system across 5+ apps.</p>
+    <p class="ev-src mono">Source: About page</p>
+  </article>
+
+  <article class="tile ev ev--c" data-ev="c" tabindex="-1">
+    <div class="ev-top"><span class="mk" aria-hidden="true">c</span><span class="mono">Scale</span></div>
+    <p class="ev-stat">150,000+</p>
+    <p class="ev-cap">Retailers on a $124M+ annual NMV platform. This is scale context, not one feature's result.</p>
+    <p class="ev-src mono">Source: About page</p>
+  </article>
+
+  <section class="tile phone" id="deck" aria-roledescription="carousel" aria-label="Selected work with design decisions">
+    <div class="phone-top">
+      <span class="fig mono" id="figNo">Fig. 01 / 03</span>
+      <nav class="segs mono" id="segs" aria-label="Choose a project"></nav>
+    </div>
+    <div class="stage"><div class="slides" id="slides"></div></div>
+  </section>
+
+  <aside class="tile note" id="deckNote" aria-live="polite" aria-label="Design decision note">
+    <div class="note-top mono"><span class="note-idx">Note</span><a class="note-open" href="#">Case study &rarr;</a></div>
+    <h2 class="note-title"></h2>
+    <div class="blk"><span class="lab mono"></span><p class="v"></p></div>
+    <div class="blk blk--data"><span class="lab mono"></span><p class="v"></p></div>
+  </aside>
+
+  <aside class="tile legend" id="legendTile" aria-label="Pins and controls">
+    <p class="legend-head mono"><span>Pins</span><span>Auto focus, hover to hold</span></p>
+    <ul class="pins" id="legend"></ul>
+    <div class="ctrls mono">
+      <button class="ctrl" type="button" id="prev" aria-label="Previous project">&larr;</button>
+      <button class="ctrl" type="button" id="next" aria-label="Next project">&rarr;</button>
+      <button class="ctrl" type="button" id="pause" aria-pressed="false" aria-label="Pause the automatic slideshow">Pause</button>
+    </div>
+  </aside>
+
+</div>
+
+<script>
+/* Every note is drawn from a published case study or the About page.
+   box = the area a pin points at, as % of the screen: [x, y, w, h]. pc = the project colour. */
+const SLIDES = [
+  {
+    key: 'cardtonic', name: 'Cardtonic', topic: 'Peer-to-peer transfers', href: '../../../cardtonic.html', pc: '#8ad4ff',
+    img: 'assets/cardtonic-review.png', w: 400, h: 864,
+    alt: 'Cardtonic review-transfer screen showing the recipient, amount, fee and a send button',
+    summary: 'Cardtonic was exploring peer-to-peer transfers for 1,000,000+ users. The open question was how to build enough confidence when money moves between people. I put recipient verification before the amount.',
+    pins: [
+      { t: 'Recipient first', box: [9.3, 31.4, 81.5, 7.6],
+        why: 'Identity is confirmed before an amount is entered. Both people are on Cardtonic, so verification is fast.',
+        data: 'Benchmarked Kuda, GTBank, Access Bank, Pocket App and PalmPay. Few address recipient-verification anxiety.' },
+      { t: 'Amount and fee', box: [5.3, 40, 85.5, 9.5],
+        why: 'A million naira deserves friction. Two thousand does not. One flow has to carry both.',
+        data: 'Competitors enforce limits silently. Here the ceiling is explained.' },
+      { t: 'One action', box: [5, 87, 89.8, 6.5],
+        why: 'The first send needs explaining. The fiftieth needs to be three taps.',
+        data: 'One question per screen. Every extra reassurance screen starts to read as risk.' }
+    ]
+  },
+  {
+    key: 'fundall', name: 'Fundall', topic: 'Salary Advance on mobile', href: '../../../fundall.html', pc: '#c4f25c',
+    img: 'assets/fundall-eligibility.png', w: 752, h: 1662,
+    alt: 'Fundall salary advance form showing the amount a user is eligible to borrow',
+    summary: 'Borrowing existed on the web only and was barely visible in the app. I led the design of Loans and Salary Advance for the mobile app during the post-acquisition rebrand.',
+    pins: [
+      { t: 'Why mobile', box: [7.7, 9.6, 52, 5.7],
+        why: 'Borrowing was web only, so users left the app for a browser.',
+        data: 'Real QA feedback: "I can only take a loan on the web app." Cross-checked with interviews so it was not a one-off.' },
+      { t: 'Eligible amount', box: [7.7, 52.1, 84, 4.7],
+        why: 'Show what a user can borrow before they apply.',
+        data: 'Research finding: users needed real-time eligibility status. Benchmarked Fairmoney, Carbon and Branch.' },
+      { t: 'Outcome, not claimed', box: [8, 79.1, 84.3, 6],
+        why: 'Adoption and completion are not claimed for this flow.',
+        data: 'Whether it improved completion or adoption needed a separate check after launch.' }
+    ]
+  },
+  {
+    key: 'omnibiz', name: 'Omnibiz', topic: 'Empty and preorder states', href: '../../../empty-state.html', pc: '#ffb38a',
+    img: 'assets/omnibiz-catalog.png', w: 868, h: 1772,
+    alt: 'Omnibiz catalog showing products marked Preorder Available with a Reserve action',
+    summary: 'Two dead ends kept appearing: a market not launched yet, and a product not live in a region. Both showed an empty catalog. I turned them into a clear statement and a preorder.',
+    pins: [
+      { t: 'Kept visible', box: [4, 51.6, 43.8, 31.3],
+        why: 'Out-of-region products stay in the catalog instead of being hidden.',
+        data: 'A tidier catalog was worth less than a persistent demand signal.' },
+      { t: 'Honest label', box: [7.1, 71.7, 37.8, 3.5],
+        why: 'Marked as preorder, with the regions it is live in. The unavailability is stated, not hidden.',
+        data: '"Not in your country yet" and "not in your region yet" are different promises.' },
+      { t: 'One action', box: [7.1, 76.7, 37.8, 4.7],
+        why: 'A single Reserve action, so the retailer gets unstuck.',
+        data: 'Every preorder is a demand signal for expansion and sourcing, across a retailer base past 150K. Signal to watch: preorder conversion once a product goes live.' }
+    ]
+  }
+];
+
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const pad = n => String(n).padStart(2, '0');
+
+/* ---- hero marks light up their evidence tile, and the other way round ---- */
+(() => {
+  const marks = $$('button.mk');
+  const tiles = $$('.ev');
+  const set = id => {
+    marks.forEach(m => m.classList.toggle('is-on', m.dataset.ev === id));
+    tiles.forEach(t => t.classList.toggle('is-on', t.dataset.ev === id));
+  };
+  let pinned = null;
+  marks.forEach(m => {
+    const id = m.dataset.ev;
+    m.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') set(id); });
+    m.addEventListener('pointerleave', () => set(pinned));
+    m.addEventListener('focus', () => set(id));
+    m.addEventListener('blur', () => set(pinned));
+    m.addEventListener('click', () => { pinned = pinned === id ? null : id; set(pinned); });
+  });
+  tiles.forEach(t => {
+    t.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') set(t.dataset.ev); });
+    t.addEventListener('pointerleave', () => set(pinned));
+  });
+})();
+
+/* ---- deck: overview, then each pin in turn, then the next project.
+        Hovering, focusing or pinning anything holds the timeline. ---- */
+(() => {
+  const bento = $('#bento');
+  const slidesEl = $('#slides');
+  const segsEl = $('#segs');
+  const legendEl = $('#legend');
+  const note = $('#deckNote');
+  const parts = [$('#deck'), note, $('#legendTile')];
+  const pauseBtn = $('#pause');
+
+  const LEAD = 1800, DWELL = 3400, TICK = 100;
+  let cur = 0, step = -1, elapsed = 0, hover = null, pinned = null;
+  const hold = { pointer: new Set(), focus: false, user: false };
+
+  /* slides and project tabs */
+  SLIDES.forEach((s, si) => {
+    const slide = document.createElement('div');
+    slide.className = 'slide';
+    const pinsHtml = s.pins.map((p, pi) => {
+      const y = (p.box[1] + p.box[3] / 2).toFixed(2);
+      return `<button class="pin" type="button" data-p="${pi}" style="top:${y}%;--i:${pi}" aria-label="Decision ${pi + 1} of ${s.pins.length}: ${p.t}">${pi + 1}</button>`;
+    }).join('');
+    slide.innerHTML =
+      `<div class="shot" style="--ar:${s.w}/${s.h}">` +
+      `<img src="${s.img}" alt="${s.alt}" width="${s.w}" height="${s.h}">` +
+      `<span class="target"></span><span class="tag mono"><span class="n"></span><span class="tt"></span></span>${pinsHtml}</div>`;
+    slidesEl.appendChild(slide);
+
+    const seg = document.createElement('button');
+    seg.type = 'button';
+    seg.className = 'seg';
+    seg.innerHTML = `<span class="t">${pad(si + 1)} ${s.name}</span><span class="fill"></span>`;
+    seg.addEventListener('click', () => go(si));
+    segsEl.appendChild(seg);
+  });
+
+  const slideEls = $$('.slide', slidesEl);
+  const segEls = $$('.seg', segsEl);
+  const held = () => hold.pointer.size > 0 || hold.focus || hold.user || pinned !== null;
+  const activeIndex = () => hover ?? pinned ?? (step >= 0 ? step : null);
+
+  function fillNote(n) {
+    $('.note-title', note).textContent = n.title;
+    $('.note-idx', note).textContent = n.idx;
+    const open = $('.note-open', note);
+    open.href = n.href;
+    const blks = $$('.blk', note);
+    [[n.k1, n.v1], [n.k2, n.v2]].forEach(([k, v], i) => {
+      blks[i].hidden = !v;
+      $('.lab', blks[i]).textContent = k || '';
+      $('.v', blks[i]).textContent = v || '';
+    });
+  }
+
+  function render() {
+    const s = SLIDES[cur];
+    const a = activeIndex();
+    bento.style.setProperty('--pc', s.pc);
+    $('#figNo').textContent = `Fig. ${pad(cur + 1)} / ${pad(SLIDES.length)}`;
+
+    if (a === null) {
+      fillNote({ title: s.topic, idx: s.name, href: s.href, k1: 'Context', v1: s.summary, k2: '', v2: '' });
+    } else {
+      const p = s.pins[a];
+      fillNote({ title: p.t, idx: `${s.name} ${a + 1}/${s.pins.length}`, href: s.href, k1: 'Why', v1: p.why, k2: 'Data', v2: p.data });
+    }
+
+    const shot = $('.shot', slideEls[cur]);
+    $$('.pin', shot).forEach((el, i) => el.classList.toggle('is-on', i === a));
+    $$('button', legendEl).forEach((el, i) => el.classList.toggle('is-on', i === a));
+    shot.classList.toggle('has-target', a !== null);
+    if (a !== null) {
+      const [x, y, w, h] = s.pins[a].box;
+      $('.target', shot).style.cssText = `left:${x}%;top:${y}%;width:${w}%;height:${h}%`;
+      const tag = $('.tag', shot);
+      tag.style.cssText = `left:${x}%;top:${y}%`;
+      $('.n', tag).textContent = a + 1;
+      $('.tt', tag).textContent = s.pins[a].t;
+    }
+  }
+
+  function buildLegend() {
+    legendEl.innerHTML = SLIDES[cur].pins.map((p, i) =>
+      `<li><button type="button" data-p="${i}"><span class="n">${i + 1}</span><span>${p.t}</span><span class="fill" style="position:absolute;left:0;bottom:0;width:100%;transform-origin:left;transform:scaleX(var(--p,0))"></span></button></li>`).join('');
+  }
+
+  function setProgress() {
+    const n = SLIDES[cur].pins.length;
+    const total = LEAD + n * DWELL;
+    const done = step < 0 ? elapsed : LEAD + step * DWELL + elapsed;
+    segEls.forEach((el, i) => {
+      el.classList.toggle('is-on', i === cur);
+      el.style.setProperty('--p', i === cur ? Math.min(done / total, 1).toFixed(3) : 0);
+    });
+    $$('button', legendEl).forEach((el, i) => {
+      el.style.setProperty('--p', i === step ? Math.min(elapsed / DWELL, 1).toFixed(3) : 0);
+    });
+  }
+
+  function go(n) {
+    cur = (n + SLIDES.length) % SLIDES.length;
+    step = -1; elapsed = 0; hover = null; pinned = null;
+    slideEls.forEach((el, i) => {
+      const on = i === cur;
+      el.classList.toggle('is-on', on);
+      el.setAttribute('aria-hidden', on ? 'false' : 'true');
+      el.inert = !on;
+    });
+    buildLegend();
+    setProgress();
+    render();
+  }
+
+  function tick() {
+    if (held()) return;
+    elapsed += TICK;
+    if (elapsed >= (step < 0 ? LEAD : DWELL)) {
+      elapsed = 0;
+      step += 1;
+      if (step >= SLIDES[cur].pins.length) { go(cur + 1); return; }
+      render();
+    }
+    setProgress();
+  }
+
+  function setHover(i) {
+    hover = i;
+    if (i !== null) { step = i; elapsed = 0; }   /* the timeline resumes from the pin you held */
+    render();
+    setProgress();
+  }
+
+  const isPin = e => e.target.closest('.pin, .pins button');
+
+  document.addEventListener('pointerover', e => { const b = isPin(e); if (b && e.pointerType === 'mouse') setHover(+b.dataset.p); });
+  document.addEventListener('pointerout', e => { const b = isPin(e); if (b && e.pointerType === 'mouse') setHover(null); });
+  document.addEventListener('focusin', e => {
+    const b = isPin(e);
+    if (b) { hold.focus = true; setHover(+b.dataset.p); } else if (parts.some(p => p.contains(e.target))) hold.focus = true;
+  });
+  document.addEventListener('focusout', e => {
+    if (parts.some(p => p.contains(e.target)) && !parts.some(p => p.contains(e.relatedTarget))) hold.focus = false;
+    if (isPin(e)) setHover(null);
+  });
+  document.addEventListener('click', e => {
+    const b = isPin(e);
+    if (b) { const i = +b.dataset.p; pinned = pinned === i ? null : i; render(); }
+  });
+  parts.forEach(p => {
+    p.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') hold.pointer.add(p); });
+    p.addEventListener('pointerleave', () => hold.pointer.delete(p));
+  });
+
+  $('#prev').addEventListener('click', () => go(cur - 1));
+  $('#next').addEventListener('click', () => go(cur + 1));
+  pauseBtn.addEventListener('click', () => {
+    hold.user = !hold.user;
+    pauseBtn.setAttribute('aria-pressed', String(hold.user));
+    pauseBtn.textContent = hold.user ? 'Play' : 'Pause';
+    pauseBtn.setAttribute('aria-label', hold.user ? 'Resume the automatic slideshow' : 'Pause the automatic slideshow');
+  });
+  $('#deck').addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') go(cur + 1);
+    if (e.key === 'ArrowLeft') go(cur - 1);
+  });
+
+  /* touch swipe */
+  let sx = null;
+  slidesEl.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') sx = e.clientX; });
+  slidesEl.addEventListener('pointerup', e => {
+    if (sx === null) return;
+    const dx = e.clientX - sx; sx = null;
+    if (Math.abs(dx) > 48) go(cur + (dx < 0 ? 1 : -1));
+  });
+
+  setInterval(tick, TICK);
+  go(0);
+})();
+</script>
+</body>
+</html>

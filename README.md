@@ -62,10 +62,12 @@ must not be described as implemented.
   The main story is the support-versus-ordering reframing: roughly 90% to 65% complaint
   sessions and 10% to 35% order sessions over the two weeks after the updates (figures
   supplied by the owner, 2 November 2026). Capture the before and after split with its
-  window, session count and the definition of a "complaint" session. The reported 35%
-  order-completion speed improvement is a separate measure that belongs to the voice
-  module; it needs its own capture of period, cohort and speed definition and must not be
-  combined with the split. Keep the draft unlinked and noindex.
+  window, session count and the definition of a "complaint" session. The "Two Modes"
+  section is about retailers not knowing the assistant had two modes, chat and call, or that they could order by calling; it has the Via Chat and Via Call clips and still needs
+  screen or video and a note of what changed in the UI. The earlier 35% order-completion
+  speed claim was removed from the page (it measures speed, not discoverability); re-add
+  it only with its own period, cohort and definition, and never combined with the split.
+  Keep the draft unlinked and noindex.
 - Valideity's pricing-flow case uses original 27 September 2026 captures. Its
   recorded Predicted sequence is 53% → 52% → 94%, with one persona and five
   sessions per run. Some historical screenshots are compact 480px captures;

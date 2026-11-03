@@ -1,0 +1,282 @@
+/* Nsimbi case study (nsimbi-three-purchases.html).
+   Builds on css/case-study.css (figure containers with a black label banner and a
+   grey stage), css/before-after.css and css/moniepoint.css (touch headings, evidence
+   box, bars, details, tables, links, skill block). Only what those don't provide
+   lives here. */
+
+/* ---------- the phone: a graphite iPhone-style body drawn in CSS ----------
+   Every measurement is in cqw (a share of the phone's own width), so one frame
+   scales from a 150px strip thumbnail to a 290px panel. */
+
+.ns-device { container-type: inline-size; width: 100%; }
+
+.ns-device-frame {
+  position: relative;
+  padding: 1.5cqw;
+  border-radius: 15.5cqw;
+  background: linear-gradient(135deg, #7a7a7e 0%, #36363a 26%, #19191b 52%, #3c3c40 78%, #77777b 100%);
+  box-shadow:
+    0 0 0 0.3cqw rgba(0, 0, 0, 0.45),
+    inset 0 0 0 0.25cqw rgba(255, 255, 255, 0.22),
+    0 1.6cqw 2.6cqw rgba(0, 0, 0, 0.22),
+    0 5cqw 9cqw -2cqw rgba(0, 0, 0, 0.38);
+}
+
+/* side buttons: action and volume on the left, power on the right */
+.ns-device-frame::before, .ns-device-frame::after {
+  content: "";
+  position: absolute;
+  background: linear-gradient(to right, #26262a, #55555a 60%, #2c2c30);
+}
+.ns-device-frame::before {
+  left: -0.9cqw;
+  top: 27cqw;
+  width: 0.9cqw;
+  height: 9cqw;
+  border-radius: 0.5cqw 0 0 0.5cqw;
+  box-shadow: 0 14cqw 0 #3a3a3e, 0 25cqw 0 #3a3a3e;
+}
+.ns-device-frame::after {
+  right: -0.9cqw;
+  top: 44cqw;
+  width: 0.9cqw;
+  height: 17cqw;
+  border-radius: 0 0.5cqw 0.5cqw 0;
+  background: linear-gradient(to left, #26262a, #55555a 60%, #2c2c30);
+}
+
+.ns-device-screen {
+  position: relative;
+  box-sizing: border-box;
+  aspect-ratio: 97 / 204.8;
+  overflow: hidden;
+  border: 2.2cqw solid #050506;
+  border-radius: 13.6cqw;
+  background: #fff;
+}
+
+.ns-device-screen img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+
+/* a faint glass reflection */
+.ns-device-screen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0) 30%);
+  pointer-events: none;
+}
+
+.ns-device-island {
+  position: absolute;
+  top: 6.6cqw;
+  left: 50%;
+  width: 29cqw;
+  height: 8.4cqw;
+  border-radius: 99px;
+  background: #000;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+/* a status-bar scrim: once a tall screen has scrolled, content fades out under the island */
+.ns-device-screen[data-ns-scroll]::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 17cqw;
+  background: linear-gradient(to bottom, #f6f5fa 0%, #f6f5fa 62%, rgba(246, 245, 250, 0) 100%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+.ns-device-screen[data-ns-scroll].is-scrolled::before { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .ns-device-screen[data-ns-scroll]::before { transition: none; } }
+
+/* a screen taller than the phone scrolls inside it, like the real thing */
+.ns-device-screen[data-ns-scroll] img { height: auto; object-fit: initial; will-change: transform; }
+
+/* ---------- figure containers (the site's grey stage with a label banner) ---------- */
+
+.ns-fig .case-figure-head { padding: 22px 26px 20px; }
+.ns-fig .case-figure-head-title { margin: 0; }
+.ns-fig .case-figure-head-copy { margin-top: 8px; font-size: 15px; line-height: 1.4; opacity: 0.85; }
+.ns-fig .ns-inset { padding: 34px 16px 38px; }
+
+.ns-fig .ns-device { width: min(100%, 270px); margin: 0 auto; }
+
+/* the recorded phone, cut out of Felix's video, and the two clips */
+.ns-fig .ns-orig { display: block; width: min(100%, 270px); height: auto; margin: 0 auto; filter: drop-shadow(0 16px 22px rgba(0, 0, 0, 0.28)); }
+.ns-clip-wrap { width: min(100%, 270px); margin: 0 auto; filter: drop-shadow(0 16px 22px rgba(0, 0, 0, 0.28)); }
+.ns-clip { display: block; width: 100%; height: auto; border-radius: 16.2% / 7.9%; background: #1a1a1a; }
+
+.ns-fig .case-figure-note {
+  margin: 0;
+  padding: 11px 13px;
+  border-top: 1px solid var(--ink-hard);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  background: #fff;
+}
+
+/* NEW variant: the figure inset as a stage that holds an Original/Update pair.
+   Same hatch as the Moniepoint hero stage; chips echo its Before/After tags. */
+.ns-stage {
+  padding: 34px 24px 44px;
+  background: #e6e3dc repeating-linear-gradient(135deg, var(--hard-line) 0 2px, transparent 2px 11px);
+  border-top: 1px solid var(--ink-hard);
+}
+.ns-stage-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; align-items: start; max-width: 760px; margin: 0 auto; }
+.ns-stage-col { display: flex; flex-direction: column; align-items: center; min-width: 0; }
+.ns-fig .ns-stage-col .ns-device, .ns-fig .ns-stage-col .ns-orig { width: min(100%, 270px); }
+.ns-chip { margin-bottom: 16px; }
+.ns-chip--dark { background: var(--ink-hard); color: var(--paper-hard); }
+@media (max-width: 640px) { .ns-stage-pair { grid-template-columns: minmax(0, 1fr); gap: 36px; } }
+
+/* ---------- hero banner (the site's case-hero-cover, with two phones bleeding off the bottom) ---------- */
+
+.case-hero-media.case-hero-nsimbi {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: clamp(20px, 6vw, 84px);
+  padding: 24px 24px 0;
+  overflow: hidden;
+}
+.ns-banner-col { display: flex; flex-direction: column; align-items: center; width: min(250px, 30vw); flex: none; }
+.case-hero-nsimbi .ns-chip { margin-bottom: 10px; }
+.case-hero-nsimbi .ns-device { width: 100%; }
+.case-hero-nsimbi .ns-orig { display: block; width: 100%; height: auto; filter: drop-shadow(0 16px 22px rgba(0, 0, 0, 0.28)); }
+@media (max-width: 560px) {
+  .case-hero-media.case-hero-nsimbi { padding: 16px 16px 0; gap: 16px; }
+  .ns-banner-col { width: 40vw; }
+}
+
+/* ---------- the three passes ---------- */
+
+.ns-pass {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px 56px;
+  padding: 52px 0;
+  border-top: 1px solid var(--hard-line);
+  align-items: start;
+}
+.ns-pass:first-of-type { border-top: 0; padding-top: 16px; }
+
+.ns-pass-n {
+  margin: 0 0 14px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.ns-pass-title {
+  margin: 0 0 14px;
+  font-family: var(--font-hard);
+  font-weight: 700;
+  font-size: clamp(24px, 3vw, 36px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.ns-pass-q { margin: 0 0 20px; font-family: var(--font-hard); font-size: 18px; line-height: 1.45; font-weight: 600; }
+.ns-pass-copy .case-copy, .ns-pass-copy .case-list { max-width: 56ch; }
+.ns-pass-media { position: sticky; top: 92px; }
+.ns-pass-media .case-figure { margin: 0; }
+
+@media (max-width: 900px) {
+  .ns-pass { grid-template-columns: minmax(0, 1fr); padding: 40px 0; }
+  .ns-pass-media { position: static; }
+}
+
+.ns-questions { margin: 18px 0 0; }
+.ns-questions li { font-size: 15px; margin-bottom: 8px; }
+
+/* ---------- Figma pages: three stacked, labelled figures ---------- */
+
+.ns-pass--stack { grid-template-columns: minmax(0, 1fr); }
+.ns-pass--stack .ns-pass-copy .case-copy, .ns-pass--stack .ns-pass-copy .case-list { max-width: 68ch; }
+.ns-figma-stack { margin-top: 12px; }
+.ns-figma-stage { background: #2c2c2c; border-top: 1px solid var(--ink-hard); }
+.ns-figma-stage img { display: block; width: 100%; height: auto; }
+.ns-scroll { max-height: 560px; overflow: auto; overscroll-behavior: contain; }
+.ns-scroll:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+
+/* ---------- touches ---------- */
+
+.ns-touch { padding: 56px 0 8px; border-top: 1px solid var(--hard-line); }
+.ns-touch:first-of-type { border-top: 0; padding-top: 16px; }
+.ns-touch .mv-decision-lead { max-width: 64ch; margin-bottom: 22px; }
+.ns-touch .case-tension-list { margin-top: 24px; }
+
+.ns-points { margin: 0 0 22px; padding: 0; list-style: none; }
+.ns-points li {
+  position: relative;
+  padding: 0 0 0 20px;
+  margin: 0 0 10px;
+  max-width: 54ch;
+  font-family: var(--font-hard);
+  font-size: 16px;
+  line-height: 1.5;
+}
+.ns-points li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 10px; height: 3px; background: var(--accent); }
+
+/* ---------- journey strip ---------- */
+
+.ns-strip-wrap { overflow-x: auto; padding: 0 0 6px; }
+.ns-strip { display: grid; grid-template-columns: repeat(5, minmax(150px, 1fr)); gap: 18px; min-width: 820px; padding: 0 8px; }
+.ns-step { margin: 0; }
+.ns-step-label {
+  margin: 0 0 12px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.ns-step-label span { color: var(--accent); margin-right: 6px; }
+.ns-step-note { margin: 12px 0 0; font-family: var(--font-hard); font-size: 14px; line-height: 1.4; opacity: 0.85; }
+.ns-fig .ns-inset--strip { padding: 30px 22px 34px; }
+
+/* ---------- capabilities ---------- */
+
+.ns-caps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--ink-hard);
+  border-left: 1px solid var(--ink-hard);
+  margin-top: 28px;
+}
+.ns-cap-card { padding: 24px 24px 26px; border-right: 1px solid var(--ink-hard); border-bottom: 1px solid var(--ink-hard); }
+.ns-cap-n { margin: 0 0 10px; font-family: var(--font-mono); font-weight: 700; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.ns-cap-title { margin: 0 0 8px; font-family: var(--font-hard); font-weight: 700; font-size: 19px; line-height: 1.2; }
+.ns-cap-copy { margin: 0; font-family: var(--font-hard); font-size: 15px; line-height: 1.5; opacity: 0.85; }
+@media (max-width: 900px) { .ns-caps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .ns-caps { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- run bars: one bar per run ---------- */
+
+.ns-bars .mv-bar { grid-template-columns: 1fr 64px; }
+.ns-bars .mv-bar-fill { background: var(--ink-hard); }
+.ns-run-n { font-family: var(--font-mono); font-weight: 700; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin: 0 0 6px; }
+
+.ns-open { margin-top: 28px; border: 1px solid var(--ink-hard); padding: 20px 22px; }
+.ns-open-label { margin: 0 0 12px; font-family: var(--font-mono); font-weight: 700; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.ns-open .ns-points { margin-bottom: 0; }
+.ns-open .ns-points li:last-child { margin-bottom: 0; }
+
+code.ns-code { font-family: var(--font-mono); font-size: 0.9em; padding: 1px 5px; background: var(--hard-line); }
+
+.ns-limits th[scope="row"] { width: 24%; font-family: var(--font-hard); }
+
+/* the visit badge straddles the banner's top rule; on a phone it would sit over the line of links above, so leave it room */
+@media (max-width: 760px) { .case-hero .mv-shipped { margin-bottom: 72px; } }
+
+/* the direction summary: a narrow verdict column */
+.ns-verdicts th[scope="row"] { width: 30%; font-family: var(--font-hard); }
+.ns-verdicts td:nth-child(2) { width: 16%; white-space: nowrap; }

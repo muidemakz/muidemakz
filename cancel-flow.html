@@ -20,6 +20,92 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/case-study.css">
+<style>
+/* Valideity cancel-flow concept: real app screen with modals laid over it. Brand values from images/valideity/cover.svg and the public pricing page. */
+.vx-stage { --vx-ink: #11142b; --vx-muted: #5d6481; --vx-line: #dde1ee; --vx-blue: #4338ff;
+  position: relative; display: grid; background: #eef0f7; font-family: 'Outfit', sans-serif; color: var(--vx-ink);
+  font-size: 14px; line-height: 1.4; text-align: left; overflow: hidden; }
+.vx-stage > * { grid-area: 1 / 1; }
+.vx-stage h4, .vx-stage p, .vx-stage ul { margin: 0; }
+.vx-stage .vx-shot { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: top left; }
+.vx-ring { position: absolute; left: .6%; top: 80.4%; width: 20%; height: 11.4%; border: 2.5px solid var(--vx-blue); border-radius: 10px; box-shadow: 0 0 0 4px rgba(67, 56, 255, .18); pointer-events: none; }
+.vx-chip { position: absolute; left: 21.8%; top: 84.6%; background: var(--vx-blue); color: #fff; font-weight: 600; font-size: 13px; padding: 5px 11px; border-radius: 99px; white-space: nowrap; }
+.vx-scrim { background: rgba(17, 20, 43, .52); display: grid; place-items: center; padding: 18px 12px; }
+.vx-modal { width: min(100%, 372px); background: #fff; border-radius: 16px; padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 18px 44px rgba(11, 13, 40, .35); }
+.vx-prog { display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 600; color: var(--vx-muted); letter-spacing: .02em; }
+.vx-x { font-size: 20px; line-height: 1; color: var(--vx-muted); font-weight: 400; }
+.vx-bars { display: flex; gap: 6px; }
+.vx-bars i { flex: 1; height: 4px; border-radius: 4px; background: #e3e6f2; }
+.vx-bars i.on { background: var(--vx-blue); }
+.vx-mhead { display: flex; justify-content: space-between; align-items: center; }
+.vx-mtitle { font-size: 17px; font-weight: 700; }
+.vx-mfoot { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 2px; }
+.vx-h { font-size: 20px; line-height: 1.2; font-weight: 700; }
+.vx-h--c { text-align: center; }
+.vx-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--vx-muted); }
+.vx-muted { color: var(--vx-muted); }
+.vx-card { background: #f6f7fc; border: 1px solid var(--vx-line); border-radius: 12px; padding: 14px 16px; }
+.vx-plan-name { font-size: 24px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.vx-pill { font-size: 12px; font-weight: 600; background: #e0f6e9; color: #136a3a; padding: 2px 9px; border-radius: 99px; }
+.vx-note { font-size: 12.5px; color: var(--vx-muted); }
+.vx-note--c { text-align: center; }
+.vx-link { text-decoration: underline; text-underline-offset: 3px; font-weight: 500; }
+.vx-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 18px; border-radius: 10px;
+  font-weight: 600; font-size: 14px; border: 1.5px solid #c9cee2; background: #fff; color: var(--vx-ink); white-space: nowrap; }
+.vx-btn--p { background: var(--vx-blue); border-color: var(--vx-blue); color: #fff; }
+.vx-options { display: flex; flex-direction: column; gap: 6px; }
+.vx-opt { display: flex; align-items: center; gap: 11px; background: #fff; border: 1.5px solid var(--vx-line); border-radius: 10px; padding: 9px 13px; font-weight: 500; }
+.vx-opt i { flex: 0 0 16px; height: 16px; border-radius: 50%; border: 2px solid #b7bdd4; }
+.vx-opt--on { border-color: var(--vx-blue); background: #f4f3ff; }
+.vx-opt--on i { border-color: var(--vx-blue); background: radial-gradient(circle, var(--vx-blue) 0 3.5px, #fff 4.5px); }
+.vx-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.vx-actions--c { grid-template-columns: minmax(0, 200px); justify-content: center; }
+.vx-ticks { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 5px; }
+.vx-ticks li { position: relative; padding-left: 24px; }
+.vx-ticks li::before { content: ""; position: absolute; left: 3px; top: 5px; width: 10px; height: 6px; border-left: 2.5px solid var(--vx-blue); border-bottom: 2.5px solid var(--vx-blue); transform: rotate(-45deg); }
+.vx-done { width: 42px; height: 42px; border-radius: 50%; background: var(--vx-blue); display: grid; place-items: center; margin: 2px auto 0; }
+.vx-rows p { display: flex; justify-content: space-between; gap: 14px; padding: 9px 0; border-bottom: 1px solid var(--vx-line); }
+.vx-rows p:last-child { border-bottom: 0; }
+.vx-rows span { color: var(--vx-muted); }
+.vx-rows strong { font-weight: 600; text-align: right; }
+@media (max-width: 520px) {
+  .vx-chip { display: none; }
+  .vx-modal { padding: 14px 14px 16px; }
+  .vx-actions { grid-template-columns: 1fr; }
+  .vx-rows strong { font-size: 13px; }
+}
+
+/* hero banner: a laptop playing the real flow, modals sliding over a gray overlay */
+.case-hero-media.vx-hero { position: relative; height: auto; background: #13171c; background-image: none; border-top: 1px solid var(--ink-hard); display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 44px 24px 0; overflow: hidden; }
+.vx-laptop { width: min(100%, 760px); }
+.vx-lid { position: relative; background: #0a0c10; border: 2px solid #2a2f3a; border-radius: 18px 18px 0 0; padding: 14px 14px 12px; }
+.vx-cam { position: absolute; top: 5px; left: 50%; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: #2c313d; }
+.vx-lscreen { position: relative; aspect-ratio: 3 / 2; overflow: hidden; border-radius: 6px; background: #eef0f7; }
+.vx-sinner { position: absolute; top: 0; left: 0; width: 720px; height: 480px; transform: scale(var(--vxs, 1)); transform-origin: top left; display: block; }
+.vx-stage--hero > * { grid-area: auto; }
+.vx-stage--hero .vx-shot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+.vx-stage--hero .vx-ring, .vx-stage--hero .vx-chip { transition: opacity .35s ease; }
+.vx-stage--hero .vx-shot { height: auto; inset: 0 auto auto 0; }
+.vx-stage--hero .vx-ring { top: 397px; height: 58px; width: 19.4%; }
+.vx-stage--hero .vx-chip { top: 416px; left: 21.5%; }
+.vx-stage--hero:not([data-step="0"]) .vx-ring, .vx-stage--hero:not([data-step="0"]) .vx-chip { opacity: 0; }
+.vx-stage--hero .vx-chip { display: block; }
+.vx-hscrim { position: absolute; inset: 0; background: rgba(86, 90, 106, .6); opacity: 0; transition: opacity .4s ease; }
+.vx-stage--hero:not([data-step="0"]) .vx-hscrim { opacity: 1; }
+.vx-hmodal { position: absolute; left: 50%; top: 50%; width: 360px; background: #fff; border-radius: 16px; padding: 16px 20px 18px; display: flex; flex-direction: column; gap: 9px;
+  box-shadow: 0 18px 44px rgba(11, 13, 40, .35); opacity: 0; visibility: hidden; transform: translate(-50%, calc(-50% + 36px));
+  transition: transform .5s cubic-bezier(.2, .8, .2, 1), opacity .35s ease, visibility 0s linear .5s; }
+.vx-hmodal.is-on { opacity: 1; visibility: visible; transform: translate(-50%, -50%); transition-delay: 0s; }
+.vx-hmodal.is-out { opacity: 0; visibility: visible; transform: translate(-50%, calc(-50% - 36px)); }
+.vx-center { text-align: center; }
+.vx-hmodal .vx-opt { padding: 7px 13px; }
+.vx-pause { position: absolute; top: 12px; right: 14px; background: transparent; color: #c6cbe0; border: 1px solid #4a5062; border-radius: 8px; min-height: 32px; padding: 0 12px; font: 600 13px 'Outfit', sans-serif; cursor: pointer; }
+.vx-pause:hover { color: #fff; border-color: #8d95b4; }
+.vx-pause:focus-visible { outline: 2px solid #8a93ff; outline-offset: 2px; }
+.vx-base { height: 14px; width: 112%; margin: 0 0 0 -6%; background: linear-gradient(#cfd2dc, #9da1af); border-radius: 0 0 16px 16px; position: relative; }
+.vx-base::before { content: ""; position: absolute; top: 0; left: 50%; width: 110px; height: 5px; margin-left: -55px; background: #b3b7c4; border-radius: 0 0 8px 8px; }
+@media (max-width: 560px) { .case-hero-media.vx-hero { padding: 52px 16px 0; } .vx-lid { padding: 10px 10px 8px; border-radius: 12px 12px 0 0; } }
+</style>
 </head>
 <body class="type-outfit">
 
@@ -34,7 +120,7 @@
     <div class="wrap">
       <a href="my-work.html" class="case-back">&larr; All Work</a>
       <div class="case-hero-top">
-        <p class="case-kicker">Self-Initiated Brief &mdash; Weekend Exercise</p>
+        <p class="case-kicker">Self-Initiated Brief &mdash; Designed For Valideity</p>
       </div>
       <h1 class="case-title">Two Clicks To Cancel, One Honest Offer To Stay</h1>
       <p class="case-lede">
@@ -51,8 +137,66 @@
         <li>Subscription UX</li>
       </ul>
     </div>
-    <div class="case-hero-media" aria-hidden="true">
-      <span class="case-media-label">Cancel Flow &mdash; Redesign</span>
+    <div class="case-hero-media vx-hero" role="img" aria-label="Animated mock-up on a laptop. Over Valideity's real app, a gray overlay fades in and a modal slides in for each step of leaving Pro: Plan and usage, exit reason, one offer, and a final We're sorry to see you go confirmation. Then the modal slides out and the loop repeats.">
+      <div class="vx-laptop" aria-hidden="true">
+        <div class="vx-lid">
+          <span class="vx-cam"></span>
+          <div class="vx-lscreen" id="vxScreen">
+            <div class="vx-sinner vx-stage vx-stage--hero" id="vxStage" data-step="0">
+              <img class="vx-shot" src="images/valideity/dashboard-current.png" alt="" width="1164" height="800">
+              <span class="vx-ring"></span>
+              <span class="vx-chip">1 &middot; Usage and billing</span>
+              <div class="vx-hscrim"></div>
+
+              <div class="vx-hmodal" data-m="1">
+                <div class="vx-mhead"><p class="vx-mtitle">Plan &amp; usage</p><span class="vx-x">&times;</span></div>
+                <div class="vx-card vx-plan">
+                  <p class="vx-eyebrow">Current plan</p>
+                  <p class="vx-plan-name">Pro <span class="vx-pill">Active</span></p>
+                  <p class="vx-muted">&#8358;15,000 / month &middot; paid until 30 Nov 2026</p>
+                </div>
+                <div class="vx-rows"><p><span>Sessions left</span><strong>66</strong></p><p><span>Runs</span><strong>No limit</strong></p></div>
+                <div class="vx-mfoot"><span class="vx-link">End Pro plan</span><span class="vx-btn">Change plan</span></div>
+              </div>
+
+              <div class="vx-hmodal" data-m="2">
+                <div class="vx-prog"><span>Step 1 of 3</span><span class="vx-x">&times;</span></div>
+                <div class="vx-bars"><i class="on"></i><i></i><i></i></div>
+                <h4 class="vx-h">What's the main reason you're leaving Pro?</h4>
+                <div class="vx-options">
+                  <span class="vx-opt vx-opt--on"><i></i>Too expensive</span>
+                  <span class="vx-opt"><i></i>Missing a feature I need</span>
+                  <span class="vx-opt"><i></i>Switching to another tool</span>
+                  <span class="vx-opt"><i></i>I no longer need it</span>
+                </div>
+                <div class="vx-actions"><span class="vx-btn">Skip</span><span class="vx-btn vx-btn--p">Continue</span></div>
+              </div>
+
+              <div class="vx-hmodal" data-m="3">
+                <div class="vx-prog"><span>Step 2 of 3</span><span class="vx-x">&times;</span></div>
+                <div class="vx-bars"><i class="on"></i><i class="on"></i><i></i></div>
+                <p class="vx-eyebrow">One offer, because you said &ldquo;Too expensive&rdquo;</p>
+                <h4 class="vx-h">Pay for 10 months, get 12</h4>
+                <p class="vx-muted">Annual brings the monthly cost of Pro down. Everything in Pro stays the same.</p>
+                <div class="vx-actions"><span class="vx-btn vx-btn--p">Switch to Annual</span><span class="vx-btn">No thanks, continue</span></div>
+                <p class="vx-note vx-note--c">This is the only offer.</p>
+              </div>
+
+              <div class="vx-hmodal" data-m="4">
+                <div class="vx-prog"><span>Step 3 of 3</span><span class="vx-x">&times;</span></div>
+                <div class="vx-bars"><i class="on"></i><i class="on"></i><i class="on"></i></div>
+                <div class="vx-done"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+                <h4 class="vx-h vx-h--c">We're sorry to see you go</h4>
+                <p class="vx-muted vx-center">You're stepping down to Free.</p>
+                <div class="vx-rows"><p><span>Pro ends</span><strong>30 Nov 2026</strong></p><p><span>Charges</span><strong>None. No automatic renewal.</strong></p></div>
+                <div class="vx-actions vx-actions--c"><span class="vx-btn vx-btn--p">Done</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="vx-base"></div>
+      </div>
+      <button type="button" class="vx-pause" id="vxPause" aria-pressed="false">Pause animation</button>
     </div>
   </section>
 
@@ -122,29 +266,62 @@
   <section class="case-section" id="flow">
     <div class="wrap">
       <p class="case-label">The Flow</p>
-      <p class="case-copy">A conceptual brief, not a built product&mdash;these are labeled placeholders standing in for the four screens, not real screenshots.</p>
+      <p class="case-copy">The first screen is Valideity's real app. The steps after it are modals laid over that same screen, drawn to match the product. The plan names and the ₦15,000 a month Pro price come from Valideity's public pricing page. The date and the offer are sample content for this concept.</p>
+
+      <div class="case-flag-box" style="margin: 18px 0 8px;">
+        <p class="case-flag-label">One Fact That Shapes This Flow</p>
+        <p class="case-flag-copy">
+          Valideity plans are prepaid and end when the period does, with no automatic renewal. So this
+          isn't about stopping a recurring charge. It's about the moment a Pro user decides to step
+          down to Free early, and making that clear, fair and free of surprises. The retention offer is a
+          concept, not a live Valideity feature.
+        </p>
+      </div>
 
       <div class="case-figures case-figures--spaced">
+
         <figure class="case-figure case-figure--grey">
           <div class="case-figure-head">
             <p class="case-figure-head-title">01 &middot; Entry Point</p>
-            <p class="case-figure-head-copy">"Manage Subscription" lives at the top level of Account Settings, not nested under Billing &rarr; Advanced &rarr; Plan Details. "Cancel Plan" is a visible, unstyled-as-a-trap text link on that screen&mdash;not a button disguised as something else.</p>
+            <p class="case-figure-head-copy">The real app. The sidebar's sessions card already carries a "Usage and billing" link, so there is nothing to hunt for and no menu to dig through. That is tap one.</p>
           </div>
           <div class="case-figure-inset">
             <div class="case-frame">
-              <div class="case-media-slot case-media-slot--wide"><span class="case-media-label">Account Settings</span></div>
+              <div class="vx-stage" role="img" aria-label="Valideity's real app, the dashboard. The sessions card in the left sidebar, with its Usage and billing link, is highlighted.">
+                <img class="vx-shot" src="images/valideity/dashboard-current.png" alt="" width="1164" height="800" loading="lazy">
+                <span class="vx-ring" aria-hidden="true"></span>
+                <span class="vx-chip" aria-hidden="true">1 &middot; Usage and billing</span>
+              </div>
             </div>
           </div>
         </figure>
 
         <figure class="case-figure case-figure--grey">
           <div class="case-figure-head">
-            <p class="case-figure-head-title">02 &middot; The One Retention Offer</p>
-            <p class="case-figure-head-copy">A single screen, one offer sized to the reason they're about to give (see below)&mdash;e.g. a 30-day pause for "not using it enough," a discount for "too expensive." One accept button, one clearly-visible "No thanks, continue cancelling" link at equal visual weight.</p>
+            <p class="case-figure-head-title">02 &middot; Plan &amp; Usage</p>
+            <p class="case-figure-head-copy">Usage and billing opens a modal over the same screen. It shows what they have and what they've used. "End Pro plan" is a plain, visible text link, not a button disguised as something else. That is tap two.</p>
           </div>
           <div class="case-figure-inset">
             <div class="case-frame">
-              <div class="case-media-slot case-media-slot--wide"><span class="case-media-label">Retention Offer</span></div>
+              <div class="vx-stage" role="img" aria-label="A Plan and usage modal over the Valideity app. Pro, active, 66 sessions left, no limit on runs, with an End Pro plan text link.">
+                <img class="vx-shot" src="images/valideity/dashboard-current.png" alt="" width="1164" height="800" loading="lazy">
+                <div class="vx-scrim" aria-hidden="true">
+                  <div class="vx-modal">
+                    <div class="vx-mhead"><p class="vx-mtitle">Plan &amp; usage</p><span class="vx-x">&times;</span></div>
+                    <div class="vx-card vx-plan">
+                      <p class="vx-eyebrow">Current plan</p>
+                      <p class="vx-plan-name">Pro <span class="vx-pill">Active</span></p>
+                      <p class="vx-muted">&#8358;15,000 / month &middot; paid until 30 Nov 2026</p>
+                    </div>
+                    <div class="vx-rows">
+                      <p><span>Sessions left</span><strong>66</strong></p>
+                      <p><span>Runs</span><strong>No limit</strong></p>
+                    </div>
+                    <p class="vx-note">Plans are prepaid and end when the period does. Nothing renews automatically.</p>
+                    <div class="vx-mfoot"><span class="vx-link">End Pro plan</span><span class="vx-btn">Change plan</span></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </figure>
@@ -152,26 +329,92 @@
         <figure class="case-figure case-figure--grey">
           <div class="case-figure-head">
             <p class="case-figure-head-title">03 &middot; Skippable Exit Reason</p>
-            <p class="case-figure-head-copy">A single-question, multiple-choice reason (price, missing feature, switching elsewhere, no longer needed, other) with a visible "Skip" option at equal weight to "Submit." The offer shown on the previous screen is chosen based on this answer where possible&mdash;price objections get a discount, feature gaps get a roadmap note, not a discount.</p>
+            <p class="case-figure-head-copy">One question, five honest options, with a step count so they can see how short this is. "Skip" and "Continue" are the same size and weight. The reason comes first because it decides which single offer, if any, appears next. Price objections get a discount; feature gaps get a roadmap note instead; someone switching to another tool gets no offer, and the count drops to two steps.</p>
           </div>
           <div class="case-figure-inset">
             <div class="case-frame">
-              <div class="case-media-slot case-media-slot--wide"><span class="case-media-label">Exit Reason</span></div>
+              <div class="vx-stage" role="img" aria-label="Exit reason modal, step 1 of 3. What is the main reason you are leaving Pro. Too expensive is selected. Skip and Continue are equal in size.">
+                <img class="vx-shot" src="images/valideity/dashboard-current.png" alt="" width="1164" height="800" loading="lazy">
+                <div class="vx-scrim" aria-hidden="true">
+                  <div class="vx-modal">
+                    <div class="vx-prog"><span>Step 1 of 3</span><span class="vx-x">&times;</span></div>
+                    <div class="vx-bars"><i class="on"></i><i></i><i></i></div>
+                    <h4 class="vx-h">What's the main reason you're leaving Pro?</h4>
+                    <p class="vx-muted">Your answer goes to the product team. You can skip this.</p>
+                    <div class="vx-options">
+                      <span class="vx-opt vx-opt--on"><i></i>Too expensive</span>
+                      <span class="vx-opt"><i></i>Missing a feature I need</span>
+                      <span class="vx-opt"><i></i>Switching to another tool</span>
+                      <span class="vx-opt"><i></i>I no longer need it</span>
+                      <span class="vx-opt"><i></i>Other</span>
+                    </div>
+                    <div class="vx-actions"><span class="vx-btn">Skip</span><span class="vx-btn vx-btn--p">Continue</span></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </figure>
 
         <figure class="case-figure case-figure--grey">
           <div class="case-figure-head">
-            <p class="case-figure-head-title">04 &middot; Clear Confirmation</p>
-            <p class="case-figure-head-copy">States the exact date access ends, what happens to saved data (kept for 90 days, then deleted&mdash;stated plainly), and a one-line reminder of how to reactivate. No further steps required after this screen.</p>
+            <p class="case-figure-head-title">04 &middot; The One Retention Offer</p>
+            <p class="case-figure-head-copy">One offer, sized to the reason just given. For "Too expensive", it's Annual, which Valideity already advertises as 2 months free. One accept button and one "No thanks, continue" button at equal visual weight, and a line saying why this offer is showing and that it's the only one.</p>
           </div>
           <div class="case-figure-inset">
             <div class="case-frame">
-              <div class="case-media-slot case-media-slot--wide"><span class="case-media-label">Confirmation</span></div>
+              <div class="vx-stage" role="img" aria-label="Retention offer modal, step 2 of 3. Pay for 10 months, get 12 with Annual. Two equal buttons: Switch to Annual and No thanks, continue.">
+                <img class="vx-shot" src="images/valideity/dashboard-current.png" alt="" width="1164" height="800" loading="lazy">
+                <div class="vx-scrim" aria-hidden="true">
+                  <div class="vx-modal">
+                    <div class="vx-prog"><span>Step 2 of 3</span><span class="vx-x">&times;</span></div>
+                    <div class="vx-bars"><i class="on"></i><i class="on"></i><i></i></div>
+                    <p class="vx-eyebrow">One offer, because you said &ldquo;Too expensive&rdquo;</p>
+                    <h4 class="vx-h">Pay for 10 months, get 12</h4>
+                    <p class="vx-muted">Annual brings the monthly cost of Pro down. Everything in Pro stays the same.</p>
+                    <ul class="vx-ticks">
+                      <li>Same 60 sessions every month</li>
+                      <li>Prepaid, with no automatic renewal</li>
+                    </ul>
+                    <div class="vx-actions"><span class="vx-btn vx-btn--p">Switch to Annual</span><span class="vx-btn">No thanks, continue</span></div>
+                    <p class="vx-note vx-note--c">This is the only offer. If you decline, we won't ask again.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </figure>
+
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-head">
+            <p class="case-figure-head-title">05 &middot; Clear Confirmation</p>
+            <p class="case-figure-head-copy">The last step, with every segment filled. It states the exact date Pro ends, what plan they're on after it, and that nothing will be charged. Because the plan is prepaid, they keep Pro until the date they already paid for. One line on how to return. No further steps.</p>
+          </div>
+          <div class="case-figure-inset">
+            <div class="case-frame">
+              <div class="vx-stage" role="img" aria-label="Confirmation modal, step 3 of 3. You're stepping down to Free. Pro ends 30 November 2026, then Free with up to 5 runs. No charge, no automatic renewal.">
+                <img class="vx-shot" src="images/valideity/dashboard-current.png" alt="" width="1164" height="800" loading="lazy">
+                <div class="vx-scrim" aria-hidden="true">
+                  <div class="vx-modal">
+                    <div class="vx-prog"><span>Step 3 of 3</span><span class="vx-x">&times;</span></div>
+                    <div class="vx-bars"><i class="on"></i><i class="on"></i><i class="on"></i></div>
+                    <div class="vx-done"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+                    <h4 class="vx-h vx-h--c">We're sorry to see you go</h4>
+                    <p class="vx-muted" style="text-align:center">You're stepping down to Free.</p>
+                    <div class="vx-rows">
+                      <p><span>Pro ends</span><strong>30 Nov 2026</strong></p>
+                      <p><span>Then you're on</span><strong>Free &middot; up to 5 runs</strong></p>
+                      <p><span>Charges</span><strong>None. No automatic renewal.</strong></p>
+                    </div>
+                    <p class="vx-note vx-note--c">Changed your mind? You can choose Pro again any time from Plan &amp; usage.</p>
+                    <div class="vx-actions vx-actions--c"><span class="vx-btn vx-btn--p">Done</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </figure>
+
       </div>
     </div>
   </section>
@@ -228,6 +471,34 @@
     </div>
   </section>
 
+  <section class="case-section" id="next">
+    <div class="wrap">
+      <p class="case-label">Next Steps</p>
+      <p class="case-copy">Before this could ship in Valideity, a few things still need deciding:</p>
+      <div class="case-stack-row">
+        <div class="case-stack-panel case-stack-panel--grey" aria-hidden="true"><img src="images/coreloops/Trade-offs Illustration-1.png" alt=""></div>
+        <div class="case-stack case-stack--wide">
+          <div class="case-stack-item">
+            <p class="case-stack-title">Define The Offer</p>
+            <p class="case-stack-copy">Decide what the single better-plan offer actually is, then test it against the reason people give for leaving.</p>
+          </div>
+          <div class="case-stack-item">
+            <p class="case-stack-title">Data On Free</p>
+            <p class="case-stack-copy">Confirm what happens to a team's data and runs when it moves from Pro to Free, and say so on the confirmation screen.</p>
+          </div>
+          <div class="case-stack-item">
+            <p class="case-stack-title">Refunds</p>
+            <p class="case-stack-copy">Settle the policy for unused prepaid sessions, so the exit never makes a promise the product can't keep.</p>
+          </div>
+          <div class="case-stack-item">
+            <p class="case-stack-title">Build And Measure</p>
+            <p class="case-stack-copy">Hand the flow over for build, then track completion, offer acceptance and reactivation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="case-section" id="reflection">
     <div class="wrap">
       <p class="case-label">Reflection</p>
@@ -238,7 +509,7 @@
         "Friction-based retention trades reactivation and word-of-mouth for a short-term save" does,
         because it's the same language the team already uses to judge its own metrics.
       </p>
-      <p class="case-status">Status: Self-initiated design brief, not built for or commissioned by any specific company&mdash;modeled on common subscription-cancellation patterns to demonstrate arguing a user-favorable design decision with a business case.</p>
+      <p class="case-status">Status: Self-initiated design concept for Valideity, a product I'm building. The screens are not live in the product, and the offer, dates and usage figures are sample content. The plan names and Pro price come from Valideity's public pricing page.</p>
     </div>
   </section>
 
@@ -285,6 +556,46 @@
   </div>
 </footer>
 
+<script>
+(function () {
+  var stage = document.getElementById('vxStage');
+  var screen = document.getElementById('vxScreen');
+  var btn = document.getElementById('vxPause');
+  if (!stage || !screen || !btn) return;
+  var modals = {};
+  stage.querySelectorAll('.vx-hmodal').forEach(function (m) { modals[m.getAttribute('data-m')] = m; });
+  var hold = [2200, 3000, 3400, 3400, 3800];
+  var step = 0, timer = null, paused = false;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function fit() { stage.style.setProperty('--vxs', screen.clientWidth / 720); }
+  if (window.ResizeObserver) new ResizeObserver(fit).observe(screen); else window.addEventListener('resize', fit);
+  fit();
+
+  function show(n) {
+    var prev = modals[step];
+    if (prev && step !== n) {
+      prev.classList.remove('is-on'); prev.classList.add('is-out');
+      setTimeout(function () { prev.classList.remove('is-out'); }, 520);
+    }
+    step = n;
+    stage.setAttribute('data-step', n);
+    if (modals[n]) { modals[n].classList.remove('is-out'); modals[n].classList.add('is-on'); }
+  }
+  function next() { show((step + 1) % 5); schedule(); }
+  function schedule() { clearTimeout(timer); if (!paused) timer = setTimeout(next, hold[step]); }
+
+  function setPaused(p) {
+    paused = p;
+    btn.setAttribute('aria-pressed', p ? 'true' : 'false');
+    btn.textContent = p ? 'Play animation' : 'Pause animation';
+    if (p) clearTimeout(timer); else schedule();
+  }
+  btn.addEventListener('click', function () { setPaused(!paused); });
+
+  if (reduce) { show(4); setPaused(true); } else { schedule(); }
+})();
+</script>
 <script src="js/case-quicknav.js"></script>
 </body>
 </html>

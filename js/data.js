@@ -149,9 +149,10 @@ const PROJECTS = [
   { name: "Cardtonic P2P Money Transfer", year: 2026, categories: ["UI Design", "UX Design"], image: "images/cinema/cardtonic-cover.svg", caption: "Sending Money To People, Not Accounts", status: "concept", confirmed: true, link: "cardtonic.html" },
   { name: "Moniepoint Verification Status", year: 2026, categories: ["UI Design", "UX Design"], image: "images/cinema/moniepoint-cover.svg", caption: "An Independent Exploration, Tested Before And After", status: "concept", confirmed: true, link: "moniepoint-verification.html" },
   { name: "Sun King Smartphone Marketplace", year: 2026, categories: ["UI Design", "UX Design"], image: "images/sun-king/after-detail.png", caption: "Read The Page, Rebuild It, Fix It", status: "concept", confirmed: true, link: "sun-king.html" },
+  { name: "Nsimbi Chat-First Payments", year: 2026, categories: ["UI Design", "UX Design"], image: "images/nsimbi/card-cover.jpg", caption: "Small Design Touches, Original Against Update", status: "concept", confirmed: true, link: "nsimbi-three-purchases.html" },
   { name: "Coreloops Documents Filter", year: 2026, categories: ["UI Design", "UX Design"], image: "images/cinema/coreloops-cover.svg", caption: "Making Frequent Filters Easier To Reach", status: "concept", confirmed: true, link: "coreloops.html" },
-  { name: "VENX", year: 2025, categories: ["UI Design", "UX Design"], image: "images/cinema/venx-cover.svg", caption: "A Full AI Sales CRM Concept In 24 Hours", status: "concept", confirmed: true, link: "venx.html" },
-  { name: "Raven Pay", year: 2024, categories: ["UI Design", "UX Design"], image: "images/cinema/ravenpay-cover.svg", caption: "Making A Banking App Read As Serious, Not Cute", status: "concept", confirmed: true, link: "raven-pay.html" },
+  { name: "VENX", year: 2025, categories: ["UI Design", "UX Design"], image: "images/cinema/venx-cover.jpg", caption: "A Full AI Sales CRM Concept In 24 Hours", status: "concept", confirmed: true, link: "venx.html" },
+  { name: "Raven Pay", year: 2024, categories: ["UI Design", "UX Design"], image: "images/cinema/ravenpay-cover.jpg", caption: "Making A Banking App Read As Serious, Not Cute", status: "concept", confirmed: true, link: "raven-pay.html" },
   // [REVERT POINT] Unfinished entries now link to an explicitly noindex preview.
   // Keep draft files and their unreviewed content out of the public preview.
   // Only add preview.role/summary/scope from owner-confirmed material.
