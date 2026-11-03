@@ -1158,13 +1158,9 @@
      and nav simply sit left, in flow) plus margin-left:auto on Contact
      (still docks right) removes that feedback loop — nav's start position
      is now fixed regardless of its own width. */
-      .site-header .wrap {
-        justify-content: flex-start;
-      }
+      /* header layout comes from css/style.css so it matches every other page */
 
-      .btn-outline {
-        margin-left: auto;
-      }
+      
 
       .home-grid {
         flex: 1;
@@ -1751,6 +1747,10 @@
       const isSplitView = window.matchMedia && window.matchMedia('(min-width: 900px)');
 
       function alignDivider() {
+        // header matches the other pages; the About/Work block is no longer shifted to the column divider
+        if (nav) nav.style.marginLeft = '';
+        return;
+        /* eslint-disable no-unreachable */
         if (!nav || !workLink || !heroStatic || !isSplitView || !isSplitView.matches) {
           if (nav) nav.style.marginLeft = '';
           return;
