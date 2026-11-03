@@ -22,8 +22,8 @@ test('all 17 unfinished entries have distinct working preview routes', () => {
 test('the thirteen existing case-study links and availability stay intact', () => {
   assert.deepEqual(Array.from(projects.filter(project => project.status !== 'coming-soon'), project => project.link), [
     'omnione.html', 'fundall.html', 'teesaslms.html', 'valideity.html',
-    'empty-state.html', 'cardtonic.html', 'moniepoint-verification.html', 'sun-king.html',
-    'nsimbi-three-purchases.html', 'omnibiz-speech-to-order.html', 'coreloops.html', 'venx.html', 'raven-pay.html'
+    'empty-state.html', 'omnibiz-speech-to-order.html', 'moniepoint-verification.html', 'sun-king.html',
+    'nsimbi-three-purchases.html', 'cardtonic.html', 'coreloops.html', 'venx.html', 'raven-pay.html'
   ]);
 });
 
