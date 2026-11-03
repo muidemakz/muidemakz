@@ -1,0 +1,61 @@
+:root{--motion-pull:360ms;--motion-control:200ms;--motion-voice-cycle:2.4s;--ease-pull:cubic-bezier(.22,1,.36,1)}
+.app-stage{position:relative;z-index:1;display:flex;flex-direction:column;flex:1;min-height:0;width:100%;overflow:hidden;background:inherit;border-radius:0 0 32px 32px;box-shadow:0 16px 20px -15px #21143855;will-change:transform}
+.app>.wallet-link{position:relative;z-index:0;flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:7px;min-height:42px;margin:0;padding:10px 16px max(10px,env(safe-area-inset-bottom));touch-action:none;background:var(--soft);border:0;color:var(--muted);font-size:12px}
+.wallet-link svg{width:16px;height:16px;transform:translateY(calc(var(--pull-progress,0)*-4px))}
+.pull-ghost{position:absolute!important;left:0;right:0;bottom:auto;z-index:3!important;pointer-events:none}
+.app[data-view=wallet] .wallet-hero{padding-top:22px;padding-bottom:6px}
+.wallet-view .wallet-tx-list{display:flex;flex-direction:column;gap:10px}
+.wallet-view .wallet-tx-list>.receipt-row{margin:0;padding:15px 13px;min-height:76px;background:var(--surface);border:1px solid var(--line);border-radius:13px;box-shadow:0 5px 14px -14px #241b4e55}
+.wallet-view .wallet-tx-list .transaction-icon{width:40px;height:40px;flex-shrink:0;border-radius:50%;background:var(--tint);color:var(--action)}
+.wallet-view .wallet-tx-list .tx-amount{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--muted)}
+.wallet-view .wallet-tx-list .tx-amount>svg{display:none}
+.wallet-view .wallet-tx-list .tx-main strong{font-size:14px}
+.composer #composer-cta{grid-row:2;grid-column:2;justify-self:end;position:relative;isolation:isolate;overflow:visible;transition:transform var(--motion-control) ease-out,background var(--motion-control) ease-out}
+.composer #composer-cta:active{transform:scale(.95)}
+.composer #composer-cta.conversation-cta{background:var(--tint);color:var(--action);box-shadow:0 7px 18px -12px #652bc8aa}
+.conversation-cta::before{content:'';position:absolute;z-index:-1;inset:-2px;border-radius:50%;background:conic-gradient(from 0deg,#8055d9,#4c9ca5,#c968bd,#8055d9);animation:voice-flow var(--motion-voice-cycle) linear 2;opacity:.65;filter:blur(3px)}
+.conversation-cta::after{content:'';position:absolute;z-index:-1;inset:1px;border-radius:50%;background:var(--tint)}
+.composer .conversation-session[hidden]{display:none}
+.composer.voice-active textarea{display:none}
+.conversation-session{grid-column:1/-1;display:flex;flex-direction:column;gap:12px;min-width:0;padding:6px 2px 0}
+.voice-status{display:flex;align-items:center;gap:12px;min-height:68px}
+.voice-status>span:last-child{flex:1;min-width:0}
+.voice-status strong{font-size:14px;display:block}
+.voice-status small{display:block;font-size:12px;line-height:1.6;color:var(--muted);margin-top:4px;overflow-wrap:anywhere}
+.voice-orb{width:38px;height:38px;flex-shrink:0;border-radius:50%;background:radial-gradient(circle at 30% 25%,#c0b2fa,var(--action));box-shadow:0 0 0 6px var(--tint)}
+.voice-session-actions{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.voice-session-actions>span,.voice-disclosure{font-size:10px;color:var(--muted);line-height:1.5}
+.voice-session-actions>button{display:flex;align-items:center;gap:6px;min-height:44px;padding:8px 10px;border:1px solid var(--line);border-radius:99px;font-size:12px;background:var(--surface);color:var(--ink)}
+.voice-session-actions svg{width:16px;height:16px}
+.composer.voice-active .composer-tool{visibility:hidden}
+.voice-disclosure{margin:0;max-width:310px}
+@keyframes voice-flow{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.conversation-cta::before{animation:none}.app-stage{will-change:auto}.composer #composer-cta{transition:none}}
+
+.composer{grid-template-columns:1fr auto auto}
+.composer #composer-cta{grid-column:3}
+.dictation-button{grid-row:2;grid-column:2;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--tint);color:var(--action);border:1px solid var(--line)}
+.dictation-button svg{width:20px;height:20px}
+.dictation-button.recording{box-shadow:0 0 0 3px var(--tint);border-color:var(--action)}
+.dictation-button:disabled{opacity:.45}
+.dictation-feedback{grid-column:1/-1;font-size:12px;line-height:1.5;color:var(--muted);padding:4px 2px}
+.app-stage[style*="--drag-distance"] .balance-control.hero{transform:translateY(var(--drag-distance))}
+.motion-shared{transform:none!important}
+
+/* Dictation is an icon-only control with its accessible tap area retained. */
+.composer .dictation-button{background:transparent;border:0;box-shadow:none}
+.composer .dictation-button.recording{background:transparent;border:0;box-shadow:none;color:var(--action)}
+
+.message.entering:has([data-card]){animation:queue-card-arrive var(--motion-control) ease-out both}
+@keyframes queue-card-arrive{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.message.entering:has([data-card]){animation:none}}
+
+/* Official provider thumbnails retain their original aspect ratio and colours. */
+.option-thumbnail{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;flex:0 0 44px;padding:4px;box-sizing:border-box;border-radius:12px;background:#fff;border:1px solid var(--line);overflow:hidden}
+.option-thumbnail img{display:block;width:100%;height:100%;object-fit:contain}
+.selection-option{gap:12px}
+.selection-option>.option-thumbnail+span{flex:1;min-width:0}
+.option-thumbnail.option-icon{background:var(--tint);color:var(--action);border:0}
+.option-thumbnail.option-icon svg{width:21px;height:21px}
+.selected-option-label{display:flex;align-items:center;gap:9px;min-width:0}
+.selected-option-label>.option-thumbnail{width:28px;height:28px;flex-basis:28px;border-radius:7px;padding:2px}

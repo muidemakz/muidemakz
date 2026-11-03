@@ -1,0 +1,69 @@
+/* Shared compact and hero balance variants. Existing theme and control tokens. */
+.balance-control{display:flex;align-items:center;gap:8px;min-width:0}
+.balance-control .balance-account{display:flex;align-items:center;gap:7px;min-height:44px;padding:4px 10px 4px 5px;border:1px solid var(--header-control-border);border-radius:99px;background:var(--surface);color:var(--header-control-ink);font-size:13px;font-weight:600;white-space:nowrap;box-shadow:none;backdrop-filter:none}
+.balance-account .momo-mark{display:block;width:26px;height:26px;flex-shrink:0;border-radius:8px;object-fit:cover;box-shadow:0 1px 2px rgba(12,22,48,.18)}
+.balance-account svg{width:17px;height:17px;color:var(--header-control-muted)}
+.balance-account-label{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.momo-mark{object-fit:cover}
+.balance-control .mini-balance,.balance-control .chat-balance-amount{display:flex;align-items:center;gap:2px;min-width:0}
+.balance-control .mini-balance strong{display:inline-flex;align-items:baseline;gap:2px;white-space:nowrap;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-.3px}
+.balance-control .cur{font-size:10px;font-weight:600;color:var(--muted);margin-right:2px;letter-spacing:0}
+.balance-control .dec{font-size:.78em;font-weight:500;color:var(--muted)}
+.balance-control .icon-button{width:44px;height:44px;min-width:44px;flex-shrink:0;background:transparent;border:0;box-shadow:none;color:var(--muted)}
+
+/* Hero: the label sits on a plain surface while the amount carries the pastel tint. */
+.balance-control.hero{flex-direction:column;gap:12px;width:100%;padding-top:4px}
+.balance-control.hero .balance-account{min-height:42px;padding:4px 12px 4px 5px;background:var(--surface);border-color:var(--header-control-border);box-shadow:none}
+.balance-control.hero .momo-mark{width:30px;height:30px;border-radius:9px}
+.balance-control.hero .mini-balance{align-self:center;width:auto;max-width:100%;gap:0;padding:2px 8px 2px 16px;border:1px solid transparent;border-radius:99px;background:var(--tint)}
+.balance-control.hero .chat-balance-amount{gap:4px}
+.balance-control.hero .mini-balance strong{font-size:36px;font-weight:700;letter-spacing:-1px}
+.balance-control.hero .cur{font-size:13px}
+.balance-control.hero .dec{font-size:.7em}
+.balance-control.hero .icon-button{width:40px;height:40px;min-width:40px}
+.greeting-name{font:inherit;color:inherit;background:transparent;border:0;box-shadow:none;padding:0}
+
+/* Compact chat variant: plain label side, pastel amount side inside one outlined capsule. */
+.conversation-header .balance-control.inline{gap:0;border:1px solid var(--line);border-radius:99px;padding:2px;background:var(--surface);width:max-content;max-width:100%}
+.conversation-header .balance-control.inline .balance-account{border:0;border-radius:99px 6px 6px 99px;font-size:12px;gap:5px;padding:2px 6px 2px 3px;min-height:40px;background:transparent;flex:1;justify-content:flex-start;min-width:0}
+.conversation-header .balance-control.inline .momo-mark{width:26px;height:26px;border-radius:8px}
+.conversation-header .balance-control.inline .mini-balance{height:40px;padding:0 2px 0 9px;border-radius:6px 99px 99px 6px;background:var(--tint);flex-shrink:0}
+.conversation-header .balance-control.inline .mini-balance strong{font-size:15px;gap:1px}
+.conversation-header .balance-control.inline .icon-button{width:36px;min-width:36px;height:40px}
+
+/* Balance replaces the wordmark in the chat top bar. */
+.header .header-balance{display:flex;align-items:center;flex:1;min-width:0}
+.header .header-balance .balance-control.inline{width:100%}
+.header .header-balance .balance-account{padding-right:4px}
+.header .header-balance .balance-account svg{display:none}
+.header .header-balance .mini-balance strong{font-size:14px}
+.header .header-balance .mini-balance .cur{font-size:8px}
+.header .header-balance .icon-button{width:32px;min-width:32px;height:40px}
+.header .header-balance .icon-button svg{width:17px;height:17px}
+
+.profile-row-icon.profile-row-logo{background:transparent}
+.profile-row-icon.profile-row-logo .momo-mark{width:26px;height:26px;border-radius:8px;box-shadow:0 1px 2px rgba(12,22,48,.18)}
+.fund-account-heading>.momo-mark{width:38px;height:38px;flex-shrink:0;border-radius:11px;box-shadow:0 1px 2px rgba(12,22,48,.18)}
+
+@media(max-width:420px){
+  .header .header-balance .balance-account-label{font-size:0}
+  .header .header-balance .balance-account-label::after{content:'My MoMo';font-size:11px;font-weight:650;letter-spacing:-.1px}
+  .header .header-balance .balance-account{padding-right:3px}
+  .header .header-balance .mini-balance{padding-left:7px}
+  .header .header-balance .mini-balance strong{font-size:13px}
+  .header .header-balance .icon-button{width:30px;min-width:30px}
+}
+@media(max-width:359px){
+  .header .header-balance .balance-account-label{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+  .header .header-balance .balance-account{flex:0 0 auto}
+  .header .header-balance .balance-control.inline{justify-content:center}
+  .header .header-balance .mini-balance{padding-left:6px}
+}
+@media(max-width:359px){
+  .conversation-header .balance-control.inline .balance-account{font-size:11px;gap:4px}
+  .conversation-header .balance-control.inline .momo-mark{width:23px;height:23px}
+  .conversation-header .balance-control.inline .mini-balance strong{font-size:13px}
+  .conversation-header .balance-control.inline .icon-button{width:32px;min-width:32px}
+  .balance-control.inline .cur{font-size:8px}
+  .balance-control.hero .mini-balance strong{font-size:32px}
+}

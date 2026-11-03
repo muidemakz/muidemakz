@@ -1,0 +1,35 @@
+/* Wallet mode, rest-state composer and dedicated service pages. */
+
+/* Keep the live region out of the page flow so the app never scrolls by a pixel. */
+.sr-only{top:0;left:0}
+
+/* ---------- Rest state for the message container ---------- */
+/* At rest the composer is one compact pill. Focusing or typing expands it to the
+   full two-row composer with its tool row. */
+.compose-area.is-rest .composer{
+  grid-template-columns:40px minmax(0,1fr) 36px 40px;
+  grid-template-rows:auto;
+  align-items:center;
+  padding:6px;
+  border-radius:99px;
+  min-height:56px;
+}
+.compose-area.is-rest .composer textarea{
+  grid-column:2;grid-row:1;
+  min-height:38px;height:38px;
+  padding:6px 8px;
+  align-self:center;
+}
+.compose-area.is-rest .composer-tool{grid-column:1;grid-row:1;justify-self:center}
+.compose-area.is-rest .dictation-button{grid-column:3;grid-row:1;justify-self:center}
+.compose-area.is-rest #composer-cta{grid-column:4;grid-row:1;justify-self:end}
+.compose-area .suggestions{animation:composer-extras .18s ease-out}
+@keyframes composer-extras{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.compose-area .suggestions{animation:none}}
+
+/* ---------- Mode switch hints ---------- */
+.compose-area>.wallet-link{display:flex;align-items:center;justify-content:center;gap:4px;width:100%;min-height:26px;margin:5px auto 0;padding:0;background:transparent;border:0;box-shadow:none;font-size:10.5px;font-weight:600;color:var(--muted)}
+.compose-area>.wallet-link svg{width:13px;height:13px}
+.chat-return{display:flex;align-items:center;justify-content:center;gap:4px;width:100%;min-height:32px;padding:0 0 max(4px,env(safe-area-inset-bottom));background:transparent;border-top:0;box-shadow:none;font-size:10.5px;font-weight:600;color:var(--muted)}
+.chat-return svg{width:13px;height:13px}
+

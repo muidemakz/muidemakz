@@ -1,0 +1,85 @@
+.app[data-view=signin]{background:var(--surface);background-image:none}
+.sign-in{display:flex;flex-direction:column;flex:1;min-height:0;padding:max(30px,env(safe-area-inset-top)) 24px max(16px,env(safe-area-inset-bottom));overflow-y:auto}
+.sign-in-brand{font-size:14px;font-weight:750;color:var(--action);margin-bottom:28px}
+.sign-in h1{font-size:25px;font-weight:750;line-height:1.4;letter-spacing:-.7px;margin:0 0 14px;color:var(--ink)}
+.sign-in-demo{font-size:13px;color:var(--muted);line-height:1.6}
+.pin-dots{display:flex;align-items:center;justify-content:center;gap:18px;width:154px;min-height:60px;border-radius:18px;background:var(--soft);margin-top:28px}
+.pin-dots span{width:9px;height:9px;border-radius:50%;background:var(--line);transition:background var(--motion-control) ease-out}
+.pin-dots span.filled{background:var(--ink)}
+.sign-in-status{font-size:13px;color:var(--muted);min-height:24px;line-height:1.6;margin-top:12px}
+.sign-in-keypad{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 18px;margin-top:auto;padding-top:36px}
+.sign-in-keypad button{display:flex;align-items:center;justify-content:center;min-height:66px;border-radius:18px;background:transparent;color:var(--ink);font-size:27px;font-weight:650;border:0}
+.sign-in-keypad button:active{background:var(--soft)}
+.sign-in-keypad button:disabled{opacity:.4}
+.sign-in-keypad svg{width:25px;height:25px}
+.sign-in-keypad [data-pin-key=face]{color:var(--action)}
+.sign-in-keypad [data-pin-key=delete]{color:var(--muted)}
+.sign-in-footnote{font-size:10px;color:var(--muted);text-align:center;line-height:1.6;padding-top:20px}
+.number-field-control{position:relative;display:flex;align-items:center;gap:5px}
+.number-field-control>input{width:100%;padding-right:90px}
+.number-field-actions{position:absolute;right:5px;display:flex;align-items:center;gap:2px}
+.number-field-actions .icon-button{width:36px;height:40px;min-width:36px;background:var(--soft);border:0;border-radius:9px;box-shadow:none;color:var(--muted)}
+.number-field-actions svg{width:18px;height:18px}
+.inline-providers{display:flex;flex-direction:column;gap:12px;margin-bottom:6px}
+.inline-provider-heading{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.inline-provider-heading strong{font-size:13px;font-weight:650}
+.inline-provider-heading>button{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--muted);min-height:44px;background:transparent;border:0}
+.inline-provider-heading svg{width:13px;height:13px}
+.inline-provider-options{display:flex;gap:18px;overflow-x:auto;padding:3px 2px 8px}
+.inline-provider-options>button{display:flex;flex-direction:column;align-items:center;gap:8px;flex:0 0 64px;background:transparent;border:0;font-size:11px;color:var(--muted);padding:0}
+.inline-provider-logo{position:relative;display:block;border:2px solid var(--line);border-radius:50%;padding:3px}
+.inline-provider-logo>.option-thumbnail{width:50px;height:50px;flex-basis:50px;border:0;border-radius:50%;padding:5px}
+.inline-provider-options>button[aria-checked=true]{color:var(--ink);font-weight:700}
+.inline-provider-options>button[aria-checked=true] .inline-provider-logo{border-color:var(--action)}
+.inline-provider-selected{display:grid;place-items:center;position:absolute;right:-1px;bottom:-1px;width:18px;height:18px;border-radius:50%;background:var(--action);color:var(--on-action);border:2px solid var(--surface)}
+.inline-provider-selected svg{width:11px;height:11px}
+.recipient-tabs{display:flex;gap:8px;margin-bottom:16px}
+.recipient-tabs .button{flex:1;min-height:44px;font-size:13px}
+.recipient-list{display:flex;flex-direction:column;gap:8px}
+.recipient-list-row{display:flex;align-items:center;gap:12px;width:100%;padding:12px 8px;min-height:70px;background:var(--surface);border:0;border-bottom:1px solid var(--line);text-align:left}
+.recipient-list-row[hidden]{display:none}
+.recipient-avatar{display:grid;place-items:center;width:40px;height:40px;flex-shrink:0;border-radius:50%;background:var(--tint);color:var(--action)}
+.recipient-avatar svg{width:19px;height:19px}
+.recipient-list-row>span:nth-child(2){flex:1;min-width:0}
+.recipient-list-row strong{display:block;font-size:14px;font-weight:650}
+.recipient-list-row small{display:block;font-size:12px;color:var(--muted);margin-top:5px}
+.recipient-list-row>svg{width:16px;height:16px;color:var(--muted)}
+.fund-account-intro{font-size:13px;color:var(--muted);line-height:1.6}
+.fund-account-card{border:1px solid var(--line);border-radius:20px;padding:16px;background:var(--surface)}
+.fund-account-heading{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.fund-account-heading>span:nth-child(2){flex:1}
+.fund-account-heading strong{display:block;font-size:15px}
+.fund-account-heading small{display:block;font-size:11px;color:var(--muted);margin-top:4px}
+.fund-account-heading>svg{width:20px;height:20px;color:var(--action)}
+.fund-account-details{display:flex;align-items:center;gap:8px;padding-top:14px;border-top:1px solid var(--line)}
+.fund-account-details>span{flex:1;min-width:0}
+.fund-account-details small{display:block;font-size:11px;color:var(--muted);margin-bottom:5px}
+.fund-account-details strong{font-size:20px;letter-spacing:.3px;font-variant-numeric:tabular-nums}
+.fund-account-details .icon-button{width:40px;height:44px;min-width:40px;border:0;box-shadow:none;background:var(--soft);border-radius:12px;color:var(--muted)}
+.fund-account-details svg{width:18px;height:18px}
+.fund-add-account{width:100%;background:var(--soft)!important;color:var(--muted)!important;box-shadow:none;opacity:.65}
+.fund-account-note{font-size:12px;line-height:1.6;color:var(--muted)}
+@media(max-height:650px){.sign-in{padding-top:20px}.sign-in-brand{margin-bottom:14px}.sign-in-keypad{padding-top:10px;gap:2px}.sign-in-keypad button{min-height:52px}.pin-dots{margin-top:16px}}
+
+:root{--motion-entry:650ms;--motion-colour:400ms}
+.pin-dots .sign-in-progress,.pin-dots .sign-in-result{display:grid;place-items:center;width:32px;height:32px;background:transparent;color:var(--action)}
+.pin-dots .sign-in-result{color:var(--success,#247344)}
+.sign-in-progress svg,.sign-in-result svg{width:30px;height:30px}
+.sign-in-progress svg{animation:signin-loading 1s linear infinite}
+.sign-in-status{font-weight:600}
+.home-question .dashboard-name{font:inherit;background:var(--badge-color);color:#fff;cursor:pointer;box-shadow:4px 6px 0 color-mix(in srgb,var(--badge-color) 30%,transparent),0 14px 26px -14px color-mix(in srgb,var(--badge-color) 55%,transparent);transition:background-color var(--motion-colour) ease-in-out,box-shadow var(--motion-colour) ease-in-out}
+.dashboard-arrival[data-view=home] .header,.dashboard-arrival[data-view=home] .home-hero,.dashboard-arrival[data-view=home] .home-question,.dashboard-arrival[data-view=home] .resume-carousel,.dashboard-arrival[data-view=home] .compose-area{animation:dashboard-welcome var(--motion-entry) var(--ease-pull) both}
+.dashboard-arrival[data-view=home] .home-hero{animation-delay:50ms}.dashboard-arrival[data-view=home] .home-question{animation-delay:100ms}.dashboard-arrival[data-view=home] .resume-carousel{animation-delay:150ms}.dashboard-arrival[data-view=home] .compose-area{animation-delay:200ms}
+@keyframes dashboard-welcome{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes signin-loading{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.sign-in-progress svg{animation:none}.home-question .dashboard-name{transition:none}.dashboard-arrival[data-view=home] .header,.dashboard-arrival[data-view=home] .home-hero,.dashboard-arrival[data-view=home] .home-question,.dashboard-arrival[data-view=home] .resume-carousel,.dashboard-arrival[data-view=home] .compose-area{animation:none}}
+
+.sign-in-transition-overlay{position:absolute;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;padding:24px;background:#17112455;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);outline:0;animation:sign-in-overlay-enter var(--motion-control) ease-out both}
+.sign-in-transition-card{display:flex;flex-direction:column;align-items:center;gap:14px;width:100%;max-width:300px;padding:30px 22px;border:1px solid var(--line);border-radius:28px;background:var(--surface);box-shadow:0 16px 48px #17112425;text-align:center}
+.sign-in-transition-card>.sign-in-progress,.sign-in-transition-card>.sign-in-result{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:var(--tint);color:var(--action)}
+.sign-in-transition-card>.sign-in-result{background:var(--success-bg,#edf7ef);color:var(--success,#247344)}
+.sign-in-transition-card h2{font-size:20px;font-weight:750;letter-spacing:-.4px;margin:0}
+.sign-in-transition-card p{font-size:13px;line-height:1.6;color:var(--muted);margin:0}
+.sign-in-transition-card small{font-size:10px;color:var(--muted)}
+@keyframes sign-in-overlay-enter{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.sign-in-transition-overlay{animation:none}}

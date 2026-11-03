@@ -1,0 +1,132 @@
+/* 1 November polish pass.
+   Compact dashboard, Activity-first history page, logo-only balance pill,
+   one expanded purchase card, seamless sheet footers, no purple input ring. */
+
+/* ---------- Balance: logo-only account pill ---------- */
+.balance-control .balance-account{gap:3px;padding:3px 5px 3px 3px}
+.balance-account .momo-mark{width:22px;height:22px;border-radius:11px}
+.balance-control .balance-account svg{width:14px;height:14px}
+.balance-control.hero{gap:8px;padding-top:0}
+.balance-control.hero .balance-account{align-self:center;min-height:34px;padding:3px 7px 3px 3px}
+.balance-control.hero .momo-mark{width:26px;height:26px;border-radius:13px}
+.balance-control.hero .mini-balance{padding:2px 8px 2px 14px}
+.balance-control.hero .mini-balance strong{font-size:30px;letter-spacing:-.8px}
+.balance-control.hero .cur{font-size:11px}
+.balance-control.hero .icon-button{width:34px;height:34px;min-width:34px}
+
+/* Chat top bar: the pill hugs its contents instead of filling the bar. */
+.header .header-balance{flex:0 1 auto;justify-content:center}
+.header .header-balance .balance-control.inline{width:max-content;max-width:100%}
+.header .header-balance .balance-account{padding:2px 5px 2px 3px;min-height:34px;gap:2px}
+.header .header-balance .balance-account svg{display:block;width:12px;height:12px;color:var(--header-control-muted)}
+.header .header-balance .balance-control.inline .momo-mark{width:22px;height:22px;border-radius:11px}
+.conversation-header .balance-control.inline{gap:2px}
+.conversation-header .balance-control.inline .balance-account{gap:2px;padding:2px 5px 2px 3px}
+.conversation-header .balance-control.inline .mini-balance{height:34px;padding:0 2px 0 9px}
+.conversation-header .balance-control.inline .mini-balance strong{font-size:14px}
+.conversation-header .balance-control.inline .icon-button{height:34px;width:32px;min-width:32px}
+
+/* ---------- Header and concept bar ---------- */
+.profile-row-icon.profile-row-logo .momo-mark{width:24px;height:24px;border-radius:12px}
+.fund-account-heading>.momo-mark{width:32px;height:32px;border-radius:14px}.concept-bar{font-size:9.5px;padding:4px 20px;border-radius:0 0 14px 14px}
+.header{min-height:52px;padding:5px 14px}
+.header .icon-button{width:40px;height:40px}
+
+/* ---------- Dashboard fits one screen ---------- */
+.screen.home{padding-top:0}
+.home-hero{padding:6px 12px 2px}
+.home-question{font-size:23px;line-height:1.2;max-width:300px;padding:12px 16px 4px;letter-spacing:-.6px;margin:0 auto}
+.home-question .greet{gap:7px}
+.home-question .name-tag{font-size:25px;padding:4px 12px;border-radius:14px}
+.home-question .name-tag .dec{font-size:20px}
+.screen.home>.resume-carousel{gap:10px;padding:2px 16px 8px;scroll-padding-inline:16px;margin-top:auto}
+.resume-task.resume-improved{min-height:54px;padding:9px 12px;border-radius:16px}
+.resume-task strong{font-size:12.5px}
+.resume-task small{font-size:10.5px}
+.compose-area{padding:2px 12px max(4px,env(safe-area-inset-bottom))}
+.demo-link{min-height:24px;font-size:10px;margin-bottom:2px;gap:4px}
+.demo-link svg{width:11px;height:11px}
+.suggestions{gap:6px;margin-bottom:6px;padding:1px 1px 2px}
+.suggestion-chip{min-height:34px;padding:6px 11px;font-size:11.5px;gap:5px;border-radius:99px}
+.suggestion-chip svg{width:13px;height:13px}
+.composer{padding:6px 6px 6px 14px;border-radius:22px}
+.composer textarea{min-height:38px;height:38px;padding:6px 0;font-size:15px;line-height:22px}
+.composer-tool{width:36px;height:36px}
+.dictation-button{width:36px;height:36px}
+.send{width:40px;height:40px}
+.send svg{width:20px;height:20px}
+.wallet-link{min-height:26px;font-size:10px}
+.attachment-preview img{max-height:120px}
+
+/* Extra trim on shorter phones so the dashboard still lands on one screen. */
+@media(max-height:720px){
+  .home-question{font-size:21px;padding:8px 14px 2px}
+  .home-question .name-tag{font-size:23px;padding:3px 10px}
+  .balance-control.hero .mini-balance strong{font-size:27px}
+  .screen.home>.resume-carousel{padding-bottom:4px}
+  .demo-link{display:none}
+}
+
+/* ---------- Activity (transactions) page ---------- */
+.transaction-page.activity,.transactions-page.activity{padding:calc(10px + env(safe-area-inset-top)) 16px 26px;background:var(--canvas)}
+.activity-search-row{display:flex;align-items:center;gap:8px}
+.activity-search{display:flex;align-items:center;gap:8px;flex:1;min-width:0;padding:0 12px;min-height:44px;border:1px solid transparent;border-radius:99px;background:var(--soft)}
+.activity-search>svg{width:16px;height:16px;color:var(--muted);flex-shrink:0}
+.activity-search input{flex:1;min-width:0;height:42px;border:0;background:transparent;font-size:14px;color:var(--ink);outline:none}
+.activity-search input::placeholder{color:var(--muted);opacity:1}
+.activity-search button{display:grid;place-items:center;width:30px;height:40px;color:var(--muted)}
+.activity-search button[hidden]{display:none}
+.activity-search button svg{width:15px;height:15px}
+.activity-search:focus-within{outline:0;border-color:var(--field-border)}
+.activity-filter{position:relative;display:grid;place-items:center;width:44px;height:44px;flex-shrink:0;border-radius:50%;background:var(--soft);color:var(--ink)}
+.activity-filter svg{width:18px;height:18px}
+.activity-filter.has-filters{background:var(--ink);color:var(--surface)}
+.activity-filter-count{position:absolute;top:-2px;right:-2px;display:grid;place-items:center;min-width:16px;height:16px;padding:0 4px;border-radius:99px;background:var(--action);color:var(--on-action);font-size:9px;font-weight:700}
+.activity-tabs{display:flex;gap:6px;margin:12px 0 2px;overflow-x:auto;scrollbar-width:none}
+.activity-tabs::-webkit-scrollbar{display:none}
+.activity-tab{flex:0 0 auto;min-height:34px;padding:6px 15px;border-radius:99px;background:var(--soft);color:var(--ink);font-size:12px;font-weight:600;letter-spacing:-.1px}
+.activity-tab.active{background:var(--ink);color:var(--surface)}
+.activity-help-list{margin:0 0 14px;padding-left:18px;display:grid;gap:8px;font-size:13px;line-height:1.5;color:var(--ink)}
+.activity-help-list strong{font-weight:650}
+.sheet-lead{font-size:13.5px;line-height:1.55;color:var(--ink);margin:0 0 10px}
+.history-sort-options{display:flex;flex-wrap:wrap;gap:8px}
+
+.transactions-page .transaction-filter-tags{gap:6px;margin:10px 0 0}
+.transactions-page .transaction-filter-tags .button{min-height:28px;padding:4px 9px;font-size:10px}
+.history-result-summary{flex-direction:row;align-items:center;justify-content:space-between;gap:10px;padding:12px 0 6px;font-size:11.5px}
+.history-sort{display:inline-flex;align-items:center;gap:3px;min-height:28px;padding:2px 8px;border-radius:99px;background:transparent;color:var(--muted);font-size:11px;font-weight:600;box-shadow:none;border:0}
+.history-sort svg{width:13px;height:13px;order:2}
+.history-sort span{order:1}
+.transaction-day h2{font-size:11px;font-weight:650;letter-spacing:.01em;padding:10px 0 2px}
+.transactions-page .receipt-row{min-height:0;padding:11px 0;gap:10px;background:transparent;box-shadow:none}
+[data-theme=dark] .transactions-page .receipt-row{background:transparent;box-shadow:none}
+.transactions-page .tx-main strong{font-size:13.5px}
+.transactions-page .tx-recipient{font-size:10.5px;margin-top:2px}
+.transactions-page .tx-amount{font-size:12px}
+.transactions-page .transaction-icon{width:36px;height:36px;border-radius:12px}
+.transactions-page .transaction-icon svg{width:17px;height:17px}
+.history-empty{padding:38px 12px}
+.history-empty h2{font-size:18px}
+.history-empty p{font-size:13px}
+.history-filter-section legend{font-size:13px}
+.history-filter-option{min-height:38px;font-size:11.5px;padding:8px 11px}
+
+/* ---------- One expanded purchase, the rest stay compact ---------- */
+.queued-card{display:flex;align-items:center;gap:10px;padding:9px 11px;border:1px solid var(--line);border-radius:16px;background:var(--soft)}
+.queued-mark{display:grid;place-items:center;width:30px;height:30px;flex-shrink:0;border-radius:50%;background:var(--surface);color:var(--muted)}
+.queued-mark svg{width:15px;height:15px}
+.queued-card.processing .queued-mark svg{animation:spin 1s linear infinite}
+.queued-copy{flex:1;min-width:0;display:block}
+.queued-copy strong{display:block;font-size:12.5px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.queued-copy small{display:block;font-size:10.5px;color:var(--muted);margin-top:2px}
+.queued-do{flex-shrink:0;min-height:32px;padding:5px 11px;border-radius:99px;background:var(--surface);border:1px solid var(--line);color:var(--ink);font-size:10.5px;font-weight:650;white-space:nowrap}
+.queued-do:active{transform:scale(.97)}
+@media(prefers-reduced-motion:reduce){.queued-card.processing .queued-mark svg{animation:none}}
+
+/* ---------- Sheet footers continue the sheet body ---------- */
+.sheet-footer{background:transparent;border-top:0;box-shadow:none}
+.sheet[data-sheet-surface="inset"]>.sheet-footer{background:var(--surface);border:0;margin:0 6px 6px;padding:4px 20px 18px;border-radius:0 0 24px 24px}
+
+/* ---------- No purple ring on active fields ---------- */
+input:focus,input:focus-visible,textarea:focus,textarea:focus-visible,select:focus,select:focus-visible{outline:0;box-shadow:none}
+.form-field input:focus,.form-field input:focus-visible,.form-field select:focus-visible,.select-trigger:focus-visible,.history-date-fields input:focus,.transaction-search:focus-within,.sheet input:focus,.sheet textarea:focus{border-color:var(--field-border);outline:0;box-shadow:none}
