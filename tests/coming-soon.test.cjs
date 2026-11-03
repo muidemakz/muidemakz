@@ -8,9 +8,9 @@ const root = path.resolve(__dirname, '..');
 const projects = vm.runInNewContext(fs.readFileSync(path.join(root, 'js/data.js'), 'utf8') + ';PROJECTS');
 const pending = projects.filter(project => project.status === 'coming-soon');
 
-test('all 18 unfinished entries have distinct working preview routes', () => {
-  assert.equal(pending.length, 18);
-  assert.equal(new Set(pending.map(project => project.slug)).size, 18);
+test('all 17 unfinished entries have distinct working preview routes', () => {
+  assert.equal(pending.length, 17);
+  assert.equal(new Set(pending.map(project => project.slug)).size, 17);
   for (const project of pending) {
     const url = new URL(project.link, 'https://muidemakz.com/');
     assert.equal(url.pathname, '/project-preview.html');
@@ -19,11 +19,11 @@ test('all 18 unfinished entries have distinct working preview routes', () => {
   }
 });
 
-test('the twelve existing case-study links and availability stay intact', () => {
+test('the thirteen existing case-study links and availability stay intact', () => {
   assert.deepEqual(Array.from(projects.filter(project => project.status !== 'coming-soon'), project => project.link), [
     'omnione.html', 'fundall.html', 'teesaslms.html', 'valideity.html',
     'empty-state.html', 'cardtonic.html', 'moniepoint-verification.html', 'sun-king.html',
-    'nsimbi-three-purchases.html', 'coreloops.html', 'venx.html', 'raven-pay.html'
+    'nsimbi-three-purchases.html', 'omnibiz-speech-to-order.html', 'coreloops.html', 'venx.html', 'raven-pay.html'
   ]);
 });
 

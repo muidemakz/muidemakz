@@ -19,8 +19,8 @@ python -m http.server 5500 --bind 127.0.0.1
 - `my-work.html`: complete project catalogue with the existing search, category filters, grid/list toggle and pagination.
 - `wrapped.html`: year-in-review stories and project links.
 - Published case-study links: Omnione, Fundall, Teesas, Omnibiz empty/preorder states, Coreloops, Cardtonic, Raven Pay, VENX and Valideity.
-- Coming-soon previews: the 18 unfinished entries use `project-preview.html?project=<slug>`, with visible Work-card tags and `noindex, follow` on the preview template.
-- Draft source files: `omnibiz-speech-to-order.html` and `cancel-flow.html` remain intact, unlinked from Work and excluded from search indexing. Their Work entries lead to coming-soon previews instead of exposing unreviewed draft content.
+- Coming-soon previews: the 17 unfinished entries use `project-preview.html?project=<slug>`, with visible Work-card tags and `noindex, follow` on the preview template.
+- `omnibiz-speech-to-order.html` is live (linked from Work, in the sitemap). `cancel-flow.html` remains a draft, unlinked and noindex; its Work entry leads to a coming-soon preview.
 
 `js/data.js` holds `PROJECTS`, `PROJECT_CATEGORIES` and `EXPERIENCE_YEARS`.
 The first eight `PROJECTS` entries must match the static cards in `my-work.html`;
@@ -67,7 +67,7 @@ must not be described as implemented.
   screen or video and a note of what changed in the UI. The earlier 35% order-completion
   speed claim was removed from the page (it measures speed, not discoverability); re-add
   it only with its own period, cohort and definition, and never combined with the split.
-  Keep the draft unlinked and noindex.
+  The page is live; fill these gaps as the real captures arrive.
 - Valideity's pricing-flow case uses original 27 September 2026 captures. Its
   recorded Predicted sequence is 53% → 52% → 94%, with one persona and five
   sessions per run. Some historical screenshots are compact 480px captures;
