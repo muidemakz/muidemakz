@@ -295,6 +295,34 @@
 
   // reflects a ?year= deep-link (or ?category=) in the search box itself,
   // since state.search may already be pre-filled above
+  // coming back from a case study: restore the exact page, filters, view and
+  // scroll the visitor left (kept in sessionStorage, see saveState below)
+  const STORE_KEY = "workState";
+  let restored = null;
+  try {
+    const nav = performance.getEntriesByType("navigation")[0];
+    const raw = sessionStorage.getItem(STORE_KEY);
+    const returning = (nav && nav.type === "back_forward") || sessionStorage.getItem("workReturn");
+    sessionStorage.removeItem("workReturn");
+    if (raw && returning && !categoryParam && !yearParam) {
+      restored = JSON.parse(raw);
+      state.search = typeof restored.search === "string" ? restored.search : "";
+      (restored.categories || []).forEach((c) => PROJECT_CATEGORIES.includes(c) && state.categories.add(c));
+      state.page = Math.max(1, parseInt(restored.page, 10) || 1);
+    }
+  } catch (e) { restored = null; }
+
+  function saveState() {
+    try {
+      sessionStorage.setItem(STORE_KEY, JSON.stringify({
+        search: state.search, categories: Array.from(state.categories),
+        view: state.view, page: state.page, scrollY: window.scrollY
+      }));
+    } catch (e) {}
+  }
+  window.addEventListener("pagehide", saveState);
+  document.addEventListener("click", (e) => { if (e.target.closest && e.target.closest(".work-card-hit")) saveState(); });
+
   searchInput.value = state.search;
 
   buildChips(categoryChipsEl, PROJECT_CATEGORIES, state.categories);
@@ -311,9 +339,13 @@
   viewGridBtn.addEventListener("click", () => setView("grid"));
   viewListBtn.addEventListener("click", () => setView("list"));
 
+  if (restored && restored.view === "list") setView("list");
   renderGrid();
 
-  if (state.categories.size > 0 || state.search) {
+  if (restored) {
+    // layout settles after the grid renders, so wait a frame before scrolling
+    requestAnimationFrame(() => window.scrollTo(0, restored.scrollY || 0));
+  } else if (state.categories.size > 0 || state.search) {
     // scroll the grid into view so a filtered arrival actually lands on the
     // filtered results, not the page top.
     document.querySelector(".work-toolbar").scrollIntoView({ block: "start" });

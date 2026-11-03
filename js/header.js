@@ -41,4 +41,16 @@
   // reduced motion. Remove these two lines to switch the layer off everywhere.
   document.write('<link rel="stylesheet" href="css/motion.css">');
   document.write('<script src="js/motion.js"><\/script>');
+
+  // Case-study "Back" link: returns to the exact Work page (page, filters,
+  // scroll) the visitor came from. js/work.js stores that state in
+  // sessionStorage; history.back() is used when Work was the previous page.
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest(".case-back");
+    if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+    var fromWork = false;
+    try { fromWork = new URL(document.referrer).pathname.split("/").pop() === "my-work.html" && new URL(document.referrer).origin === location.origin; } catch (err) {}
+    if (fromWork && history.length > 1) { e.preventDefault(); history.back(); return; }
+    try { if (sessionStorage.getItem("workState")) sessionStorage.setItem("workReturn", "1"); } catch (err) {}
+  });
 })();
