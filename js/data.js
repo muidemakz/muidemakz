@@ -150,6 +150,7 @@ const PROJECTS = [
   { name: "Moniepoint Verification Status", year: 2026, categories: ["UI Design", "UX Design"], image: "images/cinema/moniepoint-cover.svg", caption: "An Independent Exploration, Tested Before And After", status: "concept", confirmed: true, link: "moniepoint-verification.html" },
   { name: "Sun King Smartphone Marketplace", year: 2026, categories: ["UI Design", "UX Design"], image: "images/sun-king/after-detail.png", caption: "Read The Page, Rebuild It, Fix It", status: "concept", confirmed: true, link: "sun-king.html" },
   { name: "Nsimbi Chat-First Payments", year: 2026, categories: ["UI Design", "UX Design"], image: "images/nsimbi/card-cover.jpg", caption: "Small Design Touches, Original Against Update", status: "concept", confirmed: true, link: "nsimbi-three-purchases.html" },
+  { name: "Cancel Flow For Valideity", year: 2026, categories: ["UX Design"], image: "images/cinema/cancel-flow-cover.jpg", caption: "Letting People Leave Pro Without A Fight", status: "concept", confirmed: true, link: "cancel-flow.html" },
   { name: "Cardtonic P2P Money Transfer", year: 2026, categories: ["UI Design", "UX Design"], image: "images/cinema/cardtonic-cover.svg", caption: "Sending Money To People, Not Accounts", status: "concept", confirmed: true, link: "cardtonic.html" },
   { name: "Coreloops Documents Filter", year: 2026, categories: ["UI Design", "UX Design"], image: "images/cinema/coreloops-cover.svg", caption: "Making Frequent Filters Easier To Reach", status: "concept", confirmed: true, link: "coreloops.html" },
   { name: "VENX", year: 2025, categories: ["UI Design", "UX Design"], image: "images/cinema/venx-cover.jpg", caption: "A Full AI Sales CRM Concept In 24 Hours", status: "concept", confirmed: true, link: "venx.html" },
@@ -157,7 +158,6 @@ const PROJECTS = [
   // [REVERT POINT] Unfinished entries now link to an explicitly noindex preview.
   // Keep draft files and their unreviewed content out of the public preview.
   // Only add preview.role/summary/scope from owner-confirmed material.
-  { name: "Cancel Flow Brief", year: 2026, categories: ["UX Design"], image: null, brand: "Cancel Flow", confirmed: true, status: "coming-soon", slug: "cancel-flow", link: "project-preview.html?project=cancel-flow" },
   { name: "Venda by Fortnoto", year: 2026, categories: ["Branding", "Creative Design"], image: null, brand: "Venda", confirmed: true, status: "coming-soon", slug: "venda", link: "project-preview.html?project=venda" },
   { name: "OmniBiz Retailer App", year: 2025, categories: ["UI Design", "UX Design"], image: null, brand: "OmniBiz", confirmed: true, status: "coming-soon", slug: "omnibiz-retailer-app", link: "project-preview.html?project=omnibiz-retailer-app" },
   { name: "AlphaBuzz", year: 2024, categories: ["UI Design", "UX Design"], image: null, brand: "AlphaBuzz", confirmed: true, status: "coming-soon", slug: "alphabuzz", link: "project-preview.html?project=alphabuzz" },

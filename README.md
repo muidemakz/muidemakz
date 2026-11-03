@@ -19,8 +19,8 @@ python -m http.server 5500 --bind 127.0.0.1
 - `my-work.html`: complete project catalogue with the existing search, category filters, grid/list toggle and pagination.
 - `wrapped.html`: year-in-review stories and project links.
 - Published case-study links: Omnione, Fundall, Teesas, Omnibiz empty/preorder states, Coreloops, Cardtonic, Raven Pay, VENX and Valideity.
-- Coming-soon previews: the 17 unfinished entries use `project-preview.html?project=<slug>`, with visible Work-card tags and `noindex, follow` on the preview template.
-- `omnibiz-speech-to-order.html` is live (linked from Work, in the sitemap). `cancel-flow.html` remains a draft, unlinked and noindex; its Work entry leads to a coming-soon preview.
+- Coming-soon previews: the 16 unfinished entries use `project-preview.html?project=<slug>`, with visible Work-card tags and `noindex, follow` on the preview template.
+- `omnibiz-speech-to-order.html` and `cancel-flow.html` are live (linked from Work, in the sitemap).
 
 `js/data.js` holds `PROJECTS`, `PROJECT_CATEGORIES` and `EXPERIENCE_YEARS`.
 The first eight `PROJECTS` entries must match the static cards in `my-work.html`;
