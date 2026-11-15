@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1080" role="img" aria-labelledby="title desc">
+  <title id="title">Hand sketched LMS wireframe concepts</title>
+  <desc id="desc">Four deliberately rough pencil wireframe concepts for teacher, student, parent, and school administrator views. Reconstructed for this portfolio preview, not original historical captures.</desc>
+  <defs>
+    <filter id="pencil" x="-8%" y="-8%" width="116%" height="116%">
+      <feTurbulence type="fractalNoise" baseFrequency=".014" numOctaves="2" seed="19" result="grain"/>
+      <feDisplacementMap in="SourceGraphic" in2="grain" scale="2.3" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <pattern id="paperGrain" width="72" height="72" patternUnits="userSpaceOnUse">
+      <path d="M7 13l5-.5M36 9l3 .7M56 27l4-.8M17 47l5 .6M44 61l3-.7M64 50l2 .5" stroke="#b9b3a8" stroke-width="1" opacity=".2"/>
+      <circle cx="28" cy="31" r=".8" fill="#aaa398" opacity=".22"/><circle cx="61" cy="12" r=".6" fill="#aaa398" opacity=".18"/>
+    </pattern>
+    <style>
+      .pencil-line{fill:none;stroke:#4d4a48;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+      .light-line{fill:none;stroke:#77716b;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
+      .ghost-line{fill:none;stroke:#89827a;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;opacity:.55}
+      .scribble{fill:#4d4a48;font:600 23px "Segoe Print","Comic Sans MS",cursive;letter-spacing:.3px}
+      .note{fill:#716a63;font:500 18px "Segoe Print","Comic Sans MS",cursive}
+      .lead{fill:#393632;font:600 36px "Segoe Print","Comic Sans MS",cursive}
+      .rough{filter:url(#pencil)}
+    </style>
+    <g id="frame">
+      <path class="pencil-line" d="M10 19 Q13 11 25 13 L708 10 Q720 12 718 25 L722 363 Q719 373 705 372 L18 376 Q7 373 9 360 Z"/>
+      <path class="ghost-line" d="M14 23 Q18 16 29 17 L711 15 Q726 17 724 31 L727 359 Q725 367 708 368 L21 371 Q12 369 13 356 Z"/>
+      <path class="light-line" d="M25 52 Q188 49 345 52 T704 50"/>
+      <circle class="light-line" cx="35" cy="33" r="6"/><circle class="light-line" cx="57" cy="33" r="6"/><circle class="light-line" cx="79" cy="33" r="6"/>
+    </g>
+    <g id="sideNav">
+      <path class="light-line" d="M26 67 Q75 64 126 67 L125 343 Q73 345 25 343 Z"/>
+      <path class="ghost-line" d="M38 87 Q71 84 107 87 M38 112 Q68 109 99 112 M39 137 Q73 135 108 138"/>
+      <path class="pencil-line" d="M30 158 Q76 154 120 159 L119 188 Q74 190 29 186 Z"/>
+      <path class="ghost-line" d="M39 208 Q69 205 103 208 M38 233 Q78 230 110 234 M39 258 Q65 255 101 258 M38 283 Q71 280 106 283"/>
+    </g>
+  </defs>
+
+  <rect width="1600" height="1080" rx="22" fill="#f0ede7"/>
+  <rect width="1600" height="1080" rx="22" fill="url(#paperGrain)"/>
+  <g transform="rotate(-.35 800 88)">
+    <text x="55" y="75" class="lead">One learning system, four different jobs</text>
+    <path class="light-line" d="M57 91 Q245 99 444 93"/>
+    <text x="57" y="124" class="note">Early structure, sketched as a starting point for discussion</text>
+  </g>
+
+  <!-- Teacher: class planning and assignments -->
+  <g transform="translate(46 157) rotate(-.65 360 190)" class="rough">
+    <use href="#frame"/>
+    <use href="#sideNav"/>
+    <text x="158" y="88" class="scribble">teacher</text>
+    <text x="158" y="126" class="note">my classes</text>
+    <path class="pencil-line" d="M579 71 Q631 68 682 72 L681 105 Q628 108 579 104 Z"/>
+    <path class="light-line" d="M593 88 Q627 85 664 88"/>
+    <path class="pencil-line" d="M155 151 Q278 147 403 151 M424 152 Q540 148 682 152"/>
+    <path class="pencil-line" d="M158 169 Q275 165 405 169 L407 245 Q281 249 159 244 Z"/>
+    <path class="ghost-line" d="M165 175 L400 174 L402 239 L164 241 Z"/>
+    <path class="light-line" d="M176 186 Q206 184 236 187 L238 225 Q205 227 175 224 Z M253 187 Q310 184 374 188 M254 202 Q298 200 339 203 M254 219 Q286 217 319 219"/>
+    <path class="pencil-line" d="M427 169 Q552 166 682 170 L681 246 Q555 249 426 244 Z"/>
+    <path class="light-line" d="M442 185 Q473 183 502 187 L503 225 Q472 228 441 224 Z M519 186 Q580 184 651 187 M519 202 Q563 199 610 202 M520 218 Q550 216 589 218"/>
+    <text x="158" y="280" class="note">up next</text>
+    <path class="light-line" d="M159 293 Q418 290 680 294 M176 316 Q202 311 230 315 M258 316 Q368 311 481 315 M177 342 Q204 338 230 342 M258 342 Q344 338 431 342"/>
+    <circle class="pencil-line" cx="165" cy="317" r="8"/><circle class="pencil-line" cx="166" cy="343" r="8"/>
+    <path class="ghost-line" d="M562 309 Q607 305 651 309 L651 323 Q607 327 562 323 Z M562 335 Q608 331 651 335 L651 349 Q607 353 562 349 Z"/>
+  </g>
+
+  <!-- Student: lesson and progress -->
+  <g transform="translate(828 157) rotate(.6 360 190)" class="rough">
+    <use href="#frame"/>
+    <use href="#sideNav"/>
+    <text x="158" y="88" class="scribble">student</text>
+    <text x="158" y="126" class="note">pick up where I left off</text>
+    <path class="pencil-line" d="M156 151 Q414 146 682 151 L681 246 Q418 250 157 245 Z"/>
+    <path class="ghost-line" d="M163 157 Q416 153 675 158 L674 239 Q414 245 164 239 Z"/>
+    <path class="light-line" d="M180 176 Q219 173 259 177 M180 197 Q289 194 394 198 M180 218 Q239 215 300 218"/>
+    <path class="pencil-line" d="M617 179 Q638 195 616 215 Q594 196 617 179 Z"/>
+    <path class="light-line" d="M158 269 Q228 266 304 270 M158 289 Q414 286 681 290"/>
+    <text x="158" y="316" class="note">my subjects</text>
+    <path class="pencil-line" d="M159 329 Q238 326 315 330 L314 359 Q236 362 158 358 Z M337 329 Q415 326 492 330 L491 359 Q413 362 336 358 Z M512 329 Q597 326 681 330 L680 359 Q596 362 511 358 Z"/>
+    <path class="ghost-line" d="M170 340 Q214 337 263 341 M348 340 Q393 337 440 341 M524 340 Q573 337 628 341"/>
+  </g>
+
+  <!-- Parent: child progress and attendance -->
+  <g transform="translate(46 570) rotate(.5 360 190)" class="rough">
+    <use href="#frame"/>
+    <use href="#sideNav"/>
+    <text x="158" y="88" class="scribble">parent</text>
+    <text x="158" y="126" class="note">how is my child doing?</text>
+    <path class="pencil-line" d="M158 151 Q320 147 476 151 L475 227 Q315 231 157 226 Z M493 151 Q588 147 682 151 L681 227 Q587 231 492 226 Z"/>
+    <text x="176" y="178" class="note">attendance</text>
+    <path class="light-line" d="M177 197 Q243 193 309 197 M177 212 Q219 209 259 212"/>
+    <text x="512" y="178" class="note">recent work</text>
+    <path class="light-line" d="M512 197 Q567 193 631 197 M513 212 Q553 208 594 212"/>
+    <path class="pencil-line" d="M158 246 Q420 242 682 247 L681 356 Q419 360 157 355 Z"/>
+    <text x="176" y="276" class="note">progress over time</text>
+    <path class="ghost-line" d="M181 328 Q296 326 657 329 M181 307 Q299 305 656 308 M181 286 Q292 284 656 287"/>
+    <path class="pencil-line" d="M184 319 Q229 314 260 300 T328 311 T404 285 T478 293 T558 273 T646 280"/>
+  </g>
+
+  <!-- School admin: overview and roster -->
+  <g transform="translate(828 570) rotate(-.45 360 190)" class="rough">
+    <use href="#frame"/>
+    <use href="#sideNav"/>
+    <text x="158" y="88" class="scribble">school admin</text>
+    <text x="158" y="126" class="note">school overview</text>
+    <path class="pencil-line" d="M158 151 Q314 147 471 151 L470 214 Q312 218 157 213 Z M493 151 Q586 147 682 151 L681 214 Q585 218 492 213 Z"/>
+    <path class="light-line" d="M176 172 Q234 168 292 172 M176 194 Q229 190 284 194 M510 172 Q570 168 647 172 M510 194 Q564 190 626 194"/>
+    <text x="158" y="248" class="note">people and classes</text>
+    <path class="pencil-line" d="M158 264 Q419 260 682 265 L681 355 Q419 359 157 354 Z"/>
+    <path class="light-line" d="M171 283 Q407 280 665 284 M171 306 Q407 303 665 307 M171 329 Q407 326 665 330"/>
+    <path class="ghost-line" d="M185 294 Q218 291 253 295 M284 294 Q352 291 418 295 M454 294 Q499 291 540 295 M571 294 Q611 291 647 295 M185 317 Q218 314 253 318 M284 317 Q352 314 418 318 M454 317 Q499 314 540 318 M571 317 Q611 314 647 318 M185 340 Q218 337 253 341 M284 340 Q352 337 418 341 M454 340 Q499 337 540 341 M571 340 Q611 337 647 341"/>
+  </g>
+
+  <g transform="rotate(-.25 800 1010)">
+    <text x="55" y="1010" class="note">rough concept sketches · four documented roles · no measured values</text>
+    <path class="ghost-line" d="M58 1025 Q379 1020 689 1026"/>
+  </g>
+</svg>

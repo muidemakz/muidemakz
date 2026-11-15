@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 690" role="img" aria-labelledby="title desc">
+  <title id="title">Hand drawn learning roadmap illustration</title>
+  <desc id="desc">A school learning hub connects to four future exploration areas. The drawing does not represent a committed roadmap.</desc>
+  <defs>
+    <pattern id="paper" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="4" cy="6" r=".6" fill="#99958e" opacity=".15"/><circle cx="19" cy="17" r=".5" fill="#99958e" opacity=".12"/></pattern>
+    <style>
+      .p{fill:#f5f2eb}.ink{fill:none;stroke:#45423e;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}.soft{fill:#fbfaf7;stroke:#77736d;stroke-width:2.3;stroke-linejoin:round}.mint{fill:#d8e9df;stroke:#567e6d;stroke-width:2.5;stroke-linejoin:round}.line{fill:none;stroke:#77736d;stroke-width:2.5;stroke-linecap:round;stroke-dasharray:7 10}.hand{fill:#4b4844;font:600 22px 'Comic Sans MS','Bradley Hand',cursive}.small{fill:#706d68;font:500 16px 'Comic Sans MS','Bradley Hand',cursive}.tiny{fill:#567e6d;font:700 14px 'Comic Sans MS','Bradley Hand',cursive;letter-spacing:1px}
+    </style>
+  </defs>
+  <rect width="760" height="690" rx="30" class="p"/><rect width="760" height="690" rx="30" fill="url(#paper)"/>
+  <path d="M58 62 Q205 56 362 62 T701 59" class="ink" opacity=".45"/>
+  <text x="62" y="49" class="tiny">NEXT AREAS TO EXPLORE</text>
+  <text x="62" y="98" class="hand" style="font-size:28px">A connected learning ecosystem</text>
+
+  <path d="M375 337 C263 300 204 235 153 183 M382 333 C489 286 554 230 609 177 M373 356 C271 419 211 479 151 536 M389 357 C496 421 551 485 610 538" class="line"/>
+  <path d="M374 332 C263 298 207 239 157 187 M386 339 C493 291 557 235 613 182 M378 360 C276 423 216 483 156 540 M392 361 C499 425 555 489 615 543" class="ink" opacity=".38"/>
+
+  <!-- central learning hub -->
+  <path d="M272 249 Q378 241 487 250 L482 432 Q376 442 277 432 Z" class="soft"/>
+  <path d="M291 276 Q375 268 463 276 L460 297 Q374 304 292 297 Z" class="mint"/>
+  <path d="M299 321 Q375 316 455 321 M299 346 Q358 341 421 346" class="ink"/>
+  <path d="M299 367 Q373 362 448 367 L446 405 Q373 410 300 405 Z" class="soft"/>
+  <path d="M320 384 Q376 380 425 384" class="ink"/>
+  <text x="314" y="225" class="tiny">ONE LMS</text>
+  <text x="322" y="426" class="small">shared foundation</text>
+
+  <!-- analytics -->
+  <path d="M45 126 Q104 120 163 126 L159 226 Q100 231 48 225 Z" class="soft"/>
+  <path d="M69 202 L69 183 L85 183 L85 202 M96 202 L96 163 L112 163 L112 202 M124 202 L124 145 L140 145 L140 202" class="ink"/>
+  <path d="M64 207 Q104 211 145 207" class="ink"/>
+  <text x="64" y="252" class="small">Useful analytics</text>
+
+  <!-- personalized learning -->
+  <path d="M557 119 Q617 113 675 120 L671 224 Q613 228 560 224 Z" class="soft"/>
+  <circle cx="616" cy="157" r="18" class="mint"/><path d="M585 204 Q614 171 647 204 M581 208 Q616 213 650 208" class="ink"/>
+  <path d="M598 157 Q616 146 634 157" class="ink"/>
+  <text x="570" y="250" class="small">Personalized learning</text>
+
+  <!-- offline access -->
+  <path d="M45 489 Q105 483 164 489 L161 589 Q103 594 48 588 Z" class="soft"/>
+  <path d="M74 519 Q101 512 127 520 L127 559 Q101 552 74 560 Z M127 520 Q141 514 153 520 L153 560 Q140 553 127 559 Z" class="ink"/>
+  <path d="M83 529 Q101 524 117 529 M83 540 Q101 535 117 540 M134 530 Q143 526 149 530 M134 541 Q143 537 149 541" class="ink"/>
+  <text x="62" y="615" class="small">Offline access</text>
+
+  <!-- integrations -->
+  <path d="M557 488 Q616 482 675 489 L671 588 Q614 594 560 588 Z" class="soft"/>
+  <circle cx="585" cy="534" r="13" class="mint"/><circle cx="644" cy="516" r="13" class="soft"/><circle cx="645" cy="559" r="13" class="soft"/>
+  <path d="M598 531 Q618 520 631 518 M598 540 Q619 552 632 557" class="ink"/>
+  <text x="586" y="615" class="small">Integrations</text>
+
+  <path d="M59 650 Q245 644 376 650 T701 648" class="ink" opacity=".38"/>
+  <text x="62" y="674" class="tiny">ILLUSTRATIVE ONLY · NOT A COMMITTED ROADMAP</text>
+</svg>

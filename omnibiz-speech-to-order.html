@@ -93,8 +93,9 @@
       </div>
       <h1 class="case-title">Speech-to-Order: Separating Ordering From Support</h1>
       <p class="case-lede">
-        Roughly 9 in 10 voice sessions were complaints, not orders. This is how I made the assistant's purpose clear, and what moved.
+        Over the two weeks after the redesign, the reported share of order sessions rose from roughly 10% to 35%, while complaint sessions fell from roughly 90% to 65%. The figures are from production usage reporting; the session counts and classification still need to be confirmed.
       </p>
+      <p class="case-status">MEASURED · REPORTED PRODUCTION DATA · SOURCE DETAILS TO VERIFY</p>
       <ul class="case-tags">
         <li>Senior Product Designer (Embedded With PMs &amp; Engineers)</li>
         <li>2026</li>
@@ -111,21 +112,25 @@
 
   <nav class="case-quicknav" aria-label="Section navigation">
     <div class="wrap">
-      <a href="#context">Context</a>
-      <a href="#problem">The Problem</a>
-      <a href="#research">Research</a>
-      <a href="#solution">Redesign</a>
-      <a href="#testing">Testing</a>
-      <a href="#outcome">Outcome</a>
-      <a href="#voice-flow">Two Modes</a>
+      <a href="#objective">Objective &amp; Scope</a>
+      <a href="#problem">Starting Premise</a>
+      <a href="#research">Evidence</a>
+      <a href="#reframe">Reframed Problem</a>
+      <a href="#solution">Decisions &amp; Design</a>
+      <a href="#voice-flow">What Shipped</a>
+      <a href="#outcome">Measured Result</a>
       <a href="#reflection">Reflection</a>
     </div>
   </nav>
 
-  <!-- ============ CONTEXT ============ -->
-  <section class="case-section" id="context">
+  <!-- ============ OBJECTIVE & SCOPE ============ -->
+  <section class="case-section" id="objective">
     <div class="wrap">
-      <p class="case-label">Context</p>
+      <p class="case-label">Business Objective &amp; My Scope</p>
+      <div class="case-flag-box" style="margin-bottom:24px">
+        <p class="case-flag-label">Objective To Confirm</p>
+        <p class="case-flag-copy">[Add the business objective from the original brief or PM discussion. Do not treat the 150,000+ retailer ecosystem or $124M+ annual NMV as the objective for this feature.]</p>
+      </div>
       <p class="case-copy">
         Omnibiz is OmniRetail's B2B commerce platform, serving 150,000+ retailers across Nigeria, Ghana,
         and Ivory Coast and processing $124M+ in annual NMV. Speech to Order was intended to let retailers order FMCG
@@ -138,6 +143,7 @@
         didn't know the assistant had two modes, chat and call, or that they could place an order by calling,
         has its own section further down.
       </p>
+      <p class="case-copy"><strong>My contribution:</strong> I led the experience design while embedded with PMs and engineers. The business scale figures above describe the platform, not an outcome caused by my design.</p>
       <p class="case-copy">
         This work was done in April 2026. The design has been updated a lot since, so the screens in the
         main story show that early version, and the last section shows where it stands now.
@@ -157,17 +163,21 @@
     </div>
   </section>
 
-  <!-- ============ THE PROBLEM ============ -->
+  <!-- ============ STARTING PREMISE ============ -->
   <section class="case-section" id="problem">
     <div class="wrap">
-      <p class="case-label">The Problem</p>
+      <p class="case-label">Starting Premise To Test</p>
+      <div class="case-flag-box" style="margin-bottom:24px">
+        <p class="case-flag-label">Working Assumption, Please Confirm</p>
+        <p class="case-flag-copy">[Was the initial belief that retailers were not ordering because typing product names was difficult? Confirm the premise the team started with, or replace it with the actual one.]</p>
+      </div>
       <p class="case-copy">
         When we reviewed usage, roughly <strong>90% of voice sessions involved complaints rather than
         orders</strong>. Retailers were finding and using the assistant, but its presentation wasn't making
         its purpose clear.
       </p>
       <p class="case-copy">
-        The split came from an ElevenLabs voice interaction report and our internal analytics
+        The reported split came from an ElevenLabs voice interaction report and our internal analytics
         dashboard. The original interface was a direct, unguided speech input with no context about what
         it could do, so retailers treated it as a support channel and the same interface never signalled
         that it could also take an order.
@@ -202,7 +212,7 @@
   <!-- ============ RESEARCH & DISCOVERY ============ -->
   <section class="case-section" id="research">
     <div class="wrap">
-      <p class="case-label">Research &amp; Discovery</p>
+      <p class="case-label">Evidence &amp; Investigation</p>
       <p class="case-copy">
         Findings came from two sources: an ElevenLabs voice interaction report and the team's internal
         usage analytics dashboard.
@@ -212,13 +222,26 @@
         could do, so retailers defaulted to treating it as a support channel. Adoption wasn't the
         problem. Retailers were using the assistant, but use didn't mean ordering.
       </p>
+      <div class="case-flag-box" style="margin-top:24px">
+        <p class="case-flag-label">Measurement Detail To Add</p>
+        <p class="case-flag-copy">[Add the report dates, session counts, the rule used to classify a complaint or order, and a redacted source capture if available. The existing topic images are illustrations, not dashboard evidence.]</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REFRAMED PROBLEM ============ -->
+  <section class="case-section" id="reframe">
+    <div class="wrap">
+      <p class="case-label">What The Evidence Changed</p>
+      <p class="case-copy">The evidence changed the problem framing: the issue was not whether retailers found the assistant, but what they understood it to do. The team needed to make intent clear before a retailer entered the voice interaction.</p>
+      <p class="case-copy">A remaining question was whether every complaint was a misrouted order. A clearer entry point could separate intent, but it could not resolve an underlying product or operations issue.</p>
     </div>
   </section>
 
   <!-- ============ REDESIGN APPROACH ============ -->
   <section class="case-section" id="solution">
     <div class="wrap">
-      <p class="case-label">Redesign Approach</p>
+      <p class="case-label">Product Decision &amp; Design</p>
       <p class="case-copy">
         My goal was to help retailers tell ordering and support apart. I reworked the wording and
         interaction to create a clearer separation between the two, then refined the experience through
@@ -228,6 +251,10 @@
         The interface now sets expectations upfront, so retailers know they can place an order, not just
         ask for help.
       </p>
+      <div class="case-flag-box" style="margin-top:24px">
+        <p class="case-flag-label">Decision And Trade Off</p>
+        <p class="case-flag-copy">The chosen change was to ask what the retailer wanted to do before opening voice. That adds an explicit choice, while making ordering and support easier to distinguish. [Add any alternatives considered and what retailer feedback changed during iteration.]</p>
+      </div>
 
       <div class="case-figures case-figures--spaced" style="margin-top: 24px;">
         <figure class="case-figure case-figure--grey">
@@ -250,12 +277,13 @@
   <!-- ============ TESTING & ITERATION ============ -->
   <section class="case-section" id="testing">
     <div class="wrap">
-      <p class="case-label">Testing &amp; Iteration</p>
+      <p class="case-label">Implementation, Testing &amp; Iteration</p>
       <p class="case-copy">
         We assessed the change through conversation logs, usage reports and retailer feedback. The team
         also ran field tests with real retailers and kept refining the flow from post-launch usage data,
         rather than treating launch as the end.
       </p>
+      <p class="case-copy">The change shown here shipped in the retailer experience. [Add the release date and one concrete example of the PM or engineering collaboration that shaped implementation, if available.]</p>
 
       <div class="case-figures" style="margin-top: 24px;">
         <figure class="case-figure case-figure--grey">
@@ -274,7 +302,7 @@
   <!-- ============ OUTCOME ============ -->
   <section class="case-section" id="outcome">
     <div class="wrap">
-      <p class="case-label">Outcome &amp; Impact</p>
+      <p class="case-label">Measured Outcome &amp; Attribution</p>
       <p class="case-copy">
         Over the two weeks after the updates, complaint interactions fell from roughly 90% to 65% of
         voice sessions, while ordering interactions rose from 10% to 35%.
@@ -299,6 +327,11 @@
           <p class="case-outcome-value">2 weeks</p>
           <p class="case-outcome-copy">Measured over the two weeks after the updates.</p>
         </div>
+      </div>
+
+      <div class="case-flag-box" style="margin-top:24px">
+        <p class="case-flag-label">Reported Measurement, Verification Pending</p>
+        <p class="case-flag-copy">Source named on the page: ElevenLabs voice report and internal analytics dashboard. Comparison window: two weeks after the updates. [Confirm the exact before and after dates, session counts, classification method, and whether other product or operations changes happened in the same period. Add a target only if the team set one before launch.]</p>
       </div>
 
       <div class="case-figures" style="margin-top: 24px;">
@@ -329,7 +362,7 @@
   <!-- ============ TWO MODES (separate effort) ============ -->
   <section class="case-section" id="voice-flow">
     <div class="wrap">
-      <p class="case-label">Also Shipped: Making The Two Modes Visible</p>
+      <p class="case-label">A Related Change That Also Shipped: Making Both Modes Visible</p>
       <p class="case-copy">
         Alongside the support-versus-ordering work, there was a second gap. The assistant had two modes,
         chat and call, but retailers weren't told they could place an order by calling at all. If you
@@ -378,6 +411,7 @@
           respects that constraint rather than working around it.
         </p>
       </div>
+      <p class="case-copy" style="margin-top:24px"><strong>Implementation boundary:</strong> persistent conversation memory was not shipped because of data storage concerns. [Confirm the exact PM and engineering decision, and how the complaint path was handled after a retailer selected it.]</p>
     </div>
   </section>
 

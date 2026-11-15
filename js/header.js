@@ -11,6 +11,9 @@
 // the body where the header should render — same constraint any classic
 // server-side include would have.
 (function () {
+  // Opened inside the home shell's container (?embed=1): hide our own header and let the shell drive navigation.
+  var embedded = /[?&]embed=1/.test(location.search) && window.top !== window.self;
+  if (embedded) document.documentElement.classList.add("embed");
   var page = (location.pathname.split("/").pop() || "index.html").toLowerCase();
 
   // About and Work are the only two links; every page other than
@@ -19,6 +22,18 @@
   // the couple of standalone flow pages all count as Work).
   var activeAbout = page === "about.html";
   var activeWork = !activeAbout && page !== "index.html" && page !== "" && page !== "404.html";
+  var isLanding = page === "index.html" || page === "";
+  var landingContact = isLanding
+    ? '<div class="landing-header-actions">' +
+        '<a href="mailto:muidemakz@gmail.com" class="btn-outline">Say Hi</a>' +
+        '<nav class="landing-socials" aria-label="Social profiles">' +
+          '<a href="https://www.linkedin.com/in/makanju-excellent-211b0a44/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>' +
+          '<a href="https://dribbble.com/muidemakz" target="_blank" rel="noopener" aria-label="Dribbble">Dr</a>' +
+          '<a href="https://www.instagram.com/oluwaexcellent" target="_blank" rel="noopener" aria-label="Instagram">Ig</a>' +
+          '<a href="https://www.behance.net/oemakanju" target="_blank" rel="noopener" aria-label="Behance">Be</a>' +
+        '</nav>' +
+      '</div>'
+    : '<a href="mailto:muidemakz@gmail.com" class="btn-outline">Contact</a>';
 
   document.write(
     '<header class="site-header">' +
@@ -28,7 +43,7 @@
           '<a href="about.html" id="navAbout"' + (activeAbout ? ' class="is-active"' : "") + ">About</a>" +
           '<a href="my-work.html" id="navWork"' + (activeWork ? ' class="is-active"' : "") + ">Work</a>" +
         "</nav>" +
-        '<a href="mailto:muidemakz@gmail.com" class="btn-outline">Contact</a>' +
+        landingContact +
       "</div>" +
     "</header>"
   );
@@ -41,15 +56,32 @@
   // reduced motion. Remove these two lines to switch the layer off everywhere.
   document.write('<link rel="stylesheet" href="css/motion.css">');
   document.write('<script src="js/motion.js"><\/script>');
+  if (embedded) document.write('<script src="js/embed-preview.js"><\/script>');
+
+  // [REVERT POINT] Design-board layer, on every page: dot-grid canvas, your
+  // own cursor, other visitors' cursors (real if js/board-config.js has a
+  // transport, otherwise simulated demo visitors) and "/" cursor chat.
+  // To turn it off everywhere, delete these four lines. For one browser,
+  // add ?board=off to any URL. Touch devices only get the dot grid.
+  document.write('<link rel="stylesheet" href="css/board.css">');
+  document.write('<script src="js/board-cursors.js"><\/script>');
+  document.write('<script src="js/board-config.js"><\/script>');
+  document.write('<script src="js/board.js"><\/script>');
 
   // Case-study "Back" link: returns to the exact Work page (page, filters,
   // scroll) the visitor came from. js/work.js stores that state in
   // sessionStorage; history.back() is used when Work was the previous page.
   document.addEventListener("click", function (e) {
     var a = e.target.closest && e.target.closest(".case-back");
+    if (embedded) return; // the shell handles Back when a page is open inside its container
     if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+    // Also returns to the rail previews (index-preview / about-preview) when that is where the visitor came from.
     var fromWork = false;
-    try { fromWork = new URL(document.referrer).pathname.split("/").pop() === "my-work.html" && new URL(document.referrer).origin === location.origin; } catch (err) {}
+    try {
+      var ref = new URL(document.referrer);
+      var refPage = ref.pathname.split("/").pop();
+      fromWork = ref.origin === location.origin && (refPage === "my-work.html" || refPage === "index-preview.html" || refPage === "about-preview.html");
+    } catch (err) {}
     if (fromWork && history.length > 1) { e.preventDefault(); history.back(); return; }
     try { if (sessionStorage.getItem("workState")) sessionStorage.setItem("workReturn", "1"); } catch (err) {}
   });

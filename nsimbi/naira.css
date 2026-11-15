@@ -1,0 +1,11 @@
+/* The currency prefix is now one glyph (₦) instead of three letters (UGX), so the sizes
+   that were set for a three-letter code read too small. Same selectors, larger sizes. */
+.balance-control .cur{font-size:15px}
+.balance-control.hero .cur{font-size:22px}
+.header .header-balance .mini-balance .cur{font-size:13px}
+.balance-control.inline .cur{font-size:13px}
+.conversation-header .mini-balance strong .cur{font-size:14px}
+.mini-balance .currency{font-size:14px}
+.wallet-overview .cur{font-size:19px}
+.wallet-overview .balance-tag .cur{font-size:19px}
+.wallet-overview .name-tag .cur{font-size:16px}

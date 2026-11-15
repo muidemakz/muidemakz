@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="landing-authority">
 
 <head>
   <!-- Google tag (gtag.js) -->
@@ -55,7 +55,6 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;500;600;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/project-motion.css">
   <style>
     /* =========================================================================
    index-concept.html — EXPLORATION DRAFT, not linked from anywhere live.
@@ -1310,6 +1309,7 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="css/landing-authority.css">
 </head>
 
 <body>
@@ -1337,128 +1337,105 @@
      its media query. -->
   <div class="home-grid">
     <section class="hero-static">
-      <div class="wrap">
-        <p class="hero-greeting">Hey, I'm Excellent</p>
-        <!-- [REVERT POINT] TEST CHANGE, round 24 — "Senior" dropped, and the
-       role-cycle badge moved back inline next to "Product" (was on its
-       own line via <br>, from round 4's fix for the badge wrapping
-       unpredictably next to the longer cycled words — now that "Senior"
-       is gone there's more room on the line, so revisit if "Design
-       Manager" wraps awkwardly at narrow widths). -->
-        <h1 class="hero-headline">Product <span class="hero-role-cycle" id="heroRoleCycle">Designer</span></h1>
-        <p class="hero-tagline">I’m a Senior Product Designer turning <strong>complex financial products and B2B workflows</strong> into clear, usable experiences.</p>
-
-        <!-- [REVERT POINT] TEST CHANGE (branch: test/homepage-backdrop-prose).
-       This whole block used to be <div class="hero-details"> containing
-       three boxed/bordered sub-sections: .hero-facts (Currently Building),
-       .hero-tags (expertise pills) and .hero-stats (5-cell stat strip).
-       Replaced with two flowing paragraphs carrying the same content as
-       prose. To revert: restore the markup from the "Convert Work page to
-       static HTML..." commit (the one right before this branch), and drop
-       .hero-prose/.hero-prose-p/.hero-num/.hero-inline-link/.hero-see-more
-       from css above — the original .hero-details/.hero-facts/.hero-tags/
-       .hero-stats rules are left in place, untouched, below. -->
-        <!-- [REVERT POINT] TEST CHANGE, round 2 (user feedback: hero read as
-       "clunky", paragraph had 5 stats + 3 links fighting for attention).
-       Trimmed to the two headline numbers (6+ years, 20+ shipped); the
-       other three stats (3+ yrs leading teams, $124M+ NMV, 150K+
-       retailers) now live only on About's stat row — homepage teases,
-       About proves. To revert: restore the 5-stat paragraph above this
-       comment (see git log on this branch). -->
-        <!-- [REVERT POINT] TEST CHANGE, round 5 — paragraph shortened further
-       (dropped the "20+ products..." clause, now teased only on About's
-       stat row) and the "See More →" link removed; "Currently Building"
-       pulled back out of the prose flow into its own bordered
-       .hero-building-box (reusing .hero-fact-label/.hero-fact-title/
-       .hero-fact-meta from the original boxed hero). -->
-        <div class="hero-prose">
-          <p class="hero-prose-p">Over <strong class="hero-num">6+</strong> years, I’ve designed and led <a href="about.html#expertise" class="hero-inline-link">payment, wallet and credit experiences</a>, <a href="about.html#expertise" class="hero-inline-link">complex B2B workflows</a>, and shared design systems. Today, I’m increasingly <a href="valideity.html" class="hero-inline-link">building what I design</a>.</p>
-        </div>
-        <div class="hero-building-box">
-          <div>
-            <p class="hero-fact-label">Currently Building</p>
-            <p class="hero-fact-title"><a href="valideity.html">Valideity &rarr;</a></p>
-          </div>
-          <div>
-            <p class="hero-fact-meta">An AI-first UX research product: test with simulated personas, then run the same study with real people. <a href="valideity.html">Explore the product story &rarr;</a></p>
-          </div>
-        </div>
+      <div class="landing-intro">
+        <p class="landing-eyebrow">Senior Product Designer · Building Valideity</p>
+        <h1 class="landing-name">Excellent Makanju</h1>
+        <p class="landing-lede">I turn complex financial products and B2B workflows into clear, usable experiences.</p>
       </div>
     </section>
 
     <section class="shelf">
-      <div class="story-shelf" id="storyShelf">
-        <!-- [REVERT POINT] TEST CHANGE, round 16 — the shelf used to be an
-         8-card horizontally/vertically auto-scrolling row/column (see git
-         history on this branch). Now a 5-card story reel: one <a
-         class="shelf-card"> at a time, cross-faded via .is-active,
-         advanced by the timer JS at the bottom of the body. Editorial order now connects B2B systems, shipped financial UX,
-         independent AI building, leadership, and B2B interaction design.
-         Other case studies remain on the Work page. Role rotation and
-         reel behavior are preserved; Speech-to-Order waits for real media. -->
-        <div class="story-topline">
-          <div class="story-progress" id="storyProgress">
-            <button type="button" class="story-seg" aria-label="Show Omnione"><span class="story-seg-fill"></span></button>
-            <button type="button" class="story-seg" aria-label="Show Fundall"><span class="story-seg-fill"></span></button>
-            <button type="button" class="story-seg" aria-label="Show Valideity"><span class="story-seg-fill"></span></button>
-            <button type="button" class="story-seg" aria-label="Show Teesas LMS"><span class="story-seg-fill"></span></button>
-            <button type="button" class="story-seg" aria-label="Show Coreloops"><span class="story-seg-fill"></span></button>
+      <div class="landing-card-stack">
+        <a class="landing-card landing-card--work" href="omnibiz-speech-to-order.html">
+          <div class="landing-card-head"><span>Real-world work</span><span class="landing-card-dot" aria-hidden="true"></span></div>
+          <div class="landing-card-visual landing-card-visual--work">
+            <div class="landing-work-tags" aria-hidden="true"><span>Ordering</span><span>Commerce</span><span>Voice</span></div>
+            <figure class="landing-photo landing-photo--voice">
+              <img src="videos/speech-to-order/new-flow-chat-poster.png" width="776" height="1700" alt="Omnibiz home screen with separate Place an order and Raise a complaint choices">
+              <figcaption>Omnibiz · Speech-to-Order</figcaption>
+            </figure>
           </div>
-          <!-- [REVERT POINT] TEST CHANGE, round 24 — "See All Work" link
-           removed per feedback. .story-see-all CSS left in place, unused,
-           for an easy revert. -->
-          <button type="button" class="motion-button story-motion-toggle" id="storyMotionToggle" aria-label="Pause project reel and animations">Pause</button>
-        </div>
-        <div class="story-stage" id="storyStage">
-          <a class="shelf-card shelf-card-omnione is-active" href="omnione.html" data-project-motion data-motion-mode="story" data-motion-label="Omnione design system" data-story-duration="14000" style="background-image:url(images/omnione/omnione-design-system-cover-banner.png)">
-            <iframe class="project-motion-frame" data-motion-frame src="artifacts/animation/omnione/preview.html?embed=1&amp;canvas=1" title="Omnione Figma design system animation" loading="lazy" aria-hidden="true" tabindex="-1"></iframe>
-            <p class="shelf-name">Omnione</p>
-            <p class="shelf-caption">One Design Language For Four Product Teams</p>
-            <p class="shelf-cta">View Case Study &rarr;</p>
-          </a>
-          <a class="shelf-card" href="fundall.html" data-project-motion data-motion-mode="story" data-story-duration="12500" style="background-image:url(images/fundall/cover.png)">
-            <video class="project-motion-video" data-motion-video src="videos/fundall/sign-in-loop.mp4" poster="videos/fundall/sign-in-poster.png" preload="none" muted loop playsinline aria-hidden="true"></video>
-            <p class="shelf-name">Fundall</p>
-            <p class="shelf-caption">Bringing Salary Advance Into Mobile</p>
-            <p class="shelf-cta">View Case Study &rarr;</p>
-          </a>
-          <a class="shelf-card shelf-card-valideity" href="valideity.html" data-project-motion data-motion-mode="story" data-motion-label="Valideity product workflow" data-story-duration="15500" style="background-image:url(images/valideity/banner-product-cinematic-small-logo.png)">
-            <iframe class="project-motion-frame" data-motion-frame src="artifacts/animation/valideity/preview.html?embed=1" title="Valideity pricing study, report and sharing workflow" loading="lazy" aria-hidden="true" tabindex="-1"></iframe>
-            <p class="shelf-name">Valideity</p>
-            <p class="shelf-caption">Testing Valideity On Its Own Pricing Flow</p>
-            <p class="shelf-cta">View Case Study &rarr;</p>
-          </a>
-          <a class="shelf-card" href="teesaslms.html" style="background-image:url(images/cinema/teesas-laptop-cover.svg)">
-            <p class="shelf-name">Teesas LMS</p>
-            <p class="shelf-caption">Three Rebuilds To Get One LMS Right</p>
-            <p class="shelf-cta">View Case Study &rarr;</p>
-          </a>
-          <a class="shelf-card" href="coreloops.html" style="background-image:url(images/cinema/coreloops-cover.svg)">
-            <p class="shelf-name">Coreloops</p>
-            <p class="shelf-caption">Making Frequent Filters Easier To Reach</p>
-            <p class="shelf-cta">View Case Study &rarr;</p>
-          </a>
-          <!-- [TEST] swipe hint — slides in from the left edge of the shelf
-           on hover, like a tag peeling out from the split divider. -->
-          <div class="story-swipe-hint" aria-hidden="true">
-            <span class="swipe-hint-arrows">
-              <span class="swipe-hint-arrow swipe-hint-arrow--l">&larr;</span>
-              <span class="swipe-hint-arrow swipe-hint-arrow--r">&rarr;</span>
-            </span>
-            <span class="swipe-hint-label">Swipe</span>
+          <div class="landing-card-copy">
+            <h2>Clear choice before voice.</h2>
+            <p>Ordering and support have separate choices before a retailer enters the assistant.</p>
+            <span class="landing-card-cta">Read the shipped case study</span>
           </div>
-        </div>
+        </a>
+        <a class="landing-card landing-card--exploration" href="moniepoint-verification.html">
+          <div class="landing-card-head"><span>Independent exploration</span><span class="landing-card-dot" aria-hidden="true"></span></div>
+          <div class="landing-card-visual landing-card-visual--pair">
+            <figure class="landing-photo landing-photo--before">
+              <img src="images/moniepoint/status-before.png" width="499" height="1294" alt="Before: account status gives conflicting Level 2 and Level 3 information">
+              <figcaption>Before</figcaption>
+            </figure>
+            <figure class="landing-photo landing-photo--after">
+              <img src="images/moniepoint/status-after.png" width="499" height="1553" alt="After: account status says Level 2 and shows four of five checks complete">
+              <figcaption>After</figcaption>
+            </figure>
+          </div>
+          <div class="landing-card-copy">
+            <h2>Account status, reconciled.</h2>
+            <p>The original welcomed merchants to Level 3 while saying they were on Level 2. The redesign was checked in matched synthetic tests. Predicted, not production evidence.</p>
+            <span class="landing-card-cta">Read the independent exploration</span>
+          </div>
+        </a>
+        <a class="landing-card landing-card--teesas" href="teesaslms.html">
+          <div class="landing-card-head"><span>Live product · Education</span><span class="landing-card-dot" aria-hidden="true"></span></div>
+          <div class="landing-card-visual landing-card-visual--single">
+            <figure class="landing-photo landing-photo--wide">
+              <img src="images/teesas/banner.png" width="1860" height="624" alt="Teesas learning platform interface">
+              <figcaption>Teesas LMS</figcaption>
+            </figure>
+          </div>
+          <div class="landing-card-copy">
+            <h2>Four versions, one evolving LMS.</h2>
+            <p>A live education product shaped through successive versions for students, teachers and parents.</p>
+            <span class="landing-card-cta">Read the Teesas case study</span>
+          </div>
+        </a>
+        <a class="landing-card landing-card--sunking" href="sun-king.html">
+          <div class="landing-card-head"><span>Independent exploration</span><span class="landing-card-dot" aria-hidden="true"></span></div>
+          <div class="landing-card-visual landing-card-visual--single">
+            <figure class="landing-photo landing-photo--wide">
+              <img src="images/sun-king/after-page-full.png" width="480" height="600" alt="Rebuilt Sun King smartphone marketplace page">
+              <figcaption>Sun King · Rebuilt page</figcaption>
+            </figure>
+          </div>
+          <div class="landing-card-copy">
+            <h2>A clearer path through the marketplace.</h2>
+            <p>An independent page rebuild explored with clearly labeled Predicted evidence, not live user results.</p>
+            <span class="landing-card-cta">Read the Sun King exploration</span>
+          </div>
+        </a>
+        <a class="landing-card landing-card--omnione" href="omnione.html">
+          <div class="landing-card-head"><span>OmniRetail · Design system</span><span class="landing-card-dot" aria-hidden="true"></span></div>
+          <div class="landing-card-visual landing-card-visual--single">
+            <figure class="landing-photo landing-photo--wide">
+              <img src="images/omnione/omnione-design-system-cover-banner.png" width="1600" height="900" alt="OmniOne design system library overview">
+              <figcaption>OmniOne design system</figcaption>
+            </figure>
+          </div>
+          <div class="landing-card-copy">
+            <h2>One design language for four product teams.</h2>
+            <p>A shared system connecting product interfaces across OmniRetail's operating systems.</p>
+            <span class="landing-card-cta">Read the OmniOne case study</span>
+          </div>
+        </a>
+        <a class="landing-card landing-card--fundall" href="fundall.html">
+          <div class="landing-card-head"><span>Live product · Fintech</span><span class="landing-card-dot" aria-hidden="true"></span></div>
+          <div class="landing-card-visual landing-card-visual--single">
+            <figure class="landing-photo landing-photo--wide">
+              <img src="images/fundall/cover-phones.png" width="800" height="600" alt="Fundall mobile app screens">
+              <figcaption>Fundall · Salary advance</figcaption>
+            </figure>
+          </div>
+          <div class="landing-card-copy">
+            <h2>Salary advance, inside the app.</h2>
+            <p>Research and product design for bringing salary advance into Fundall's mobile experience.</p>
+            <span class="landing-card-cta">Read the Fundall case study</span>
+          </div>
+        </a>
       </div>
-
-
-      <!-- [REVERT POINT] TEST CHANGE, round 2 (user feedback: page was already
-       busy — testimonials moved to about.html instead of stacking a 4th
-       content block onto an already-dense homepage; see about.html for the
-       new "What People Say" section). This briefly lived here as its own
-       <section class="testimonials"> between .shelf-grid and .shelf-links,
-       with .shelf-links split out into its own <section class="shelf-footer">
-       — both undone, back to the single <section class="shelf"> wrapping
-       both .shelf-grid and .shelf-links like before. -->
       <div class="shelf-links">
         <a class="shelf-link" href="mailto:muidemakz@gmail.com">
           <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -1485,316 +1462,10 @@
           </svg>
           <span class="link-text">Download CV &darr;</span>
         </a>
-        <a class="shelf-link" href="https://www.linkedin.com/in/makanju-excellent-211b0a44/" target="_blank"
-          rel="noopener">
-          <span class="link-icon link-icon--badge">in</span>
-          <span class="link-text">LinkedIn &rarr;</span>
-        </a>
-        <a class="shelf-link" href="https://dribbble.com/muidemakz" target="_blank" rel="noopener">
-          <span class="link-icon link-icon--badge">Dr</span>
-          <span class="link-text">Dribbble &rarr;</span>
-        </a>
-        <a class="shelf-link" href="https://www.instagram.com/oluwaexcellent" target="_blank" rel="noopener">
-          <span class="link-icon link-icon--badge">Ig</span>
-          <span class="link-text">Instagram &rarr;</span>
-        </a>
-        <a class="shelf-link" href="https://www.behance.net/oemakanju" target="_blank" rel="noopener">
-          <span class="link-icon link-icon--badge">Be</span>
-          <span class="link-text">Behance &rarr;</span>
-        </a>
       </div>
     </section>
   </div>
 
-  <script>
-    (function () {
-      // [REVERT POINT] TEST CHANGE, round 16 — replaces the old scrollLeft/
-      // scrollTop auto-scroll marquee with an Instagram-Stories-style timer:
-      // each card gets DURATION ms on screen, a segmented progress bar fills
-      // to match, then it cross-fades to the next card. A segment can also be
-      // clicked to jump straight to that card. rAF-driven (not setInterval) so
-      // pause/resume on hover or touch doesn't lose track of partial progress
-      // — see the elapsed/startTime dance in render() below.
-      const stage = document.getElementById('storyStage');
-      const segWrap = document.getElementById('storyProgress');
-      if (!stage || !segWrap) return;
-
-      const cards = Array.prototype.slice.call(stage.querySelectorAll('.shelf-card'));
-      const segs = Array.prototype.slice.call(segWrap.querySelectorAll('.story-seg'));
-      if (!cards.length || cards.length !== segs.length) return;
-
-      const DURATION = 10000; // 10s per card
-      const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
-      const shelf = document.getElementById('storyShelf');
-      const motionToggle = document.getElementById('storyMotionToggle');
-      let manualPaused = motionPreference.matches;
-      let stageHovered = false, stageFocused = false;
-      shelf.dataset.motionPaused = String(manualPaused);
-
-      let idx = 0;
-      let elapsed = 0;
-      let startTime = null;
-      let paused = false;
-      let resumeTimer = null;
-
-      function goTo(i) {
-        idx = i;
-        elapsed = 0;
-        startTime = null;
-        cards.forEach((c, ci) => {
-          c.classList.toggle('is-active', ci === i);
-          c.tabIndex = ci === i ? 0 : -1;
-          c.setAttribute('aria-hidden', String(ci !== i));
-          c.style.transition = ''; // Restore CSS transition
-          c.style.transform = 'translateX(-' + (idx * 100) + '%)';
-        });
-        segs.forEach((s, si) => {
-          s.classList.toggle('is-done', si < i);
-          s.querySelector('.story-seg-fill').style.width = si < i ? '100%' : '0%';
-        });
-      }
-
-      segs.forEach((s, i) => s.addEventListener('click', () => goTo(i)));
-
-      // ── Swipe / drag / trackpad navigation ───────────────────────────────────
-      const SWIPE_THRESHOLD = 45;  // px for mouse drag & touch
-      const WHEEL_THRESHOLD = 55;  // accumulated deltaX for trackpad swipe
-      let dragStartX = 0;
-      let dragDelta = 0;
-      let dragging = false;
-      let wheelAccX = 0;
-      let wheelCooldown = false;
-
-      // Helper: lock cursor across the whole page while dragging
-      function startGrab() {
-        dragging = true;
-        document.body.classList.add('is-shelf-dragging');
-      }
-      function stopGrab() {
-        dragging = false;
-        document.body.classList.remove('is-shelf-dragging');
-      }
-
-      // Live pull: move the entire track of cards under the finger
-      function applyPull(pull) {
-        cards.forEach(c => {
-          c.style.transition = 'none'; // Disable transition for 1:1 tracking
-          c.style.transform = `translateX(calc(-${idx * 100}% + ${pull}px))`;
-        });
-      }
-
-      // Suppress card link navigation when the interaction was a drag, not a tap
-      cards.forEach(card => {
-        card.addEventListener('click', e => {
-          if (Math.abs(dragDelta) > 10) e.preventDefault();
-        });
-      });
-
-      // ── Touch swipe ──────────────────────────────────────────────────────────
-      stage.addEventListener('touchstart', e => {
-        dragStartX = e.touches[0].clientX;
-        dragDelta = 0;
-      }, { passive: true });
-
-      stage.addEventListener('touchmove', e => {
-        if (!e.touches.length) return;
-        dragDelta = e.touches[0].clientX - dragStartX;
-        // Add resistance if pulling past the ends
-        let pull = dragDelta;
-        if (idx === 0 && pull > 0) pull *= 0.3;
-        if (idx === cards.length - 1 && pull < 0) pull *= 0.3;
-        applyPull(pull);
-      }, { passive: true });
-
-      stage.addEventListener('touchend', e => {
-        dragDelta = e.changedTouches[0].clientX - dragStartX;
-        if (Math.abs(dragDelta) >= SWIPE_THRESHOLD) {
-          goTo(dragDelta < 0
-            ? (idx + 1) % cards.length
-            : (idx - 1 + cards.length) % cards.length);
-        } else {
-          goTo(idx); // Snap back to current card
-        }
-      }, { passive: true });
-
-      // ── Mouse / trackpad drag (click-and-drag) ───────────────────────────────
-      stage.addEventListener('mousedown', e => {
-        dragStartX = e.clientX;
-        dragDelta = 0;
-        startGrab();
-      });
-
-      // Use window so fast drags that leave the stage still finish correctly
-      window.addEventListener('mousemove', e => {
-        if (!dragging) return;
-        dragDelta = e.clientX - dragStartX;
-        let pull = dragDelta;
-        if (idx === 0 && pull > 0) pull *= 0.3;
-        if (idx === cards.length - 1 && pull < 0) pull *= 0.3;
-        applyPull(pull);
-      });
-
-      window.addEventListener('mouseup', e => {
-        if (!dragging) return;
-        dragDelta = e.clientX - dragStartX;
-        stopGrab();
-        if (Math.abs(dragDelta) >= SWIPE_THRESHOLD) {
-          goTo(dragDelta < 0
-            ? (idx + 1) % cards.length
-            : (idx - 1 + cards.length) % cards.length);
-        } else {
-          goTo(idx);
-        }
-      });
-
-      // ── Trackpad / mousepad horizontal swipe (wheel events) ──────────────────
-      // Trackpad swipes fire wheel events with deltaX, not mouse events.
-      // Accumulate deltaX until threshold; cooldown prevents double-fires.
-      stage.addEventListener('wheel', function (e) {
-        // Ignore if predominantly vertical (normal scroll)
-        if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
-        e.preventDefault(); // stop page from scrolling sideways
-        if (wheelCooldown) return;
-
-        wheelAccX += e.deltaX;
-        if (Math.abs(wheelAccX) >= WHEEL_THRESHOLD) {
-          var dir = wheelAccX > 0 ? 1 : -1;
-          wheelAccX = 0;
-          wheelCooldown = true;
-          setTimeout(function () { wheelCooldown = false; }, 750);
-          goTo(dir > 0
-            ? (idx + 1) % cards.length
-            : (idx - 1 + cards.length) % cards.length);
-        }
-      }, { passive: false }); // passive:false required to call preventDefault
-      // ─────────────────────────────────────────────────────────────────────────
-
-      function pause() {
-        paused = true;
-        if (resumeTimer) clearTimeout(resumeTimer);
-      }
-      function scheduleResume(delay) {
-        if (manualPaused || stageHovered || stageFocused) return;
-        if (resumeTimer) clearTimeout(resumeTimer);
-        resumeTimer = setTimeout(() => { paused = false; startTime = null; }, delay);
-      }
-
-      stage.addEventListener('mouseenter', () => { stageHovered = true; pause(); });
-      stage.addEventListener('mouseleave', () => { stageHovered = false; scheduleResume(300); });
-      stage.addEventListener('focusin', () => { stageFocused = true; pause(); });
-      stage.addEventListener('focusout', event => {
-        stageFocused = stage.contains(event.relatedTarget);
-        if (!stageFocused) scheduleResume(300);
-      });
-      stage.addEventListener('pointerdown', pause);
-      stage.addEventListener('pointerup', () => scheduleResume(1500));
-      stage.addEventListener('pointercancel', () => scheduleResume(1500));
-      stage.addEventListener('touchstart', pause, { passive: true });
-      stage.addEventListener('touchend', () => scheduleResume(1500), { passive: true });
-
-      goTo(0);
-
-      function reflectMotionPreference() {
-        shelf.dataset.motionPaused = String(manualPaused);
-        motionToggle.textContent = manualPaused ? 'Play' : 'Pause';
-        motionToggle.setAttribute('aria-label', (manualPaused ? 'Play' : 'Pause') + ' project reel and animations');
-        document.dispatchEvent(new Event('projectmotionrefresh'));
-      }
-      motionToggle.addEventListener('click', () => {
-        manualPaused = !manualPaused;
-        shelf.dataset.motionExplicit = String(!manualPaused);
-        if (manualPaused) pause();
-        else { paused = false; startTime = null; }
-        reflectMotionPreference();
-      });
-      motionPreference.addEventListener('change', () => {
-        manualPaused = motionPreference.matches;
-        shelf.dataset.motionExplicit = 'false';
-        if (manualPaused) pause();
-        else scheduleResume(0);
-        reflectMotionPreference();
-      });
-      reflectMotionPreference();
-      document.addEventListener('visibilitychange', () => { startTime = null; });
-
-      (function render(now) {
-        if (!paused && !manualPaused && !document.hidden) {
-          if (startTime === null) startTime = now - elapsed;
-          elapsed = now - startTime;
-          const duration = Number(cards[idx].dataset.storyDuration) || DURATION;
-          const pct = Math.min(100, (elapsed / duration) * 100);
-          segs[idx].querySelector('.story-seg-fill').style.width = pct + '%';
-          if (elapsed >= duration) goTo((idx + 1) % cards.length);
-        }
-        requestAnimationFrame(render);
-      })(performance.now());
-    })();
-
-    (function () {
-      // [REVERT POINT] TEST CHANGE, round 22 — was margin-left on #navWork
-      // itself, which shoved Work away from About, leaving a dead gap between
-      // them with the divider floating in the middle of it. Per feedback,
-      // About and Work must stay side by side (touching, only the 1px border
-      // between them) — so the margin now goes on the whole .site-nav
-      // container instead, shifting About+Work together as one unit. The
-      // divider (Work's own border-left, sitting exactly at nav's own left
-      // edge + About's width) still lands on the .home-grid column boundary;
-      // About's right edge now touches it directly, Work's left edge starts
-      // right there too, same as the boundary itself.
-      const nav = document.querySelector('.site-nav');
-      const workLink = document.getElementById('navWork');
-      const heroStatic = document.querySelector('.hero-static');
-      const isSplitView = window.matchMedia && window.matchMedia('(min-width: 900px)');
-
-      function alignDivider() {
-        // header matches the other pages; the About/Work block is no longer shifted to the column divider
-        if (nav) nav.style.marginLeft = '';
-        return;
-        /* eslint-disable no-unreachable */
-        if (!nav || !workLink || !heroStatic || !isSplitView || !isSplitView.matches) {
-          if (nav) nav.style.marginLeft = '';
-          return;
-        }
-        nav.style.marginLeft = '';
-        const boundaryX = heroStatic.getBoundingClientRect().right;
-        const dividerX = workLink.getBoundingClientRect().left;
-        nav.style.marginLeft = (boundaryX - dividerX) + 'px';
-      }
-
-      alignDivider();
-      window.addEventListener('resize', alignDivider);
-      // [REVERT POINT] TEST CHANGE, round 23 — the header's font (JetBrains
-      // Mono, loaded from Google Fonts) can still be loading when this script
-      // first runs, so the initial alignDivider() call sometimes measured
-      // About/Work at their FALLBACK-font width, landing the divider a few px
-      // off until the next resize. Re-running once the real font is in means
-      // it's correct on first paint too, not just after a manual resize.
-      if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(alignDivider);
-      }
-    })();
-
-    (function () {
-      const el = document.getElementById('heroRoleCycle');
-      if (!el) return;
-
-      const roles = ['Designer', 'Lead', 'Design Manager', 'Engineer'];
-      let i = 0;
-
-      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-      setInterval(() => {
-        el.classList.add('is-swapping');
-        setTimeout(() => {
-          i = (i + 1) % roles.length;
-          el.textContent = roles[i];
-          el.classList.remove('is-swapping');
-        }, 250);
-      }, 2200);
-    })();
-  </script>
-
-<script src="js/project-motion.js" defer></script>
 </body>
 
 </html>

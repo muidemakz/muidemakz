@@ -1,12 +1,12 @@
 import {RULES} from './model.mjs';
 export const AVATARS=[{id:'lion',label:'Lion',emoji:'🦁'},{id:'fox',label:'Fox',emoji:'🦊'},{id:'cat',label:'Cat',emoji:'🐱'},{id:'panda',label:'Panda',emoji:'🐼'},{id:'koala',label:'Koala',emoji:'🐨'},{id:'frog',label:'Frog',emoji:'🐸'},{id:'owl',label:'Owl',emoji:'🦉'},{id:'penguin',label:'Penguin',emoji:'🐧'},{id:'bear',label:'Bear',emoji:'🐻'},{id:'rabbit',label:'Rabbit',emoji:'🐰'}];
 export const PROFILE_STORE='nsimbi-profile-v1';
-export const defaultProfile=()=>({avatar:'',name:'James Okello',username:'James',email:'james@example.com',phone:RULES.phone,tier:1,theme:'light',hideBalance:false,paymentUpdates:true,productNews:false});
+export const defaultProfile=()=>({avatar:'',name:'Tunde Adeyemi',username:'Tunde',email:'tunde@example.com',phone:RULES.phone,tier:1,theme:'light',hideBalance:false,paymentUpdates:true,productNews:false});
 export function restoreProfile(raw){try{const p=JSON.parse(raw)||{},d=defaultProfile();return {...d,avatar:typeof p.avatar==='string'&&/^data:image\/(png|jpeg|webp);base64,/.test(p.avatar)&&p.avatar.length<2000000?p.avatar:p.avatar?.kind==='emoji'&&AVATARS.some(a=>a.id===p.avatar.id)?{kind:'emoji',id:p.avatar.id}:'',name:d.name,username:typeof p.username==='string'&&/^[a-zA-Z0-9._]{2,24}$/.test(p.username)?p.username:typeof p.name==='string'&&/^[a-zA-Z0-9._]{2,24}$/.test(p.name)?p.name:d.username,tier:[1,2,3].includes(p.tier)?p.tier:1,theme:p.theme==='dark'?'dark':'light',...Object.fromEntries(['hideBalance','paymentUpdates','productNews'].map(key=>[key,typeof p[key]==='boolean'?p[key]:d[key]]))};}catch{return defaultProfile();}}
 export const initials=name=>name.trim().split(/\s+/).slice(0,2).map(s=>s[0]).join('').toUpperCase();
 export const TIERS=[
  {id:1,name:'Basic',summary:'Your account essentials',checks:['Phone number','Account email']},
- {id:2,name:'Identity',summary:'Confirm who you are',checks:['Government-issued identity document','Selfie check']},
+ {id:2,name:'Identity',summary:'Confirm who you are',checks:['BVN or NIN','Selfie check']},
  {id:3,name:'Enhanced',summary:'Additional account review',checks:['Residential address','Source of funds','Additional review']}
 ];
 export const SERVICES=[

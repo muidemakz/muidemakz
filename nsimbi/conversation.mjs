@@ -10,7 +10,7 @@ export function conversation({onChange,onText}){
  function stop(){active=false;epoch++;recognition?.abort();recognition=null;window.speechSynthesis?.cancel();emit('idle');}
  function listen(){if(!active)return;const Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;
   if(!Recognition){emit('unavailable','Voice is unavailable in this browser. Switch to typing to continue.');return;}
-  const token=++epoch,r=new Recognition();recognition=r;r.lang='en-UG';r.interimResults=true;r.continuous=false;let received=false,failed=false;
+  const token=++epoch,r=new Recognition();recognition=r;r.lang='en-NG';r.interimResults=true;r.continuous=false;let received=false,failed=false;
   emit('connecting','Connecting microphone…');
   r.onstart=()=>{if(active&&token===epoch)emit('listening','Listening. Tell Nsimbi what you need.');};
   r.onresult=e=>{if(!active||token!==epoch)return;let final='',interim='';for(let i=e.resultIndex;i<e.results.length;i++){if(e.results[i].isFinal)final+=e.results[i][0].transcript;else interim+=e.results[i][0].transcript;}if(final.trim()&&!received){received=true;emit('thinking',final.trim());onText(normalizeSpeech(final.trim()));}else if(interim)emit('listening',interim);};
@@ -21,7 +21,7 @@ export function conversation({onChange,onText}){
  function start(nextMode='conversation'){stop();mode=nextMode;active=true;listen();}
  function reply(text){if(!active)return;recognition?.abort();epoch++;const token=epoch;
   if(!window.speechSynthesis||!window.SpeechSynthesisUtterance){listen();return;}
-  emit('speaking','Nsimbi is speaking…');const u=new SpeechSynthesisUtterance(text);u.lang='en-UG';u.rate=1;u.onend=u.onerror=()=>{if(active&&token===epoch)listen();};window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+  emit('speaking','Nsimbi is speaking…');const u=new SpeechSynthesisUtterance(text);u.lang='en-NG';u.rate=1;u.onend=u.onerror=()=>{if(active&&token===epoch)listen();};window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
  }
  document.addEventListener('visibilitychange',()=>{if(document.hidden&&active){epoch++;recognition?.abort();window.speechSynthesis?.cancel();emit('paused','Voice paused while the app is in the background.');}});
  return {start,stop,listen,reply,get active(){return active;}};

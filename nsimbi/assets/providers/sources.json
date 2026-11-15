@@ -6,30 +6,6 @@
     "bytes": 692
   },
   {
-    "file": "stanbic.png",
-    "source": "https://www.stanbicbank.co.ug/static_file/assets/favicons/apple-icon-180x180.png",
-    "type": "image/png",
-    "bytes": 30732
-  },
-  {
-    "file": "centenary.png",
-    "source": "https://www.centenarybank.co.ug/assets/img/apple-touch-icon.png",
-    "type": "image/png",
-    "bytes": 6481
-  },
-  {
-    "file": "absa.png",
-    "source": "https://www.absa.co.ug/content/dam/uganda/absa/logos/absa-logo-bg.png",
-    "type": "image/png",
-    "bytes": 10989
-  },
-  {
-    "file": "uedcl.png",
-    "source": "https://uedcl.co.ug/uedcl.png",
-    "type": "image/png",
-    "bytes": 147783
-  },
-  {
     "file": "airtel.png",
     "source": "https://www.airtel.africa/sites/default/files/airtel-logo_0.png",
     "bytes": 2142
@@ -40,11 +16,37 @@
     "method": "128px PNG rasterisation of the official SVG, for native Image support"
   },
   {
-    "file": "mymomo.png",
-    "source": "https://momo.mtn.com/wp-content/uploads/sites/15/2022/07/cropped-MoMo-App-Badge-Flat-RGB.png",
+    "file": "wallet.png",
+    "derivedFrom": "../app-icon-192.png",
+    "method": "128px resize of the Nsimbi app icon",
+    "note": "Wallet account thumbnail."
+  },
+  {
+    "file": "access.png",
+    "source": "https://www.accessbankplc.com/Content/images/access-lg-logo.png",
     "type": "image/png",
-    "bytes": 3399,
-    "dimensions": "192x192",
-    "note": "Official My MoMo app badge used for the balance account thumbnail."
+    "dimensions": "128x128",
+    "method": "Diamond mark cropped from the official 143x41 header logo (the site favicon is only 15x16), centred on a white tile."
+  },
+  {
+    "file": "gtbank.png",
+    "source": "https://www.gtbank.com/ (inline SVG logo in the page header)",
+    "type": "image/png",
+    "dimensions": "128x128",
+    "method": "Orange square GTCO mark taken from the site header SVG and rendered to PNG. gtbank.com now shows the GTCO group logo; the site does not publish a separate GTBank-only mark."
+  },
+  {
+    "file": "zenith.png",
+    "source": "https://www.zenithbank.com/media/ntpn0yrp/cropped-zenith-favicon.png?width=192&height=192",
+    "type": "image/png",
+    "dimensions": "128x128",
+    "method": "Official site icon (192x192) centred on a white tile."
+  },
+  {
+    "file": "ikeja.png",
+    "source": "https://www.ikejaelectric.com/wp-content/uploads/2020/02/cropped-android-chrome-512x512.png",
+    "type": "image/png",
+    "dimensions": "128x128",
+    "method": "Emblem (the left part, without the wordmark) of the official 512x512 site icon, centred on a white tile."
   }
 ]

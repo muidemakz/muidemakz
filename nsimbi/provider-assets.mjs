@@ -1,2 +1,2 @@
 // Original provider artwork and provenance live in assets/providers/sources.json.
-export const providerAssets={'My MoMo':'mymomo',MTN:'mtn',Airtel:'airtel','Stanbic Bank':'stanbic','Centenary Bank':'centenary','Absa Bank':'absa',UEDCL:'uedcl'};
+export const providerAssets={'My Wallet':'wallet',MTN:'mtn',Airtel:'airtel','Access Bank':'access','GTBank':'gtbank','Zenith Bank':'zenith','Ikeja Electric':'ikeja'};
