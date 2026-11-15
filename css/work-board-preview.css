@@ -1,5 +1,5 @@
 /* All Work as a canvas board: frames, pinned cards, taped polaroids, sticky notes, stickers.
-   Scoped to my-work-preview.html. */
+   Scoped to my-work.html. */
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .wb .pane-inner { position: relative; max-width: 1120px; padding-bottom: 120px; }
 .wb-head { padding: 4px 0 10px; }

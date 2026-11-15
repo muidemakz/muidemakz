@@ -1,4 +1,4 @@
-/* Shell for index-preview.html: floating header + identity rail (left) + one raised container (right).
+/* Shell for index.html: floating header + identity rail (left) + one raised container (right).
    Work, About and every case study open INSIDE the container: it grows over the rail to fill the
    space under the header (the header never moves), and Home folds it back to the right.
    Switching between Work / About / a case study while it is open wipes the new page over the old one.
@@ -17,7 +17,7 @@
   if (!stage || !body || !slot) return;
 
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var FILES = { work: 'my-work-preview.html', about: 'about-preview.html' };
+  var FILES = { work: 'my-work.html', about: 'about.html' };
   var ORDER = { home: 0, work: 1, about: 2, case: 3 };
   var views = { home: body.querySelector('[data-view="home"]') };
   var caseView = null;
@@ -32,13 +32,13 @@
   function setRect(r) { stage.style.top = r.top + 'px'; stage.style.left = r.left + 'px'; stage.style.width = r.width + 'px'; stage.style.height = r.height + 'px'; }
   function clearRect() { ['top', 'left', 'width', 'height', 'borderRadius'].forEach(function (p) { stage.style[p] = ''; }); }
 
-  var PREVIEW_MAP = {"omnione.html":"omnione-preview.html","omnibiz-speech-to-order.html":"omnibiz-speech-to-order-preview.html","teesaslms.html":"teesaslms-preview.html","fundall.html":"fundall-preview.html","valideity.html":"valideity-preview.html","empty-state.html":"empty-state-preview.html","moniepoint-verification.html":"moniepoint-verification-preview.html","sun-king.html":"sun-king-preview.html","nsimbi-three-purchases.html":"nsimbi-three-purchases-preview.html","cancel-flow.html":"cancel-flow-preview.html","cardtonic.html":"cardtonic-preview.html","coreloops.html":"coreloops-preview.html","venx.html":"venx-preview.html","raven-pay.html":"raven-pay-preview.html"};
+  var PREVIEW_MAP = {"omnione.html":"omnione.html","omnibiz-speech-to-order.html":"omnibiz-speech-to-order.html","teesaslms.html":"teesaslms.html","fundall.html":"fundall.html","valideity.html":"valideity.html","empty-state.html":"empty-state.html","moniepoint-verification.html":"moniepoint-verification.html","sun-king.html":"sun-king.html","nsimbi-three-purchases.html":"nsimbi-three-purchases.html","cancel-flow.html":"cancel-flow.html","cardtonic.html":"cardtonic.html","coreloops.html":"coreloops.html","venx.html":"venx.html","raven-pay.html":"raven-pay.html"};
   function routeFromHref(href) {
     var f = String(href).split('#')[0].split('?')[0].split('/').pop();
     if (PREVIEW_MAP[f]) href = String(href).replace(f, PREVIEW_MAP[f]);
-    if (f === '' || f === 'index-preview.html') return { name: 'home' };
-    if (f === 'my-work-preview.html') return { name: 'work' };
-    if (f === 'about-preview.html') return { name: 'about' };
+    if (f === '' || f === 'index.html') return { name: 'home' };
+    if (f === 'my-work.html') return { name: 'work' };
+    if (f === 'about.html') return { name: 'about' };
     return { name: 'case', href: String(href) };
   }
   function parseHash() {

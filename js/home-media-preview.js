@@ -1,4 +1,4 @@
-/* Motion for the homepage tiles in index-preview.html.
+/* Motion for the homepage tiles in index.html.
    - Videos play only while on screen (so the looping copies stay light).
    - Animation iframes load when they first come near the screen.
    - Image reels cross-fade between real screens on a shared timer.

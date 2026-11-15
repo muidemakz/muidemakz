@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="robots" content="noindex">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMFSR34FZG"></script>
 <script>
@@ -11,12 +12,12 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cancel Flow Brief — Muidemakz Case Study Preview &middot; Muidemakz</title>
+<title>Cancel Flow Brief — Muidemakz</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/case-study.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/case-study.css">
 <style>
 /* Valideity cancel-flow concept: real app screen with modals laid over it. Brand values from images/valideity/cover.svg and the public pricing page. */
 .vx-stage { --vx-ink: #11142b; --vx-muted: #5d6481; --vx-line: #dde1ee; --vx-blue: #4338ff;
@@ -103,22 +104,19 @@
 .vx-base::before { content: ""; position: absolute; top: 0; left: 50%; width: 110px; height: 5px; margin-left: -55px; background: #b3b7c4; border-radius: 0 0 8px 8px; }
 @media (max-width: 560px) { .case-hero-media.vx-hero { padding: 52px 16px 0; } .vx-lid { padding: 10px 10px 8px; border-radius: 12px 12px 0 0; } }
 </style>
-<link rel="stylesheet" href="css/case-study-preview.css?v=20261107-5">
 </head>
-<body class="type-outfit case-study-preview">
-
-<div class="case-preview-notice" role="status">Case study redesign preview <span>Not published</span></div>
+<body class="type-outfit">
 
 <!-- [REVERT POINT] TEST CHANGE, round 21 -- shared header component,
      see js/header.js. Was a hardcoded <header class="site-header"> copy. -->
 <div id="site-header-root"></div>
-<script src="js/header.js"></script>
+<script src="../js/header.js"></script>
 
 <main class="case-main">
 
   <section class="case-hero">
     <div class="wrap">
-      <a href="my-work.html" class="case-back">&larr; Back</a>
+      <a href="../my-work.html" class="case-back">&larr; Back</a>
       <div class="case-hero-top">
         <p class="case-kicker">Self-Initiated Brief &mdash; Designed For Valideity</p>
       </div>
@@ -143,7 +141,7 @@
           <span class="vx-cam"></span>
           <div class="vx-lscreen" id="vxScreen">
             <div class="vx-sinner vx-stage vx-stage--hero" id="vxStage" data-step="0">
-              <img class="vx-shot" src="images/valideity/dashboard-current.png" alt="" width="1164" height="800">
+              <img class="vx-shot" src="../images/valideity/dashboard-current.png" alt="" width="1164" height="800">
               <span class="vx-ring"></span>
               <span class="vx-chip">1 &middot; Usage and billing</span>
               <div class="vx-hscrim"></div>
@@ -288,7 +286,7 @@
           <div class="case-figure-inset">
             <div class="case-frame">
               <div class="vx-stage" role="img" aria-label="Valideity's real app, the dashboard. The sessions card in the left sidebar, with its Usage and billing link, is highlighted.">
-                <img class="vx-shot" src="images/valideity/dashboard-current.png" alt="" width="1164" height="800" loading="lazy">
+                <img class="vx-shot" src="../images/valideity/dashboard-current.png" alt="" width="1164" height="800" loading="lazy">
                 <span class="vx-ring" aria-hidden="true"></span>
                 <span class="vx-chip" aria-hidden="true">1 &middot; Usage and billing</span>
               </div>
@@ -304,7 +302,7 @@
           <div class="case-figure-inset">
             <div class="case-frame">
               <div class="vx-stage" role="img" aria-label="A Plan and usage modal over the Valideity app. Pro, active, 66 sessions left, no limit on runs, with an End Pro plan text link.">
-                <img class="vx-shot" src="images/valideity/dashboard-current.png" alt="" width="1164" height="800" loading="lazy">
+                <img class="vx-shot" src="../images/valideity/dashboard-current.png" alt="" width="1164" height="800" loading="lazy">
                 <div class="vx-scrim" aria-hidden="true">
                   <div class="vx-modal">
                     <div class="vx-mhead"><p class="vx-mtitle">Plan &amp; usage</p><span class="vx-x">&times;</span></div>
@@ -334,7 +332,7 @@
           <div class="case-figure-inset">
             <div class="case-frame">
               <div class="vx-stage" role="img" aria-label="Exit reason modal, step 1 of 3. What is the main reason you are leaving Pro. Too expensive is selected. Skip and Continue are equal in size.">
-                <img class="vx-shot" src="images/valideity/dashboard-current.png" alt="" width="1164" height="800" loading="lazy">
+                <img class="vx-shot" src="../images/valideity/dashboard-current.png" alt="" width="1164" height="800" loading="lazy">
                 <div class="vx-scrim" aria-hidden="true">
                   <div class="vx-modal">
                     <div class="vx-prog"><span>Step 1 of 3</span><span class="vx-x">&times;</span></div>
@@ -364,7 +362,7 @@
           <div class="case-figure-inset">
             <div class="case-frame">
               <div class="vx-stage" role="img" aria-label="Retention offer modal, step 2 of 3. Pay for 10 months, get 12 with Annual. Two equal buttons: Switch to Annual and No thanks, continue.">
-                <img class="vx-shot" src="images/valideity/dashboard-current.png" alt="" width="1164" height="800" loading="lazy">
+                <img class="vx-shot" src="../images/valideity/dashboard-current.png" alt="" width="1164" height="800" loading="lazy">
                 <div class="vx-scrim" aria-hidden="true">
                   <div class="vx-modal">
                     <div class="vx-prog"><span>Step 2 of 3</span><span class="vx-x">&times;</span></div>
@@ -393,7 +391,7 @@
           <div class="case-figure-inset">
             <div class="case-frame">
               <div class="vx-stage" role="img" aria-label="Confirmation modal, step 3 of 3. You're stepping down to Free. Pro ends 30 November 2026, then Free with up to 5 runs. No charge, no automatic renewal.">
-                <img class="vx-shot" src="images/valideity/dashboard-current.png" alt="" width="1164" height="800" loading="lazy">
+                <img class="vx-shot" src="../images/valideity/dashboard-current.png" alt="" width="1164" height="800" loading="lazy">
                 <div class="vx-scrim" aria-hidden="true">
                   <div class="vx-modal">
                     <div class="vx-prog"><span>Step 3 of 3</span><span class="vx-x">&times;</span></div>
@@ -476,7 +474,7 @@
       <p class="case-label">Next Steps</p>
       <p class="case-copy">Before this could ship in Valideity, a few things still need deciding:</p>
       <div class="case-stack-row">
-        <div class="case-stack-panel case-stack-panel--grey" aria-hidden="true"><img src="images/coreloops/Trade-offs Illustration-1.png" alt=""></div>
+        <div class="case-stack-panel case-stack-panel--grey" aria-hidden="true"><img src="../images/coreloops/Trade-offs Illustration-1.png" alt=""></div>
         <div class="case-stack case-stack--wide">
           <div class="case-stack-item">
             <p class="case-stack-title">Define The Offer</p>
@@ -517,19 +515,19 @@
     <div class="wrap">
       <p class="case-label">Other Projects</p>
       <div class="case-other-grid">
-        <a class="case-other-card" href="fundall.html">
+        <a class="case-other-card" href="../fundall.html">
           <span class="case-other-name">Fundall</span>
           <span class="case-other-meta">UI &middot; UX &mdash; 2022</span>
         </a>
-        <a class="case-other-card" href="teesaslms.html">
+        <a class="case-other-card" href="../teesaslms.html">
           <span class="case-other-name">Teesas LMS</span>
           <span class="case-other-meta">UI &middot; UX &mdash; 2023&ndash;2024</span>
         </a>
-        <a class="case-other-card" href="venx.html">
+        <a class="case-other-card" href="../venx.html">
           <span class="case-other-name">VENX</span>
           <span class="case-other-meta">UI &middot; UX &mdash; 2025</span>
         </a>
-        <a class="case-other-card" href="coreloops.html">
+        <a class="case-other-card" href="../coreloops.html">
           <span class="case-other-name">Coreloops</span>
           <span class="case-other-meta">UI &middot; UX &mdash; 2026</span>
         </a>
@@ -596,6 +594,6 @@
   if (reduce) { show(4); setPaused(true); } else { schedule(); }
 })();
 </script>
-<script src="js/case-layout-preview.js?v=1"></script>
+<script src="../js/case-quicknav.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 /* Shell: floating header, the identity rail on the left, and ONE clearly raised container on the right.
    Work, About and every case study open by making that container grow over the rail
-   (the header stays); Home folds it back. Used by index-preview.html. */
+   (the header stays); Home folds it back. Used by index.html. */
 html.shell {
   --stage: #1d1a22;
   --stage-line: rgba(244, 242, 244, .2);

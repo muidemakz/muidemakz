@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="robots" content="noindex">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex">
   <title>Cursor Options &middot; Muidemakz</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/board.css">
+  <link rel="stylesheet" href="../css/board.css">
   <style>
     :root { --bg: #0e0e0e; --ink: #f4f2f4; --soft: #c9c5cc; --mute: #8f8a94; --line: rgba(244,242,244,.14); --accent: #ff5a1f; }
     * { box-sizing: border-box; }
@@ -46,11 +46,11 @@
     <h1>Pick your cursor.</h1>
     <p class="lede">Move over each card to feel the real cursor. The left image is the normal state and the right is the state over links. Press <kbd>/</kbd> to try cursor chat, then choose one. Your pick is saved in this browser and applied on every preview page straight away.</p>
     <div class="grid" id="grid"></div>
-    <p class="foot">Other visitors always get a smaller arrow in a different colour with a name tag, never mint, so yours stays easy to spot. Back to the <a href="index-preview.html">home preview</a>.</p>
+    <p class="foot">Other visitors always get a smaller arrow in a different colour with a name tag, never mint, so yours stays easy to spot. Back to the <a href="../index-preview.html">home preview</a>.</p>
   </main>
-  <script src="js/board-cursors.js"></script>
-  <script src="js/board-config.js"></script>
-  <script src="js/board.js"></script>
+  <script src="../js/board-cursors.js"></script>
+  <script src="../js/board-config.js"></script>
+  <script src="../js/board.js"></script>
   <script>
     (function () {
       var C = window.BOARD_CURSORS, grid = document.getElementById('grid');

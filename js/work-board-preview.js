@@ -1,4 +1,4 @@
-/* All Work as a board (my-work-preview.html).
+/* All Work as a board (my-work.html).
    Builds frames, cards, sticky notes and the sticker tray from PROJECTS in js/data.js,
    so the preview always matches the real project list. Cards and stickers can be dragged
    with a mouse; on touch the board is a calm single column. Nothing here is saved or sent.
@@ -561,8 +561,23 @@
   function countMine() { mine = board.querySelectorAll('.sticker[data-mine]').length; clearBtn.hidden = !mine; }
   var MAX_MINE = 8, KEY = 'wb-stickers-v1';
   function ls(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (x) { return null; } }
+  /* Shared board: stickers are saved on the server (netlify/functions/stickers.mjs) so every visitor sees them.
+     Where the server is not there (opened from a file or a plain local server) they stay in this browser only. */
+  var SHARED_URL = (window.BOARD_CONFIG && window.BOARD_CONFIG.stickers && window.BOARD_CONFIG.stickers.endpoint) || '';
+  var shared = false;
+  var VID = ls('wb-vid');
+  if (!VID) { VID = Math.random().toString(36).slice(2) + Date.now().toString(36); ls('wb-vid', VID); }
+  try { var ok = new URLSearchParams(location.search).get('owner'); if (ok) ls('wb-owner-key', ok); } catch (x) {}
+  var OWNER = ls('wb-owner-key') || '';
+  function api(method, body) {
+    var h = { 'content-type': 'application/json', 'x-visitor': VID };
+    if (OWNER) h['x-owner-key'] = OWNER;
+    return fetch(SHARED_URL, { method: method, headers: h, body: body ? JSON.stringify(body) : undefined, cache: 'no-store' })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return r.ok ? j : Promise.reject(j); }); });
+  }
   /* Your own stickers stay on your board when you come back (this browser only, nothing is sent) */
   function saveMine() {
+    if (shared) return;
     var out = [];
     Array.prototype.forEach.call(world.querySelectorAll('.sticker[data-mine]'), function (x) {
       out.push({ t: x.dataset.type, x: parseFloat(x.style.left) || 0, y: parseFloat(x.style.top) || 0, r: parseFloat(x.style.getPropertyValue('--r')) || 0, by: x.dataset.by || '', at: +x.dataset.at || Date.now() });
@@ -590,7 +605,7 @@
     st.style.setProperty('--dx', '0px'); st.style.setProperty('--dy', '0px');
     st.style.left = x.toFixed(1) + 'px'; st.style.top = y.toFixed(1) + 'px';
     if (moved && !toldMove) { toldMove = true; toast('Stickers can\u2019t cover the work, so it moved next to the card.'); }
-    if (st.dataset.mine) saveMine();
+    if (st.dataset.mine) { if (shared && st.dataset.id) api('POST', { action: 'move', id: st.dataset.id, x: x, y: y }).catch(function () {}); else saveMine(); }
   }
   function toast(text) {
     var t = document.createElement('p');
@@ -634,7 +649,7 @@
   document.addEventListener('pointerdown', function (e) { if (tagEl && !(e.target.closest && e.target.closest('.sticker, .st-tag'))) hideTag(); });
   /* The first time you drop a sticker you are asked to sign it (or stay anonymous) */
   function askName(st) {
-    if (ls('wb-name') !== null) { st.dataset.by = ls('wb-name'); saveMine(); return; }
+    if (OWNER || ls('wb-name') !== null) { st.dataset.by = OWNER ? 'Excellent' : ls('wb-name'); saveMine(); return; }
     var f = document.createElement('form');
     f.className = 'st-ask';
     f.innerHTML = '<label><span>Sign your sticker</span><input type="text" maxlength="24" placeholder="Your first name" autocomplete="given-name"></label>' +
@@ -646,6 +661,7 @@
     function done(name) {
       name = String(name || '').replace(/[<>\u0000-\u001f]/g, '').trim().slice(0, 24);
       ls('wb-name', name);
+      if (shared) api('POST', { action: 'name', by: name }).catch(function () {});
       Array.prototype.forEach.call(world.querySelectorAll('.sticker[data-mine]'), function (x) { x.dataset.by = name; });
       saveMine();
       f.remove();
@@ -658,7 +674,11 @@
   function wire(st) {
     makeDraggable(st, st);
     st.addEventListener('click', function (e) { e.stopPropagation(); showTag(st); });
-    st.addEventListener('dblclick', function () { if (!st.dataset.mine) return; hideTag(); st.remove(); countMine(); saveMine(); });
+    st.addEventListener('dblclick', function () {
+      if (!st.dataset.mine) return;
+      hideTag(); st.remove(); countMine(); saveMine();
+      if (shared && st.dataset.id) api('POST', { action: 'remove', id: st.dataset.id }).catch(function () {});
+    });
   }
   /* cx, cy are screen positions of the sticker's top-left corner */
   function stickAt(t, cx, cy) {
@@ -674,7 +694,15 @@
     parent.appendChild(s);
     wire(s);
     countMine();
-    if (parent === world) { settle(s); askName(s); }
+    if (parent === world) {
+      settle(s);
+      if (shared) {
+        api('POST', { action: 'add', t: t, x: parseFloat(s.style.left) || 0, y: parseFloat(s.style.top) || 0, r: parseFloat(s.style.getPropertyValue('--r')) || 0, by: OWNER ? '' : (ls('wb-name') || '') })
+          .then(function (j) { if (j && j.sticker) { s.dataset.id = j.sticker.id; if (j.sticker.owner) s.dataset.owner = '1'; } })
+          .catch(function (j) { s.remove(); countMine(); hideTag(); toast(j && j.error === 'limit' ? 'That\u2019s all ' + MAX_MINE + ' of your stickers. Double-click one to take it off.' : 'That sticker didn\u2019t stick. Try again in a moment.'); });
+      }
+      askName(s);
+    }
   }
   TRAY.forEach(function (t) {
     var b = document.createElement('button');
@@ -734,19 +762,57 @@
     });
     trayItems.appendChild(b);
   });
-  clearBtn.addEventListener('click', function () { hideTag(); Array.prototype.forEach.call(board.querySelectorAll('.sticker[data-mine]'), function (x) { x.parentNode.removeChild(x); }); countMine(); saveMine(); });
+  clearBtn.addEventListener('click', function () {
+    hideTag();
+    Array.prototype.forEach.call(board.querySelectorAll('.sticker[data-mine]'), function (x) {
+      if (shared && x.dataset.id) api('POST', { action: 'remove', id: x.dataset.id }).catch(function () {});
+      x.parentNode.removeChild(x);
+    });
+    countMine(); saveMine();
+  });
   /* Bring back your own stickers from last time */
-  if (hasArt) {
-    try {
-      (JSON.parse(ls(KEY) || '[]') || []).slice(0, MAX_MINE).forEach(function (o) {
-        if (!STICKERS[o.t]) return;
-        var s = stickerEl(o.t, { left: o.x, top: o.y, r: o.r, size: 70 });
-        s.dataset.mine = '1'; s.dataset.by = o.by || ''; s.dataset.at = String(o.at || Date.now());
-        world.appendChild(s);
-        wire(s);
-      });
-    } catch (x) {}
+  function placeSaved(o, mine) {
+    if (!STICKERS[o.t]) return null;
+    var s = stickerEl(o.t, { left: o.x, top: o.y, r: o.r, size: 70 });
+    if (mine) s.dataset.mine = '1';
+    if (o.owner) s.dataset.owner = '1';
+    if (o.id) s.dataset.id = o.id;
+    s.dataset.by = o.by || ''; s.dataset.at = String(o.at || Date.now());
+    world.appendChild(s);
+    wire(s);
+    return s;
+  }
+  function loadLocal() {
+    try { (JSON.parse(ls(KEY) || '[]') || []).slice(0, MAX_MINE).forEach(function (o) { placeSaved(o, true); }); } catch (x) {}
     countMine();
+  }
+  function loadShared() {
+    return api('GET').then(function (j) {
+      if (!j || !Array.isArray(j.stickers)) throw new Error('no list');
+      shared = true;
+      Array.prototype.forEach.call(world.querySelectorAll(':scope > .sticker'), function (x) { x.remove(); });
+      j.stickers.forEach(function (o) {
+        var st = placeSaved(o, o.mine);
+        if (st && !o.mine) settle(st); /* if the board has changed since, keep it off the work (on screen only) */
+      });
+      countMine();
+    });
+  }
+  if (hasArt) {
+    if (SHARED_URL && location.protocol !== 'file:') loadShared().catch(loadLocal);
+    else loadLocal();
+    /* Owner only: clear every visitor sticker off the board */
+    if (OWNER && SHARED_URL) {
+      var cleanBtn = document.createElement('button');
+      cleanBtn.type = 'button';
+      cleanBtn.className = 'wb-tray-clear';
+      cleanBtn.textContent = 'Clean up board';
+      cleanBtn.addEventListener('click', function () {
+        if (!window.confirm('Remove every visitor sticker from the board? Yours stay.')) return;
+        api('POST', { action: 'clean' }).then(function (j) { toast('Removed ' + (j.removed || 0) + ' stickers.'); return loadShared(); }).catch(function () { toast('Clean up did not work. Try again.'); });
+      });
+      trayEl.appendChild(cleanBtn);
+    }
   }
   if (!fine) document.getElementById('wbTray').style.display = 'none';
 

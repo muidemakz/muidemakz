@@ -11,7 +11,7 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Omnibiz &middot; Muidemakz</title>
+  <title>Omnibiz &middot; Muidemakz</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -43,8 +43,9 @@
 @keyframes ob-fill { to { width: 100%; } }
 @media (prefers-reduced-motion: reduce) { .ob-frame { transition: none; } .ob-dot.is-current i { animation: none; width: 100%; } }
 </style>
+<link rel="stylesheet" href="css/case-study-preview.css?v=20261107-5">
 </head>
-<body class="type-outfit">
+<body class="type-outfit case-study-preview">
 
 <!-- [REVERT POINT] TEST CHANGE, round 21 -- shared header component,
      see js/header.js. Was a hardcoded <header class="site-header"> copy. -->
@@ -302,7 +303,7 @@
   </div>
 </footer>
 
-<script src="js/case-quicknav.js"></script>
+<script src="js/case-layout-preview.js?v=1"></script>
 <script>
   (function () {
     var root = document.querySelector('[data-ob-flow]');

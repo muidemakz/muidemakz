@@ -1,0 +1,9 @@
+{
+  "name": "muidemakz-portfolio",
+  "private": true,
+  "description": "Static portfolio site. The only dependency is for the Netlify Functions in netlify/functions (shared Work-board stickers, MM).",
+  "type": "module",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}

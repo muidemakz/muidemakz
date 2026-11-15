@@ -16,3 +16,6 @@ artifacts/animation/sun-king/frames30/
 videos/sun-king/
 # private notes
 docs/interview-prep-*.md
+
+node_modules/
+.netlify/

@@ -1,5 +1,5 @@
 /* Homepage direction preview: fixed identity rail + image-first tile grid.
-   Scoped to index-preview.html. Flat surfaces; blur is not used on content. */
+   Scoped to index.html. Flat surfaces; blur is not used on content. */
 :root {
   --bg: #0e0e0e;
   --ink: #f4f2f4;

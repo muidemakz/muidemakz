@@ -1,7 +1,8 @@
-/* AI guide for the portfolio's cursor chat.
-   The browser sends { message, page }. This Worker adds the persona and the facts below,
-   calls the Claude API with a secret key that only lives here, and returns { reply }.
-   Never put the API key in the website's files. */
+/* MM, the AI on the portfolio, as a Netlify Function (same site, so no Cloudflare and no CORS setup).
+   The browser sends { message, page, mode }. This adds the persona and the facts below, calls DeepSeek
+   (DEEPSEEK_API_KEY) or Claude (ANTHROPIC_API_KEY), and returns { reply } or { reply, links }.
+   The key lives only in Netlify > Site configuration > Environment variables, never in the site files.
+   Until a key is set, js/board-config.js keeps endpoint: 'demo' and MM gives canned answers. */
 
 const MODEL = 'claude-haiku-5-5';
 const MAX_IN = 200;   /* longest visitor message accepted */
@@ -53,20 +54,23 @@ function json(body, status, headers) {
   return new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json', ...headers } });
 }
 
-export default {
-  async fetch(request, env) {
+const hits = new Map();
+export default async (request, context) => {
+  {
+    const env = process.env;
     const origin = request.headers.get('origin') || '';
     const h = cors(origin, env);
     if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: h });
     if (request.method !== 'POST') return json({ error: 'POST only' }, 405, h);
-    const allowed = String(env.ALLOWED_ORIGINS || '').split(',').map((s) => s.trim());
-    if (!allowed.includes(origin)) return json({ error: 'origin not allowed' }, 403, h);
+    const allowed = String(env.ALLOWED_ORIGINS || '').split(',').map((s) => s.trim()).filter(Boolean);
+    if (origin && origin !== new URL(request.url).origin && !allowed.includes(origin)) return json({ error: 'origin not allowed' }, 403, h);
 
-    /* Per-visitor rate limit (Workers Rate Limiting binding, see wrangler.toml) */
-    if (env.RATE_LIMITER) {
-      const ip = request.headers.get('cf-connecting-ip') || 'anon';
-      const { success } = await env.RATE_LIMITER.limit({ key: ip });
-      if (!success) return json({ reply: 'easy, give me a few seconds' }, 200, h);
+    /* Per-visitor rate limit: 6 questions a minute per IP (per function instance) */
+    {
+      const ip = (context && context.ip) || 'anon', now = Date.now();
+      const recent = (hits.get(ip) || []).filter((t) => now - t < 60000);
+      recent.push(now); hits.set(ip, recent);
+      if (recent.length > 6) return json({ reply: 'easy, give me a few seconds' }, 200, h);
     }
 
     let body;
@@ -76,7 +80,7 @@ export default {
     const page = String((body && body.page) || '').slice(0, 120);
     if (!message) return json({ error: 'empty' }, 400, h);
 
-    /* Simple daily budget: stop answering after DAILY_CAP replies (needs the KV binding, optional) */
+    /* (Daily cap from the Cloudflare version: only active if a COUNTER store is provided) */
     if (env.COUNTER) {
       const day = new Date().toISOString().slice(0, 10);
       const used = parseInt((await env.COUNTER.get(day)) || '0', 10);
@@ -123,3 +127,5 @@ export default {
     }
   }
 };
+
+export const config = { path: '/api/mm' };

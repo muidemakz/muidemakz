@@ -80,7 +80,7 @@
     try {
       var ref = new URL(document.referrer);
       var refPage = ref.pathname.split("/").pop();
-      fromWork = ref.origin === location.origin && (refPage === "my-work.html" || refPage === "index-preview.html" || refPage === "about-preview.html");
+      fromWork = ref.origin === location.origin && (refPage === "my-work.html" || refPage === "index.html" || refPage === "about.html");
     } catch (err) {}
     if (fromWork && history.length > 1) { e.preventDefault(); history.back(); return; }
     try { if (sessionStorage.getItem("workState")) sessionStorage.setItem("workReturn", "1"); } catch (err) {}

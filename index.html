@@ -1,1471 +1,182 @@
 <!DOCTYPE html>
-<html lang="en" class="landing-authority">
-
+<html lang="en" class="shell">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMFSR34FZG"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag("js", new Date());
-    gtag("config", "G-SMFSR34FZG");
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Excellent Makanju &middot; Senior Product Designer</title>
-  <meta name="description"
-    content="Excellent Makanju, Senior Product Designer across fintech, payments and B2B commerce, increasingly designing and building AI-native products through Valideity.">
+  <meta name="description" content="Excellent Makanju, Senior Product Designer across fintech, payments and B2B commerce, increasingly designing and building AI-native products through Valideity.">
   <link rel="canonical" href="https://muidemakz.com/">
-
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Excellent Makanju">
   <meta property="og:title" content="Excellent Makanju &middot; Senior Product Designer">
-  <meta property="og:description"
-    content="Excellent Makanju, Senior Product Designer across fintech, payments and B2B commerce, increasingly designing and building AI-native products through Valideity.">
+  <meta property="og:description" content="Excellent Makanju, Senior Product Designer across fintech, payments and B2B commerce, increasingly designing and building AI-native products through Valideity.">
   <meta property="og:url" content="https://muidemakz.com/">
   <meta property="og:image" content="https://muidemakz.com/images/about/about-me.png">
-
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Excellent Makanju &middot; Senior Product Designer">
-  <meta name="twitter:description"
-    content="Excellent Makanju, Senior Product Designer across fintech, payments and B2B commerce, increasingly designing and building AI-native products through Valideity.">
+  <meta name="twitter:description" content="Excellent Makanju, Senior Product Designer across fintech, payments and B2B commerce, increasingly designing and building AI-native products through Valideity.">
   <meta name="twitter:image" content="https://muidemakz.com/images/about/about-me.png">
-
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Excellent Makanju",
-  "url": "https://muidemakz.com/",
-  "image": "https://muidemakz.com/images/about/about-me.png",
-  "jobTitle": "Senior Product Designer",
-  "email": "mailto:muidemakz@gmail.com",
-  "sameAs": [
-    "https://www.linkedin.com/in/makanju-excellent-211b0a44/",
-    "https://dribbble.com/muidemakz",
-    "https://www.behance.net/oemakanju",
-    "https://www.instagram.com/oluwaexcellent"
-  ]
-}
-</script>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;500;600;700&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <style>
-    /* =========================================================================
-   index-concept.html — EXPLORATION DRAFT, not linked from anywhere live.
-
-   One locked-viewport screen (no page scroll), same composition as
-   wrapped.html's "2024" screen: a static details card up top (border-
-   bottom divider, big headline, facts, stats) and a dark horizontally-
-   scrollable project shelf underneath — except the top card is permanent
-   (it's the personal intro, not a year that changes) and the shelf holds
-   all 8 case studies from split.html instead of "this year's" projects.
-
-   Self-contained on purpose, same reasoning as split.html: re-declares the
-   brutalist tokens rather than linking css/style.css, so this single file
-   stands alone as a comparison artifact.
-   ========================================================================= */
-
-    :root {
-      --ink-hard: #0d0d0d;
-      --paper-hard: #f2f0eb;
-      --hard-line: rgba(13, 13, 13, 0.16);
-      --accent: #ff3b00;
-      --font-mono: "JetBrains Mono", monospace;
-      --font-hard: "Helvetica Neue", Helvetica, Arial, sans-serif;
-      /* [REVERT POINT] was its own "Inter" redeclaration here, which silently
-     shadowed the shared --font-body from css/style.css (same bug pattern
-     as the old local .wrap max-width override) — Outfit updates there
-     were never taking effect on this page because of it. Removed so this
-     page inherits the shared token like every other page does. */
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    /* [REVERT POINT] TEST CHANGE, round 3 (branch: test/homepage-backdrop-prose).
-   Was `height: 100%; overflow: hidden;` with `body { display: flex;
-   flex-direction: column }` and every section below sized in vh
-   (`flex: 1`, `flex: 0 0 34vh`, padding/margins in vh, headline in
-   `clamp(30px, 6.4vh, 84px)`) — a locked one-screen composition that
-   squeezed every section to fit exactly one viewport height. Round 2
-   already dropped the hard `overflow: hidden` lock (for the testimonials
-   section), but the vh-based sizing underneath was never rebuilt, so
-   sections still felt cramped even once they could scroll — a short hero
-   paragraph still reads tight when its padding is `2.6vh`, because that
-   number shrinks right along with the window.
-   This round replaces the whole page with normal, content-driven block
-   flow — same as about.html/my-work.html: fixed px padding, vw-based
-   clamp() for type (not vh), sections sized to their own content instead
-   of a fraction of the viewport. See each section's own [REVERT POINT]
-   below for the specific before/after values.
-   To revert entirely: restore `height:100%; overflow:hidden` here, put
-   `display:flex; flex-direction:column` back on body, and revert each
-   vh-sized rule flagged below. */
-    html,
-    body {
-      margin: 0;
-    }
-
-    /* [REVERT POINT] TEST CHANGE, round 5 — padding-bottom reserves space for
-   .shelf-links now that it's position:fixed (see its own rule below);
-   without this the fixed bar would sit on top of the last shelf cards
-   instead of after them. 52px matches the bar's single-row desktop
-   height; the mobile override further down bumps it to match the 2-row
-   wrapped layout there. */
-    body {
-      background: var(--paper-hard);
-      color: var(--ink-hard);
-      font-family: var(--font-body);
-      padding-bottom: 52px;
-    }
-
-    /* .wrap intentionally NOT redeclared here — this page previously defined
-   its own max-width: 1320px, which silently overrode the shared 1240px
-   from css/style.css (--content-max) that about.html and my-work.html use
-   untouched. That made the homepage header, and every section width,
-   inconsistent with the rest of the site. Inheriting the shared rule now. */
-    .wrap {
-      width: 100%;
-    }
-
-    a {
-      color: inherit;
-    }
-
-    /* header chrome comes from the linked css/style.css (.site-header/.logo/
-   .site-nav/.btn-outline) — same markup and stylesheet as about.html and
-   every case study, not a local reimplementation. */
-
-    /* =========================================================================
-   SECTION SWAP — top black+hatched, bottom grey     [REVERT POINT]
-
-   Was: .hero-static plain paper/light, .shelf black+hatched. Now inverted —
-   the intro card takes the same black+diagonal-hatch treatment as About's
-   hero (.ab-hero::after in css/about.css), and the shelf below it is grey.
-   .shelf-links (the Email/About/CV/social row) is pinned back to black
-   regardless, so it doesn't inherit the shelf's new grey — see its own rule
-   further down, also marked [REVERT POINT].
-
-   To revert: delete this block's background/color/::after additions on
-   .hero-static, restore .hero-static's original border-bottom-only rule,
-   and change .shelf back from var(--grey) to var(--ink-hard) with the hatch
-   background-image restored (see the .shelf [REVERT POINT] below).
-   ========================================================================= */
-
-    :root {
-      /* [REVERT POINT] was #ebe9e5 (a distinct grey) — close enough to
-     --paper-hard (#f2f0eb) that the shelf-card borders (also paper-hard)
-     read as faint mismatched lines against it instead of blending clean.
-     Now literally the same white as the rest of the page. */
-      --grey: #f2f0eb;
-    }
-
-    /* ---------- intro section ---------- */
-    /* [REVERT POINT] TEST CHANGE, round 3. Was `flex: 1; min-height: 0; display:
-   flex; flex-direction: column; justify-content: center;` sized by however
-   much of the locked viewport was left over, with `padding-top: 2.6vh;
-   padding-bottom: 2vh` — padding that shrinks with the window instead of
-   giving the content a fixed amount of room. Now a plain block section
-   with fixed padding, same convention as about.css's `.band-inner`. */
-    .hero-static {
-      position: relative;
-      padding: 72px 0 64px;
-      border-bottom: 1px solid var(--ink-hard);
-      background: var(--ink-hard);
-      color: var(--paper-hard);
-      overflow: hidden;
-    }
-
-    /* same diagonal hatch as About's hero */
-    .hero-static::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background-image: repeating-linear-gradient(-45deg,
-          rgba(255, 255, 255, 0.05) 0 12px,
-          transparent 12px 34px);
-    }
-
-    /* [REVERT POINT] markup used to be <section class="wrap hero-static"> —
-   wrap and hero-static on the SAME element, which meant the black/hatched
-   background was capped at the 1240px content width instead of filling
-   the screen edge to edge (paper-coloured gaps showed on either side on
-   wide viewports). Now hero-static is the full-width section and .wrap is
-   a nested child that only constrains the content, matching the same
-   full-bleed-section/inner-wrap pattern .shelf already uses below.
-   To revert: put the wrap class back on the section tag itself and remove
-   the nested <div class="wrap">. */
-    .hero-static>.wrap {
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-greeting {
-      font-family: var(--font-mono);
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      opacity: 0.65;
-      margin: 0 0 14px;
-    }
-
-    /* [REVERT POINT] TEST CHANGE, round 3 — was clamp(30px, 6.4vh, 84px), a
-   viewport-HEIGHT-based clamp (unusual; ties font size to how tall the
-   window is, part of the one-screen-fit pattern). Every other big
-   headline on the site (About's name, case-study titles) clamps against
-   vw instead — switched to match, e.g. about.css's own hero title at
-   clamp(44px, 6vw, 82px).
-   [REVERT POINT] TEST CHANGE, round 4 — sized back down again
-   (clamp(34px, 5.6vw, 80px) read too large next to the now-generously-
-   padded hero) to clamp(28px, 3.6vw, 52px). */
-    .hero-headline {
-      font-family: var(--font-hard);
-      font-weight: 700;
-      text-transform: uppercase;
-      font-size: clamp(28px, 3.6vw, 52px);
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      margin: 0;
-    }
-
-    .hero-tagline {
-      font-family: var(--font-body);
-      font-size: clamp(15px, 1.4vw, 20px);
-      line-height: 1.45;
-      margin: 16px 0 0;
-      max-width: 58ch;
-    }
-
-    .hero-tagline strong {
-      font-weight: 700;
-      box-shadow: inset 0 -3px 0 var(--accent);
-    }
-
-    @media (max-width: 640px) {
-      .hero-static {
-        padding: 48px 0 40px;
-      }
-
-      .hero-headline {
-        font-size: clamp(24px, 8vw, 38px);
-      }
-
-      .hero-tagline {
-        font-size: 17px;
-      }
-    }
-
-    /* auto-width so the badge hugs each word tightly instead of sitting
-   centered in a box sized for the longest option — only the badge itself
-   resizes as the word cycles, nothing before it on the line shifts.
-   Symmetric-ish padding (no negative margin) makes the h1 size to the
-   badge's true height, so its bottom edge lands exactly flush on the box
-   outline below it instead of overflowing past the headline's own box —
-   a negative margin-bottom here previously left the overflow behind the
-   box's own background/border in paint order, invisible above the outline. */
-    /* [REVERT POINT] TEST CHANGE, round 4 — was inline right after "Senior
-   Product " on the same line, wrapping unpredictably once the cycling
-   word got long ("Design Manager"). A <br> in the markup put it on its
-   own line under "Senior Product" every time; margin-top and
-   vertical-align:top were tuned for THAT layout.
-   [REVERT POINT] TEST CHANGE, round 24 — back inline next to "Product"
-   (the <br> is gone, "Senior" dropped). margin-top/vertical-align:top
-   were still set for the own-line version, which sat the badge visibly
-   higher than "PRODUCT"'s own baseline — removed both; default
-   vertical-align (baseline) lines the badge up with the text next to it. */
-    .hero-role-cycle {
-      display: inline-block;
-      background: var(--accent);
-      color: #fff;
-      padding: 0.04em 0.16em 0.1em;
-      transition: opacity 0.25s ease;
-    }
-
-    .hero-role-cycle.is-swapping {
-      opacity: 0;
-    }
-
-    /* "Currently Building" facts + the stat row are one continuous bordered
-   box, not two separate elements — matches the reference exactly. Heavier
-   on the top/left, lighter on the bottom/right, and flush against the
-   headline above (no gap) so the role badge lands right on its top edge. */
-    .hero-details {
-      width: 100%;
-      margin-top: 0;
-      /* [REVERT POINT] was solid var(--ink-hard) on all four sides — invisible
-     against the section's new black background. Translucent paper instead. */
-      border-top: 3px solid rgba(242, 240, 235, 0.55);
-      border-left: 3px solid rgba(242, 240, 235, 0.55);
-      border-right: 1px solid rgba(242, 240, 235, 0.28);
-      border-bottom: 1px solid rgba(242, 240, 235, 0.28);
-    }
-
-    /* [REVERT POINT] added the same translucent wash the "20+" stat cell
-   uses, so the two boxes in the details panel read as one consistent
-   visual treatment instead of one being tinted and the other plain. */
-    .hero-facts {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.6vh 32px;
-      padding: 1.6vh 22px;
-      background: rgba(242, 240, 235, 0.08);
-    }
-
-    .hero-fact-label {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      opacity: 0.65;
-      margin: 0 0 6px;
-    }
-
-    .hero-fact-title {
-      font-family: var(--font-hard);
-      font-weight: 700;
-      font-size: 18px;
-      line-height: 1.2;
-      margin: 0 0 4px;
-    }
-
-    /* [REVERT POINT] TEST CHANGE, round 4 — "Currently Building" moved back
-   into a bordered box (reusing .hero-fact-label/.hero-fact-title/
-   .hero-fact-meta, which were left in place untouched from the original
-   boxed hero for exactly this), instead of sitting as a plain inline
-   sentence in the prose block. */
-    /* [REVERT POINT] TEST CHANGE, round 6 — was a single stacked column
-   (label, title, description all in one flow). Back to the original
-   two-column split: label+title on one side, description on the other,
-   same grid pattern .hero-facts used before (auto-fit so it collapses to
-   one column once there isn't room for both). */
-    /* [REVERT POINT] TEST CHANGE, round 7 — max-width was 620px; widened to
-   760px (plus a wider second column: minmax(320px,1fr) instead of
-   minmax(200px,1fr)) so the description has enough room to settle on 2
-   lines instead of 3, alongside .hero-fact-meta's own widened max-width
-   above. */
-    /* [REVERT POINT] TEST CHANGE, round 9 — was a fixed 2-column grid
-   (minmax(160px,auto) minmax(320px,1fr)) that didn't shrink below its
-   minimums, so the description ran past the box's right edge once the
-   split-view layout (round 8) made the hero column narrower than the
-   box's own 760px max-width. Single stacked column now, at every width —
-   label+title, then description underneath. */
-    /* [REVERT POINT] TEST CHANGE, round 20 — margin-top was 22px; the "bleed
-   out of frame" magazine treatment discussed for this box isn't happening
-   for now, just a plain spacing reduction.
-   [REVERT POINT] TEST CHANGE, round 28 — reversed again: per feedback,
-   the box should read as clearly separate from the greeting/headline/
-   tagline/prose cluster above it (which stays tight, close together),
-   not just another closely-spaced element in that same group. */
-    .hero-building-box {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-top: 48px;
-      padding: 18px 22px;
-      max-width: 480px;
-      border: 1px solid rgba(242, 240, 235, 0.32);
-      background: rgba(242, 240, 235, 0.08);
-    }
-
-    /* [REVERT POINT] TEST CHANGE, round 7 — max-width was 40ch, wrapping the
-   Currently Building description to 3 lines even once the box had room.
-   Widened to 58ch so it settles on 2 lines on desktop. */
-    .hero-fact-meta {
-      font-family: var(--font-body);
-      font-size: 14px;
-      line-height: 1.45;
-      opacity: 0.75;
-      margin: 0;
-      max-width: 58ch;
-    }
-
-    .hero-chip-list {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 2px 0 0;
-      padding: 0;
-    }
-
-    .hero-chip {
-      font-family: var(--font-mono);
-      font-size: 12.5px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 5px 10px;
-      border: 1px solid rgba(242, 240, 235, 0.45);
-      /* [REVERT POINT] was ink-hard */
-    }
-
-    /* focus-area tags — link out to About's expertise section.
-   [REVERT POINT] Was flex-wrap: wrap, with everything past the 3rd tag
-   hidden on mobile via nth-child(n+4). That meant most of the list was
-   never reachable on a phone. Now a single-line horizontally-scrolling
-   strip on every viewport — nothing hidden, always ends on the CTA tile —
-   and "Design Systems" is reordered in the markup to sit immediately
-   before that CTA (see the <div class="hero-tags"> markup below).
-   To revert: restore flex-wrap: wrap + the nth-child(n+4) mobile rule, put
-   .hero-tag color/hover back to ink-hard/paper-hard, and move the Design
-   Systems tag back to position 2 in the markup. */
-    .hero-tags {
-      display: flex;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      gap: 8px;
-      padding: 1.4vh 22px;
-      border-top: 1px solid rgba(242, 240, 235, 0.28);
-      /* right-edge fade signals there's more to scroll to, since the row is
-     cut off mid-tag on narrow viewports rather than ending cleanly */
-      mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent 100%);
-      -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent 100%);
-    }
-
-    .hero-tags::-webkit-scrollbar {
-      display: none;
-    }
-
-    /* [REVERT POINT] was transparent (no background, just a border) — sitting
-   directly on the diagonal-hatch pattern made the label text hard to read.
-   A lighter-black fill behind each pill gives the text a clean, flat
-   surface to sit on instead, without going all the way to solid ink. */
-    .hero-tag {
-      flex: none;
-      white-space: nowrap;
-      font-family: var(--font-mono);
-      font-size: 12.5px;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      padding: 7px 12px;
-      border: 1px solid rgba(242, 240, 235, 0.45);
-      background: rgba(242, 240, 235, 0.08);
-      color: var(--paper-hard);
-      text-decoration: none;
-      transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
-    }
-
-    .hero-tag:hover {
-      background: var(--paper-hard);
-      color: var(--ink-hard);
-      border-color: var(--paper-hard);
-    }
-
-    .hero-tag--more {
-      background: var(--accent);
-      color: #fff;
-      border-color: var(--accent);
-    }
-
-    .hero-tag--more:hover {
-      background: var(--paper-hard);
-      color: var(--ink-hard);
-      border-color: var(--paper-hard);
-    }
-
-    .hero-stats {
-      display: flex;
-      width: 100%;
-      /* [REVERT POINT] was translucent rgba(242,240,235,0.28) */
-      border-top: 1px solid var(--paper-hard);
-    }
-
-    .hero-stat {
-      flex: 1;
-      padding: 10px 16px;
-      border-left: 1px solid var(--paper-hard);
-    }
-
-    /* [REVERT POINT] was translucent */
-    .hero-stat:first-child {
-      border-left: 0;
-    }
-
-    /* [REVERT POINT] back to the faint 8% translucent wash (was briefly a
-   solid white card) — matches the same translucent treatment now on
-   .hero-facts below, so the two boxes read consistently. */
-    .hero-stat:first-child {
-      background: rgba(242, 240, 235, 0.08);
-    }
-
-    .hero-stat:first-child .hero-stat-label {
-      opacity: 0.75;
-    }
-
-    .hero-stat-num {
-      display: block;
-      font-family: var(--font-hard);
-      font-weight: 700;
-      font-size: clamp(18px, 2.4vh, 24px);
-      line-height: 1;
-      letter-spacing: -0.02em;
-      color: var(--accent);
-      margin-bottom: 5px;
-    }
-
-    .hero-stat-label {
-      font-family: var(--font-mono);
-      font-size: 14px;
-      line-height: 1.35;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      opacity: 0.7;
-    }
-
-    /* [REVERT POINT] was 2-per-row with the 5th (150K+) alone spanning full
-   width at the bottom. Now the 20+ stat (already the highlighted one,
-   with its own tinted background) spans full width up top instead, and
-   the remaining 4 form a clean 2x2 grid underneath it. */
-    @media (max-width: 640px) {
-      .hero-stats {
-        flex-wrap: wrap;
-      }
-
-      .hero-stat {
-        flex: 0 0 50%;
-        border-left: 0;
-        border-top: 1px solid var(--paper-hard);
-      }
-
-      .hero-stat:first-child {
-        flex-basis: 100%;
-        border-top: 0;
-      }
-
-      .hero-stat:nth-child(3),
-      .hero-stat:nth-child(5) {
-        border-left: 1px solid var(--paper-hard);
-      }
-    }
-
-    /* [REVERT POINT] TEST CHANGE, round 14 — the low-opacity backdrop photo
-   (.hero-static::before, images/about/homepage-backdrop.png) has been
-   removed per feedback. .hero-static is back to just the flat ink-hard
-   background + diagonal hatch (::after), same as before this branch
-   started. The image file itself is untouched at
-   images/about/homepage-backdrop.png if it's wanted again later. */
-
-    /* [REVERT POINT] TEST CHANGE (branch: test/homepage-backdrop-prose).
-   Prose replacement for the old boxed .hero-details/.hero-facts/
-   .hero-tags/.hero-stats trio — same content, flowing paragraphs instead
-   of separated cards. Numbers get the same accent-orange treatment
-   .hero-stat-num used; focus-area names and "Valideity" stay inline links/
-   bold instead of separate pill/label elements. */
-    /* [REVERT POINT] TEST CHANGE, round 3 — margin-top/font-size were vh-based
-   (2.4vh, clamp(...,2vh,...)); now fixed px, same as everywhere else. */
-    .hero-prose {
-      width: 100%;
-      margin-top: 28px;
-      max-width: 68ch;
-    }
-
-    .hero-prose-p {
-      font-family: var(--font-body);
-      font-size: 16px;
-      line-height: 1.65;
-      margin: 0;
-      opacity: 0.92;
-    }
-
-    .hero-num {
-      font-weight: 700;
-      color: var(--accent);
-    }
-
-    .hero-inline-link {
-      color: var(--paper-hard);
-      text-decoration: underline;
-      text-decoration-color: rgba(242, 240, 235, 0.45);
-      text-underline-offset: 3px;
-      transition: text-decoration-color 0.12s ease, color 0.12s ease;
-    }
-
-    .hero-inline-link:hover {
-      text-decoration-color: var(--accent);
-      color: var(--accent);
-    }
-
-    @media (max-width: 640px) {
-      .hero-prose {
-        margin-top: 20px;
-      }
-
-      .hero-prose-p {
-        font-size: 15.5px;
-      }
-
-      /* [REVERT POINT] TEST CHANGE, round 24 — box was matching the paragraph
-     column's width exactly (both inset the same 20px from the screen
-     edge); extended it past that column on mobile specifically, bleeding
-     12px further out on each side than the surrounding text, so it reads
-     as a distinct callout instead of just another paragraph-width block. */
-      .hero-building-box {
-        max-width: none;
-        margin-left: -12px;
-        margin-right: -12px;
-      }
-    }
-
-    /* ---------- project shelf, horizontally scrollable ---------- */
-    /* [REVERT POINT] was background-color: var(--ink-hard) + the diagonal
-   hatch background-image, text paper-hard — that hatch now lives on
-   .hero-static above instead. To revert: swap --grey back to ink-hard,
-   restore the hatch background-image here, and set color back to
-   paper-hard. */
-    /* [REVERT POINT] TEST CHANGE, round 3 — was `flex: 0 0 34vh` (a fixed
-   fraction of the viewport, part of the one-screen-fit layout) with
-   padding in vh. Now sized to its own content: fixed px padding, and
-   .shelf-grid/.shelf-card below get an explicit px height instead of a
-   percentage that depended on this being 34vh tall. */
-    .shelf {
-      background-color: var(--grey);
-      color: var(--ink-hard);
-      padding: 56px 0 0;
-    }
-
-    /* ---------- link strip: 7 across, icons swap in on mobile ---------- */
-
-    /* [REVERT POINT] pinned to black explicitly — the shelf around it is now
-   grey, but this strip (and the Email Me button's own accent colour inside
-   it) stays exactly as it was. Was implicit (inherited from .shelf's old
-   ink-hard background); now explicit so it survives the shelf's colour
-   change untouched. */
-    /* [REVERT POINT] TEST CHANGE, round 5 — was a normal in-flow element
-   (`margin-top: 56px`) at the bottom of the page. Now pinned to the
-   viewport with `position: fixed`, so Email/About/CV/social stay reachable
-   without scrolling all the way down. `body` gets matching padding-bottom
-   below so the shelf cards don't end up hidden underneath it.
-   To revert: remove position/left/right/bottom/z-index here, restore
-   `margin-top: 56px`, and remove the body padding-bottom rules. */
-    .shelf-links {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 40;
-      display: flex;
-      background: var(--ink-hard);
-      color: var(--paper-hard);
-      border-top: 1px solid rgba(242, 240, 235, 0.3);
-    }
-
-    .shelf-link {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 6px;
-      border-left: 1px solid rgba(242, 240, 235, 0.3);
-      text-decoration: none;
-      color: var(--paper-hard);
-      font-family: var(--font-mono);
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      transition: background 0.12s ease, color 0.12s ease;
-    }
-
-    .shelf-link:first-child {
-      border-left: 0;
-      background: var(--accent);
-      color: #fff;
-    }
-
-    .shelf-link:hover {
-      background: var(--accent);
-      color: #fff;
-    }
-
-    .shelf-link:first-child:hover {
-      background: var(--ink-hard);
-    }
-
-    .link-icon {
-      display: none;
-    }
-
-    @media (max-width: 640px) {
-
-      /* fixed bar wraps to 2 rows here (see .shelf-links flex-wrap below),
-     so it's taller — body needs more reserved space to match. */
-      body {
-        padding-bottom: 104px;
-      }
-
-      /* 7 icons in one row is too cramped — wrap to 4 + 3 so each gets a real
-     touch target instead of a sliver */
-      .shelf-links {
-        flex-wrap: wrap;
-      }
-
-      .shelf-link {
-        flex: 0 0 25%;
-        padding: 16px 4px;
-        border-top: 1px solid rgba(242, 240, 235, 0.3);
-      }
-
-      .shelf-link:nth-child(-n+4) {
-        border-top: 0;
-      }
-
-      .shelf-link:nth-child(4n+1) {
-        border-left: 0;
-      }
-
-      /* row 1's last column (LinkedIn) has no row-2 sibling below it to supply
-     the row divider via border-top, so give it one directly */
-      .shelf-link:nth-child(4) {
-        border-bottom: 1px solid rgba(242, 240, 235, 0.3);
-      }
-
-      /* row 2 ends early (3 of 4 columns) — Behance needs its own closing edge
-     since there's no 4th item to supply one via border-left */
-      .shelf-link:last-child {
-        border-right: 1px solid rgba(242, 240, 235, 0.3);
-      }
-
-      .shelf-link .link-text {
-        display: none;
-      }
-
-      .shelf-link .link-icon {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 20px;
-        height: 20px;
-      }
-
-      .shelf-link .link-icon--badge {
-        width: auto;
-        height: auto;
-        font-family: var(--font-mono);
-        font-weight: 700;
-        font-size: 14px;
-      }
-
-      .shelf-link svg.link-icon {
-        width: 18px;
-        height: 18px;
-      }
-    }
-
-    /* =========================================================================
-   STORY-STYLE CASE STUDY REEL      [REVERT POINT] TEST CHANGE, round 16
-
-   Replaces the horizontally-auto-scrolling shelf with an Instagram-Stories-
-   style reel: one case study fills the stage at a time, a segmented
-   progress bar above it fills over 10s per card then auto-advances, and a
-   "See All Work" link sits alongside the segments. Five cards (the ones
-   the case-study rubric review ranked strongest), not all eight — the rest
-   are reachable via See All.
-
-   .shelf-card is reused as-is for its image/overlay/name/caption/cta
-   styling; only its layout role changes here (was a flex-item in a
-   scrolling row, now an absolutely-positioned full-bleed layer in
-   .story-stage, cross-faded via opacity — see the JS timer at the bottom
-   of the body for the actual advance/pause logic).
-
-   To revert: restore the old .shelf-grid/.shelf-track/.shelf-card (flex-
-   row, scrollLeft-scrolling) rules from git history on this branch, put
-   all 8 cards back in a single .shelf-track, and remove .story-progress/
-   .story-stage/.story-see-all + their JS.
-   ========================================================================= */
-    .story-shelf {
-      display: flex;
-      flex-direction: column;
-      height: 420px;
-    }
-
-    .story-topline {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 0 4px 14px;
-    }
-
-    .story-progress {
-      flex: 1;
-      display: flex;
-      gap: 6px;
-    }
-
-    .story-seg {
-      flex: 1;
-      height: 3px;
-      padding: 0;
-      border: 0;
-      background: rgba(13, 13, 13, 0.15);
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .story-seg-fill {
-      position: absolute;
-      inset: 0;
-      width: 0%;
-      background: var(--accent);
-    }
-
-    .story-seg.is-done .story-seg-fill {
-      width: 100%;
-    }
-
-    .story-see-all {
-      flex: none;
-      font-family: var(--font-mono);
-      font-size: 12.5px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--ink-hard);
-      text-decoration: none;
-      border-bottom: 1px solid var(--ink-hard);
-      padding-bottom: 2px;
-      white-space: nowrap;
-    }
-
-    .story-see-all:hover {
-      color: var(--accent);
-      border-color: var(--accent);
-    }
-
-    /* [TEST] swipe-hint — back to a simple column layout inside .story-shelf;
-   no row wrapper or col wrapper needed since there are no flanking buttons.
-   .story-stage takes flex:1 to fill all remaining height. */
-    .story-stage {
-      position: relative;
-      flex: 1;
-      min-height: 0;
-      cursor: grab;
-      display: flex;
-      overflow: hidden;
-    }
-
-    /* Grabbing state is driven by a JS class on <body> so the cursor stays
-   locked even when the mouse moves outside the stage mid-drag. */
-    body.is-shelf-dragging,
-    body.is-shelf-dragging * {
-      cursor: grabbing !important;
-      user-select: none;
-    }
-
-    /* base card look (image bg, dark overlay, padding, border) — same visual
-   treatment .shelf-card always had, just no longer flex/rotate, since each
-   card is now a full-bleed absolutely-positioned layer in .story-stage. */
-    .shelf-card {
-      flex: 0 0 100%;
-      height: 100%;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 18px 22px;
-      border: 3px solid var(--ink-hard);
-      text-decoration: none;
-      color: var(--paper-hard);
-      background-size: cover;
-      background-position: center;
-      pointer-events: auto;
-      transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-      user-select: none;
-      -webkit-user-drag: none;
-    }
-
-    /* ── Swipe hint tag ─────────────────────────────────────────────────────────
-   Lives on the left edge of .story-stage. At rest it's fully translated
-   left (hidden behind the split divider). On stage hover it slides right
-   into view — like a tag peeling out from the left panel.
-   cubic-bezier(0.34, 1.56, 0.64, 1) gives a subtle spring overshoot.    */
-    .story-swipe-hint {
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%) translateX(calc(-100% - 3px));
-      z-index: 4;
-      pointer-events: none;
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      padding: 11px 16px 11px 14px;
-      background: var(--accent);
-      color: #fff;
-      font-family: var(--font-hard);
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      white-space: nowrap;
-      /* right notch — makes it read as a tag/label shape */
-      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%);
-      padding-right: 22px;
-      opacity: 0;
-      transition:
-        transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
-        opacity 0.25s ease;
-    }
-
-    /* Reveal on hover — devices that support hover (desktop) */
-    @media (hover: hover) {
-      .story-stage:hover .story-swipe-hint {
-        transform: translateY(-50%) translateX(0);
-        opacity: 1;
-      }
-    }
-
-    /* On touch devices show it briefly on first load, then fade it out —
-   no hover state exists, so we do a one-shot CSS animation instead. */
-    @media (hover: none) {
-      .story-swipe-hint {
-        animation: hint-touch-flash 3s ease 0.8s forwards;
-      }
-    }
-
-    @keyframes hint-touch-flash {
-      0% {
-        transform: translateY(-50%) translateX(calc(-100% - 3px));
-        opacity: 0;
-      }
-
-      15% {
-        transform: translateY(-50%) translateX(0);
-        opacity: 1;
-      }
-
-      70% {
-        transform: translateY(-50%) translateX(0);
-        opacity: 1;
-      }
-
-      100% {
-        transform: translateY(-50%) translateX(calc(-100% - 3px));
-        opacity: 0;
-      }
-    }
-
-    /* ── Swipe arrows inside the tag — bounce apart on a loop ────────────────── */
-    .swipe-hint-arrows {
-      display: flex;
-      align-items: center;
-      gap: 2px;
-    }
-
-    .swipe-hint-arrow {
-      display: inline-block;
-      line-height: 1;
-    }
-
-    @keyframes hint-nudge-l {
-
-      0%,
-      100% {
-        transform: translateX(0);
-      }
-
-      50% {
-        transform: translateX(-4px);
-      }
-    }
-
-    @keyframes hint-nudge-r {
-
-      0%,
-      100% {
-        transform: translateX(0);
-      }
-
-      50% {
-        transform: translateX(4px);
-      }
-    }
-
-    .swipe-hint-arrow--l {
-      animation: hint-nudge-l 1.5s ease-in-out infinite;
-    }
-
-    .swipe-hint-arrow--r {
-      animation: hint-nudge-r 1.5s ease-in-out infinite;
-    }
-
-    /* [REVERT POINT] TEST CHANGE, round 17 — the old flat 80% dark wash (see
-   git history) made every card's cover photo essentially invisible, which
-   defeats the point of a story reel showing each case study's own image.
-   Now a bottom-weighted gradient instead, like a magazine cover: the photo
-   reads clearly through the top ~55% of the card, and only the bottom
-   portion (where name/caption/CTA sit) darkens enough for the text to stay
-   legible over any image. */
-    .shelf-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg,
-          rgba(13, 13, 13, 0.05) 0%,
-          rgba(13, 13, 13, 0.1) 45%,
-          rgba(13, 13, 13, 0.55) 70%,
-          rgba(13, 13, 13, 0.92) 100%);
-    }
-
-    .shelf-card--highlight {
-      box-shadow: 10px 10px 0 var(--accent);
-      border-color: var(--accent);
-    }
-
-    .shelf-kind,
-    .shelf-name,
-    .shelf-caption,
-    .shelf-cta {
-      position: relative;
-      z-index: 1;
-      /* picks up the legibility the overlay gave up when it was lightened
-     above, so text still reads clearly over a bright part of the photo */
-      text-shadow: 0 1px 8px rgba(13, 13, 13, 0.85);
-    }
-
-    .shelf-kind {
-      font-family: var(--font-mono);
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin: 0 0 8px;
-      color: var(--accent);
-    }
-
-    .shelf-name {
-      font-family: var(--font-hard);
-      font-weight: 700;
-      text-transform: uppercase;
-      font-size: clamp(18px, 2vw, 24px);
-      line-height: 1.05;
-      letter-spacing: -0.01em;
-      margin: 0 0 8px;
-    }
-
-    .shelf-caption {
-      font-family: var(--font-body);
-      font-size: 15px;
-      line-height: 1.4;
-      max-width: 30ch;
-      margin: 0 0 14px;
-      opacity: 0.92;
-    }
-
-    .shelf-cta {
-      font-family: var(--font-mono);
-      font-size: 12.5px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    @media (max-width: 640px) {
-      .shelf {
-        padding-top: 40px;
-      }
-
-      .shelf-links {
-        margin-top: 40px;
-      }
-
-      .story-shelf {
-        height: 300px;
-      }
-
-      .shelf-card {
-        padding: 16px;
-      }
-
-      .shelf-caption {
-        max-width: 24ch;
-      }
-
-      .shelf-kind {
-        display: none;
-      }
-    }
-
-    /* [REVERT POINT] TEST CHANGE, round 2: .testimonials/.testimonial-grid/
-   .testimonial-card/etc. CSS that lived here has been moved to
-   css/about.css — testimonials now live on the About page instead of
-   stacking onto an already-busy homepage. See about.css for the new
-   .testimonials-section rules.
-   The round-2 "breathing room" overrides that used to sit here
-   (`.shelf { padding: 3.2vh 0 0 }` / `.shelf-links { margin-top: 3.6vh }`)
-   are gone too — round 3 folded fixed px versions of that spacing
-   straight into .shelf/.shelf-links' own base rules above instead of
-   layering a second override on top. */
-
-    /* =========================================================================
-   SIDE-BY-SIDE SPLIT + LOCKED VIEWPORT      [REVERT POINT] TEST CHANGE, round 8
-
-   User wants: hero left, project shelf right, page NOT scrollable at this
-   width — the shelf auto-scrolls vertically inside its own column instead
-   (same auto-advance loop as before, now on the Y axis; see the <script>
-   at the bottom of the body for the JS side of this).
-
-   Scoped to min-width: 900px, same breakpoint as everywhere else on the
-   site that switches between mobile-stacked and desktop layouts — below
-   it, .home-grid's two <section>s just stack normally and the page
-   scrolls like every other page (unchanged from round 3-7).
-
-   To revert: delete this whole media query block, and in the <script>
-   at the bottom, remove the `isSplitView`/`vertical` branching in the
-   auto-scroll tick (restore the plain scrollLeft/scrollWidth version).
-   ========================================================================= */
-    @media (min-width: 900px) {
-
-      html,
-      body {
-        height: 100%;
-        overflow: hidden;
-      }
-
-      body {
-        display: flex;
-        flex-direction: column;
-        padding-bottom: 0;
-      }
-
-      .site-header {
-        flex-shrink: 0;
-      }
-
-      /* [REVERT POINT] TEST CHANGE, round 19 — .site-header .wrap normally uses
-     justify-content: space-between across 3 groups (logo, nav, Contact).
-     That makes nav's own START position depend on nav's own WIDTH (grow
-     nav and space-between shifts it to keep gaps even) — which fights the
-     divider-alignment script below: adding margin before "Work" to hit the
-     grid boundary changes nav's width, which then moves nav's start,
-     undoing the very adjustment just made. Switching to flex-start (logo
-     and nav simply sit left, in flow) plus margin-left:auto on Contact
-     (still docks right) removes that feedback loop — nav's start position
-     is now fixed regardless of its own width. */
-      /* header layout comes from css/style.css so it matches every other page */
-
-      
-
-      .home-grid {
-        flex: 1;
-        min-height: 0;
-        display: grid;
-        /* [REVERT POINT] TEST CHANGE, round 15 — was 1.05fr 1fr (roughly
-       even halves). Matched to split.html's own left/right ratio instead:
-       a narrower, fixed-minimum bio column instead of one that grows
-       past ~34% on wide screens.
-       [REVERT POINT] TEST CHANGE, round 22 — widened again, 380px/34% ->
-       420px/39%, per feedback that the hero column read too narrow. */
-        grid-template-columns: minmax(420px, 39%) 1fr;
-        /* [REVERT POINT] TEST CHANGE, round 19 — was 52px, but .shelf-links is
-       only ~43px tall at this breakpoint (no wrap, single row), so the
-       extra ~9px plus .shelf's own bottom padding (removed below) left a
-       visible paper-coloured gap between the story card and the footer
-       bar. Trimmed to match the bar's real height.
-       [REVERT POINT] TEST CHANGE, round 23 — trimmed 4px further (44 ->
-       40). Matching the bar's height exactly still left a sub-pixel (under
-       1px) remainder depending on viewport height, which anti-aliased
-       into a faint hairline between the card and the fixed bar. A small
-       deliberate overlap guarantees content tucks fully behind
-       .shelf-links (z-index:40, so the overlap is always hidden) instead
-       of leaving that remainder to rounding. */
-        padding-bottom: 40px;
-      }
-
-      /* [REVERT POINT] TEST CHANGE, round 12 — was justify-content: center,
-     which centered the (comparatively short) hero content in the full
-     locked-viewport column height, leaving a large empty gap both above
-     AND below it — the report was "whitespace at the bottom", but the
-     same amount also sat above, just less noticeable scrolled off-screen.
-     Top-aligned instead (flex-start + fixed top padding), matching the
-     right column, which fills edge-to-edge with cards and has no such
-     gap. To revert: swap back to justify-content: center; padding-top: 0. */
-      .hero-static {
-        height: 100%;
-        min-height: 0;
-        border-bottom: 0;
-        border-right: 1px solid var(--ink-hard);
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        padding-top: clamp(24px, 6vh, 72px);
-        padding-bottom: clamp(24px, 6vh, 72px);
-      }
-
-      /* [REVERT POINT] TEST CHANGE, round 14 — top-aligning (round 12) moved
-     the empty space from "half above, half below" to "all below", but
-     didn't remove it: .hero-static > .wrap was never given a height, so
-     it only ever took its own content's height, leaving hero-static's
-     remaining 100%-tall space empty underneath it. .wrap now stretches
-     to fill hero-static (flex: 1) and distributes ITS OWN children
-     (greeting/headline/tagline/prose/building-box) with even gaps across
-     that full height via justify-content: space-between, so the building
-     box lands at the bottom of the column instead of leaving a gap after
-     it — the space is spread as breathing room between elements instead
-     of dumped in one place at the end.
-     [REVERT POINT] TEST CHANGE, round 27 — space-between stretched the
-     gap BETWEEN each element (headline/tagline/prose/box) to fill the
-     column, even though those elements already had their own small
-     margins — on a tall column that meant huge, disconnected-looking
-     gaps between lines of copy that belong together. Switched to
-     center: children keep their own natural (small, clamp()'d) margins,
-     stay close to each other, and the whole cluster centers as one
-     group in the column — leaving even breathing room above/below
-     instead of stretching the space inside the content itself.
-     To revert: change back to space-between (and hero-static's
-     padding-bottom change above, back to 0). */
-      .hero-static>.wrap {
-        flex: 1;
-        min-height: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-
-      /* [REVERT POINT] TEST CHANGE, round 13 — on shorter screens (laptop
-     window heights, browser chrome eating into the viewport, etc.) the
-     hero content was taller than the locked column and got clipped by
-     `overflow: hidden`, cutting the Currently Building description off
-     behind the fixed footer bar. Every vertical gap/font-size below is
-     now clamp()'d against vh (font-sizes also keep their vw minimum via
-     min(), so they never grow past what width alone would allow) so the
-     whole block compresses to fit short viewports instead of overflowing.
-     Only active at this breakpoint — mobile/tablet (<900px) already
-     scrolls normally and never had this problem.
-     To revert: change each rule below back to its fixed px value (see the
-     non-split-view version of the same selector earlier in this file). */
-      .hero-greeting {
-        margin-bottom: clamp(6px, 1.4vh, 14px);
-      }
-
-      .hero-headline {
-        font-size: clamp(24px, min(3.6vw, 5.2vh), 52px);
-      }
-
-      .hero-tagline {
-        margin-top: clamp(8px, 1.6vh, 16px);
-        font-size: clamp(14px, min(1.4vw, 2vh), 20px);
-      }
-
-      .hero-prose {
-        margin-top: clamp(12px, 2.6vh, 28px);
-        max-width: 62ch;
-      }
-
-      .hero-prose-p {
-        font-size: clamp(13.5px, min(1.1vw, 1.9vh), 16px);
-        line-height: 1.55;
-      }
-
-      /* [REVERT POINT] TEST CHANGE, round 28 — was clamp(8px, 1.4vh, 14px),
-     matching the tight spacing of the cluster above it. Widened
-     significantly so the box reads as its own distinct block, still
-     compressing on short viewports via the vh clamp.
-     [REVERT POINT] TEST CHANGE, round 29 — max raised 56px -> 168px per
-     feedback ("about 168 on web"); still clamps down to 24px on short
-     viewports instead of overflowing. */
-      .hero-building-box {
-        margin-top: clamp(24px, 20vh, 168px);
-        padding: clamp(10px, 1.8vh, 18px) clamp(14px, 1.6vw, 22px);
-        gap: clamp(6px, 1vh, 10px);
-      }
-
-      /* [REVERT POINT] TEST CHANGE, round 18 — side padding was 24px, half of
-     .hero-static's 48px (inherited from .wrap on its own inner div), so the
-     page's left and right outer margins didn't match. Side padding now 48px
-     to mirror the hero column exactly; top/bottom stay 24px (only left/right
-     were reported as mismatched). */
-      /* [REVERT POINT] TEST CHANGE, round 19 — bottom padding removed (was
-     24px, same as top) so the story card's own black border sits flush
-     against .shelf-links instead of leaving a visible paper-coloured gap
-     above the fixed footer bar. Top/left/right padding unchanged. */
-      .shelf {
-        height: 100%;
-        min-height: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 24px 48px 0;
-      }
-
-      .story-shelf {
-        height: 100%;
-        max-height: 100%;
-      }
-    }
-  </style>
-  <link rel="stylesheet" href="css/landing-authority.css">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/home-rail-preview.css">
+  <link rel="stylesheet" href="css/board.css">
+  <link rel="stylesheet" href="css/shell-preview.css">
+  <script>try{localStorage.setItem('ui-theme','dark')}catch(e){}</script>
 </head>
-
 <body>
+  <header class="shell-header" id="shellHeader">
+    <a class="brand" href="#/" aria-label="muidemakz, home"><span class="brand-mark">muidemakz</span></a>
+    <nav class="shell-nav" id="shellNav" aria-label="Main">
+      <span class="nav-pill" id="navPill" aria-hidden="true"></span>
+      <a href="#/work" data-route="work">Work</a>
+      <a href="#/about" data-route="about">About</a>
+    </nav>
+    <div class="shell-actions"><span id="presenceSlot"></span></div>
+  </header>
 
-  <!-- [REVERT POINT] TEST CHANGE, round 21 — was a hardcoded <header
-     class="site-header"> copy (same markup duplicated across all 17
-     pages, which is exactly how index.html's About/Work order and other
-     pages' order drifted apart in the first place). Now the shared
-     component from js/header.js — see that file for the single source of
-     truth. Must stay a plain synchronous <script src>, not async/defer,
-     since it renders via document.write at this exact point in the body. -->
-  <div id="site-header-root"></div>
-  <script src="js/header.js"></script>
-
-  <!-- [REVERT POINT] TEST CHANGE, round 8 — .hero-static and .shelf used to
-     be full-width stacked sections (hero on top, shelf below). Wrapped in
-     .home-grid so they can sit side by side at wider widths (hero left,
-     horizontally-scrolling project shelf right) while the page itself
-     still scrolls normally, vertically — the grid just places the two
-     sections, it doesn't lock/crop either one to a fixed height. Below
-     the .home-grid breakpoint they stack exactly as before.
-     To revert: delete the <div class="home-grid"> opening/closing tags
-     (leave the two <section>s themselves as siblings again) and drop the
-     .home-grid rule + the .hero-static/.shelf border/height tweaks inside
-     its media query. -->
-  <div class="home-grid">
-    <section class="hero-static">
-      <div class="landing-intro">
-        <p class="landing-eyebrow">Senior Product Designer · Building Valideity</p>
-        <h1 class="landing-name">Excellent Makanju</h1>
-        <p class="landing-lede">I turn complex financial products and B2B workflows into clear, usable experiences.</p>
+  <main class="shell-main" id="shellMain">
+    <aside class="rail" aria-label="Excellent Makanju">
+      <p class="rail-status rail-status--name">Hi, my name is Excellent Makanju</p>
+      <h1 class="rail-name"><a class="rail-home" href="#/">Senior </a><span class="word-nb"><a class="rail-home" href="#/">Pr</a><button class="o-switch" id="themeSwitch" type="button" role="switch" aria-checked="true" aria-label="Light and dark mode. The o in Product is the switch" title="Light / dark"><span class="o-knob"></span></button><a class="rail-home" href="#/">duct</a></span><br class="role-br"><a class="rail-home" href="#/"><span class="role-cycle" id="roleCycle">Designer</span></a></h1>
+      <p class="rail-bio">I design <strong>fintech and B2B products</strong> end to end, from research to shipped, and lead design teams when needed.</p>
+      <div class="rail-actions">
+        <a class="btn btn--light" href="mailto:muidemakz@gmail.com">Say hi &#9993;</a>
+        <a class="btn btn--dark" href="Excellent_Makanju_Resume_2026.pdf" download="Excellent_Makanju_Resume_2026.pdf">Resume <span aria-hidden="true">&darr;</span></a>
       </div>
+      <a class="rail-scribble" href="valideity.html" data-open aria-label="Currently building Valideity. Open the case study">
+        <span class="rs-text"><span class="rs-small">currently building</span><b class="rs-big">Valideity</b></span>
+      </a>
+      <ul class="rail-links">
+        <li><a href="https://www.linkedin.com/in/makanju-excellent-211b0a44/" target="_blank" rel="noopener">LinkedIn <span>&#8599;</span></a></li>
+        <li><a href="https://dribbble.com/muidemakz" target="_blank" rel="noopener">Dribbble <span>&#8599;</span></a></li>
+        <li><a href="https://www.behance.net/oemakanju" target="_blank" rel="noopener">Behance <span>&#8599;</span></a></li>
+        <li><a href="https://www.instagram.com/oluwaexcellent" target="_blank" rel="noopener">Instagram <span>&#8599;</span></a></li>
+      </ul>
+    </aside>
+    <div class="stage-slot" id="stageSlot">
+    <section class="stage" id="stage" aria-label="Case studies">
+      <div class="stage-body" id="stageBody">
+        <div class="view is-active" data-view="home">
+          <div class="tiles" aria-label="Selected work">
+            <div class="tiles-set">
+              <div class="tile-col">
+                <a class="tile" href="omnibiz-speech-to-order.html">
+                  <span class="tile-media tile-media--paper">
+                    <video class="is-contain" muted loop playsinline preload="metadata" poster="videos/speech-to-order/speech-to-order-entry-poster.png" aria-hidden="true">
+                      <source src="videos/speech-to-order/speech-to-order-entry.webm" type="video/webm">
+                      <source src="videos/speech-to-order/speech-to-order-entry.mp4" type="video/mp4">
+                    </video>
+                  </span>
+                  <span class="tile-arrow" aria-hidden="true">&#8599;</span>
+                  <span class="tile-cap">
+                    <h2 class="tile-title">Ordering and support, separated: complaint sessions fell from roughly 90% to 65%.</h2>
+                    <p class="tile-meta">OmniRetail &middot; Led UX design</p>
+                  </span>
+                </a>
+                <a class="tile" href="omnione.html">
+                  <span class="tile-media">
+                    <iframe data-src="artifacts/animation/omnione/preview.html?embed=1&amp;canvas=1" title="Omnione design system animation" tabindex="-1" aria-hidden="true"></iframe>
+                  </span>
+                  <span class="tile-arrow" aria-hidden="true">&#8599;</span>
+                  <span class="tile-cap">
+                    <h2 class="tile-title">One design system, one shared language for four product teams.</h2>
+                    <p class="tile-meta">OmniRetail &middot; Senior Product Designer &amp; Design Manager</p>
+                  </span>
+                </a>
+                <a class="tile" href="moniepoint-verification.html">
+                  <span class="tile-media compare">
+                    <img class="cmp-before" src="images/moniepoint/status-before.png" alt="Moniepoint account status before the redesign">
+                    <img class="cmp-after" src="images/moniepoint/status-after.png" alt="" loading="lazy">
+                    <span class="cmp-line" aria-hidden="true"><i></i></span>
+                    <span class="cmp-label cmp-label--b" aria-hidden="true">Before</span>
+                    <span class="cmp-label cmp-label--a" aria-hidden="true">After</span>
+                  </span>
+                  <span class="tile-arrow" aria-hidden="true">&#8599;</span>
+                  <span class="tile-cap">
+                    <h2 class="tile-title">Rethinking account verification so merchants always know their status and limits.</h2>
+                    <p class="tile-meta">Independent &middot; UI design</p>
+                  </span>
+                </a>
+                <a class="tile" href="sun-king.html">
+                  <span class="tile-media compare compare--pan">
+                    <img class="cmp-before" src="images/sun-king/before-page-full.png" alt="Sun King smartphone page before the rebuild">
+                    <img class="cmp-after" src="images/sun-king/after-page-full.png" alt="" loading="lazy">
+                    <span class="cmp-line" aria-hidden="true"><i></i></span>
+                    <span class="cmp-label cmp-label--b" aria-hidden="true">Before</span>
+                    <span class="cmp-label cmp-label--a" aria-hidden="true">After</span>
+                  </span>
+                  <span class="tile-arrow" aria-hidden="true">&#8599;</span>
+                  <span class="tile-cap">
+                    <h2 class="tile-title">Rebuilding a smartphone marketplace page, scored before and after.</h2>
+                    <p class="tile-meta">Independent &middot; UI design</p>
+                  </span>
+                </a>
+              </div>
+
+              <div class="tile-col">
+                <a class="tile" href="teesaslms.html">
+                  <span class="tile-media reel" data-step="3200">
+                    <img class="is-on" src="images/teesas/first-version.png" alt="Teesas LMS first version">
+                    <img src="images/teesas/second-version.png" alt="" loading="lazy">
+                    <img src="images/teesas/current-version-dashboard-1.png" alt="" loading="lazy">
+                  </span>
+                  <span class="tile-arrow" aria-hidden="true">&#8599;</span>
+                  <span class="tile-cap">
+                    <h2 class="tile-title">Evolving an LMS through four versions.</h2>
+                    <p class="tile-meta">Teesas Education &middot; 2023&ndash;2024 &middot; Product design</p>
+                  </span>
+                </a>
+                <a class="tile" href="fundall.html">
+                  <span class="tile-media tile-media--mint">
+                    <video muted loop playsinline preload="metadata" poster="videos/fundall/sign-in-poster.png" aria-hidden="true">
+                      <source src="videos/fundall/sign-in-loop.mp4" type="video/mp4">
+                    </video>
+                  </span>
+                  <span class="tile-arrow" aria-hidden="true">&#8599;</span>
+                  <span class="tile-cap">
+                    <h2 class="tile-title">Bringing Salary Advance into Fundall's mobile app.</h2>
+                    <p class="tile-meta">Fundall &middot; Lead designer</p>
+                  </span>
+                </a>
+                <a class="tile" href="valideity.html">
+                  <span class="tile-media">
+                    <iframe data-src="artifacts/animation/valideity/preview.html?embed=1" title="Valideity pricing study animation" tabindex="-1" aria-hidden="true"></iframe>
+                  </span>
+                  <span class="tile-arrow" aria-hidden="true">&#8599;</span>
+                  <span class="tile-cap">
+                    <h2 class="tile-title">Pressure-testing Valideity's pricing flow with AI-simulated users.</h2>
+                    <p class="tile-meta">Independent &middot; UI design</p>
+                  </span>
+                </a>
+                <a class="tile" href="empty-state.html">
+                  <span class="tile-media reel" data-step="3200">
+                    <img class="is-on" src="images/omnibiz/initial-landing-page-for-unserved.png" alt="Omnibiz landing page before the redesign">
+                    <img src="images/omnibiz/new-landing-page-for-unserved-market-state.png" alt="" loading="lazy">
+                    <img src="images/omnibiz/preorder-state-flow.png" alt="" loading="lazy">
+                  </span>
+                  <span class="tile-arrow" aria-hidden="true">&#8599;</span>
+                  <span class="tile-cap">
+                    <h2 class="tile-title">Making &ldquo;not here yet&rdquo; feel like a preorder.</h2>
+                    <p class="tile-meta">OmniRetail &middot; UX design</p>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="stage-loading" id="stageLoading" hidden aria-label="Loading" role="status"><div class="sk" aria-hidden="true"><span class="sk-eyebrow"></span><span class="sk-title"></span><span class="sk-title sk-title--short"></span><span class="sk-text"></span><span class="sk-text sk-text--mid"></span><span class="sk-text sk-text--short"></span><span class="sk-block"></span></div></div>
     </section>
+    </div>
+  </main>
 
-    <section class="shelf">
-      <div class="landing-card-stack">
-        <a class="landing-card landing-card--work" href="omnibiz-speech-to-order.html">
-          <div class="landing-card-head"><span>Real-world work</span><span class="landing-card-dot" aria-hidden="true"></span></div>
-          <div class="landing-card-visual landing-card-visual--work">
-            <div class="landing-work-tags" aria-hidden="true"><span>Ordering</span><span>Commerce</span><span>Voice</span></div>
-            <figure class="landing-photo landing-photo--voice">
-              <img src="videos/speech-to-order/new-flow-chat-poster.png" width="776" height="1700" alt="Omnibiz home screen with separate Place an order and Raise a complaint choices">
-              <figcaption>Omnibiz · Speech-to-Order</figcaption>
-            </figure>
-          </div>
-          <div class="landing-card-copy">
-            <h2>Clear choice before voice.</h2>
-            <p>Ordering and support have separate choices before a retailer enters the assistant.</p>
-            <span class="landing-card-cta">Read the shipped case study</span>
-          </div>
-        </a>
-        <a class="landing-card landing-card--exploration" href="moniepoint-verification.html">
-          <div class="landing-card-head"><span>Independent exploration</span><span class="landing-card-dot" aria-hidden="true"></span></div>
-          <div class="landing-card-visual landing-card-visual--pair">
-            <figure class="landing-photo landing-photo--before">
-              <img src="images/moniepoint/status-before.png" width="499" height="1294" alt="Before: account status gives conflicting Level 2 and Level 3 information">
-              <figcaption>Before</figcaption>
-            </figure>
-            <figure class="landing-photo landing-photo--after">
-              <img src="images/moniepoint/status-after.png" width="499" height="1553" alt="After: account status says Level 2 and shows four of five checks complete">
-              <figcaption>After</figcaption>
-            </figure>
-          </div>
-          <div class="landing-card-copy">
-            <h2>Account status, reconciled.</h2>
-            <p>The original welcomed merchants to Level 3 while saying they were on Level 2. The redesign was checked in matched synthetic tests. Predicted, not production evidence.</p>
-            <span class="landing-card-cta">Read the independent exploration</span>
-          </div>
-        </a>
-        <a class="landing-card landing-card--teesas" href="teesaslms.html">
-          <div class="landing-card-head"><span>Live product · Education</span><span class="landing-card-dot" aria-hidden="true"></span></div>
-          <div class="landing-card-visual landing-card-visual--single">
-            <figure class="landing-photo landing-photo--wide">
-              <img src="images/teesas/banner.png" width="1860" height="624" alt="Teesas learning platform interface">
-              <figcaption>Teesas LMS</figcaption>
-            </figure>
-          </div>
-          <div class="landing-card-copy">
-            <h2>Four versions, one evolving LMS.</h2>
-            <p>A live education product shaped through successive versions for students, teachers and parents.</p>
-            <span class="landing-card-cta">Read the Teesas case study</span>
-          </div>
-        </a>
-        <a class="landing-card landing-card--sunking" href="sun-king.html">
-          <div class="landing-card-head"><span>Independent exploration</span><span class="landing-card-dot" aria-hidden="true"></span></div>
-          <div class="landing-card-visual landing-card-visual--single">
-            <figure class="landing-photo landing-photo--wide">
-              <img src="images/sun-king/after-page-full.png" width="480" height="600" alt="Rebuilt Sun King smartphone marketplace page">
-              <figcaption>Sun King · Rebuilt page</figcaption>
-            </figure>
-          </div>
-          <div class="landing-card-copy">
-            <h2>A clearer path through the marketplace.</h2>
-            <p>An independent page rebuild explored with clearly labeled Predicted evidence, not live user results.</p>
-            <span class="landing-card-cta">Read the Sun King exploration</span>
-          </div>
-        </a>
-        <a class="landing-card landing-card--omnione" href="omnione.html">
-          <div class="landing-card-head"><span>OmniRetail · Design system</span><span class="landing-card-dot" aria-hidden="true"></span></div>
-          <div class="landing-card-visual landing-card-visual--single">
-            <figure class="landing-photo landing-photo--wide">
-              <img src="images/omnione/omnione-design-system-cover-banner.png" width="1600" height="900" alt="OmniOne design system library overview">
-              <figcaption>OmniOne design system</figcaption>
-            </figure>
-          </div>
-          <div class="landing-card-copy">
-            <h2>One design language for four product teams.</h2>
-            <p>A shared system connecting product interfaces across OmniRetail's operating systems.</p>
-            <span class="landing-card-cta">Read the OmniOne case study</span>
-          </div>
-        </a>
-        <a class="landing-card landing-card--fundall" href="fundall.html">
-          <div class="landing-card-head"><span>Live product · Fintech</span><span class="landing-card-dot" aria-hidden="true"></span></div>
-          <div class="landing-card-visual landing-card-visual--single">
-            <figure class="landing-photo landing-photo--wide">
-              <img src="images/fundall/cover-phones.png" width="800" height="600" alt="Fundall mobile app screens">
-              <figcaption>Fundall · Salary advance</figcaption>
-            </figure>
-          </div>
-          <div class="landing-card-copy">
-            <h2>Salary advance, inside the app.</h2>
-            <p>Research and product design for bringing salary advance into Fundall's mobile experience.</p>
-            <span class="landing-card-cta">Read the Fundall case study</span>
-          </div>
-        </a>
-      </div>
-      <div class="shelf-links">
-        <a class="shelf-link" href="mailto:muidemakz@gmail.com">
-          <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="5" width="18" height="14" rx="1"></rect>
-            <path d="M3 7l9 6 9-6"></path>
-          </svg>
-          <span class="link-text">Email Me &rarr;</span>
-        </a>
-        <a class="shelf-link" href="about.html">
-          <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="8" r="4"></circle>
-            <path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path>
-          </svg>
-          <span class="link-text">About Me &rarr;</span>
-        </a>
-        <a class="shelf-link" href="Excellent_Makanju_Resume_2026.pdf" download>
-          <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3v12"></path>
-            <path d="M7.5 10.5L12 15l4.5-4.5"></path>
-            <path d="M4 19h16"></path>
-          </svg>
-          <span class="link-text">Download CV &darr;</span>
-        </a>
-      </div>
-    </section>
-  </div>
-
+  <script src="js/intro-preview.js"></script>
+  <script src="js/home-loop-preview.js"></script>
+  <script src="js/home-media-preview.js"></script>
+  <script src="js/board-cursors.js"></script>
+  <script src="js/board-config.js"></script>
+  <script src="js/board.js"></script>
+  <script src="js/shell-preview.js"></script>
 </body>
-
 </html>

@@ -11,12 +11,13 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Speech-to-Order &middot; Muidemakz</title>
+  <title>Speech-to-Order &middot; Muidemakz</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/case-study.css">
+<link rel="stylesheet" href="css/case-study-preview.css?v=20261107-5">
 <style>
 /* [REMOVE ONCE FILLED IN] visual flag for the still-missing screenshots
    on this page only — every real case study on the site has this
@@ -75,8 +76,9 @@
   .case-phone-pair { padding-bottom: 20px; grid-template-columns: minmax(0, 1fr); gap: 28px; max-width: 300px; }
 }
 </style>
+  <script>try{var d=document.documentElement,m=localStorage.getItem("ui-rail");if(m==="collapsed")d.classList.add("rail-collapsed");if(m==="focus")d.classList.add("focus-mode")}catch(e){}</script>
 </head>
-<body class="type-outfit">
+<body class="type-outfit case-study-preview">
 
 <!-- [REVERT POINT] TEST CHANGE, round 21 -- shared header component,
      see js/header.js. Was a hardcoded <header class="site-header"> copy. -->
@@ -539,7 +541,8 @@
   </div>
 </footer>
 
-<script src="js/case-quicknav.js"></script>
+<script src="js/case-study-preview.js?v=20261107-3"></script>
+<script src="js/case-panel-preview.js"></script>
 <script>
   (function () {
     var clips = document.querySelectorAll('.case-phone-video');

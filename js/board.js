@@ -534,7 +534,7 @@
       var realN = Object.keys(reals).length;
       chip.title = 'You (large mint cursor with a ring)' + (o.length ? ' and ' + o.length + ' other' + (o.length === 1 ? '' : 's') : '') +
         '. Others may be above or below you on the page, so scroll to find them.' +
-        (CFG.simulated && sims.some(function (s) { return s.here; }) ? ' Some visitors are demo cursors when few people are here.' : (realN ? '' : ''));
+        '';
     }
 
     /* ---------- Simulated visitors ---------- */

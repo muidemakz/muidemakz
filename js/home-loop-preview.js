@@ -1,4 +1,4 @@
-/* Endless looping feed for index-preview.html (desktop). Clones the tile set
+/* Endless looping feed for index.html (desktop). Clones the tile set
    so there are three copies, keeps the scroll position inside the middle
    copy, and re-seats it by exactly one set height whenever it drifts out.
    Nothing here animates. Scrolling is the visitor's own: wheel, trackpad,

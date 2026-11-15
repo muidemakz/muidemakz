@@ -25,8 +25,8 @@
   function icon(name) { return '<svg viewBox="0 0 24 24" aria-hidden="true">' + I[name] + '</svg>'; }
 
   var NAV = [
-    ['work', 'my-work-preview.html', 'All work', 'grid'],
-    ['about', 'about-preview.html', 'About', 'user']
+    ['work', 'my-work.html', 'All work', 'grid'],
+    ['about', 'about.html', 'About', 'user']
   ];
   var nav = NAV.map(function (n) {
     return '<a href="' + n[1] + '" title="' + n[2] + '"' + (n[0] === active ? ' aria-current="page"' : '') + '>' + icon(n[3]) + '<span>' + n[2] + '</span></a>';
@@ -43,7 +43,7 @@
       '</div>' +
     '</div>' +
     '<div class="rail-full rail-intro">' +
-      '<h1 class="rail-name"><a href="index-preview.html">Excellent Makanju<span>.</span></a></h1>' +
+      '<h1 class="rail-name"><a href="index.html">Excellent Makanju<span>.</span></a></h1>' +
       '<p class="rail-bio">I turn <strong>complex financial products</strong> and B2B workflows into clear, usable experiences.</p>' +
     '</div>' +
     '<nav class="rail-nav" aria-label="Main">' + nav + '</nav>' +
