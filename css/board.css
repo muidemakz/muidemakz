@@ -315,3 +315,8 @@ html.embed .site-header, html.embed .case-preview-notice, html.embed .site-foote
 
 /* The MM cursor carries a short invitation, so its pill may be wider than a name */
 .pc--bot .pc-pill { max-width: 260px; white-space: nowrap; }
+
+/* Ask MM: suggested questions sit on one smaller row that scrolls sideways */
+.guide-chips { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 12px; scrollbar-width: none; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent); }
+.guide-chips::-webkit-scrollbar { display: none; }
+.guide-chip { flex: 0 0 auto; min-height: 28px; padding: 0 10px; font-size: 12px; white-space: nowrap; }

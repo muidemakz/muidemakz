@@ -544,3 +544,8 @@ html[data-theme="light"] .wb.is-art .ab-ctrl { box-shadow: 0 10px 26px rgba(40, 
   .peek-bar span { left: 0; width: 60%; }
 }
 html[data-theme="light"] .peek { box-shadow: 0 18px 44px rgba(40, 30, 20, .2); }
+.st-ask label, .st-ask input { min-width: 0; }
+.st-ask input { box-sizing: border-box; width: 100%; }
+
+/* Only the artboard is a canvas: the page around it (search, filters) is plain */
+html.board:has(.wb) { background-image: none; }
