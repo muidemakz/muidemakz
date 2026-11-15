@@ -8,3 +8,11 @@ EXPLORATION_PLAN.md
 
 # source screen recordings; pages use the compressed .mp4/.webm copies
 *.mov
+
+# working files, not used by the site
+tmp/
+artifacts/animation/sun-king/frames/
+artifacts/animation/sun-king/frames30/
+videos/sun-king/
+# private notes
+docs/interview-prep-*.md

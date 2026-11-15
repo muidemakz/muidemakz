@@ -1,0 +1,356 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Sun King motion</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Outfit:wght@400;500;600;700;800&family=Source+Serif+4:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#171046;--paper:#f5f5f2;--accent:#4520e9;--purple:#4520e9;--mint:#8fe0b0}
+*{box-sizing:border-box;margin:0}
+html,body{background:#000;overflow:hidden}
+#stage{position:absolute;left:0;top:0;overflow:hidden;font-family:Outfit,sans-serif;color:var(--ink);
+  background:var(--paper) repeating-linear-gradient(135deg,transparent 0 13px,rgba(23,16,70,.08) 13px 15px)}
+.layer{position:absolute;inset:0;display:none}
+
+/* opener */
+#open img{position:absolute;left:0;width:100%;transform-origin:0 0}
+#openShade{position:absolute;left:0;right:0;bottom:0;height:78%;background:linear-gradient(transparent,rgba(10,12,20,.74) 45%,rgba(10,12,20,.8))}
+#openCap{position:absolute;left:6%;bottom:20%;color:#fff;font-weight:800;line-height:1.02;letter-spacing:-.02em;text-shadow:0 2px 24px rgba(0,0,0,.35)}
+#flash{position:absolute;inset:0;background:#fff;opacity:0}
+
+/* window shell */
+.win{position:absolute;left:0;top:0;width:1600px;height:976px;transform-origin:0 0;border-radius:18px;overflow:hidden;background:#fff;
+  box-shadow:0 40px 90px rgba(20,24,40,.32),0 0 0 2px var(--ink);display:none}
+.bar{height:38px;background:#eeece6;display:flex;align-items:center;gap:9px;padding:0 16px;font:500 15px Inter,sans-serif;color:#55565f;border-bottom:1px solid #d9d7d0}
+.bar i{width:12px;height:12px;border-radius:50%;background:#d0cec6;display:block}
+.bar b{font-weight:500;margin-left:12px}
+.body{position:absolute;left:0;top:38px;width:1600px;height:938px;overflow:hidden}
+.body>img{position:absolute;left:0;top:0;width:1600px;display:block}
+
+/* claude */
+#claudeBody{background:#fff;font-family:Inter,sans-serif;color:#1f1e1d}
+#home{position:absolute;left:470px;width:660px;top:232px}
+#greet{display:flex;justify-content:center;align-items:center;gap:14px;font:400 42px "Source Serif 4",Georgia,serif;margin-bottom:22px;letter-spacing:-.01em}
+#composer{border:1px solid #d9d7d0;border-radius:20px;padding:20px 20px 14px;box-shadow:0 6px 22px rgba(0,0,0,.05);background:#fff}
+#ptext{font-size:18px;line-height:1.5;min-height:54px;color:#1f1e1d}
+#ptext.empty{color:#8a8880}
+#ptext .sk{color:#c15f3c;font-weight:600}
+.caret{display:inline-block;width:2px;height:1.05em;background:#1f1e1d;vertical-align:-.15em;margin-left:1px}
+#ctools{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:22px;color:#55565f}
+#send{width:34px;height:34px;border-radius:10px;background:#c15f3c;color:#fff;display:none;align-items:center;justify-content:center;font-size:19px}
+#crow{display:flex;justify-content:space-between;font-size:15px;margin-top:14px;padding:0 16px}
+#crow span span{color:#77756e}
+#recent{display:flex;justify-content:space-between;font-size:14px;color:#77756e;margin-top:50px;padding:0 8px}
+#cards{display:flex;gap:16px;margin-top:14px}
+#cards div{flex:1;height:112px;border:1px solid #e4e2db;border-radius:12px;background:linear-gradient(#f4f3ee,#faf9f6)}
+#chat{position:absolute;left:400px;width:800px;top:60px;display:none}
+#bubble{margin-left:90px;background:#f0eee6;border-radius:16px;padding:16px 20px;font-size:18px;line-height:1.5}
+#bubble .sk{color:#c15f3c;font-weight:600}
+#doing{display:flex;align-items:center;gap:12px;margin:34px 0 18px;font:400 25px "Source Serif 4",Georgia,serif}
+.st{display:flex;gap:14px;align-items:baseline;font-size:20px;line-height:1.35;padding:9px 0;opacity:0}
+.st u{text-decoration:none;color:#c15f3c;font-weight:700;width:20px;display:inline-block}
+.st b{font-weight:600}
+#star{display:inline-flex}
+
+/* figma overlays */
+#nameMask{position:absolute;left:555px;top:310px;width:310px;height:68px;background:#2c2c2c;display:none}
+#toast{position:absolute;left:640px;top:148px;background:#0d99ff;color:#fff;font:600 21px Inter,sans-serif;padding:10px 18px;border-radius:10px;display:none}
+
+/* valideity */
+#valFrame{background:#fff}
+#emailMask{position:absolute;left:0;top:836px;width:272px;height:58px;background:#fff;display:none}
+#run{position:absolute;inset:0;background:#f1f2f6;display:none;padding:30px 130px;font-family:Outfit,sans-serif}
+#runCard{background:#fff;border-radius:22px;padding:34px 40px;border:1px solid #e3e4ea}
+#runCard h3{font-size:38px;font-weight:600;margin-bottom:6px}
+#runCard p{font-size:24px;color:#55565f;margin-bottom:18px}
+#runTop{display:flex;justify-content:space-between;font-size:28px;font-weight:500;margin-bottom:10px}
+#runBar{height:8px;background:#e8e8ee;border-radius:9px;overflow:hidden;margin-bottom:20px}
+#runFill{height:100%;background:var(--purple);width:0}
+.p{display:flex;gap:14px;align-items:center;font-size:27px;font-weight:500;padding:8px 0;border-top:1px solid #f0f0f4}
+.p i{width:24px;height:24px;border-radius:50%;border:2px solid #cfd0d8;display:flex;align-items:center;justify-content:center;font:700 14px Inter;color:#fff;font-style:normal}
+.p.on i{background:#2f9e6a;border-color:#2f9e6a}
+.p small{margin-left:auto;font-size:21px;color:#8a8b95;font-weight:400}
+#linkChip{position:absolute;left:0;top:0;display:none;background:var(--ink);color:#fff;font:700 24px "JetBrains Mono",monospace;padding:14px 24px;border-radius:40px;white-space:nowrap;box-shadow:0 14px 34px rgba(0,0,0,.35)}
+
+/* laptop */
+#lap{position:absolute;transform-origin:0 0;width:1000px;display:none}
+#lapLid{background:#14141a;border-radius:26px 26px 0 0;padding:20px 20px 24px}
+#lapScreen{width:960px;height:608px;overflow:hidden;position:relative;background:#fff;border-radius:6px}
+#lapScreen img{position:absolute;width:1380px;left:-212px;top:-129px}
+#lapBase{height:24px;margin:0 -44px;background:linear-gradient(#e6e3dc,#a9a59b);border-radius:0 0 26px 26px;border:2px solid #14141a;border-top:none}
+.tag{position:absolute;font:700 26px "JetBrains Mono",monospace;letter-spacing:.06em;padding:10px 20px;border:3px solid var(--ink);background:#fff;color:var(--ink)}
+.tag.dark{background:var(--ink);color:#fff}
+
+/* redesign wipe */
+#wipe{position:absolute;overflow:hidden;background:#fff;border:3px solid var(--ink);border-radius:18px;display:none;box-shadow:0 30px 70px rgba(20,24,40,.28)}
+#wipe img{position:absolute;left:0;top:0;width:100%}
+#wipeAfter{position:absolute;inset:0;overflow:hidden}
+#wipeLine{position:absolute;top:0;bottom:0;width:5px;background:var(--accent)}
+#redoPrompt{position:absolute;display:none;background:var(--ink);color:#f2f0eb;font:500 31px/1.45 "JetBrains Mono",monospace;padding:34px 38px;border-radius:18px;box-shadow:0 30px 70px rgba(20,24,40,.32)}
+#redoPrompt .sk{color:var(--mint);font-weight:700}
+
+/* score */
+#score{background:#171046;color:#f5f5f2}
+#num{position:absolute;font-weight:800;line-height:.9;letter-spacing:-.04em}
+#scoreKicker{position:absolute;font:700 28px "JetBrains Mono",monospace;letter-spacing:.06em;color:#b9bccb}
+#meter{position:absolute;height:26px;background:#3a3460;border-radius:30px}
+#meterFill{position:absolute;left:0;top:0;bottom:0;border-radius:30px}
+.mk{position:absolute;top:-58px;transform:translateX(-50%);font:700 26px "JetBrains Mono",monospace;white-space:nowrap}
+.notch{position:absolute;top:-8px;bottom:-8px;width:4px;background:#fff;transform:translateX(-50%)}
+.tick{position:absolute;top:44px;font:500 22px "JetBrains Mono",monospace;color:#9a9eb2;transform:translateX(-50%)}
+#stamp{position:absolute;width:300px;height:300px;border-radius:50%;background:#f5f5f2;border:7px solid var(--purple);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--ink);text-align:center;opacity:0}
+#stamp img{width:112px}
+#stamp span{font:700 23px/1.2 "JetBrains Mono",monospace;letter-spacing:.03em}
+#fine{position:absolute;font:500 26px/1.45 "JetBrains Mono",monospace;color:#b9bccb}
+
+/* end */
+#end .w{position:absolute;font-weight:800;letter-spacing:-.03em;opacity:0;white-space:nowrap}#end em{font-style:normal;color:#1f8f5f}#loopSvg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible}
+#site{position:absolute;background:var(--accent);color:#fff;font-weight:800;letter-spacing:-.02em;padding:18px 34px;opacity:0}
+#endSub{position:absolute;font:700 28px "JetBrains Mono",monospace;letter-spacing:.04em;opacity:0}
+#indep{position:absolute;font:500 26px "JetBrains Mono",monospace;color:var(--ink);opacity:0}
+
+/* caption + notes */
+#cap{position:absolute;left:0;right:0;text-align:center;display:none}
+#cap .box{display:inline-block;max-width:86%;background:var(--ink);color:#fff;font-weight:700;padding:.3em .5em;letter-spacing:-.015em;line-height:1.14;border-radius:.2em;box-shadow:0 14px 34px rgba(20,24,40,.3);text-wrap:balance}#cap .w{display:inline-block}#cap .hl{color:var(--mint)}#cap .box.loud{background:#fff;color:var(--ink)}#cap .box.loud .hl{color:var(--purple)}
+#note{position:absolute;left:0;right:0;text-align:center;font:500 22px "JetBrains Mono",monospace;color:#1e2235;display:none}
+#pills{position:absolute;left:0;right:0;display:none;justify-content:center;flex-wrap:wrap;gap:10px;padding:0 40px}
+#pills b{font:700 26px "JetBrains Mono",monospace;border:3px solid var(--ink);padding:9px 16px;background:#fff;color:var(--ink)}
+#pills b.on{background:var(--accent);border-color:var(--accent);color:#fff}
+#cursor{position:absolute;left:0;top:0;display:none;z-index:50;transform-origin:0 0;filter:drop-shadow(0 3px 6px rgba(0,0,0,.4))}
+</style></head><body>
+<div id="stage">
+  <div class="layer" id="open"><img id="openImg"><div id="openShade"></div><div id="openCap"></div><div id="flash"></div></div>
+
+  <div class="win" id="wClaude"><div class="bar"><i></i><i></i><i></i><b>Claude</b></div><div class="body" id="claudeBody">
+    <div id="home">
+      <div id="greet"><span id="star"></span>Afternoon, Excellent</div>
+      <div id="composer"><div id="ptext"></div><div id="ctools"><span>+</span><span id="ctr"><span id="mic">🎙︎</span><span id="send">↑</span></span></div></div>
+      <div id="crow"><span>Project or folder ⌄</span><span>Sonnet 5.5 <span>Medium</span> &nbsp;&nbsp; Manual</span></div>
+      <div id="recent"><span>Recent artifacts</span><span>View all</span></div>
+      <div id="cards"><div></div><div></div><div></div></div>
+    </div>
+    <div id="chat"><div id="bubble"></div><div id="doing"><span id="star2"></span><span id="doingT">Doing it now</span></div><div id="steps"></div></div>
+  </div></div>
+
+  <div class="win" id="wFigma"><div class="bar"><i></i><i></i><i></i><b>Sun King Smartphones · Figma</b></div><div class="body" style="background:#2c2c2c"><img id="figImg"><div id="nameMask"></div><div id="toast">Link copied</div></div></div>
+
+  <div class="win" id="wVal"><div class="bar"><i></i><i></i><i></i><b>Valideity</b></div><div class="body" id="valFrame"><img id="valImg"><div id="emailMask"></div>
+    <div id="run"><div id="runCard"><h3>Simulation running</h3><p>Sun King smartphone page · Figma prototype</p>
+      <div id="runTop"><span id="runCount"></span></div><div id="runBar"><div id="runFill"></div></div><div id="plist"></div></div></div>
+  </div></div>
+
+  <div id="lap"><div id="lapLid"><div id="lapScreen"><img id="lapImg"></div></div><div id="lapBase"></div></div>
+  <div class="tag dark" id="lapTag" style="display:none">BEFORE</div>
+
+  <div id="redoPrompt"></div>
+  <div id="wipe"><img id="wBefore" src="../../../images/sun-king/before-page-full.png"><div id="wipeAfter"><img id="wAfterI" src="../../../images/sun-king/after-page-full.png"></div><div id="wipeLine"></div></div>
+  <div class="tag dark" id="tagB" style="display:none">BEFORE</div><div class="tag" id="tagA" style="display:none;background:var(--accent);border-color:var(--accent);color:#fff">AFTER</div>
+
+  <div class="layer" id="score"><div id="scoreKicker">VALIDEITY SCORE</div><div id="num">76</div>
+    <div id="meter"><div id="meterFill"></div><div class="mk" id="mkB" style="color:#b9bccb">Before 76</div><div class="mk" id="mkA" style="color:#8fe0b0">After 86</div><i class="notch" style="left:76%"></i><i class="notch" id="nA" style="left:86%"></i><span class="tick" style="left:0">0</span><span class="tick" style="left:100%">100</span></div>
+    <div id="stamp"><img src="../../../images/valideity/logo.png"><span>TESTED WITH<br>VALIDEITY</span></div><div id="fine"></div></div>
+
+  <div class="layer" id="end"><div class="w" id="e1"><em>Research</em> shapes the design.</div><div class="w" id="e2"><em>Testing</em> shows what to fix.</div><div class="w" id="e3">Then the <em id="eLoop">loop</em> starts again<span id="eEnd">.</span></div><svg id="loopSvg"><path id="loopPath" pathLength="1" fill="none" stroke="#1f8f5f" stroke-width="7" stroke-linecap="round"/><polygon id="loopHead" fill="#1f8f5f"/></svg><div id="endSub">FULL CASE STUDY</div><div id="site">muidemakz.com</div><div id="indep">Independent concept. Not affiliated with Sun King.</div></div>
+
+  <div id="pills"></div>
+  <div id="cap"></div>
+  <div id="note"></div>
+  <linkchip></linkchip><div id="linkChip">figma.com/proto/sun-king</div>
+  <svg id="cursor" width="44" height="52" viewBox="0 0 22 26"><path d="M2 1l0 19 5-4.6 3.4 8 3.6-1.5-3.4-7.8 6.8-.3z" fill="#111" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
+</div>
+<script>
+const q=new URLSearchParams(location.search),W=+q.get('w')||1080,H=+q.get('h')||1350,FPS=+q.get('fps')||15;
+const $=id=>document.getElementById(id);const stage=$('stage');stage.style.width=W+'px';stage.style.height=H+'px';
+const u=W/1080; // type scale unit
+const T={open:0,claude:6,work:12.2,fig:16.4,share:26.6,play:30,val:34,redo:43.5,score:50.5,end:56.5,stop:62.7};const PACE=1.2;window.DURATION=T.stop*PACE; // PACE: 1 = original speed, higher = slower
+
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const smooth=p=>{p=clamp(p);return p*p*(3-2*p)};
+const sp=(p,k=6.5,f=6)=>p<=0?0:p>=1?1:1-Math.exp(-k*p)*Math.cos(f*p);       // camera: soft spring
+const pop=p=>p<=0?0:p>=1?1:1-Math.exp(-7*p)*Math.cos(9*p);                    // UI: bouncy
+const WW=1600,WH=976,mx=W<H?40:90;
+const s0=Math.min((W-2*mx)/WW,(H*(W<H?.62:.74))/WH),CY=H*(W<H?.40:.46),CX=W/2;
+function cam(keys,t){let c={...keys[0]};for(const k of keys.slice(1)){if(t<k.t)break;const p=sp((t-k.t)/(k.d||.8));for(const a of['x','y','z'])c[a]+=(k[a]-c[a])*p;}return c}
+function place(el,c,ox=0,oy=0){const s=s0*c.z;el.style.display='block';el.style.transform=`translate(${CX-c.x*s+ox}px,${CY-c.y*s+oy}px) scale(${s})`;return{s,ox:CX-c.x*s+ox,oy:CY-c.y*s+oy}}
+const toStage=(g,x,y)=>[g.ox+x*g.s,g.oy+y*g.s];
+function setSrc(img,src){if(img.getAttribute('src')!==src){img.setAttribute('src',src);return img.decode().catch(()=>{})}return null}
+const SRC=+q.get('src')||15; // source footage: frames/ at 15 fps for drafts, frames30/ at 30 fps for finals
+const fr=(clip,sec)=>`frames${SRC===15?'':SRC}/${clip}/${String(Math.max(1,Math.floor(sec*SRC)+1)).padStart(4,'0')}.jpg`;
+const STAR=size=>{let s=`<svg width="${size}" height="${size}" viewBox="-12 -12 24 24">`;for(let i=0;i<12;i++)s+=`<rect x="-.9" y="-11.5" width="1.8" height="8" rx=".9" fill="#d97757" transform="rotate(${i*30})"/>`;return s+'</svg>'};
+$('star').innerHTML=STAR(44);$('star2').innerHTML=STAR(28);
+
+/* text */
+const PROMPT=' Rebuild the Sun King smartphones page and the end-to-end flow of ordering a phone in Figma. Same 7 sections, same order. Copy verbatim from the live page. Every repeated part a component.';
+const SKILL='/ui-design-with-mm';const PLEN=SKILL.length+PROMPT.length;
+const typed=n=>{const a=SKILL.slice(0,n),b=n>SKILL.length?PROMPT.slice(0,n-SKILL.length):'';return `<span class="sk">${a}</span>${b}`};
+$('bubble').innerHTML=typed(PLEN);
+const STEPS=[['Deliberate','ask a few questions, or proceed on stated assumptions'],['Research','read the live page and measure it'],['Foundations','design tokens, the shared colours, sizes and spacing'],['Components','small parts up to whole pages, all in Auto Layout'],['Verify','bindings, states, a side-by-side with the source']];
+$('steps').innerHTML=STEPS.map(s=>`<div class="st"><u>✓</u><span><b>${s[0]}:</b> ${s[1]}</span></div>`).join('');
+const PS=['P1 · Budget Smartphone Comparison Shopper','P2 · Nigerian Installment Smartphone Shopper','P3 · Lagos Small-Business Owner','P4 · Nigerian Online Shopper Professional','P5 · Cautious Lead-Gen Form Filler','P6 · Budget Smartphone Comparison Shopper','P7 · Cautious Lead-Gen Form Filler','P8 · Nigerian Online Shopper Professional','P9 · Nigerian Installment Smartphone Shopper','P10 · Lagos Small-Business Owner'];
+$('plist').innerHTML=PS.map(p=>`<div class="p"><i>✓</i><span>${p}</span><small></small></div>`).join('');
+const REDO='<span class="sk">Use /ui-design-with-mm.</span> Edit and update the existing Sun King smartphone designs in Figma… treat the Valideity study as a lead, not a measurement.';
+const PAGES=['Reference','Foundations','Components','Screens','BEFORE'];
+$('pills').innerHTML=PAGES.map(p=>`<b>${p}</b>`).join('');
+
+/* opener layout */
+const OPEN_H=W*1920/1080;const OPEN_Y=W<H?-(OPEN_H-H)*.24:-(OPEN_H-H)*.3;
+const capEl=$('openCap');capEl.innerHTML='Can one<br>design skill<br>move <span style="color:#8fe0b0">the score?</span>';capEl.style.fontSize=(W<H?104*u:90)+'px';
+const LAPTOP=[.49,.455]; // laptop on the desk, fraction of source frame
+
+function caption(t,txt,a,b){const c=$('cap');if(t<a||t>b)return false;
+  c.style.display='block';
+  if(c.dataset.t!==txt){c.dataset.t=txt;let hl=false;c.innerHTML='<div class="box">'+txt.split(' ').map(w=>{const on=w.startsWith('*');if(on)hl=true;const cls=hl?'w hl':'w';if(w.endsWith('*'))hl=false;return '<span class="'+cls+'">'+w.split('*').join('')+'</span>'}).join(' ')+'</div>'}
+  const box=c.firstChild;const loud=t>=T.score&&t<T.end;box.className='box'+(loud?' loud':'');box.style.fontSize=(W<H?(loud?62:58):46)+'px';
+  const p=pop((t-a)/.45);c.style.bottom=(W<H?.2:.09)*H+'px';c.style.opacity=smooth((b-t)/.18);c.style.transform='translateY('+((1-p)*36)+'px)';
+  [...box.children].forEach((e,i)=>{const q=pop((t-a-.06-i*.055)/.32);e.style.opacity=clamp(q*1.6);e.style.transform='translateY('+((1-q)*18)+'px)'});return true}
+function note(t,txt,a,b){if(t<a||t>b)return;const n=$('note');n.style.display='block';n.innerHTML='<span style="background:#f5f5f2;padding:3px 10px">'+txt+'</span>';n.style.bottom=(W<H?.022:.012)*H+'px';n.style.opacity=smooth((t-a)/.3)*smooth((b-t)/.2)}
+function cursorAt(x,y,t,clickT){const c=$('cursor');c.style.display='block';const pressed=clickT&&t>clickT&&t<clickT+.14;c.style.transform=`translate(${x}px,${y}px) scale(${pressed?.82:1})`}
+const lerp=(a,b,p)=>a+(b-a)*p;
+
+window.seek=async function(t){
+  t=t/PACE;
+  const wait=[];
+  for(const id of['open','score','end'])$(id).style.display='none';
+  for(const id of['wClaude','wFigma','wVal','lap','lapTag','wipe','tagA','tagB','redoPrompt','pills','cap','note','linkChip','cursor'])$(id).style.display='none';
+
+  /* 1 OPENER */
+  if(t<T.claude){const el=$('open');el.style.display='block';
+    wait.push(setSrc($('openImg'),fr('o',t)));
+    const push=smooth((t-5.15)/.85),z=1+push*push*7;
+    const lx=LAPTOP[0]*W,ly=LAPTOP[1]*OPEN_H+OPEN_Y;
+    $('openImg').style.transform=`translate(${lx-(lx)*z}px,${ly-(ly-OPEN_Y)*z}px) scale(${z})`;$('openImg').style.top='0';$('openImg').style.left='0';
+    // caption sits behind the chair: its edge is carried by the chair's trailing side
+    const edge=-5+smooth((t-2.75)/1.0)*115;
+    capEl.style.clipPath=`inset(-20% ${100-edge}% -20% -5%)`;
+    const o=1-smooth((t-5.15)/.35);capEl.style.opacity=o;
+    $('openShade').style.opacity=smooth((t-2.9)/.8)*o;
+    $('flash').style.opacity=smooth((t-5.62)/.36);
+  }
+
+  /* 2-3 CLAUDE */
+  if(t>=T.claude&&t<T.fig+.7){
+    const r=t;const typing=t<T.work;
+    const c=cam([{t:0,x:800,y:488,z:3},{t:T.claude,x:800,y:488,z:1,d:.8},{t:T.claude+1.1,x:800,y:400,z:2.05,d:.9},{t:T.work,x:800,y:300,z:1.75,d:.8},{t:T.work+1.2,x:800,y:340,z:1.85,d:3}],r);
+    const exit=sp((t-T.fig)/.7);
+    place($('wClaude'),c,-exit*W*1.15);
+    $('home').style.display=typing?'block':'none';$('chat').style.display=typing?'none':'block';
+    if(typing){
+      const n=Math.floor(clamp((t-(T.claude+1.5))/3.2)*PLEN);
+      const pt=$('ptext');if(n===0){pt.className='empty';pt.textContent='How can I help you today?'}else{pt.className='';pt.innerHTML=typed(n)+(Math.floor(t*3)%2||n<PLEN?'<span class="caret"></span>':'')}
+      const ready=n>=PLEN;$('send').style.display=ready?'flex':'none';$('mic').style.display=ready?'none':'inline';
+      if(t>T.claude+4.7){const g=toStage(place($('wClaude'),c,-exit*W*1.15),1095,0);
+        const hy=$('composer').getBoundingClientRect();const sendR=$('send').getBoundingClientRect();
+        const p=smooth((t-(T.claude+4.7))/.75);cursorAt(lerp(W*.9,sendR.left+sendR.width*.4,p),lerp(H*.85,sendR.top+sendR.height*.5,p),t,T.work-.2)}
+    }else{
+      const lt=t-T.work;[...document.querySelectorAll('.st')].forEach((e,i)=>{const p=pop((lt-.45-i*.62)/.4);e.style.opacity=clamp(p);e.style.transform=`translateY(${(1-p)*12}px)`});
+      $('doingT').textContent=lt>3.75?'Done. Opening the Figma file':'Doing it now';
+      $('star2').firstChild.style.transform=`rotate(${lt*90}deg)`;
+    }
+    caption(t,'The rebuild starts with *one prompt.*',T.claude+.6,T.work-.05);
+    caption(t,'It follows *my design process,* step by step.',T.work+.2,T.fig-.05);
+  }
+
+  /* 4-5 FIGMA */
+  if(t>=T.fig&&t<T.play+.7){
+    const lt=t-T.fig;
+    // [scene-time from, to, source from, to] in the Figma recording (frames start at 4s)
+    const segs=[[0,2,5.2,7.6],[2,3.9,9.5,10.2],[3.9,6.4,14.0,18.9],[6.4,8,21.6,24.4],[8,10.2,25.0,27.4],[10.2,11,27.9,29.0],[11,14,29.4,32.2]];
+    let src=32.2,pg=4;segs.forEach((s,i)=>{if(lt>=s[0]&&lt<s[1]){src=lerp(s[2],s[3],(lt-s[0])/(s[1]-s[0]));pg=Math.min(i,4)}});
+    wait.push(setSrc($('figImg'),fr('a',src-4)));
+    const b=T.share;
+    const c=cam([{t:0,x:800,y:488,z:1},{t:T.fig+.5,x:840,y:480,z:1.08,d:1.5},{t:T.fig+2,x:900,y:440,z:1.55,d:.7},{t:T.fig+3.9,x:820,y:420,z:1.25,d:.7},{t:T.fig+6.4,x:800,y:480,z:1.08,d:.7},{t:T.fig+8,x:800,y:430,z:1.3,d:.7},{t:b+.7,x:820,y:230,z:1.5,d:.7},{t:b+1.5,x:900,y:170,z:2.05,d:.7}],t);
+    const enter=1-sp((t-T.fig)/.7),exit=sp((t-T.play)/.7);
+    const g=place($('wFigma'),c,enter*W*1.15,-exit*H*1.2);
+    if(t<T.share+.3){const pl=$('pills');pl.style.display='flex';pl.style.bottom=(W<H?.35:.2)*H+'px';[...pl.children].forEach((e,i)=>e.className=i===pg?'on':'');pl.style.opacity=smooth((T.share+.3-t)/.25)}
+    const open=lt>=11;$('nameMask').style.display=open?'block':'none';
+    caption(t,'*A real Figma file,* built in layers.',T.fig+.3,T.share-.05);
+    if(t>=T.share+.1){caption(t,'*Copy the link.* Send it to test.',T.share+.1,T.play-.05);
+      const copy=[948,113+38];const st=toStage(g,copy[0],copy[1]);const clickT=T.share+2.2;
+      if(t>T.share+1.2&&t<T.play){const p=smooth((t-(T.share+1.2))/.9);cursorAt(lerp(W*.8,st[0],p),lerp(H*.7,st[1],p),t,clickT)}
+      $('toast').style.display=t>clickT?'block':'none';$('toast').style.opacity=smooth((t-clickT)/.1);
+      if(t>clickT+.15&&t<T.play+.5){const l=$('linkChip');l.style.display='block';const p=pop((t-clickT-.15)/.45),f=smooth((t-(T.play-.35))/.7);
+        l.style.transform=`translate(${lerp(st[0]-150,W/2-190,p)}px,${lerp(st[1],H*.5,p)+f*H*.8}px) scale(${.6+.4*p})`}
+    }
+  }
+
+  /* playthrough */
+  if(t>=T.play&&t<T.val+.6){
+    const lt=t-T.play,enter=1-sp(lt/.7),exit=sp((t-T.val)/.6);
+    wait.push(setSrc($('lapImg'),fr('l',clamp(lt*2,0,7.9))));
+    const lapS=(W-2*(W<H?30:300))/1088,lw=1000*lapS;const el=$('lap');el.style.display='block';
+    const x=(W-lw)/2-exit*W*1.2,y=H*(W<H?.2:.14)+enter*H*1.1;
+    el.style.transform=`translate(${x}px,${y}px) scale(${lapS})`;
+    const tg=$('lapTag');tg.style.display='block';tg.style.left=(x+10)+'px';tg.style.top=(y-70)+'px';
+    caption(t,'Every step of ordering a phone, *rebuilt.*',T.play+.3,T.val-.05);
+  }
+
+  /* 6 VALIDEITY */
+  if(t>=T.val&&t<T.redo+.6){
+    const v=T.val,click=v+3.1,rep=v+6.1;
+    const enter=1-sp((t-v)/.6),exit=sp((t-T.redo)/.6);
+    const K=1600/1830;
+    const c=cam([{t:0,x:800,y:488,z:1},{t:v+.5,x:900,y:420,z:1.3,d:.7},{t:click-1,x:1330,y:130,z:2.3,d:.8},{t:click+.25,x:800,y:488,z:1.3,d:.7},{t:rep,x:800,y:330,z:1.3,d:.7},{t:rep+1,x:600,y:290,z:2.2,d:.8}],t);
+    const g=place($('wVal'),c,enter*W*1.15,-exit*H*1.2);
+    const runOn=t>=click+.25&&t<rep;$('run').style.display=runOn?'block':'none';
+    const valImg=$('valImg');
+    if(t<click+.25){wait.push(setSrc(valImg,fr('v1',clamp((t-v)*1.3,0,4.9))));$('emailMask').style.display='none'}
+    else{wait.push(setSrc(valImg,fr('v2',.6+clamp((t-rep)*.05,0,.2))));$('emailMask').style.display='block'}
+    if(runOn){const p=clamp((t-(click+.45))/2.3),n=Math.floor(p*10+.001);$('runCount').textContent=`${n} / 10 participants`;$('runFill').style.width=p*100+'%';
+      [...document.querySelectorAll('.p')].forEach((e,i)=>{e.className='p'+(i<n?' on':'');e.lastChild.textContent=i<n?'Finished':'Waiting'})}
+    if(t>click-1.1&&t<click+.25){const st=toStage(g,1750*K,93*K+38);const p=smooth((t-(click-1.1))/.9);cursorAt(lerp(W*.5,st[0],p),lerp(H*.7,st[1],p),t,click)}
+    if(t<v+1.2){const l=$('linkChip');l.style.display='block';const p=sp((t-v)/1);l.style.transform=`translate(${W/2-190}px,${lerp(-120,CY-WH*s0*.42,p)}px) scale(${1-.35*smooth((t-(v+.75))/.4)})`;l.style.opacity=1-smooth((t-(v+.95))/.25)}
+    caption(t,'Then *simulated shoppers* try it.',v+.3,click+.2);
+    caption(t,'*10 sessions.* 5 shopper types.',click+.3,rep-.05);
+    caption(t,'The rebuilt original scores *76.*',rep+.1,T.redo-.05);
+  }
+
+  /* 7 REDESIGN */
+  if(t>=T.redo&&t<T.score+.5){
+    const lt=t-T.redo;
+    if(lt<3.9){
+      const c=cam([{t:0,x:800,y:488,z:1},{t:T.redo+.35,x:800,y:400,z:2.05,d:.8}],t);
+      place($('wClaude'),c,0,(1-sp(lt/.6))*H-sp((lt-3.2)/.6)*H*1.25);
+      $('home').style.display='block';$('chat').style.display='none';
+      const full=REDO.replace(/<[^>]+>/g,''),n=Math.floor(clamp((lt-.7)/1.5)*full.length),sk=23;
+      const pt=$('ptext');pt.className='';pt.innerHTML='<span class="sk">'+full.slice(0,Math.min(n,sk))+'</span>'+full.slice(sk,Math.max(n,sk))+(n<full.length?'<span class="caret"></span>':'');
+      const ready=n>=full.length;$('send').style.display=ready?'flex':'none';$('mic').style.display=ready?'none':'inline';
+      if(lt>2.1&&ready){const r=$('send').getBoundingClientRect(),p=smooth((lt-2.1)/.7);cursorAt(lerp(W*.9,r.left+r.width*.4,p),lerp(H*.85,r.top+r.height*.5,p),t,T.redo+2.9)}
+      caption(t,'The findings shaped *the redesign.*',T.redo+.3,T.redo+3.3)}
+    if(lt>=3.2){const w=$('wipe');w.style.display='block';const ww=W-2*(W<H?60:360),wh=H*(W<H?.62:.72);
+      const yy=H*(W<H?.09:.06)+(1-sp((lt-3.2)/.6))*H;w.style.width=ww+'px';w.style.height=wh+'px';w.style.left=(W-ww)/2+'px';w.style.top=yy+'px';
+      const scroll=smooth((lt-3.5)/3.5)*Math.min(ww*2.1,1200);$('wBefore').style.transform=$('wAfterI').style.transform=`translateY(${-scroll}px)`;
+      const edge=smooth((lt-4)/1.6);$('wipeAfter').style.clipPath=`inset(0 ${(1-edge)*100}% 0 0)`;$('wipeLine').style.left=edge*ww-2+'px';$('wipeLine').style.opacity=edge>0&&edge<1?1:0;
+      $('wAfterI').style.width=ww+'px';
+      const showA=edge>.5;const tag=showA?$('tagA'):$('tagB');tag.style.display='block';tag.style.left=(W-ww)/2+24+'px';tag.style.top=yy+24+'px';
+      caption(t,'Same task. *New design.*',T.redo+3.5,T.score-.05)}
+  }
+
+  /* 8 SCORE */
+  if(t>=T.score&&t<T.end+.5){const lt=t-T.score,el=$('score');el.style.display='block';
+    el.style.transform=`translateY(${(1-sp(lt/.55))*H}px)`;
+    const up=smooth((lt-1)/1.5),val=76+up*10;const n=$('num');n.textContent=Math.round(val);n.style.fontSize=(W<H?430:360)+'px';n.style.left=(W<H?60:120)+'px';n.style.top=H*(W<H?.13:.2)+'px';
+    const k=$('scoreKicker');k.style.left=(W<H?68:128)+'px';k.style.top=H*(W<H?.08:.12)+'px';
+    const m=$('meter');const ml=W<H?68:128,mw=W-2*ml;m.style.left=ml+'px';m.style.width=mw+'px';m.style.top=H*(W<H?.515:.68)+'px';
+    $('meterFill').style.width=val+'%';$('meterFill').style.background=`rgb(${lerp(143,47,up)},${lerp(224,158,up)},${lerp(176,111,up)})`;$('mkB').style.left='76%';$('mkA').style.left='86%';
+    $('mkB').style.top=(W<H?'64px':'64px');$('mkA').style.opacity=$('nA').style.opacity=smooth((lt-2.3)/.3);
+    const st=$('stamp');const sl=clamp((lt-2.5)/.5),sv=pop(sl);st.style.left=(W-300-(W<H?60:120))+'px';st.style.top=H*(W<H?.13:.17)+'px';st.style.opacity=lt>2.5?1:0;st.style.transform=`rotate(-10deg) scale(${lerp(2.4,1,sv)})`;
+    const f=$('fine');f.style.left=ml+'px';f.style.width=mw+'px';f.style.top=H*(W<H?.59:.8)+'px';f.textContent='Rebuilt original vs redesign. 10 simulated sessions each. No real customers.';f.style.opacity=smooth((lt-3)/.4);
+    caption(t,'One improvement. *Still more to solve.*',T.score+3.2,T.end-.05);
+    if(t>T.end){el.style.opacity=1}
+  }
+
+  /* 9 END */
+  if(t>=T.end){const lt=t-T.end,el=$('end');el.style.display='block';const fs=W<H?68:72,lx=W<H?68:160;
+    const pos=[H*.25,H*.325,H*.4];['e1','e2','e3'].forEach((id,i)=>{const x=$(id),p=pop((lt-.15-i*.6)/.5);x.style.fontSize=fs+'px';x.style.left=lx+'px';x.style.top=pos[i]+'px';x.style.opacity=clamp(p);x.style.transform='translateY('+((1-p)*30)+'px)'});
+    // arrow: from the end of line three, round the right side, back down onto "Research"
+    const sv=$('loopSvg'),rEnd=$('eEnd').getBoundingClientRect(),e1=$('e1');
+    const sx=lx+e1.firstChild.getBoundingClientRect().width*.5,sy=pos[0]-10,ax=rEnd.right+16,ay=pos[2]+fs*.62,top=pos[0]-fs*.9,rx=Math.min(W-34,ax+fs*1.2);
+    const pth=$('loopPath');pth.setAttribute('d','M'+ax+' '+ay+' C'+(rx+10)+' '+ay+' '+(rx+10)+' '+top+' '+(rx-90)+' '+top+' L'+(sx+60)+' '+top+' Q'+sx+' '+top+' '+sx+' '+sy);
+    const dp=smooth((lt-2)/.75);pth.style.strokeDasharray='1';pth.style.strokeDashoffset=1-dp;pth.style.opacity=lt>2?1:0;
+    const hd=$('loopHead');hd.setAttribute('points',(sx-16)+','+(sy-14)+' '+(sx+16)+','+(sy-14)+' '+sx+','+(sy+10));hd.style.opacity=dp>=.97?1:0;
+    const sb=$('endSub'),si=$('site'),p=pop((lt-2.9)/.5);sb.style.left=si.style.left=lx+'px';sb.style.top=H*.56+'px';sb.style.opacity=clamp(p);si.style.top=H*.6+'px';si.style.fontSize=(W<H?84:80)+'px';si.style.opacity=clamp(p);si.style.transform='translateY('+((1-p)*40)+'px)';
+    const ind=$('indep'),ip=smooth((lt-3.5)/.5);ind.style.left=lx+'px';ind.style.top=H*.74+'px';ind.style.opacity=ip*.9;
+    $('stage').style.background='';
+  }
+  await Promise.all(wait.filter(Boolean));
+  return true;
+};
+window.ready=(async()=>{await Promise.all(['500 26px "JetBrains Mono"','700 28px "JetBrains Mono"','400 40px Outfit','500 40px Outfit','600 40px Outfit','700 40px Outfit','800 40px Outfit','400 40px Inter','500 40px Inter','600 40px Inter','400 40px "Source Serif 4"'].map(f=>document.fonts.load(f,'Aa0')));await document.fonts.ready;await Promise.all([...document.images].map(i=>i.decode().catch(()=>{})));return true})();
+</script></body></html>

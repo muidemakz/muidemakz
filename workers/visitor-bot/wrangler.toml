@@ -1,0 +1,21 @@
+name = "portfolio-visitor-bot"
+main = "worker.js"
+compatibility_date = "2026-01-01"
+
+[vars]
+# Only these sites may call the bot. Add your real domain; keep localhost for testing.
+ALLOWED_ORIGINS = "https://muidemakz.com,https://www.muidemakz.com,http://localhost:5500"
+DAILY_CAP = "300"
+
+# Optional: a per-visitor rate limit (one reply every few seconds).
+[[unsafe.bindings]]
+name = "RATE_LIMITER"
+type = "ratelimit"
+namespace_id = "1001"
+simple = { limit = 4, period = 60 }
+
+# Optional: a daily spending cap. Create it once with:  npx wrangler kv namespace create COUNTER
+# then paste the id below and remove the leading #.
+# [[kv_namespaces]]
+# binding = "COUNTER"
+# id = "PASTE_KV_ID_HERE"

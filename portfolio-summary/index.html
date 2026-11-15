@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Excellent Makanju · Portfolio Summary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&amp;family=Outfit:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1e2235;
+    --ink-soft: #4a4f66;
+    --paper: #ffffff;
+    --grey: #f3f3f1;
+    --line: #d9dbe3;
+    --accent: #ff3b00;
+    --display: "Baloo 2", sans-serif;
+    --body: "Outfit", "Inter", sans-serif;
+    --mono: "JetBrains Mono", monospace;
+  }
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #888; }
+  body { font-family: var(--body); color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  a { color: var(--ink); }
+
+  .page {
+    width: 210mm; height: 297mm; background: var(--paper);
+    padding: 16mm 18mm 14mm; margin: 0 auto 8mm; position: relative;
+    overflow: hidden; display: flex; flex-direction: column;
+  }
+  @media print {
+    html, body { background: #fff; }
+    .page { margin: 0; page-break-after: always; break-after: page; }
+    .page:last-child { page-break-after: auto; }
+  }
+
+  .kicker { font-family: var(--mono); font-size: 9pt; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 4mm; }
+  h1, h2, h3 { font-family: var(--display); margin: 0; line-height: 1.02; }
+  h2 { font-size: 30pt; font-weight: 800; letter-spacing: -.01em; }
+  h3 { font-size: 15pt; font-weight: 700; }
+  p { margin: 0; font-size: 10.5pt; line-height: 1.5; color: var(--ink); }
+  .muted { color: var(--ink-soft); }
+  .rule { height: 3px; background: var(--accent); width: 34px; margin: 5mm 0 6mm; }
+
+  /* cover */
+  .cover { justify-content: space-between; }
+  .cover h1 { font-size: 54pt; font-weight: 800; letter-spacing: -.02em; }
+  .cover .role { font-family: var(--display); font-size: 20pt; font-weight: 700; color: var(--accent); margin-top: 4mm; }
+  .cover .lede { font-size: 13pt; line-height: 1.45; margin-top: 8mm; max-width: 150mm; }
+  .cover .contact { font-size: 10pt; line-height: 1.8; border-top: 1px solid var(--line); padding-top: 5mm; }
+  .cover .contact a { text-decoration: none; border-bottom: 1px solid var(--accent); }
+  .cover .index { margin-top: 10mm; border-top: 1px solid var(--line); }
+  .cover .index li { display: flex; justify-content: space-between; border-bottom: 1px solid var(--line); padding: 3mm 0; font-size: 10.5pt; list-style: none; }
+  .cover .index ul { margin: 0; padding: 0; }
+  .cover .index span:last-child { font-family: var(--mono); font-size: 9pt; color: var(--ink-soft); }
+
+
+  /* bento cover */
+  .page.bento { padding: 9mm; }
+  .bento-grid { flex: 1; display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(10, 1fr); gap: 3mm; min-height: 0; }
+  .tile { position: relative; overflow: hidden; border: .35px solid rgba(30,34,53,.4); border-radius: 4mm; padding: 4mm; display: flex; flex-direction: column; min-width: 0; min-height: 0; background: var(--paper); }
+  .tile .tag { font-family: var(--mono); font-size: 6.8pt; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-soft); margin: 0; }
+  .tile img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; min-height: 0; flex: 1; border-radius: 2mm; }
+  .tile .cap { position: absolute; left: 3mm; bottom: 3mm; background: var(--ink); color: #fff; font-family: var(--mono); font-size: 6.6pt; letter-spacing: .05em; text-transform: uppercase; padding: 1.3mm 2.4mm; border-radius: 999px; }
+  .tile.media { padding: 0; background: var(--grey); }
+  .tile.media img { border-radius: 0; }
+  .tile.media.contain img { object-fit: contain; padding: 3mm 3mm 9mm; }
+  .t-name { grid-column: 1 / 4; grid-row: 1 / 3; justify-content: space-between; }
+  .t-name h1 { font-family: var(--display); font-size: 40pt; font-weight: 800; line-height: .95; letter-spacing: -.02em; margin: 2mm 0 0; }
+  .t-name .role { font-family: var(--display); font-size: 15pt; font-weight: 700; color: var(--accent); margin: 0; }
+  .t-me { grid-column: 4; grid-row: 1 / 4; background: var(--accent); padding: 0; justify-content: flex-end; }
+  .t-me img { object-fit: contain; object-position: center; height: auto; flex: 1; padding: 2mm; border-radius: 0; }
+  .t-me .cap { background: var(--paper); color: var(--ink); }
+  .t-lede { grid-column: 1 / 4; grid-row: 3; background: var(--ink); color: #fff; justify-content: center; }
+  .t-lede p { color: #fff; font-size: 9.6pt; line-height: 1.42; }
+  .t-omnione { grid-column: 1 / 3; grid-row: 4 / 7; }
+  .t-fundall { grid-column: 3; grid-row: 4 / 7; }
+  .stat { justify-content: space-between; }
+  .stat b { font-family: var(--display); font-size: 25pt; line-height: 1; font-weight: 800; }
+  .stat span { font-size: 7.6pt; line-height: 1.3; color: var(--ink-soft); }
+  .t-s1 { grid-column: 4; grid-row: 4; background: #fff0e8; }
+  .t-s2 { grid-column: 4; grid-row: 5; }
+  .t-s3 { grid-column: 4; grid-row: 6; background: #eaf0ff; }
+  .t-nsimbi { grid-column: 1; grid-row: 7 / 10; }
+  .t-valideity { grid-column: 2 / 4; grid-row: 7 / 9; }
+  .t-build { grid-column: 4; grid-row: 7 / 9; background: #eaf0ff; justify-content: space-between; }
+  .t-build h3 { font-size: 12.5pt; line-height: 1.05; }
+  .t-build p { font-size: 7.8pt; line-height: 1.35; color: var(--ink-soft); }
+  .t-more { grid-column: 2 / 5; grid-row: 9; background: var(--grey); justify-content: center; gap: 2mm; }
+  .t-more .chips { display: flex; flex-wrap: wrap; gap: 1.6mm; }
+  .t-more .chips span { font-size: 7.4pt; border: .35px solid rgba(30,34,53,.4); border-radius: 999px; padding: .8mm 2.4mm; background: var(--paper); }
+  .t-index { grid-column: 1 / 3; grid-row: 10; justify-content: center; }
+  .t-index ol { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: .8mm 4mm; font-size: 7.4pt; }
+  .t-index li span { font-family: var(--mono); color: var(--accent); margin-right: 1.6mm; }
+  .t-contact { grid-column: 3 / 5; grid-row: 10; background: var(--accent); border-color: var(--accent); justify-content: center; }
+  .t-contact, .t-contact a { color: #fff; }
+  .t-contact p { color: #fff; font-size: 8pt; line-height: 1.55; }
+  .t-contact a { text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.7); }
+
+
+  /* bento cover, revision: phones for the mobile products, no stat tiles */
+  .t-omnione { grid-column: 1 / 3; grid-row: 4 / 8; }
+  .t-fundall, .t-nsimbi { grid-row: 4 / 8; background: var(--grey); align-items: center; justify-content: space-between; padding: 4mm 3mm 3mm; }
+  .t-fundall { grid-column: 3; }
+  .t-nsimbi { grid-column: 4; }
+  .phone { position: relative; width: 37mm; aspect-ratio: 9 / 19; border: 1.5mm solid #12131a; border-radius: 6mm; overflow: hidden; background: #fff; box-shadow: 0 1.5mm 3mm rgba(30,34,53,.18); flex: none; }
+  .phone::before { content: ""; position: absolute; top: .8mm; left: 50%; width: 9mm; height: 2.2mm; margin-left: -4.5mm; border-radius: 2mm; background: #12131a; z-index: 2; }
+  .phone img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 0; padding: 0; }
+  .t-fundall .cap, .t-nsimbi .cap { position: static; align-self: center; margin-top: 2mm; }
+  .t-valideity { grid-column: 1 / 4; grid-row: 8 / 10; }
+  .t-more { grid-column: 4; grid-row: 8 / 10; background: var(--grey); justify-content: center; }
+  .t-more .chips { gap: 1.2mm; }
+  .t-more .chips span { font-size: 6.8pt; padding: .6mm 2mm; border-width: .35px; }
+  .t-more .chips span { border-color: rgba(30,34,53,.4); }
+
+
+  /* phone mockups on the case-study pages */
+  .images.phones { margin-top: 6mm; display: flex; justify-content: center; align-items: center; gap: 12mm; background: var(--grey); border-radius: 4mm; padding: 6mm 0; }
+  .images.phones .phone { width: 46mm; }
+  .images.phones .phone img { height: 100%; }
+  .images.phones.sm { padding: 4mm 0; }
+  .images.phones.sm .phone { width: 37mm; }
+
+
+  /* about me page */
+  .about h2 { font-size: 26pt; max-width: 165mm; }
+  .about-top { display: grid; grid-template-columns: 1fr 52mm; gap: 8mm; margin-top: 1mm; align-items: stretch; }
+  .about-top .summary { font-size: 10pt; line-height: 1.5; }
+  .about-top .summary + .summary { margin-top: 2.4mm; }
+  .about-photo { background: var(--accent); border-radius: 4mm; display: flex; align-items: center; justify-content: center; padding: 2mm; }
+  .about-photo img { width: 100%; height: auto; display: block; }
+  .about .stats4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; margin: 5mm 0 1mm; }
+  .about .stats4 div { border-top: 2px solid var(--ink); padding-top: 1.6mm; }
+  .about .stats4 b { font-family: var(--display); font-size: 17pt; display: block; line-height: 1; }
+  .about .stats4 span { font-size: 7.4pt; color: var(--ink-soft); line-height: 1.25; display: block; margin-top: 1mm; }
+  .xp { margin: 0; padding: 0; list-style: none; }
+  .xp li { display: grid; grid-template-columns: 40mm 1fr; gap: 5mm; padding: 2.1mm 0; border-top: .5px solid var(--line); }
+  .xp li:last-child { border-bottom: .5px solid var(--line); }
+  .xp .who b { display: block; font-family: var(--display); font-size: 11pt; line-height: 1.05; }
+  .xp .who span { display: block; font-size: 7.6pt; color: var(--ink-soft); line-height: 1.3; margin-top: .6mm; }
+  .xp .who i { display: block; font-style: normal; font-family: var(--mono); font-size: 7pt; color: var(--accent); margin-top: .6mm; }
+  .xp p { font-size: 8.4pt; line-height: 1.4; }
+  .about .cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6mm; margin-top: auto; padding-top: 4mm; }
+  .about .cols h3 { font-size: 10.5pt; margin-bottom: 1.6mm; }
+  .about .cols p, .about .cols li { font-size: 7.8pt; line-height: 1.4; }
+  .about .cols ul { margin: 0; padding: 0; list-style: none; }
+
+  /* case study pages */
+  .case-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; margin: 6mm 0; border-top: 1px solid var(--line); padding-top: 4mm; }
+  .case-meta div p:first-child { font-family: var(--mono); font-size: 8pt; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-soft); margin-bottom: 1.5mm; }
+  .case-meta div p:last-child { font-size: 10pt; font-weight: 600; }
+  .summary { font-size: 11.5pt; line-height: 1.5; }
+  .bullets { margin: 5mm 0 0; padding: 0; list-style: none; }
+  .bullets li { display: grid; grid-template-columns: 30mm 1fr; gap: 4mm; border-top: 1px solid var(--line); padding: 3mm 0; font-size: 10pt; }
+  .bullets li b { font-family: var(--display); font-size: 13pt; color: var(--accent); }
+  .images { margin-top: auto; display: grid; gap: 4mm; }
+  .images img { display: block; width: 100%; height: auto; background: var(--grey); }
+  .images.two { grid-template-columns: 1fr 1fr; align-items: start; }
+  .images.two img { height: 92mm; object-fit: cover; object-position: top; }
+  .images.one img { height: 96mm; object-fit: cover; object-position: center; }
+  .caption { font-family: var(--mono); font-size: 7.5pt; color: var(--ink-soft); margin-top: 2mm; }
+  .readmore { margin-top: 6mm; display: inline-block; font-weight: 700; font-size: 11pt; text-decoration: none; border-bottom: 2px solid var(--accent); padding-bottom: 1mm; align-self: flex-start; }
+  .foot { margin-top: 6mm; font-family: var(--mono); font-size: 7.5pt; color: var(--ink-soft); }
+
+  /* building */
+  .build-card { border: 1px solid var(--line); padding: 5mm 6mm; margin-top: 5mm; background: var(--paper); }
+  .build-card .tag { display: inline-block; font-family: var(--mono); font-size: 7.5pt; text-transform: uppercase; letter-spacing: .06em; padding: 1mm 2mm; background: var(--ink); color: #fff; margin-bottom: 3mm; }
+  .build-card .tag.live { background: var(--accent); }
+  .build-card p + p { margin-top: 2mm; }
+  .build-card a { font-weight: 700; border-bottom: 2px solid var(--accent); text-decoration: none; font-size: 10pt; }
+
+  /* more work list and expertise */
+  .list { margin: 0; padding: 0; list-style: none; }
+  .list li { display: grid; grid-template-columns: 1fr 14mm; gap: 3mm; padding: 2.6mm 0; border-top: 1px solid var(--line); }
+  .list li:last-child { border-bottom: 1px solid var(--line); }
+  .list .name { font-weight: 700; font-size: 10.5pt; }
+  .list .name a { text-decoration: none; border-bottom: 1px solid var(--accent); }
+  .list .cap { font-size: 9.5pt; color: var(--ink-soft); margin-top: .6mm; }
+  .list .yr { font-family: var(--mono); font-size: 8.5pt; color: var(--ink-soft); text-align: right; padding-top: .5mm; }
+  .group-label { font-family: var(--mono); font-size: 8pt; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin: 5mm 0 1mm; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; margin-top: 6mm; }
+  .tags { display: flex; flex-wrap: wrap; gap: 2mm; margin-top: 3mm; }
+  .tags span { font-size: 9.5pt; border: 1px solid var(--ink); border-radius: 999px; padding: 1.4mm 3.2mm; }
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; margin-top: 3mm; }
+  .stats div { border-top: 3px solid var(--ink); padding-top: 2mm; }
+  .stats b { font-family: var(--display); font-size: 20pt; display: block; line-height: 1; }
+  .stats span { font-size: 8.5pt; color: var(--ink-soft); }
+</style>
+</head>
+<body>
+
+<!-- 1. COVER (bento grid) -->
+<section class="page bento">
+  <div class="bento-grid">
+    <div class="tile t-name">
+      <p class="tag">Portfolio summary · November 2026</p>
+      <div><h1>Excellent<br>Makanju</h1></div>
+      <p class="role">Senior Product Designer</p>
+    </div>
+    <div class="tile t-me"><img src="../images/about/about-me.png" alt="Excellent Makanju"><span class="cap">Me</span></div>
+    <div class="tile t-lede"><p>Over six years designing payment, wallet and credit products, complex B2B workflows and shared design systems. Now building the tools I design with.</p></div>
+
+    <div class="tile media t-omnione"><img src="../images/omnione/design-system-library.png" alt="Omnione design system documentation" style="object-position:left top"><span class="cap">Omnione Design System · Shipped</span></div>
+    <div class="tile t-fundall"><div class="phone"><img src="../images/fundall/loan-summary.png" alt="Fundall salary advance"></div><span class="cap">Fundall · Shipped</span></div>
+
+    <div class="tile t-nsimbi"><div class="phone"><img src="../images/nsimbi/chat-three.png" alt="Nsimbi chat"></div><span class="cap">Nsimbi · Concept</span></div>
+    <div class="tile media t-valideity"><img src="../images/valideity/dashboard-current.png" alt="Valideity dashboard"><span class="cap">Valideity · In build</span></div>
+    <div class="tile t-more"><p class="tag">Also on the site</p><div class="chips"><span>Teesas LMS</span><span>Empty and preorder states</span><span>Speech-to-Order</span><span>Cancel flow</span><span>Moniepoint</span><span>Cardtonic</span><span>Sun King</span><span>Coreloops</span><span>VENX</span><span>Raven Pay</span></div></div>
+
+    <div class="tile t-index"><ol><li><span>02</span>About me</li><li><span>03</span>Omnione</li><li><span>04</span>Fundall</li><li><span>05</span>Nsimbi</li><li><span>06</span>Building now</li><li><span>07</span>More work</li></ol></div>
+    <div class="tile t-contact"><p><a href="mailto:muidemakz@gmail.com">muidemakz@gmail.com</a><br><a href="https://muidemakz.com">muidemakz.com</a> · <a href="https://www.linkedin.com/in/makanju-excellent-211b0a44/">LinkedIn</a></p></div>
+  </div>
+</section>
+
+<!-- 1b. ABOUT ME -->
+<section class="page about">
+  <p class="kicker">About me</p>
+  <h2>Making complex products clear. Increasingly building them, too.</h2>
+  <div class="rule" style="margin:3.5mm 0 4mm"></div>
+  <div class="about-top">
+    <div>
+      <p class="summary">I am a Senior Product Designer with 6+ years designing payment, wallet, credit and B2B commerce experiences. At OmniRetail I lead end-to-end design with product managers and engineers across retailer workflows, the shared wallet layer and the systems that connect a multi-product ecosystem serving 150,000+ retailers.</p>
+      <p class="summary">Through Muidemakz, my independent practice, I mentor junior designers and lead small cross-functional teams shipping production-grade work for early-stage founders. I am also building Valideity, an AI-first UX research product, which extends my practice into 0 to 1 product definition and AI-assisted implementation.</p>
+    </div>
+    <div class="about-photo"><img src="../images/about/about-me.png" alt="Excellent Makanju"></div>
+  </div>
+  <div class="stats4">
+    <div><b>150K+</b><span>Retailers in the OmniRetail ecosystem I design for</span></div>
+    <div><b>$124M+</b><span>Annual NMV on the OmniRetail platform I design for</span></div>
+    <div><b>20+</b><span>Products and features shipped</span></div>
+    <div><b>6+</b><span>Years designing fintech, edtech and B2B products across Africa</span></div>
+  </div>
+
+  <p class="group-label" style="margin-top:4mm">Experience</p>
+  <ul class="xp">
+    <li><div class="who"><b>OmniRetail (Omnibiz)</b><span>Senior Product Designer</span><i>Nov 2024 – Present</i></div><p>Led design for the Omnibiz retailer app and Omnipay wallet layer on a $124M+ NMV platform serving 150,000+ retailers. Architected unified SSO across 5 products (−30% auth support tickets) and scaled a token-based design system across 5+ apps (−40% handoff time).</p></li>
+    <li><div class="who"><b>Synarktech</b><span>Lead Product Designer and Design Manager, contract</span><i>Sep 2024 – Mar 2025</i></div><p>Led design across an AI-driven product portfolio (AlphaBuzz, Playhour, TLQ), managing 2–3 designers. Drove AlphaBuzz's quant-signal flows and voice and email alert experiences, lifting active engagement 25%.</p></li>
+    <li><div class="who"><b>Teesas Education</b><span>Lead Product Designer, contract</span><i>Jan 2023 – Jan 2025</i></div><p>Directed the Teesas v2.0 web and mobile overhaul, lifting engagement 30% and satisfaction 25%. Designed the Education Management System, including role-based school workflows and an Ondo State government partnership.</p></li>
+    <li><div class="who"><b>Traction Apps</b><span>Senior Product Designer</span><i>Oct 2022 – Nov 2024</i></div><p>Led design for wallet, loans and savings products across web and mobile. Partnered with product, engineering and compliance on merchant financial workflows, and developed a shared design system across POS, wallet and lending products.</p></li>
+    <li><div class="who"><b>Fundall</b><span>Product Designer</span><i>Mar 2022 – Jun 2023</i></div><p>Drove design for the HRIS dashboard used by 50+ business customers, cutting admin task time 30%. Owned design leadership for the Fundall Business brand, improving delivery efficiency 25%.</p></li>
+    <li><div class="who"><b>Muidemakz</b><span>Founder and Product Design Lead</span><i>Jan 2019 – Present</i></div><p>Independent practice delivering end-to-end product design for fintech, edtech and Web3 clients, including Fortnoto, Motex, Artbok and Pedropay. Earlier roles: Ustacky (UI/UX Design Instructor), Nomba, formerly Kudi (Creative Designer), Canary Nigeria (Creative Director).</p></li>
+  </ul>
+
+  <div class="cols">
+    <div><h3>Education</h3><ul><li><b>MBA, Business Administration</b><br>Obafemi Awolowo University, 2014–2017</li><li style="margin-top:1.4mm"><b>B.Sc., Economics</b><br>Obafemi Awolowo University, 2008–2013</li></ul></div>
+    <div><h3>Tools</h3><p>Figma (advanced), FigJam, Framer, Adobe Suite, Maze, Hotjar, Claude and Claude Code, Cursor, Lovable, v0, Notion, Linear, Jira, Miro.</p></div>
+    <div><h3>Strengths</h3><p>Payments UX, wallet and credit, B2B commerce, design systems and tokens, multi-product SSO, research-led design, design management, WCAG 2.1.</p></div>
+  </div>
+</section>
+
+<!-- 2. OMNIONE -->
+<section class="page">
+  <p class="kicker">Case study 1 of 3 · Shipped</p>
+  <h2>Omnione Design System</h2>
+  <div class="rule"></div>
+  <div class="case-meta">
+    <div><p>My role</p><p>Senior Product Designer and Design Manager</p></div>
+    <div><p>Scope</p><p>Audit, tokens, component library, adoption in code</p></div>
+    <div><p>Year</p><p>2024</p></div>
+  </div>
+  <p class="summary">Four product teams at OmniRetail were each drifting on their own: the same primary button looked different in Omnibiz, OmniHub, OmniOne and Omnipay. I audited the existing patterns, defined a two-tier token structure, built the component library in Figma, and worked with engineering to adopt it in code, so one shared language reached all four without slowing any of them down.</p>
+  <ul class="bullets">
+    <li><b>60+</b><span>components built and documented in the shared library</span></li>
+    <li><b>2,300+</b><span>variants across states, sizes and product-specific needs</span></li>
+    <li><b>2-tier</b><span>foundation tokens feeding semantic, usage-level tokens</span></li>
+  </ul>
+  <div class="images one" style="margin-top:6mm">
+    <img src="../images/omnione/omnione-design-system-cover-banner.png" alt="Omnione design system cover">
+  </div>
+  <div class="foot">Full case study: <a href="https://muidemakz.com/omnione.html">muidemakz.com/omnione.html</a></div>
+  <a class="readmore" href="https://muidemakz.com/omnione.html">Read the full case study &nearr;</a>
+</section>
+
+<!-- 3. FUNDALL -->
+<section class="page">
+  <p class="kicker">Case study 2 of 3 · Shipped</p>
+  <h2>Fundall: Salary Advance on mobile</h2>
+  <div class="rule"></div>
+  <div class="case-meta">
+    <div><p>My role</p><p>Lead product design, mobile loans and salary advance</p></div>
+    <div><p>Scope</p><p>Flow redesign, visibility on mobile, trust and repayment clarity</p></div>
+    <div><p>Year</p><p>2022</p></div>
+  </div>
+  <p class="summary">After Fundall's rebrand, salary advance existed only on the web app, and QA feedback was blunt: people did not want to switch to a browser to apply. I led the redesign of the feature for mobile, moving it onto the dashboard and rebuilding the application so users could find it, trust it and finish it in minutes.</p>
+  <div class="stats">
+    <div><b>+28%</b><span>salary advance requests in the first quarter after launch</span></div>
+    <div><b>6 → 2 min</b><span>average time to request an advance</span></div>
+    <div><b>−45%</b><span>form-completion errors</span></div>
+    <div><b>74%</b><span>of customers more confident, citing fee and repayment clarity</span></div>
+  </div>
+  <div class="images phones">
+    <div class="phone"><img src="../images/fundall/loan-summary.png" alt="Fundall salary advance summary screen"></div>
+    <div class="phone"><img src="../images/fundall/salary-advance-intro.png" alt="Fundall salary advance introduction screen"></div>
+  </div>
+  <div class="foot">Figures as reported on the case study page. Full case study: <a href="https://muidemakz.com/fundall.html">muidemakz.com/fundall.html</a></div>
+  <a class="readmore" href="https://muidemakz.com/fundall.html">Read the full case study &nearr;</a>
+</section>
+
+<!-- 4. NSIMBI -->
+<section class="page">
+  <p class="kicker">Case study 3 of 3 · Independent concept</p>
+  <h2>Nsimbi: Chat-first payments</h2>
+  <div class="rule"></div>
+  <div class="case-meta">
+    <div><p>My role</p><p>Research, interaction design, design system, prototype in code</p></div>
+    <div><p>Scope</p><p>Four design touches on one payment journey, localised for Nigeria</p></div>
+    <div><p>Status</p><p>Independent concept, not commissioned</p></div>
+  </div>
+  <p class="summary">Nsimbi is a mobile money app by Felix Kitaka, where you ask for airtime or data in one chat message and approve each purchase. The idea already worked. I looked at what stands between a person and a confident tap on Buy, and added four touches that make each payment easier to read, check and correct. I built the prototype in code and redesigned it for people paying in naira.</p>
+  <ul class="bullets">
+    <li><b>4</b><span>design touches on one payment journey: review, approval, the queue and recovery</span></li>
+    <li><b>₦</b><span>localised throughout: money, banks, numbers and verification, not only the currency symbol</span></li>
+    <li><b>7</b><span>simulated test runs, reported as predicted evidence, not production results</span></li>
+  </ul>
+  <div class="images phones sm">
+    <div class="phone"><img src="../images/nsimbi/chat-three.png" alt="Nsimbi chat with three prepared purchases"></div>
+    <div class="phone"><img src="../images/nsimbi/receipt.png" alt="Nsimbi receipt screen"></div>
+  </div>
+  <div class="foot">Simulated accounts and payments. Full case study: <a href="https://muidemakz.com/nsimbi-three-purchases.html">muidemakz.com/nsimbi-three-purchases.html</a></div>
+  <a class="readmore" href="https://muidemakz.com/nsimbi-three-purchases.html">Read the full case study &nearr;</a>
+</section>
+
+<!-- 5. BUILDING NOW -->
+<section class="page">
+  <p class="kicker">What I am building</p>
+  <h2>Building the tools I design with</h2>
+  <div class="rule"></div>
+  <p class="summary">Design is only half of it. I am building AI-first products and prototypes myself, so ideas reach users in working form, and I can test them before anyone commits budget.</p>
+
+  <div class="build-card">
+    <span class="tag live">In build · 2026</span>
+    <h3>Valideity: AI-first UX research</h3>
+    <p>A research product I am building that tests flows with simulated participants and reports a predicted UX score. I first used it on its own pricing page: three runs found a missing route, a fix that still sent visitors to login, and then a working path.</p>
+    <p><a href="https://muidemakz.com/valideity.html">Read the Valideity case study &nearr;</a></p>
+  </div>
+
+  <div class="build-card">
+    <span class="tag">Built in code · 2026</span>
+    <h3>Working prototypes</h3>
+    <p>Nsimbi is a working mobile prototype: chat request, purchase queue, PIN step and receipts. Cardtonic, Coreloops, Sun King and VENX are concept case studies, each with its own page.</p>
+    <p><a href="https://muidemakz.com/nsimbi/">Try the Nsimbi prototype &nearr;</a></p>
+  </div>
+
+  <div class="build-card">
+    <span class="tag">Concept · 2026</span>
+    <h3>Cancel flow for Valideity</h3>
+    <p>Letting people leave a paid plan without a fight. A concept case study for Valideity&rsquo;s cancel path.</p>
+    <p><a href="https://muidemakz.com/cancel-flow.html">Read the cancel flow case study &nearr;</a></p>
+  </div>
+
+  <div class="foot" style="margin-top:auto">Concept and in-build items are independent work, not commissioned or production releases.</div>
+</section>
+
+<!-- 6. MORE WORK, EXPERTISE, CONTACT -->
+<section class="page">
+  <p class="kicker">More work and expertise</p>
+  <h2>Also on the site</h2>
+  <div class="rule"></div>
+
+  <p class="group-label">Shipped</p>
+  <ul class="list">
+    <li><div><div class="name"><a href="https://muidemakz.com/teesaslms.html">Teesas LMS v2.0</a></div><div class="cap">Three rebuilds to get one LMS right</div></div><div class="yr">2024</div></li>
+    <li><div><div class="name"><a href="https://muidemakz.com/empty-state.html">Omnibiz empty and preorder states</a></div><div class="cap">Making “not here yet” feel like a preorder</div></div><div class="yr">2024</div></li>
+    <li><div><div class="name"><a href="https://muidemakz.com/omnibiz-speech-to-order.html">Omnibiz Speech-to-Order</a></div><div class="cap">Telling retailers ordering and support are different things</div></div><div class="yr">2026</div></li>
+  </ul>
+
+  <p class="group-label">Concepts</p>
+  <ul class="list">
+    <li><div><div class="name"><a href="https://muidemakz.com/moniepoint-verification.html">Moniepoint verification status</a></div><div class="cap">An independent exploration, tested before and after</div></div><div class="yr">2026</div></li>
+    <li><div><div class="name"><a href="https://muidemakz.com/cardtonic.html">Cardtonic P2P money transfer</a></div><div class="cap">Sending money to people, not accounts</div></div><div class="yr">2026</div></li>
+    <li><div><div class="name"><a href="https://muidemakz.com/sun-king.html">Sun King smartphone marketplace</a></div><div class="cap">Read the page, rebuild it, fix it</div></div><div class="yr">2026</div></li>
+    <li><div><div class="name"><a href="https://muidemakz.com/coreloops.html">Coreloops documents filter</a></div><div class="cap">Making frequent filters easier to reach</div></div><div class="yr">2026</div></li>
+    <li><div><div class="name"><a href="https://muidemakz.com/venx.html">VENX</a></div><div class="cap">A full AI sales CRM concept in 24 hours</div></div><div class="yr">2025</div></li>
+    <li><div><div class="name"><a href="https://muidemakz.com/raven-pay.html">Raven Pay</a></div><div class="cap">Making a banking app read as serious, not cute</div></div><div class="yr">2024</div></li>
+  </ul>
+
+  <div class="two-col">
+    <div>
+      <h3>Areas of expertise</h3>
+      <div class="tags">
+        <span>Payments and wallets</span><span>Fintech product design</span><span>Credit and salary advance</span><span>Design systems</span><span>B2B workflows</span><span>UX research and testing</span><span>Interaction prototyping in code</span><span>AI-assisted product tools</span>
+      </div>
+    </div>
+    <div>
+      <h3>Links</h3>
+      <p style="margin-top:3mm;font-size:10pt;line-height:1.9">
+        <a href="https://muidemakz.com">Portfolio · muidemakz.com</a><br>
+        <a href="https://muidemakz.com/my-work.html">All work · muidemakz.com/my-work.html</a><br>
+        <a href="https://www.linkedin.com/in/makanju-excellent-211b0a44/">LinkedIn</a><br>
+        <a href="mailto:muidemakz@gmail.com">muidemakz@gmail.com</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

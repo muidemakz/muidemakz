@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Cursor Options &middot; Muidemakz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/board.css">
+  <style>
+    :root { --bg: #0e0e0e; --ink: #f4f2f4; --soft: #c9c5cc; --mute: #8f8a94; --line: rgba(244,242,244,.14); --accent: #ff5a1f; }
+    * { box-sizing: border-box; }
+    html { background: var(--bg); }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 400 16px/1.5 "Outfit", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    main { max-width: 1040px; margin: 0 auto; padding: 48px 24px 80px; }
+    .eyebrow { margin: 0 0 14px; color: var(--mute); font: 500 12px/1.4 "JetBrains Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+    h1 { margin: 0 0 14px; font: 600 clamp(34px, 4vw, 52px)/1.04 "Outfit", sans-serif; letter-spacing: -.05em; }
+    .lede { max-width: 62ch; margin: 0 0 28px; color: var(--soft); font-size: 18px; line-height: 1.55; }
+    .lede kbd { padding: 1px 6px; border: 1px solid var(--line); border-radius: 5px; background: #17151a; font: 500 13px "JetBrains Mono", monospace; }
+    .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+    .card { display: grid; gap: 14px; padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: #151316; }
+    .card.is-picked { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+    .stage { display: grid; place-items: center; height: 150px; border-radius: 6px; background: #0e0e0e; background-image: radial-gradient(circle at center, rgba(244,242,244,.14) 1px, transparent 1.4px); background-size: 20px 20px; }
+    .pair { display: flex; align-items: stretch; gap: 10px; }
+    .pair > div { display: grid; place-items: center; gap: 6px; width: 92px; padding: 14px 8px 8px; border-radius: 8px; border: 1px solid var(--line); background: #0e0e0e; }
+    .pair > div:nth-child(2) { background: #f2f0eb; border-color: transparent; }
+    .pair > div:nth-child(2) small { color: #55505a; }
+    .pair svg { display: block; width: 56px; height: 56px; }
+    .pair small { display: block; margin-top: 2px; color: var(--mute); font: 500 10px/1.2 "JetBrains Mono", monospace; text-align: center; text-transform: uppercase; letter-spacing: .06em; }
+    h2 { margin: 0; font: 600 18px/1.25 "Outfit", sans-serif; }
+    .note { margin: -8px 0 0; color: var(--soft); font-size: 14px; line-height: 1.45; }
+    .pick { min-height: 40px; border: 0; border-radius: 999px; background: #262427; color: var(--ink); font: 500 14px "Outfit", sans-serif; }
+    .pick:hover { background: #333034; }
+    .is-picked .pick { background: var(--accent); color: #1a0900; }
+    .foot { margin-top: 28px; color: var(--mute); font-size: 14px; }
+    .foot a { color: var(--accent); }
+    @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 520px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">Design board &middot; cursor</p>
+    <h1>Pick your cursor.</h1>
+    <p class="lede">Move over each card to feel the real cursor. The left image is the normal state and the right is the state over links. Press <kbd>/</kbd> to try cursor chat, then choose one. Your pick is saved in this browser and applied on every preview page straight away.</p>
+    <div class="grid" id="grid"></div>
+    <p class="foot">Other visitors always get a smaller arrow in a different colour with a name tag, never mint, so yours stays easy to spot. Back to the <a href="index-preview.html">home preview</a>.</p>
+  </main>
+  <script src="js/board-cursors.js"></script>
+  <script src="js/board-config.js"></script>
+  <script src="js/board.js"></script>
+  <script>
+    (function () {
+      var C = window.BOARD_CURSORS, grid = document.getElementById('grid');
+      function current() { try { return localStorage.getItem('board-cursor') || C.defaultId; } catch (e) { return C.defaultId; } }
+      function render() {
+        var cur = current();
+        grid.innerHTML = '';
+        C.list.forEach(function (c) {
+          var card = document.createElement('div');
+          card.className = 'card' + (c.id === cur ? ' is-picked' : '');
+          card.innerHTML =
+            '<div class="stage" style="cursor:' + C.css(c.id, false).replace(/"/g, '&quot;') + '"><div class="pair">' +
+            '<div>' + C.svg(c.id, false) + '<small>normal</small></div><div>' + C.svg(c.id, true) + '<small>on links</small></div></div></div>' +
+            '<h2>' + c.name + '</h2><p class="note">' + c.note + '</p>' +
+            '<button class="pick" type="button">' + (c.id === cur ? 'Selected' : 'Use this cursor') + '</button>';
+          card.querySelector('.pick').addEventListener('click', function () {
+            try { localStorage.setItem('board-cursor', c.id); } catch (e) {}
+            if (window.BOARD) window.BOARD.applyCursor();
+            render();
+          });
+          grid.appendChild(card);
+        });
+      }
+      render();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,317 @@
+/* Design-board layer, loaded on every page (js/header.js) and on the rail previews.
+   Dot-grid canvas, your own cursor, other visitors' cursors, presence chip and cursor chat.
+   Identity rule: YOUR cursor is the big mint one with a halo ring. Everyone else is
+   smaller, never mint, and always carries a name tag. */
+
+/* ---------- Canvas ---------- */
+html.board {
+  background-image:
+    radial-gradient(circle at center, var(--board-dot-a) 1px, transparent 1.4px),
+    radial-gradient(circle at center, var(--board-dot-b) 1.4px, transparent 1.8px);
+  background-size: 24px 24px, 120px 120px;
+  background-position: 0 0, 0 0;
+  background-attachment: fixed, fixed; /* the board stays put while the content scrolls over it */
+}
+html.board body { background-color: transparent; }
+html.board-dark { --board-dot-a: rgba(244, 242, 244, .13); --board-dot-b: rgba(255, 90, 31, .24); }
+html.board-light { --board-dot-a: rgba(13, 13, 13, .11); --board-dot-b: rgba(13, 13, 13, .2); }
+
+/* ---------- Your cursor (fine pointers only; set from js/board-cursors.js) ---------- */
+@media (hover: hover) and (pointer: fine) {
+  html.board-cursor, html.board-cursor body { cursor: var(--board-cursor, auto); }
+  html.board-cursor :where(a, button, summary, label, [role="button"], input[type="button"], input[type="submit"], .tile) { cursor: var(--board-cursor-link, pointer) !important; }
+  html.board-cursor :where(a, button, summary, label, [role="button"], .tile) * { cursor: var(--board-cursor-link, pointer) !important; }
+}
+
+/* ---------- Overlay ---------- */
+.presence {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  overflow: hidden;
+  pointer-events: none;
+  transition: opacity .22s ease;
+}
+.presence.is-leaving .pc:not(.pc--me) { opacity: 0 !important; }
+
+.pc {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+.pc.is-here { opacity: 1; }
+.pc-arrow { display: block; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .45)); }
+.pc-pill {
+  position: absolute;
+  top: 18px;
+  left: 10px;
+  width: max-content;
+  max-width: 260px;
+  padding: 2px 8px;
+  border-radius: 999px 999px 999px 4px;
+  background: var(--c, #ff8a65);
+  color: #0b0b0b;
+  font: 500 12px/1.45 "Outfit", system-ui, sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .32);
+}
+.pc.is-chat .pc-pill {
+  padding: 5px 11px;
+  border-radius: 14px 14px 14px 4px;
+  font-size: 14px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* Your halo: a soft mint ring that trails your cursor so you always know which one is you */
+.pc-halo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 38px;
+  height: 38px;
+  margin: -19px 0 0 -19px;
+  border: 1.5px solid rgba(255, 90, 31, .75);
+  border-radius: 50%;
+  background: rgba(255, 90, 31, .1);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .08);
+  opacity: 0;
+  transition: opacity .25s ease, width .2s ease, height .2s ease, margin .2s ease;
+  will-change: transform;
+}
+.pc-halo.is-on { opacity: 1; }
+.pc-halo.is-down { width: 26px; height: 26px; margin: -13px 0 0 -13px; background: rgba(255, 90, 31, .24); }
+
+/* Your chat bubble: mint, labelled "You" */
+.pc--me .pc-pill {
+  top: 22px;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border-radius: 14px 14px 14px 4px;
+  background: #ff5a1f;
+  font-size: 14px;
+  pointer-events: auto;
+}
+.pc--me .pc-pill::before {
+  content: "You";
+  padding: 1px 6px;
+  border-radius: 6px;
+  background: rgba(26, 9, 0, .18);
+  color: #1a0900;
+  font: 600 11px/1.4 "Outfit", system-ui, sans-serif;
+}
+.pc--me .pc-pill input {
+  width: 24ch;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #1a0900;
+  font: 500 14px/1.4 "Outfit", system-ui, sans-serif;
+  caret-color: #1a0900;
+}
+.pc--me .pc-pill input::placeholder { color: rgba(26, 9, 0, .55); }
+.pc--me .pc-count { color: rgba(26, 9, 0, .6); font: 500 11px/1 "JetBrains Mono", monospace; }
+.pc--me.is-sent .pc-pill { pointer-events: none; max-width: 300px; white-space: normal; overflow-wrap: anywhere; }
+.pc--me.is-fading { opacity: 0; transition: opacity .6s ease; }
+
+/* ---------- Presence chip ---------- */
+.presence-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #c9c5cc;
+  font: 500 13px/1 "Outfit", system-ui, sans-serif;
+}
+.presence-chip.is-floating {
+  position: fixed;
+  top: 52px;
+  right: 14px;
+  z-index: 2147482000;
+  padding: 6px 12px 6px 8px;
+  border: 1px solid rgba(244, 242, 244, .16);
+  border-radius: 999px;
+  background: rgba(14, 14, 14, .92);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, .3);
+}
+.presence-avs { display: flex; }
+.presence-av {
+  display: grid;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  margin-left: -7px;
+  border: 2px solid #0e0e0e;
+  border-radius: 50%;
+  background: var(--c);
+  color: #0b0b0b;
+  font: 600 11px/1 "Outfit", system-ui, sans-serif;
+  animation: board-av-in .35s cubic-bezier(.2, .7, .2, 1) both;
+}
+.presence-av:first-child { margin-left: 0; box-shadow: 0 0 0 2px rgba(255, 90, 31, .85); }
+@keyframes board-av-in { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
+.presence-hint {
+  margin: -8px 0 0;
+  color: #8f8a94;
+  font: 400 13px/1.2 "Outfit", system-ui, sans-serif;
+}
+.presence-hint kbd {
+  display: inline-grid;
+  min-width: 20px;
+  height: 20px;
+  place-items: center;
+  margin-right: 6px;
+  padding: 0 5px;
+  border: 1px solid rgba(244, 242, 244, .16);
+  border-radius: 5px;
+  background: #17151a;
+  color: #c9c5cc;
+  font: 500 12px/1 "JetBrains Mono", monospace;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .presence, .presence-chip, .presence-hint { display: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pc, .pc--me.is-fading, .pc-halo { transition: none; }
+  .presence-av { animation: none; }
+}
+
+/* ---------- Visitors who are off screen: an edge tag points the way ---------- */
+.pc.is-off { opacity: 0 !important; transition: none; }
+.pc-edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 0 -50px;
+  padding: 4px 11px 4px 9px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--c, #ff8a65);
+  color: #0b0b0b;
+  font: 500 12px/1.3 "Outfit", system-ui, sans-serif;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+  will-change: transform;
+}
+.pc-edge.is-on { opacity: 1; pointer-events: auto; }
+.pc-edge-arrow {
+  width: 7px;
+  height: 7px;
+  border: solid #0b0b0b;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) translate(-1px, -1px);
+}
+.pc-edge.is-up .pc-edge-arrow { transform: rotate(-135deg) translate(-1px, -1px); }
+.presence.is-leaving .pc-edge { opacity: 0 !important; }
+
+/* Other visitors' arrow: tip sits on the cursor position; the finger's tip does the same */
+.pc-arrow { margin: -3px 0 0 -3px; }
+.pc-arrow--hand { margin: -2px 0 0 -10px; }
+
+/* Chip: same corner on every page; the "/" key hint lives inside it */
+.presence-key {
+  display: inline-grid;
+  min-width: 20px;
+  height: 20px;
+  place-items: center;
+  margin-left: 2px;
+  padding: 0 5px;
+  border: 1px solid rgba(244, 242, 244, .22);
+  border-radius: 5px;
+  background: #17151a;
+  color: #c9c5cc;
+  font: 500 12px/1 "JetBrains Mono", monospace;
+}
+
+/* Compact chip: three avatars at most, short label, small footprint so it rarely covers anything */
+.presence-chip.is-floating { gap: 8px; padding: 5px 8px 5px 6px; }
+.presence-avs .presence-av { width: 24px; height: 24px; margin-left: -8px; font-size: 10px; }
+.presence-av--more { font-size: 10px; }
+.presence-count { white-space: nowrap; }
+
+/* ---------- Pages opened inside the shell's container (?embed=1) ---------- */
+html.embed .site-header, html.embed .case-preview-notice, html.embed .site-footer { display: none !important; }
+@media (min-width: 901px) {
+  html.embed .case-study-preview .case-quicknav { top: 80px; }
+  html.embed .case-study-preview .case-preview-content .case-section { scroll-margin-top: 80px; }
+}
+
+/* The AI guide wears an "AI" badge so nobody mistakes it for a person */
+.pc--bot .pc-pill::before { content: "AI"; margin-right: 7px; padding: 1px 6px; border-radius: 6px; background: rgba(0, 0, 0, .24); font: 700 10px/1.4 "JetBrains Mono", monospace; letter-spacing: .05em; }
+
+/* A visitor clicks into a page: a ring pulses, then they fade out of this one */
+.pc-ripple { position: absolute; left: 0; top: 0; width: 34px; height: 34px; margin: -17px 0 0 -17px; border: 2px solid var(--c, #fff); border-radius: 50%; pointer-events: none; animation: pc-rip .55s ease-out forwards; }
+@keyframes pc-rip { from { transform: scale(.3); opacity: .95; } to { transform: scale(1.5); opacity: 0; } }
+.pc.is-gone { opacity: 0 !important; transition: opacity .45s ease; }
+
+/* The AI guide cursor can be clicked */
+.pc--bot { cursor: pointer; }
+.pc--bot .pc-pill, .pc--bot .pc-arrow { pointer-events: auto; cursor: pointer; }
+.pc--bot .pc-pill:hover { filter: brightness(1.08); }
+
+/* Guide panel */
+.guide {
+  position: fixed; right: 20px; bottom: 20px; z-index: 2147482600;
+  display: flex; flex-direction: column; width: min(392px, calc(100vw - 24px)); max-height: min(560px, 76vh);
+  border: 1px solid var(--line, rgba(255,255,255,.18)); border-radius: 18px;
+  background: var(--surface-raised, #1d1a22); color: var(--ink, #f4f2f4);
+  box-shadow: 0 30px 70px rgba(0,0,0,.55); font: 400 14px/1.45 "Outfit", sans-serif; overflow: hidden;
+}
+.guide[hidden] { display: none; }
+.guide-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 12px 12px 16px; border-bottom: 1px solid var(--line, rgba(255,255,255,.14)); }
+.guide-title { display: flex; align-items: center; gap: 10px; font-size: 15px; }
+.guide-badge { padding: 2px 7px; border-radius: 7px; background: #8fd3f4; color: #0b1a22; font: 700 11px/1.4 "JetBrains Mono", monospace; letter-spacing: .05em; }
+.guide-close { width: 32px; height: 32px; border: 0; border-radius: 50%; background: var(--btn, rgba(255,255,255,.1)); color: inherit; font-size: 20px; line-height: 1; }
+.guide-log { display: grid; align-content: start; gap: 10px; flex: 1 1 auto; min-height: 120px; padding: 14px 16px; overflow-y: auto; }
+.guide-msg { max-width: 92%; padding: 10px 13px; border-radius: 14px; }
+.guide-msg--bot { justify-self: start; background: var(--btn, rgba(255,255,255,.08)); border-bottom-left-radius: 4px; }
+.guide-msg--me { justify-self: end; background: #ff5a1f; color: #1a0900; border-bottom-right-radius: 4px; }
+.guide-msg--typing { opacity: .7; }
+.guide-ctas { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.guide-cta { display: inline-flex; min-height: 34px; align-items: center; padding: 0 13px; border: 1px solid #ff5a1f; border-radius: 999px; color: var(--accent-text, #ff8a5c); font-weight: 600; font-size: 13px; text-decoration: none; }
+.guide-cta:hover { background: #ff5a1f; color: #1a0900; }
+.guide-chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 16px 10px; }
+.guide-chip { min-height: 32px; padding: 0 12px; border: 1px solid var(--line, rgba(255,255,255,.2)); border-radius: 999px; background: transparent; color: inherit; font: 500 13px "Outfit", sans-serif; }
+.guide-chip:hover { border-color: #8fd3f4; }
+.guide-form { display: flex; gap: 8px; padding: 10px 12px 12px; border-top: 1px solid var(--line, rgba(255,255,255,.14)); }
+.guide-form input { flex: 1 1 auto; min-width: 0; min-height: 42px; padding: 0 14px; border: 1.5px solid var(--ink-mute, rgba(255,255,255,.4)); border-radius: 999px; background: var(--surface, #141216); color: inherit; font: 400 15px "Outfit", sans-serif; }
+.guide-form input:focus { outline: none; border-color: #ff5a1f; }
+.guide-send { padding: 0 18px; border: 0; border-radius: 999px; background: #ff5a1f; color: #1a0900; font: 600 14px "Outfit", sans-serif; }
+@media (max-width: 860px) { .guide { right: 8px; left: 8px; bottom: 8px; width: auto; } }
+
+/* "Ask AI" button inside the visitors chip */
+.presence-chip { pointer-events: auto; }
+.presence-ask { min-height: 28px; margin-left: 2px; padding: 0 12px; border: 0; border-radius: 999px; background: #ff5a1f; color: #1a0900; font: 600 12.5px/1 "Outfit", sans-serif; }
+.presence-ask:hover { background: #ff8a5c; }
+
+/* Ask panel: opens with a short rise, and a floating "Ask MM" button where there is no visitors chip */
+.guide { animation: guide-in .28s cubic-bezier(.2, .8, .2, 1); transform-origin: 100% 100%; }
+@keyframes guide-in { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .guide { animation: none; } }
+.ask-fab { display: none; }
+@media (max-width: 860px), (hover: none), (pointer: coarse) {
+  .ask-fab {
+    position: fixed; right: 14px; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); z-index: 70;
+    display: inline-flex; min-height: 46px; align-items: center; padding: 0 20px;
+    border: 0; border-radius: 999px; background: #ff5a1f; color: #1a0900;
+    font: 600 15px/1 "Outfit", sans-serif; box-shadow: 0 10px 28px rgba(0, 0, 0, .4);
+  }
+  html.guide-open .ask-fab { display: none; }
+}
+
+/* The MM cursor carries a short invitation, so its pill may be wider than a name */
+.pc--bot .pc-pill { max-width: 260px; white-space: nowrap; }
