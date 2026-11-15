@@ -52,7 +52,19 @@
         <div class="wb-board" id="wbBoard">
           <div class="wb-frames" id="wbFrames"></div>
           <div class="wb-layer" id="wbLayer" aria-hidden="true"></div>
-          <div class="wb-empty" id="wbEmpty" hidden><b>Nothing matches that.</b><span>Try a different word or category.</span><button class="wb-reset" id="wbEmptyReset" type="button">Reset search and filters</button></div>
+          <div class="wb-empty" id="wbEmpty" hidden>
+            <div class="we-scene" aria-hidden="true">
+              <span class="we-card we-card--a"><i></i><b></b><b></b></span>
+              <span class="we-card we-card--b"><i></i><b></b><b></b></span>
+              <span class="we-card we-card--c"><i></i><b></b><b></b></span>
+              <span class="we-glass"><span class="we-lens"><em>?</em></span><span class="we-handle"></span></span>
+              <span class="we-note">nope, not here</span>
+            </div>
+            <b class="we-title" id="wbEmptyTitle">Nothing on the board matches that.</b>
+            <span class="we-sub">Try another word, or one of these:</span>
+            <div class="we-try" id="wbEmptyTry"></div>
+            <button class="wb-reset" id="wbEmptyReset" type="button">Reset search and filters</button>
+          </div>
         </div>
 
         <div class="wb-tray" id="wbTray" role="group" aria-label="Sticker tray">

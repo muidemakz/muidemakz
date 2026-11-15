@@ -445,7 +445,9 @@
     clearEl.hidden = !state.q;
     statusEl.hidden = !active;
     if (active) statusText.textContent = shownAll + (shownAll === 1 ? ' project' : ' projects') + (state.cat !== 'All' ? ' in ' + state.cat : '') + (q ? ' matching \u201c' + state.q.trim() + '\u201d' : '');
+    var wasHidden = emptyEl.hidden;
     emptyEl.hidden = shownAll !== 0;
+    if (!emptyEl.hidden) fillEmpty(q, wasHidden);
     if (hasArt) {
       var hits = world.querySelectorAll('.card:not(.is-dim), .note:not(.is-dim)');
       art.classList.toggle('is-off', artOn && !!active && hits.length === 0);
@@ -457,6 +459,27 @@
     }
   }
   var wasActive = false;
+  /* No results: say what was searched, and offer words that do find something */
+  var TRY = ['fintech', 'payments', 'design system', 'mobile', 'dashboard', 'ai', 'banking', 'onboarding', 'redesign', 'concept'];
+  function fillEmpty(q, fresh) {
+    var title = document.getElementById('wbEmptyTitle'), tryEl = document.getElementById('wbEmptyTry');
+    title.textContent = q ? 'Nothing on the board matches “' + state.q.trim() + '”.' : 'Nothing in ' + state.cat + ' yet.';
+    var texts = Array.prototype.map.call(framesEl.querySelectorAll('.card, .note'), function (c) { return c.dataset.text || ''; });
+    var picks = TRY.filter(function (w) { return w !== q && texts.some(function (t) { return t.indexOf(w) > -1; }); }).slice(0, 3);
+    tryEl.innerHTML = '';
+    picks.forEach(function (w) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'chip'; b.textContent = w;
+      b.addEventListener('click', function () {
+        state.cat = 'All';
+        Array.prototype.forEach.call(filtersEl.children, function (c) { var on = c.dataset.cat === 'All'; c.classList.toggle('is-on', on); c.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+        state.q = w; searchEl.value = w; applyFilter();
+      });
+      tryEl.appendChild(b);
+    });
+    tryEl.previousElementSibling.hidden = !picks.length;
+    if (fresh) { emptyEl.classList.remove('is-play'); void emptyEl.offsetWidth; emptyEl.classList.add('is-play'); } /* replay the scene */
+  }
   function reset() {
     state.q = ''; state.cat = 'All'; searchEl.value = '';
     Array.prototype.forEach.call(filtersEl.children, function (c) {

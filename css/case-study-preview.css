@@ -979,3 +979,26 @@ html[data-theme="light"] .case-study-preview .case-back { box-shadow: 0 10px 28p
 .case-study-preview .case-fold-toggle[aria-expanded="true"]::after { transform: rotate(225deg) translate(-2px, -1px); }
 .case-study-preview .case-fold-toggle:hover { border-color: var(--cs-accent-text); }
 .case-study-preview .case-fold { margin-top: 20px; }
+
+/* ---------- Old brutalist boxes brought into the new system ----------
+   No hard offset shadows; rounded, softly bordered surfaces; numbered steps sit apart instead of butting together. */
+.case-study-preview .case-main :is(.case-steps li, .case-user-card, .case-version-card, .case-flag-box, .case-tension-card) {
+  border: 1px solid rgba(var(--cs-ink-rgb), .14);
+  border-radius: var(--cs-r-lg);
+  box-shadow: none;
+  background: var(--cs-surface);
+}
+.case-study-preview .case-main .case-steps { gap: 12px; }
+.case-study-preview .case-main .case-steps--flush { overflow: visible; }
+.case-study-preview .case-main .case-steps--flush > li { border-radius: var(--cs-r-lg); }
+.case-study-preview .case-main :is(.case-steps li, .case-user-card, .case-version-card, .case-tension-card) { transition: border-color .25s ease, transform .3s cubic-bezier(.25, 1.5, .4, 1); }
+.case-study-preview .case-main :is(.case-steps li, .case-version-card, .case-tension-card):hover { border-color: rgba(var(--cs-accent-rgb), .5); transform: translateY(-2px); }
+/* A panel sitting on top of more content in the same figure keeps square bottom corners */
+.case-study-preview .case-main .case-figure > .case-split:not(:last-child) { border-radius: var(--cs-r-lg) var(--cs-r-lg) 0 0; }
+/* The highlighted cell is an orange tint, not a white block */
+.case-study-preview .case-main .case-split-cell--dark { background: rgba(var(--cs-accent-rgb), .12); color: var(--cs-ink); }
+.case-study-preview .case-main .case-split-cell--dark .case-split-copy { color: var(--cs-ink); }
+@media (prefers-reduced-motion: reduce) { .case-study-preview .case-main :is(.case-steps li, .case-version-card, .case-tension-card) { transition: none; } }
+.case-study-preview .case-main .case-impact-head { background: rgba(var(--cs-accent-rgb), .12); color: var(--cs-ink); }
+.case-study-preview .case-main .case-impact-head * { color: inherit; }
+.case-study-preview .case-main .case-impact-head :first-child { color: var(--cs-accent-text); }
