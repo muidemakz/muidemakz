@@ -672,3 +672,30 @@ html.embed .ab-hero { padding-top: 12px; }
   .ab-hero-media img { border-radius: 16px; }
 }
 html.embed #about .pane-inner { max-width: 1120px; }
+
+/* ---------- About: a few board touches, same reading layout ----------
+   Rounded surfaces like the rest of the site; the photo and the quotes are taped on like the Work board. */
+#about .ab-card, #about .ab-quotes blockquote { border-radius: 18px; transition: transform .35s cubic-bezier(.25, 1.5, .4, 1), box-shadow .3s ease, border-color .3s ease; }
+#about .ab-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+#about .ab-chips li { transition: border-color .2s ease, color .2s ease; }
+#about .ab-chips li:hover { border-color: var(--accent); color: var(--ink); }
+#about .ab-hero-media { position: relative; }
+#about .ab-hero-media img { border-radius: 18px; box-shadow: 0 24px 50px rgba(0, 0, 0, .35); }
+#about .ab-hero-media::before, #about .ab-hero-media::after, #about .ab-quotes blockquote::before {
+  content: ""; position: absolute; z-index: 2; width: 92px; height: 26px; pointer-events: none;
+  background: repeating-linear-gradient(135deg, rgba(255, 238, 170, .62) 0 8px, rgba(255, 238, 170, .42) 8px 16px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .25);
+}
+#about .ab-hero-media::before { top: -12px; left: 18px; transform: rotate(-8deg); }
+#about .ab-hero-media::after { right: 14px; bottom: -10px; transform: rotate(6deg); }
+#about .ab-quotes blockquote { position: relative; transform: rotate(var(--tilt, 0deg)); }
+#about .ab-quotes blockquote::before { top: -13px; left: 50%; margin-left: -46px; transform: rotate(-3deg); }
+#about .ab-quotes blockquote:nth-child(1) { --tilt: -.8deg; }
+#about .ab-quotes blockquote:nth-child(2) { --tilt: .7deg; }
+#about .ab-quotes blockquote:nth-child(3) { --tilt: .6deg; }
+#about .ab-quotes blockquote:nth-child(4) { --tilt: -.6deg; }
+#about .ab-quotes blockquote:hover { --tilt: 0deg; transform: rotate(0) translateY(-3px); }
+#about .ab-quotes { gap: 26px 18px; padding-top: 10px; }
+html[data-theme="light"] #about .ab-hero-media img { box-shadow: 0 20px 44px rgba(40, 30, 20, .18); }
+@media (max-width: 860px) { #about .ab-quotes blockquote { --tilt: 0deg !important; } }
+@media (prefers-reduced-motion: reduce) { #about .ab-card, #about .ab-quotes blockquote { transition: none; } }
