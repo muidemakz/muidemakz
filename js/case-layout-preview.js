@@ -73,12 +73,10 @@
     lab.replaceWith(h);
   });
 
-  layout.append(content);
-  nav.remove(); /* no section list: the page reads top to bottom */
+  layout.append(nav, content);
   hero.insertAdjacentElement("afterend", layout);
 
-  return;
-  /* (old section-list behaviour below is no longer used) */
+  /* Mobile: the list collapses into a single control */
   function setOpen(open) {
     nav.classList.toggle("is-open", open);
     toggle.setAttribute("aria-expanded", String(open));

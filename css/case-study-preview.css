@@ -924,10 +924,7 @@ html[data-theme="light"] .case-study-preview .case-back { box-shadow: 0 10px 28p
   html[data-theme="light"] .case-study-preview .case-quicknav { box-shadow: 0 16px 40px rgba(40, 30, 20, .14); }
 }
 
-/* ---------- No "On this page" list on any case study: one centred reading column ---------- */
-.case-study-preview .case-quicknav { display: none !important; }
-.case-preview-layout { grid-template-columns: minmax(0, 1fr) !important; width: min(1080px, calc(100% - 72px)); }
-@media (max-width: 900px) { .case-preview-layout { width: 100%; } }
+
 
 /* ---------- Rounded corners, matching the new design system (shell, tiles, Work board) ----------
    Large surfaces 20px, pictures 14px, small controls fully round. */
@@ -1002,3 +999,14 @@ html[data-theme="light"] .case-study-preview .case-back { box-shadow: 0 10px 28p
 .case-study-preview .case-main .case-impact-head { background: rgba(var(--cs-accent-rgb), .12); color: var(--cs-ink); }
 .case-study-preview .case-main .case-impact-head * { color: inherit; }
 .case-study-preview .case-main .case-impact-head :first-child { color: var(--cs-accent-text); }
+
+/* The section list stays (left on desktop, bottom bar on phones), without the words "On this page",
+   and without the owner's pending notes under each item */
+.case-study-preview .case-preview-nav-label, .case-study-preview .case-toc-toggle-label { display: none !important; }
+.case-study-preview .case-toc-status--pending { display: none; }
+@media (min-width: 901px) { .case-study-preview .case-quicknav { padding-top: 10px; } }
+/* Phones: the list is a closed bar at the bottom; it opens upward when tapped */
+@media (max-width: 900px) {
+  .case-study-preview .case-quicknav:not(.is-open) .case-preview-toc-list { display: none; }
+  .case-study-preview .case-quicknav.is-open .case-preview-toc-list { display: grid; gap: 6px; max-height: 56vh; overflow-y: auto; padding: 4px 2px 8px; }
+}

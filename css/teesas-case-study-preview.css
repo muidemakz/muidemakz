@@ -306,7 +306,4 @@
   .teesas-preview .case-figure--stats > .case-outcome-grid { padding: 12px 12px 0; }
 }
 
-/* ---------- No "On this page" list on any case study: one centred reading column ---------- */
-.case-study-preview .case-quicknav { display: none !important; }
-.case-preview-layout { grid-template-columns: minmax(0, 1fr) !important; width: min(1080px, calc(100% - 72px)); }
-@media (max-width: 900px) { .case-preview-layout { width: 100%; } }
+
