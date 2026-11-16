@@ -162,16 +162,15 @@
     box.className = 'stage-error';
     box.setAttribute('role', 'alert');
     var title = kind === 'offline' ? 'You seem to be offline.' : kind === 'slow' ? 'This page is taking too long.' : 'This page didn\u2019t load.';
-    var text = kind === 'offline' ? 'Check your connection, then try again.' : 'It might be a slow connection or a hiccup on my side. Try again, or open it on its own.';
+    var text = kind === 'offline' ? 'Check your connection, then try again.' : 'It might be a slow connection or a hiccup on my side. Try again, or reload the page.';
     box.innerHTML =
       '<div class="se-scene" aria-hidden="true"><span class="se-plug se-plug--a"></span><span class="se-cord se-cord--a"></span><span class="se-plug se-plug--b"></span><span class="se-cord se-cord--b"></span><span class="se-spark"></span></div>' +
       '<b class="se-title"></b><p class="se-text"></p>' +
-      '<div class="se-actions"><button type="button" class="se-btn se-btn--primary">Try again</button><a class="se-btn" href="">Open it on its own</a></div>';
+      '<div class="se-actions"><button type="button" class="se-btn se-btn--primary">Try again</button><button type="button" class="se-btn se-btn--reload">Reload the page</button></div>';
     box.querySelector('.se-title').textContent = title;
     box.querySelector('.se-text').textContent = text;
-    box.querySelector('button').addEventListener('click', retry);
-    var page = src.replace(/[?&]embed=1/, '').replace(/[?&]r=\d+/, '');
-    box.querySelector('a').href = page + (page.indexOf('?') > -1 ? '&' : '?') + 'standalone=1';
+    box.querySelector('.se-btn--primary').addEventListener('click', retry);
+    box.querySelector('.se-btn--reload').addEventListener('click', function () { location.reload(); });
     return box;
   }
   function ensureView(route) {
