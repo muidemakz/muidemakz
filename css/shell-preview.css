@@ -696,3 +696,8 @@ html[data-theme="light"] .o-thumb { transform: translateX(0); }
   .o-thumb { width: .65em; height: .65em; }
   html:not([data-theme="light"]) .o-thumb { transform: translateX(.56em); }
 }
+
+/* Phones: breathing room above and below the container (home and open case studies), clear of the home bar */
+@media (max-width: 860px) {
+  html.shell { --main-t: 78px; --main-s: calc(18px + env(safe-area-inset-bottom, 0px)); }
+}
