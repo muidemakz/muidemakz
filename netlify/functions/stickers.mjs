@@ -14,12 +14,14 @@
    - each browser sends a random id in the x-visitor header; only that browser can move or remove its stickers
    - the owner key (OWNER_KEY in Netlify's environment variables) can remove anything and clean the board,
      and stickers the owner drops are signed "Excellent"
-   Limits: 8 stickers per visitor, 160 on the board (the oldest visitor sticker goes first), 30 changes a minute per IP. */
+   Limits: 8 stickers per visitor, 60 loose ones on the board (the oldest visitor sticker goes first), visitor stickers
+   expire after 14 days, 30 changes a minute per IP. Reactions on case study cards do not expire. */
 import { getStore } from '@netlify/blobs';
 
 const TYPES = ['star', 'heart', 'smile', 'bolt', 'wow', 'eyes', 'flower', 'pointer'];
 const PER_VISITOR = 8;
-const MAX_TOTAL = 160;
+const MAX_TOTAL = 60;     /* loose stickers on the canvas; the oldest visitor sticker makes room */
+const EXPIRE_MS = 14 * 24 * 3600 * 1000; /* visitor stickers on the canvas fade out after 14 days; the owner's stay */
 const RX_PER_CASE = 3;   /* reactions per visitor per case study */
 const RX_TOTAL = 1500;
 const BAD = /(fuck|shit|bitch|cunt|nigg|fag|rape|whore|slut|dick|pussy)/ig;
@@ -54,7 +56,7 @@ export default async (req, context) => {
   const me = vidRaw ? await hash(vidRaw) : '';
   const ownerKey = process.env.OWNER_KEY || '';
   const isOwner = !!ownerKey && req.headers.get('x-owner-key') === ownerKey;
-  const load = async () => (await store.get('all', { type: 'json' })) || [];
+  const load = async () => ((await store.get('all', { type: 'json' })) || []).filter((s) => s.owner || Date.now() - (s.at || 0) < EXPIRE_MS);
   const loadRx = async () => (await store.get('reactions', { type: 'json' })) || [];
 
   if (req.method === 'GET') {
