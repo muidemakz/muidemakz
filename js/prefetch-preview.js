@@ -4,7 +4,7 @@
 (function () {
   var c = navigator.connection || {};
   if (c.saveData || /(^|-)2g$/.test(c.effectiveType || '')) return;
-  var PAGES = ['omnione', 'omnibiz-speech-to-order', 'teesaslms', 'fundall', 'valideity', 'empty-state', 'omni-sso', 'moniepoint-verification', 'sun-king', 'nsimbi-three-purchases', 'cancel-flow', 'cardtonic', 'coreloops', 'venx', 'raven-pay'];
+  var PAGES = ['omnione', 'omnibiz-speech-to-order', 'teesaslms', 'fundall', 'valideity', 'empty-state', 'omni-sso', 'omni-white-label', 'synarktech-lead', 'moniepoint-verification', 'sun-king', 'nsimbi-three-purchases', 'cancel-flow', 'cardtonic', 'coreloops', 'venx', 'raven-pay'];
   var queue = ['my-work', 'about'].concat(PAGES).map(function (n) { return n + '.html?embed=1'; });
   var seen = {}, running = 0, started = false;
 
