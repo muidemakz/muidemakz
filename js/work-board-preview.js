@@ -850,7 +850,7 @@
       shared = true;
       if (OWNER && j.owner === false) {
         toast(j.ownerSet === false ? 'Owner mode is off: OWNER_KEY is not set on Netlify for this site.' : 'This owner key doesn’t match the one on Netlify, so your changes won’t save. Open the owner link again with the current key.');
-        OWNER = ''; var cb = document.querySelector('.wb-tray-clear'); if (cb) cb.remove();
+        OWNER = ''; var cb = document.querySelector('.wb-owner-clean'); if (cb) cb.remove();
         ownerChip('Owner key not accepted', true);
       } else if (OWNER && j.owner) ownerChip('Owner mode on', false);
       applyDecor(j.decor);
@@ -869,7 +869,7 @@
     if (OWNER && SHARED_URL) {
       var cleanBtn = document.createElement('button');
       cleanBtn.type = 'button';
-      cleanBtn.className = 'wb-tray-clear';
+      cleanBtn.className = 'wb-tray-clear wb-owner-clean';
       cleanBtn.textContent = 'Clean up board';
       cleanBtn.addEventListener('click', function () {
         if (!window.confirm('Remove every visitor sticker from the board? Yours stay.')) return;
