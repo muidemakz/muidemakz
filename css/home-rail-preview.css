@@ -6,8 +6,8 @@
   --ink-soft: #c9c5cc;
   --ink-mute: #8f8a94;
   --line: rgba(244, 242, 244, .14);
-  --accent: #ff5a1f;
-  --accent-ink: #1a0900;
+  --accent: #7c4dff;
+  --accent-ink: #ffffff;
   --tile-gap: 8px;
   --rail-w: 340px;
 }
@@ -64,7 +64,7 @@ a { color: inherit; text-decoration: none; }
   font: 600 clamp(46px, 4.6vw, 64px)/.95 "Outfit", sans-serif;
   letter-spacing: -.055em;
 }
-.rail-name > span:not(.iw) { color: var(--accent); }
+.rail-name > span:not(.iw) { color: var(--accent-text); }
 .rail-bio {
   margin: 0;
   color: var(--ink-soft);
@@ -106,7 +106,7 @@ a { color: inherit; text-decoration: none; }
   font-size: 17px;
   transition: color .18s ease;
 }
-.rail-links a:hover { color: var(--accent); }
+.rail-links a:hover { color: var(--accent-text); }
 .rail-links a span { color: var(--ink-mute); font-size: 13px; }
 
 /* ---------- One-screen looping feed (desktop, script on) ----------
@@ -310,13 +310,13 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: .08em;
   text-transform: uppercase;
 }
-.ab-label span { margin-right: 10px; color: var(--accent); }
+.ab-label span { margin-right: 10px; color: var(--accent-text); }
 .ab-title {
   margin: 0 0 22px;
   font: 600 clamp(34px, 3.8vw, 56px)/1.03 "Outfit", sans-serif;
   letter-spacing: -.05em;
 }
-.ab-title em { color: var(--accent); font-style: normal; }
+.ab-title em { color: var(--accent-text); font-style: normal; }
 .ab-tagline { max-width: 52ch; margin: 0 0 22px; color: var(--ink-soft); font-size: 19px; line-height: 1.5; }
 .ab-tagline strong { color: var(--ink); font-weight: 600; }
 .ab-tags { display: flex; flex-wrap: wrap; gap: 6px 0; margin: 0 0 26px; padding: 0; list-style: none; color: var(--ink-soft); font-size: 14px; }
@@ -341,7 +341,7 @@ a { color: inherit; text-decoration: none; }
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
-.ab-stats strong { display: block; color: var(--accent); font: 600 clamp(28px, 3vw, 40px)/1.05 "Outfit", sans-serif; letter-spacing: -.04em; }
+.ab-stats strong { display: block; color: var(--accent-text); font: 600 clamp(28px, 3vw, 40px)/1.05 "Outfit", sans-serif; letter-spacing: -.04em; }
 .ab-stats span { display: block; margin-top: 8px; color: var(--ink-mute); font-size: 14px; line-height: 1.45; }
 
 .ab-section { padding: 56px 0 8px; }
@@ -355,7 +355,7 @@ a { color: inherit; text-decoration: none; }
 .ab-story h4 { margin: 0; font: 600 21px/1.25 "Outfit", sans-serif; letter-spacing: -.02em; }
 .ab-story p { max-width: 68ch; margin: 0; color: var(--ink-soft); font-size: 18px; line-height: 1.62; }
 .ab-story p strong { color: var(--ink); font-weight: 600; }
-.ab-story a, .ab-card a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.ab-story a, .ab-card a { color: var(--accent-text); text-decoration: underline; text-underline-offset: 3px; }
 
 .ab-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .ab-card { padding: 22px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
@@ -394,7 +394,7 @@ a { color: inherit; text-decoration: none; }
 
 .ab-close { margin-top: 64px; padding: 44px 0 8px; border-top: 1px solid var(--line); }
 .ab-close h3 { max-width: 16ch; margin: 0 0 24px; font: 600 clamp(32px, 3.6vw, 52px)/1.04 "Outfit", sans-serif; letter-spacing: -.05em; }
-.ab-close h3 em { color: var(--accent); font-style: normal; }
+.ab-close h3 em { color: var(--accent-text); font-style: normal; }
 
 @media (max-width: 1100px) {
   .ab-hero { grid-template-columns: 1fr; }
@@ -507,7 +507,7 @@ html.intro-run .ab-hero-media { animation: intro-fade .8s ease both; animation-d
   .compare--pan > .cmp-after { clip-path: inset(0 0 0 50%); }
 }
 
-.tile-new { color: var(--accent); }
+.tile-new { color: var(--accent-text); }
 
 /* =========================================================================
    Theme variables. Dark is the default; html[data-theme="light"] swaps them.
@@ -529,14 +529,14 @@ html.intro-run .ab-hero-media { animation: intro-fade .8s ease both; animation-d
   --cap-ink: #ffffff;
   --hover: rgba(255, 255, 255, .06);
   --bg-fade: rgba(14, 14, 14, 0);
-  --on-accent: #1a0900;
-  --accent-soft: rgba(255, 90, 31, .16);
-  --accent-text: #ff8a5c;
-  --c-shipped: #ff5a1f;
+  --on-accent: #ffffff;
+  --accent-soft: rgba(124, 77, 255, .16);
+  --accent-text: #b9a6ff;
+  --c-shipped: #7c4dff;
   --c-building: #a99bff;
   --c-concept: #ff8a65;
   --c-soon: #f2c94c;
-  --tint-made: rgba(255, 90, 31, .06);
+  --tint-made: rgba(124, 77, 255, .06);
   --tint-play: rgba(169, 155, 255, .06);
   --tint-soon: rgba(242, 201, 76, .05);
 }
@@ -546,7 +546,7 @@ html[data-theme="light"] {
   --ink-soft: #3a3f47;
   --ink-mute: #656b74;
   --line: rgba(20, 24, 32, .16);
-  --accent: #c93d00;
+  --accent: #5b34e0;
   --surface: #ffffff;
   --surface-2: #eceef1;
   --surface-raised: rgba(255, 255, 255, .97);
@@ -564,9 +564,9 @@ html[data-theme="light"] {
   --hover: rgba(20, 24, 32, .06);
   --bg-fade: rgba(244, 245, 247, 0);
   --on-accent: #ffffff;
-  --accent-soft: rgba(201, 61, 0, .13);
-  --accent-text: #9e2f00;
-  --c-shipped: #c93d00;
+  --accent-soft: rgba(91, 52, 224, .13);
+  --accent-text: #4a28b8;
+  --c-shipped: #5b34e0;
   --c-building: #5a49d1;
   --c-concept: #bf4326;
   --c-soon: #8a6a00;

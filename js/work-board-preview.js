@@ -85,7 +85,7 @@
     smile: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.6" fill="#fff" stroke="#fff" stroke-width="3"/><circle cx="12" cy="12" r="9.6" fill="#ffd54a"/><circle cx="8.8" cy="10" r="1.3" fill="#2b2208"/><circle cx="15.2" cy="10" r="1.3" fill="#2b2208"/><path d="M7.6 14c1.2 2.3 7.6 2.3 8.8 0" fill="none" stroke="#2b2208" stroke-width="1.5" stroke-linecap="round"/></svg>',
     eyes: '<svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="8" cy="12" rx="5.2" ry="6.4" fill="#fff" stroke="#fff" stroke-width="3"/><ellipse cx="16.4" cy="12" rx="5.2" ry="6.4" fill="#fff" stroke="#fff" stroke-width="3"/><ellipse cx="8" cy="12" rx="5.2" ry="6.4" fill="#fff"/><ellipse cx="16.4" cy="12" rx="5.2" ry="6.4" fill="#fff"/><circle cx="9.4" cy="13" r="2.4" fill="#222"/><circle cx="17.8" cy="13" r="2.4" fill="#222"/></svg>',
     flower: '<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="#fff" stroke="#fff" stroke-width="3"><circle cx="12" cy="5.4" r="3.6"/><circle cx="18.4" cy="10" r="3.6"/><circle cx="16" cy="17.6" r="3.6"/><circle cx="8" cy="17.6" r="3.6"/><circle cx="5.6" cy="10" r="3.6"/></g><g fill="#f48fb1"><circle cx="12" cy="5.4" r="3.6"/><circle cx="18.4" cy="10" r="3.6"/><circle cx="16" cy="17.6" r="3.6"/><circle cx="8" cy="17.6" r="3.6"/><circle cx="5.6" cy="10" r="3.6"/></g><circle cx="12" cy="12" r="3.2" fill="#ffd54a"/></svg>',
-    pointer: die(ARROW, '#ff5a1f')
+    pointer: die(ARROW, '#7c4dff')
   };
   var TRAY = ['star', 'heart', 'smile', 'bolt', 'wow', 'eyes', 'flower', 'pointer'];
 

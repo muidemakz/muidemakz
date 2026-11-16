@@ -481,7 +481,7 @@
   window.addEventListener('resize', fit);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var roles = ['Designer', 'Lead', 'Design Manager', 'Engineer'], tints = ['#ff5a1f', '#ff7a9c', '#b3a6ff', '#8fd3f4'], i = 0;
+  var roles = ['Designer', 'Lead', 'Design Manager', 'Engineer'], tints = ['#a98bff', '#ff7a9c', '#b3a6ff', '#8fd3f4'], i = 0;
   setInterval(function () {
     if (document.hidden) return;
     el.classList.add('is-swapping');

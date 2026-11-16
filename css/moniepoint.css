@@ -132,7 +132,7 @@
   font-size: 13px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--cs-accent-text, var(--accent));
 }
 
 .mv-decision-title {
@@ -250,7 +250,7 @@
 }
 
 .mv-details summary::-webkit-details-marker { display: none; }
-.mv-details summary::after { content: "+"; font-size: 22px; line-height: 1; color: var(--accent); transition: transform 0.2s ease; }
+.mv-details summary::after { content: "+"; font-size: 22px; line-height: 1; color: var(--cs-accent-text, var(--accent)); transition: transform 0.2s ease; }
 .mv-details[open] summary::after { transform: rotate(45deg); }
 .mv-details summary:hover { background: rgba(255, 59, 0, 0.08); }
 .mv-details summary:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }

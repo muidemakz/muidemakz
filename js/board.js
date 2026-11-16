@@ -541,7 +541,7 @@
     }
     function renderChip() {
       var o = others();
-      var html = '<span class="presence-av" style="--c:#ff5a1f" title="You">Y</span>';
+      var html = '<span class="presence-av" style="--c:#7c4dff" title="You">Y</span>';
       o.slice(0, 2).forEach(function (g) { html += '<span class="presence-av" style="--c:' + g.color + '">' + (g.name.replace(/\D+/g, '') || g.name.charAt(0)) + '</span>'; });
       if (o.length > 2) html += '<span class="presence-av presence-av--more" style="--c:#3a373d;color:#f4f2f4">+' + (o.length - 2) + '</span>';
       chip.innerHTML = '<span class="presence-avs">' + html + '</span><span class="presence-count">' + (o.length + 1) + ((o.length + 1) === 1 ? ' visitor' : ' visitors') + '</span>' +
@@ -802,7 +802,7 @@
             if (!m || m.id === myId) return;
             seen[m.id] = 1;
             if (!reals[m.id]) {
-              var color = /^#[0-9a-f]{6}$/i.test(m.color || '') && m.color.toLowerCase() !== '#ff5a1f' ? m.color : pick(PALETTE);
+              var color = /^#[0-9a-f]{6}$/i.test(m.color || '') && m.color.toLowerCase() !== '#7c4dff' ? m.color : pick(PALETTE);
               reals[m.id] = new Peer({ name: clean(m.name).slice(0, 14) || 'Guest', color: color, real: true });
             }
           });

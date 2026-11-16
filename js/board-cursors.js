@@ -1,7 +1,7 @@
 /* Cursor designs for the design-board layer. Pick one on cursor-options-preview.html
    (saved in localStorage as "board-cursor") or set BOARD_CONFIG.cursor in js/board-config.js. */
 (function () {
-  var MINT = '#ff5a1f', INK = '#0e0e0e', WHITE = '#ffffff';
+  var MINT = '#7c4dff', INK = '#0e0e0e', WHITE = '#ffffff';
   var SHARP = 'M5 3 L5 24 L10.8 18.8 L14.8 27.4 L18.6 25.7 L14.7 17.2 L22.6 17.2 Z';
   var PIXEL = 'M5 3h3v3h3v3h3v3h3v3h3v3h-6v3h3v6h-3v-3h-3v-3h-3v3h-3z';
   var STAR = 'M16 3 Q17.4 14.6 29 16 Q17.4 17.4 16 29 Q14.6 17.4 3 16 Q14.6 14.6 16 3Z';
@@ -43,7 +43,7 @@
     { id: 'chunky', name: 'Chunky arrow', note: 'Heavier outline with rounded joins. Easy to spot.', hot: [5, 3], fill: MINT, stroke: INK,
       draw: function (f, s) { return '<path d="' + SHARP + '" fill="' + f + '" stroke="' + s + '" stroke-width="3.4" stroke-linejoin="round"/>'; } },
     { id: 'monogram', name: 'M dot', note: 'A round mint dot with your initial. Reads as a signature.', hot: [16, 16], fill: MINT, stroke: WHITE,
-      draw: function (f, s) { return '<circle cx="16" cy="16" r="11" fill="' + f + '" stroke="' + s + '" stroke-width="2"/><text x="16" y="20.6" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="' + (f === WHITE ? INK : '#1a0900') + '">M</text>'; } },
+      draw: function (f, s) { return '<circle cx="16" cy="16" r="11" fill="' + f + '" stroke="' + s + '" stroke-width="2"/><text x="16" y="20.6" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="' + (f === WHITE ? INK : '#ffffff') + '">M</text>'; } },
     { id: 'ring', name: 'Target ring', note: 'A thin ring with a centre dot. Precise, like a design tool.', hot: [16, 16], fill: MINT, stroke: WHITE,
       draw: function (f, s) { return '<circle cx="16" cy="16" r="10" fill="none" stroke="' + s + '" stroke-width="3.6"/><circle cx="16" cy="16" r="10" fill="none" stroke="' + f + '" stroke-width="1.8"/><circle cx="16" cy="16" r="2.6" fill="' + f + '" stroke="' + s + '" stroke-width="1"/>'; } },
     { id: 'pen', name: 'Pen nib', note: 'A pen-tool nib. Says designer without saying it.', hot: [5, 27], fill: MINT, stroke: WHITE,

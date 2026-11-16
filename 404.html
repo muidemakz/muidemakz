@@ -23,12 +23,12 @@
      Paths are absolute because this page is served for any missing address, at any depth. */
   :root {
     --bg: #0c0b0d; --surface: #161418; --raised: #1f1c22; --line: rgba(244, 242, 244, .12);
-    --ink: #f4f2f4; --ink-soft: #c9c3cb; --ink-mute: #8d8690; --accent: #ff5a1f; --accent-text: #ff8a5c; --on-accent: #1a0900;
+    --ink: #f4f2f4; --ink-soft: #c9c3cb; --ink-mute: #8d8690; --accent: #7c4dff; --accent-text: #b9a6ff; --on-accent: #ffffff;
     --dot: rgba(244, 242, 244, .13); --card: #232026;
   }
   html[data-theme="light"] {
     --bg: #ffffff; --surface: #f6f6f7; --raised: #ffffff; --line: rgba(20, 18, 20, .1);
-    --ink: #141214; --ink-soft: #4d474f; --ink-mute: #7b757d; --accent-text: #c93d00;
+    --ink: #141214; --ink-soft: #4d474f; --ink-mute: #7b757d; --accent-text: #5b34e0;
     --dot: rgba(13, 13, 13, .12); --card: #ffffff;
   }
   * { box-sizing: border-box; }
@@ -83,7 +83,7 @@
   .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 6px; }
   .btn { display: inline-flex; align-items: center; min-height: 46px; padding: 0 22px; border-radius: 999px; text-decoration: none; font-weight: 600; }
   .btn--primary { background: var(--accent); color: var(--on-accent); }
-  .btn--primary:hover { background: #ff8a5c; }
+  .btn--primary:hover { background: #5b34e0; }
   .btn--quiet { border: 1px solid var(--line); background: var(--surface); }
   .btn--quiet:hover { border-color: var(--accent); }
   .try { margin: 14px 0 0; color: var(--ink-mute); font-size: 14px; }

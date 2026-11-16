@@ -278,7 +278,7 @@
   font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--cs-accent-text, var(--accent));
 }
 
 .mv-evidence p:last-child { margin: 0; font-family: var(--font-hard); font-size: 15.5px; line-height: 1.5; }

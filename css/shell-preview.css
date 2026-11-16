@@ -154,7 +154,7 @@ html.shell body { margin: 0; }
   height: .3em;
   margin-top: -.15em;
   border-radius: 50%;
-  background: radial-gradient(circle at 32% 26%, #ffffff 0 12%, #ffd0b8 34%, #ff5a1f 74%, #c93d00 100%);
+  background: radial-gradient(circle at 32% 26%, #ffffff 0 12%, #d9ccff 34%, #7c4dff 74%, #5b34e0 100%);
   box-shadow: 0 .05em .08em rgba(0, 0, 0, .6), inset 0 -.03em .05em rgba(0, 0, 0, .3), inset 0 .02em .02em rgba(255, 255, 255, .85);
   transform: translateX(.58em);
   transition: transform .55s cubic-bezier(.3, 1.6, .45, 1), background .4s ease;
@@ -163,10 +163,10 @@ html.shell body { margin: 0; }
 .o-switch:active .o-knob { scale: .92; }
 .o-switch:focus-visible { outline: 2px solid var(--accent); outline-offset: .06em; }
 html[data-theme="light"] .o-switch { box-shadow: inset 0 .05em .09em rgba(120, 40, 8, .5), 0 .03em 0 rgba(255, 255, 255, .9); }
-html[data-theme="light"] .o-switch::before { background: linear-gradient(180deg, rgba(255, 138, 92, .95), rgba(255, 214, 196, .7)); }
+html[data-theme="light"] .o-switch::before { background: linear-gradient(180deg, rgba(185, 166, 255, .95), rgba(255, 214, 196, .7)); }
 html[data-theme="light"] .o-knob {
   transform: translateX(0);
-  background: radial-gradient(circle at 32% 26%, #ffffff 0 12%, #ffd9c7 36%, #ff7a3d 78%, #c93d00 100%);
+  background: radial-gradient(circle at 32% 26%, #ffffff 0 12%, #e3d9ff 36%, #9a73ff 78%, #5b34e0 100%);
 }
 
 /* ---------- Layout: rail on the left, container on the right ---------- */
@@ -293,7 +293,7 @@ html.shell .rail-status--name::before { display: none; }
   .shell-nav a { padding: 0 16px; min-height: 34px; }
   .shell-actions { display: none; }
 }
-html.shell .rail-name .rail-home > span:not(.iw) { color: #ff5a1f; }
+html.shell .rail-name .rail-home > span:not(.iw) { color: #7c4dff; }
 html.shell[data-theme="light"] .rail-name .rail-home > span:not(.iw) { color: #e04a0c; }
 .o-switch { font: inherit; letter-spacing: inherit; }
 .word-nb { white-space: nowrap; }
@@ -341,7 +341,7 @@ html.shell .rail-name > .word-nb { color: inherit; }
   display: inline;
   padding: .02em .2em .08em;
   border-radius: .14em;
-  background: var(--role, #ff5a1f);
+  background: var(--role, #7c4dff);
   color: #1a0900 !important;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
@@ -354,8 +354,8 @@ html.shell .rail-name .rail-home:hover .role-cycle { filter: brightness(1.08); }
 @media (prefers-reduced-motion: reduce) { .role-cycle { transition: none; } }
 
 /* Say hi is the hot yellow call to action; Resume stays gray */
-html.shell .btn--light, html[data-theme="light"] .btn--light { background: #ff5a1f; color: #1a0900; }
-html.shell .btn--light:hover, html[data-theme="light"] .btn--light:hover { background: #ff8a5c; }
+html.shell .btn--light, html[data-theme="light"] .btn--light { background: #7c4dff; color: #ffffff; }
+html.shell .btn--light:hover, html[data-theme="light"] .btn--light:hover { background: #5b34e0; }
 
 /* ---------- Hand-written note on the rail: what I'm building right now ---------- */
 .rail-scribble {
@@ -365,7 +365,7 @@ html.shell .btn--light:hover, html[data-theme="light"] .btn--light:hover { backg
   gap: 4px;
   align-self: flex-start;
   margin: 26px 0 6px 4px;
-  color: #7fa6ff;
+  color: #ffe28a;
   font-family: "Caveat", cursive;
   transform: rotate(-4deg);
   transform-origin: left bottom;
@@ -375,9 +375,9 @@ html.shell .btn--light:hover, html[data-theme="light"] .btn--light:hover { backg
 .rs-arrow { width: 48px; height: 42px; margin-bottom: 2px; flex: none; }
 .rs-text { display: grid; line-height: .95; }
 .rs-small { font-size: 22px; font-weight: 500; opacity: .95; }
-/* Valideity's own blue (the logo's), so the note reads as that product */
-.rs-big { color: #3b73ff; }
-html[data-theme="light"] .rs-big { color: #0550ff; }
+/* Yellow, so the note stands out against the purple accent (amber on light for contrast) */
+.rs-big { color: #ffd54a; }
+html[data-theme="light"] .rs-big { color: #9a5200; }
 .rs-big {
   position: relative;
   font-size: 40px;
@@ -391,9 +391,9 @@ html[data-theme="light"] .rs-big { color: #0550ff; }
   right: -4px;
   bottom: -2px;
   height: 8px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8' preserveAspectRatio='none'%3E%3Cpath d='M1 5c10-5 18 4 28-1s18 4 28-1 18 4 28-1 18 4 33 0' fill='none' stroke='%233b73ff' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8' preserveAspectRatio='none'%3E%3Cpath d='M1 5c10-5 18 4 28-1s18 4 28-1 18 4 28-1 18 4 33 0' fill='none' stroke='%23ffd54a' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
 }
-html[data-theme="light"] .rail-scribble { color: #0550ff; }
+html[data-theme="light"] .rail-scribble { color: #9a5200; }
 html[data-theme="light"] .rs-big::after { filter: saturate(.9) brightness(.82); }
 @media (max-width: 860px) { .rail-scribble { display: none; } }
 
@@ -441,7 +441,7 @@ html.shell .rail-name { font-size: clamp(38px, 3.5vw, 54px); }
 .o-lever {
   position: absolute; left: .05em; right: .05em; height: .3em;
   border-radius: .07em;
-  background: linear-gradient(180deg, #ffd0b8, #ff5a1f 55%, #c93d00);
+  background: linear-gradient(180deg, #d9ccff, #7c4dff 55%, #5b34e0);
   box-shadow: 0 .03em .05em rgba(0, 0, 0, .6), inset 0 .015em 0 rgba(255, 255, 255, .7);
   transform-origin: 50% 50%;
   top: 50%;
@@ -659,7 +659,7 @@ html[data-theme="light"] .o-finger { top: 66%; right: auto; left: .02em; }
 .se-cord { position: absolute; top: 43px; height: 4px; border-radius: 4px; background: var(--ink-mute); }
 .se-cord--a { left: 0; width: 70px; }
 .se-cord--b { right: 0; width: 70px; }
-.se-plug { position: absolute; top: 28px; width: 38px; height: 34px; border-radius: 10px; background: linear-gradient(180deg, #ff8a5c, #ff5a1f 60%, #c93d00); box-shadow: 0 8px 16px rgba(0, 0, 0, .35); }
+.se-plug { position: absolute; top: 28px; width: 38px; height: 34px; border-radius: 10px; background: linear-gradient(180deg, #b9a6ff, #7c4dff 60%, #5b34e0); box-shadow: 0 8px 16px rgba(0, 0, 0, .35); }
 .se-plug--a { left: 66px; animation: se-try-a 2.4s cubic-bezier(.6, 0, .3, 1) infinite; }
 .se-plug--a::after { content: ""; position: absolute; right: -10px; top: 9px; width: 10px; height: 4px; border-radius: 2px; background: #c9c3cb; box-shadow: 0 12px 0 #c9c3cb; }
 .se-plug--b { right: 66px; border-radius: 10px; background: linear-gradient(180deg, #3a363e, #26232a); animation: se-try-b 2.4s cubic-bezier(.6, 0, .3, 1) infinite; }
@@ -672,8 +672,8 @@ html[data-theme="light"] .se-plug--b { background: linear-gradient(180deg, #d7d9
 .se-text { max-width: 36ch; margin: 0; color: var(--ink-soft); font: 400 15px/1.5 "Outfit", sans-serif; }
 .se-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 6px; }
 .se-btn { display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border: 1px solid var(--line); border-radius: 999px; background: var(--btn, transparent); color: var(--ink); font: 600 14px "Outfit", sans-serif; text-decoration: none; cursor: pointer; }
-.se-btn--primary { border-color: transparent; background: #ff5a1f; color: #1a0900; }
-.se-btn--primary:hover { background: #ff8a5c; }
+.se-btn--primary { border-color: transparent; background: #7c4dff; color: #ffffff; }
+.se-btn--primary:hover { background: #5b34e0; }
 .se-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { .stage-error, .se-plug, .se-spark { animation: none; } }
 
@@ -752,7 +752,7 @@ html.shell .rail-name .role-cycle { text-transform: uppercase; letter-spacing: -
   height: 22px;
   margin-left: -7px;
   border-radius: 8px;
-  background: radial-gradient(circle at 35% 28%, #ffffff 0 10%, #ffd0b8 32%, #ff5a1f 72%, #c93d00 100%);
+  background: radial-gradient(circle at 35% 28%, #ffffff 0 10%, #d9ccff 32%, #7c4dff 72%, #5b34e0 100%);
   box-shadow: 0 4px 8px rgba(0, 0, 0, .45), inset 0 -2px 3px rgba(0, 0, 0, .25);
   transition: top .5s cubic-bezier(.3, 1.7, .4, 1), scale .2s ease;
 }
@@ -762,7 +762,7 @@ html[data-theme="light"] .pull-bead { box-shadow: 0 4px 8px rgba(120, 40, 8, .3)
 .pull:hover .pull-bead, .pull:focus-visible .pull-bead { scale: 1.12; }
 .pull:hover:not(.is-dragging):not(.is-snapping) { animation: pull-sway 1.6s ease-in-out infinite; }
 .pull:focus-visible { outline: none; }
-.pull:focus-visible .pull-bead { outline: 2px solid var(--accent, #ff5a1f); outline-offset: 3px; }
+.pull:focus-visible .pull-bead { outline: 2px solid var(--accent, #7c4dff); outline-offset: 3px; }
 .pull.is-snapping .pull-cord { animation: pull-cord .7s cubic-bezier(.3, 1.6, .4, 1); }
 .pull.is-snapping .pull-bead { animation: pull-bead .7s cubic-bezier(.3, 1.6, .4, 1); }
 .pull.is-snapping { animation: pull-swing .9s ease-out; }
@@ -796,3 +796,7 @@ html.shell .tiles.is-spotlight .tile:not(.is-lit) { opacity: .62; filter: satura
 /* Same place in every browser: align the switch by the line's middle (not by an empty button's baseline, which
    phones place differently) and lift it so its centre sits on the middle of the capitals (cap height .71em, x-height .5em) */
 html.shell .o-switch { vertical-align: middle; position: relative; top: -.103em; }
+
+/* Accent buttons: a purple gradient, white text */
+html.shell .btn--light, html[data-theme="light"] .btn--light, .se-btn--primary { background-image: linear-gradient(135deg, #7c4dff 0%, #4b2bd1 100%); color: #fff; }
+html.shell .btn--light:hover, html[data-theme="light"] .btn--light:hover, .se-btn--primary:hover { background-image: none; }

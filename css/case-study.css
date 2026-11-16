@@ -57,7 +57,7 @@
   font-size: 14px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--cs-accent-text, var(--accent));
   margin: 0;
 }
 
@@ -69,7 +69,7 @@
   text-transform: uppercase;
 }
 
-.case-visit:hover { color: var(--accent); }
+.case-visit:hover { color: var(--cs-accent-text, var(--accent)); }
 
 .case-title {
   font-family: var(--font-hard);
@@ -117,7 +117,7 @@
 
 .case-tags li::after {
   content: "\25A0";
-  color: var(--accent);
+  color: var(--cs-accent-text, var(--accent));
   font-size: 7px;
   vertical-align: middle;
   margin: 0 13px;
@@ -256,7 +256,7 @@
   font-family: var(--font-mono);
   font-weight: 700;
   font-size: 14px;
-  color: var(--accent);
+  color: var(--cs-accent-text, var(--accent));
 }
 
 .case-list--plain { margin: 10px 0 0; }
@@ -290,7 +290,7 @@
   margin: 0 0 12px;
 }
 
-.case-split-cell--dark .case-split-label { color: var(--accent); }
+.case-split-cell--dark .case-split-label { color: var(--cs-accent-text, var(--accent)); }
 
 .case-split-copy {
   font-family: var(--font-hard);
@@ -322,7 +322,7 @@
   font-family: var(--font-mono);
   font-weight: 700;
   font-size: 30px;
-  color: var(--accent);
+  color: var(--cs-accent-text, var(--accent));
   margin-bottom: 10px;
 }
 
@@ -593,7 +593,7 @@
   font-size: 14px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--cs-accent-text, var(--accent));
   margin: 0 0 10px;
 }
 
@@ -743,7 +743,7 @@
   font-family: var(--font-mono);
   font-weight: 700;
   font-size: 13px;
-  color: var(--accent);
+  color: var(--cs-accent-text, var(--accent));
 }
 
 .case-version-title {
@@ -792,7 +792,7 @@
   font-size: 14px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--cs-accent-text, var(--accent));
   margin: 0 0 10px;
 }
 
@@ -967,7 +967,7 @@
   font-size: 14px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--cs-accent-text, var(--accent));
   margin: 0 0 10px;
 }
 
@@ -1027,7 +1027,7 @@
   font-family: var(--font-mono);
   font-size: 14px;
   letter-spacing: 0.04em;
-  color: var(--accent);
+  color: var(--cs-accent-text, var(--accent));
   margin: 14px 0 0;
 }
 
@@ -1068,7 +1068,7 @@
   cursor: pointer;
 }
 
-.case-gate-close:hover { color: var(--accent); }
+.case-gate-close:hover { color: var(--cs-accent-text, var(--accent)); }
 
 .case-gate-modal .case-kicker { margin: 0 0 14px; }
 .case-gate-modal .case-copy { margin: 0 0 24px; }
@@ -1227,7 +1227,7 @@
 
 .case-label--lg { font-size: 16px; }
 .case-copy--lg { font-size: 21px; line-height: 26.35px; }
-.case-accent { color: var(--accent); }
+.case-accent { color: var(--cs-accent-text, var(--accent)); }
 
 /* grey framed figure: header content on top, inset screenshot below */
 .case-figure--grey { background: #ebe9e5; }
@@ -1245,7 +1245,7 @@
   font-size: 16px;
   letter-spacing: 0.0625em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--cs-accent-text, var(--accent));
   margin: 0 0 12px;
 }
 
@@ -1342,7 +1342,7 @@
   font-size: 16px;
   letter-spacing: 0.0625em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--cs-accent-text, var(--accent));
   margin: 0 0 12px;
 }
 
@@ -1361,7 +1361,7 @@
   font-size: 14px;
   letter-spacing: 0.0786em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--cs-accent-text, var(--accent));
   margin: 0 0 10px;
 }
 
@@ -1505,7 +1505,7 @@
   font-size: 14px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--cs-accent-text, var(--accent));
   margin: 0 0 8px;
 }
 
@@ -1516,7 +1516,7 @@
 
 /* compact split header: every label orange, smaller copy */
 .case-split--compact .case-split-cell { padding: 26px 22px 40px; }
-.case-split--compact .case-split-label { color: var(--accent); }
+.case-split--compact .case-split-label { color: var(--cs-accent-text, var(--accent)); }
 .case-split--compact .case-split-copy { font-size: 16px; line-height: 1.4; }
 
 /* phone captures laid out inside a framed figure */
@@ -1579,7 +1579,7 @@
   font-size: 14px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--cs-accent-text, var(--accent));
   margin: 0;
 }
 
@@ -1592,7 +1592,7 @@
 }
 
 .case-impact-link:hover,
-.case-impact-link:focus-visible { color: var(--accent); }
+.case-impact-link:focus-visible { color: var(--cs-accent-text, var(--accent)); }
 
 .case-impact-item { flex: 1 1 0; min-width: 0; padding: 18px 20px; border-left: 1px solid var(--ink-hard); }
 
@@ -1763,7 +1763,7 @@
   font-size: 14px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--cs-accent-text, var(--accent));
 }
 
 .case-type-spec { font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.04em; opacity: 0.7; }
@@ -1793,7 +1793,7 @@
   font-size: 14px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--cs-accent-text, var(--accent));
 }
 
 .case-tension-copy { margin: 0; font-family: var(--font-hard); font-size: 16px; line-height: 1.45; max-width: 36ch; }
@@ -1822,7 +1822,7 @@
 }
 
 /* orange the section-name segment of a label, leave the rest ink */
-.case-label-accent { color: var(--accent); }
+.case-label-accent { color: var(--cs-accent-text, var(--accent)); }
 
 @media (max-width: 600px) {
   .case-phones { gap: 14px; }
@@ -1859,7 +1859,7 @@
 .hf-meta { display: flex; flex-direction: column; align-items: center; gap: 10px; color: #f2f0eb; font: 600 13px/1 'Outfit', sans-serif; letter-spacing: .02em; }
 .hf-dots { display: flex; gap: 6px; }
 .hf-dot { width: 26px; height: 3px; border-radius: 2px; background: rgba(242, 240, 235, .28); overflow: hidden; }
-.hf-dot i { display: block; height: 100%; width: 0; background: #ff3b00; }
+.hf-dot i { display: block; height: 100%; width: 0; background: #7c4dff; }
 .hf-dot.is-done i { width: 100%; }
 .hf-dot.is-current i { animation: hf-fill var(--hf-ms, 3200ms) linear forwards; }
 [data-hf-flow].is-paused .hf-dot.is-current i { animation-play-state: paused; }
