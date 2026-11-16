@@ -684,3 +684,15 @@ html[data-theme="light"] .o-thumb { transform: translateX(0); }
   .o-thumb { width: .56em; height: .56em; }
   html:not([data-theme="light"]) .o-thumb { transform: translateX(.56em); }
 }
+
+/* Optical size: a pill looks shorter than flat-topped capitals, so (like the letter O itself) it overshoots
+   the cap height slightly and is centred on the capitals: cap height .7em, centre .35em above the baseline. */
+.o-switch { width: 1.44em; height: .8em; vertical-align: -.05em; }
+.o-thumb { top: .075em; left: .075em; width: .65em; height: .65em; transform: translateX(.64em); }
+html[data-theme="light"] .o-thumb { transform: translateX(0); }
+.o-ico { width: .4em; height: .4em; }
+@media (max-width: 860px) {
+  .o-switch { width: 1.36em; height: .8em; }
+  .o-thumb { width: .65em; height: .65em; }
+  html:not([data-theme="light"]) .o-thumb { transform: translateX(.56em); }
+}
