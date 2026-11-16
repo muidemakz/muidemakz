@@ -1,213 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMFSR34FZG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-SMFSR34FZG");
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Excellent Makanju &middot; Senior Product Designer &middot; CV</title>
+<meta name="description" content="CV of Excellent Makanju, Senior Product Designer for payments, wallet and B2B commerce products.">
+<link rel="canonical" href="https://muidemakz.com/resume">
+<script>try{if(localStorage.getItem('ui-theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* =========================================================================
-   resume.html, print-ready CV.
+   resume.html: the CV in the site's design on screen, a clean white A4 when printed.
 
-   Content transcribed from Excellent_Makanju_Resume.pdf. The only edits to
-   the source content are in the contact line: the portfolio link now points
-   at muidemakz.com, with the Netlify address alongside it as a live fallback
-   while the domain's billing is being sorted.
+   Content transcribed from Excellent_Makanju_Resume.pdf (now Excellent_Makanju_Resume_2026.pdf).
+   The only edit to the source content is in the contact line: the portfolio link points at
+   muidemakz.com, with the Netlify address alongside it.
 
-   To produce a PDF: open in a browser, Print, Save as PDF, A4, margins
-   "Default", and tick "Background graphics".
+   To produce a PDF: Print, Save as PDF, A4, margins "Default", tick "Background graphics".
    ========================================================================= */
-
 :root {
-  --ink: #0d0d0d;
-  --muted: #4a4a4a;
-  --rule: #d6d3cc;
-  --accent: #ff3b00;
+  --bg: #0c0b0d; --raised: #161418; --surface: #1f1c22; --line: rgba(244, 242, 244, .12);
+  --ink: #f4f2f4; --ink-soft: #c9c3cb; --ink-mute: #8d8690; --accent: #ff5a1f; --accent-text: #ff8a5c; --on-accent: #1a0900;
+  --dot: rgba(244, 242, 244, .12);
   --mono: "JetBrains Mono", monospace;
-  --body: "Inter", system-ui, sans-serif;
+  --body: "Outfit", system-ui, sans-serif;
 }
-
+html[data-theme="light"] {
+  --bg: #ffffff; --raised: #ffffff; --surface: #f4f4f5; --line: rgba(20, 18, 20, .1);
+  --ink: #141214; --ink-soft: #3f3a41; --ink-mute: #6e6870; --accent-text: #c93d00; --dot: rgba(13, 13, 13, .1);
+}
 * { box-sizing: border-box; }
-
 body {
   margin: 0;
-  background: #f2f0eb;
+  background-color: var(--bg);
+  background-image: radial-gradient(circle, var(--dot) 1px, transparent 1.4px);
+  background-size: 24px 24px;
+  background-attachment: fixed;
   color: var(--ink);
-  font-family: var(--body);
-  font-size: 10.2pt;
-  line-height: 1.42;
+  font: 400 16px/1.55 var(--body);
   -webkit-font-smoothing: antialiased;
 }
-
-.sheet {
-  max-width: 900px;
-  margin: 24px auto;
-  background: #fff;
-  padding: 40px 46px 46px;
-}
-
 a { color: inherit; text-decoration: none; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-/* ---------- header ---------- */
+/* ---------- site header (screen only) ---------- */
+.cv-head { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; }
+.pill { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border: 1px solid var(--line); border-radius: 999px; background: var(--raised); font-weight: 500; }
+.brand { font: 700 14px/1 var(--mono); letter-spacing: .02em; }
+.cv-nav { display: flex; gap: 4px; padding: 4px; border: 1px solid var(--line); border-radius: 999px; background: var(--raised); }
+.cv-nav a { display: inline-flex; align-items: center; min-height: 36px; padding: 0 16px; border-radius: 999px; color: var(--ink-soft); font-weight: 500; }
+.cv-nav a:hover { color: var(--ink); background: var(--surface); }
+.cv-actions { display: flex; gap: 8px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border: 1px solid var(--line); border-radius: 999px; background: var(--raised); color: var(--ink); font: 600 14px var(--body); cursor: pointer; }
+.btn--primary { border-color: transparent; background: var(--accent); color: var(--on-accent); }
+.btn--primary:hover { background: #ff8a5c; }
+.btn:not(.btn--primary):hover { border-color: var(--accent); }
 
+/* ---------- the sheet ---------- */
+.sheet {
+  max-width: 920px;
+  margin: 8px auto 56px;
+  padding: 52px 58px 56px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--raised);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, .35);
+}
+html[data-theme="light"] .sheet { box-shadow: 0 24px 60px rgba(40, 30, 20, .1); }
 .slab {
   display: inline-block;
-  background: var(--ink);
-  color: #fff;
-  font-family: var(--mono);
-  font-weight: 700;
-  font-size: 8.5pt;
-  letter-spacing: 0.12em;
-  text-transform: lowercase;
-  padding: 5px 10px;
-  margin-bottom: 12px;
+  margin-bottom: 18px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font: 700 12px/1 var(--mono);
+  letter-spacing: .08em;
 }
-
-h1 {
-  font-size: 25pt;
-  line-height: 1;
-  letter-spacing: -0.025em;
-  text-transform: uppercase;
-  margin: 0 0 8px;
-  font-weight: 700;
-}
-
-.tagline {
-  font-family: var(--mono);
-  font-weight: 700;
-  font-size: 8.6pt;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin: 0 0 12px;
-}
-
-.tagline .accent { color: var(--accent); }
-
+h1 { margin: 0 0 10px; font: 600 clamp(36px, 5vw, 54px)/1 var(--body); letter-spacing: -.035em; text-transform: uppercase; }
+.tagline { margin: 0 0 18px; color: var(--ink-soft); font: 500 14px/1.4 var(--mono); letter-spacing: .03em; text-transform: uppercase; }
+.tagline .accent { color: var(--accent-text); }
 .contact {
-  font-family: var(--mono);
-  font-size: 8.4pt;
-  line-height: 1.75;
-  border-top: 1.5px solid var(--ink);
-  border-bottom: 1.5px solid var(--ink);
-  padding: 9px 0;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  padding: 14px 18px;
+  border-radius: 16px;
+  background: var(--surface);
+  color: var(--ink-soft);
+  font: 500 13px/1.9 var(--mono);
 }
-
 .contact span { white-space: nowrap; }
-.contact .sep { color: var(--accent); padding: 0 7px; }
-.contact a { border-bottom: 1px solid var(--accent); }
-
-/* ---------- sections ---------- */
+.contact .sep { padding: 0 8px; color: var(--accent-text); }
+.contact a { color: var(--ink); border-bottom: 1px solid var(--accent); }
+.contact a:hover { color: var(--accent-text); }
 
 h2 {
-  font-family: var(--mono);
-  font-size: 8.6pt;
-  font-weight: 700;
-  letter-spacing: 0.16em;
+  display: flex; align-items: center; gap: 10px;
+  margin: 40px 0 14px;
+  color: var(--accent-text);
+  font: 700 12px/1.3 var(--mono);
+  letter-spacing: .12em;
   text-transform: uppercase;
-  margin: 22px 0 9px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid var(--rule);
 }
-
+h2::before { content: ""; width: 18px; height: 2px; border-radius: 2px; background: currentColor; }
+h2::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 h2:first-of-type { margin-top: 0; }
+p { margin: 0 0 10px; }
+.summary { color: var(--ink-soft); font-size: 17px; line-height: 1.65; }
+ul { margin: 0 0 8px; padding: 0; list-style: none; }
+li { position: relative; margin-bottom: 9px; padding-left: 20px; color: var(--ink-soft); }
+li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+li strong, .comp b { color: var(--ink); font-weight: 600; }
 
-p { margin: 0 0 8px; }
+/* skills as a grid of rounded cards on wide screens */
+.comp { margin: 0 0 8px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); color: var(--ink-soft); font-size: 15px; }
+.comps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.comps .comp { margin: 0; }
+@media (max-width: 760px) { .comps { grid-template-columns: 1fr; } }
 
-.summary { margin-bottom: 4px; }
+.role { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 14px; margin: 26px 0 4px; padding-top: 22px; border-top: 1px solid var(--line); }
+h2 + .role { margin-top: 0; padding-top: 0; border-top: 0; }
+.role-title { color: var(--ink); font-weight: 600; font-size: 19px; letter-spacing: -.01em; }
+.role-title .co { color: var(--accent-text); font-weight: 500; }
+.role-dates { padding: 4px 10px; border-radius: 999px; background: var(--surface); color: var(--ink-mute); font: 500 12px/1.3 var(--mono); letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; }
+.role-context { margin: 0 0 12px; color: var(--ink-mute); font-size: 15px; }
+.edu-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 14px; margin-bottom: 8px; padding: 12px 16px; border-radius: 14px; background: var(--surface); color: var(--ink-soft); }
+.edu-row strong { color: var(--ink); font-weight: 600; }
+.edu-row .d { color: var(--ink-mute); font: 500 12px/1.6 var(--mono); text-transform: uppercase; }
 
-ul { margin: 0 0 6px; padding: 0; list-style: none; }
-
-li {
-  position: relative;
-  padding-left: 15px;
-  margin-bottom: 6px;
+@media (max-width: 760px) {
+  .cv-head { flex-wrap: wrap; }
+  .cv-actions { order: 3; width: 100%; }
+  .cv-actions .btn { flex: 1; justify-content: center; }
+  .sheet { margin: 4px 8px 32px; padding: 28px 20px 32px; border-radius: 20px; }
+  .contact span { white-space: normal; }
 }
 
-li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.5em;
-  width: 5px;
-  height: 5px;
-  background: var(--accent);
-}
-
-li strong { font-weight: 700; }
-
-/* ---------- roles ---------- */
-
-.role {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 14px;
-  margin: 14px 0 2px;
-  flex-wrap: wrap;
-}
-
-.role:first-of-type { margin-top: 4px; }
-
-.role-title { font-weight: 700; font-size: 10.6pt; }
-.role-title .co { color: var(--accent); }
-
-.role-dates {
-  font-family: var(--mono);
-  font-size: 8.2pt;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--muted);
-  white-space: nowrap;
-}
-
-.role-context {
-  font-size: 9pt;
-  color: var(--muted);
-  margin: 0 0 7px;
-  font-style: italic;
-}
-
-/* ---------- competencies ---------- */
-
-.comp { margin-bottom: 5px; font-size: 9.6pt; }
-.comp b { font-weight: 700; }
-
-.edu-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 14px;
-  margin-bottom: 4px;
-  flex-wrap: wrap;
-}
-
-.edu-row .d {
-  font-family: var(--mono);
-  font-size: 8.2pt;
-  color: var(--muted);
-  text-transform: uppercase;
-}
-
-/* ---------- print ---------- */
-
+/* ---------- print: a clean white A4, as before ---------- */
 @media print {
   @page { size: A4; margin: 11mm 12mm; }
+  :root, html[data-theme="light"] {
+    --bg: #fff; --raised: #fff; --surface: #fff; --line: #d6d3cc;
+    --ink: #0d0d0d; --ink-soft: #2a2a2a; --ink-mute: #4a4a4a; --accent: #ff3b00; --accent-text: #d23300; --on-accent: #fff;
+  }
   body { background: #fff; font-size: 9.1pt; line-height: 1.34; }
-  .sheet { margin: 0; padding: 0; max-width: none; }
-  h1 { font-size: 21pt; }
-  h2 { margin: 15px 0 7px; }
-  .role { margin-top: 11px; }
-  li { margin-bottom: 4px; }
+  .cv-head { display: none; }
+  .sheet { max-width: none; margin: 0; padding: 0; border: 0; border-radius: 0; box-shadow: none; }
+  .slab { margin-bottom: 8px; padding: 3px 8px; border-radius: 3px; font-size: 7.5pt; }
+  h1 { font-size: 21pt; margin-bottom: 6px; }
+  .tagline { font-size: 8pt; margin-bottom: 8px; }
+  .contact { margin-bottom: 12px; padding: 6px 0; border-radius: 0; border-top: 1.5px solid #0d0d0d; border-bottom: 1.5px solid #0d0d0d; font-size: 7.8pt; line-height: 1.7; }
+  h2 { margin: 15px 0 7px; font-size: 8pt; }
+  .summary { font-size: 9.1pt; line-height: 1.4; }
+  li { margin-bottom: 4px; padding-left: 13px; }
+  li::before { top: .5em; width: 5px; height: 5px; }
+  .comps { display: block; }
+  .comp { display: block; margin: 0 0 4px; padding: 0; border: 0; background: none; font-size: 8.9pt; }
+  .role { margin-top: 11px; padding-top: 0; border-top: 0; }
+  .role-title { font-size: 10pt; }
+  .role-dates { padding: 0; background: none; font-size: 7.6pt; }
+  .role-context { font-size: 8.4pt; font-style: italic; margin-bottom: 5px; }
+  .edu-row { padding: 0; background: none; margin-bottom: 4px; }
   .role, li, .edu-row { break-inside: avoid; }
   h2 { break-after: avoid; }
-  a { text-decoration: none; }
 }
 </style>
 </head>
 <body>
+
+<header class="cv-head">
+  <a class="pill brand" href="/" aria-label="muidemakz, home">muidemakz</a>
+  <nav class="cv-nav" aria-label="Main"><a href="/work">Work</a><a href="/about">About</a></nav>
+  <div class="cv-actions">
+    <a class="btn btn--primary" href="/Excellent_Makanju_Resume_2026.pdf" download>Download PDF <span aria-hidden="true">&darr;</span></a>
+    <button class="btn" type="button" onclick="window.print()">Print</button>
+  </div>
+</header>
 
 <div class="sheet">
 
@@ -247,6 +224,7 @@ li strong { font-weight: 700; }
   </ul>
 
   <h2>Core Competencies</h2>
+  <div class="comps">
   <p class="comp"><b>Product Strategy &amp; Leadership:</b> Roadmap influence, product prioritisation, stakeholder management, design vision &amp; advocacy, mentorship &amp; design management</p>
   <p class="comp"><b>UI/UX Craft:</b> End-to-end product design, information architecture, interaction design &amp; prototyping, high-fidelity UI, responsive &amp; mobile-first design</p>
   <p class="comp"><b>Design Systems &amp; Scale:</b> Multi-product design systems, design tokens &amp; components, white-label theming, SSO design patterns, accessibility (WCAG 2.1)</p>
@@ -255,6 +233,7 @@ li strong { font-weight: 700; }
   <p class="comp"><b>Process &amp; Collaboration:</b> Agile/Scrum delivery, cross-functional partnership, design QA, critique facilitation, design ops rituals</p>
   <p class="comp"><b>Front-End Literacy:</b> Working understanding of HTML, CSS, and front-end development concepts; comfortable reading and lightly editing code for accurate engineering handoff and AI-assisted prototyping</p>
   <p class="comp"><b>Tools:</b> Figma, FigJam, Figma Variables, Figma Make, Figma MCP, Claude, Claude Code, ChatGPT, Cursor, v0, Lovable, Midjourney, Anthropic API, Jira, Slack, Notion</p>
+  </div>
 
   <h2>Professional Experience</h2>
 
