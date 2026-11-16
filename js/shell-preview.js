@@ -156,7 +156,13 @@
       v.appendChild(err);
       f.dispatchEvent(new Event('embed-ready')); /* let the transition finish so the message can show */
     };
-    function arm() { slowT = window.setTimeout(function () { f._fail(navigator.onLine === false ? 'offline' : 'slow'); }, 12000); }
+    function arm() {
+      slowT = window.setTimeout(function () {
+        /* still arriving (big images or videos)? show what is there instead of an error */
+        try { var d = f.contentDocument; if (d && d.body && d.body.childElementCount && /embed=1/.test(f.contentWindow.location.search)) { f._ready(); return; } } catch (e) {}
+        f._fail(navigator.onLine === false ? 'offline' : 'slow');
+      }, 12000);
+    }
     f.addEventListener('load', function () {
       var ok = false;
       try { var d = f.contentDocument; ok = !!(d && d.body && d.body.childElementCount); } catch (e) { ok = false; }

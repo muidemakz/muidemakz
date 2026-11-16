@@ -94,7 +94,7 @@
       </ul>
     </div>
     <div class="case-hero-media case-hero-phone">
-      <video class="case-phone-video" poster="videos/speech-to-order/voice-pulse-poster.png" width="776" height="1700" autoplay muted loop playsinline preload="auto" aria-label="Looping animation of the voice assistant, with waves pulsing out from the microphone button">
+      <video class="case-phone-video" poster="videos/speech-to-order/voice-pulse-poster.png" width="776" height="1700" muted loop playsinline preload="none" aria-label="Looping animation of the voice assistant, with waves pulsing out from the microphone button">
         <source src="videos/speech-to-order/voice-pulse.mp4" type="video/mp4">
       </video>
     </div>
@@ -142,7 +142,7 @@
         <figure class="case-figure case-figure--grey">
           <div class="case-figure-inset">
             <div class="case-phone-clip">
-              <video class="case-phone-video" poster="videos/speech-to-order/where-speech-to-order-lives-poster.png" width="776" height="1700" autoplay muted loop playsinline preload="auto" aria-label="Walkthrough of the Omnibiz retailer app home screen, scrolling past the floating button that opens the assistant">
+              <video class="case-phone-video" poster="videos/speech-to-order/where-speech-to-order-lives-poster.png" width="776" height="1700" muted loop playsinline preload="none" aria-label="Walkthrough of the Omnibiz retailer app home screen, scrolling past the floating button that opens the assistant">
                 <source src="videos/speech-to-order/where-speech-to-order-lives.mp4" type="video/mp4">
               </video>
             </div>
@@ -189,7 +189,7 @@
           </div>
           <div class="case-figure-inset">
             <div class="case-phone-clip">
-              <video class="case-phone-video" poster="videos/speech-to-order/old-flow-poster.png" width="776" height="1700" autoplay muted loop playsinline preload="auto" aria-label="Old flow: tapping the floating button goes straight into the voice assistant, with no choice of what it is for">
+              <video class="case-phone-video" poster="videos/speech-to-order/old-flow-poster.png" width="776" height="1700" muted loop playsinline preload="none" aria-label="Old flow: tapping the floating button goes straight into the voice assistant, with no choice of what it is for">
                 <source src="videos/speech-to-order/old-flow.mp4" type="video/mp4">
               </video>
             </div>
@@ -254,7 +254,7 @@
           </div>
           <div class="case-figure-inset">
             <div class="case-phone-clip">
-              <video class="case-phone-video" poster="videos/speech-to-order/new-flow-chat-poster.png" width="776" height="1700" autoplay muted loop playsinline preload="auto" aria-label="New flow from start to finish: tapping the floating button opens Place an order and Raise a complaint, then Place an order leads to a choice of chat or call, and Via Chat opens the speech screen with the microphone button">
+              <video class="case-phone-video" poster="videos/speech-to-order/new-flow-chat-poster.png" width="776" height="1700" muted loop playsinline preload="none" aria-label="New flow from start to finish: tapping the floating button opens Place an order and Raise a complaint, then Place an order leads to a choice of chat or call, and Via Chat opens the speech screen with the microphone button">
                 <source src="videos/speech-to-order/new-flow-chat.mp4" type="video/mp4">
               </video>
             </div>
@@ -371,13 +371,13 @@
           <div class="case-figure-inset">
             <div class="case-phones case-phones--2 case-phone-pair">
               <figure class="case-phone">
-                <video class="case-phone-video" poster="videos/speech-to-order/new-flow-chat-poster.png" width="776" height="1700" autoplay muted loop playsinline preload="auto" aria-label="Chat mode: choosing Via Chat from the preferred option sheet opens the assistant with a message field">
+                <video class="case-phone-video" poster="videos/speech-to-order/new-flow-chat-poster.png" width="776" height="1700" muted loop playsinline preload="none" aria-label="Chat mode: choosing Via Chat from the preferred option sheet opens the assistant with a message field">
                   <source src="videos/speech-to-order/new-flow-chat.mp4" type="video/mp4">
                 </video>
                 <figcaption class="case-phone-label">Via Chat</figcaption>
               </figure>
               <figure class="case-phone">
-                <video class="case-phone-video" poster="videos/speech-to-order/new-flow-call-poster.png" width="776" height="1700" autoplay muted loop playsinline preload="auto" aria-label="Call mode: choosing Via Call from the preferred option sheet starts a call from Omnibiz Customer Care">
+                <video class="case-phone-video" poster="videos/speech-to-order/new-flow-call-poster.png" width="776" height="1700" muted loop playsinline preload="none" aria-label="Call mode: choosing Via Call from the preferred option sheet starts a call from Omnibiz Customer Care">
                   <source src="videos/speech-to-order/new-flow-call.mp4" type="video/mp4">
                 </video>
                 <figcaption class="case-phone-label">Via Call</figcaption>
@@ -416,7 +416,7 @@
           <div class="case-figure-inset" style="padding: 32px 16px;">
             <div class="case-device">
               <div class="case-device-screen">
-                <video src="videos/speech-to-order/current-design.mp4" autoplay muted loop playsinline preload="auto" aria-label="Screen recording of the current Speech-to-Order design. Click to pause or play." onclick="this.paused ? this.play() : this.pause()" style="cursor:pointer"></video>
+                <video class="case-lazy-video" src="videos/speech-to-order/current-design.mp4" muted loop playsinline preload="none" aria-label="Screen recording of the current Speech-to-Order design. Click to pause or play." style="cursor:pointer"></video>
                 <script>
                   (function () {
                     var v = document.currentScript.previousElementSibling;
@@ -524,13 +524,15 @@
 <script src="js/case-study-preview.js?v=20261116-1"></script>
 <script>
   (function () {
-    var clips = document.querySelectorAll('.case-phone-video');
+    /* Clips download and play only when they scroll into view (they used to all download at once, which made the page slow to open) */
+    var clips = document.querySelectorAll('.case-phone-video, .case-lazy-video');
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     clips.forEach(function (v) {
       if (reduced) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; return; }
       v.addEventListener('click', function () { v.dataset.stopped = v.paused ? '' : '1'; if (v.paused) v.play(); else v.pause(); });
     });
-    if (reduced || !('IntersectionObserver' in window)) return;
+    if (reduced) return;
+    if (!('IntersectionObserver' in window)) { clips.forEach(function (v) { var p = v.play(); if (p) p.catch(function () {}); }); return; }
     var seen = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         var v = e.target;
