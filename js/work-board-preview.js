@@ -303,6 +303,7 @@
     /* Clicking a card zooms into it, then opens the case study. A drag is never a click. */
     window.addEventListener('click', function (e) {
       if (!artOn || !e.target.closest || !e.target.closest('.ab-viewport')) return;
+      if (e.target.closest('.card-rx')) { e.preventDefault(); return; } /* the reactions count opens its own list, not the case study */
       if (performance.now() - panEndAt < 140) { e.preventDefault(); e.stopPropagation(); return; }
       var c = e.target.closest('.ab-world .card, .ab-world .note');
       if (!c || e.metaKey || e.ctrlKey || e.shiftKey || e.button || reduce) return;
@@ -563,7 +564,11 @@
         host.removeEventListener('pointercancel', up);
         if (moved) {
           el.classList.remove('is-dragging');
-          if (el.classList.contains('sticker')) { if (el.dataset.decor) saveDecor(); else if (el.dataset.mine || OWNER) settle(el); }
+          if (el.classList.contains('sticker')) {
+            var onCard = el.dataset.mine && !el.dataset.decor ? cardUnder(el) : null;
+            if (onCard) absorb(el, onCard);
+            else if (el.dataset.decor) saveDecor(); else if (el.dataset.mine || OWNER) settle(el);
+          }
           el.style.zIndex = ++zTop;
           var stop = function (ev) { ev.preventDefault(); ev.stopPropagation(); };
           host.addEventListener('click', stop, { capture: true, once: true }); /* a drag is not a click */
@@ -679,8 +684,8 @@
   }
   document.addEventListener('pointerdown', function (e) { if (tagEl && !(e.target.closest && e.target.closest('.sticker, .st-tag'))) hideTag(); });
   /* The first time you drop a sticker you are asked to sign it (or stay anonymous) */
-  function askName(st) {
-    if (OWNER || ls('wb-name') !== null) { st.dataset.by = OWNER ? 'Excellent' : ls('wb-name'); saveMine(); return; }
+  function askName(st, after) {
+    if (OWNER || ls('wb-name') !== null) { if (after) return after(); st.dataset.by = OWNER ? 'Excellent' : ls('wb-name'); saveMine(); return; }
     var f = document.createElement('form');
     f.className = 'st-ask';
     f.innerHTML = '<label><span>Sign your sticker</span><input type="text" maxlength="24" placeholder="Your first name" autocomplete="given-name"></label>' +
@@ -696,7 +701,7 @@
       Array.prototype.forEach.call(world.querySelectorAll('.sticker[data-mine]'), function (x) { x.dataset.by = name; });
       saveMine();
       f.remove();
-      showTag(st);
+      if (after) after(); else showTag(st);
     }
     f.addEventListener('submit', function (e) { e.preventDefault(); done(input.value); });
     f.querySelector('[data-skip]').addEventListener('click', function () { done(''); });
@@ -713,6 +718,8 @@
   }
   /* cx, cy are screen positions of the sticker's top-left corner */
   function stickAt(t, cx, cy) {
+    var hitCard = cardAt(cx + 35, cy + 35);
+    if (hitCard) { react(t, hitCard, cx, cy); return; }
     var parent = layer, left, top, ar = art.getBoundingClientRect();
     if (artOn && cx + 35 >= ar.left && cx + 35 <= ar.right && cy + 35 >= ar.top && cy + 35 <= ar.bottom) {
       var wr = world.getBoundingClientRect();
@@ -814,6 +821,7 @@
     return s;
   }
   function loadLocal() {
+    try { RX = JSON.parse(ls(RXKEY) || '[]') || []; } catch (x) { RX = []; } renderRx();
     try { (JSON.parse(ls(KEY) || '[]') || []).slice(0, MAX_MINE).forEach(function (o) { placeSaved(o, true); }); } catch (x) {}
     countMine();
   }
@@ -844,6 +852,167 @@
     c.style.cssText = 'display:inline-flex;align-items:center;min-height:28px;padding:0 12px;margin-left:8px;border-radius:999px;font:600 12px/1 Outfit,sans-serif;white-space:nowrap;' + (bad ? 'background:#ffdad6;color:#93000a;' : 'background:#c8f5d4;color:#0b5a26;');
     if (!c.parentNode) trayEl.appendChild(c);
   }
+  /* ---------- Reactions: a sticker dropped on a case study card is absorbed into it ----------
+     The card counts them in its corner; hover or click the count to see who reacted and when.
+     Saved on the server with the stickers (everyone sees them); this browser only when there is no server. */
+  var RX = [], RXKEY = 'wb-reactions-v1', RX_MAX = 3;
+  function caseOf(card) { return (card.getAttribute('href') || '').split('/').pop().replace(/\.html.*$/, '').toLowerCase(); }
+  function cardAt(x, y) {
+    var el = document.elementFromPoint(x, y);
+    var c = el && el.closest && el.closest('.card[href]');
+    return c && !c.classList.contains('is-dim') ? c : null;
+  }
+  function cardUnder(st) {
+    var r = st.getBoundingClientRect(), pe = st.style.pointerEvents;
+    st.style.pointerEvents = 'none';
+    var c = cardAt(r.left + r.width / 2, r.top + r.height / 2);
+    st.style.pointerEvents = pe;
+    return c;
+  }
+  function saveRxLocal() { if (!shared) ls(RXKEY, JSON.stringify(RX.filter(function (x) { return x.mine; }))); }
+  var rxPop = null, rxCard = null, rxLeaveT = 0;
+  function badgeOf(card) {
+    var b = card.querySelector('.card-rx');
+    if (!b) {
+      b = document.createElement('span');
+      b.className = 'card-rx';
+      b.setAttribute('role', 'button');
+      b.tabIndex = 0;
+      b.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); if (rxCard === card && rxPop && !fine) closeRx(); else openRx(card); });
+      b.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); openRx(card); } });
+      b.addEventListener('pointerdown', function (e) { e.stopPropagation(); });
+      if (fine) {
+        b.addEventListener('mouseenter', function () { openRx(card); });
+        b.addEventListener('mouseleave', function () { rxLeaveT = window.setTimeout(closeRx, 280); });
+      }
+      card.querySelector('.card-media').appendChild(b);
+    }
+    return b;
+  }
+  function renderRx() {
+    var by = {};
+    RX.forEach(function (x) { (by[x.case] = by[x.case] || []).push(x); });
+    Array.prototype.forEach.call(document.querySelectorAll('.card[href]'), function (card) {
+      var list = by[caseOf(card)] || [];
+      var b = list.length ? badgeOf(card) : card.querySelector('.card-rx');
+      if (!b) return;
+      b.hidden = !list.length;
+      if (!list.length) return;
+      var count = {};
+      list.forEach(function (x) { count[x.t] = (count[x.t] || 0) + 1; });
+      var top = Object.keys(count).sort(function (a, c) { return count[c] - count[a]; }).slice(0, 3);
+      b.innerHTML = '<span class="rx-icos">' + top.map(function (t) { return '<span class="rx-ico">' + STICKERS[t] + '</span>'; }).join('') + '</span><b>' + list.length + '</b>';
+      b.setAttribute('aria-label', list.length + (list.length === 1 ? ' reaction' : ' reactions') + '. Show who reacted');
+    });
+    if (rxPop && rxCard) fillRx(rxCard);
+  }
+  function closeRx() { window.clearTimeout(rxLeaveT); if (rxPop) { rxPop.remove(); rxPop = null; rxCard = null; } }
+  function fillRx(card) {
+    var c = caseOf(card);
+    var list = RX.filter(function (x) { return x.case === c; }).sort(function (a, b) { return b.at - a.at; });
+    if (!list.length) return closeRx();
+    var name = (card.querySelector('.card-name') || {}).textContent || 'this case study';
+    rxPop.innerHTML = '<b class="rx-title"></b><ul></ul>';
+    rxPop.firstChild.textContent = list.length + (list.length === 1 ? ' reaction' : ' reactions') + ' on ' + name;
+    var ul = rxPop.querySelector('ul');
+    list.forEach(function (x) {
+      var li = document.createElement('li');
+      li.innerHTML = '<span class="rx-ico">' + STICKERS[x.t] + '</span><span class="rx-who"></span><span class="rx-when"></span>';
+      li.querySelector('.rx-who').textContent = x.owner ? 'Excellent' : (x.by || 'Anonymous') + (x.mine ? ' (you)' : '');
+      li.querySelector('.rx-when').textContent = when(x.at);
+      if (x.mine || OWNER) {
+        var del = document.createElement('button');
+        del.type = 'button';
+        del.className = 'rx-del';
+        del.textContent = 'Remove';
+        del.setAttribute('aria-label', 'Remove this reaction');
+        del.addEventListener('click', function (e) { e.stopPropagation(); unreact(x); });
+        li.appendChild(del);
+      }
+      ul.appendChild(li);
+    });
+  }
+  function openRx(card) {
+    window.clearTimeout(rxLeaveT);
+    if (rxCard === card && rxPop) return;
+    closeRx();
+    rxCard = card;
+    rxPop = document.createElement('div');
+    rxPop.className = 'rx-pop';
+    rxPop.setAttribute('role', 'dialog');
+    rxPop.addEventListener('mouseenter', function () { window.clearTimeout(rxLeaveT); });
+    rxPop.addEventListener('mouseleave', function () { if (fine) rxLeaveT = window.setTimeout(closeRx, 280); });
+    document.body.appendChild(rxPop);
+    fillRx(card);
+    if (!rxPop) return;
+    var r = card.querySelector('.card-rx').getBoundingClientRect(), w = rxPop.offsetWidth || 270, h = rxPop.offsetHeight;
+    rxPop.style.left = clamp(r.right - w, 8, window.innerWidth - w - 8) + 'px';
+    rxPop.style.top = (r.bottom + 8 + h < window.innerHeight - 8 ? r.bottom + 8 : Math.max(8, r.top - h - 8)) + 'px';
+  }
+  document.addEventListener('pointerdown', function (e) { if (rxPop && !(e.target.closest && e.target.closest('.rx-pop, .card-rx'))) closeRx(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeRx(); });
+  function unreact(x) {
+    RX = RX.filter(function (y) { return y !== x; });
+    renderRx();
+    saveRxLocal();
+    if (shared && x.id) api('POST', { action: 'unreact', id: x.id }).catch(function () { toast('Could not remove that reaction. Reload and try again.'); });
+  }
+  /* the sticker flies into the card's corner, where it is counted */
+  function fly(t, x, y, card) {
+    if (reduce) return;
+    var g = document.createElement('span');
+    g.className = 'sticker rx-fly';
+    g.innerHTML = STICKERS[t];
+    g.style.cssText = 'position:fixed;left:0;top:0;z-index:2147482600;pointer-events:none;--s:70px;transform:translate(' + x + 'px,' + y + 'px)';
+    document.body.appendChild(g);
+    var m = card.querySelector('.card-media').getBoundingClientRect();
+    window.requestAnimationFrame(function () {
+      window.requestAnimationFrame(function () {
+        g.style.transition = 'transform .5s cubic-bezier(.5, 0, .2, 1), opacity .5s ease';
+        g.style.transform = 'translate(' + (m.right - 52) + 'px,' + (m.top - 6) + 'px) scale(.32)';
+        g.style.opacity = '.5';
+      });
+    });
+    window.setTimeout(function () { g.remove(); }, 600);
+  }
+  function react(t, card, x, y) {
+    var c = caseOf(card);
+    if (!OWNER && RX.filter(function (q) { return q.mine && q.case === c; }).length >= RX_MAX) {
+      toast('You’ve reacted ' + RX_MAX + ' times to this one. Remove one to add another.');
+      return;
+    }
+    fly(t, x, y, card);
+    var item = { id: '', case: c, t: t, by: '', at: Date.now(), mine: true, owner: !!OWNER };
+    (artOn ? askName : function (el, cb) { cb(); })(card, function () { /* the name prompt lives on the artboard */
+      item.by = OWNER ? 'Excellent' : (ls('wb-name') || '');
+      RX.push(item);
+      window.setTimeout(function () {
+        renderRx();
+        var b = card.querySelector('.card-rx');
+        if (b) { b.classList.remove('is-bump'); void b.offsetWidth; b.classList.add('is-bump'); }
+      }, reduce ? 0 : 480);
+      saveRxLocal();
+      if (shared) {
+        api('POST', { action: 'react', case: c, t: t, by: item.by })
+          .then(function (j) { if (j && j.reaction) item.id = j.reaction.id; })
+          .catch(function (j) {
+            RX = RX.filter(function (q) { return q !== item; });
+            renderRx();
+            toast(j && j.error === 'limit' ? 'You’ve reacted ' + RX_MAX + ' times to this one.' : 'That reaction didn’t stick. Try again in a moment.');
+          });
+      }
+    });
+  }
+  /* one of your stickers on the board, dragged onto a card */
+  function absorb(st, card) {
+    var r = st.getBoundingClientRect();
+    if (shared && st.dataset.id) api('POST', { action: 'remove', id: st.dataset.id }).catch(function () {});
+    st.remove();
+    countMine();
+    saveMine();
+    hideTag();
+    react(st.dataset.type, card, r.left, r.top);
+  }
   function loadShared() {
     return api('GET').then(function (j) {
       if (!j || !Array.isArray(j.stickers)) throw new Error('no list');
@@ -854,6 +1023,7 @@
         ownerChip('Owner key not accepted', true);
       } else if (OWNER && j.owner) ownerChip('Owner mode on', false);
       applyDecor(j.decor);
+      RX = Array.isArray(j.reactions) ? j.reactions : []; renderRx();
       Array.prototype.forEach.call(world.querySelectorAll(':scope > .sticker'), function (x) { x.remove(); });
       j.stickers.forEach(function (o) {
         var st = placeSaved(o, o.mine);

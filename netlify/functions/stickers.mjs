@@ -7,6 +7,8 @@
    POST /api/stickers { action: 'remove', id }              -> { ok }
    POST /api/stickers { action: 'clean' }                   -> { ok, removed }   (owner only)
    POST /api/stickers { action: 'decor', decor }            -> { ok }            (owner only: move/remove the board's own stickers)
+   POST /api/stickers { action: 'react',  case, t, by }     -> { reaction }      (a sticker dropped on a case study card)
+   POST /api/stickers { action: 'unreact', id }             -> { ok }            (yours, or any for the owner)
 
    Who may change what:
    - each browser sends a random id in the x-visitor header; only that browser can move or remove its stickers
@@ -18,6 +20,8 @@ import { getStore } from '@netlify/blobs';
 const TYPES = ['star', 'heart', 'smile', 'bolt', 'wow', 'eyes', 'flower', 'pointer'];
 const PER_VISITOR = 8;
 const MAX_TOTAL = 160;
+const RX_PER_CASE = 3;   /* reactions per visitor per case study */
+const RX_TOTAL = 1500;
 const BAD = /(fuck|shit|bitch|cunt|nigg|fag|rape|whore|slut|dick|pussy)/ig;
 const hits = new Map(); /* per-IP write counter, per function instance */
 
@@ -37,6 +41,9 @@ function limited(ip) {
   hits.set(ip, recent);
   return recent.length > 30;
 }
+function rxView(x, me, isOwner) {
+  return { id: x.id, case: x.case, t: x.t, by: x.owner ? 'Excellent' : x.by, at: x.at, owner: !!x.owner, mine: isOwner ? !!x.owner : x.vid === me };
+}
 function view(s, me, isOwner) {
   return { id: s.id, t: s.t, x: s.x, y: s.y, r: s.r, by: s.owner ? 'Excellent' : s.by, at: s.at, owner: !!s.owner, mine: isOwner ? !!s.owner : s.vid === me };
 }
@@ -48,11 +55,13 @@ export default async (req, context) => {
   const ownerKey = process.env.OWNER_KEY || '';
   const isOwner = !!ownerKey && req.headers.get('x-owner-key') === ownerKey;
   const load = async () => (await store.get('all', { type: 'json' })) || [];
+  const loadRx = async () => (await store.get('reactions', { type: 'json' })) || [];
 
   if (req.method === 'GET') {
     const all = await load();
     const decor = (await store.get('decor', { type: 'json' })) || {};
-    return json({ stickers: all.map((s) => view(s, me, isOwner)), decor, owner: isOwner, ownerSet: !!ownerKey });
+    const rx = await loadRx();
+    return json({ stickers: all.map((s) => view(s, me, isOwner)), decor, reactions: rx.map((x) => rxView(x, me, isOwner)), owner: isOwner, ownerSet: !!ownerKey });
   }
   if (req.method !== 'POST') return json({ error: 'GET or POST only' }, 405);
   const ip = (context && context.ip) || req.headers.get('x-nf-client-connection-ip') || 'anon';
@@ -61,6 +70,27 @@ export default async (req, context) => {
   try { b = await req.json(); } catch (e) { return json({ error: 'bad json' }, 400); }
   if (!me && !isOwner) return json({ error: 'no visitor id' }, 400);
   let all = await load();
+
+  if (b.action === 'react') {
+    if (!TYPES.includes(b.t)) return json({ error: 'unknown sticker' }, 400);
+    const c = String(b.case || '').toLowerCase();
+    if (!/^[a-z0-9-]{2,60}$/.test(c)) return json({ error: 'bad case' }, 400);
+    let rx = await loadRx();
+    if (!isOwner && rx.filter((x) => x.vid === me && x.case === c).length >= RX_PER_CASE) return json({ error: 'limit', limit: RX_PER_CASE }, 409);
+    const x = { id: crypto.randomUUID().slice(0, 12), case: c, t: b.t, by: cleanName(b.by), at: Date.now(), vid: isOwner ? '' : me, owner: isOwner };
+    rx.push(x);
+    if (rx.length > RX_TOTAL) { const i = rx.findIndex((q) => !q.owner); if (i > -1) rx.splice(i, 1); }
+    await store.setJSON('reactions', rx);
+    return json({ reaction: rxView(x, me, isOwner) });
+  }
+  if (b.action === 'unreact') {
+    let rx = await loadRx();
+    const i = rx.findIndex((x) => x.id === b.id);
+    if (i < 0 || !(isOwner || (rx[i].vid && rx[i].vid === me))) return json({ error: 'not yours' }, 403);
+    rx.splice(i, 1);
+    await store.setJSON('reactions', rx);
+    return json({ ok: true });
+  }
 
   if (b.action === 'add') {
     if (!TYPES.includes(b.t)) return json({ error: 'unknown sticker' }, 400);
@@ -87,6 +117,9 @@ export default async (req, context) => {
     const by = cleanName(b.by);
     all.forEach((s) => { if (s.vid === me && !s.owner) s.by = by; });
     await store.setJSON('all', all);
+    const rx = await loadRx();
+    rx.forEach((x) => { if (x.vid === me && !x.owner) x.by = by; });
+    await store.setJSON('reactions', rx);
     return json({ ok: true });
   }
   if (b.action === 'remove') {

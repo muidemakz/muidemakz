@@ -42,6 +42,7 @@
   });
 
   document.addEventListener('click', function (e) {
+    if (e.target && e.target.closest && e.target.closest('.card-rx')) return; /* reactions count on a Work card */
     var a = e.target && e.target.closest && e.target.closest('a[href]');
     if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
     var raw = a.getAttribute('href') || '';
