@@ -487,3 +487,94 @@ html[data-theme="light"] .o-switch.is-flipping .o-finger { animation-name: o-fli
 /* the hand may reach outside the title */
 html.shell .rail-name, html.shell .rail-name .word-nb { overflow: visible; }
 @media (prefers-reduced-motion: reduce) { .o-lever, .o-finger { transition: none; animation: none !important; } }
+
+/* ---------- The O as a real wall light switch, lying on its side ----------
+   Grey plastic frame, brushed-metal face, two LED strips that light up in light mode,
+   and a toggle that tips left (off, dark) or right (on, light). */
+html.board-cursor .o-switch, html.board-cursor .o-switch * { cursor: none !important; } /* the hand replaces your cursor here */
+html:has(.o-switch:hover) .pc-halo { opacity: 0 !important; }
+.o-switch {
+  width: .98em;
+  height: .66em;
+  margin: 0 .04em;
+  border: 0;
+  border-radius: .12em;
+  background: linear-gradient(160deg, #f4f4f2 0%, #dcdcd8 45%, #b9b9b4 100%);
+  box-shadow: 0 .05em .09em rgba(0, 0, 0, .55), inset 0 .015em 0 rgba(255, 255, 255, .9), inset 0 -.02em .02em rgba(0, 0, 0, .25);
+  perspective: 1.6em;
+}
+.o-plate {
+  inset: .085em;
+  border-radius: .06em;
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, .06) 0 1px, rgba(0, 0, 0, .04) 1px 2px),
+    linear-gradient(180deg, #e9ecee, #c4c9cd 55%, #dfe3e6);
+  box-shadow: inset 0 .02em .04em rgba(0, 0, 0, .45), inset 0 -.01em 0 rgba(255, 255, 255, .7);
+  overflow: hidden;
+}
+html[data-theme="light"] .o-plate { background: repeating-linear-gradient(90deg, rgba(255, 255, 255, .06) 0 1px, rgba(0, 0, 0, .04) 1px 2px), linear-gradient(180deg, #f1f3f4, #ccd1d4 55%, #e6e9eb); }
+/* LED strips: grey when off, warm white and glowing when on */
+.o-led {
+  position: absolute; left: 14%; right: 14%; height: .055em;
+  border-radius: .03em;
+  background: linear-gradient(90deg, #aeb3b6, #c9cdd0, #aeb3b6);
+  box-shadow: inset 0 .01em .01em rgba(0, 0, 0, .3);
+  transition: background .35s ease, box-shadow .35s ease;
+}
+.o-led--t { top: .05em; }
+.o-led--b { bottom: .05em; }
+html[data-theme="light"] .o-led {
+  background: linear-gradient(90deg, #fff7d6, #ffffff, #fff7d6);
+  box-shadow: 0 0 .08em .02em rgba(255, 236, 160, .95), 0 0 .2em .05em rgba(255, 214, 120, .55);
+}
+/* toggle: a small rounded base with a bat that tips left or right */
+.o-base {
+  position: absolute; left: 50%; top: 50%;
+  width: .26em; height: .2em; margin: -.1em 0 0 -.13em;
+  border-radius: .05em;
+  background: linear-gradient(180deg, #f2f2ef, #c9c9c4);
+  box-shadow: 0 .015em .03em rgba(0, 0, 0, .45), inset 0 .01em 0 rgba(255, 255, 255, .9);
+  transform-style: preserve-3d;
+}
+.o-lever {
+  position: absolute; top: 50%; left: 50%;
+  width: .2em; height: .1em; margin: -.05em 0 0 -.1em;
+  border-radius: .04em;
+  background: linear-gradient(90deg, #fbfbf8, #e3e3de 50%, #b8b8b2);
+  box-shadow: -.03em .02em .03em rgba(0, 0, 0, .45);
+  transform-origin: 50% 50%;
+  transform: translateX(-.035em) rotateY(-48deg);
+  transition: transform .45s cubic-bezier(.3, 1.6, .45, 1), box-shadow .45s ease;
+}
+html[data-theme="light"] .o-lever {
+  transform: translateX(.035em) rotateY(48deg);
+  background: linear-gradient(90deg, #b8b8b2, #e3e3de 50%, #fbfbf8);
+  box-shadow: .03em .02em .03em rgba(0, 0, 0, .45);
+}
+.o-switch:hover .o-lever { filter: none; }
+.o-switch:focus-visible { outline: 2px solid var(--accent); outline-offset: .08em; }
+
+/* the hand always comes up from below; it pushes the toggle toward the other side */
+html[data-theme="light"] .o-finger { top: 64%; bottom: auto; transform-origin: 50% 0; transform: translate(.22em, .45em) rotate(16deg) rotateX(55deg) scale(.8); }
+.o-finger { top: 64%; margin-left: -.2em; }
+@media (hover: hover) and (pointer: fine) {
+  .o-switch:hover .o-finger, .o-switch:focus-visible .o-finger { animation-name: o-poke-right; transform: translate(-.04em, 0) rotate(-6deg) rotateX(0) scale(1); }
+  html[data-theme="light"] .o-switch:hover .o-finger, html[data-theme="light"] .o-switch:focus-visible .o-finger { animation-name: o-poke-left; transform: translate(.04em, 0) rotate(6deg) rotateX(0) scale(1); }
+}
+@keyframes o-poke-right { 0%, 100% { translate: 0 0; rotate: 0deg; } 45% { translate: .05em -.02em; rotate: 5deg; } 60% { translate: .035em -.01em; rotate: 3deg; } }
+@keyframes o-poke-left { 0%, 100% { translate: 0 0; rotate: 0deg; } 45% { translate: -.05em -.02em; rotate: -5deg; } 60% { translate: -.035em -.01em; rotate: -3deg; } }
+.o-switch.is-flipping .o-finger, html[data-theme="light"] .o-switch.is-flipping .o-finger { animation-name: o-flick-side !important; }
+/* flick: the tip sweeps across the toggle, then the hand drops away */
+@keyframes o-flick-side {
+  0% { opacity: 1; transform: translate(var(--fx0, -.04em), 0) rotate(var(--fr0, -6deg)); }
+  30% { opacity: 1; transform: translate(var(--fx1, .14em), -.03em) rotate(var(--fr1, 10deg)) scale(.97); }
+  55% { opacity: 1; transform: translate(var(--fx1, .14em), 0) rotate(var(--fr1, 10deg)); }
+  100% { opacity: 0; transform: translate(.22em, .45em) rotate(16deg) rotateX(55deg) scale(.8); }
+}
+/* going from light to dark the sweep runs the other way (the class is set before the theme changes) */
+.o-switch.is-flipping.to-dark { --fx0: .04em; --fr0: 6deg; --fx1: -.14em; --fr1: -10deg; }
+@media (max-width: 860px) { .o-switch { width: .92em; height: .62em; } }
+/* a bigger, clearer toggle */
+.o-base { width: .32em; height: .26em; margin: -.13em 0 0 -.16em; border-radius: .06em; box-shadow: 0 .02em .04em rgba(0, 0, 0, .55), inset 0 .012em 0 rgba(255, 255, 255, .95), inset 0 -.015em .02em rgba(0, 0, 0, .2); }
+.o-lever { width: .26em; height: .15em; margin: -.075em 0 0 -.13em; border-radius: .05em; box-shadow: -.05em .03em .05em rgba(0, 0, 0, .55), inset .01em 0 0 rgba(255, 255, 255, .9); }
+html[data-theme="light"] .o-lever { box-shadow: .05em .03em .05em rgba(0, 0, 0, .55), inset -.01em 0 0 rgba(255, 255, 255, .9); }

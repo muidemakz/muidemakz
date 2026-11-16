@@ -316,10 +316,10 @@
   sw.addEventListener('click', function () {
     var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
     if (reduce) return setTheme(next);
-    sw.classList.remove('is-flipping'); void sw.offsetWidth; sw.classList.add('is-flipping');
+    sw.classList.remove('is-flipping', 'to-dark', 'to-light'); void sw.offsetWidth; sw.classList.add('is-flipping', 'to-' + next);
     window.clearTimeout(flipT);
     window.setTimeout(function () { setTheme(next); }, 170);
-    flipT = window.setTimeout(function () { sw.classList.remove('is-flipping'); }, 760);
+    flipT = window.setTimeout(function () { sw.classList.remove('is-flipping', 'to-dark', 'to-light'); }, 760);
   });
   setTheme(root.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
 
