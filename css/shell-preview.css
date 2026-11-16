@@ -673,3 +673,14 @@ html[data-theme="light"] .se-plug--b { background: linear-gradient(180deg, #d7d9
 .se-btn--primary:hover { background: #ff8a5c; }
 .se-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { .stage-error, .se-plug, .se-spark { animation: none; } }
+
+/* The switch matches the capital letters' height (Outfit cap height is about .7em) and is a little wider */
+.o-switch { width: 1.34em; height: .7em; vertical-align: .065em; }
+.o-thumb { top: .07em; left: .07em; width: .56em; height: .56em; transform: translateX(.64em); }
+html[data-theme="light"] .o-thumb { transform: translateX(0); }
+.o-ico { width: .36em; height: .36em; }
+@media (max-width: 860px) {
+  .o-switch { width: 1.26em; height: .7em; }
+  .o-thumb { width: .56em; height: .56em; }
+  html:not([data-theme="light"]) .o-thumb { transform: translateX(.56em); }
+}
