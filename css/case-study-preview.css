@@ -1168,3 +1168,15 @@ html .case-study-preview .case-main .case-steps.case-steps--flush.case-steps--fl
 html .case-study-preview .case-stack-row .case-stack-item, html .case-study-preview .case-stack-row .case-stack { background: var(--cs-card); }
 html .case-study-preview .case-stack-row .case-stack-panel--grey { background: #ebe9e5; }
 html .case-study-preview .case-stack-row .case-stack-item + .case-stack-item { border-top: 1px solid var(--cs-card-edge); }
+
+/* A takeaway under a figure: a quiet note with an accent rule, not a pill */
+html .case-study-preview .case-main .case-takeaway {
+  max-width: 68ch; margin: 18px 0 0; padding: 12px 16px;
+  border: 0; border-left: 3px solid var(--cs-accent-text); border-radius: 0 12px 12px 0;
+  background: var(--cs-card); color: var(--cs-ink-2); font: 400 15px/1.55 "Outfit", sans-serif;
+}
+
+/* Stacked cards size to their text (never squeeze it) and carry no heavy rules */
+html .case-study-preview .case-stack-row .case-stack-item { flex: 1 0 auto; min-height: 0; overflow: visible; }
+html .case-study-preview .case-stack-row .case-stack-item .case-stack-title, html .case-study-preview .case-stack-row .case-stack-item + .case-stack-item .case-stack-title { border: 0; padding-top: 0; }
+html .case-study-preview .case-stack-row .case-stack-copy { padding: 0; text-decoration: none; }
