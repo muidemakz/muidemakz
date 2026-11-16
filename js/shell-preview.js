@@ -16,6 +16,17 @@
   var sw = document.getElementById('themeSwitch');
   if (!stage || !body || !slot) return;
 
+  /* Owner link: muidemakz.com/work?owner=<key> saves the key in this browser (the Work board reads it)
+     and then tidies it out of the address bar so it is not left on screen or in the history. */
+  try {
+    var q = new URLSearchParams(location.search), ownerKey = q.get('owner');
+    if (ownerKey) {
+      localStorage.setItem('wb-owner-key', ownerKey);
+      q.delete('owner');
+      history.replaceState(history.state, '', location.pathname + (q.toString() ? '?' + q : '') + location.hash);
+    }
+  } catch (e) {}
+
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var FILES = { work: 'my-work.html', about: 'about.html' };
   var ORDER = { home: 0, work: 1, about: 2, case: 3 };
