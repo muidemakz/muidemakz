@@ -22,7 +22,7 @@ button { font: inherit; }
   min-height: 300px;
   max-height: 550px;
   overflow: hidden;
-  background: #13171c url("../../../images/valideity/banner-product-cinematic-small-logo.png") center / contain no-repeat;
+  background: #13171c url("../../../images/valideity/banner-product-cinematic-small-logo.webp") center / contain no-repeat;
   isolation: isolate;
 }
 .screen {
