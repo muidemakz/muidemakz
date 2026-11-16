@@ -51,6 +51,19 @@
     h.parentNode.insertBefore(k, h);
   });
 
+  /* Phones: the section row scrolls sideways; keep the current section's pill in view */
+  var tocList = document.querySelector('.case-preview-toc-list');
+  if (tocList && window.MutationObserver) {
+    var mq = window.matchMedia('(max-width: 900px)');
+    new MutationObserver(function () {
+      if (!mq.matches) return;
+      var a = tocList.querySelector('a[aria-current="location"]');
+      if (!a) return;
+      var lr = tocList.getBoundingClientRect(), ar = a.getBoundingClientRect();
+      tocList.scrollLeft += (ar.left - lr.left) - (lr.width - ar.width) / 2;
+    }).observe(tocList, { subtree: true, attributes: true, attributeFilter: ['aria-current'] });
+  }
+
   /* Notes to self ("[Add the release date…]", "… TO VERIFY") are hidden from visitors.
      Add ?notes=1 to the address to see them while filling them in. */
   var showNotes = /[?&]notes=1/.test(location.search) || /[?&]notes=1/.test(location.hash);

@@ -1010,3 +1010,47 @@ html[data-theme="light"] .case-study-preview .case-back { box-shadow: 0 10px 28p
   .case-study-preview .case-quicknav:not(.is-open) .case-preview-toc-list { display: none; }
   .case-study-preview .case-quicknav.is-open .case-preview-toc-list { display: grid; gap: 6px; max-height: 56vh; overflow-y: auto; padding: 4px 2px 8px; }
 }
+
+/* ---------- Phones: the section list is one row of pills at the bottom that scrolls sideways ---------- */
+@media (max-width: 900px) {
+  .case-study-preview .case-quicknav .case-toc-toggle { display: none !important; }
+  .case-study-preview .case-quicknav .wrap {
+    padding: 6px !important;
+    border: 1px solid rgba(var(--cs-ink-rgb), .14) !important;
+    border-radius: 999px !important;
+    background: color-mix(in srgb, var(--cs-surface) 92%, transparent) !important;
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, .4) !important;
+  }
+  .case-study-preview .case-quicknav .case-preview-toc-list,
+  .case-study-preview .case-quicknav:not(.is-open) .case-preview-toc-list,
+  .case-study-preview .case-quicknav.is-open .case-preview-toc-list {
+    display: flex !important;
+    flex-direction: row;
+    gap: 4px;
+    max-height: none;
+    padding: 0 !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 14px, #000 calc(100% - 14px), transparent);
+    mask-image: linear-gradient(to right, transparent, #000 14px, #000 calc(100% - 14px), transparent);
+  }
+  .case-study-preview .case-quicknav .case-preview-toc-list::-webkit-scrollbar { display: none; }
+  .case-study-preview .case-quicknav .case-preview-toc-list a {
+    flex: 0 0 auto !important;
+    min-height: 40px !important;
+    padding: 0 14px !important;
+    border: 0 !important;
+    border-radius: 999px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: var(--cs-ink-2) !important;
+    white-space: nowrap;
+    font-size: 14px !important;
+  }
+  .case-study-preview .case-quicknav .case-preview-toc-list a[aria-current="location"] { background: #ff5a1f !important; color: #1a0900 !important; font-weight: 600; }
+  .case-study-preview .case-quicknav .case-toc-status { display: none !important; }
+}
