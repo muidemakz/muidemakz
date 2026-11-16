@@ -19,7 +19,7 @@
 
    bot:         an AI guide that shows up as one clearly labelled visitor and answers when someone chats.
                 endpoint: "" = off.  "demo" = canned answers in the browser (for testing only, no AI).
-                Or '/api/mm' (netlify/functions/mm.mjs, see netlify/README.md) for real AI answers.
+                Deployed site: uses /api/mm (netlify/functions/mm.mjs, see netlify/README.md) for real AI answers.
                 The API key lives only in that Worker, never in this file.
 
    Off switches for a single browser: add ?board=off to any URL (and ?board=on to undo). */
@@ -31,7 +31,8 @@ window.BOARD_CONFIG = {
   simulated: true,
   cursor: 'outline-arrow',
   bot: {
-    endpoint: 'demo',
+    /* Real AI (netlify/functions/mm.mjs) on the deployed site; canned answers on your own computer, where that function does not exist. */
+    endpoint: /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname) || location.protocol === 'file:' ? 'demo' : '/api/mm',
     name: 'muidemakz',
     /* Where the guide's buttons go. Change these when the new pages replace the old ones. */
     links: {
