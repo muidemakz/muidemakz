@@ -35,5 +35,6 @@
   if (bio) n = splitWords(bio, bioStart);
   var ab = document.querySelector('.ab-title');
   if (ab) { var a = splitWords(ab, 1); var tag = document.querySelector('.ab-tagline'); if (tag) splitWords(tag, a + 1); }
-  root.classList.add('intro-run');
+  if (window.__bootPending) window.addEventListener('boot:done', function () { root.classList.add('intro-run'); }, { once: true });
+  else root.classList.add('intro-run');
 })();

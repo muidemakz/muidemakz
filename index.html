@@ -25,6 +25,18 @@
   <meta name="twitter:title" content="Excellent Makanju &middot; Senior Product Designer">
   <meta name="twitter:description" content="Excellent Makanju, Senior Product Designer across fintech, payments and B2B commerce, increasingly designing and building AI-native products through Valideity.">
   <meta name="twitter:image" content="https://muidemakz.com/images/about/about-me.png">
+  <style id="bootCss">
+    #boot{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;background:#0c0c0e;color:#f4f1ea;transition:opacity .45s ease,visibility .45s}
+    #boot.is-done{opacity:0;visibility:hidden;pointer-events:none}
+    #boot .b-in{display:grid;justify-items:center;gap:18px}
+    #boot .b-mark{font:600 34px/1 Outfit,system-ui,sans-serif;letter-spacing:-.02em}
+    #boot .b-mark i{font-style:normal;color:#ff6a2b}
+    #boot .b-bar{width:132px;height:3px;border-radius:3px;background:rgba(255,255,255,.14);overflow:hidden}
+    #boot .b-bar b{display:block;height:100%;width:100%;background:#ff6a2b;border-radius:3px;transform:scaleX(.06);transform-origin:left;transition:transform .35s ease}
+    #boot .b-say{font:400 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.04em;opacity:.55}
+    html.boot-lock{overflow:hidden}
+    @media (prefers-reduced-motion:reduce){#boot,#boot .b-bar b{transition:none}}
+  </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
@@ -34,7 +46,43 @@
   <script>try{localStorage.setItem('ui-theme','dark')}catch(e){}</script>
 </head>
 <body>
-  <button class="pull" id="themePull" type="button" aria-label="Switch to light mode"><span class="pull-cord" aria-hidden="true"></span><span class="pull-bead" aria-hidden="true"></span></button>
+    <div id="boot" role="status" aria-live="polite" aria-label="Loading the portfolio"><div class="b-in"><div class="b-mark">E<i>.</i>M</div><div class="b-bar"><b id="bootBar"></b></div><div class="b-say" id="bootSay">Setting up the board</div></div></div>
+  <script>
+  /* Loading screen: stays up until the fonts and the first screen of Home images are ready, then lifts.
+     Never longer than 4 seconds, whatever the connection does. Fires "boot:done" so the intro can play after it. */
+  (function () {
+    var root = document.documentElement, el = document.getElementById('boot'), bar = document.getElementById('bootBar'), say = document.getElementById('bootSay');
+    window.__bootPending = true;
+    root.classList.add('boot-lock');
+    var total = 1, done = 0, finished = false;
+    function tick() { if (bar) bar.style.transform = 'scaleX(' + Math.max(.06, Math.min(1, done / total)) + ')'; }
+    function finish() {
+      if (finished) return; finished = true;
+      if (bar) bar.style.transform = 'scaleX(1)';
+      setTimeout(function () {
+        window.__bootPending = false;
+        root.classList.remove('boot-lock');
+        if (el) el.classList.add('is-done');
+        try { window.dispatchEvent(new Event('boot:done')); } catch (e) {}
+        setTimeout(function () { if (el && el.parentNode) el.parentNode.removeChild(el); var s = document.getElementById('bootCss'); if (s) s.parentNode.removeChild(s); }, 700);
+      }, 160);
+    }
+    function step() { done++; tick(); if (done >= total) finish(); }
+    function start() {
+      var imgs = [].slice.call(document.querySelectorAll('.tiles img')).filter(function (i) { return i.classList.contains('is-on') || i.classList.contains('cmp-before') || i.parentNode.querySelectorAll('img')[0] === i; });
+      var onHome = location.pathname === '/' || location.pathname === '/index.html';
+      var jobs = [];
+      jobs.push((document.fonts && document.fonts.ready) ? document.fonts.ready.catch(function () {}) : Promise.resolve());
+      if (onHome) imgs.forEach(function (i) { jobs.push(i.decode ? i.decode().catch(function () {}) : Promise.resolve()); });
+      total = jobs.length;
+      if (say && jobs.length > 1) say.textContent = 'Loading the work';
+      jobs.forEach(function (p) { p.then(step); });
+    }
+    setTimeout(finish, 4000);
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+  })();
+  </script>
+<button class="pull" id="themePull" type="button" aria-label="Switch to light mode"><span class="pull-cord" aria-hidden="true"></span><span class="pull-bead" aria-hidden="true"></span></button>
   <header class="shell-header" id="shellHeader">
     <a class="brand" href="/" aria-label="muidemakz, home"><span class="brand-mark">muidemakz</span></a>
     <nav class="shell-nav" id="shellNav" aria-label="Main">
@@ -73,7 +121,7 @@
               <div class="tile-col">
                 <a class="tile" href="omnibiz-speech-to-order.html">
                   <span class="tile-media tile-media--paper">
-                    <video class="is-contain" muted loop playsinline preload="metadata" poster="videos/speech-to-order/speech-to-order-entry-poster.png" aria-hidden="true">
+                    <video class="is-contain" muted loop playsinline preload="metadata" poster="videos/speech-to-order/speech-to-order-entry-poster.webp" aria-hidden="true">
                       <source src="videos/speech-to-order/speech-to-order-entry.webm" type="video/webm">
                       <source src="videos/speech-to-order/speech-to-order-entry.mp4" type="video/mp4">
                     </video>
@@ -96,8 +144,8 @@
                 </a>
                 <a class="tile" href="moniepoint-verification.html">
                   <span class="tile-media compare">
-                    <img class="cmp-before" src="images/moniepoint/status-before.png" alt="Moniepoint account status before the redesign">
-                    <img class="cmp-after" src="images/moniepoint/status-after.png" alt="" loading="lazy">
+                    <img class="cmp-before" src="images/moniepoint/status-before.webp" alt="Moniepoint account status before the redesign">
+                    <img class="cmp-after" src="images/moniepoint/status-after.webp" alt="" loading="lazy">
                     <span class="cmp-line" aria-hidden="true"><i></i></span>
                     <span class="cmp-label cmp-label--b" aria-hidden="true">Before</span>
                     <span class="cmp-label cmp-label--a" aria-hidden="true">After</span>
@@ -110,8 +158,8 @@
                 </a>
                 <a class="tile" href="sun-king.html">
                   <span class="tile-media compare compare--pan">
-                    <img class="cmp-before" src="images/sun-king/before-page-full.png" alt="Sun King smartphone page before the rebuild">
-                    <img class="cmp-after" src="images/sun-king/after-page-full.png" alt="" loading="lazy">
+                    <img class="cmp-before" src="images/sun-king/before-page-full.webp" alt="Sun King smartphone page before the rebuild">
+                    <img class="cmp-after" src="images/sun-king/after-page-full.webp" alt="" loading="lazy">
                     <span class="cmp-line" aria-hidden="true"><i></i></span>
                     <span class="cmp-label cmp-label--b" aria-hidden="true">Before</span>
                     <span class="cmp-label cmp-label--a" aria-hidden="true">After</span>
@@ -127,9 +175,9 @@
               <div class="tile-col">
                 <a class="tile" href="teesaslms.html">
                   <span class="tile-media reel" data-step="3200">
-                    <img class="is-on" src="images/teesas/first-version.png" alt="Teesas LMS first version">
-                    <img src="images/teesas/second-version.png" alt="" loading="lazy">
-                    <img src="images/teesas/current-version-dashboard-1.png" alt="" loading="lazy">
+                    <img class="is-on" src="images/teesas/first-version.webp" alt="Teesas LMS first version">
+                    <img src="images/teesas/second-version.webp" alt="" loading="lazy">
+                    <img src="images/teesas/current-version-dashboard-1.webp" alt="" loading="lazy">
                   </span>
                   <span class="tile-arrow" aria-hidden="true">&#8599;</span>
                   <span class="tile-cap">
@@ -139,7 +187,7 @@
                 </a>
                 <a class="tile" href="fundall.html">
                   <span class="tile-media tile-media--mint">
-                    <video muted loop playsinline preload="metadata" poster="videos/fundall/sign-in-poster.png" aria-hidden="true">
+                    <video muted loop playsinline preload="metadata" poster="videos/fundall/sign-in-poster.webp" aria-hidden="true">
                       <source src="videos/fundall/sign-in-loop.mp4" type="video/mp4">
                     </video>
                   </span>
@@ -161,9 +209,9 @@
                 </a>
                 <a class="tile" href="empty-state.html">
                   <span class="tile-media reel" data-step="3200">
-                    <img class="is-on" src="images/omnibiz/initial-landing-page-for-unserved.png" alt="Omnibiz landing page before the redesign">
-                    <img src="images/omnibiz/new-landing-page-for-unserved-market-state.png" alt="" loading="lazy">
-                    <img src="images/omnibiz/preorder-state-flow.png" alt="" loading="lazy">
+                    <img class="is-on" src="images/omnibiz/initial-landing-page-for-unserved.webp" alt="Omnibiz landing page before the redesign">
+                    <img src="images/omnibiz/new-landing-page-for-unserved-market-state.webp" alt="" loading="lazy">
+                    <img src="images/omnibiz/preorder-state-flow.webp" alt="" loading="lazy">
                   </span>
                   <span class="tile-arrow" aria-hidden="true">&#8599;</span>
                   <span class="tile-cap">
