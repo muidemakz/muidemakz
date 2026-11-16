@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" class="shell">
 <head>
+  <script>
+  /* Self-heal: if this shell page ever ends up inside a frame (an older cached copy of the shell asked for /fundall instead of fundall.html),
+     show the page itself instead of a second copy of the site. */
+  (function () {
+    try {
+      if (window.top === window.self) return;
+      var p = (location.pathname.split('/').filter(Boolean)[0] || '').split('.html').join('');
+      if (!p || p === 'index') return;
+      document.documentElement.style.visibility = 'hidden';
+      location.replace('/' + (p === 'work' ? 'my-work' : p) + '.html?embed=1' + location.hash);
+    } catch (e) {}
+  })();
+  </script>
   <!-- Google tag (gtag.js). The shell records one page view per screen (home, /work, /about, each case study);
        pages opened inside the container do not count themselves, so nothing is counted twice. -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SMFSR34FZG"></script>

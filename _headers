@@ -1,5 +1,5 @@
 # Speed: let browsers keep images, video, fonts, styles and scripts instead of re-asking on every page.
-# Files here keep their names when edited, so styles and scripts only stay fresh for 5 minutes;
+# Files here keep their names when edited, so styles, scripts and pages are kept for one minute only (no serving old copies while updating, so fixes reach everyone quickly);
 # images and video rarely change, so they stay for a day (and refresh quietly in the background for a week).
 /images/*
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
@@ -8,8 +8,8 @@
 /artifacts/*
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400
 /css/*
-  Cache-Control: public, max-age=300, stale-while-revalidate=86400
+  Cache-Control: public, max-age=60
 /js/*
-  Cache-Control: public, max-age=300, stale-while-revalidate=86400
+  Cache-Control: public, max-age=60
 /*.html
-  Cache-Control: public, max-age=300, stale-while-revalidate=86400
+  Cache-Control: public, max-age=60
