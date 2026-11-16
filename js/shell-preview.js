@@ -312,7 +312,15 @@
     sw.setAttribute('aria-label', t === 'dark' ? 'Dark mode on. Switch to light' : 'Light mode on. Switch to dark');
     if (window.BOARD && window.BOARD.refreshTheme) window.BOARD.refreshTheme();
   }
-  sw.addEventListener('click', function () { setTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light'); });
+  var flipT = 0;
+  sw.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    if (reduce) return setTheme(next);
+    sw.classList.remove('is-flipping'); void sw.offsetWidth; sw.classList.add('is-flipping');
+    window.clearTimeout(flipT);
+    window.setTimeout(function () { setTheme(next); }, 170);
+    flipT = window.setTimeout(function () { sw.classList.remove('is-flipping'); }, 760);
+  });
   setTheme(root.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
 
   /* ---------- Start ---------- */
