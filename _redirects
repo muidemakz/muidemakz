@@ -1,0 +1,20 @@
+# Clean addresses. The shell (index.html) is served at each one and opens that page inside its container.
+# "200!" serves index.html even though a file such as about.html exists; the shell loads that file itself.
+/index.html  /  301!
+/my-work  /work  301!
+/work  /index.html  200!
+/about  /index.html  200!
+/omnione  /index.html  200!
+/omnibiz-speech-to-order  /index.html  200!
+/teesaslms  /index.html  200!
+/fundall  /index.html  200!
+/valideity  /index.html  200!
+/empty-state  /index.html  200!
+/moniepoint-verification  /index.html  200!
+/sun-king  /index.html  200!
+/nsimbi-three-purchases  /index.html  200!
+/cancel-flow  /index.html  200!
+/cardtonic  /index.html  200!
+/coreloops  /index.html  200!
+/venx  /index.html  200!
+/raven-pay  /index.html  200!

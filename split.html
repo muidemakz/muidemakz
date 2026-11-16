@@ -456,9 +456,7 @@ img { display: block; max-width: 100%; }
 .panel > a { display: block; height: 100%; position: relative; }
 
 /* =========================================================================
-   ACCORDION STATE, "all closed at rest"     [REVERT POINT]
-
-   Resting: all seven rows share the height equally, nothing open.
+   ACCORDION STATE, "all closed at rest"     Resting: all seven rows share the height equally, nothing open.
    Hovering anywhere in the stack collapses every row to its rail height and
    the hovered row takes the remaining space.
 
@@ -549,7 +547,7 @@ img { display: block; max-width: 100%; }
   margin-left: auto;
 }
 
-/* [REVERT POINT] previously also matched .panel.is-default */
+/* previously also matched .panel.is-default */
 .panel:hover .rail,
 .panel:focus-within .rail { opacity: 0; pointer-events: none; }
 
@@ -565,7 +563,7 @@ img { display: block; max-width: 100%; }
   min-height: 260px;
 }
 
-/* [REVERT POINT] previously also matched .panel.is-default */
+/* previously also matched .panel.is-default */
 .panel:hover .open-body,
 .panel:focus-within .open-body { opacity: 1; }
 

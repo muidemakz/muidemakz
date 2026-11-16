@@ -258,7 +258,7 @@
    STATS
    ========================================================================= */
 
-/* [REVERT POINT] was repeat(3, 1fr) — widened to fit the new 4th stat
+/* was repeat(3, 1fr) — widened to fit the new 4th stat
    added in about.html. To revert: change back to repeat(3, 1fr). */
 .ab-stats {
   display: grid;
@@ -302,7 +302,7 @@
 
 /* =========================================================================
    TESTIMONIALS
-   [REVERT POINT] TEST CHANGE, round 10 — was a standalone band--grey
+   round 10 — was a standalone band--grey
    section with a 2-column grid of light (paper-hard) cards. Now lives
    inside .ab-cta instead (dark background), as a horizontally-scrolling
    strip — same auto-fit-to-content pattern as .shelf-grid on the
@@ -322,7 +322,7 @@
 
 .testimonial-grid::-webkit-scrollbar { display: none; }
 
-/* [REVERT POINT] TEST CHANGE, round 11 — flex-basis was 320px; widened to
+/* round 11 — flex-basis was 320px; widened to
    440px per feedback ("increase the length of each card horizontally"). */
 .testimonial-card {
   flex: 0 0 440px;
@@ -526,14 +526,14 @@
   margin-top: 4px;
 }
 
-/* [REVERT POINT] was padding: 20px 22px with no left border, and hover
+/* was padding: 20px 22px with no left border, and hover
    inverted the whole row to solid accent + white text. Fine when every
    row was one short line; once .exp-scope added a paragraph underneath,
    a full-row color-invert on that much text read as too loud. Swapped for
    a left accent bar + faint tint — quieter, still an obvious hover state.
    padding-left is 3px tighter to net out at 22px total with the new
    border, so nothing shifts when the border-left color changes. */
-/* [REVERT POINT] was 4 columns (54px ledger-n, company, role, dates), then
+/* was 4 columns (54px ledger-n, company, role, dates), then
    3 (company, role, dates) once numbering was removed — company and role
    sat side by side. Now 2: .exp-head (company stacked above role) + dates,
    so the two read as one identity block instead of a spreadsheet row. */
@@ -576,7 +576,7 @@
   line-height: 1.35;
 }
 
-/* [REVERT POINT] was grid-column:2/-1 to skip past the row-number column
+/* was grid-column:2/-1 to skip past the row-number column
    that used to sit at column 1. Numbering's gone now, company is column 1,
    so this just spans the full row — still lines up under the company name
    since that's where column 1 starts. Was also capped at max-width:62ch;
@@ -596,8 +596,7 @@
 
 /* CONTRACT tag — same idea as the SHIPPED/CONCEPT work-card badge: a small
    mono metadata marker so an overlapping date range reads as an
-   intentional contract engagement, not a scheduling error. [REVERT POINT]
-   was an outlined box sitting mid-sentence in the role text, cramped
+   intentional contract engagement, not a scheduling error. was an outlined box sitting mid-sentence in the role text, cramped
    against the words around it — a filled chip with real breathing room
    reads as a deliberate tag instead of a stray fragment. Fixed colors now
    that hover no longer inverts the row to solid accent (see .ledger-row). */
@@ -719,7 +718,7 @@
   .story-row { grid-template-columns: 1fr; gap: 16px; padding: 38px 0; }
   .story-head { max-width: none; }
 
-  /* [REVERT POINT] was "40px 1fr" (a number column + content column) with
+  /* was "40px 1fr" (a number column + content column) with
      .exp-role/.exp-dates forced into column 2 — that leading 40px column
      existed only to hold the row number, now removed. Left as-is it would
      squeeze .exp-company into that same narrow 40px column instead. Single

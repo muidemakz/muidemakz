@@ -41,14 +41,26 @@
     if (f === 'about.html') return { name: 'about' };
     return { name: 'case', href: String(href) };
   }
-  function parseHash() {
+  /* Clean addresses: / , /work , /about and /<case-study> (Netlify serves this page at each, see _redirects).
+     Old links with #/... still work and are tidied into the clean address. */
+  function parseLocation() {
     var h = location.hash.replace(/^#/, '');
-    if (h.indexOf('/case/') === 0) return { name: 'case', href: decodeURIComponent(h.slice(6)) };
+    if (h.indexOf('/case/') === 0) return routeFromHref(decodeURIComponent(h.slice(6)));
     if (h === '/work') return { name: 'work' };
     if (h === '/about') return { name: 'about' };
+    var p = location.pathname.replace(/^\/+|\/+$/g, '').replace(/\.html$/, '');
+    if (p === '' || p === 'index') return { name: 'home' };
+    if (p === 'work' || p === 'my-work') return { name: 'work' };
+    if (p === 'about') return { name: 'about' };
+    if (PREVIEW_MAP[p + '.html']) return { name: 'case', href: p + '.html' + location.search };
     return { name: 'home' };
   }
-  function hashFor(r) { return r.name === 'home' ? '#/' : r.name === 'case' ? '#/case/' + encodeURIComponent(r.href) : '#/' + r.name; }
+  function pathFor(r) {
+    if (r.name === 'home') return '/';
+    if (r.name !== 'case') return '/' + r.name;
+    var f = String(r.href).split('#')[0], q = f.indexOf('?') > -1 ? f.slice(f.indexOf('?')) : '';
+    return '/' + f.split('?')[0].split('/').pop().replace(/\.html$/, '') + q;
+  }
 
   /* ---------- Header nav pill ---------- */
   function updateNav(name) {
@@ -67,6 +79,7 @@
   }
   var baseTitle = document.title;
   function setTitle(route, view) {
+    try { window.dispatchEvent(new Event('shell-route')); } catch (e) {}
     if (route.name === 'work') document.title = 'Work \u00b7 Muidemakz';
     else if (route.name === 'about') document.title = 'About \u00b7 Muidemakz';
     else if (route.name === 'case' && view) loaded(view).then(function () { try { var t = view.querySelector('iframe').contentDocument.title; if (t && cur === 'case') document.title = t; } catch (e) {} });
@@ -230,7 +243,7 @@
 
   /* ---------- Router ---------- */
   function flush() { if (pending) { var p = pending; pending = null; go(p.route, p.opts); } }
-  function push(route) { depth++; history.pushState({ i: depth }, '', hashFor(route)); }
+  function push(route) { depth++; try { history.pushState({ i: depth }, '', pathFor(route)); } catch (e) {} }
   async function go(route, opts) {
     opts = opts || {};
     if (busy) { pending = { route: route, opts: opts }; return; }
@@ -266,7 +279,7 @@
   });
   window.addEventListener('popstate', function (e) {
     depth = (e.state && e.state.i) || 0;
-    go(parseHash(), {});
+    go(parseLocation(), {});
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') back(); });
 
@@ -304,8 +317,8 @@
 
   /* ---------- Start ---------- */
   stage.addEventListener('animationend', function (e) { if (e.target === stage) stage.style.animation = 'none'; }, { once: true });
-  history.replaceState({ i: 0 }, '', location.href);
-  var first = parseHash();
+  var first = parseLocation();
+  try { history.replaceState({ i: 0 }, '', location.protocol === 'file:' ? location.href : pathFor(first)); } catch (e) {}
   updateNav(first.name === 'work' || first.name === 'about' ? first.name : '');
   if (first.name !== 'home') go(first, { instant: true });
   var conn = navigator.connection || {};

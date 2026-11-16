@@ -837,7 +837,7 @@
    which read as decoration rather than navigation, and scrolled away on the
    first swipe. It now sticks directly beneath the site header on every case
    study and the links carry a real border and hover fill. */
-/* [REVERT POINT] was sticky, docked under the header (top: 44px) as a
+/* was sticky, docked under the header (top: 44px) as a
    full-width bar. Now a floating pill-bar fixed to the bottom of the
    viewport instead, on every case study page (shared file). To revert:
    restore position:sticky/top:44px/border-bottom, and delete the
@@ -927,7 +927,7 @@
   border-color: var(--paper-hard);
 }
 
-/* [REVERT POINT] was 100px to clear both the sticky header AND the old
+/* was 100px to clear both the sticky header AND the old
    sticky quicknav stacked under it. The quicknav floats at the bottom
    now, so anchors only need to clear the header. */
 .case-section[id] { scroll-margin-top: 60px; }
@@ -1297,7 +1297,7 @@
 .case-leadership-grid--auto .case-leadership { min-height: 0; }
 
 /* edge-case pair */
-/* [REVERT POINT] grid items default to align-items:stretch, so a card
+/* grid items default to align-items:stretch, so a card
    paired with a taller sibling in the same row was being stretched to
    match it — but since .case-edge's own content only hugs its own height
    now (no more space-between), that extra stretched space just sat empty
@@ -1313,7 +1313,7 @@
   margin-top: 24px;
 }
 
-/* [REVERT POINT] was justify-content:space-between + a fixed min-height:
+/* was justify-content:space-between + a fixed min-height:
    480px — fine when body copy was long enough to fill that height, but a
    short card (just a kicker + title, no copy paragraph, e.g. "Omni /
    Single Sign On") left a huge dead gap between the text and the image
@@ -1488,7 +1488,7 @@
 /* edge-card variants: a dark statement cell, and labelled full screenshots */
 .case-edge--dark { background: var(--ink-hard); color: var(--paper-hard); }
 
-/* [REVERT POINT] the intro/statement card used to sit as a half-width peer
+/* the intro/statement card used to sit as a half-width peer
    next to the first surface card, paired with an image of its own. Now
    spans the full grid width as a standalone banner (its image moved out
    into its own dedicated "Omni / Single Sign On" card below) — min-height

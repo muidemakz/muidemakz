@@ -1,6 +1,6 @@
 // Universal site header, injected on every page instead of each page
 // carrying its own copy of the <header class="site-header"> markup.
-// [REVERT POINT] TEST CHANGE, round 21 (branch: test/homepage-backdrop-prose)
+// round 21 (branch: test/homepage-backdrop-prose)
 // — replaces 17 separate hand-maintained copies of this markup (the exact
 // bug that let index.html's About/Work order and other pages' order drift
 // apart). To use on a page: remove that page's own <header class=
@@ -58,7 +58,7 @@
   document.write('<script src="js/motion.js"><\/script>');
   if (embedded) document.write('<script src="js/embed-preview.js"><\/script>');
 
-  // [REVERT POINT] Design-board layer, on every page: dot-grid canvas, your
+  // Design-board layer, on every page: dot-grid canvas, your
   // own cursor, other visitors' cursors (real if js/board-config.js has a
   // transport, otherwise simulated demo visitors) and "/" cursor chat.
   // To turn it off everywhere, delete these four lines. For one browser,

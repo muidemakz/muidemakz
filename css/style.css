@@ -9,7 +9,7 @@
 
   --font-display: "Baloo 2", sans-serif;
   --font-serif: "Instrument Serif", serif;
-  /* [REVERT POINT] was Inter. Case study pages already opt into Outfit
+  /* was Inter. Case study pages already opt into Outfit
      for their body copy via .type-outfit (css/case-study.css); this makes
      it the sitewide default for every other page's body text too, so the
      two don't diverge. Inter kept as the fallback in the stack. */

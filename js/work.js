@@ -24,7 +24,7 @@
     document.querySelector(".work-toolbar").scrollIntoView({ block: "start" });
   }
 
-  // [REVERT POINT] year used to be its own filter dimension (a Year chip
+  // year used to be its own filter dimension (a Year chip
   // row) — that UI is gone, but wrapped.html's per-year "See All" button
   // still links here with ?year=YYYY, so a year search still needs to work.
   // It's folded into the search box instead: a bare year drops straight
@@ -168,7 +168,7 @@
       li.appendChild(caption);
     }
 
-    // [REVERT POINT] TEST CHANGE — used to also render a SHIPPED/CONCEPT
+    // — used to also render a SHIPPED/CONCEPT
     // badge here from project.status (still in js/data.js, just unused
     // now). Removed per feedback; meta is just the category again.
     const meta = document.createElement("span");
@@ -216,7 +216,7 @@
     if (state.page > totalPages) state.page = totalPages;
     const startIdx = (state.page - 1) * PAGE_SIZE;
     const pageItems = filtered.slice(startIdx, startIdx + PAGE_SIZE);
-    // [REVERT POINT] the default (no search/filter, page 1) view is already
+    // the default (no search/filter, page 1) view is already
     // present as static HTML in my-work.html — first paint and no-JS
     // visitors see real cards, not an empty <ul>. JS only needs to rebuild
     // the grid when the user actually changes the state away from that

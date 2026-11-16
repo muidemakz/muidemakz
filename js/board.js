@@ -577,6 +577,7 @@
       nextPrompt();
       window.setInterval(function () { if (!document.hidden && !botPeer.hold) nextPrompt(); }, 7000);
       window.addEventListener('hashchange', function () { promptN = 0; nextPrompt(); });
+      window.addEventListener('shell-route', function () { promptN = 0; nextPrompt(); });
       sims.push(botPeer);
     }
     function joinBot() {

@@ -155,7 +155,7 @@ const PROJECTS = [
   { name: "Coreloops Documents Filter", year: 2026, categories: ["UI Design", "UX Design"], image: "images/cinema/coreloops-cover.svg", caption: "Making Frequent Filters Easier To Reach", status: "concept", confirmed: true, link: "coreloops.html" },
   { name: "VENX", year: 2025, categories: ["UI Design", "UX Design"], image: "images/cinema/venx-cover.jpg", caption: "A Full AI Sales CRM Concept In 24 Hours", status: "concept", confirmed: true, link: "venx.html" },
   { name: "Raven Pay", year: 2024, categories: ["UI Design", "UX Design"], image: "images/cinema/ravenpay-cover.jpg", caption: "Making A Banking App Read As Serious, Not Cute", status: "concept", confirmed: true, link: "raven-pay.html" },
-  // [REVERT POINT] Unfinished entries now link to an explicitly noindex preview.
+  // Unfinished entries now link to an explicitly noindex preview.
   // Keep draft files and their unreviewed content out of the public preview.
   // Only add preview.role/summary/scope from owner-confirmed material.
   { name: "Venda by Fortnoto", year: 2026, categories: ["Branding", "Creative Design"], image: null, brand: "Venda", confirmed: true, status: "coming-soon", slug: "venda", link: "project-preview.html?project=venda" },

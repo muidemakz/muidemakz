@@ -10,7 +10,7 @@
   color: var(--ink-hard);
 }
 
-/* [REVERT POINT] was clamp(40px, 8vw, 96px) — hero-scale, out of line with
+/* was clamp(40px, 8vw, 96px) — hero-scale, out of line with
    every other page's h1 (About tops out at 48px). This is a listing-page
    title, not a hero, so it's sized down to match. */
 .work-title {
@@ -189,7 +189,7 @@
   gap: 0;
 }
 
-/* [REVERT POINT] a card with a caption needs its title stacked above the
+/* a card with a caption needs its title stacked above the
    caption, not side-by-side — the row layout above was fine when a
    non-logo card only ever had one visible text child (the name; .meta is
    pulled out of flow via position:absolute). */
@@ -207,7 +207,7 @@
   z-index: 2;
 }
 
-/* [REVERT POINT] the 0.35 wash above is fine over the plain paper/hatch
+/* the 0.35 wash above is fine over the plain paper/hatch
    background (has-logo / no-image cards), but on real screenshots it let
    too much busy, varied-contrast photo through — dark text over it was
    inconsistently legible depending on what part of the image sat behind
@@ -296,7 +296,7 @@
 .work-card:nth-child(8n+6),
 .work-card:nth-child(8n+7) { grid-column: span 2; }
 
-/* [REVERT POINT] was missing z-index entirely on cards without a brand
+/* was missing z-index entirely on cards without a brand
    logo (the real-screenshot cards, e.g. Coreloops, Fundall) — .work-card
    is a flex container, so z-index applies to its children even at
    position:static, and the ::before dark overlay sits at z-index:2. With
@@ -412,7 +412,7 @@
   flex-shrink: 0;
 }
 
-/* [REVERT POINT] was a single bare "No projects match" line — same
+/* was a single bare "No projects match" line — same
    reassurance + clear-action treatment as the 404 page, scaled down for
    an in-page empty state rather than a full lost-visitor screen. */
 .work-empty {
