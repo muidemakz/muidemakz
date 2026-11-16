@@ -90,10 +90,10 @@
   var TRAY = ['star', 'heart', 'smile', 'bolt', 'wow', 'eyes', 'flower', 'pointer'];
 
   /* Stickers already stuck onto each frame (they can be dragged off too) */
-  var DECOR = {
-    made: [{ t: 'star', top: -26, left: 300, r: 14, size: 58 }, { t: 'heart', bottom: -20, right: 22, r: -12, size: 52 }],
-    play: [{ t: 'bolt', top: -22, left: 150, r: 16, size: 54 }, { t: 'flower', bottom: -24, right: 46, r: 10, size: 60 }, { t: 'smile', bottom: -18, left: 28, r: -8, size: 50 }],
-    soon: [{ t: 'eyes', top: -20, left: 60, r: -6, size: 58 }, { t: 'wow', bottom: -24, right: 30, r: 10, size: 72 }]
+  var DECOR = { /* on the frame edges, clear of the titles, the notes and the cards */
+    made: [{ t: 'star', top: -36, left: 320, r: 14, size: 58 }, { t: 'heart', bottom: -38, right: 22, r: -12, size: 52 }],
+    play: [{ t: 'bolt', top: -34, left: 340, r: 16, size: 54 }, { t: 'flower', bottom: -40, right: 46, r: 10, size: 60 }, { t: 'smile', bottom: -36, left: 28, r: -8, size: 50 }],
+    soon: [{ t: 'eyes', top: -34, left: 250, r: -6, size: 58 }, { t: 'wow', bottom: -44, right: 30, r: 10, size: 72 }]
   };
 
   /* ---------- Build the board ---------- */
@@ -614,7 +614,7 @@
   }
   /* A sticker may not sit on a project: it is nudged to the nearest free spot beside it */
   var toldMove = false;
-  function settle(st) {
+  function settle(st, screenOnly) {
     if (st.parentNode !== world) return;
     var x = (parseFloat(st.style.left) || 0) + num(st, '--dx'), y = (parseFloat(st.style.top) || 0) + num(st, '--dy');
     var size = st.offsetWidth || 70, gap = 10, moved = false;
@@ -633,7 +633,8 @@
     st.style.setProperty('--dx', '0px'); st.style.setProperty('--dy', '0px');
     st.style.left = x.toFixed(1) + 'px'; st.style.top = y.toFixed(1) + 'px';
     if (moved && !toldMove) { toldMove = true; toast('Stickers can\u2019t cover the work, so it moved next to the card.'); }
-    if (st.dataset.mine || OWNER) { if (shared && st.dataset.id) api('POST', { action: 'move', id: st.dataset.id, x: x, y: y }).catch(function () {}); else saveMine(); }
+    if (screenOnly) return;
+    if (st.dataset.mine || OWNER) { if (shared && st.dataset.id) api('POST', { action: 'move', id: st.dataset.id, x: x, y: y }).catch(function () { toast('Could not save that move. Try again.'); }); else saveMine(); }
   }
   function toast(text) {
     var t = document.createElement('p');
@@ -707,7 +708,7 @@
     st.addEventListener('dblclick', function () {
       if (!st.dataset.mine && !(OWNER && st.dataset.id)) return;
       hideTag(); st.remove(); countMine(); saveMine();
-      if (shared && st.dataset.id) api('POST', { action: 'remove', id: st.dataset.id }).catch(function () {});
+      if (shared && st.dataset.id) api('POST', { action: 'remove', id: st.dataset.id }).catch(function () { toast('Could not remove that sticker. Reload and try again.'); });
     });
   }
   /* cx, cy are screen positions of the sticker's top-left corner */
@@ -839,11 +840,15 @@
     return api('GET').then(function (j) {
       if (!j || !Array.isArray(j.stickers)) throw new Error('no list');
       shared = true;
+      if (OWNER && j.owner === false) {
+        toast(j.ownerSet === false ? 'Owner mode is off: OWNER_KEY is not set on Netlify for this site.' : 'This owner key doesn’t match the one on Netlify, so your changes won’t save. Open the owner link again with the current key.');
+        OWNER = ''; var cb = document.querySelector('.wb-tray-clear'); if (cb) cb.remove();
+      }
       applyDecor(j.decor);
       Array.prototype.forEach.call(world.querySelectorAll(':scope > .sticker'), function (x) { x.remove(); });
       j.stickers.forEach(function (o) {
         var st = placeSaved(o, o.mine);
-        if (st && !o.mine) settle(st); /* if the board has changed since, keep it off the work (on screen only) */
+        if (st && !o.mine) settle(st, true); /* if the board has changed since, keep it off the work (on screen only) */
       });
       countMine();
     });

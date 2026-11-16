@@ -52,7 +52,7 @@ export default async (req, context) => {
   if (req.method === 'GET') {
     const all = await load();
     const decor = (await store.get('decor', { type: 'json' })) || {};
-    return json({ stickers: all.map((s) => view(s, me, isOwner)), decor });
+    return json({ stickers: all.map((s) => view(s, me, isOwner)), decor, owner: isOwner, ownerSet: !!ownerKey });
   }
   if (req.method !== 'POST') return json({ error: 'GET or POST only' }, 405);
   const ip = (context && context.ip) || req.headers.get('x-nf-client-connection-ip') || 'anon';
