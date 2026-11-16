@@ -10,7 +10,28 @@
   function overlapX(a, b) { return Math.min(a.r, b.r) - Math.max(a.l, b.l) > 8; }
   function overlapY(a, b) { return Math.min(a.b, b.b) - Math.max(a.t, b.t) > 8; }
 
+  /* Card grids are either one full row or one stack: columns are chosen so every row is full (3 cards: 3 across or 1 stack,
+     4 cards: 4, 2 by 2 or 1 stack) and no card is narrower than MIN, so text is never squeezed and there is never a lone card left over. */
+  var GRIDS = '.case-steps, .case-edge-grid, .case-leadership-grid, .case-problem-grid, .case-fact-grid, .case-user-list--grid, .mv-study-grid, .ns-caps';
+  var MIN = 240;
+  function fitGrids() {
+    Array.prototype.forEach.call(document.querySelectorAll(GRIDS), function (g) {
+      g.style.removeProperty('grid-template-columns');
+      var cs = getComputedStyle(g);
+      if (cs.display.indexOf('grid') < 0) return;
+      var kids = Array.prototype.filter.call(g.children, function (c) { return c.offsetWidth > 0 && getComputedStyle(c).display !== 'none'; });
+      var n = kids.length; if (n < 2) return;
+      var spans = kids.some(function (c) { var s = getComputedStyle(c); return (s.gridColumnStart !== 'auto' && s.gridColumnStart !== '1') || /span/.test(s.gridColumnEnd) && s.gridColumnEnd !== 'span 1'; });
+      if (spans) return;
+      var W = g.clientWidth - (parseFloat(cs.paddingLeft) || 0) - (parseFloat(cs.paddingRight) || 0), gap = parseFloat(cs.columnGap) || 0;
+      var best = 1;
+      for (var c = n; c >= 2; c--) { if (n % c === 0 && (W - (c - 1) * gap) / c >= MIN) { best = c; break; } }
+      g.style.setProperty('grid-template-columns', 'repeat(' + best + ', minmax(0, 1fr))', 'important');
+    });
+  }
+
   function apply() {
+    fitGrids();
     var groups = [];
     Array.prototype.forEach.call(document.querySelectorAll(KIDS), function (k) {
       var p = k.parentElement;
