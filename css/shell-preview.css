@@ -773,3 +773,8 @@ html[data-theme="light"] .pull-bead { box-shadow: 0 4px 8px rgba(120, 40, 8, .3)
 @media (prefers-reduced-motion: reduce) {
   .pull, .pull-cord, .pull-bead { animation: none !important; transition: none !important; }
 }
+
+/* The pull cord is for every page except Home (Home has the O switch). It drops in from the top when you leave Home. */
+.pull { transition: translate .45s cubic-bezier(.3, 1.5, .45, 1), opacity .25s ease; }
+html.on-home .pull { translate: 0 -110%; opacity: 0; pointer-events: none; visibility: hidden; transition: translate .3s ease, opacity .2s ease, visibility 0s .3s; }
+.pull.is-arriving { animation: pull-swing 1s ease-out .3s; }

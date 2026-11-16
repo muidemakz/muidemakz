@@ -15,6 +15,7 @@
   var pill = document.getElementById('navPill');
   var sw = document.getElementById('themeSwitch');
   var pull = document.getElementById('themePull');
+  root.classList.toggle('on-home', (location.pathname === '/' || location.pathname === '/index.html') && !/^#\/(work|about|case)/.test(location.hash));
   if (!stage || !body || !slot) return;
 
   /* Owner link: muidemakz.com/work?owner=<key> saves the key in this browser (the Work board reads it)
@@ -97,6 +98,13 @@
     window.gtag('event', 'page_view', { page_title: document.title, page_location: location.href, page_path: location.pathname });
   }
   function setTitle(route, view) {
+    /* the pull cord hides on Home, and drops in with a swing when you leave it */
+    var wasHome = root.classList.contains('on-home');
+    root.classList.toggle('on-home', route.name === 'home');
+    if (pull && wasHome && route.name !== 'home' && !reduce) {
+      pull.classList.remove('is-arriving'); void pull.offsetWidth; pull.classList.add('is-arriving');
+      window.setTimeout(function () { pull.classList.remove('is-arriving'); }, 1400);
+    }
     try { window.dispatchEvent(new Event('shell-route')); } catch (e) {}
     if (route.name === 'work') document.title = 'Work \u00b7 Muidemakz';
     else if (route.name === 'about') document.title = 'About \u00b7 Muidemakz';
