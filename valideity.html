@@ -6,7 +6,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag("js", new Date());
-    gtag("config", "G-SMFSR34FZG");
+    if (window.top === window.self && /[?&]standalone=1/.test(location.search)) gtag("config", "G-SMFSR34FZG"); /* the shell counts the view otherwise */
   </script>
   <meta charset="UTF-8">
   <script src="js/to-shell.js"></script>

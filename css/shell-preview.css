@@ -641,3 +641,35 @@ html[data-theme="light"] .o-finger { top: 66%; right: auto; left: .02em; }
 .o-switch.is-flipping.to-dark { --fx0: -.02em; --fr0: -6deg; --fx1: .5em; --fr1: 8deg; }
 @media (max-width: 860px) { .o-switch { width: 1.12em; height: .6em; } .o-thumb { width: .48em; height: .48em; } html:not([data-theme="light"]) .o-thumb { transform: translateX(.52em); } }
 @media (prefers-reduced-motion: reduce) { .o-thumb, .o-ico, .o-star, .o-cloud, .o-track { transition: none; } }
+
+/* ---------- When a page fails to load inside the container ----------
+   A plug and socket that keep trying to connect, then the message and two ways forward. */
+.stage-error {
+  position: absolute; inset: 0; z-index: 8;
+  display: grid; place-content: center; justify-items: center; gap: 10px;
+  padding: 24px; text-align: center;
+  background: var(--stage);
+  animation: se-in .35s ease both;
+}
+@keyframes se-in { from { opacity: 0; } to { opacity: 1; } }
+.se-scene { position: relative; width: 220px; height: 90px; margin-bottom: 8px; }
+.se-cord { position: absolute; top: 43px; height: 4px; border-radius: 4px; background: var(--ink-mute); }
+.se-cord--a { left: 0; width: 70px; }
+.se-cord--b { right: 0; width: 70px; }
+.se-plug { position: absolute; top: 28px; width: 38px; height: 34px; border-radius: 10px; background: linear-gradient(180deg, #ff8a5c, #ff5a1f 60%, #c93d00); box-shadow: 0 8px 16px rgba(0, 0, 0, .35); }
+.se-plug--a { left: 66px; animation: se-try-a 2.4s cubic-bezier(.6, 0, .3, 1) infinite; }
+.se-plug--a::after { content: ""; position: absolute; right: -10px; top: 9px; width: 10px; height: 4px; border-radius: 2px; background: #c9c3cb; box-shadow: 0 12px 0 #c9c3cb; }
+.se-plug--b { right: 66px; border-radius: 10px; background: linear-gradient(180deg, #3a363e, #26232a); animation: se-try-b 2.4s cubic-bezier(.6, 0, .3, 1) infinite; }
+html[data-theme="light"] .se-plug--b { background: linear-gradient(180deg, #d7d9de, #b9bcc4); }
+.se-spark { position: absolute; left: 50%; top: 36px; width: 18px; height: 18px; margin-left: -9px; background: radial-gradient(circle, #ffd54a 0 30%, transparent 70%); opacity: 0; animation: se-spark 2.4s ease infinite; }
+@keyframes se-try-a { 0%, 100% { transform: translateX(0); } 40%, 55% { transform: translateX(14px); } }
+@keyframes se-try-b { 0%, 100% { transform: translateX(0); } 40%, 55% { transform: translateX(-14px); } }
+@keyframes se-spark { 0%, 38% { opacity: 0; transform: scale(.4); } 45% { opacity: 1; transform: scale(1.2); } 60%, 100% { opacity: 0; transform: scale(.6); } }
+.se-title { color: var(--ink); font: 600 22px/1.25 "Outfit", sans-serif; }
+.se-text { max-width: 36ch; margin: 0; color: var(--ink-soft); font: 400 15px/1.5 "Outfit", sans-serif; }
+.se-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 6px; }
+.se-btn { display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border: 1px solid var(--line); border-radius: 999px; background: var(--btn, transparent); color: var(--ink); font: 600 14px "Outfit", sans-serif; text-decoration: none; cursor: pointer; }
+.se-btn--primary { border-color: transparent; background: #ff5a1f; color: #1a0900; }
+.se-btn--primary:hover { background: #ff8a5c; }
+.se-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .stage-error, .se-plug, .se-spark { animation: none; } }

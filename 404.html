@@ -11,263 +11,117 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Page Not Found &middot; Excellent Makanju</title>
-<meta name="description" content="This page doesn't exist, but the rest of Excellent Makanju's portfolio does.">
+<title>Page not found &middot; Excellent Makanju</title>
+<meta name="description" content="This page isn't on the board, but the rest of Excellent Makanju's portfolio is.">
 <meta name="robots" content="noindex">
+<script>try{if(localStorage.getItem('ui-theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=JetBrains+Mono:wght@500&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* self-contained styles for this page only, same pattern as index.html's
-   local <style> block — reuses the shared tokens/header/footer from
-   css/style.css rather than redeclaring them. */
+  /* 404 in the new design: the same header as the site, a dotted board, and a card that has lost a pin.
+     Paths are absolute because this page is served for any missing address, at any depth. */
+  :root {
+    --bg: #0c0b0d; --surface: #161418; --raised: #1f1c22; --line: rgba(244, 242, 244, .12);
+    --ink: #f4f2f4; --ink-soft: #c9c3cb; --ink-mute: #8d8690; --accent: #ff5a1f; --accent-text: #ff8a5c; --on-accent: #1a0900;
+    --dot: rgba(244, 242, 244, .13); --card: #232026;
+  }
+  html[data-theme="light"] {
+    --bg: #ffffff; --surface: #f6f6f7; --raised: #ffffff; --line: rgba(20, 18, 20, .1);
+    --ink: #141214; --ink-soft: #4d474f; --ink-mute: #7b757d; --accent-text: #c93d00;
+    --dot: rgba(13, 13, 13, .12); --card: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; }
+  body {
+    min-height: 100vh;
+    background-color: var(--bg);
+    background-image: radial-gradient(circle, var(--dot) 1px, transparent 1.4px);
+    background-size: 24px 24px;
+    color: var(--ink);
+    font: 400 16px/1.5 "Outfit", system-ui, sans-serif;
+    display: flex; flex-direction: column;
+  }
+  a { color: inherit; }
+  .nf-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; }
+  .pill { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); text-decoration: none; font-weight: 500; }
+  .brand { font: 700 14px/1 "JetBrains Mono", monospace; letter-spacing: .02em; }
+  .nav { display: flex; gap: 4px; padding: 4px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
+  .nav a { display: inline-flex; align-items: center; min-height: 36px; padding: 0 16px; border-radius: 999px; text-decoration: none; color: var(--ink-soft); font-weight: 500; }
+  .nav a:hover { color: var(--ink); background: var(--raised); }
 
-.nf-main {
-  background: var(--ink-hard);
-  color: var(--paper-hard);
-  position: relative;
-  overflow: hidden;
-  min-height: calc(100vh - 45px);
-  display: flex;
-  align-items: center;
-}
-
-/* same diagonal hatch used on the homepage hero / About's hero */
-.nf-main::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background-image: repeating-linear-gradient(
-    -45deg,
-    rgba(255, 255, 255, 0.05) 0 12px,
-    transparent 12px 34px
-  );
-}
-
-.nf-inner {
-  position: relative;
-  z-index: 1;
-  padding-top: 64px;
-  padding-bottom: 64px;
-  text-align: center;
-}
-
-.nf-code {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: clamp(72px, 16vw, 180px);
-  line-height: 0.9;
-  letter-spacing: -0.02em;
-  color: var(--accent);
-  margin: 0;
-}
-
-.nf-title {
-  font-family: var(--font-hard);
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: clamp(24px, 4vw, 44px);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  margin: 16px 0 0;
-}
-
-.nf-copy {
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.5;
-  opacity: 0.85;
-  max-width: 46ch;
-  margin: 18px auto 0;
-}
-
-.nf-path[hidden] { display: none; }
-
-.nf-path {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  background: rgba(242, 240, 235, 0.08);
-  border: 1px solid rgba(242, 240, 235, 0.3);
-  padding: 8px 14px;
-  margin-top: 18px;
-  word-break: break-all;
-}
-
-.nf-suggest[hidden] { display: none; }
-
-.nf-suggest {
-  display: block;
-  font-family: var(--font-body);
-  font-size: 15px;
-  margin-top: 14px;
-}
-
-.nf-suggest a {
-  color: var(--accent);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.nf-suggest a:hover { color: var(--paper-hard); }
-
-.nf-actions {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 36px;
-}
-
-.nf-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 12.5px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 15px 22px;
-  border: 2px solid var(--paper-hard);
-  color: var(--paper-hard);
-  text-decoration: none;
-  transition: background 0.14s ease, color 0.14s ease, border-color 0.14s ease,
-              transform 0.14s ease, box-shadow 0.14s ease;
-}
-
-.nf-btn--solid { background: var(--paper-hard); color: var(--ink-hard); }
-
-.nf-btn:hover,
-.nf-btn:focus-visible {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-  transform: translate(-3px, -3px);
-  box-shadow: 5px 5px 0 rgba(242, 240, 235, 0.4);
-}
-
-.nf-btn:active { transform: translate(0, 0); box-shadow: none; }
-
-@media (max-width: 600px) {
-  .nf-btn { width: 100%; justify-content: center; }
-  .nf-actions { flex-direction: column; }
-}
+  .nf { flex: 1; display: grid; place-items: center; padding: 24px 16px 64px; text-align: center; }
+  .nf-inner { display: grid; justify-items: center; gap: 14px; max-width: 560px; }
+  .scene { position: relative; width: 300px; height: 230px; margin-bottom: 6px; }
+  .pin { position: absolute; width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle at 34% 30%, #fff 0 9%, var(--accent) 10% 62%, rgba(0, 0, 0, .4) 100%); box-shadow: 0 4px 7px rgba(0, 0, 0, .5); z-index: 3; }
+  .pin--hold { top: 18px; left: 64px; }
+  /* the card hangs from its one remaining pin and swings */
+  .card {
+    position: absolute; top: 26px; left: 72px;
+    width: 190px; height: 150px; margin-left: -18px;
+    padding: 18px 18px 14px;
+    border-radius: 14px;
+    background: var(--card);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, .45);
+    transform-origin: 18px 0;
+    animation: swing 3.4s cubic-bezier(.45, 0, .35, 1) infinite alternate;
+    text-align: left;
+  }
+  .card b { display: block; color: var(--accent-text); font: 700 54px/1 "Outfit", sans-serif; letter-spacing: -.04em; }
+  .card span { display: block; margin-top: 6px; color: var(--ink-mute); font: 500 12px/1.3 "JetBrains Mono", monospace; letter-spacing: .06em; text-transform: uppercase; }
+  .card i { position: absolute; left: 18px; right: 18px; bottom: 18px; height: 6px; border-radius: 4px; background: color-mix(in srgb, var(--ink-mute) 30%, transparent); }
+  .card i + i { bottom: 32px; right: 60px; }
+  /* the pin that fell out, lying below with a little bounce */
+  .pin--lost { left: 222px; bottom: 6px; animation: settle 3.4s ease-in-out infinite alternate; }
+  .shadow { position: absolute; left: 216px; bottom: 0; width: 30px; height: 6px; border-radius: 50%; background: rgba(0, 0, 0, .35); filter: blur(2px); }
+  .note { position: absolute; right: 0; top: 0; color: #f2c94c; font: 700 22px/1 "Caveat", cursive; transform: rotate(6deg); }
+  html[data-theme="light"] .note { color: #8a5a00; }
+  @keyframes swing { from { transform: rotate(14deg); } to { transform: rotate(4deg); } }
+  @keyframes settle { 0%, 70% { transform: translateY(0) rotate(0); } 85% { transform: translateY(-6px) rotate(20deg); } 100% { transform: translateY(0) rotate(40deg); } }
+  h1 { margin: 0; font: 600 clamp(28px, 6vw, 40px)/1.1 "Outfit", sans-serif; letter-spacing: -.03em; text-wrap: balance; }
+  .lede { margin: 0; color: var(--ink-soft); font-size: 17px; }
+  .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 6px; }
+  .btn { display: inline-flex; align-items: center; min-height: 46px; padding: 0 22px; border-radius: 999px; text-decoration: none; font-weight: 600; }
+  .btn--primary { background: var(--accent); color: var(--on-accent); }
+  .btn--primary:hover { background: #ff8a5c; }
+  .btn--quiet { border: 1px solid var(--line); background: var(--surface); }
+  .btn--quiet:hover { border-color: var(--accent); }
+  .try { margin: 14px 0 0; color: var(--ink-mute); font-size: 14px; }
+  .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+  .chips a { display: inline-flex; min-height: 36px; align-items: center; padding: 0 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink-soft); font-size: 14px; text-decoration: none; }
+  .chips a:hover { border-color: var(--accent); color: var(--ink); }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  @media (max-width: 520px) { .nav a { padding: 0 12px; } .scene { transform: scale(.85); margin: -12px 0 -18px; } }
+  @media (prefers-reduced-motion: reduce) { .card, .pin--lost { animation: none; } .card { transform: rotate(9deg); } }
 </style>
 </head>
 <body>
-
-<!-- round 21 -- shared header component,
-     see js/header.js. Was a hardcoded <header class="site-header"> copy. -->
-<div id="site-header-root"></div>
-<script src="js/header.js"></script>
-
-<main class="nf-main">
-  <div class="wrap nf-inner">
-    <p class="nf-code">404</p>
-    <h1 class="nf-title">This page didn't ship</h1>
-    <p class="nf-copy">Nothing's broken on your end. The link's just pointing somewhere that doesn't exist anymore, or never did. Everything else on the site is right where it should be.</p>
-    <p class="nf-path" id="nfPath" hidden></p>
-    <p class="nf-suggest" id="nfSuggest" hidden>Did you mean <a href="#" id="nfSuggestLink"></a>?</p>
-    <div class="nf-actions">
-      <a class="nf-btn nf-btn--solid" href="index.html">Go To Homepage &rarr;</a>
-      <a class="nf-btn" href="my-work.html">See My Work &rarr;</a>
-      <a class="nf-btn" href="mailto:muidemakz@gmail.com">Email Me &rarr;</a>
+  <header class="nf-head">
+    <a class="pill brand" href="/" aria-label="muidemakz, home">muidemakz</a>
+    <nav class="nav" aria-label="Main"><a href="/work">Work</a><a href="/about">About</a></nav>
+  </header>
+  <main class="nf">
+    <div class="nf-inner">
+      <div class="scene" aria-hidden="true">
+        <span class="note">lost a pin…</span>
+        <span class="pin pin--hold"></span>
+        <div class="card"><b>404</b><span>Not on the board</span><i></i><i></i></div>
+        <span class="shadow"></span>
+        <span class="pin pin--lost"></span>
+      </div>
+      <h1>This page isn&rsquo;t on the board.</h1>
+      <p class="lede">The link may be old, or the page moved when the site was redesigned. Everything else is still here.</p>
+      <div class="actions">
+        <a class="btn btn--primary" href="/">Back to home</a>
+        <a class="btn btn--quiet" href="/work">See all work</a>
+      </div>
+      <p class="try">Or start with one of these:</p>
+      <div class="chips">
+        <a href="/omnibiz-speech-to-order">Speech-to-Order</a>
+        <a href="/omnione">Omnione design system</a>
+        <a href="/fundall">Fundall</a>
+      </div>
     </div>
-  </div>
-</main>
-
-<script>
-(function () {
-  var pathEl = document.getElementById('nfPath');
-  var path = window.location.pathname;
-  var isRealMiss = path && path !== '/' && path !== '/404.html';
-
-  if (pathEl && isRealMiss) {
-    pathEl.textContent = 'You tried: ' + path;
-    pathEl.hidden = false;
-  }
-
-  if (!isRealMiss) return;
-
-  // "did you mean" — catches a typo'd or slightly-off URL (e.g. /cardtoniic,
-  // /card-tonic) rather than leaving a mistyped visitor with nothing but
-  // the generic actions below. Every real page on the site, matched by
-  // plain Levenshtein distance against whatever slug they landed on.
-  var PAGES = [
-    { slug: 'index', label: 'Home', href: 'index.html' },
-    { slug: 'about', label: 'About', href: 'about.html' },
-    { slug: 'my-work', label: 'My Work', href: 'my-work.html' },
-    { slug: 'work', label: 'My Work', href: 'my-work.html' },
-    { slug: 'coreloops', label: 'Coreloops', href: 'coreloops.html' },
-    { slug: 'cardtonic', label: 'Cardtonic', href: 'cardtonic.html' },
-    { slug: 'teesaslms', label: 'Teesas LMS', href: 'teesaslms.html' },
-    { slug: 'fundall', label: 'Fundall', href: 'fundall.html' },
-    { slug: 'omnione', label: 'Omnione', href: 'omnione.html' },
-    { slug: 'empty-state', label: 'Omnibiz', href: 'empty-state.html' },
-    { slug: 'raven-pay', label: 'Raven Pay', href: 'raven-pay.html' },
-    { slug: 'venx', label: 'VENX', href: 'venx.html' }
-    // Cancel Flow intentionally left out — not finished, not meant to be
-    // surfaced yet, same reasoning as the work-grid Coming Soon treatment.
-  ];
-
-  function levenshtein(a, b) {
-    var m = a.length, n = b.length;
-    var d = [];
-    for (var i = 0; i <= m; i++) d[i] = [i];
-    for (var j = 0; j <= n; j++) d[0][j] = j;
-    for (i = 1; i <= m; i++) {
-      for (j = 1; j <= n; j++) {
-        d[i][j] = a[i - 1] === b[j - 1]
-          ? d[i - 1][j - 1]
-          : 1 + Math.min(d[i - 1][j - 1], d[i - 1][j], d[i][j - 1]);
-      }
-    }
-    return d[m][n];
-  }
-
-  var tried = path.replace(/^\/+|\/+$|\.html$/g, '').toLowerCase();
-  if (!tried) return;
-
-  // a truncated/partial URL (someone stopped typing early, or a copy-paste
-  // got cut off — e.g. "/cardto") is a real-world case Levenshtein alone
-  // handles badly, since a missing suffix counts as several edits. Check
-  // for a plain prefix match first, on either side, before falling back
-  // to edit-distance for genuine typos (transposed/wrong letters).
-  var best = null;
-  PAGES.forEach(function (p) {
-    if (best) return;
-    if (tried.length >= 3 && (p.slug.indexOf(tried) === 0 || tried.indexOf(p.slug) === 0)) {
-      best = p;
-    }
-  });
-
-  var bestDist = 0;
-  if (!best) {
-    bestDist = Infinity;
-    PAGES.forEach(function (p) {
-      var dist = levenshtein(tried, p.slug);
-      if (dist < bestDist) { bestDist = dist; best = p; }
-    });
-  }
-
-  // threshold scales with length so short slugs need a near-exact miss,
-  // longer ones tolerate a couple more typo'd characters
-  var threshold = Math.max(2, Math.floor(tried.length * 0.4));
-  if (best && (bestDist === 0 || bestDist <= threshold) && tried !== best.slug) {
-    var suggestEl = document.getElementById('nfSuggest');
-    var linkEl = document.getElementById('nfSuggestLink');
-    if (suggestEl && linkEl) {
-      linkEl.textContent = best.label;
-      linkEl.href = best.href;
-      suggestEl.hidden = false;
-    }
-  }
-})();
-</script>
-
+  </main>
 </body>
 </html>

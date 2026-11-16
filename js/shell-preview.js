@@ -78,12 +78,19 @@
     } else pill.style.opacity = '0';
   }
   var baseTitle = document.title;
+  var lastView = '';
+  function track() {
+    if (typeof window.gtag !== 'function' || location.pathname === lastView) return;
+    lastView = location.pathname;
+    window.gtag('event', 'page_view', { page_title: document.title, page_location: location.href, page_path: location.pathname });
+  }
   function setTitle(route, view) {
     try { window.dispatchEvent(new Event('shell-route')); } catch (e) {}
     if (route.name === 'work') document.title = 'Work \u00b7 Muidemakz';
     else if (route.name === 'about') document.title = 'About \u00b7 Muidemakz';
-    else if (route.name === 'case' && view) loaded(view).then(function () { try { var t = view.querySelector('iframe').contentDocument.title; if (t && cur === 'case') document.title = t; } catch (e) {} });
+    else if (route.name === 'case' && view) loaded(view).then(function () { try { var t = view.querySelector('iframe').contentDocument.title; if (t && cur === 'case') document.title = t; } catch (e) {} track(); });
     else document.title = baseTitle;
+    if (route.name !== 'case') track();
   }
   window.addEventListener('resize', function () { updateNav(cur === 'work' || cur === 'about' ? cur : ''); });
 
@@ -107,10 +114,54 @@
     v.appendChild(f);
     v.appendChild(sp);
     /* Shown as soon as the page reports its HTML is in (embed-ready), or on load as a fallback */
-    f._ready = function () { if (f.classList.contains('is-ready')) return; f.classList.add('is-ready'); sp.hidden = true; f.dispatchEvent(new Event('embed-ready')); };
-    f.addEventListener('load', f._ready);
+    var err = null, slowT = 0;
+    f._ready = function () {
+      if (f.classList.contains('is-ready')) return;
+      window.clearTimeout(slowT);
+      if (err) { err.remove(); err = null; }
+      f.classList.add('is-ready'); sp.hidden = true; f.dispatchEvent(new Event('embed-ready'));
+    };
+    /* Error state: the page did not arrive (offline, server error) or is taking far too long */
+    f._fail = function (kind) {
+      if (f.classList.contains('is-ready') && kind !== 'broken') return;
+      window.clearTimeout(slowT);
+      f.classList.remove('is-ready');
+      sp.hidden = true;
+      if (err) err.remove();
+      err = loadError(kind, src, function retry() {
+        err.remove(); err = null; sp.hidden = false;
+        f.src = src + (src.indexOf('?') > -1 ? '&' : '?') + 'r=' + Date.now();
+        arm();
+      });
+      v.appendChild(err);
+      f.dispatchEvent(new Event('embed-ready')); /* let the transition finish so the message can show */
+    };
+    function arm() { slowT = window.setTimeout(function () { f._fail(navigator.onLine === false ? 'offline' : 'slow'); }, 12000); }
+    f.addEventListener('load', function () {
+      var ok = false;
+      try { var d = f.contentDocument; ok = !!(d && d.body && d.body.childElementCount); } catch (e) { ok = false; }
+      if (ok) f._ready(); else f._fail(navigator.onLine === false ? 'offline' : 'broken');
+    });
+    arm();
     f.src = src;
     return v;
+  }
+  function loadError(kind, src, retry) {
+    var box = document.createElement('div');
+    box.className = 'stage-error';
+    box.setAttribute('role', 'alert');
+    var title = kind === 'offline' ? 'You seem to be offline.' : kind === 'slow' ? 'This page is taking too long.' : 'This page didn\u2019t load.';
+    var text = kind === 'offline' ? 'Check your connection, then try again.' : 'It might be a slow connection or a hiccup on my side. Try again, or open it on its own.';
+    box.innerHTML =
+      '<div class="se-scene" aria-hidden="true"><span class="se-plug se-plug--a"></span><span class="se-cord se-cord--a"></span><span class="se-plug se-plug--b"></span><span class="se-cord se-cord--b"></span><span class="se-spark"></span></div>' +
+      '<b class="se-title"></b><p class="se-text"></p>' +
+      '<div class="se-actions"><button type="button" class="se-btn se-btn--primary">Try again</button><a class="se-btn" href="">Open it on its own</a></div>';
+    box.querySelector('.se-title').textContent = title;
+    box.querySelector('.se-text').textContent = text;
+    box.querySelector('button').addEventListener('click', retry);
+    var page = src.replace(/[?&]embed=1/, '').replace(/[?&]r=\d+/, '');
+    box.querySelector('a').href = page + (page.indexOf('?') > -1 ? '&' : '?') + 'standalone=1';
+    return box;
   }
   function ensureView(route) {
     if (route.name === 'case') { var c = makeFrameView('case', embedUrl(route.href)); body.appendChild(c); return c; }
@@ -328,7 +379,7 @@
   var first = parseLocation();
   try { history.replaceState({ i: 0 }, '', location.protocol === 'file:' ? location.href : pathFor(first)); } catch (e) {}
   updateNav(first.name === 'work' || first.name === 'about' ? first.name : '');
-  if (first.name !== 'home') go(first, { instant: true });
+  if (first.name !== 'home') go(first, { instant: true }); else track();
   var conn = navigator.connection || {};
   if (!conn.saveData && window.matchMedia('(min-width: 861px)').matches) {
     window.addEventListener('load', function () { window.setTimeout(function () { ensureView({ name: 'work' }); ensureView({ name: 'about' }); }, 1800); });
