@@ -701,3 +701,6 @@ html[data-theme="light"] .o-thumb { transform: translateX(0); }
 @media (max-width: 860px) {
   html.shell { --main-t: 78px; --main-s: calc(18px + env(safe-area-inset-bottom, 0px)); }
 }
+
+/* The changing role word is in capitals too, like SENIOR PRODUCT above it */
+html.shell .rail-name .role-cycle { text-transform: uppercase; letter-spacing: -.02em; }
