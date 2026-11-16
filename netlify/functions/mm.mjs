@@ -8,7 +8,7 @@ const MODEL = 'claude-haiku-5-5';
 const MAX_IN = 200;   /* longest visitor message accepted */
 const MAX_OUT = 80;   /* the cursor chat shows 80 characters at most */
 const MAX_PANEL = 380; /* the click-to-open panel can say more */
-const LINK_IDS = ['linkedin', 'instagram', 'speech-to-order', 'omnione', 'fundall', 'moniepoint', 'nsimbi', 'valideity', 'teesas', 'sun-king', 'about', 'resume', 'email'];
+const LINK_IDS = ['linkedin', 'instagram', 'speech-to-order', 'omnione', 'omni-sso', 'fundall', 'moniepoint', 'nsimbi', 'valideity', 'teesas', 'sun-king', 'about', 'resume', 'email'];
 
 /* MM's public profile sheet. Everything MM may say about Excellent. It must not go beyond this.
    Written from the CV, the About page and the case studies, and approved by Excellent. Update it when a case study changes. */
@@ -34,6 +34,7 @@ CAREER (from the CV)
 
 CASE STUDIES (shipped work)
 - Omnibiz Speech-to-Order (OmniRetail): usage data showed the AI voice assistant was mostly used for complaints, so ordering and support were separated. Reported: ordering sessions rose from about 10% to 35%, complaint sessions fell from about 90% to 65%.
+- Omni Single Sign-On (OmniRetail, 2025 to now, shipped): one sign-in for Omnibiz, OmniHub, OmniOne and Omnipay. The link you arrive from sets the product name, logo and a hint of brand colour; people with several products choose where to go after signing in; ways to prove it are password, PIN or a one-time code by WhatsApp or SMS. Testing the first pass added phone number as a way to sign in and made number fields and errors follow the country (including Nigeria, Kenya and Ghana). Reported: 30% fewer auth-related support tickets (not measured by me). Page id: omni-sso.
 - Omnione Design System (OmniRetail): one shared system for four product teams; 60+ documented components and 2,300+ variants, counted in Figma.
 - Omnibiz empty and preorder states (OmniRetail): when a market or product is not live yet, retailers get a preorder path instead of an empty catalogue.
 - Teesas LMS: four versions. Reported by Teesas for V4: 35% more student logins, 40% less class setup time, 82% satisfaction, 20+ schools.

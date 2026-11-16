@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMFSR34FZG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  if (window.top === window.self && /[?&]standalone=1/.test(location.search)) gtag("config", "G-SMFSR34FZG"); /* the shell counts the view otherwise */
+</script>
+<meta charset="UTF-8">
+  <script src="js/to-shell.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Omni single sign-on &middot; Muidemakz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/case-study.css">
+<link rel="stylesheet" href="css/case-study-preview.css?v=20261107-5">
+</head>
+<body class="type-outfit case-study-preview">
+
+<div id="site-header-root"></div>
+<script src="js/header.js"></script>
+
+<main class="case-main">
+
+  <section class="case-hero">
+    <div class="wrap">
+      <a href="my-work.html" class="case-back">&larr; Back</a>
+      <div class="case-hero-top">
+        <p class="case-kicker">OmniRetail &middot; Product design &middot; Shipped &middot; 2025 to now</p>
+      </div>
+      <h1 class="case-title">One sign-in for every Omni product</h1>
+      <p class="case-lede">
+        When OmniRetail began building its design system, one of the early decisions was a single
+        sign-in for every product: Omnibiz for retailers, OmniHub for distributors, OmniOne for
+        manufacturers and Omnipay for payments. I designed it. The form was the easy part. The work
+        was making one sign-in feel like it belongs to whichever product you came from, and making it
+        work for people who are not email-first and who sign in from different countries.
+      </p>
+      <ul class="case-tags">
+        <li>Fintech and B2B commerce, 2025 to now</li>
+        <li>Product Design</li>
+        <li>UX Design</li>
+        <li>Authentication</li>
+      </ul>
+    </div>
+    <div class="case-hero-media" role="img" aria-label="Single sign-on screens for Omni on a phone and a desktop, with a product name, a way to continue as an account, and a choice of password or one-time code" style="background-image:url(images/omnione/sso-screens.webp);background-size:contain;background-repeat:no-repeat;background-position:center;background-color:#f4f2fb;"></div>
+  </section>
+
+  <nav class="case-quicknav" aria-label="Section navigation">
+    <div class="wrap">
+      <a href="#summary">Summary</a>
+      <a href="#problem">The problem</a>
+      <a href="#constraints">Constraints</a>
+      <a href="#test">What testing changed</a>
+      <a href="#design">The design</a>
+      <a href="#outcome">Outcome</a>
+      <a href="#reflection">Reflection</a>
+    </div>
+  </nav>
+
+  <!-- ============ SUMMARY ============ -->
+  <section class="case-section" id="summary">
+    <div class="wrap">
+      <p class="case-label">Summary</p>
+      <p class="case-copy case-copy--lg">I designed one sign-in for the whole Omni family. The link you arrive
+        from decides what it says and how it looks, so you always know which product you are entering.
+        If you have access to more than one product, you choose where to go after you sign in. A first
+        round of testing changed two things: a phone number became a first-class way to sign in, and the
+        phone number field and its errors now follow the country the person picks.
+      </p>
+
+      <div class="case-fact-grid" style="margin-top: 28px;">
+        <div class="case-fact"><p class="case-fact-label">Role</p><p class="case-fact-value">Senior Product Designer, led the design of the shared sign-in</p></div>
+        <div class="case-fact"><p class="case-fact-label">Scope</p><p class="case-fact-value">Entry screen, ways to prove who you are, product chooser and country-aware phone numbers, on web and mobile</p></div>
+        <div class="case-fact"><p class="case-fact-label">Timeline</p><p class="case-fact-value">2025 to now</p></div>
+        <div class="case-fact"><p class="case-fact-label">Products</p><p class="case-fact-value">Omnibiz, OmniHub, OmniOne and Omnipay</p></div>
+        <div class="case-fact"><p class="case-fact-label">Evidence</p><p class="case-fact-value">Shipped across the ecosystem. One support figure was reported to me, below</p></div>
+        <div class="case-fact"><p class="case-fact-label">Status</p><p class="case-fact-value">Shipped</p></div>
+      </div>
+
+      <div class="case-flag-box" style="margin-top: 28px;">
+        <p class="case-flag-label">What shipped, and what I can defend</p>
+        <p class="case-flag-copy">
+          The shared sign-in is live across the OmniRetail products. What I can defend is the design,
+          the one decision behind it and the two changes that came out of testing. One result was
+          reported to me: auth-related support tickets fell by 30%. I did not run that measurement, and
+          the period and baseline were not shared with me, so it is labelled as reported. The measures
+          that would settle it are listed below.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section" id="problem">
+    <div class="wrap">
+      <p class="case-label">One door, many places you arrive from</p>
+      <div class="case-split">
+        <div class="case-split-cell case-split-cell--dark">
+          <p class="case-split-label">One sign-in</p>
+          <p class="case-split-copy">
+            The design system was being built to share patterns across products. A single sign-in
+            meant one place to get right and one thing to keep consistent, instead of a separate way in
+            for every product.
+          </p>
+        </div>
+        <div class="case-split-cell">
+          <p class="case-split-label">Many starting points</p>
+          <p class="case-split-copy">
+            Nobody arrives at &ldquo;a sign-in&rdquo;. They arrive from a specific product, such as
+            an Omnipay landing page. A shared screen risks feeling generic and leaving people unsure
+            which product they are about to enter.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section" id="constraints">
+    <div class="wrap">
+      <p class="case-label">Constraints</p>
+      <ol class="case-steps case-steps--flush case-steps--4">
+        <li>
+          <span class="case-step-n">01</span>
+          <span class="case-step-title">One Screen, Not Four</span>
+          <span class="case-step-copy">The same sign-in had to serve every product, so it could not be four separate pages with different rules.</span>
+        </li>
+        <li>
+          <span class="case-step-n">02</span>
+          <span class="case-step-title">Know Where You Are</span>
+          <span class="case-step-copy">Someone arriving from Omnipay has to see that it is Omnipay they are signing in to, even though the screen is shared.</span>
+        </li>
+        <li>
+          <span class="case-step-n">03</span>
+          <span class="case-step-title">More Than One Way To Prove It</span>
+          <span class="case-step-copy">A password, a PIN or a one-time code, depending on how the person is set up and what suits them.</span>
+        </li>
+        <li>
+          <span class="case-step-n">04</span>
+          <span class="case-step-title">More Than One Product Per Person</span>
+          <span class="case-step-copy">One account can open several products, so the person needs a clear way to choose where to go.</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="case-section" id="test">
+    <div class="wrap">
+      <p class="case-label">What testing changed</p>
+      <p class="case-copy">We tested a first pass and the feedback changed the design in two places. Both came from the same fact: the people using these products are not all email-first, and they sign in from different countries. <mark class="case-preview-placeholder">Add: how many people tested the first pass, where and when. Confirm the full list of countries.</mark></p>
+      <div class="case-split" style="margin-top: 24px;">
+        <div class="case-split-cell case-split-cell--dark">
+          <p class="case-split-label">Email first</p>
+          <p class="case-split-copy">
+            The first pass asked for an email address. Feedback showed that many people identify
+            themselves by phone number, especially with one-time codes in the flow, so I added phone
+            number as a way to sign in.
+          </p>
+        </div>
+        <div class="case-split-cell">
+          <p class="case-split-label">Numbers differ by country</p>
+          <p class="case-split-copy">
+            Omni runs in several countries, including Nigeria, Kenya and Ghana, and each writes phone
+            numbers differently. The person picks a country, and the number field and its error
+            message follow that country&rsquo;s format instead of showing one generic error.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section" id="design">
+    <div class="wrap">
+      <p class="case-label">The design</p>
+      <p class="case-copy">One shared screen that takes its name, logo and a hint of brand colour from the link you arrived from, then steps you through proving who you are and, if you need it, choosing a product.</p>
+
+      <div class="case-figures case-figures--spaced">
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-head">
+            <p class="case-figure-head-title">Shared sign-in &middot; Phone and desktop</p>
+            <p class="case-figure-head-copy">The product name and logo fill in per product. People with more than one account on a device can choose who to continue as, and sign in with a password or with a one-time code sent by WhatsApp or SMS.</p>
+          </div>
+          <div class="case-figure-inset">
+            <div class="case-frame">
+              <img width="2880" height="1620" src="images/omnione/sso-screens.webp" alt="Single sign-on screens shared across Omni products, on a phone and a desktop" loading="lazy">
+            </div>
+          </div>
+        </figure>
+      </div>
+
+      <p class="case-label" style="margin-top: 40px;">How a sign-in runs</p>
+      <ol class="case-steps case-steps--flush case-steps--4">
+        <li>
+          <span class="case-step-n">01</span>
+          <span class="case-step-title">Arrive From A Product</span>
+          <span class="case-step-copy">The link carries the product, so the screen opens as that product&rsquo;s sign-in.</span>
+        </li>
+        <li>
+          <span class="case-step-n">02</span>
+          <span class="case-step-title">Say Who You Are</span>
+          <span class="case-step-copy">A phone number or an email, with the number field following the country you choose.</span>
+        </li>
+        <li>
+          <span class="case-step-n">03</span>
+          <span class="case-step-title">Prove It</span>
+          <span class="case-step-copy">A password, a PIN or a one-time code, sent by WhatsApp or SMS.</span>
+        </li>
+        <li>
+          <span class="case-step-n">04</span>
+          <span class="case-step-title">Choose Where To Go</span>
+          <span class="case-step-copy">If your account opens more than one product, pick which one to enter.</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="wrap">
+      <div class="case-decision">
+        <p class="case-decision-label">The One Decision</p>
+        <p class="case-decision-copy">
+          I chose to <span class="case-accent">let the link decide the sign-in&rsquo;s identity</span>, instead
+          of building a separate sign-in for each product or asking everyone to pick a product first. One
+          shared screen is easier to keep consistent, and it still reads as the product you came from
+          because the name, logo and a hint of brand colour change with the link. The trade-off is that
+          each product&rsquo;s sign-in feels slightly less its own, so I kept the brand colour subtle and
+          let the name and logo answer the question &ldquo;where am I?&rdquo;.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section" id="outcome">
+    <div class="wrap">
+      <p class="case-label">Outcome</p>
+      <div class="case-outcome-grid" style="margin-top: 8px;">
+        <div class="case-outcome">
+          <p class="case-outcome-label">Auth-related support tickets &middot; Reported</p>
+          <p class="case-outcome-value">30%</p>
+          <p class="case-outcome-copy">Fewer tickets, as reported to me. I did not measure this, and the period and baseline were not shared.</p>
+        </div>
+      </div>
+
+      <p class="case-copy" style="margin-top: 28px;">The reported drop is encouraging, but it does not say which part of the design earned it. These are the three measures I would ask for first, in this order.</p>
+      <div class="case-stack-row" style="margin-top: 20px;">
+        <div class="case-stack case-stack--wide">
+          <div class="case-stack-item">
+            <p class="case-stack-title">Sign-in completion by country</p>
+            <p class="case-stack-copy">Whether the country-aware number field removed the failures it was built for, country by country.</p>
+          </div>
+          <div class="case-stack-item">
+            <p class="case-stack-title">Phone number against email</p>
+            <p class="case-stack-copy">How many people choose each, which would confirm the first test&rsquo;s finding at scale.</p>
+          </div>
+          <div class="case-stack-item">
+            <p class="case-stack-title">Code delivery by channel</p>
+            <p class="case-stack-copy">How often a one-time code arrives and is used when sent by WhatsApp compared with SMS.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-flag-box" style="margin-top: 32px;">
+        <p class="case-flag-label">What would prove this wrong</p>
+        <p class="case-flag-copy">
+          If completion stayed low in one country even with its own number format, or if people still
+          stopped at the product chooser, the shared screen would be hiding a real difference between
+          products and countries, and a more tailored sign-in would have been the better call.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section" id="reflection">
+    <div class="wrap">
+      <p class="case-label">Reflection</p>
+      <p class="case-copy">
+        A shared sign-in looks like a form problem, but it is really an identity problem: who is this
+        person, which product are they trying to reach, and what do they actually have in their hand, an
+        email address or a phone? The first test taught me not to assume the answer to that last
+        question. I would now ask it before drawing the first screen.
+      </p>
+    </div>
+  </section>
+
+  <section class="case-section case-other">
+    <div class="wrap">
+      <p class="case-label">Other projects</p>
+      <div class="case-other-grid">
+        <a class="case-other-card" href="omnione.html">
+          <span class="case-other-name">Omnione design system</span>
+          <span class="case-other-meta">UI &middot; 2024</span>
+        </a>
+        <a class="case-other-card" href="empty-state.html">
+          <span class="case-other-name">Omnibiz empty and preorder states</span>
+          <span class="case-other-meta">UX &middot; 2024</span>
+        </a>
+        <a class="case-other-card" href="omnibiz-speech-to-order.html">
+          <span class="case-other-name">Omnibiz Speech-to-Order</span>
+          <span class="case-other-meta">UX &middot; 2026</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-top">
+    <p class="footer-label">Let's Connect</p>
+  </div>
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/makanju-excellent-211b0a44/" class="footer-link" target="_blank" rel="noopener">LinkedIn &rarr;</a>
+      <a href="https://dribbble.com/muidemakz" class="footer-link" target="_blank" rel="noopener">Dribbble &rarr;</a>
+      <a href="https://www.behance.net/oemakanju" class="footer-link" target="_blank" rel="noopener">Behance &rarr;</a>
+      <a href="https://www.instagram.com/oluwaexcellent" class="footer-link" target="_blank" rel="noopener">Instagram &rarr;</a>
+    </div>
+  </div>
+  <div class="footer-legal-row">
+    <p class="wrap footer-legal">Excellent Makanju, Senior Product Designer</p>
+  </div>
+</footer>
+
+<script src="js/case-layout-preview.js?v=1"></script>
+<script src="js/case-spine.js"></script>
+<script src="js/joined-corners.js" defer></script>
+</body>
+</html>

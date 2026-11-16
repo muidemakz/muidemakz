@@ -41,6 +41,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://muidemakz.com/omni-sso</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://muidemakz.com/empty-state</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>

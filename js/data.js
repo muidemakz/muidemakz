@@ -142,6 +142,7 @@ const PROJECT_CATEGORIES = [
 // availability only, not whether the underlying product has shipped.
 const PROJECTS = [
   { name: "Omnione Design System", year: 2024, categories: ["UI Design", "Presentation"], image: "images/omnione/omnione-design-system-cover-banner.png", caption: "One Design Language For Four Product Teams", status: "shipped", confirmed: true, link: "omnione.html" },
+  { name: "Omni Single Sign-On", year: 2025, categories: ["UX Design", "UI Design"], image: "images/omnione/sso-screens.webp", caption: "One Sign-In For Every Omni Product", status: "shipped", confirmed: true, link: "omni-sso.html" },
   { name: "Fundall", year: 2022, categories: ["UI Design", "UX Design", "Presentation"], image: "videos/fundall/work-opening-frame.webp", caption: "Bringing Salary Advance Into Mobile", motion: "videos/fundall/sign-in-loop.mp4", motionPoster: "videos/fundall/work-opening-frame.webp", status: "shipped", confirmed: true, link: "fundall.html" },
   { name: "Teesas LMS v2.0", year: 2024, categories: ["UI Design", "UX Design"], image: "images/cinema/teesas-laptop-cover.svg", caption: "Four Versions, One Evolving LMS", status: "shipped", confirmed: true, link: "teesaslms.html" },
   { name: "Valideity", year: 2026, categories: ["UI Design", "UX Design"], image: "images/valideity/work-opening-frame.webp", motionFrame: "artifacts/animation/valideity/preview.html?embed=1", caption: "Testing Valideity On Its Own Pricing Flow", status: "building", confirmed: true, link: "valideity.html" },

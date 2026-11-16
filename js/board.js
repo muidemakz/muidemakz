@@ -59,6 +59,7 @@
   var CTX = [
     [/speech-to-order/, ['the voice one is really clean', 'ok the speech to order flow makes sense', 'wait the 90 to 65 thing, is that real?']],
     [/omnione/, ['design system one is solid', 'four teams on one system, that is hard']],
+    [/omni-sso/, ['one sign-in for four products, tidy', 'phone numbers by country, nice catch']],
     [/teesas/, ['four versions is a lot of work', 'love seeing v1 next to the current one']],
     [/fundall/, ['the fundall flow looks smooth', 'face id screen is a nice touch']],
     [/sun-king/, ['the before/after scroll is satisfying', 'that rebuild is way better']],

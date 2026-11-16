@@ -38,6 +38,7 @@ window.BOARD_CONFIG = {
     links: {
       'speech-to-order': { label: 'Read Speech-to-Order', href: 'omnibiz-speech-to-order.html', open: true },
       'omnione': { label: 'Read Omnione', href: 'omnione.html', open: true },
+      'omni-sso': { label: 'Read Omni sign-in', href: 'omni-sso.html', open: true },
       'fundall': { label: 'Read Fundall', href: 'fundall.html', open: true },
       'moniepoint': { label: 'Read Moniepoint', href: 'moniepoint-verification.html', open: true },
       'nsimbi': { label: 'Read Nsimbi', href: 'nsimbi-three-purchases.html', open: true },
