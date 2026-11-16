@@ -704,3 +704,8 @@ html[data-theme="light"] .o-thumb { transform: translateX(0); }
 
 /* The changing role word is in capitals too, like SENIOR PRODUCT above it */
 html.shell .rail-name .role-cycle { text-transform: uppercase; letter-spacing: -.02em; }
+
+/* Phones: scrolling content stops short of the container's top and bottom edges instead of running into them */
+@media (max-width: 860px) {
+  .stage-body { margin: 14px 0; }
+}
