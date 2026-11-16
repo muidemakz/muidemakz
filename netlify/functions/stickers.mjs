@@ -6,6 +6,7 @@
    POST /api/stickers { action: 'move',   id, x, y }        -> { ok }
    POST /api/stickers { action: 'remove', id }              -> { ok }
    POST /api/stickers { action: 'clean' }                   -> { ok, removed }   (owner only)
+   POST /api/stickers { action: 'decor', decor }            -> { ok }            (owner only: move/remove the board's own stickers)
 
    Who may change what:
    - each browser sends a random id in the x-visitor header; only that browser can move or remove its stickers
@@ -50,7 +51,8 @@ export default async (req, context) => {
 
   if (req.method === 'GET') {
     const all = await load();
-    return json({ stickers: all.map((s) => view(s, me, isOwner)) });
+    const decor = (await store.get('decor', { type: 'json' })) || {};
+    return json({ stickers: all.map((s) => view(s, me, isOwner)), decor });
   }
   if (req.method !== 'POST') return json({ error: 'GET or POST only' }, 405);
   const ip = (context && context.ip) || req.headers.get('x-nf-client-connection-ip') || 'anon';
@@ -91,6 +93,16 @@ export default async (req, context) => {
     if (!mayEdit) return json({ error: 'not yours' }, 403);
     all.splice(i, 1);
     await store.setJSON('all', all);
+    return json({ ok: true });
+  }
+  if (b.action === 'decor') { /* owner moves or removes the stickers that come with the board */
+    if (!isOwner) return json({ error: 'owner only' }, 403);
+    const out = {};
+    Object.entries(b.decor || {}).slice(0, 40).forEach(([k, v]) => {
+      if (!/^[a-z]+-\d{1,2}$/.test(k) || !v) return;
+      out[k] = { dx: num(v.dx, -3000, 3000) || 0, dy: num(v.dy, -3000, 3000) || 0, hidden: !!v.hidden };
+    });
+    await store.setJSON('decor', out);
     return json({ ok: true });
   }
   if (b.action === 'clean') {

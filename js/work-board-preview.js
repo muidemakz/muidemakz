@@ -341,6 +341,7 @@
     (DECOR[fr.dataset.frame] || []).forEach(function (d) {
       var own = stickerEl(d.t, { r: d.r, size: d.size, top: d.top, bottom: d.bottom, left: d.left, right: d.right });
       own.dataset.owner = '1';
+      own.dataset.decor = fr.dataset.frame + '-' + (fr.querySelectorAll('[data-decor]').length);
       fr.appendChild(own);
     });
   });
@@ -546,7 +547,7 @@
       if (!fine || e.button !== 0) return;
       var onArt = artOn && world.contains(el);
       if (onArt && !el.classList.contains('sticker')) return;
-      if (el.classList.contains('sticker') && !el.dataset.mine) return;
+      if (el.classList.contains('sticker') && !el.dataset.mine && !OWNER) return;
       var kz = onArt ? Z : 1;
       var sx = e.clientX, sy = e.clientY, ox = num(el, '--dx'), oy = num(el, '--dy'), moved = false;
       function move(ev) {
@@ -562,7 +563,7 @@
         host.removeEventListener('pointercancel', up);
         if (moved) {
           el.classList.remove('is-dragging');
-          if (el.classList.contains('sticker') && el.dataset.mine) settle(el);
+          if (el.classList.contains('sticker')) { if (el.dataset.decor) saveDecor(); else if (el.dataset.mine || OWNER) settle(el); }
           el.style.zIndex = ++zTop;
           var stop = function (ev) { ev.preventDefault(); ev.stopPropagation(); };
           host.addEventListener('click', stop, { capture: true, once: true }); /* a drag is not a click */
@@ -575,7 +576,11 @@
     });
   }
   Array.prototype.forEach.call(movables(), function (c) { makeDraggable(c, c); });
-  Array.prototype.forEach.call(framesEl.querySelectorAll('.sticker'), function (s) { s.addEventListener('click', function (e) { e.stopPropagation(); if (window.__showTag) window.__showTag(s); }); });
+  Array.prototype.forEach.call(framesEl.querySelectorAll('.sticker'), function (s) {
+    s.addEventListener('click', function (e) { e.stopPropagation(); if (window.__showTag) window.__showTag(s); });
+    makeDraggable(s, s); /* only does anything for the owner */
+    s.addEventListener('dblclick', function () { if (!OWNER) return; if (window.__hideTag) window.__hideTag(); s.dataset.hidden = '1'; s.hidden = true; saveDecor(); });
+  });
 
   /* ---------- Sticker tray ---------- */
   var trayItems = document.getElementById('wbTrayItems');
@@ -610,7 +615,7 @@
   /* A sticker may not sit on a project: it is nudged to the nearest free spot beside it */
   var toldMove = false;
   function settle(st) {
-    if (!world.contains(st)) return;
+    if (st.parentNode !== world) return;
     var x = (parseFloat(st.style.left) || 0) + num(st, '--dx'), y = (parseFloat(st.style.top) || 0) + num(st, '--dy');
     var size = st.offsetWidth || 70, gap = 10, moved = false;
     var cards = Array.prototype.map.call(world.querySelectorAll('.card, .note'), worldRect);
@@ -628,7 +633,7 @@
     st.style.setProperty('--dx', '0px'); st.style.setProperty('--dy', '0px');
     st.style.left = x.toFixed(1) + 'px'; st.style.top = y.toFixed(1) + 'px';
     if (moved && !toldMove) { toldMove = true; toast('Stickers can\u2019t cover the work, so it moved next to the card.'); }
-    if (st.dataset.mine) { if (shared && st.dataset.id) api('POST', { action: 'move', id: st.dataset.id, x: x, y: y }).catch(function () {}); else saveMine(); }
+    if (st.dataset.mine || OWNER) { if (shared && st.dataset.id) api('POST', { action: 'move', id: st.dataset.id, x: x, y: y }).catch(function () {}); else saveMine(); }
   }
   function toast(text) {
     var t = document.createElement('p');
@@ -642,6 +647,7 @@
   /* "Dropped by" tag: click any sticker to see who put it there */
   var tagEl = null;
   window.__showTag = function (s) { if (artOn) showTag(s); };
+  window.__hideTag = function () { hideTag(); };
   function hideTag() { if (tagEl) { tagEl.remove(); tagEl = null; } }
   function when(ms) {
     var m = Math.round((Date.now() - ms) / 60000);
@@ -663,9 +669,10 @@
     tagEl = document.createElement('div');
     tagEl.className = 'st-tag';
     var who = st.dataset.owner ? 'Excellent' : (st.dataset.by || 'a visitor');
+    var ownerHint = OWNER ? ' \u00b7 drag to move, double-click to remove' : '';
     tagEl.innerHTML = '<b></b><span></span>';
     tagEl.firstChild.textContent = 'Dropped by ' + who;
-    tagEl.lastChild.textContent = st.dataset.owner ? 'the designer himself' : st.dataset.mine ? 'that\u2019s you \u00b7 ' + when(+st.dataset.at) + ' \u00b7 double-click to remove' : when(+st.dataset.at);
+    tagEl.lastChild.textContent = (st.dataset.owner ? 'the designer himself' : st.dataset.mine ? 'that\u2019s you \u00b7 ' + when(+st.dataset.at) + ' \u00b7 double-click to remove' : when(+st.dataset.at)) + (st.dataset.mine ? '' : ownerHint);
     art.appendChild(tagEl);
     anchor(st, tagEl);
   }
@@ -698,7 +705,7 @@
     makeDraggable(st, st);
     st.addEventListener('click', function (e) { e.stopPropagation(); showTag(st); });
     st.addEventListener('dblclick', function () {
-      if (!st.dataset.mine) return;
+      if (!st.dataset.mine && !(OWNER && st.dataset.id)) return;
       hideTag(); st.remove(); countMine(); saveMine();
       if (shared && st.dataset.id) api('POST', { action: 'remove', id: st.dataset.id }).catch(function () {});
     });
@@ -809,10 +816,30 @@
     try { (JSON.parse(ls(KEY) || '[]') || []).slice(0, MAX_MINE).forEach(function (o) { placeSaved(o, true); }); } catch (x) {}
     countMine();
   }
+  function saveDecor() {
+    if (!OWNER || !shared) return;
+    var out = {};
+    Array.prototype.forEach.call(framesEl.querySelectorAll('.sticker[data-decor]'), function (x) {
+      var dx = num(x, '--dx'), dy = num(x, '--dy');
+      if (x.dataset.hidden || dx || dy) out[x.dataset.decor] = { dx: Math.round(dx), dy: Math.round(dy), hidden: !!x.dataset.hidden };
+    });
+    api('POST', { action: 'decor', decor: out }).catch(function () { toast('Could not save that change. Try again.'); });
+  }
+  function applyDecor(d) {
+    if (!d) return;
+    Array.prototype.forEach.call(framesEl.querySelectorAll('.sticker[data-decor]'), function (x) {
+      var o = d[x.dataset.decor];
+      if (!o) return;
+      if (o.hidden) { x.dataset.hidden = '1'; x.hidden = true; return; }
+      x.style.setProperty('--dx', (o.dx || 0) + 'px');
+      x.style.setProperty('--dy', (o.dy || 0) + 'px');
+    });
+  }
   function loadShared() {
     return api('GET').then(function (j) {
       if (!j || !Array.isArray(j.stickers)) throw new Error('no list');
       shared = true;
+      applyDecor(j.decor);
       Array.prototype.forEach.call(world.querySelectorAll(':scope > .sticker'), function (x) { x.remove(); });
       j.stickers.forEach(function (o) {
         var st = placeSaved(o, o.mine);

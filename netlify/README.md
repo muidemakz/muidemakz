@@ -10,7 +10,7 @@ Stickers on the Work board are saved in Netlify Blobs, so every visitor sees the
 - Each browser can move or remove only its own stickers, at most 8, and 160 in total on the board.
 - **Owner clean-up:** in Netlify > Site configuration > Environment variables, add `OWNER_KEY` with a long random value.
   Then open `https://muidemakz.com/my-work.html?owner=<that value>` once in your browser. The sticker tray gets a
-  "Clean up board" button, and stickers you drop are signed "Excellent". Keep that link private.
+  "Clean up board" button, stickers you drop are signed "Excellent", and you can drag any sticker (visitors' and the board's own) or double-click it to remove it. Changes are saved for everyone. Keep that link private.
 - On a plain local server the endpoint does not exist, so the board falls back to this browser only.
 
 ## MM, the AI: `functions/mm.mjs` (`/api/mm`)
