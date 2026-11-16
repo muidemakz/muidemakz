@@ -48,6 +48,11 @@
   var PREVIEW_MAP = {"omnione.html":"omnione.html","omnibiz-speech-to-order.html":"omnibiz-speech-to-order.html","teesaslms.html":"teesaslms.html","fundall.html":"fundall.html","valideity.html":"valideity.html","empty-state.html":"empty-state.html","moniepoint-verification.html":"moniepoint-verification.html","sun-king.html":"sun-king.html","nsimbi-three-purchases.html":"nsimbi-three-purchases.html","cancel-flow.html":"cancel-flow.html","cardtonic.html":"cardtonic.html","coreloops.html":"coreloops.html","venx.html":"venx.html","raven-pay.html":"raven-pay.html"};
   function routeFromHref(href) {
     var f = String(href).split('#')[0].split('?')[0].split('/').pop();
+    /* Netlify may tidy links to clean addresses (/fundall); the page file is still fundall.html */
+    if (f && f.indexOf('.') < 0) {
+      var ff = f === 'work' ? 'my-work.html' : f + '.html';
+      if (ff === 'my-work.html' || ff === 'about.html' || PREVIEW_MAP[ff]) { href = String(href).replace(f, ff); f = ff; }
+    }
     if (PREVIEW_MAP[f]) href = String(href).replace(f, PREVIEW_MAP[f]);
     if (f === '' || f === 'index.html') return { name: 'home' };
     if (f === 'my-work.html') return { name: 'work' };

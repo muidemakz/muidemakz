@@ -789,3 +789,7 @@ html.shell .tiles.is-spotlight .tile:not(.is-lit) { opacity: .62; filter: satura
 @media (max-width: 860px) {
   .stage.is-expanded { background: var(--frame-bg, var(--stage)); }
 }
+
+/* Same place in every browser: align the switch by the line's middle (not by an empty button's baseline, which
+   phones place differently) and lift it so its centre sits on the middle of the capitals (cap height .71em, x-height .5em) */
+html.shell .o-switch { vertical-align: middle; position: relative; top: -.103em; }
