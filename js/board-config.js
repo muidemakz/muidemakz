@@ -45,6 +45,8 @@ window.BOARD_CONFIG = {
       'teesas': { label: 'Read Teesas', href: 'teesaslms.html', open: true },
       'sun-king': { label: 'Read Sun King', href: 'sun-king.html', open: true },
       'about': { label: 'About me', href: 'about.html', open: true },
+      'linkedin': { label: 'LinkedIn', href: 'https://www.linkedin.com/in/makanju-excellent-211b0a44/' },
+      'instagram': { label: 'Instagram', href: 'https://www.instagram.com/oluwaexcellent/' },
       'resume': { label: 'Download resume', href: 'Excellent_Makanju_Resume_2026.pdf', download: true },
       'email': { label: 'Say hi by email', href: 'mailto:muidemakz@gmail.com' }
     }
