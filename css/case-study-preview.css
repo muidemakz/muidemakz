@@ -1180,3 +1180,9 @@ html .case-study-preview .case-main .case-takeaway {
 html .case-study-preview .case-stack-row .case-stack-item { flex: 1 0 auto; min-height: 0; overflow: visible; }
 html .case-study-preview .case-stack-row .case-stack-item .case-stack-title, html .case-study-preview .case-stack-row .case-stack-item + .case-stack-item .case-stack-title { border: 0; padding-top: 0; }
 html .case-study-preview .case-stack-row .case-stack-copy { padding: 0; text-decoration: none; }
+
+/* Problem cards are a ruled grid: round the frame, keep the cells square (they notched each other before) */
+html .case-study-preview .case-main .case-problem-grid { border-radius: var(--cs-r-lg); overflow: clip; }
+html .case-study-preview .case-main .case-problem-grid > .case-problem { border-radius: 0; }
+/* Separate stat cards sit a clear step apart */
+html .case-study-preview .case-main .case-outcome-grid:not(.case-outcome-grid--tight) { gap: 16px; }

@@ -2,7 +2,7 @@
    round, the corners where cards meet stay flat. Works from the real layout, so it follows every breakpoint.
    Cards with a clear gap between them keep all four corners. */
 (function () {
-  var KIDS = '.case-edge, .case-stack-panel, .case-stack, .mv-score, .ns-cap-card, .ns-touch, .mv-decision, .vx-opt, .case-leadership, .case-user-card';
+  var KIDS = '.case-edge, .case-stack-panel, .case-stack, .mv-score, .ns-cap-card, .ns-touch, .mv-decision, .vx-opt, .case-leadership, .case-user-card, .case-outcome, .case-problem';
   var GAP = 8; /* closer than this counts as touching */
   var timer = 0;
 
@@ -30,8 +30,22 @@
     });
   }
 
+  /* Breathing room: a block of cards is never glued to whatever follows it */
+  var BLOCKS = '.case-outcome-grid, .case-problem-grid, .case-edge-grid, .case-leadership-grid, .case-fact-grid, .case-steps, .case-figures, .case-flag-box, .case-stack-row, .case-split, .case-user-list, .mv-study-grid, .ns-caps, .case-tension-grid';
+  var AFTER = 28;
+  function breathe() {
+    Array.prototype.forEach.call(document.querySelectorAll(BLOCKS), function (el) {
+      el.style.removeProperty('margin-bottom');
+      var nx = el.nextElementSibling;
+      if (!nx || nx.offsetHeight < 4 || nx.offsetParent !== el.offsetParent) return;
+      var gap = nx.offsetTop - (el.offsetTop + el.offsetHeight);
+      if (gap > -8 && gap < AFTER) el.style.setProperty('margin-bottom', ((parseFloat(getComputedStyle(el).marginBottom) || 0) + AFTER - Math.max(gap, 0)) + 'px');
+    });
+  }
+
   function apply() {
     fitGrids();
+    breathe();
     var groups = [];
     Array.prototype.forEach.call(document.querySelectorAll(KIDS), function (k) {
       var p = k.parentElement;
