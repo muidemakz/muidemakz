@@ -101,6 +101,7 @@
     /* the pull cord hides on Home, and drops in with a swing when you leave it */
     var wasHome = root.classList.contains('on-home');
     root.classList.toggle('on-home', route.name === 'home');
+    if (view) loaded(view).then(syncFrameBg); else syncFrameBg();
     if (pull && wasHome && route.name !== 'home' && !reduce) {
       pull.classList.remove('is-arriving'); void pull.offsetWidth; pull.classList.add('is-arriving');
       window.setTimeout(function () { pull.classList.remove('is-arriving'); }, 1400);
@@ -194,6 +195,20 @@
     return views[route.name];
   }
   function viewEl(name) { return name === 'case' ? caseView : views[name]; }
+  /* The container's edges take the open page's own background colour (phones show a gap above and below it) */
+  function syncFrameBg() {
+    var v = viewEl(cur), f = v && v.querySelector('iframe');
+    if (!f) { stage.style.removeProperty('--frame-bg'); return; }
+    try {
+      /* the first painted background behind the top of the page */
+      var d = f.contentDocument, w = f.contentWindow;
+      var el = d.elementFromPoint(Math.max(2, d.documentElement.clientWidth / 2), 4) || d.body;
+      var clear = function (c) { return !c || c === 'transparent' || /rgba\([^)]*,\s*0\)$/.test(c); };
+      var bg = '';
+      while (el && clear(bg)) { bg = w.getComputedStyle(el).backgroundColor; el = el.parentElement; }
+      if (!clear(bg)) stage.style.setProperty('--frame-bg', bg); else stage.style.removeProperty('--frame-bg');
+    } catch (e) {}
+  }
   function loaded(v) {
     var f = v.querySelector('iframe');
     if (!f) return Promise.resolve();
@@ -386,6 +401,7 @@
     try { localStorage.setItem('ui-theme', t); } catch (e) {}
     sw.setAttribute('aria-checked', t === 'dark' ? 'true' : 'false');
     sw.setAttribute('aria-label', t === 'dark' ? 'Dark mode on. Switch to light' : 'Light mode on. Switch to dark');
+    window.setTimeout(syncFrameBg, 400); /* the open page has switched theme by then */
     if (pull) pull.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
     if (window.BOARD && window.BOARD.refreshTheme) window.BOARD.refreshTheme();
   }

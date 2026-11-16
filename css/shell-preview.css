@@ -784,3 +784,8 @@ html.shell .tiles .tile { transition: opacity .35s ease, filter .35s ease; }
 html.shell .tiles.is-spotlight .tile:not(.is-lit) { opacity: .62; filter: saturate(.75); }
 @media (prefers-reduced-motion: reduce) { html.shell .tiles .tile { transition: none; } }
 
+
+/* Phones: the gap above and below an open page takes that page's own background, so there is no grey band */
+@media (max-width: 860px) {
+  .stage.is-expanded { background: var(--frame-bg, var(--stage)); }
+}

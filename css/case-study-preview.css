@@ -1054,3 +1054,14 @@ html[data-theme="light"] .case-study-preview .case-back { box-shadow: 0 10px 28p
   .case-study-preview .case-quicknav .case-preview-toc-list a[aria-current="location"] { background: #ff5a1f !important; color: #1a0900 !important; font-weight: 600; }
   .case-study-preview .case-quicknav .case-toc-status { display: none !important; }
 }
+
+/* Phones: each pill's label sits in the middle of the pill, and the row's edge fade never cuts into the first pill */
+@media (max-width: 900px) {
+  .case-study-preview .case-quicknav .case-preview-toc-list a { flex-direction: row !important; justify-content: center !important; align-items: center !important; }
+  .case-study-preview .case-quicknav .case-preview-toc-list a .case-toc-title { line-height: 1; }
+  .case-study-preview .case-quicknav .case-preview-toc-list { padding: 0 12px !important; scroll-padding: 0 12px; }
+}
+@media (max-width: 900px) {
+  .case-study-preview .case-quicknav:not(.is-open) .case-preview-toc-list,
+  .case-study-preview .case-quicknav.is-open .case-preview-toc-list { padding: 0 12px !important; }
+}
