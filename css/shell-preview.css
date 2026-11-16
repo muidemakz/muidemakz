@@ -784,9 +784,3 @@ html.shell .tiles .tile { transition: opacity .35s ease, filter .35s ease; }
 html.shell .tiles.is-spotlight .tile:not(.is-lit) { opacity: .62; filter: saturate(.75); }
 @media (prefers-reduced-motion: reduce) { html.shell .tiles .tile { transition: none; } }
 
-/* ---------- Phones: the feed settles one tile at a time, with the next one peeking in ---------- */
-@media (max-width: 860px) {
-  html.shell .stage .tiles { scroll-snap-type: y mandatory; scroll-padding: 12px 0; }
-  html.shell .tiles .tile { scroll-snap-align: start; scroll-snap-stop: always; }
-  html.shell { --tile-h: min(360px, calc(100svh - 300px)); }
-}
