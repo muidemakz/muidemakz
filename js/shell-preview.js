@@ -14,6 +14,7 @@
   var nav = document.getElementById('shellNav');
   var pill = document.getElementById('navPill');
   var sw = document.getElementById('themeSwitch');
+  var pull = document.getElementById('themePull');
   if (!stage || !body || !slot) return;
 
   /* Owner link: muidemakz.com/work?owner=<key> saves the key in this browser (the Work board reads it)
@@ -371,6 +372,7 @@
     try { localStorage.setItem('ui-theme', t); } catch (e) {}
     sw.setAttribute('aria-checked', t === 'dark' ? 'true' : 'false');
     sw.setAttribute('aria-label', t === 'dark' ? 'Dark mode on. Switch to light' : 'Light mode on. Switch to dark');
+    if (pull) pull.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
     if (window.BOARD && window.BOARD.refreshTheme) window.BOARD.refreshTheme();
   }
   var flipT = 0;
@@ -383,6 +385,38 @@
     flipT = window.setTimeout(function () { sw.classList.remove('is-flipping', 'to-dark', 'to-light'); }, 760);
   });
   setTheme(root.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
+
+  /* ---------- Theme: the pull cord hanging from the top of the screen ----------
+     Drag it down and let go (or click, Enter, Space): it stretches, flips the theme and springs back. */
+  if (pull) (function () {
+    var MAX = 46, NEED = 16, startY = 0, dragging = false, moved = 0, dragged = false;
+    function flip() { setTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light'); }
+    function release(pulled) {
+      pull.style.removeProperty('--pull');
+      pull.classList.remove('is-dragging');
+      if (!pulled) return;
+      if (reduce) return flip();
+      pull.classList.remove('is-snapping'); void pull.offsetWidth; pull.classList.add('is-snapping');
+      window.setTimeout(flip, 90);
+      window.setTimeout(function () { pull.classList.remove('is-snapping'); }, 900);
+    }
+    pull.addEventListener('pointerdown', function (e) {
+      if (e.button !== 0) return;
+      dragging = true; dragged = false; moved = 0; startY = e.clientY;
+      try { pull.setPointerCapture(e.pointerId); } catch (x) {}
+      pull.classList.add('is-dragging');
+    });
+    pull.addEventListener('pointermove', function (e) {
+      if (!dragging) return;
+      moved = Math.max(0, Math.min(MAX, e.clientY - startY));
+      if (moved > 3) dragged = true;
+      pull.style.setProperty('--pull', moved + 'px');
+    });
+    function end() { if (!dragging) return; dragging = false; if (dragged) release(moved >= NEED); else pull.classList.remove('is-dragging'); }
+    pull.addEventListener('pointerup', end);
+    pull.addEventListener('pointercancel', function () { dragging = false; release(false); });
+    pull.addEventListener('click', function (e) { if (dragged) { dragged = false; e.preventDefault(); return; } release(true); });
+  })();
 
   /* ---------- Start ---------- */
   stage.addEventListener('animationend', function (e) { if (e.target === stage) stage.style.animation = 'none'; }, { once: true });
