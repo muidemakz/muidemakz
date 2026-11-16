@@ -541,6 +541,23 @@
       });
     }, { rootMargin: '100px 0px' });
     clips.forEach(function (v) { seen.observe(v); });
+
+    /* Once the page itself has opened, the clips download quietly in the background, one after another
+       (in page order), so each is ready by the time you scroll to it. They still only play on screen. */
+    function preloadNext(i) {
+      if (i >= clips.length) return;
+      var v = clips[i];
+      if (v.readyState >= 3) return preloadNext(i + 1); /* already loaded (it was on screen) */
+      var done = false;
+      var next = function () { if (done) return; done = true; v.removeEventListener('canplaythrough', next); v.removeEventListener('error', next); preloadNext(i + 1); };
+      v.addEventListener('canplaythrough', next);
+      v.addEventListener('error', next);
+      v.preload = 'auto';
+      if (v.readyState === 0 && v.networkState !== 2) v.load();
+      window.setTimeout(next, 15000); /* never let one slow clip hold up the rest */
+    }
+    var startPreload = function () { window.setTimeout(function () { preloadNext(0); }, 600); };
+    if (document.readyState === 'complete') startPreload(); else window.addEventListener('load', startPreload);
   })();
 </script>
 <script src="js/case-spine.js"></script>
