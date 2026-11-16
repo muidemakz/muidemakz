@@ -778,3 +778,15 @@ html[data-theme="light"] .pull-bead { box-shadow: 0 4px 8px rgba(120, 40, 8, .3)
 .pull { transition: translate .45s cubic-bezier(.3, 1.5, .45, 1), opacity .25s ease; }
 html.on-home .pull { translate: 0 -110%; opacity: 0; pointer-events: none; visibility: hidden; transition: translate .3s ease, opacity .2s ease, visibility 0s .3s; }
 .pull.is-arriving { animation: pull-swing 1s ease-out .3s; }
+
+/* ---------- Home tiles: spotlight. Hover one and the rest step back slightly ---------- */
+html.shell .tiles .tile { transition: opacity .35s ease, filter .35s ease; }
+html.shell .tiles.is-spotlight .tile:not(.is-lit) { opacity: .62; filter: saturate(.75); }
+@media (prefers-reduced-motion: reduce) { html.shell .tiles .tile { transition: none; } }
+
+/* ---------- Phones: the feed settles one tile at a time, with the next one peeking in ---------- */
+@media (max-width: 860px) {
+  html.shell .stage .tiles { scroll-snap-type: y mandatory; scroll-padding: 12px 0; }
+  html.shell .tiles .tile { scroll-snap-align: start; scroll-snap-stop: always; }
+  html.shell { --tile-h: min(360px, calc(100svh - 300px)); }
+}

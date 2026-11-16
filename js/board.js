@@ -470,9 +470,25 @@
         if (g.read < 0) g.read = 0;
       }
     }
+    function onHome() { return document.documentElement.classList.contains('on-home'); }
+    /* On Home: a spot on the container's left or right edge, clear of the tiles (0 elsewhere) */
+    function edgeX() {
+      if (frameNow || !onHome() || !stageEl) return 0;
+      var sr = stageEl.getBoundingClientRect();
+      return Math.random() < 0.5 ? sr.left + rand(2, 8) : sr.right - rand(10, 16);
+    }
     function pickTarget(g) {
       measure();
       if (frameNow) { return pickInFrame(g); }
+      /* Home: visitors keep to the container's edges so they never sit on the work */
+      if (onHome() && stageEl) {
+        advanceRead(g);
+        g.targetEl = null;
+        g.tx = edgeX();
+        var hy = g.read + rand(-M.vh * 0.3, M.vh * 0.5);
+        g.twy = M.loop ? mod(hy, M.h) : clamp(hy, 20, M.h - 20);
+        return;
+      }
       if (distFromView(g.wy) < M.vh * 0.6 && Math.random() < 0.4) {
         var ts = visibleTargets();
         if (ts.length) {
@@ -567,7 +583,15 @@
         [/./, 'Not sure where to start? Ask me', 'Which case study should I read first?']
       ];
       var promptN = 0;
+      /* Home: MM stays quiet. Its hint shows once, a few seconds in, then it is just "MM" */
+      var homeHint = 0; /* 0 not yet, 1 showing, 2 done */
       var nextPrompt = function () {
+        if (document.documentElement.classList.contains('on-home')) {
+          var hp = homeHint === 1 ? PROMPTS[PROMPTS.length - 1] : null;
+          botPeer.label = hp ? hp[1] : 'MM'; botPeer.q = hp ? hp[2] : '';
+          if (!botPeer.el.classList.contains('is-chat')) botPeer.pill.textContent = botPeer.label;
+          return;
+        }
         var where = location.hash || location.pathname;
         var fits = PROMPTS.filter(function (p) { return p[0].test(where); });
         var p = fits[promptN++ % fits.length];
@@ -575,6 +599,10 @@
         if (!botPeer.el.classList.contains('is-chat')) botPeer.pill.textContent = botPeer.label;
       };
       nextPrompt();
+      window.setTimeout(function () {
+        homeHint = 1; nextPrompt();
+        window.setTimeout(function () { homeHint = 2; nextPrompt(); }, 7000);
+      }, 4000);
       window.setInterval(function () { if (!document.hidden && !botPeer.hold) nextPrompt(); }, 7000);
       window.addEventListener('hashchange', function () { promptN = 0; nextPrompt(); });
       window.addEventListener('shell-route', function () { promptN = 0; nextPrompt(); });
@@ -586,7 +614,7 @@
       var W = window.innerWidth, x = Math.random() < 0.5 ? -10 : W + 10;
       var wy = clamp(toWorld(M.top + M.vh * rand(0.3, 0.7)), 20, Math.max(40, M.h - 20));
       botPeer.show(x, wy);
-      var zb = zone(); botPeer.tx = rand(zb.l + (zb.r - zb.l) * 0.2, zb.l + (zb.r - zb.l) * 0.8); botPeer.twy = wy;
+      var zb = zone(); botPeer.tx = edgeX() || rand(zb.l + (zb.r - zb.l) * 0.2, zb.l + (zb.r - zb.l) * 0.8); botPeer.twy = wy;
       botPeer.nextMove = performance.now() + rand(4000, 8000);
       botPeer.lastSeen = performance.now();
     }
@@ -644,7 +672,7 @@
       wy = M.loop ? mod(wy, M.h) : clamp(wy, 20, M.h - 20);
       s.show(x, wy);
       s.read = wy;
-      if (first) { var zf = zone(); s.tx = rand(zf.l + (zf.r - zf.l) * 0.2, zf.l + (zf.r - zf.l) * 0.8); s.twy = wy; } /* the first visitor glides in and stays in view for a moment */
+      if (first) { var zf = zone(); s.tx = edgeX() || rand(zf.l + (zf.r - zf.l) * 0.2, zf.l + (zf.r - zf.l) * 0.8); s.twy = wy; } /* the first visitor glides in and stays in view for a moment */
       else pickTarget(s);
       s.nextMove = performance.now() + (first ? rand(4500, 6500) : rand(1400, 3000));
       s.nextChat = performance.now() + rand(9000, 24000);
