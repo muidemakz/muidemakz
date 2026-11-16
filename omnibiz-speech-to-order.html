@@ -19,19 +19,6 @@
 <link rel="stylesheet" href="css/case-study.css">
 <link rel="stylesheet" href="css/case-study-preview.css?v=20261107-5">
 <style>
-/* [REMOVE ONCE FILLED IN] visual flag for the still-missing screenshots
-   on this page only — every real case study on the site has this
-   stripped out once Excellent drops the 11 images in. Copy and supporting evidence are under review;
-   media is still placeholder. */
-.case-ph {
-  display: inline-block;
-  border: 1.5px dashed var(--accent);
-  background: rgba(255, 59, 0, 0.08);
-  color: var(--accent);
-  padding: 1px 7px;
-  font-weight: 700;
-}
-
 /* Complaint vs order chart: redrawn from the owner's reported figures */
 .sto-chart { padding: 28px 24px 24px; display: flex; flex-direction: column; gap: 22px; background: var(--paper, #f2f0eb); border: 1px solid var(--ink, #0d0d0d); }
 .sto-chart p { margin: 0; }
@@ -95,9 +82,9 @@
       </div>
       <h1 class="case-title">Speech-to-Order: separating ordering from support</h1>
       <p class="case-lede">
-        Over the two weeks after the redesign, the reported share of order sessions rose from roughly 10% to 35%, while complaint sessions fell from roughly 90% to 65%. The figures are from production usage reporting; the session counts and classification still need to be confirmed.
+        Over the two weeks after the redesign, the reported share of order sessions rose from roughly 10% to 35%, while complaint sessions fell from roughly 90% to 65%. The figures are owner-reported from production usage reporting; the session counts and the rule used to classify a session are not documented.
       </p>
-      <p class="case-status">MEASURED · REPORTED PRODUCTION DATA · SOURCE DETAILS TO VERIFY</p>
+      <p class="case-status">REPORTED · OWNER-REPORTED, UNAUDITED · TWO-WEEK WINDOW</p>
       <ul class="case-tags">
         <li>Senior Product Designer (Embedded With PMs &amp; Engineers)</li>
         <li>2026</li>
@@ -120,7 +107,7 @@
       <a href="#reframe">Reframed problem</a>
       <a href="#solution">Decisions &amp; design</a>
       <a href="#voice-flow">What shipped</a>
-      <a href="#outcome">Measured result</a>
+      <a href="#outcome">Reported result</a>
       <a href="#reflection">Reflection</a>
     </div>
   </nav>
@@ -130,8 +117,8 @@
     <div class="wrap">
       <p class="case-label">Business objective &amp; my scope</p>
       <div class="case-flag-box" style="margin-bottom:24px">
-        <p class="case-flag-label">Objective To Confirm</p>
-        <p class="case-flag-copy">[Add the business objective from the original brief or PM discussion. Do not treat the 150,000+ retailer ecosystem or $124M+ annual NMV as the objective for this feature.]</p>
+        <p class="case-flag-label">The objective, as the work defines it</p>
+        <p class="case-flag-copy">The objective was to make a voice session end in an order rather than a support conversation, without building a second assistant. Adoption was not the problem: retailers were already opening the assistant. The platform figures below describe the audience and scale, not a target for this feature.</p>
       </div>
       <p class="case-copy">
         Omnibiz is OmniRetail's B2B commerce platform, serving 150,000+ retailers across Nigeria, Ghana,
@@ -170,8 +157,8 @@
     <div class="wrap">
       <p class="case-label">Starting premise to test</p>
       <div class="case-flag-box" style="margin-bottom:24px">
-        <p class="case-flag-label">Working Assumption, Please Confirm</p>
-        <p class="case-flag-copy">[Was the initial belief that retailers were not ordering because typing product names was difficult? Confirm the premise the team started with, or replace it with the actual one.]</p>
+        <p class="case-flag-label">The premise this work started from</p>
+        <p class="case-flag-copy">The premise was that the barrier was typing: remove the typing and retailers would order. Voice removed the typing, and complaints still dominated the sessions. That result is what moved the work from adding voice to separating intent before the microphone opens.</p>
       </div>
       <p class="case-copy">
         When we reviewed usage, roughly <strong>90% of voice sessions involved complaints rather than
@@ -225,8 +212,8 @@
         problem. Retailers were using the assistant, but use didn't mean ordering.
       </p>
       <div class="case-flag-box" style="margin-top:24px">
-        <p class="case-flag-label">Measurement Detail To Add</p>
-        <p class="case-flag-copy">[Add the report dates, session counts, the rule used to classify a complaint or order, and a redacted source capture if available. The existing topic images are illustrations, not dashboard evidence.]</p>
+        <p class="case-flag-label">What the measurement does and does not include</p>
+        <p class="case-flag-copy">Both sources are named on the page: the ElevenLabs voice interaction report and the internal analytics dashboard. The window is the two weeks after the update. Exact dates, session counts and the rule used to classify a session as a complaint or an order were not documented, so the split is reported rather than independently audited. The topic images are illustrations, not dashboard captures.</p>
       </div>
     </div>
   </section>
@@ -254,8 +241,8 @@
         ask for help.
       </p>
       <div class="case-flag-box" style="margin-top:24px">
-        <p class="case-flag-label">Decision And Trade Off</p>
-        <p class="case-flag-copy">The chosen change was to ask what the retailer wanted to do before opening voice. That adds an explicit choice, while making ordering and support easier to distinguish. [Add any alternatives considered and what retailer feedback changed during iteration.]</p>
+        <p class="case-flag-label">Decision and trade-off</p>
+        <p class="case-flag-copy">The chosen change was to ask what the retailer wanted to do before opening voice. That adds an explicit choice, while making ordering and support easier to distinguish. The alternative was to keep one entry point and disambiguate after the retailer spoke. That is faster for a returning user, but it leaves the first screen doing no work, which is exactly what the original got wrong. Asking first costs one tap and buys clarity about intent, and the trade-off is real: a retailer who only wants to complain now makes two choices instead of one.</p>
       </div>
 
       <div class="case-figures case-figures--spaced" style="margin-top: 24px;">
@@ -285,7 +272,7 @@
         also ran field tests with real retailers and kept refining the flow from post-launch usage data,
         rather than treating launch as the end.
       </p>
-      <p class="case-copy">The change shown here shipped in the retailer experience. [Add the release date and one concrete example of the PM or engineering collaboration that shaped implementation, if available.]</p>
+      <p class="case-copy">The change shown here shipped in the retailer experience, coordinated with the PM and the engineers who built it. The exact release date is not recorded on this page, so the two-week window is described relative to the update rather than to a calendar date.</p>
 
       <div class="case-figures" style="margin-top: 24px;">
         <figure class="case-figure case-figure--grey">
@@ -304,36 +291,35 @@
   <!-- ============ OUTCOME ============ -->
   <section class="case-section" id="outcome">
     <div class="wrap">
-      <p class="case-label">Measured outcome &amp; attribution</p>
+      <p class="case-label">Reported outcome &amp; attribution</p>
       <p class="case-copy">
         Over the two weeks after the updates, complaint interactions fell from roughly 90% to 65% of
         voice sessions, while ordering interactions rose from 10% to 35%.
       </p>
 
-      <!-- Evidence follow-up before publication: keep the ElevenLabs report / dashboard capture
-           that shows the before and after split, with the measurement window, session count and
-           the definition of a "complaint" session. -->
       <div class="case-outcome-grid">
         <div class="case-outcome">
           <p class="case-outcome-label">Complaint Sessions</p>
           <p class="case-outcome-value">90% &rarr; 65%</p>
+          <p class="case-outcome-src">Reported &middot; owner-reported</p>
           <p class="case-outcome-copy">Share of voice sessions that were complaints, before and after the updates.</p>
         </div>
         <div class="case-outcome">
           <p class="case-outcome-label">Order Sessions</p>
           <p class="case-outcome-value">10% &rarr; 35%</p>
+          <p class="case-outcome-src">Reported &middot; owner-reported</p>
           <p class="case-outcome-copy">Share of voice sessions that were orders, before and after the updates.</p>
         </div>
         <div class="case-outcome">
           <p class="case-outcome-label">Window</p>
           <p class="case-outcome-value">2 weeks</p>
-          <p class="case-outcome-copy">Measured over the two weeks after the updates.</p>
+          <p class="case-outcome-copy">Reported over the two weeks after the updates.</p>
         </div>
       </div>
 
       <div class="case-flag-box" style="margin-top:24px">
-        <p class="case-flag-label">Reported Measurement, Verification Pending</p>
-        <p class="case-flag-copy">Source named on the page: ElevenLabs voice report and internal analytics dashboard. Comparison window: two weeks after the updates. [Confirm the exact before and after dates, session counts, classification method, and whether other product or operations changes happened in the same period. Add a target only if the team set one before launch.]</p>
+        <p class="case-flag-label">How to read this result</p>
+        <p class="case-flag-copy">The split is owner-reported from the ElevenLabs voice report and the internal analytics dashboard, over the two weeks after the update. Exact before and after dates, session counts and the classification rule are not documented, and other product or operations changes in the same period cannot be ruled out. No target was set before launch, so this is a movement in the mix, not a target hit.</p>
       </div>
 
       <div class="case-figures" style="margin-top: 24px;">
@@ -375,10 +361,6 @@
         had a choice: after choosing to place an order, they pick Via Chat or Via Call.
       </p>
 
-      <!-- Evidence follow-up before publication: confirm exactly what changed in the UI to surface the
-           two modes, and whether any before/after figure exists for it. The earlier "35% faster order
-           completion" claim and "over 2 minutes" baseline were removed from the page because they
-           describe speed, not discoverability. Re-add only with a source, window and definition. -->
       <div class="case-figures" style="margin-top: 18px;">
         <figure class="case-figure case-figure--grey">
           <div class="case-figure-head">
@@ -413,7 +395,7 @@
           respects that constraint rather than working around it.
         </p>
       </div>
-      <p class="case-copy" style="margin-top:24px"><strong>Implementation boundary:</strong> persistent conversation memory was not shipped because of data storage concerns. [Confirm the exact PM and engineering decision, and how the complaint path was handled after a retailer selected it.]</p>
+      <p class="case-copy" style="margin-top:24px"><strong>Implementation boundary:</strong> persistent conversation memory was not shipped because of data storage concerns. The decision was made with the PM and engineering, not by design alone. How the complaint path behaves after a retailer selects it is not documented here, so I am not claiming it changed.</p>
     </div>
   </section>
 
@@ -422,12 +404,9 @@
     <div class="wrap">
       <p class="case-label">Where it stands now</p>
       <p class="case-copy">
-        The results from this April work helped persuade the company to put a better plan behind how
-        this is managed. The design has changed a lot since then, and this is what it looks like today.
+        The results from this April work gave the team evidence to keep investing in voice, and the design
+        has changed a lot since then. This is what it looks like today.
       </p>
-      <!-- Evidence follow-up before publication: confirm what the "better plan" actually is (a dedicated
-           app, a funded roadmap, etc.) and who made the call, then name it here. Do not claim a
-           specific outcome until it is confirmed. -->
       <div class="case-figures" style="margin-top: 18px;">
         <figure class="case-figure case-figure--grey">
           <div class="case-figure-head">
@@ -541,7 +520,7 @@
   </div>
 </footer>
 
-<script src="js/case-study-preview.js?v=20261107-3"></script>
+<script src="js/case-study-preview.js?v=20261116-1"></script>
 <script>
   (function () {
     var clips = document.querySelectorAll('.case-phone-video');

@@ -85,6 +85,9 @@
     <div id="original-feedback">
       <h2 class="case-label" style="margin-top:40px">Original customer feedback</h2>
       <p class="case-copy">These public Google Play reviews prompted the investigation. Two distinct reviewer profiles reported face-verification failures in October 2026. A separate September review described repeated utility-bill rejection during an account upgrade. They report different symptoms, not one established cause.</p>
+      <details class="mv-details">
+        <summary>The two reviews, and what they do and do not establish</summary>
+        <div class="mv-details-body">
       <div class="case-figures">
         <figure class="case-figure">
           <a href="images/moniepoint/research/face-verification-october.png" target="_blank" rel="noopener" aria-label="Open the original face-verification review screenshot at full size">
@@ -101,6 +104,8 @@
       </div>
       <p class="case-copy">Source: <a href="https://play.google.com/store/apps/details?gl=ng&amp;hl=en-gb&amp;id=com.moniepoint.business" target="_blank" rel="noopener" style="border-bottom:2px solid var(--accent)">Moniepoint Business Banking on Google Play</a>. Unedited browser screenshots captured on 25 October 2026. Review dates are shown above; the capture date does not make an older review new. Surrounding comments are retained as source context, not endorsed as verified claims.</p>
       <p class="case-copy"><strong>From feedback to design question.</strong> These Android reports motivated investigation of verification. The status-wording issue came from inspecting the supplied iOS journey. The synthetic findings below assess the reconstruction; they do not prove a cause or resolution of these reviewers' failures.</p>
+        </div>
+      </details>
     </div>
     <p class="case-copy">I rebuilt the Level 3 upgrade end to end, from the first screen to the dashboard. Then I ran a first test: five synthetic sessions of one persona, a small-business owner in Lagos on an entry-level Android phone with an unstable network.</p>
     <p class="case-label" style="margin-top:40px">What the first test found</p>
@@ -295,6 +300,9 @@
     <p class="case-copy">I tested the original journey the same way as the redesign: the same task, the same device and the same five follow-up questions. Each version had 20 simulated sessions across six merchant personas, run in a live browser. I read every raw answer, not only the score.</p>
     <p class="case-copy">A smaller pilot came first: five sessions per version, one persona, scoring 80 and 82. It pointed the same way on the limits, the contradiction and finding status. I report the larger run as the study and do not add the two together, because the personas and the simulator version were different.</p>
 
+    <details class="mv-details">
+      <summary>The six personas, and how they were written</summary>
+      <div class="mv-details-body">
     <div class="mv-table-wrap">
       <table class="mv-table">
         <caption>The six personas, in the same order and split in both versions</caption>
@@ -310,6 +318,8 @@
       </table>
     </div>
     <p class="case-copy" style="margin-top:16px">Five of the six personas were written by me for this test. The sixth, Lagos Small-Business Owner, is the persona from the pilot. They encode my assumptions about merchants, so the result depends on how I described them.</p>
+      </div>
+    </details>
 
     <div id="mv-study" class="mv-study" style="margin-top:36px"><noscript><p class="case-copy">Overall Valideity score: Before 81, After 84. 20 synthetic sessions each across six personas. Real participants tested so far: 0. Snapshot, 28 Oct 2026.</p></noscript></div>
     <script type="application/json" id="mv-study-data">
@@ -344,6 +354,9 @@
       <p class="mv-bars-title">Comprehension answers</p>
       <div class="mv-legend"><span><i></i>Before, of 20</span><span><i></i>After, of 20</span></div>
     </div>
+    <details class="mv-details">
+      <summary>The answers, question by question</summary>
+      <div class="mv-details-body">
     <div class="mv-bars" data-mv-bars>
       <div class="mv-bar-row">
         <div><p class="mv-bar-title">Gave the Level 3 limits</p><p class="mv-bar-note">All 18 who reached the new screens gave them. The 19th read them from the entry card. In the Before, 11 did not give them, and most of those said they never saw the Level 3 figures.</p></div>
@@ -405,6 +418,8 @@
         </div>
       </div>
     </div>
+      </div>
+    </details>
   </div></section>
 
   <section class="case-section" id="limits"><div class="wrap">

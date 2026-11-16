@@ -124,6 +124,9 @@
 .teesas-preview .case-impact-item { border-color: var(--teesas-line); }
 .teesas-preview .case-impact-value { color: var(--teesas-mint); }
 .teesas-preview .case-impact-label { color: var(--teesas-body); }
+.teesas-preview .case-impact-src,
+.teesas-preview .case-outcome-src { color: var(--teesas-muted); }
+.teesas-preview .case-impact-note { color: var(--teesas-body); }
 .teesas-preview .case-outcome-grid { gap: 12px; border: 0; }
 .teesas-preview .case-outcome {
   min-width: 0;

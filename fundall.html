@@ -69,15 +69,12 @@
   <nav class="case-quicknav" aria-label="Section navigation">
     <div class="wrap">
       <a href="#summary">Summary</a>
-      <a href="#challenge">Challenge</a>
-      <a href="#process">Process</a>
-      <a href="#research">Research</a>
-      <a href="#decision">Decision</a>
-      <a href="#persona">Persona</a>
-      <a href="#system">Design system</a>
-      <a href="#screens">Screens</a>
+      <a href="#problem">Problem</a>
+      <a href="#role">My role</a>
+      <a href="#decisions">Decisions</a>
+      <a href="#design">Design</a>
       <a href="#outcome">Outcome</a>
-      <a href="#lessons">Lessons</a>
+      <a href="#reflection">Reflection</a>
     </div>
   </nav>
 
@@ -85,46 +82,21 @@
   <section class="case-section" id="summary">
     <div class="wrap">
       <p class="case-label">Summary</p>
-      <p class="case-copy">
-        Fundall already offered borrowing on the web. I led the design of Loans &amp; Salary Advance
-        for its mobile app during a post-acquisition rebrand. This was a new mobile borrowing
-        experience inside an existing financial product.
+      <p class="case-copy case-copy--lg">
+        Salary Advance already existed on Fundall's web app. Retail customers kept leaving the mobile
+        app to find it, and some told us so directly. I designed the mobile borrowing journey that
+        brought it into the app: a visible entry point, eligibility shown before the application, and
+        advance history in one place. It shipped on iOS, and the company reported 28% more advance
+        requests in the first quarter after launch.
       </p>
-      <p class="case-copy">My responsibilities covered:</p>
-      <ol class="case-list">
-        <li><strong>Finding the access problem.</strong> Use interviews, the product brief, and
-          internal QA feedback to understand why users were leaving the app to request an advance.</li>
-        <li><strong>Designing the borrowing journey.</strong> Map the flow from the home dashboard
-          through eligibility, application, and confirmation; make advance history visible alongside it.</li>
-        <li><strong>Connecting design to delivery.</strong> Prototype and test the iOS experience,
-          contribute to the shared design system, and work with engineering on implementation.</li>
-      </ol>
-      <p class="case-copy">
-        The central decision was to make borrowing a visible destination and show eligible amounts
-        before the application. The screen walkthrough below follows that journey, rather than
-        presenting the redesign as a collection of unrelated screens.
-      </p>
-    </div>
-  </section>
 
-  <!-- ============ CHALLENGE ============ -->
-  <section class="case-section" id="challenge">
-    <div class="wrap">
-      <p class="case-label">Challenge</p>
-      <div class="case-split">
-        <div class="case-split-cell case-split-cell--dark">
-          <p class="case-split-label">Primary Task</p>
-          <p class="case-split-copy">
-            Design and integrate a Loan and Salary Advance feature into the existing Fundall app in a way
-            that is highly visible and frictionless to use.
-          </p>
-        </div>
-        <div class="case-split-cell">
-          <p class="case-split-label">Secondary Task</p>
-          <p class="case-split-copy">
-            Ensure the mobile app redesign reflects the new brand direction and product expansion.
-          </p>
-        </div>
+      <div class="case-fact-grid" style="margin-top: 28px;">
+        <div class="case-fact"><p class="case-fact-label">Role</p><p class="case-fact-value">Product Designer, design owner for the feature</p></div>
+        <div class="case-fact"><p class="case-fact-label">Team</p><p class="case-fact-value">Product, engineering and QA at Fundall, plus the acquiring company's design team</p></div>
+        <div class="case-fact"><p class="case-fact-label">Timeline</p><p class="case-fact-value">2022, during the post-acquisition rebrand</p></div>
+        <div class="case-fact"><p class="case-fact-label">Platform</p><p class="case-fact-value">iOS first. Android was not designed in this scope</p></div>
+        <div class="case-fact"><p class="case-fact-label">Evidence</p><p class="case-fact-value">Results reported by the company, not independently measured</p></div>
+        <div class="case-fact"><p class="case-fact-label">Status</p><p class="case-fact-value">Shipped</p></div>
       </div>
 
       <div class="case-impact">
@@ -132,67 +104,81 @@
           <p class="case-impact-title">Impact</p>
           <a class="case-impact-link" href="#outcome">See Outcome &darr;</a>
         </div>
-        <div class="case-impact-item"><span class="case-impact-value">28%</span><span class="case-impact-label">More advance requests</span></div>
-        <div class="case-impact-item"><span class="case-impact-value">6&rarr;2 min</span><span class="case-impact-label">Time to request</span></div>
-        <div class="case-impact-item"><span class="case-impact-value">-45%</span><span class="case-impact-label">Form errors</span></div>
-        <div class="case-impact-item"><span class="case-impact-value">74%</span><span class="case-impact-label">Felt more confident</span></div>
+        <div class="case-impact-item">
+          <span class="case-impact-value">28%</span>
+          <span class="case-impact-label">More advance requests</span>
+          <span class="case-impact-src">Reported</span>
+        </div>
+        <div class="case-impact-item">
+          <span class="case-impact-value">6&rarr;2 min</span>
+          <span class="case-impact-label">Time to request</span>
+          <span class="case-impact-src">Reported</span>
+        </div>
+        <div class="case-impact-item">
+          <span class="case-impact-value">-45%</span>
+          <span class="case-impact-label">Form errors</span>
+          <span class="case-impact-src">Reported</span>
+        </div>
+        <div class="case-impact-item">
+          <span class="case-impact-value">74%</span>
+          <span class="case-impact-label">Felt more confident</span>
+          <span class="case-impact-src">Reported</span>
+        </div>
       </div>
+      <p class="case-impact-note">All four figures are reported by Fundall's product team from internal reporting in the first quarter after launch. They are not independently audited, and this page says what they do and do not prove.</p>
     </div>
   </section>
 
-  <!-- ============ PROCESS ============ -->
-  <section class="case-section" id="process">
+  <!-- ============ PROBLEM ============ -->
+  <section class="case-section" id="problem">
     <div class="wrap">
-      <p class="case-label">My design process</p>
-      <p class="case-copy">I adopted a 4-step human-centered design process tailored to fintech products:</p>
-      <ol class="case-steps case-steps--flush case-steps--4">
-        <li>
-          <span class="case-step-n">01</span>
-          <span class="case-step-title">Empathize</span>
-          <span class="case-step-copy">Gathered user insights from internal QA Slack feedback, PRD documentation, and direct interviews.</span>
-        </li>
-        <li>
-          <span class="case-step-n">02</span>
-          <span class="case-step-title">Define</span>
-          <span class="case-step-copy">Identified user pain points and mapped core needs to functionality.</span>
-        </li>
-        <li>
-          <span class="case-step-n">03</span>
-          <span class="case-step-title">Ideate</span>
-          <span class="case-step-copy">Created user personas, flows, and wireframes to propose solutions.</span>
-        </li>
-        <li>
-          <span class="case-step-n">04</span>
-          <span class="case-step-title">Prototype &amp; Test</span>
-          <span class="case-step-copy">Built and tested high-fidelity designs across iOS devices.</span>
-        </li>
-      </ol>
-      <p class="case-copy">
-        The complaint about leaving the app gave the work a concrete starting point. I used the
-        research to define the mobile journey, then tested the interface before handing it to engineering.
+      <p class="case-label">Problem</p>
+      <p class="case-copy case-copy--lg">
+        Fundall was mid-rebrand after an acquisition, and the app was being rebuilt around the new
+        brand. Borrowing was the awkward part: the product existed, but on mobile it was neither
+        visible nor self-explanatory. Customers were opening a browser to do something the app could
+        have done for them.
       </p>
-    </div>
-  </section>
 
-  <!-- ============ RESEARCH ============ -->
-  <section class="case-section" id="research">
-    <div class="wrap">
-      <p class="case-label">User research &amp; insights</p>
-      <p class="case-copy">I combined user feedback, internal QA observations, and a review of other borrowing products:</p>
+      <div class="case-split" style="margin-top: 24px;">
+        <div class="case-split-cell case-split-cell--dark">
+          <p class="case-split-label">Primary task</p>
+          <p class="case-split-copy">
+            Design and integrate Loans &amp; Salary Advance into the existing Fundall app so it is
+            visible and frictionless to use.
+          </p>
+        </div>
+        <div class="case-split-cell">
+          <p class="case-split-label">Secondary task</p>
+          <p class="case-split-copy">
+            Make the mobile app reflect the new brand direction without losing the familiarity of the
+            flows customers already knew.
+          </p>
+        </div>
+      </div>
+
+      <p class="case-copy" style="margin-top: 32px;">
+        <strong>How we knew it was real.</strong> Three sources pointed the same way: direct interviews
+        with Fundall customers, internal QA feedback shared in the team's testing channel, and the
+        product brief for the rebrand. The clearest signal was a quote from a QA session that is
+        reproduced below. It described a behaviour, not a preference: people were leaving the app to
+        complete a task they wanted to complete in the app.
+      </p>
+
       <div class="case-figures" style="margin-top: 24px;">
         <figure class="case-figure case-figure--grey">
           <div class="case-split case-split--compact case-split--3">
             <div class="case-split-cell case-split-cell--dark">
-              <p class="case-split-label">Qualitative Data</p>
-              <p class="case-split-copy">Direct interviews and the web-only complaint quoted above, cross-checked against other users' feedback to confirm it wasn't a one-off.</p>
+              <p class="case-split-label">Customer interviews</p>
+              <p class="case-split-copy">Conversations with Fundall customers about how they borrowed, and what made them switch to the browser.</p>
             </div>
             <div class="case-split-cell">
-              <p class="case-split-label">Internal QA Feedback</p>
-              <p class="case-split-copy">Observations shared in the QA testing Slack channel helped identify access and usability problems.</p>
+              <p class="case-split-label">Internal QA feedback</p>
+              <p class="case-split-copy">Observations from QA sessions in the team's Slack channel, which surfaced the access complaint and repeated usability friction.</p>
             </div>
             <div class="case-split-cell">
-              <p class="case-split-label">Competitive Analysis</p>
-              <p class="case-split-copy">Competitive benchmarking against platforms like Fairmoney, Carbon, and Branch.</p>
+              <p class="case-split-label">Competitive review</p>
+              <p class="case-split-copy">Benchmarking against FairMoney, Carbon and Branch for how borrowing is entered and explained.</p>
             </div>
           </div>
           <div style="padding-top: 40px;">
@@ -200,233 +186,110 @@
               <img width="4096" height="510" src="images/fundall/user-feedback-quotes.png" alt="Quotes from Fundall users collected during research" loading="lazy" style="width: 178.55%; left: -22.3%; top: 7.31%;">
             </div>
           </div>
-          <figcaption>Research Insight</figcaption>
+          <figcaption>Research insight</figcaption>
         </figure>
       </div>
-      <p class="case-copy" style="margin-top: 18px;">
-        The feedback established an access problem: users wanted to request an advance without
-        switching to a browser. I used that as a starting point for the mobile flow. Whether the
-        new flow improved completion or adoption needed a separate check after launch.
+
+      <p class="case-copy" style="margin-top: 24px;">
+        <strong>What the evidence did not tell us.</strong> It told us access was a problem. It did not
+        tell us how many people were affected, or whether a visible entry point alone would change
+        behaviour. I treated those as open questions and went looking for a design that could be
+        tested rather than a redesign that assumed the answer.
       </p>
     </div>
   </section>
 
-  <!-- ============ KEY INSIGHTS ============ -->
-  <section class="case-section">
+  <!-- ============ ROLE ============ -->
+  <section class="case-section" id="role">
     <div class="wrap">
-      <p class="case-label">Key insights</p>
-      <ol class="case-steps case-steps--flush">
-        <li>
-          <span class="case-step-n">01</span>
-          <span class="case-step-copy">Loan access was buried and not visible enough in the app.</span>
-        </li>
-        <li>
-          <span class="case-step-n">02</span>
-          <span class="case-step-copy">Users needed real-time eligibility status and a repayment dashboard.</span>
-        </li>
-        <li>
-          <span class="case-step-n">03</span>
-          <span class="case-step-copy">Investors and SME users had unique flows that weren't supported.</span>
-        </li>
-      </ol>
-
-      <div class="case-decision" id="decision">
-        <p class="case-decision-label">The One Decision</p>
-        <p class="case-decision-copy">
-          I chose to <strong>make Loans &amp; Salary Advance visible from the home dashboard</strong>
-          and give borrowing its own destination in the app. The QA complaint showed that users
-          were having to leave mobile to access the feature; the new flow brought that task into the app.
-        </p>
-        <p class="case-decision-copy">
-          Visibility was only the first part of the decision. I also surfaced eligible amounts
-          before the application and kept advance history accessible. The aim was to help users
-          understand their available options before they started, then keep track of what they had
-          requested. These are design choices visible in the screens below; the adoption figures
-          belong to the separate outcome section.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ PROBLEM STATEMENTS ============ -->
-  <section class="case-section">
-    <div class="wrap">
-      <p class="case-label">Problem statement(s)</p>
-      <ol class="case-steps case-steps--flush">
-        <li>
-          <span class="case-step-n">01</span>
-          <span class="case-step-copy">How might we make loan and salary advance features more visible and accessible in the app?</span>
-        </li>
-        <li>
-          <span class="case-step-n">02</span>
-          <span class="case-step-copy">How might we streamline the user journey from login to loan disbursement?</span>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- ============ PERSONA ============ -->
-  <section class="case-section case-persona" id="persona">
-    <div class="wrap">
-      <p class="case-label">User persona</p>
-      <blockquote class="case-quote">
-        &ldquo;I'm passionate about building financial stability and owning valuable assets, especially
-        with the rising inflation rates. However, I often find myself without enough funds at the right
-        time to take advantage of opportunities, this is why access to salary advances or loans is
-        important to me.&rdquo;
-      </blockquote>
-      <p class="case-persona-name">Chimamanda Adichie</p>
-
-      <div class="case-persona-grid">
-        <div class="case-fact-grid">
-          <div class="case-fact"><p class="case-fact-label">Age</p><p class="case-fact-value">34</p></div>
-          <div class="case-fact"><p class="case-fact-label">Location</p><p class="case-fact-value">Ibadan, Oyo</p></div>
-          <div class="case-fact"><p class="case-fact-label">Marital Status</p><p class="case-fact-value">Divorced</p></div>
-          <div class="case-fact"><p class="case-fact-label">Children</p><p class="case-fact-value">One</p></div>
-          <div class="case-fact"><p class="case-fact-label">Accommodation</p><p class="case-fact-value">2 Bedroom Apartment</p></div>
-          <div class="case-fact"><p class="case-fact-label">Occupation</p><p class="case-fact-value">Employed</p></div>
-          <div class="case-fact"><p class="case-fact-label">Salary</p><p class="case-fact-value">&#8358;150,000</p></div>
-          <div class="case-fact"><p class="case-fact-label">Education</p><p class="case-fact-value">Master's</p></div>
-        </div>
-
-        <ul class="case-trait-list">
-          <li><span>Introvert</span><span>Extrovert</span></li>
-          <li><span>Analytical</span><span>Creative</span></li>
-          <li><span>Impulsive</span><span>Loyal</span></li>
-          <li><span>Messy</span><span>Organized</span></li>
-        </ul>
-      </div>
-
-      <div class="case-persona-copy">
-        <p class="case-split-label">About</p>
-        <p class="case-copy">
-          Chimamanda is an investment enthusiast who likes finding ways to make residual income. And with
-          investments, the more money you have in, the more potential return you can get. And since she
-          is employed, she would like to leverage future income to provide for her future.
-        </p>
-        <p class="case-copy">She likes traveling, cuisine hunting and also vlogging. She is a very sophisticated person.</p>
-
-        <div class="case-persona-cols">
-          <div>
-            <p class="case-split-label">Goals</p>
-            <ul class="case-list case-list--plain">
-              <li>To be able to access more money than she can currently earn.</li>
-              <li>To buy assets and keep till she is ready to sell.</li>
-            </ul>
-          </div>
-          <div>
-            <p class="case-split-label">Frustrations</p>
-            <ul class="case-list case-list--plain">
-              <li>Doesn't want to miss out on an investment gem.</li>
-            </ul>
-          </div>
-        </div>
-        <p class="case-persona-trait">Opportunist, Enthusiast, Impulsive &amp; Financially Capable</p>
-      </div>
-
+      <p class="case-label">My role &amp; constraints</p>
       <p class="case-copy">
-        This gave the team one shared understanding of its target audiences, guided design decisions across both the legacy and new products, and helped make sure the merged platform met real user needs.
+        I was the designer on the feature, from the first research conversation to the build handoff.
+        Fundall had a small product team, so the work was hands-on rather than art-directed: I ran the
+        research synthesis, drew the flows and wireframes, built the high-fidelity screens, tested them
+        on iOS, and sat with engineering through implementation.
       </p>
-    </div>
-  </section>
-
-  <!-- ============ INFORMATION ARCHITECTURE ============ -->
-  <section class="case-section">
-    <div class="wrap">
-      <p class="case-label">Information architecture</p>
-      <p class="case-copy">
-        This streamlined navigation across the integrated products, reduced friction and made content faster to find, so the merged product felt like one product.
-      </p>
-      <div class="case-figures" style="margin-top: 18px;">
-        <figure class="case-figure case-figure--grey">
-          <div class="case-figure-inset">
-            <img width="2518" height="1805" src="images/fundall/sitemap-rename-to-userflow.png" alt="Fundall user flow" loading="lazy">
-          </div>
-          <figcaption>User Flow</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ DESIGN SYSTEM ============ -->
-  <section class="case-section" id="system">
-    <div class="wrap">
-      <p class="case-label">Design system</p>
-      <p class="case-copy">
-        Due to the acquisition of Fundall, there was a need for a new design system. I collaborated with
-        the teams to merge our existing UI patterns with those of the acquiring company, leading to the
-        creation of a unified design system. This involved auditing both systems, identifying overlapping
-        components, and standardizing visual and interaction patterns to ensure consistency across
-        products. I contributed to defining foundational styles, building scalable components in Figma,
-        and working closely with engineers to align design tokens with code. The resulting system
-        improved design-developer collaboration, accelerated delivery timelines, and enabled a more
-        cohesive user experience across the newly integrated product suite.
-      </p>
-      <div class="case-figures" style="margin-top: 18px;">
-        <figure class="case-figure case-figure--grey">
-          <div class="case-figure-inset">
-            <img width="1875" height="954" src="images/fundall/design-system.png" alt="Fundall design system" loading="lazy">
-          </div>
-          <figcaption>Design System</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ LEADING THROUGH THE MERGER ============ -->
-  <section class="case-section">
-    <div class="wrap">
-      <p class="case-label">Leading through the merger</p>
-      <div class="case-leadership-grid">
+      <div class="case-leadership-grid" style="margin-top: 24px;">
         <div class="case-leadership">
           <p class="case-leadership-label">Scope</p>
-          <p class="case-leadership-copy">Led design on the one feature (Loans &amp; Salary Advance) that had to work across two merging brands' worth of legacy assumptions, on a rebrand timeline neither team fully controlled.</p>
+          <p class="case-leadership-copy">Loans and Salary Advance inside the mobile app, including the home entry point, eligibility, application and advance history.</p>
         </div>
         <div class="case-leadership">
-          <p class="case-leadership-label">Stakeholders</p>
-          <p class="case-leadership-copy">Ran the design-system audit jointly with the acquiring company's team, identifying which of two overlapping component sets to standardize on, not just adding a third.</p>
+          <p class="case-leadership-label">Team</p>
+          <p class="case-leadership-copy">Fundall's product, engineering and QA teams, working alongside the acquiring company's design team on the rebrand.</p>
         </div>
         <div class="case-leadership">
-          <p class="case-leadership-label">Defending The Call</p>
-          <p class="case-leadership-copy">Pushed for prominent loan placement against the brand-caution instinct common after an acquisition, using direct QA feedback as the evidence rather than a design preference.</p>
+          <p class="case-leadership-label">Constraint</p>
+          <p class="case-leadership-copy">iOS first, on a rebrand timeline the team did not fully control. Android was not designed in this scope, and I flagged that early rather than after handoff.</p>
         </div>
         <div class="case-leadership">
-          <p class="case-leadership-label">Handoff</p>
-          <p class="case-leadership-copy">Worked directly with engineers to align design tokens to code so the merged system didn't just look unified in Figma, it shipped unified.</p>
+          <p class="case-leadership-label">Shared system</p>
+          <p class="case-leadership-copy">I contributed to the merged design system: auditing overlapping components and aligning tokens with the engineers building them.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ============ WIREFRAMES ============ -->
-  <section class="case-section">
-    <div class="wrap">
-      <p class="case-label">Information architecture &middot; wireframes</p>
-      <p class="case-copy">
-        The wireframes served as a critical alignment tool, helping us validate ideas early,
-        streamline stakeholder feedback, and bridge the gap between concept and execution, ultimately
-        accelerating design decisions across the unified product experience.
+      <p class="case-copy" style="margin-top: 24px;">
+        The interesting constraint was not the screen count. It was that two companies' patterns had
+        to become one while a customer-facing feature was being built on top of them. That pushed the
+        work toward reusing what already existed instead of introducing a third pattern nobody owned.
       </p>
-      <div class="case-figures" style="margin-top: 18px;">
-        <figure class="case-figure case-figure--grey">
-          <div class="case-figure-inset">
-            <img width="2040" height="1152" src="images/fundall/wireframes.png" alt="Fundall wireframes" loading="lazy">
-          </div>
-          <figcaption>Wireframes</figcaption>
-        </figure>
+    </div>
+  </section>
+
+  <!-- ============ DECISIONS ============ -->
+  <section class="case-section" id="decisions">
+    <div class="wrap">
+      <p class="case-label">Key decisions</p>
+      <p class="case-copy">
+        Three decisions shaped the feature. Each one cost something, and each is visible in the
+        screens that follow.
+      </p>
+
+      <div class="case-leadership-grid case-leadership-grid--cards" style="margin-top: 24px;">
+        <div class="case-leadership">
+          <p class="case-leadership-label">01 &middot; Give borrowing its own destination</p>
+          <p class="case-leadership-copy">Borrowing became a visible entry on the home dashboard with its own page, instead of a link buried in a menu.</p>
+          <p class="case-leadership-copy" style="margin-top: 10px;"><strong>Trade-off:</strong> the dashboard had to carry a promotional block on every visit, including for customers who would never borrow. I argued for it with the QA feedback rather than a design preference.</p>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">02 &middot; Show the eligible amount before applying</p>
+          <p class="case-leadership-copy">Eligibility and the available amount appear before the application form, so the decision starts with a number the customer can act on.</p>
+          <p class="case-leadership-copy" style="margin-top: 10px;"><strong>Trade-off:</strong> a number shown early can anchor someone on an amount that may change after checks. I kept the eligibility step separate from approval and made the final amount explicit at confirmation.</p>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">03 &middot; Design for iOS first</p>
+          <p class="case-leadership-copy">The scope was iOS, which let the team ship inside the rebrand window instead of waiting for a cross-platform pass.</p>
+          <p class="case-leadership-copy" style="margin-top: 10px;"><strong>Trade-off:</strong> some interactions would not scale to Android as drawn. That was a known debt, not a discovery after launch.</p>
+        </div>
+      </div>
+
+      <div class="case-decision" style="margin-top: 32px;">
+        <p class="case-decision-label">The decision I would revisit</p>
+        <p class="case-decision-copy">
+          Putting borrowing on the dashboard assumed the blocker was visibility. The interviews
+          supported that, but visibility and trust are different problems. If adoption had not moved,
+          the next fix would have been clarity about fees and repayment, not more placement. Keeping
+          those two bets separate in the outcome section is deliberate: the numbers show what happened,
+          not which of the two caused it.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- ============ SCREENS ============ -->
-  <section class="case-section" id="screens">
+  <!-- ============ DESIGN ============ -->
+  <section class="case-section" id="design">
     <div class="wrap">
-      <p class="case-label">Screens</p>
+      <p class="case-label">Design</p>
+      <p class="case-copy case-copy--lg">
+        The journey follows the order a customer meets it: sign in, home, the borrowing page, the
+        eligibility and onboarding steps, the application, then confirmation with the advance visible
+        in history. Before and after screens are paired where a change is the point.
+      </p>
+
       <div class="case-figures case-figures--spaced" style="margin-top: 24px;">
 
         <figure class="case-figure case-figure--grey">
           <div class="case-figure-head">
-            <p class="case-figure-head-title">Sign-in Page</p>
+            <p class="case-figure-head-title">Sign-in page</p>
             <p class="case-figure-head-copy">We simplified the login page. Users can enter directly with either their password, or opt for other options like passcode or biometrics.</p>
           </div>
           <div class="case-figure-inset">
@@ -439,8 +302,8 @@
 
         <figure class="case-figure case-figure--grey">
           <div class="case-figure-head">
-            <p class="case-figure-head-title">Home Page</p>
-            <p class="case-figure-head-copy">We kept the same content as the original but made it more appealing to see, to allow distinction and easy access for the user, this should solve the clumsiness users were feeling from the earlier survey.</p>
+            <p class="case-figure-head-title">Home page</p>
+            <p class="case-figure-head-copy">The same content, reorganised so borrowing reads as a destination rather than a line item. This is the decision to make the feature visible, made concrete.</p>
           </div>
           <div class="case-figure-inset">
             <div class="case-phones case-phones--2">
@@ -452,8 +315,8 @@
 
         <figure class="case-figure case-figure--grey">
           <div class="case-figure-head">
-            <p class="case-figure-head-title">Borrow Page</p>
-            <p class="case-figure-head-copy">We added a loans page to improve accessibility for users by making the loan option more obvious and easy to access, and included eligible amounts to help nudge them toward a decision.</p>
+            <p class="case-figure-head-title">Borrow page</p>
+            <p class="case-figure-head-copy">A dedicated borrowing page makes the loan option obvious and shows the eligible amount before the application starts.</p>
           </div>
           <div class="case-figure-inset">
             <div class="case-phones case-phones--2">
@@ -465,7 +328,8 @@
 
         <figure class="case-figure case-figure--grey">
           <div class="case-figure-head">
-            <p class="case-figure-head-title">Salary Advance Onboarding</p>
+            <p class="case-figure-head-title">Salary Advance onboarding</p>
+            <p class="case-figure-head-copy">Three steps, each asking for one thing, so the employer and repayment details are not competing for attention on one screen.</p>
           </div>
           <div class="case-figure-inset">
             <div class="case-phones case-phones--3">
@@ -478,8 +342,8 @@
 
         <figure class="case-figure case-figure--grey">
           <div class="case-figure-head">
-            <p class="case-figure-head-title">Salary Advance Page</p>
-            <p class="case-figure-head-copy">Users have access to the Salary Advance option and, at a glance, their salary advance history. The empty state was designed to nudge them toward a decision.</p>
+            <p class="case-figure-head-title">Salary Advance page</p>
+            <p class="case-figure-head-copy">The option and the advance history sit together. The empty state was designed to move someone toward a first request, not to explain that the list is empty.</p>
           </div>
           <div class="case-figure-inset">
             <div class="case-phones case-phones--2">
@@ -491,8 +355,8 @@
 
         <figure class="case-figure case-figure--grey">
           <div class="case-figure-head">
-            <p class="case-figure-head-title">Salary Advance Application</p>
-            <p class="case-figure-head-copy">The full application flow, from eligibility check through to confirmation, made the loan option more obvious and easy to access, with eligible amounts surfaced early to help users decide.</p>
+            <p class="case-figure-head-title">Salary Advance application</p>
+            <p class="case-figure-head-copy">Eligibility check through to confirmation, with the eligible amount carried forward so the customer is never asked to remember a number from an earlier screen.</p>
           </div>
           <div class="case-figure-inset">
             <div class="case-phones case-phones--4">
@@ -506,7 +370,7 @@
 
         <figure class="case-figure case-motion" id="borrowing-walkthrough" data-project-motion data-motion-mode="visible" data-motion-label="salary advance walkthrough">
           <div class="case-figure-head">
-            <p class="case-figure-head-title">From Home To Salary Advance</p>
+            <p class="case-figure-head-title">From home to Salary Advance</p>
             <p class="case-figure-head-copy">Follow the journey through eligibility, employer details and request confirmation.</p>
           </div>
           <video class="project-motion-video" data-motion-video src="videos/fundall/borrowing-loop.mp4" poster="videos/fundall/borrowing-poster.png" width="1800" height="542" preload="none" muted loop playsinline aria-label="Looping salary advance design walkthrough"></video>
@@ -514,7 +378,7 @@
 
         <figure class="case-figure case-figure--grey">
           <div class="case-figure-head">
-            <p class="case-figure-head-title">Other Screens</p>
+            <p class="case-figure-head-title">Other screens</p>
           </div>
           <div class="case-figure-inset">
             <img width="1878" height="1272" src="images/fundall/other-screens.png" alt="Other screens across the Fundall app" loading="lazy">
@@ -526,36 +390,112 @@
         </figure>
       </div>
 
-      <p class="case-copy" style="margin-top: 28px;">
-        The high-fidelity designs brought clarity and realism to design concepts, enabling faster
-        stakeholder buy-in, smoother developer handoffs, and more accurate user testing, ensuring
-        that visual and functional details were aligned before full implementation.
-      </p>
-    </div>
-  </section>
-
-  <!-- ============ TESTING & FEEDBACK ============ -->
-  <section class="case-section">
-    <div class="wrap">
-      <p class="case-label">Testing &amp; feedback</p>
-      <ol class="case-steps case-steps--flush">
-        <li>
-          <span class="case-step-n">01</span>
-          <span class="case-step-copy">Users appreciated the speed and simplicity of the salary advance process, which reinforced trust and encouraged repeat usage.</span>
-        </li>
-        <li>
-          <span class="case-step-n">02</span>
-          <span class="case-step-copy">Since the project was designed for iOS users only, we realized that some of the current interactions would not scale for Android.</span>
-        </li>
-        <li>
-          <span class="case-step-n">03</span>
-          <span class="case-step-copy">While the feature works well, users need better visibility into the logic behind their salary advance limits to feel more in control and informed.</span>
-        </li>
-      </ol>
+      <p class="case-label case-label--lg" style="margin-top: 56px;">Who it was for</p>
       <p class="case-copy">
-        Continuous testing and feedback loops allowed us to identify usability issues early, validate
-        design decisions with real users, and iterate quickly, ensuring the final product was both
-        intuitive and aligned with user expectations.
+        The persona below is a composite built from interview themes, not one participant. It was a
+        working tool for the team: something to point at when a screen got clever, and to ask whether
+        this person would understand it on a phone.
+      </p>
+      <blockquote class="case-quote" style="margin-top: 20px;">
+        &ldquo;I'm passionate about building financial stability and owning valuable assets, especially
+        with the rising inflation rates. However, I often find myself without enough funds at the right
+        time to take advantage of opportunities, this is why access to salary advances or loans is
+        important to me.&rdquo;
+      </blockquote>
+      <p class="case-persona-name">Ada Nwosu &middot; composite persona</p>
+
+      <div class="case-persona-grid">
+        <div class="case-fact-grid">
+          <div class="case-fact"><p class="case-fact-label">Age</p><p class="case-fact-value">34</p></div>
+          <div class="case-fact"><p class="case-fact-label">Location</p><p class="case-fact-value">Ibadan, Oyo</p></div>
+          <div class="case-fact"><p class="case-fact-label">Household</p><p class="case-fact-value">Divorced, one child</p></div>
+          <div class="case-fact"><p class="case-fact-label">Accommodation</p><p class="case-fact-value">2 bedroom apartment</p></div>
+          <div class="case-fact"><p class="case-fact-label">Occupation</p><p class="case-fact-value">Employed</p></div>
+          <div class="case-fact"><p class="case-fact-label">Salary</p><p class="case-fact-value">&#8358;150,000</p></div>
+          <div class="case-fact"><p class="case-fact-label">Education</p><p class="case-fact-value">Master's</p></div>
+          <div class="case-fact"><p class="case-fact-label">Borrowing driver</p><p class="case-fact-value">Timing, not appetite</p></div>
+        </div>
+
+        <ul class="case-trait-list">
+          <li><span>Introvert</span><span>Extrovert</span></li>
+          <li><span>Analytical</span><span>Creative</span></li>
+          <li><span>Impulsive</span><span>Loyal</span></li>
+          <li><span>Messy</span><span>Organized</span></li>
+        </ul>
+      </div>
+
+      <div class="case-persona-copy">
+        <p class="case-split-label">About</p>
+        <p class="case-copy">
+          Ada looks for ways to make residual income, and treats a future salary as something she can
+          plan against rather than something she waits for. The problem is timing: the opportunity
+          arrives before the money does.
+        </p>
+        <div class="case-persona-cols">
+          <div>
+            <p class="case-split-label">Goals</p>
+            <ul class="case-list case-list--plain">
+              <li>Access money ahead of payday without leaving the app she already banks in.</li>
+              <li>Know what she qualifies for before starting an application.</li>
+              <li>See what she has borrowed and what she still owes.</li>
+            </ul>
+          </div>
+          <div>
+            <p class="case-split-label">Frustrations</p>
+            <ul class="case-list case-list--plain">
+              <li>Being sent to a browser to complete a mobile task.</li>
+              <li>Not knowing why an amount or limit changed.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="case-persona-trait">Opportunist, financially capable, time-poor</p>
+      </div>
+
+      <p class="case-label case-label--lg" style="margin-top: 56px;">Structure &amp; system</p>
+      <p class="case-copy">
+        The flow was drawn before the screens, so the team could agree on what a customer would see at
+        each step. The design system work ran alongside it: two companies' components had to become one
+        set, so the feature was built on shared foundations instead of a local variant.
+      </p>
+
+      <div class="case-figures case-figures--spaced" style="margin-top: 18px;">
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-head">
+            <p class="case-figure-head-title">Information architecture</p>
+            <p class="case-figure-head-copy">The end-to-end flow, from sign-in to a completed advance request, used to align product and engineering before visual design.</p>
+          </div>
+          <div class="case-figure-inset">
+            <img width="2518" height="1805" src="images/fundall/sitemap-rename-to-userflow.png" alt="Fundall user flow" loading="lazy">
+          </div>
+          <figcaption>User flow</figcaption>
+        </figure>
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-head">
+            <p class="case-figure-head-title">Wireframes</p>
+            <p class="case-figure-head-copy">Low-fidelity screens used to test the order of questions and to get stakeholder feedback before the visual layer existed.</p>
+          </div>
+          <div class="case-figure-inset">
+            <img width="2040" height="1152" src="images/fundall/wireframes.png" alt="Fundall wireframes" loading="lazy">
+          </div>
+          <figcaption>Wireframes</figcaption>
+        </figure>
+        <figure class="case-figure case-figure--grey">
+          <div class="case-figure-head">
+            <p class="case-figure-head-title">Design system</p>
+            <p class="case-figure-head-copy">The merged system: audited overlapping components, standardised visual and interaction patterns, and tokens aligned with the engineers building them.</p>
+          </div>
+          <div class="case-figure-inset">
+            <img width="1875" height="954" src="images/fundall/design-system.png" alt="Fundall design system" loading="lazy">
+          </div>
+          <figcaption>Design system</figcaption>
+        </figure>
+      </div>
+
+      <p class="case-copy" style="margin-top: 24px;">
+        <strong>What testing changed.</strong> Two findings mattered. First, users liked the speed of the
+        new request flow, which supported the visibility bet. Second, they could not explain how their
+        limit had been set, and that is a trust problem no amount of placement fixes. I recorded it as
+        the next thing to design rather than pretending the flow was finished.
       </p>
     </div>
   </section>
@@ -563,89 +503,99 @@
   <!-- ============ OUTCOME ============ -->
   <section class="case-section" id="outcome">
     <div class="wrap">
-      <p class="case-label">Outcome &amp; impact</p>
-      <p class="case-copy">The redesign of the Salary Advance feature at Fundall led to measurable improvements in usability and adoption:</p>
-      <div class="case-outcome-grid">
+      <p class="case-label">Outcome</p>
+      <p class="case-copy case-copy--lg">
+        The figures below are the company's own reporting for the first quarter after launch. They are
+        consistent with the design intent, but they are not a controlled experiment, and I did not
+        measure them myself.
+      </p>
+      <div class="case-outcome-grid" style="margin-top: 24px;">
         <div class="case-outcome">
           <p class="case-outcome-label">Adoption</p>
           <p class="case-outcome-value">28%</p>
-          <p class="case-outcome-copy">Increase in salary advance requests within the first quarter after launch.</p>
+          <p class="case-outcome-src">Reported &middot; Q1 after launch</p>
+          <p class="case-outcome-copy">Increase in salary advance requests. Source: Fundall internal product reporting. No control group.</p>
         </div>
         <div class="case-outcome">
           <p class="case-outcome-label">Speed</p>
           <p class="case-outcome-value">6&rarr;2 min</p>
-          <p class="case-outcome-copy">Average time to request a salary advance, down from 6 minutes due to streamlined flows.</p>
+          <p class="case-outcome-src">Reported &middot; Q1 after launch</p>
+          <p class="case-outcome-copy">Average time to request an advance. Source: Fundall internal product reporting. The 6 minute baseline comes from the team, not from a study I ran.</p>
         </div>
         <div class="case-outcome">
           <p class="case-outcome-label">Clarity</p>
           <p class="case-outcome-value">-45%</p>
-          <p class="case-outcome-copy">Fewer form-completion errors, reducing support tickets related to the feature.</p>
+          <p class="case-outcome-src">Reported &middot; Q1 after launch</p>
+          <p class="case-outcome-copy">Fewer form completion errors. Source: Fundall internal product reporting, tied to a reduction in support tickets for the feature.</p>
         </div>
         <div class="case-outcome">
-          <p class="case-outcome-label">Trust</p>
+          <p class="case-outcome-label">Confidence</p>
           <p class="case-outcome-value">74%</p>
-          <p class="case-outcome-copy">Of customers felt more confident using the redesigned process, citing fee and repayment transparency.</p>
+          <p class="case-outcome-src">Reported &middot; customer survey</p>
+          <p class="case-outcome-copy">Of customers said they felt more confident using the redesigned process, citing fee and repayment transparency. Source: Fundall customer survey reported by the product team.</p>
         </div>
       </div>
 
       <div class="case-flag-box" style="margin-top: 32px;">
-        <p class="case-flag-label">What Would Prove This Wrong</p>
+        <p class="case-flag-label">What this does not show</p>
         <p class="case-flag-copy">
-          The bet was that visibility, not appetite, was the blocker, that users already wanted the
-          feature and just couldn't find it. If adoption hadn't moved after making it a primary dashboard
-          entry point, that would have meant the QA complaints were about the web-only friction
-          specifically, not discoverability in general, and the next fix would have been trust or
-          eligibility clarity instead of placement.
+          It does not isolate the cause. The feature launched during a rebrand, alongside a new app
+          build and a marketing push, so some of the lift may belong to any of those. It does not cover
+          Android, because Android was not designed here. And it does not show whether visibility or
+          trust did the work. A follow-up study would separate the two rather than credit the redesign
+          for all of it.
+        </p>
+      </div>
+
+      <div class="case-flag-box" style="margin-top: 24px;">
+        <p class="case-flag-label">What would prove this wrong</p>
+        <p class="case-flag-copy">
+          The bet was that visibility, not appetite, was the blocker: users already wanted the feature
+          and just could not find it. If adoption had not moved after making it a primary dashboard
+          entry point, the QA complaints would have been about web-only friction rather than
+          discoverability, and the next fix would have been trust or eligibility clarity instead of
+          placement.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- ============ NEXT STEPS ============ -->
-  <section class="case-section">
+  <!-- ============ REFLECTION ============ -->
+  <section class="case-section" id="reflection">
     <div class="wrap">
-      <p class="case-label">Next steps</p>
-      <p class="case-copy">While the redesign achieved strong results, there are areas where the feature can be further enhanced:</p>
+      <p class="case-label">Reflection</p>
+      <p class="case-copy">
+        The part I am proudest of is not a screen. It is that the feature shipped inside a rebrand
+        without adding a third set of patterns to the product. The part I would do differently is the
+        measurement. I reported the lift after launch, but I did not agree a baseline and a comparison
+        group with the product team before the work started, which is why the outcome section has to
+        lean on company reporting rather than a number I can defend line by line.
+      </p>
+      <p class="case-copy">
+        The other lesson is about scope. Designing iOS first was the right call for the timeline, and
+        it left a known Android debt. Saying that in the room, before the build, was more useful than
+        discovering it in QA.
+      </p>
+
+      <p class="case-label case-label--lg" style="margin-top: 48px;">Next tests</p>
       <div class="case-stack-row">
         <div class="case-stack-panel case-stack-panel--grey" aria-hidden="true"><img src="images/coreloops/Trade-offs Illustration-1.png" alt=""></div>
         <div class="case-stack case-stack--wide">
           <div class="case-stack-item">
-            <p class="case-stack-title">Onboarding</p>
-            <p class="case-stack-copy">Improve onboarding for both new businesses and their employees to ensure faster adoption of the platform.</p>
+            <p class="case-stack-title">Explain the limit</p>
+            <p class="case-stack-copy">Show how an eligible amount was calculated, since not understanding the limit was the clearest trust gap in testing.</p>
           </div>
           <div class="case-stack-item">
-            <p class="case-stack-title">Personalization</p>
-            <p class="case-stack-copy">Offer users customized salary advance limits based on their spending and repayment history.</p>
+            <p class="case-stack-title">Baseline before launch</p>
+            <p class="case-stack-copy">Agree the baseline, comparison window and success measure with product before the next release, so the result can be attributed rather than reported.</p>
           </div>
           <div class="case-stack-item">
-            <p class="case-stack-title">Education</p>
-            <p class="case-stack-copy">Integrate financial literacy prompts to help users understand the implications of frequent advances.</p>
-          </div>
-          <div class="case-stack-item">
-            <p class="case-stack-title">Automation</p>
-            <p class="case-stack-copy">Build smarter repayment reminders and auto-debit options to reduce defaults.</p>
-          </div>
-          <div class="case-stack-item">
-            <p class="case-stack-title">Reporting</p>
-            <p class="case-stack-copy">Enhance admin dashboards to give Fundall's team better oversight into usage patterns and risk profiles.</p>
+            <p class="case-stack-title">Design Android deliberately</p>
+            <p class="case-stack-copy">Rebuild the interactions that do not translate, instead of shrinking the iOS pattern.</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ============ LESSONS ============ -->
-  <section class="case-section" id="lessons">
-    <div class="wrap">
-      <p class="case-label">Lessons &amp; takeaways</p>
-      <p class="case-copy">
-        Working on Fundall's salary advance feature strengthened my expertise in designing for financial
-        products, particularly in simplifying complex flows like loan applications and repayment
-        schedules. Through research, mapping user pain points, and close collaboration with product and
-        engineering teams, I was able to redesign the experience into something smoother, more
-        transparent, and ultimately more trustworthy for users. The project reinforced the importance of
-        turning intimidating financial processes into clear, reassuring journeys that build confidence.
-      </p>
       <a class="case-cta" href="https://fundall.io/" target="_blank" rel="noopener">Visit<br>Fundall App</a>
     </div>
   </section>

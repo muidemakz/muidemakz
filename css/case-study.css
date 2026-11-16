@@ -1615,6 +1615,29 @@
   opacity: 0.7;
 }
 
+/* where a number came from: measured, reported, predicted or not measured */
+.case-impact-src,
+.case-outcome-src {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.35;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cs-accent-text, var(--accent));
+}
+
+.case-outcome-src { margin: 0 0 10px; }
+
+.case-impact-note {
+  font-family: var(--font-hard);
+  font-size: 14px;
+  line-height: 1.45;
+  margin: 12px 0 0;
+  opacity: 0.75;
+}
+
 @media (max-width: 600px) {
   .case-impact { flex-wrap: wrap; }
   .case-impact-head { flex-basis: 100%; flex-direction: row; align-items: baseline; }

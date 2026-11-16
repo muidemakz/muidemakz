@@ -44,9 +44,9 @@
       <p class="case-lede">
         Coreloops' documents page filter panel treated all 13 filter options as equal, funneling every
         user, whether they needed one filter or six, through the same right-side drawer:
-        configure in isolation, apply, then return to see results. But most users only needed 1&ndash;2
-        filters at a time; only a minority needed 5&ndash;6 simultaneously. I redesigned the filter
-        experience around that split.
+        configure in isolation, apply, then return to see results. The team's read of usage was that
+        most people needed 1 to 2 filters at a time, with only a minority using 5 or 6 together. I
+        redesigned the filter experience around that split.
       </p>
       <p class="case-lede">
         Coreloops is a construction finance platform that helps project teams manage invoices, purchase
@@ -65,6 +65,7 @@
 
   <nav class="case-quicknav" aria-label="Section navigation">
     <div class="wrap">
+      <a href="#summary">Summary</a>
       <a href="#problem">The problem</a>
       <a href="#users">Target users</a>
       <a href="#solution">My solution</a>
@@ -73,6 +74,39 @@
       <a href="#measure">What I'd measure</a>
     </div>
   </nav>
+
+  <!-- ============ SUMMARY ============ -->
+  <section class="case-section" id="summary">
+    <div class="wrap">
+      <p class="case-label">Summary</p>
+      <p class="case-copy case-copy--lg">
+        Coreloops put all 13 document filters behind one right-side drawer, so every user paid the same
+        cost whether they needed one filter or six. I redesigned the documents page around the split
+        between quick, frequently used filters and the long tail: pinned filter chips above the results,
+        a slimmer drawer for everything else, and an active filter strip that keeps the current query
+        visible. It was delivered as a proposed redesign with a working prototype, and it has not
+        shipped, so the page is honest about what is still assumption.
+      </p>
+
+      <div class="case-fact-grid" style="margin-top: 28px;">
+        <div class="case-fact"><p class="case-fact-label">Role</p><p class="case-fact-value">Senior UX Designer, interaction and information architecture</p></div>
+        <div class="case-fact"><p class="case-fact-label">Scope</p><p class="case-fact-value">Documents page filtering: quick filters, More Filters drawer, active filter strip, result count</p></div>
+        <div class="case-fact"><p class="case-fact-label">Timeline</p><p class="case-fact-value">2026</p></div>
+        <div class="case-fact"><p class="case-fact-label">Platform</p><p class="case-fact-value">Web app, B2B, Figma prototype</p></div>
+        <div class="case-fact"><p class="case-fact-label">Evidence</p><p class="case-fact-value">Design rationale and a prototype. No usage data or measured result</p></div>
+        <div class="case-fact"><p class="case-fact-label">Status</p><p class="case-fact-value">Proposed redesign, not shipped</p></div>
+      </div>
+
+      <div class="case-flag-box" style="margin-top: 28px;">
+        <p class="case-flag-label">How to read this page</p>
+        <p class="case-flag-copy">
+          Nothing here was measured in production, because the redesign was not released. The claims are
+          about the design decisions and the reasoning behind them. The measures that would test them are
+          listed near the end, with the assumption most likely to be wrong named alongside.
+        </p>
+      </div>
+    </div>
+  </section>
 
   <!-- ============ THE PROBLEM ============ -->
   <section class="case-section" id="problem">
@@ -314,7 +348,7 @@
           is Coreloops' most common usage pattern. Auto-apply is faster in isolation, but it fails as a
           system: it would mean chips and the More Filters drawer behave differently from each other, and
           finance users managing high-stakes documents are exactly the audience most disoriented by a
-          list that mutates under them mid-click. One consistent extra click bought zero disorientation
+          list that mutates under them mid-click. One consistent extra click removed that disorientation
           across the whole surface.
         </p>
       </div>
@@ -396,12 +430,12 @@
       <p class="case-copy">
         This redesign trades a monolithic drawer for a hierarchy that matches how people actually
         filter: fast, role-specific chips up front, full options organized behind More Filters. Apply
-        stays consistent across both surfaces, one extra click, but zero disorientation, which
-        matters for a user group managing high-stakes financial documents. The active filter strip and
+        stays consistent across both surfaces, one extra click, but the current query stays visible while
+        it changes, which matters for a user group managing high-stakes financial documents. The active filter strip and
         the always-visible result count exist for the same reason: users should always see what's
         narrowing their list, and always have a one-click way out.
       </p>
-      <p class="case-status">Status: Delivered to Coreloops as a proposed redesign with a working Figma prototype, not yet shipped. The five-pin cap and quick-filter defaults are flagged as assumptions to confirm against real usage data before release.</p>
+      <p class="case-status">Status: Delivered to Coreloops as a proposed redesign with a working Figma prototype, not yet shipped. The five-pin cap and quick-filter defaults are documented assumptions, not validated settings.</p>
       <a class="case-cta" href="https://www.figma.com/proto/wSzNuMP4qzW4GdchSugiPv/Coreloops-Filter-Results?page-id=1%3A3&node-id=22-10292&viewport=-3532%2C549%2C0.62&t=IrgRrAWG4njQChAA-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=22%3A10292" target="_blank" rel="noopener">View Figma<br>Prototype</a>
     </div>
   </section>

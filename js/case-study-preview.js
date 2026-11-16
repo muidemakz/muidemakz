@@ -20,11 +20,11 @@
   ];
   var navigationItems = {
     outcome: ["Outcome", "Reported"],
-    objective: ["Goals and role", "Add objective"],
-    problem: ["Challenge and evidence", "Verify evidence"],
+    objective: ["Goals and role"],
+    problem: ["Challenge and evidence", "Reported split"],
     reframe: ["Reframed problem"],
-    solution: ["Design decisions", "Trade offs"],
-    testing: ["Build and iteration", "Add release detail"],
+    solution: ["Design decisions"],
+    testing: ["Build and iteration"],
     "voice-flow": ["Shipped experience"],
     now: ["Current design and next steps"],
     reflection: ["Reflection"]
@@ -83,22 +83,7 @@
     var ownershipWrap = document.createElement("div");
     ownershipWrap.className = "wrap";
     ownership.appendChild(ownershipWrap);
-    if (objectiveCopy[1]) {
-      objectiveCopy[1].textContent = "I owned the retailer experience design while embedded with PMs and engineers. I refined the ordering and support paths through retailer feedback. The related issue of making chat and call discoverable is covered separately below.";
-      ownershipWrap.appendChild(objectiveCopy[1]);
-    }
-    if (objectiveCopy[3]) {
-      objectiveCopy[3].textContent = "This work was done in April 2026. The main story shows that early version, while the final section shows the current design. Omnibiz platform scale figures describe the broader product and are not outcomes caused by this redesign.";
-      ownershipWrap.appendChild(objectiveCopy[3]);
-    }
-    if (objectiveCopy[2]) objectiveCopy[2].remove();
-    var objectiveFlag = objectiveWrap.querySelector(".case-flag-box");
-    if (objectiveFlag) {
-      var flagLabel = objectiveFlag.querySelector(".case-flag-label");
-      var flagCopy = objectiveFlag.querySelector(".case-flag-copy");
-      if (flagLabel) flagLabel.textContent = "Still needed";
-      if (flagCopy) flagCopy.textContent = "Add the feature's business objective from the original brief or PM discussion. The retailer ecosystem and annual NMV figures below describe overall platform scale, not the objective for this feature.";
-    }
+    if (objectiveCopy[2]) ownershipWrap.appendChild(objectiveCopy[2]);
   }
 
   sectionsInOrder.forEach(function (item) {
@@ -116,17 +101,6 @@
     (supportingHeadings[item[0]] || []).forEach(function (subheading) {
       addSubheading(section, subheading[0], subheading[1]);
     });
-    var flagLabels = {
-      outcome: "Source and comparison window",
-      problem: "Working assumption to confirm",
-      research: "Required to verify the reported split",
-      solution: "Trade off"
-    };
-    var flagLabel = section.querySelector(".case-flag-label");
-    if (flagLabel && flagLabels[item[0]]) flagLabel.textContent = flagLabels[item[0]];
-    if (flagLabel && ["outcome", "objective", "problem", "research"].indexOf(item[0]) !== -1) {
-      flagLabel.classList.add("case-preview-pending-label");
-    }
     if (item[0] === "now") {
       var currentFigureTitle = section.querySelector(".case-figure-head-title");
       if (currentFigureTitle) currentFigureTitle.textContent = "Current retailer interface";
@@ -156,7 +130,7 @@
         var linkStatus = document.createElement("span");
         linkStatus.className = "case-toc-status";
         linkStatus.textContent = navItem[1];
-        linkStatus.classList.add(/verify|add|reported|trade/i.test(navItem[1]) ? "case-toc-status--pending" : "case-toc-status--note");
+        linkStatus.classList.add(/verify|add|to confirm/i.test(navItem[1]) ? "case-toc-status--pending" : "case-toc-status--note");
         link.appendChild(linkStatus);
       }
       tocList.appendChild(link);

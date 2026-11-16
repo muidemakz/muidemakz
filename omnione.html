@@ -41,12 +41,13 @@
         By 2024, OmniRetail's design work had split across four product teams: Retail (Omnibiz), Distribution
         (OmniHub), Manufacturer (OmniOne) and Payments (Omnipay), each shipping on its own timeline,
         with its own interpretation of what a "primary button" should look like. Omnione is the design
-        system I built to give all four one shared language, without slowing any of them down.
+        system I helped build to give all four one shared language, without slowing any of them down.
       </p>
       <p class="case-lede">
-        As Senior Product Designer and Design Manager, I owned the system end-to-end: auditing what
-        already existed, defining the token structure, building the component library in Figma, and
-        getting engineering to adopt it in code, not just admire it in a file.
+        I led Retail Design at OmniRetail and contributed to the shared Omni design system. My personal
+        scope inside Omnione was the <strong>foundation layer</strong>: colour, typography, grid, table
+        rows and columns, and the sidebar. Those were the pieces every other designer built their own
+        library section on top of, which is why the ordering mattered as much as the components.
       </p>
       <ul class="case-tags">
         <li>Design System, 2024</li>
@@ -69,9 +70,11 @@
     <div class="wrap">
       <a href="#summary">Summary</a>
       <a href="#problem">Problem</a>
-      <a href="#process">Process</a>
-      <a href="#solution">Solution</a>
+      <a href="#role">My role</a>
+      <a href="#decisions">Decisions</a>
+      <a href="#design">Design</a>
       <a href="#outcome">Outcome</a>
+      <a href="#reflection">Reflection</a>
     </div>
   </nav>
 
@@ -79,29 +82,61 @@
   <section class="case-section" id="summary">
     <div class="wrap">
       <p class="case-label">Summary</p>
-      <p class="case-copy">
-        Omnione is OmniRetail's design system, built to unify UI across every product the company ships:
-        the Omnibiz retailer app, OmniHub, OmniOne, Omnipay, and the internal tools running alongside
-        them. Before Omnione, each surface had its own visual language, because each was designed and
-        built independently under deadline pressure, with no shared source of truth to pull from.
+      <p class="case-copy case-copy--lg">
+        Four product teams, four visual languages, and no shared source of truth. Omnione replaced that
+        with one component library and a two-tier token system that each team could pull from at its own
+        pace. I owned the foundation layer and the table column system, and I worked with engineering on
+        the tokens behind the code library. The system shipped in phases: tokens, then components, then
+        adoption.
       </p>
+
+      <div class="case-fact-grid" style="margin-top: 28px;">
+        <div class="case-fact"><p class="case-fact-label">Role</p><p class="case-fact-value">Senior Product Designer &amp; Design Manager. Foundation layer and table columns</p></div>
+        <div class="case-fact"><p class="case-fact-label">Team</p><p class="case-fact-value">Four product design teams and their engineers, across Retail, Distribution, Manufacturing and Payments</p></div>
+        <div class="case-fact"><p class="case-fact-label">Timeline</p><p class="case-fact-value">2024</p></div>
+        <div class="case-fact"><p class="case-fact-label">Scope</p><p class="case-fact-value">Shared system for Omnibiz, OmniHub, OmniOne, Omnipay and the internal trade entity tool</p></div>
+        <div class="case-fact"><p class="case-fact-label">Evidence</p><p class="case-fact-value">Library counts from the Figma file. Outcome figures are team estimates</p></div>
+        <div class="case-fact"><p class="case-fact-label">Status</p><p class="case-fact-value">Shipped and in use</p></div>
+      </div>
 
       <div class="case-impact">
         <div class="case-impact-head">
           <p class="case-impact-title">Impact</p>
           <a class="case-impact-link" href="#outcome">See Outcome &darr;</a>
         </div>
-        <div class="case-impact-item"><span class="case-impact-value">4</span><span class="case-impact-label">Teams on one system</span></div>
-        <div class="case-impact-item"><span class="case-impact-value">&minus;40%</span><span class="case-impact-label">Handoff time</span></div>
-        <div class="case-impact-item"><span class="case-impact-value">Ended</span><span class="case-impact-label">Rebuild cycle</span></div>
+        <div class="case-impact-item">
+          <span class="case-impact-value">4</span>
+          <span class="case-impact-label">Teams on one system</span>
+          <span class="case-impact-src">Counted</span>
+        </div>
+        <div class="case-impact-item">
+          <span class="case-impact-value">60+</span>
+          <span class="case-impact-label">Documented components</span>
+          <span class="case-impact-src">Counted in Figma</span>
+        </div>
+        <div class="case-impact-item">
+          <span class="case-impact-value">2,300+</span>
+          <span class="case-impact-label">Component variants</span>
+          <span class="case-impact-src">Counted in Figma</span>
+        </div>
+        <div class="case-impact-item">
+          <span class="case-impact-value">&minus;40%</span>
+          <span class="case-impact-label">Handoff time</span>
+          <span class="case-impact-src">Reported, estimate</span>
+        </div>
       </div>
+      <p class="case-impact-note">
+        The four and the library counts are counted directly from the shipped Figma file. The handoff
+        figure is a team estimate from 2024, and its baseline and method were never documented, which is
+        why the outcome section treats it as a claim rather than a measurement.
+      </p>
 
       <div class="case-figures" style="margin-top: 24px;">
         <figure class="case-figure case-figure--stats">
           <div class="case-outcome-grid">
             <div class="case-outcome case-outcome--dark">
-              <p class="case-outcome-label">Token System</p>
-              <p class="case-outcome-value">2-Tier</p>
+              <p class="case-outcome-label">Token system</p>
+              <p class="case-outcome-value">2-tier</p>
               <p class="case-outcome-copy">Foundation tokens feeding semantic, usage-level tokens.</p>
             </div>
             <div class="case-outcome">
@@ -112,7 +147,7 @@
             <div class="case-outcome">
               <p class="case-outcome-label">Variants</p>
               <p class="case-outcome-value">2,300+</p>
-              <p class="case-outcome-copy">Across states, sizes, and product-specific needs.</p>
+              <p class="case-outcome-copy">Every component variant in the file: states, sizes and product-specific needs. A library count, not an adoption number.</p>
             </div>
           </div>
           <div class="case-figure-inset">
@@ -123,41 +158,6 @@
           <figcaption>Omnione Design System Documentation</figcaption>
         </figure>
       </div>
-
-      <p class="case-label case-label--lg" style="margin-top: 52px;">My responsibilities included</p>
-
-      <div class="case-leadership-grid case-leadership-grid--cards">
-        <div class="case-leadership">
-          <p class="case-leadership-label">Pattern Audit</p>
-          <p class="case-leadership-copy">Auditing existing UI patterns across all four product surfaces to find what was already duplicated or diverging.</p>
-          <div class="case-crop"><img width="2880" height="1620" src="images/omnione/retail-operating-system-ros-omnibiz.png" alt="" loading="lazy" style="width: 167%; left: -66.8%; transform: translateY(-33%);"></div>
-        </div>
-        <div class="case-leadership">
-          <p class="case-leadership-label">Foundation Layer</p>
-          <p class="case-leadership-copy">Owning the <strong>foundation layer</strong> (colour, typography, grid, table rows and columns, and the sidebar): the pieces every other designer had to build their own library section on top of.</p>
-          <div class="case-crop"><img width="2625" height="1620" src="images/omnione/design-system-library.png" alt="" loading="lazy" style="width: 208%; left: -108%;"></div>
-        </div>
-        <div class="case-leadership">
-          <p class="case-leadership-label">Atomic Structure</p>
-          <p class="case-leadership-copy">Structuring the system on atomic design (Foundation, Atoms, Molecules, Organisms, Templates) so the dependency order let four teams build in parallel instead of blocking on each other.</p>
-          <div class="case-crop"><img width="2099" height="681" src="images/omnione/omnione-design-system-cover-banner.png" alt="" loading="lazy" style="width: 287%; left: -73%; transform: translateY(-23%);"></div>
-        </div>
-        <div class="case-leadership">
-          <p class="case-leadership-label">2-Tier Tokens</p>
-          <p class="case-leadership-copy">Defining a 2-tier token system (foundation tokens for raw values, semantic tokens for usage) so colour, spacing, and type could update from one source.</p>
-          <div class="case-crop"><img width="2039" height="1020" src="images/omnione/variable-assets-defined-in-figma.png" alt="" loading="lazy" style="width: 169%; left: -3.4%; transform: translateY(-7%);"></div>
-        </div>
-        <div class="case-leadership">
-          <p class="case-leadership-label">Table Column System</p>
-          <p class="case-leadership-copy">Designing the table column system: variants for text, status labels, leading icons, avatars, icon-only, title style, sortable headers and row actions, all extended as new use cases surfaced across the teams.</p>
-          <div class="case-crop"><img width="1556" height="1148" src="images/omnione/table-column-assets.png" alt="" loading="lazy" style="width: 247%; left: -45.7%; transform: translateY(-50%);"></div>
-        </div>
-        <div class="case-leadership">
-          <p class="case-leadership-label">Engineering Handoff</p>
-          <p class="case-leadership-copy">Working directly with engineers to define the Figma variables they built tokens from, so the system matched in the browser, not just in Figma.</p>
-          <div class="case-crop"><img width="2039" height="1020" src="images/omnione/variable-assets-defined-in-figma.png" alt="" loading="lazy" style="width: 286%; left: -68.6%; transform: translateY(-7%);"></div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -166,23 +166,24 @@
     <div class="wrap">
       <p class="case-label">Problem</p>
       <p class="case-copy case-copy--lg">
-        After a successful fundraising, four teams, four interpretations of the same interface. The cost
-        was not only visual: it showed up in rebuilt components, inconsistent engineering specs, and
-        users learning the same pattern twice.
+        After a successful fundraising, OmniRetail grew from one product surface to four, and each team
+        staffed its own design function. Four teams meant four interpretations of the same interface. The
+        cost was not only visual. It showed up in rebuilt components, inconsistent engineering specs, and
+        users learning the same pattern twice in two products.
       </p>
       <div class="case-figures" style="margin-top: 24px;">
         <figure class="case-figure case-figure--grey">
           <div class="case-split case-split--3">
             <div class="case-split-cell case-split-cell--dark">
-              <p class="case-split-label case-split-label--lg">Divergent Visual Language</p>
+              <p class="case-split-label case-split-label--lg">Divergent visual language</p>
               <p class="case-split-copy">Every surface had shipped its own buttons, spacing scales, and component behaviour, because each was built independently under deadline pressure.</p>
             </div>
             <div class="case-split-cell">
-              <p class="case-split-label">Rebuilding Basics</p>
+              <p class="case-split-label">Rebuilding basics</p>
               <p class="case-split-copy">Every new screen meant rebuilding basic UI from scratch, because there was nothing shared to pull from.</p>
             </div>
             <div class="case-split-cell">
-              <p class="case-split-label">Inconsistent Handoff</p>
+              <p class="case-split-label">Inconsistent handoff</p>
               <p class="case-split-copy">Engineers received slightly different specs for the same "component" depending on which designer built the screen, creating avoidable back-and-forth.</p>
             </div>
           </div>
@@ -192,18 +193,124 @@
           <figcaption>Variable assets defined in Figma</figcaption>
         </figure>
       </div>
+
+      <p class="case-copy" style="margin-top: 24px;">
+        <strong>What made it a system problem and not a style problem.</strong> The teams were not
+        disagreeing about taste. They were each solving the same problem from scratch, in parallel, with
+        no way to see that the work had already been done next door. A style guide would have documented
+        the disagreement. What was missing was a dependency order, so a designer on Omnipay could build on
+        something stable instead of waiting for the Retail team to finish.
+      </p>
     </div>
   </section>
 
-  <!-- ============ PROCESS ============ -->
-  <section class="case-section" id="process">
+  <!-- ============ ROLE ============ -->
+  <section class="case-section" id="role">
     <div class="wrap">
-      <p class="case-label">Process</p>
-      <ol class="case-steps case-steps--flush case-steps--4">
+      <p class="case-label">My role &amp; constraints</p>
+      <p class="case-copy">
+        I led Retail Design at OmniRetail and contributed to the shared Omni design system rather than
+        authoring all of it. My scope inside the library was the foundation layer and the table column
+        system. Other designers owned their own sections on top of that foundation, and engineering owned
+        the code library that the tokens fed.
+      </p>
+
+      <div class="case-leadership-grid case-leadership-grid--cards" style="margin-top: 24px;">
+        <div class="case-leadership">
+          <p class="case-leadership-label">Pattern audit</p>
+          <p class="case-leadership-copy">Auditing existing UI patterns across the four product surfaces to find what was already duplicated or diverging, before anything new was drawn.</p>
+          <div class="case-crop"><img width="2880" height="1620" src="images/omnione/retail-operating-system-ros-omnibiz.png" alt="" loading="lazy" style="width: 167%; left: -66.8%; transform: translateY(-33%);"></div>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">Foundation layer</p>
+          <p class="case-leadership-copy">Owning the <strong>foundation layer</strong> (colour, typography, grid, table rows and columns, and the sidebar): the pieces every other designer had to build their own library section on top of.</p>
+          <div class="case-crop"><img width="2625" height="1620" src="images/omnione/design-system-library.png" alt="" loading="lazy" style="width: 208%; left: -108%;"></div>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">Atomic structure</p>
+          <p class="case-leadership-copy">Structuring the system on atomic design (Foundation, Atoms, Molecules, Organisms, Templates) so the dependency order let four teams build in parallel instead of blocking on each other.</p>
+          <div class="case-crop"><img width="2099" height="681" src="images/omnione/omnione-design-system-cover-banner.png" alt="" loading="lazy" style="width: 287%; left: -73%; transform: translateY(-23%);"></div>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">2-tier tokens</p>
+          <p class="case-leadership-copy">Defining a 2-tier token system (foundation tokens for raw values, semantic tokens for usage) so colour, spacing, and type could update from one source.</p>
+          <div class="case-crop"><img width="2039" height="1020" src="images/omnione/variable-assets-defined-in-figma.png" alt="" loading="lazy" style="width: 169%; left: -3.4%; transform: translateY(-7%);"></div>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">Table column system</p>
+          <p class="case-leadership-copy">Designing the table column system: variants for text, status labels, leading icons, avatars, icon-only, title style, sortable headers and row actions, all extended as new use cases surfaced across the teams.</p>
+          <div class="case-crop"><img width="1556" height="1148" src="images/omnione/table-column-assets.png" alt="" loading="lazy" style="width: 247%; left: -45.7%; transform: translateY(-50%);"></div>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">Engineering handoff</p>
+          <p class="case-leadership-copy">Working directly with engineers to define the Figma variables they built tokens from, so the system matched in the browser, not just in Figma.</p>
+          <div class="case-crop"><img width="2039" height="1020" src="images/omnione/variable-assets-defined-in-figma.png" alt="" loading="lazy" style="width: 286%; left: -68.6%; transform: translateY(-7%);"></div>
+        </div>
+      </div>
+
+      <p class="case-copy" style="margin-top: 24px;">
+        The constraint that shaped the work was not craft. It was that four teams were already mid-delivery
+        and none of them could stop to wait for a system. Anything that required a freeze would have been
+        rejected in the room, so the plan had to be adoptable one section at a time.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ DECISIONS ============ -->
+  <section class="case-section" id="decisions">
+    <div class="wrap">
+      <p class="case-label">Key decisions</p>
+      <p class="case-copy">
+        Three decisions shaped the system. Each one cost something visible, and each is the reason the
+        library survived contact with four delivery timelines.
+      </p>
+
+      <div class="case-leadership-grid case-leadership-grid--cards" style="margin-top: 24px;">
+        <div class="case-leadership">
+          <p class="case-leadership-label">01 &middot; Settle tokens before components</p>
+          <p class="case-leadership-copy">The token structure came first, then components were composed against it. Token work is invisible progress compared with a new component set, and that was the argument I had to make repeatedly.</p>
+          <p class="case-leadership-copy" style="margin-top: 10px;"><strong>Trade-off:</strong> weeks of work with nothing demoable, while stakeholders asked to see screens. Had we started with components, every one of them would have needed rebuilding the moment the tokens landed.</p>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">02 &middot; Build the foundation myself, distribute the rest</p>
+          <p class="case-leadership-copy">I kept colour, type, grid, tables and the sidebar as one owned piece, and let each team own its own library section above it. One person holding the foundation kept it coherent while four teams moved.</p>
+          <p class="case-leadership-copy" style="margin-top: 10px;"><strong>Trade-off:</strong> it made me a bottleneck for foundation changes. I accepted that for the first phase, then opened the contribution path once the base was stable.</p>
+        </div>
+        <div class="case-leadership">
+          <p class="case-leadership-label">03 &middot; Ship a contribution path, not a locked library</p>
+          <p class="case-leadership-copy">The library shipped with a lightweight way for other designers to propose new components instead of forking the system.</p>
+          <p class="case-leadership-copy" style="margin-top: 10px;"><strong>Trade-off:</strong> an open library needs review, and review costs time. The alternative was a locked file that teams route around, which is how the original divergence started.</p>
+        </div>
+      </div>
+
+      <div class="case-decision" style="margin-top: 32px;">
+        <p class="case-decision-label">The decision I would revisit</p>
+        <p class="case-decision-copy">
+          I sequenced the system for craft quality, and I under-invested in adoption evidence. There was no
+          per-team measure of how much of each product was actually built on Omnione, so the outcome story
+          rests on library counts and a handoff estimate rather than on usage. If I ran it again I would
+          instrument adoption from the first release, because a system's real health is how much of the
+          product is built with it, not how many components exist in the file.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DESIGN ============ -->
+  <section class="case-section" id="design">
+    <div class="wrap">
+      <p class="case-label">Design</p>
+      <p class="case-copy case-copy--lg">
+        The work ran in four phases: audit, define, build, adopt. The order is the design decision. Each
+        phase produced something the next phase could stand on, and nothing shipped to the teams before
+        the layer underneath it was stable.
+      </p>
+
+      <ol class="case-steps case-steps--flush case-steps--4" style="margin-top: 24px;">
         <li>
           <span class="case-step-n">01</span>
           <span class="case-step-title">Audit</span>
-          <span class="case-step-copy">Catalogued existing patterns and duplication across all four product teams.</span>
+          <span class="case-step-copy">Catalogued existing patterns and duplication across the four product teams.</span>
         </li>
         <li>
           <span class="case-step-n">02</span>
@@ -221,23 +328,19 @@
           <span class="case-step-copy">Partnered with engineering on the code library, then set up governance so the system kept growing without me gatekeeping it.</span>
         </li>
       </ol>
-    </div>
-  </section>
 
-  <!-- ============ SOLUTION ============ -->
-  <section class="case-section" id="solution">
-    <div class="wrap">
-      <p class="case-label">Solution</p>
-<div class="case-figures case-walkthrough"><figure class="case-figure case-figure--grey" data-case-loop aria-label="One system across product surfaces"><div class="case-loop-stage" style="aspect-ratio:1556/1148"><img class="case-loop-frame is-current" src="images/omnione/table-column-assets.png" alt="Table components" data-loop-label="Table components" loading="lazy" width="1556" height="1148"><img class="case-loop-frame" src="images/omnione/sso-screens.png" alt="Shared sign-in" data-loop-label="Shared sign-in" loading="lazy" aria-hidden="true" width="2880" height="1620"><img class="case-loop-frame" src="images/omnione/retail-operating-system-ros-omnibiz.png" alt="Retail ordering" data-loop-label="Retail ordering" loading="lazy" aria-hidden="true" width="2880" height="1620"><img class="case-loop-frame" src="images/omnione/omnipay.png" alt="Payments" data-loop-label="Payments" loading="lazy" aria-hidden="true" width="2880" height="1620"></div><div class="case-loop-controls"><span class="case-loop-label">Table components</span><div class="case-loop-steps" aria-label="Walkthrough screens"><button type="button" data-loop-step="0" aria-label="Show Table components" aria-current="step"><span class="case-loop-progress" aria-hidden="true"></span></button><button type="button" data-loop-step="1" aria-label="Show Shared sign-in"><span class="case-loop-progress" aria-hidden="true"></span></button><button type="button" data-loop-step="2" aria-label="Show Retail ordering"><span class="case-loop-progress" aria-hidden="true"></span></button><button type="button" data-loop-step="3" aria-label="Show Payments"><span class="case-loop-progress" aria-hidden="true"></span></button></div></div><figcaption>Original design assets · Components, shared sign-in, retail and payments</figcaption></figure></div>
-      <p class="case-copy">
+<div class="case-figures case-walkthrough" style="margin-top: 32px;"><figure class="case-figure case-figure--grey" data-case-loop aria-label="One system across product surfaces"><div class="case-loop-stage" style="aspect-ratio:1556/1148"><img class="case-loop-frame is-current" src="images/omnione/table-column-assets.png" alt="Table components" data-loop-label="Table components" loading="lazy" width="1556" height="1148"><img class="case-loop-frame" src="images/omnione/sso-screens.png" alt="Shared sign-in" data-loop-label="Shared sign-in" loading="lazy" aria-hidden="true" width="2880" height="1620"><img class="case-loop-frame" src="images/omnione/retail-operating-system-ros-omnibiz.png" alt="Retail ordering" data-loop-label="Retail ordering" loading="lazy" aria-hidden="true" width="2880" height="1620"><img class="case-loop-frame" src="images/omnione/omnipay.png" alt="Payments" data-loop-label="Payments" loading="lazy" aria-hidden="true" width="2880" height="1620"></div><div class="case-loop-controls"><span class="case-loop-label">Table components</span><div class="case-loop-steps" aria-label="Walkthrough screens"><button type="button" data-loop-step="0" aria-label="Show Table components" aria-current="step"><span class="case-loop-progress" aria-hidden="true"></span></button><button type="button" data-loop-step="1" aria-label="Show Shared sign-in"><span class="case-loop-progress" aria-hidden="true"></span></button><button type="button" data-loop-step="2" aria-label="Show Retail ordering"><span class="case-loop-progress" aria-hidden="true"></span></button><button type="button" data-loop-step="3" aria-label="Show Payments"><span class="case-loop-progress" aria-hidden="true"></span></button></div></div><figcaption>Original design assets &middot; Components, shared sign-in, retail and payments</figcaption></figure></div>
+
+      <p class="case-copy" style="margin-top: 24px;">
         A single component library, structured so each team could keep moving at their own pace while
-        pulling from the same foundation. Tokens first, components second, adoption third, in that
-        order, because the order is what made it survivable.
+        pulling from the same foundation. Tokens first, components second, adoption third, in that order,
+        because the order is what made it survivable.
       </p>
-      <div class="case-figures case-figures--spaced">
+
+      <div class="case-figures case-figures--spaced" style="margin-top: 18px;">
         <figure class="case-figure case-figure--grey">
           <div class="case-figure-head">
-            <p class="case-figure-head-title">Tokens First</p>
+            <p class="case-figure-head-title">Tokens first</p>
             <p class="case-figure-head-copy">Audited existing patterns across the Retailer App, Omnipay, and internal tools to find what was already duplicated or diverging. Defined a token structure (colour values, semantic tokens for usage, type scale, spacing, and elevation) so the foundation could update in one place.</p>
           </div>
           <div class="case-figure-inset">
@@ -248,7 +351,7 @@
         </figure>
         <figure class="case-figure case-figure--grey">
           <div class="case-figure-head">
-            <p class="case-figure-head-title">Components Second</p>
+            <p class="case-figure-head-title">Components second</p>
             <p class="case-figure-head-copy">Built and documented the component library in Figma, from primitives (buttons, inputs, tags) through composed patterns (cards, tables, empty states).</p>
           </div>
           <div class="case-figure-inset">
@@ -259,7 +362,7 @@
         </figure>
         <figure class="case-figure case-figure--grey">
           <div class="case-figure-head">
-            <p class="case-figure-head-title">Adoption Third</p>
+            <p class="case-figure-head-title">Adoption third</p>
             <p class="case-figure-head-copy">Worked directly with engineers to translate tokens into code, so the system matched in the browser and not just in Figma. Set up a lightweight contribution process so other designers could propose new components without forking the system.</p>
           </div>
           <div class="case-figure-inset">
@@ -269,6 +372,14 @@
           </div>
         </figure>
       </div>
+
+      <p class="case-copy" style="margin-top: 24px;">
+        <strong>Where the table column system came from.</strong> Tables were the one pattern every
+        surface needed and every team had solved differently. Retail needed sortable headers and row
+        actions, Distribution needed status labels and leading icons, Manufacturing needed avatars and
+        title styles. Rather than design four tables, the column became the unit: each variant a piece
+        that any team could assemble into its own table without inventing a new pattern.
+      </p>
     </div>
   </section>
 
@@ -276,29 +387,55 @@
   <section class="case-section" id="outcome">
     <div class="wrap">
       <p class="case-label">Outcome</p>
+      <p class="case-copy case-copy--lg">
+        Two kinds of number appear here, and they are not the same kind of evidence. Library counts come
+        from the file itself. Adoption and speed figures come from the team, without a documented
+        baseline.
+      </p>
 
-      <div class="case-outcome-grid">
+      <div class="case-outcome-grid" style="margin-top: 24px;">
         <div class="case-outcome">
-          <p class="case-outcome-label">Teams Unified</p>
+          <p class="case-outcome-label">Teams unified</p>
           <p class="case-outcome-value">4</p>
-          <p class="case-outcome-copy">Retail, Distribution, Manufacturer and Payments on one shared language.</p>
+          <p class="case-outcome-src">Counted</p>
+          <p class="case-outcome-copy">Retail, Distribution, Manufacturer and Payments on one shared language. Counted as the teams onboarded to the library, not as a per-team adoption rate.</p>
         </div>
         <div class="case-outcome">
-          <p class="case-outcome-label">Handoff Time</p>
+          <p class="case-outcome-label">Handoff time</p>
           <p class="case-outcome-value">&minus;40%</p>
-          <p class="case-outcome-copy">Reduction in design-to-engineering handoff once teams built against tokens.</p>
+          <p class="case-outcome-src">Reported &middot; team estimate</p>
+          <p class="case-outcome-copy">Reduction in design-to-engineering handoff once teams built against tokens. Reported by the team in 2024. The baseline, sample and method were not documented, so treat it as a claim.</p>
         </div>
         <div class="case-outcome">
-          <p class="case-outcome-label">Rebuild Cycle</p>
-          <p class="case-outcome-value">Ended</p>
-          <p class="case-outcome-copy">Teams pulled from the library instead of rebuilding primitives per screen.</p>
+          <p class="case-outcome-label">Components</p>
+          <p class="case-outcome-value">60+</p>
+          <p class="case-outcome-src">Counted in Figma</p>
+          <p class="case-outcome-copy">Documented components in the shared library, counted from the shipped file.</p>
         </div>
+        <div class="case-outcome">
+          <p class="case-outcome-label">Variants</p>
+          <p class="case-outcome-value">2,300+</p>
+          <p class="case-outcome-src">Counted in Figma</p>
+          <p class="case-outcome-copy">Every component variant in the file, across states, sizes and product-specific needs. A library count, not a measure of usage.</p>
+        </div>
+      </div>
+
+      <div class="case-flag-box" style="margin-top: 32px;">
+        <p class="case-flag-label">What this does not show</p>
+        <p class="case-flag-copy">
+          It does not show per-team adoption, because nobody instrumented how much of each product was
+          actually built on Omnione. It does not show that the rebuild cycle ended, so that claim is
+          removed rather than restated: the library reduced duplicated work, but I cannot prove it went to
+          zero. The 2,300 figure counts variants in a file, which is a measure of breadth, not of quality or
+          use. And the handoff estimate has no baseline, so it belongs in a conversation, not in a
+          spreadsheet.
+        </p>
       </div>
 
       <div class="case-edge-grid" style="margin-top: 52px;">
         <div class="case-edge case-edge--dark case-edge--full">
           <div class="case-edge-body">
-            <p class="case-edge-title">The Surfaces It Had To Serve</p>
+            <p class="case-edge-title">The surfaces it had to serve</p>
             <p class="case-edge-copy">OmniRetail isn't one app. It's an operating system for each side of the trade (retail, distribution and manufacturing), plus the payment rail underneath and the internal tool that administers all three. Any design system here had to serve four teams whose users have almost nothing in common except the data flowing between them.</p>
           </div>
         </div>
@@ -313,7 +450,7 @@
         </div>
         <div class="case-edge">
           <div class="case-edge-body">
-            <p class="case-edge-kicker">Retail Team</p>
+            <p class="case-edge-kicker">Retail team</p>
             <p class="case-edge-title case-edge-title--ink">Omnibiz App &middot; ROS</p>
           </div>
           <div class="case-edge-media">
@@ -322,7 +459,7 @@
         </div>
         <div class="case-edge">
           <div class="case-edge-body">
-            <p class="case-edge-kicker">Distribution Team</p>
+            <p class="case-edge-kicker">Distribution team</p>
             <p class="case-edge-title case-edge-title--ink">OmniHub &middot; DOS</p>
           </div>
           <div class="case-edge-media">
@@ -331,7 +468,7 @@
         </div>
         <div class="case-edge">
           <div class="case-edge-body">
-            <p class="case-edge-kicker">Manufacturer Team</p>
+            <p class="case-edge-kicker">Manufacturer team</p>
             <p class="case-edge-title case-edge-title--ink">OmniOne &middot; MOS</p>
           </div>
           <div class="case-edge-media">
@@ -340,7 +477,7 @@
         </div>
         <div class="case-edge">
           <div class="case-edge-body">
-            <p class="case-edge-kicker">Payments Team</p>
+            <p class="case-edge-kicker">Payments team</p>
             <p class="case-edge-title case-edge-title--ink">Omnipay App</p>
           </div>
           <div class="case-edge-media">
@@ -360,34 +497,43 @@
     </div>
   </section>
 
-  <!-- ============ THE DECISION ============ -->
-  <section class="case-section" style="padding-top: 92px;">
+  <!-- ============ REFLECTION ============ -->
+  <section class="case-section" id="reflection">
     <div class="wrap">
-      <div class="case-decision" style="margin-top: 0;">
-        <p class="case-decision-label">The Decision</p>
-        <p class="case-decision-copy">
-          I built the component library in phases rather than shipping it all at once. Token work is
-          invisible progress compared to a shiny new component set, but it avoided the
-          <strong>component-rework cycle</strong>. Had we started with components, every one of them
-          would have needed rebuilding the moment the tokens landed.
-        </p>
-      </div>
-    </div>
-  </section>
+      <p class="case-label">Reflection</p>
+      <p class="case-copy">
+        A design system is an agreement, not a file. The hardest part was never drawing the components.
+        It was getting four teams to accept a shared constraint while each was under its own delivery
+        pressure. What made it hold was <strong>sequencing and adoption, not craft</strong>: settling the
+        foundation first so nobody was blocked, giving engineering tokens instead of screenshots, and
+        leaving a contribution path open so the system could absorb new needs rather than be worked
+        around. A library nobody can extend gets forked; one that's easy to contribute to gets defended by
+        the people using it.
+      </p>
+      <p class="case-copy">
+        The part I would do differently is measurement, not design. I can show what was built and who
+        adopted it, but I cannot show what it saved, because adoption was never instrumented and the
+        handoff figure was an estimate. Next time the success measure would be set on day one: the share
+        of new screens built from the library, and the time from design handoff to a merged component.
+      </p>
 
-  <!-- ============ LESSON LEARNT ============ -->
-  <section class="case-section" style="padding-top: 88px;">
-    <div class="wrap">
-      <div class="case-flag-box" style="margin-top: 0;">
-        <p class="case-flag-label">Lesson Learnt</p>
-        <p class="case-flag-copy">
-          A design system is an agreement, not a file. The hardest part was never drawing the components. It was getting four teams to accept a shared constraint while each was under
-          its own delivery pressure. What made it hold was <strong>sequencing and adoption, not
-          craft</strong>: settling the foundation first so nobody was blocked, giving engineering tokens
-          instead of screenshots, and leaving a contribution path open so the system could absorb new
-          needs rather than be worked around. A library nobody can extend gets forked; one that's easy
-          to contribute to gets defended by the people using it.
-        </p>
+      <p class="case-label case-label--lg" style="margin-top: 48px;">Next tests</p>
+      <div class="case-stack-row">
+        <div class="case-stack-panel case-stack-panel--grey" aria-hidden="true"><img src="images/coreloops/Trade-offs Illustration-1.png" alt=""></div>
+        <div class="case-stack case-stack--wide">
+          <div class="case-stack-item">
+            <p class="case-stack-title">Instrument adoption</p>
+            <p class="case-stack-copy">Measure the share of new screens built from the library per team, so the system's health is visible without asking a designer.</p>
+          </div>
+          <div class="case-stack-item">
+            <p class="case-stack-title">Set a handoff baseline</p>
+            <p class="case-stack-copy">Time one handoff before and after the tokens land, on the same component, so the speed claim has a method behind it.</p>
+          </div>
+          <div class="case-stack-item">
+            <p class="case-stack-title">Audit drift yearly</p>
+            <p class="case-stack-copy">Check each surface for local overrides, since divergence returns quietly once a system is no longer being maintained.</p>
+          </div>
+        </div>
       </div>
 
       <div class="case-visit-end">

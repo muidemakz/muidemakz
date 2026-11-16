@@ -31,18 +31,12 @@
   var process = document.getElementById("process");
   var ownership = document.getElementById("ownership");
 
-  if (goals) {
-    var duplicateImpact = goals.querySelector(":scope > .wrap > .case-impact");
-    if (duplicateImpact) duplicateImpact.remove();
-  }
   var impactWrap = document.querySelector("#impact > .wrap");
   if (impactWrap) {
-    var impactCopy = impactWrap.querySelector(":scope > .case-copy");
-    if (impactCopy) impactCopy.textContent = "Teesas internal reporting lists these V4 product measures. The figures do not isolate design's contribution, and the exact reporting period and populations still need confirmation.";
     var impactFigures = impactWrap.querySelector(":scope > .case-figures");
     var evidenceKey = document.createElement("div");
     evidenceKey.className = "case-evidence-key";
-    evidenceKey.innerHTML = '<span><strong>Measured · V4</strong> Teesas internal product reporting, exact period and population to confirm</span><span class="predicted"><strong>Predicted</strong> No AI simulated results used in this case study</span>';
+    evidenceKey.innerHTML = '<span><strong>Reported &middot; V4</strong> Teesas internal reporting. Period, population and denominators not documented</span><span class="predicted"><strong>Not a controlled test</strong> Design&rsquo;s share of each change is not isolated</span>';
     if (impactFigures) impactFigures.insertAdjacentElement("beforebegin", evidenceKey);
   }
   if (summary && users) {
@@ -57,18 +51,6 @@
   }
   mergeSection("discovery", "users", "Research and investigation");
   mergeSection("ownership", "process", "Leadership and cross functional delivery");
-
-  var versionCopy = document.querySelector("#versions > .wrap > .case-copy");
-  if (versionCopy) {
-    versionCopy.textContent = "V1, V2, and V3 show how the product evolved. V4 is told below through the shipped product areas represented in the screenshots.";
-  }
-  var versionFlag = document.querySelector("#versions .case-flag-box");
-  if (versionFlag) {
-    var versionFlagLabel = versionFlag.querySelector(".case-flag-label");
-    var versionFlagCopy = versionFlag.querySelector(".case-flag-copy");
-    if (versionFlagLabel) versionFlagLabel.textContent = "V4 evidence to complete";
-    if (versionFlagCopy) versionFlagCopy.textContent = "[For each V4 product area, add the user problem, supporting evidence, design choice and trade off, validation, and the engineering detail that shaped what shipped.]";
-  }
 
   var currentGalleryLabel = document.querySelector("#screens .case-loop-label");
   if (currentGalleryLabel) currentGalleryLabel.textContent = "V4 · Teacher portal";
@@ -94,36 +76,6 @@
     if (screenLabel) screenLabel.textContent = "V4 shipped experience, by product area";
     var carouselCaption = screens.querySelector(".case-walkthrough figcaption");
     if (carouselCaption) carouselCaption.textContent = "V4 · Teacher, student and parent portals";
-
-    var evidencePanel = document.createElement("section");
-    evidencePanel.className = "case-evidence-panel";
-    evidencePanel.innerHTML = '<h3 class="case-preview-subheading">Senior design evidence to add</h3><p class="case-copy">The V4 images are grouped by product area. These prompts make the reasoning, validation, ownership, and delivery visible without filling in facts we do not have.</p><div class="case-evidence-grid"><article><h4>Problem and evidence</h4><p>[Add the user task, research method, participant sample, date, and finding for each area.]</p></article><article><h4>Decision and trade off</h4><p>[Add the key choice, the alternative considered, and why the chosen approach best served the user and school.]</p></article><article><h4>Build and iteration</h4><p>[Add what you personally designed, what engineering shaped, what changed during implementation, and what shipped.]</p></article><article><h4>Success and attribution</h4><p>[Connect each relevant result to its version, baseline, target, measurement period, source, and contribution.]</p></article></div>';
-    var firstFigureGroup = screens.querySelector(":scope > .wrap > .case-figures");
-    if (firstFigureGroup) firstFigureGroup.insertAdjacentElement("beforebegin", evidencePanel);
-
-    var areaPrompts = {
-      "Onboarding": "[Add the first setup task, the onboarding choice, the usability check, and what changed after it.]",
-      "Dashboard": "[Add how the primary task was ranked for each role, the evidence behind that order, and one trade off.]",
-      "Sessions & Timetables": "[Add the scheduling task, the constraint that shaped the flow, and how teacher feedback changed it.]",
-      "Classes & Subjects": "[Add the school setup need, an edge case across institutions, and how the final workflow handled it.]",
-      "Roles & Permissions": "[Add the access rules, the role combinations tested, and the implementation detail that shipped.]",
-      "Teacher Portal": "[Add one high frequency teacher task, its baseline or success measure, and the validation result.]",
-      "Student Portal": "[Add one student learning task, the evidence behind its design, and the usability or accessibility check.]",
-      "Parent Portal": "[Add the parent information need, pilot denominator and period, and the source for the reported usage.]",
-      "Other & Responsive Screens": "[Add the supported device widths, responsive decision, accessibility check, and engineering constraint.]"
-    };
-    screens.querySelectorAll(".case-figures--spaced .case-figure").forEach(function (figure) {
-      var title = figure.querySelector(".case-figure-head-title");
-      if (!title || !areaPrompts[title.textContent.trim()]) return;
-      var details = document.createElement("details");
-      details.className = "case-evidence-details";
-      var summary = document.createElement("summary");
-      summary.textContent = "Design evidence for this area";
-      var copy = document.createElement("p");
-      copy.textContent = areaPrompts[title.textContent.trim()];
-      details.append(summary, copy);
-      figure.appendChild(details);
-    });
   }
 
   var future = main.querySelector(":scope > .case-section:not([id]):not(.case-other)");
