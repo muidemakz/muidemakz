@@ -578,3 +578,66 @@ html[data-theme="light"] .o-finger { top: 64%; bottom: auto; transform-origin: 5
 .o-base { width: .32em; height: .26em; margin: -.13em 0 0 -.16em; border-radius: .06em; box-shadow: 0 .02em .04em rgba(0, 0, 0, .55), inset 0 .012em 0 rgba(255, 255, 255, .95), inset 0 -.015em .02em rgba(0, 0, 0, .2); }
 .o-lever { width: .26em; height: .15em; margin: -.075em 0 0 -.13em; border-radius: .05em; box-shadow: -.05em .03em .05em rgba(0, 0, 0, .55), inset .01em 0 0 rgba(255, 255, 255, .9); }
 html[data-theme="light"] .o-lever { box-shadow: .05em .03em .05em rgba(0, 0, 0, .55), inset -.01em 0 0 rgba(255, 255, 255, .9); }
+
+/* ---------- The O as a sliding switch: a wide pill with a round knob ----------
+   Dark: night track with stars, the knob sits right and shows a moon.
+   Light: day sky, the knob slides left and shows a sun. */
+.o-plate, .o-led, .o-base, .o-lever { display: none !important; }
+.o-switch {
+  width: 1.22em;
+  height: .64em;
+  margin: 0 .05em;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  box-shadow: 0 .04em .08em rgba(0, 0, 0, .5);
+  perspective: none;
+}
+.o-track {
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  background: linear-gradient(180deg, #14122a, #2b2552);
+  box-shadow: inset 0 .04em .08em rgba(0, 0, 0, .65), inset 0 0 0 .04em rgba(255, 255, 255, .12);
+  transition: background .45s ease;
+}
+html[data-theme="light"] .o-track { background: linear-gradient(180deg, #8fd3f4, #c9ecff); box-shadow: inset 0 .04em .08em rgba(20, 70, 110, .35), inset 0 0 0 .04em rgba(255, 255, 255, .6); }
+.o-star { position: absolute; width: .045em; height: .045em; border-radius: 50%; background: #fff; box-shadow: 0 0 .04em #fff; transition: opacity .35s ease, transform .45s ease; }
+.o-star--1 { left: 18%; top: 28%; }
+.o-star--2 { left: 34%; top: 62%; width: .035em; height: .035em; }
+.o-star--3 { left: 46%; top: 30%; width: .03em; height: .03em; }
+.o-cloud { position: absolute; right: 16%; top: 40%; width: .3em; height: .12em; border-radius: 999px; background: #fff; opacity: 0; transform: translateX(.2em); transition: opacity .35s ease, transform .45s ease; }
+.o-cloud::before { content: ""; position: absolute; left: .06em; bottom: .05em; width: .14em; height: .14em; border-radius: 50%; background: #fff; }
+html[data-theme="light"] .o-star { opacity: 0; transform: translateY(.1em); }
+html[data-theme="light"] .o-cloud { opacity: .95; transform: none; }
+.o-thumb {
+  position: absolute; top: .06em; left: .06em;
+  display: grid; place-items: center;
+  width: .52em; height: .52em;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ffffff, #e6e4f2 60%, #b9b6cc);
+  box-shadow: 0 .04em .07em rgba(0, 0, 0, .55), inset 0 -.02em .03em rgba(0, 0, 0, .2);
+  transform: translateX(.58em);
+  transition: transform .5s cubic-bezier(.3, 1.5, .45, 1), background .4s ease;
+}
+html[data-theme="light"] .o-thumb { transform: translateX(0); background: radial-gradient(circle at 35% 30%, #fff7d6, #ffd54a 55%, #ff9f1c); }
+.o-ico { position: absolute; width: .34em; height: .34em; transition: opacity .3s ease, transform .5s cubic-bezier(.3, 1.5, .45, 1); }
+.o-moon { fill: #6b6890; opacity: 1; transform: rotate(0deg) scale(1); }
+.o-sun { fill: #c95a00; stroke: #c95a00; opacity: 0; transform: rotate(-90deg) scale(.5); }
+html[data-theme="light"] .o-moon { opacity: 0; transform: rotate(90deg) scale(.5); }
+html[data-theme="light"] .o-sun { opacity: 1; transform: rotate(0deg) scale(1); }
+.o-switch:hover .o-thumb { box-shadow: 0 .05em .1em rgba(0, 0, 0, .6), 0 0 0 .04em rgba(255, 255, 255, .25), inset 0 -.02em .03em rgba(0, 0, 0, .2); }
+.o-switch:focus-visible { outline: 2px solid var(--accent); outline-offset: .08em; }
+
+/* the hand comes up from below the knob and pushes it across */
+.o-finger { top: 66%; left: auto; right: .02em; margin-left: 0; }
+html[data-theme="light"] .o-finger { top: 66%; right: auto; left: .02em; }
+@media (hover: hover) and (pointer: fine) {
+  .o-switch:hover .o-finger, .o-switch:focus-visible .o-finger { animation-name: o-poke-left; transform: translate(.02em, 0) rotate(6deg) rotateX(0) scale(1); }
+  html[data-theme="light"] .o-switch:hover .o-finger, html[data-theme="light"] .o-switch:focus-visible .o-finger { animation-name: o-poke-right; transform: translate(-.02em, 0) rotate(-6deg) rotateX(0) scale(1); }
+}
+/* dark to light: the knob goes left; light to dark: it goes right */
+.o-switch.is-flipping.to-light { --fx0: .02em; --fr0: 6deg; --fx1: -.5em; --fr1: -8deg; }
+.o-switch.is-flipping.to-dark { --fx0: -.02em; --fr0: -6deg; --fx1: .5em; --fr1: 8deg; }
+@media (max-width: 860px) { .o-switch { width: 1.12em; height: .6em; } .o-thumb { width: .48em; height: .48em; } html:not([data-theme="light"]) .o-thumb { transform: translateX(.52em); } }
+@media (prefers-reduced-motion: reduce) { .o-thumb, .o-ico, .o-star, .o-cloud, .o-track { transition: none; } }
