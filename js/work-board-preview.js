@@ -836,6 +836,14 @@
       x.style.setProperty('--dy', (o.dy || 0) + 'px');
     });
   }
+  /* A small label in the tray so the owner can see whether the key was accepted */
+  function ownerChip(text, bad) {
+    var c = document.querySelector('.wb-owner-chip') || document.createElement('span');
+    c.className = 'wb-owner-chip' + (bad ? ' is-bad' : '');
+    c.textContent = text;
+    c.style.cssText = 'display:inline-flex;align-items:center;min-height:28px;padding:0 12px;margin-left:8px;border-radius:999px;font:600 12px/1 Outfit,sans-serif;white-space:nowrap;' + (bad ? 'background:#ffdad6;color:#93000a;' : 'background:#c8f5d4;color:#0b5a26;');
+    if (!c.parentNode) trayEl.appendChild(c);
+  }
   function loadShared() {
     return api('GET').then(function (j) {
       if (!j || !Array.isArray(j.stickers)) throw new Error('no list');
@@ -843,7 +851,8 @@
       if (OWNER && j.owner === false) {
         toast(j.ownerSet === false ? 'Owner mode is off: OWNER_KEY is not set on Netlify for this site.' : 'This owner key doesn’t match the one on Netlify, so your changes won’t save. Open the owner link again with the current key.');
         OWNER = ''; var cb = document.querySelector('.wb-tray-clear'); if (cb) cb.remove();
-      }
+        ownerChip('Owner key not accepted', true);
+      } else if (OWNER && j.owner) ownerChip('Owner mode on', false);
       applyDecor(j.decor);
       Array.prototype.forEach.call(world.querySelectorAll(':scope > .sticker'), function (x) { x.remove(); });
       j.stickers.forEach(function (o) {
